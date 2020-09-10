@@ -34,3 +34,5 @@ svn:
   old:
     version: 2.4
     branch:  ruby_2_4
+
+disable_disk_cache: true
