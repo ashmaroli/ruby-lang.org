@@ -6,6 +6,7 @@ before_install:
   - gem install bundler --no-document
   - bundle config gemfile _jekyll/Gemfile
   - bundle config path vendor/bundle
+install: bundle install --jobs 4 --retry 3
 script: bundle exec ruby _scripts/memprof.rb
 notifications:
   email: false
