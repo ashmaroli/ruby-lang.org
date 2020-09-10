@@ -1,11 +1,11 @@
 language: ruby
 rvm: 2.7.0
+env:
+  - BUNDLE_GEMFILE=$PWD/_jekyll/Gemfile BUNDLE_PATH=$PWD/vendor/bundle
 cache: bundler
 before_install:
   - gem update --system --no-document
   - gem install bundler --no-document
-  - bundle config gemfile _jekyll/Gemfile
-  - bundle config path vendor/bundle
 install: bundle install --jobs 4 --retry 3
 script: bundle exec ruby _scripts/memprof.rb
 notifications:
