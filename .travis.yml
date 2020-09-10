@@ -9,5 +9,6 @@ env:
   - ALLOW_FILES="lib/jekyll/"
   - ALLOW_FILES="lib/liquid/"
   - ALLOW_FILES="lib/kramdown/"
+  - ALLOW_FILES="lib/addressable/"
 notifications:
   email: false
