@@ -3,7 +3,7 @@
 require 'jekyll'
 require 'memory_profiler'
 
-MemoryProfiler.report do
+MemoryProfiler.report(allow_files: ENV["ALLOW_FILES"]) do
   Jekyll::Commands::Build.process({
     "source"      => File.expand_path("..", __dir__),
     "destination" => File.expand_path("../_site", __dir__),

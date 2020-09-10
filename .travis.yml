@@ -5,5 +5,9 @@ before_install:
   - gem update --system --no-document
   - gem install bundler --no-document
 script: bundle exec ruby _scripts/memprof.rb
+env:
+  - ALLOW_FILES="lib/jekyll/"
+  - ALLOW_FILES="lib/liquid/"
+  - ALLOW_FILES="lib/kramdown/"
 notifications:
   email: false
