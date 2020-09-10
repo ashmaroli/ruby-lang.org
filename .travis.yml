@@ -1,16 +1,11 @@
 language: ruby
-sudo: false
 rvm: 2.7.0
 cache: bundler
-env:
-  - TASK=test
-before_install: gem install bundler:2.0.2
-script: bundle exec rake $TASK
-# Notifications, used by our Gitter channel.
+before_install:
+  - gem update --system --no-document
+  - gem install bundler --no-document
+  - bundle config gemfile _jekyll/Gemfile
+  - bundle config path vendor/bundle
+script: bundle exec ruby _scripts/memprof.rb
 notifications:
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/9eef19829de6aa749075
-    on_success: change  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: false     # default: false
+  email: false
