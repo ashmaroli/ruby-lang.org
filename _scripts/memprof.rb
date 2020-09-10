@@ -7,5 +7,6 @@ MemoryProfiler.report(allow_files: ENV["ALLOW_FILES"]) do
   Jekyll::Commands::Build.process({
     "source"      => File.expand_path("..", __dir__),
     "destination" => File.expand_path("../_site", __dir__),
+    "verbose"     => true,
   })
 end.pretty_print(scale_bytes: true, normalize_paths: true)
