@@ -3,5 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.0'
-gem 'memory_profiler', github: 'SamSaffron/memory_profiler'
+gem 'memory_profiler'
+gem 'method_profiler'
 gem 'tzinfo-data'

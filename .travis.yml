@@ -6,10 +6,14 @@ before_install:
   - gem install bundler --no-document
 script: bundle exec ruby _scripts/memprof.rb
 env:
-  - TRACE_CLASS="String" ALLOW_FILES="lib/kramdown/"
+  # - TRACE_CLASS="String" ALLOW_FILES="lib/kramdown/"
   - TRACE_CLASS="Array"
   - TRACE_CLASS="Hash"
   - TRACE_CLASS="Regexp"
   - ALLOW_FILES="lib/jekyll/"
+matrix:
+  include:
+    - script: bundle exec ruby _scripts/methprof.rb "Jekyll::Tags::Link"
+      name: Profile Method Calls"
 notifications:
   email: false
