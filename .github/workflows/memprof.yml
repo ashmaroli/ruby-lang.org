@@ -1,0 +1,29 @@
+name: Memory Profile
+on: push
+
+jobs:
+  memory_profile:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - name: Set up Ruby dependencies cache
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ubuntu-latest-gems-${{ hashFiles('Gemfile') }}
+          restore-keys: 'ubuntu-latest-gems-'
+      - name: Set up dependencies
+        run: |
+          gem update --system --no-document
+          gem update bundler --no-document
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - name: Memory Analysis
+        run: bundle exec ruby _scripts/memprof.rb
+        env:
+          TRACE_CLASS: String
+          ALLOW_FILES: "lib/kramdown/"
