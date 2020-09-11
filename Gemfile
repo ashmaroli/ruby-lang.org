@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'jekyll', github: 'jekyll/jekyll'
+gem 'jekyll', github: 'ashmaroli/jekyll', branch: 'reduce-link-tag-string-allocs'
 gem 'memory_profiler'
 gem 'method_profiler'
 gem 'tzinfo-data'
