@@ -8,9 +8,9 @@ script: bundle exec ruby _scripts/methprof.rb
 env:
   - KLASS="Jekyll::Page"
   - KLASS="Jekyll::Document"
-  - KLASS="Jekyll::StaticFile"
   - KLASS="Jekyll::Convertible"
   - KLASS="Jekyll::Drops::Drop"
+  - KLASS="Jekyll::Renderer"
   - KLASS="Jekyll::URL"
 notifications:
   email: false
