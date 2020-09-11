@@ -10,7 +10,7 @@ module Hirb::Helpers::Table::Filters
   end
 end
 
-klass = Object.const_get(ARGV[0], false)
+klass = Object.const_get(ENV["KLASS"], false)
 
 Jekyll.logger.info "-" * 80
 Jekyll.logger.info "Profiling:", klass.name.cyan
