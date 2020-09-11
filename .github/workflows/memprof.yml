@@ -24,6 +24,3 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: Memory Analysis
         run: bundle exec ruby _scripts/memprof.rb
-        env:
-          TRACE_CLASS: String
-          ALLOW_FILES: "lib/kramdown/"
