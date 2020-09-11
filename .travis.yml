@@ -13,7 +13,7 @@ env:
   - ALLOW_FILES="lib/jekyll/"
 matrix:
   include:
-    - script: bundle exec ruby _scripts/methprof.rb "Jekyll::Tags::Link"
+    - script: bundle exec ruby _scripts/methprof.rb "Jekyll::Document"
       name: Profile Method Calls"
 notifications:
   email: false
