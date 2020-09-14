@@ -6,8 +6,8 @@ before_install:
   - gem install bundler --no-document
 script: bundle exec ruby _scripts/memprof.rb
 env:
-  - TRACE_CLASS="String" ALLOW_FILES="lib/kramdown/"
-  - TRACE_CLASS="Array"
+  - TRACE_CLASS="String"
+  - TRACE_CLASS="Array" ALLOW_FILES="lib/jekyll/"
   - TRACE_CLASS="Hash"
   - TRACE_CLASS="Regexp"
   - ALLOW_FILES="lib/jekyll/"
