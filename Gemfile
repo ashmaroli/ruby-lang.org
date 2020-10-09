@@ -1,22 +1,14 @@
-source "https://rubygems.org"
-ruby ENV['CUSTOM_RUBY_VERSION'] || '~> 2.7.0'
+# frozen_string_literal: true
 
-gem 'rake'
-gem 'jekyll', '~> 4.0'
-gem 'rouge'
+source 'https://rubygems.org'
 
-gem 'unicorn'
-gem 'lanyon'
-gem 'rack-rewrite'
-gem 'rack-ssl'
-gem 'rack-protection'
+gem 'jekyll', path: '../jekyll'
 
-group :production do
-  gem "sqreen"
-end
+gem 'jekyll-commonmark'
+gem 'liquid-c'
 
-group :development do
-  gem 'minitest'
-  gem 'spidr', '~> 0.6'
-  gem 'validate-website', '~> 1.6'
-end
+gem 'tzinfo-data'
+gem 'tzinfo', '~> 1.0'
+
+gem 'memory_profiler'
+gem 'stackprof' if RUBY_PLATFORM !~ /mingw|mswin|java/
