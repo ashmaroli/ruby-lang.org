@@ -1,19 +1,23 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-ruby "~> 3.1.3"
+source 'https://rubygems.org'
 
-gem "rake"
-gem "jekyll", "~> 4.2.0"
-gem "rouge"
+JEKYLL_DIRECTIVES = \
+  if ENV['JEKYLL_REMOTE_REF']
+    [:github, :ref].zip(ENV['JEKYLL_REMOTE_REF'].split(':', 2)).to_h
+  elsif ENV['JEKYLL_VERSION']
+    ENV['JEKYLL_VERSION']
+  else
+    { path: '../jekyll' }
+  end
 
-gem "unicorn"
-gem "lanyon"
-gem "rack-rewrite"
-gem "rack-ssl"
-gem "rack-protection"
+gem 'jekyll', JEKYLL_DIRECTIVES
 
-group :development do
-  gem "minitest"
-  gem "spidr", "~> 0.6"
-  gem "validate-website", "~> 1.6"
-end
+gem 'jekyll-commonmark'
+gem 'liquid-c'
+
+gem 'tzinfo-data'
+gem 'tzinfo', '~> 1.0'
+
+gem 'memory_profiler'
+gem 'stackprof' if RUBY_PLATFORM !~ /mingw|mswin|java/

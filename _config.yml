@@ -1,11 +1,11 @@
-markdown: kramdown
+url: https://www.ruby-lang.org
 permalink: pretty
-highlighter: rouge
-
 timezone: UTC
 
-kramdown:
-  auto_ids: false
+plugins:
+  - jekyll-commonmark
+
+markdown: CommonMark
 
 exclude:
   - config.ru
@@ -20,8 +20,6 @@ exclude:
   - vendor
   - tsconfig.json
 
-url: https://www.ruby-lang.org
-
 license:
   url: /en/about/license.txt
 
@@ -35,3 +33,5 @@ svn:
   old:
     version: 2.4
     branch:  ruby_2_4
+
+disable_disk_cache: true
