@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>從 C 和 C++ 到 Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>從 C 和 C++ 到 Ruby</h1>
+
+
+
+  <div id="content">
+    <p>由於 Ruby 跟 C/C++ 的差異實在太大，很難將兩者間的差異一項一項列出。其中的一個重要理由是：Ruby 和 C
+語言的「不隱藏內部機制(No hidden mechanism)」原則完全處在兩個極端上。Ruby
+選擇讓人們的工作更輕鬆，但讓執行期環境(runtime)負擔加重。除非你要開始對你的 Ruby 程式碼做最佳化，你不需要關心編譯器的臉色如何。</p>
+<p>也就是說，你可以預期 Ruby 程式將會比等價的 C/C++ 程式慢的多。然而，你也會驚訝於只需要寫這麼少的程式碼，就可以迅速地完成你的
+Ruby 程式。Ruby 能完全滿足你的需求，又比C++簡單的多。</p>
+<p>Ruby 是動態型別(Dynamically typed)，而不是靜態型別(Statically
+typed)的程式語言。Ruby的執行期環境(runtime)會盡可能的處理所有工作。舉例來說，你不需要事先知道你的 Ruby
+程式將會被連結(link)到哪一個模組，或是哪一個方法(method)將會被呼叫。</p>
+<p>幸運的是，Ruby 與 C 有著良好的共生關係。Ruby 支援所謂的「擴充模組」。這些由 C 語言寫成的模組能夠在 Ruby
+程式中使用（而且看起來與一般 Ruby 模組無異）。因此，你可以將你的 Ruby 程式中影響效能最大的部份劃分出去，用純粹的 C
+語言來完成這些部分。</p>
+<p>最後，Ruby 本身理所當然的是用 C 語言寫成。</p>
+<h3>與C語言的相似之處</h3>
+<p>與C語言相同，在Ruby中...</p>
+<ul>
+<li>你可以用程序式的方式寫程式（但是底層依然是物件導向的環境。）</li>
+<li>大多數的運算子都是相同的。（包含複合運算子跟位元運算子。）然而Ruby並沒有<code>++</code>或是<code>--</code>運算子。</li>
+<li>你可以使用<code>__FILE__</code> 與 <code>__LINE__</code>。</li>
+<li>你可以定義常數。雖然並沒有特殊的 <code>const</code> 關鍵字，Ruby利用命名的慣例來強迫變數為常數：第一個字母為大寫的變數便為常數。</li>
+<li>字串由雙引號包住。</li>
+<li>字串是可變的。</li>
+<li>就像man page一樣，你可以利用<code>ri</code>指令在終端機視窗中閱讀大多數的文件。</li>
+<li>你也有一樣的指令列debugger可以使用。</li>
+</ul>
+<h3>與C++的相同之處</h3>
+<p>與C++相同，在Ruby中...</p>
+<ul>
+<li>大多數的運算子都是一樣的（包含<code>::</code>），<code>&lt;&lt;</code>常常用來將元素串接在list之後。要注意的是：Ruby中你不需要使用<code>-&gt;</code>，永遠只需要<code>.</code>。</li>
+<li><code>public</code>，<code>private</code>，與<code>protected</code>的功能在兩者是類似的。</li>
+<li>物件的繼承一樣只需要一個字元，只是從 <code>:</code> 變成 <code>&lt;</code>。</li>
+<li>可以將你的程式碼放進模組(module)之中，類似 C++ 中的 <code>namespace</code> 的作法。</li>
+<li>例外（Exceptions）的運作方式類似。雖然為了保護無辜的人們，我們把關鍵字改了。</li>
+</ul>
+<h3>與C語言的不同之處</h3>
+<p>與C語言不同的是，在Ruby中...</p>
+<ul>
+<li>物件是強型別。（變數名稱則沒有任何的型別定義。）</li>
+<li>沒有巨集(macro)或是前處理器(preprocessor)、沒有轉型、沒有指標。</li>
+<li>沒有標頭檔(header files)、沒有typedef、沒有sizeof、也沒有enums。</li>
+<li>沒有<code>#define</code>。用常數來代替他們便可。</li>
+<li>在Ruby 1.8中，程式碼在執行期才被解譯，而不是被編譯成任何一種機械語言或是byte-code。</li>
+<li>所有的變數都存放在堆疊(heap)中。因此，你不需要自行釋放他們，垃圾回收機制(Garbage collector)會處理他們。</li>
+<li>方法的參數是傳參考，而非傳值。</li>
+<li>用 <code>require 'foo'</code> 而不是 <code>#include &lt;foo&gt;</code> 或是 <code>#include &quot;foo&quot;</code>。</li>
+<li>你不能在程式碼中插入組合語言。</li>
+<li>每行的結尾不需要分號。</li>
+<li>在 <code>if</code> 和 <code>while</code> 這類條件運算式中，你可以省略括號。</li>
+<li>呼叫方法的括號通常是選擇性的。</li>
+<li>你不會常常使用大括號。一般只需要使用 <code>end</code> 關鍵字來結束一個多行的區塊（像是 <code>while</code> 迴圈。）</li>
+<li><code>do</code>關鍵字被稱作「block」，Ruby中沒有C語言的「do statement。」</li>
+<li>「block」這個詞在 Ruby 中有著不同的意義。它是指一段可以結合到一個方法呼叫的程式碼，使得該方法的本體在執行時可以呼叫該段程式碼。</li>
+<li>你不需要事先宣告變數，當你需要一個變數時直接使用一個新名字就可以了。</li>
+<li>當測試真值的時候，除了 <code>false</code> 與 <code>nil</code> 之外的東西都視為真（包含 <code>0</code>，<code>0.0</code>，以及<code>&quot;0&quot;</code>。）</li>
+<li>Ruby沒有字元(char)型別，只有長度為一的字串。</li>
+<li>字串並不需要一個空位元組作為結束。</li>
+<li>陣列宣告使用中括號而非大括號。</li>
+<li>當你加入更多元素到陣列中時，陣列會自動變大。</li>
+<li>如果你將兩個陣列相加，你會得到一個更大的新的陣列，而不是指標運算的結果。</li>
+<li>大多數的情況下，一切都是一個運算式。（也就是說，<code>while</code>之類的東西實際上會被當做一個rvalue。）</li>
+</ul>
+<h3>與C++的不同</h3>
+<p>與C++不同的是，在Ruby中...</p>
+<ul>
+<li>你不能明確的定義參照(reference)，Ruby中每個變數都會被自動解參照回原本的物件。</li>
+<li>物件型別是強型別也是<em>動態</em>型別。Ruby執行期環境將會在<em>執行期</em>的方法呼叫成功時，自行辨識型別。</li>
+<li>物件的建構子用 <code>initialize</code> 命名，而不是類別名稱。</li>
+<li>所有的方法都是虛擬(virtual)的。</li>
+<li>類別變數（靜態變數）的變數名稱永遠用 <code>@@</code>開頭。</li>
+<li>你不能直接存取成員變數，所有對公開的成員變數（在Ruby中稱作屬性, attribute）的存取都會透過方法呼叫。</li>
+<li>用<code>self</code>取代<code>this</code>。</li>
+<li>有些方法會以 ’?’ 或是 ’!’結尾，這些符號都真的存在於方法名稱中。</li>
+<li>本質上，Ruby沒有多重繼承。然而，Ruby可以使用”mixin”。（也就是說，你可以「繼承」某個模組的所有方法）</li>
+<li>呼叫方法時的括號通常都可以省略。</li>
+<li>你可以在任何時候重新打開一個類別以加入新的方法。</li>
+<li>你不需要 C++ 的 template 機制。（因為你可以將某個變數設值為任何一種物件，型別將在執行期自動辨識。）你也不需要轉型。</li>
+<li>迭代(Iteration)的運作方式有些許不同，Ruby中你會讓你的物件mixin <code>Enumerator</code>模組並且直接呼叫
+<code>my_obj.each</code> 方法，而不是使用一個獨立的迭代器(Iterator)。</li>
+<li>Ruby只有兩種容器類別：<code>Array</code>跟<code>Hash</code>。</li>
+<li>Ruby沒有型別轉換，你也會發現在Ruby中你不需要它們。</li>
+<li>Ruby內建了多執行緒。但是在Ruby 1.8之中只有”green threads”（只在直譯器中有效的執行緒），而不是原生的執行緒。</li>
+<li>Ruby的標準函式庫中就包含了單元測試(Unit test)函式庫。</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>上手入門</strong>，一點都不難!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在瀏覽器中試用 Ruby!</a></li>
+
+    
+    <li><a href="/zh_tw/documentation/quickstart/">20 分鐘 Ruby 體驗</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/ruby-from-other-languages/">從其他語言到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong> 新世界…</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_tw/documentation/">文件</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">學術研究</a></li>
+    
+
+    
+    <li><a href="/zh_tw/libraries/">函式庫</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong> 友善且持續成長的社群</h3>
+  <ul>
+    
+    <li><a href="/zh_tw/community/mailing-lists/">郵件論壇</a>: 與世界各地的程式設計師一同聊聊</li>
+    
+
+    
+    <li><a href="/zh_tw/community/user-groups/">使用者群組</a>: 與身旁的 Ruby 使用者接觸</li>
+    
+
+    
+    <li><a href="/zh_tw/community/weblogs/">部落格</a>: 了解 Ruby 社群中的最新消息</li>
+    
+
+    
+    <li><a href="/zh_tw/community/ruby-core/">Ruby 核心</a>: 幫助開發最新的 Ruby</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">問題追蹤</a>: 回報或解決 Ruby 問題</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

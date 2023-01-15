@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.7.0-preview2 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2019/10/22/ruby-2-7-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.7.0-preview2 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 22 Oct 2019</p>
+
+    <p>Ruby 2.7シリーズのプレビュー版である、Ruby 2.7.0-preview2をリリースします。</p>
+<p>プレビュー版は、年末の正式リリースに向け、新たな機能を試し、フィードバックを集めるために提供されています。
+Ruby 2.7.0-preview2では、多くの新しい機能やパフォーマンスの改善が含まれています。 その一部を以下に紹介します。</p>
+<h2>Compaction GC</h2>
+<p>断片化したメモリをデフラグするCompaction GCが導入されました。</p>
+<p>一部のマルチスレッドなRubyプログラムを長期間動かし、マーク&amp;スイープ型GCを何度も実行していると、メモリが断片化してメモリ使用量の増大や性能の劣化を招くことが知られています。</p>
+<p>Ruby 2.7では<code>GC.compact</code> というメソッドを導入し、ヒープをコンパクションすることが出来るようになります。ヒープ内の生存しているオブジェクトを他のページに移動し、不要なページを解放できるようになるとともに、ヒープをCoW (Copy on Write) フレンドリーにすることが出来ます。 <a href="https://bugs.ruby-lang.org/issues/15626">[Feature #15626]</a></p>
+<h2>Pattern Matching [Experimental]</h2>
+<p>関数型言語で広く使われているパターンマッチという機能が実験的に導入されました。
+渡されたオブジェクトの構造がパターンと一致するかどうかを調べ、一致した場合にその値を変数に代入するといったことができるようになります。 <a href="https://bugs.ruby-lang.org/issues/14912">[Feature #14912]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'{...}'</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>詳細については <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Pattern matching - New feature in Ruby 2.7</a> を参照してください。</p>
+<h2>REPL improvement</h2>
+<p>Ruby に添付されている REPL (Read-Eval-Print-Loop) である <code>irb</code> で、複数行編集がサポートされました。これは <code>reline</code> という <code>readline</code> 互換のピュア Ruby 実装によるものです。
+また、rdoc 連携も提供されるようになっています。<code>irb</code> 内で、クラス、モジュール、メソッドのリファレンスをその場で確認できるようになりました。 <a href="https://bugs.ruby-lang.org/issues/14683">[Feature #14683]</a>, <a href="https://bugs.ruby-lang.org/issues/14787">[Feature #14787]</a>, <a href="https://bugs.ruby-lang.org/issues/14918">[Feature #14918]</a>
+これに加え、<code>binding.irb</code>で表示される周辺のコードや、コアクラスのオブジェクトのinspect結果に色がつくようになっています。</p>
+<!-- raw HTML omitted -->
+<h2>キーワード引数を通常の引数から分離</h2>
+<p>キーワード引数とpositionalな引数（ふつうの引数）の間の自動変換が非推奨となりました。この変換はRuby 3で除去される予定です。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<ul>
+<li>
+<p>メソッド呼び出しにおいて最後の引数としてハッシュオブジェクトを渡し、他にキーワード引数を渡さず、かつ、呼ばれたメソッドがキーワード引数を受け取るとき、警告が表示されます。キーワード引数として扱いたい場合は、明示的にdouble splat演算子（<code>**</code>）を足すことで警告を回避できます。このように書けばRuby 3でも同じ意味で動きます。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>キーワード引数を受け取るメソッドにキーワード引数を渡すが、必須引数が不足している場合に、キーワード引数は最後の必須引数として解釈され、警告が表示されます。警告を回避するには、キーワードではなく明示的にハッシュとして渡してください。このように書けばRuby 3でも同じ意味で動きます。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>メソッドがキーワード引数を受け取るがdouble splat引数は受け取らず、かつ、メソッド呼び出しでSymbolと非Symbolの混ざったハッシュを渡す（もしくはハッシュをdouble splatでキーワードとして渡す）場合、ハッシュは分割され、警告が表示されます。Ruby 3でもハッシュの分割を続けたい場合は、呼び出し側で明示的に分けるようにしてください。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>メソッドがキーワード引数を受け取らず、呼び出し側でキーワード引数を渡した場合、ハッシュの引数としてみなされる挙動は変わらず、警告も表示されません。Ruby 3でもこのコードは動き続ける予定です。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>メソッドが任意のキーワードを受け取る場合、非Symbolがキーワード引数のキーとして許容されるようになります。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>メソッド定義で<!-- raw HTML omitted -->**nil<!-- raw HTML omitted -->と書くことで、このメソッドがキーワードを受け取らないことを明示できるようになりました。このようなメソッドをキーワード引数付きで呼び出すとArgumentErrorになります。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>キーワード引数を受け取らないメソッドに対して空のハッシュをdouble splatで渡すとき、空のハッシュが渡る挙動はなくなりました。ただし、必須引数が不足する場合は空のハッシュが渡され、警告が表示されます。ハッシュの引数として渡したい場合はdouble splatをつけないようにしてください。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span> <span class="c1"># []</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># {} and warning</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>   <span class="c1"># [{}]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>    <span class="c1"># {}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>主要な新機能</h2>
+<ul>
+<li>
+<p>メソッド参照演算子 <!-- raw HTML omitted -->.:<!-- raw HTML omitted --> が試験的に導入されました。<a href="https://bugs.ruby-lang.org/issues/12125">[Feature #12125]</a>, <a href="https://bugs.ruby-lang.org/issues/13581">[Feature #13581]</a></p>
+</li>
+<li>
+<p>デフォルトのブロックの仮引数として番号指定パラメータが試験的に導入されました。<a href="https://bugs.ruby-lang.org/issues/4475">[Feature #4475]</a></p>
+</li>
+<li>
+<p>開始値省略範囲式が試験的に導入されました。これは終了値省略範囲式ほど有用ではないと思われますが、しかし DSL のような目的には役立つかもしれません。 <a href="https://bugs.ruby-lang.org/issues/14799">[Feature #14799]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">ary</span><span class="p">[</span><span class="o">..</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># identical to ary[0..3]</span>
+<span class="n">rel</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">sales: </span><span class="o">..</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#tally</code> が追加されました。各要素の出現回数を数えます。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">].</span><span class="nf">tally</span>
+<span class="c1">#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>レシーバを<code>self</code>としてprivateメソッドを呼び出すことが許容されるようになりました。 <a href="https://bugs.ruby-lang.org/issues/11297">[Feature #11297]</a> <a href="https://bugs.ruby-lang.org/issues/16123">[Feature #16123]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+<span class="k">end</span>
+<span class="kp">private</span> <span class="ss">:foo</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">foo</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerator::Lazy#eager</code> が追加されました。lazyなEnumeratorを非lazyなEnumeratorに変換します。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">a</span> <span class="o">=</span> <span class="sx">%w(foo bar baz)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="p">}.</span><span class="nf">eager</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">class</span>               <span class="c1">#=&gt; Enumerator</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"?"</span> <span class="p">}</span>  <span class="c1">#=&gt; ["FOO!?", "BAR!?", "BAZ!?"]</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>パフォーマンスの改善</h2>
+<ul>
+<li>
+<p>JIT [Experimental]</p>
+<ul>
+<li>
+<p>最適化の際の仮定が無効とされた場合、JIT 化されていたコードがより最適化度が低いコードに再コンパイルされるようになりました。</p>
+</li>
+<li>
+<p>あるメソッドが「純粋」であると判定された場合、メソッドのインライン化が行われるようになりました。この最適化はまだ実験的であり、また多数のメソッドが今はまだ「純粋」と判定されないままです。</p>
+</li>
+<li>
+<p><code>--jit-min-calls</code> オプションのデフォルト値が 5 から 10,000 に変更されました。</p>
+</li>
+<li>
+<p><code>--jit-max-cache</code> オプションのデフォルト値が 1,000 から 100 に変更されました。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Symbol#to_s</code>, <code>Module#name</code>, <code>true.to_s</code>, <code>false.to_s</code> <code>nil.to_s</code> は常にfrozenな文字列を返すようになりました。返された文字列は常に同じオブジェクトとなります。 [Experimental]  <a href="https://bugs.ruby-lang.org/issues/16150">[Feature #16150]</a></p>
+</li>
+<li>
+<p><code>CGI.escapeHTML</code> のパフォーマンスが改善されました。 <a href="https://github.com/ruby/ruby/pull/2226">GH-2226</a></p>
+</li>
+</ul>
+<h2>その他の注目すべき 2.6 からの変更点</h2>
+<ul>
+<li>
+<p>いくつかの標準ライブラリがアップデートされました。</p>
+<ul>
+<li>Bundler 2.1.0.pre.1</li>
+<li>RubyGems 3.1.0.pre.1</li>
+<li>CSV 3.1.2 (<a href="https://github.com/ruby/csv/blob/v3.1.2/NEWS.md">NEWS</a>)</li>
+<li>Racc 1.4.15</li>
+<li>REXML 3.2.3 (<a href="https://github.com/ruby/rexml/blob/v3.2.3/NEWS.md">NEWS</a>)</li>
+<li>RSS 0.2.8 (<a href="https://github.com/ruby/rss/blob/v0.2.8/NEWS.md">NEWS</a>)</li>
+<li>StringScanner 1.0.3</li>
+<li>独自のバージョン番号を持たないその他のライブラリの一部も更新されています。</li>
+</ul>
+</li>
+<li>
+<p>ブロックを渡すメソッド呼び出し中の、ブロックを伴わない <code>Proc.new</code> と <code>proc</code> が警告されるようになりました。</p>
+</li>
+<li>
+<p>ブロックを渡すメソッド呼び出し中の、ブロックを伴わない <code>lambda</code> はエラーとなるようになりました。</p>
+</li>
+<li>
+<p>Unicode および Emoji のバージョンが 11.0.0 から 12.0.0 になりました。<a href="https://bugs.ruby-lang.org/issues/15321">[Feature #15321]</a></p>
+</li>
+<li>
+<p>Unicode のバージョンが 12.1.0 となり、新元号「令和」を表す合字 U+32FF がサポートされました。<a href="https://bugs.ruby-lang.org/issues/15195">[Feature #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>, <code>Date#jisx0301</code>, および <code>Date.parse</code> で新元号に対応しました。<a href="https://bugs.ruby-lang.org/issues/15742">[Feature #15742]</a></p>
+</li>
+<li>
+<p>Ruby のビルドに C99 に対応したコンパイラが必要になりました。<a href="https://bugs.ruby-lang.org/issues/15347">[Misc #15347]</a></p>
+<ul>
+<li>本件についての詳細: <a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+</ul>
+<p>その他詳細については、<a href="https://github.com/ruby/ruby/blob/v2_7_0_preview2/NEWS">NEWS</a> ファイルまたは<a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview2">コミットログ</a>を参照してください。</p>
+<p>なお、こうした変更により、Ruby 2.6.0 以降では <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview2">3670 個のファイルに変更が加えられ、201242 行の追加と 88066 行の削除が行われました</a> !</p>
+<p>Ruby 2.7 で楽しいプログラミングを！</p>
+<h2>ダウンロード</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14555229 bytes
+SHA1:   7d9eed71115acfc8851747517904c1c6809872a9
+SHA256: 417c84346ba84d664a13833c94c6d9f888c89bb9bee9adf469580441eaede30b
+SHA512: 7066ececebbbba4b2933ba1a4f70cdef373169910802259a3e52b4fc144ba298f3cffda4be5fe8a7be8ef769ed43076fa046a9ac2c13bb733475b9852112c6f0
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16622499 bytes
+SHA1:   5e998eb37ef54e650c0206184d56f506359d5477
+SHA256: bda4b8dc340fad425c8099400fe3ef8e7393837d7e6e1bfae41843d1d938ebc4
+SHA512: dbf05d6ddab59062f507342b25b8c21670b02bdd49e77bda947870607f4bf9049e5e7ddfde6bbce2e1749ca92568da9be3e5f30601b1eb450f10d8add952239a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11874200 bytes
+SHA1:   4356e1726027795a5c6b08572bb37bcb5a8c55d6
+SHA256: fa39f088331f6d505154aa9d025aab177fdffedfbbabccd900b8c02e745bc077
+SHA512: a057a186d85fcdf123abd69d584ef3adb20ad4397521e14306395d34102c3d818fe2d34a6476db01effcde479da9a77076cbb6d30bca40f1471ce3f5d3a995a9
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   20576618 bytes
+SHA1:   891b70ec76e9e776774a49b3ce24832a944422b3
+SHA256: 81a240bead4438b064cb4cde562b483b82ec8e414bac057a6df43df5a247545c
+SHA512: 1a8d4503374d31abf43182e2af6902ea6e5295f55d539415c8268b1d6a0fa83a975648c225ae986e687d5283dc2d180cf1e608841485506e4b0ac5efc154949a
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby とは</h2>
+<p>Rubyはまつもとゆきひろ (Matz) によって1993年に開発が始められ、今もオープンソースソフトウェアとして開発が続けられています。Rubyは様々なプラットフォームで動き、世界中で、特にWebアプリケーション開発のために使われています。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

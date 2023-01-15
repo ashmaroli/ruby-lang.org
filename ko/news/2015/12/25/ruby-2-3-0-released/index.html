@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 2.3.0 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2015/12/25/ruby-2-3-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 2.3.0 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2015-12-25)<br>
+                         번역자: Shia Sim</p>
+
+    <p>루비 2.3.0의 릴리스를 발표할 수 있게 되어 기쁘게 생각합니다.</p>
+<p>이것은 루비 2.3.x의 첫 번째 안정판 릴리스입니다.
+여기에서는 많은 새 기능들이 도입되었습니다.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11473">프로즌 스트링 리터럴 프라그마</a>가
+도입되었습니다. 루비 2.1에서는 객체 할당을 줄이기 위해 <code>&quot;str&quot;.freeze</code>가 최적화 되었습니다.
+루비 2.3에서는 모든 리터럴 문자열을 얼리는 새 매직 코멘트와 커맨드 라인 옵션이 추가 되었습니다.
+추가로 디버깅을 위해서 <code>--debug=frozen-string-literal</code> 옵션을 통해 <code>&quot;can't modify frozen String&quot;</code> 에러와 함께 객체가 어디에서 생성되었는지에 대한 정보를 얻을 수 있게 되었습니다.</p>
+<p>C#, Groovy, Swift의 <a href="https://bugs.ruby-lang.org/issues/11537">세이프 내비게이션 연산자</a>(<a href="https://instagram.com/p/-M9l6mRPLR/">외톨이 연산자라고도 불리는</a>) <code>&amp;.</code>가 도입되어서 <code>obj&amp;.foo</code>처럼 <code>nil</code> 처리가 한결 쉬워졌습니다. <code>Array#dig</code>와 <code>Hash#dig</code>도 추가되었습니다. 이 연산자는 <a href="http://api.rubyonrails.org/v4.2.5/classes/Object.html#method-i-try-21">ActiveSupport의 try!</a>처럼 동작하지만, <code>nil</code>만을 처리합니다.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11252"><code>did_you_mean</code> gem이 기본으로 내장됩니다.</a> did_you_mean gem은 디버깅이 편리하도록 <code>NameError</code>와 <code>NoMethodError</code>가 발생했을 때 잘못 입력했을 가능성이 있는 이름의 후보군을 보여줍니다.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11788">RubyVM::InstructionSequence#to_binary와 .load_from_binary</a>가 실험적으로 도입되었습니다. 이 기능을 통해서 ISeq(bytecode) 사전 컴파일 기능을 만들 수 있습니다.</p>
+<p>더불어 많은 성능 개선이 있었습니다. 예를 들어, <a href="https://bugs.ruby-lang.org/issues/11278">메서드 엔트리 데이터 구조의 변경</a>, <a href="https://bugs.ruby-lang.org/issues/11420">새 테이블 데이터 구조의 도입</a>, <a href="https://bugs.ruby-lang.org/issues/11569">Proc#call 최적화</a>, 기계 코드 레벨의 객체 할당 및 함수 호출 방법의 개선, <a href="https://bugs.ruby-lang.org/issues/11170">더 영리한 인스턴스 변수 데이터 구조</a>, <a href="https://bugs.ruby-lang.org/issues/11229">소켓과 I/O에서 고성능 논블로킹 I/O를 위해 &quot;exception:&quot; 키워드 사용을 허용</a>하는 등의 변경이 있었습니다. NEWS 파일의 &quot;Implementation improvements&quot;를 확인하세요.</p>
+<p>새 기능과 호환성의 전체 목록은 <a href="https://github.com/ruby/ruby/blob/v2_3_0/NEWS">NEWS</a>와 <a href="https://github.com/ruby/ruby/blob/v2_3_0/ChangeLog">ChangeLog</a>를 확인해주세요.</p>
+<p>이외에도 루비 2.2.0 이후로 <a href="https://github.com/ruby/ruby/compare/v2_2_0...v2_3_0">2946개의 파일이 변경되었으며, 104057줄이 추가되고, 59478줄이 제거</a>되었습니다!</p>
+<p>즐거운 성탄절, 행복한 휴일을 보내시고, 루비 2.3 코딩을 즐겨주세요!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14185617 bytes
+SHA1:   6c8a832d49d22755ea8c45b6d53faf2ccc6d6ac9
+SHA256: ec7579eaba2e4c402a089dbc86c98e5f1f62507880fd800b9b34ca30166bfa5e
+SHA512: 77b707359e754c3616699d21697752741497c719dc3d6fdfb55ed639e76d52560d293ae54cbe5c63be78dc73fbe60f1b8615d704d017bdfe1994aa9747d26a6c
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17648682 bytes
+SHA1:   2dfcf7f33bda4078efca30ae28cb89cd0e36ddc4
+SHA256: ba5ba60e5f1aa21b4ef8e9bf35b9ddb57286cb546aac4b5a28c71f459467e507
+SHA512: 914d0201ecefaeb67aca0531146d2e89900833d8d2a597ec8a19be94529ab6b4be367f9b0cee2868b407288896cc14b64d96150223cac0aef8aafc46fc3dd7cc
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11294412 bytes
+SHA1:   96e620e38af351c8da63e40cfe217ec79f912ba1
+SHA256: 70125af0cfd7048e813a5eecab3676249582bfb65cfd57b868c3595f966e4097
+SHA512: d893c5e6db5a0533e0da48d899c619964388852ef90e7d1b92a4363d5f189cd2dba32a009581f62b9f42a8e6027975fc3c18b64faf356f5e3ac43a8d69ec5327
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19840511 bytes
+SHA1:   3f88617568d9a4f491e8b32dca532363f73eaa71
+SHA256: 8270bdcbc6b62a18fdf1b75bd28d5d6fc0fc26b9bd778d422393a1b98006020a
+SHA512: a3f397bb3c9c19d9b797552c5d60bb01c82db884cfa966df84881125bea35713cffd99f88fb86b271bae72d9cfb09ad9b33838cffcf6365c091459479914fdef
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

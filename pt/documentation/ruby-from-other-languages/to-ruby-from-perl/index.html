@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Para Ruby a partir de Perl</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages/to-ruby-from-perl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pt/feeds/news.rss" rel="alternate" title="Em português" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pt/">
+          <h1>Ruby</h1>
+          <h2>O melhor amigo do programador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Procurar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Para Ruby a partir de Perl</h1>
+
+
+
+  <div id="content">
+    <p>O Perl é espectacular. A documentação do Perl é espetaculares. A Comunidade de Perl é...
+incrível.</p>
+<h3>Semelhanças</h3>
+<p>Tal como em Perl, em Ruby...</p>
+<ul>
+<li>Existe um sistema de gestão de pacotes, semelhante ao CPAN (chamado
+<a href="http://guides.rubygems.org">RubyGems</a>)</li>
+<li>O Tratamento de Expressões Regulares (Regexes) está embutido na
+linguagem. Bon appétit!</li>
+<li>Existe um número bastante razoável de funcionalidades nativas de uso
+frequente.</li>
+<li>Os parênteses são frequentemente opcionais.</li>
+<li>As strings funcionam essencialmente da mesma forma.</li>
+<li>Existe uma sitaxe de delimitação de strings e expressões regulares
+geralmente utilizada semelhante a do Perl. Ele parece <code>%q{isto}</code> (single-quoted), or
+<code>%Q{isto}</code> (double-quoted) e <code>%w{esta é uma lista de palavras single-quoted}</code>.
+Você <code>%Q|pode|</code> <code>%Q(usar)</code> <code>%Q^outros^</code> delimitadores que você prefere.</li>
+<li>Em Ruby existe interpolação de váriaveis entre aspas, <code>&quot;aplica-se #{desta} forma&quot;</code> (o código ruby é colocado entre <code>#{}</code>).</li>
+<li>A execução de comandos de sistema através da Shell faz-se com
+<code>`backticks`</code>.</li>
+<li>O Ruby possui ferramenta de documentação embutida (Em Ruby é
+chamado RDoc).</li>
+</ul>
+<h3>Diferenças</h3>
+<p>Ao contrario do Perl, no Ruby…</p>
+<ul>
+<li>Não existem as regras dependentes do contexto como no Perl.</li>
+<li>Uma variável não é o mesmo que o objeto ao qual se refere. Em vez
+disso é sempre um referencia para um objeto.</li>
+<li>Apesar de <code>$</code> e <code>@</code> serem utilizados por vezes como os
+primeiros caracteres nos nomes das variaveis, em vez de indicar o
+tipo, indicam o escopo <code>$</code> para variáveis globais, <code>@</code> para
+instâncias de objetos, e <code>@@</code> para atributos de classe).</li>
+<li>Os elementos de um Array são colocados entre colchetes em vez
+de parênteses.</li>
+<li>Criar listas de listas não as reduz a uma grande lista, em vez disso
+obtem-se um array de arrays.</li>
+<li>Utiliza-se <code>def</code> em vez de <code>sub</code>.</li>
+<li>Não são necessários ponto e vírgula (;) no final de cada linha. As
+definições de funções, classes e estruturas <code>case</code> terminam com a
+palavra <code>end</code>.</li>
+<li>Os objetos têm tipagem forte. É necessário invocar manualmente os
+métodos <code>foo.to_i</code>, <code>foo.to_s</code>, etc., se for necessário converter
+entre tipos.</li>
+<li>Não existem <code>eq</code>, <code>ne</code>, <code>lt</code>, <code>gt</code>, <code>ge</code>, nem <code>le</code>.</li>
+<li>Não existe ‘diamond operator’ (<code>&lt;&gt;</code>). Usualmente utiliza-se
+<code>IO.alguma_funçao</code>.</li>
+<li>O simbolo <code>=&gt;</code> é utilizado somente para os elementos de uma tabelas
+de hash.</li>
+<li>Não existe <code>undef</code>. Em Ruby utiliza-se a expressão <code>nil</code>. <code>nil</code> é um
+objeto (tal como tudo o resto em Ruby). Não é o mesmo que uma
+variável indefinida. Toma sempre o valor <code>false</code> se for tratada como
+um booleano.</li>
+<li>Quando é feito um teste booleano, somente <code>false</code> e <code>nil</code> devolvem um
+valor falso. Tudo o resto é verdadeiro (incluindo <code>0</code>, <code>0.0</code> e
+<code>&quot;0&quot;</code>).</li>
+<li>Não há um <a href="http://www.perlmonks.org/">PerlMonks</a>. Embora a mailing list do ruby-talk seja um
+site muito amigável.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Primeiros passos</strong>, é fácil!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/pt/documentation/quickstart/">Ruby em Vinte Minutos</a></li>
+    
+
+    
+    <li><a href="/pt/documentation/ruby-from-other-languages/">Ruby a partir de outras linguagens</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> um novo mundo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/pt/documentation/">Documentação</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/pt/libraries/">Bibliotecas</a></li>
+    
+
+    
+    <li><a href="/pt/documentation/success-stories/">Histórias de sucesso</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participe</strong> de uma comunidade simpática e em crescimento.</h3>
+  <ul>
+    
+    <li><a href="/pt/community/mailing-lists/">Listas de E-mail</a>: Fale sobre Ruby com programadores de todo o mundo.</li>
+    
+
+    
+    <li><a href="/pt/community/user-groups/">Grupos de Usuários</a>: Entre em contato com colegas da sua área.</li>
+    
+
+    
+    <li><a href="/pt/community/weblogs/">Weblogs</a>: Leia sobre o que está acontecendo agora na comunidade Ruby.</li>
+    
+
+    
+    <li><a href="/pt/community/ruby-core/">Ruby Core</a>: Ajude a polir as arestas da última versão do Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Informe ou ajude a resolver problemas do Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feeds de notícias (RSS)</h3>
+    <p><a href="/pt/feeds/news.rss">Em português</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Este site em outros idiomas:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pt/about/website/">Este website</a> é mantido com orgulho por membros da comunidade Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

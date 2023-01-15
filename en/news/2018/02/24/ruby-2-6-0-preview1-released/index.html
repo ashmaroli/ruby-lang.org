@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.6.0-preview1 Released</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/news/2018/02/24/ruby-2-6-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.6.0-preview1 Released</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 24 Feb 2018</p>
+
+    <p>We are pleased to announce the release of Ruby 2.6.0-preview1.</p>
+<p>Ruby 2.6.0-preview1 is the first preview toward Ruby 2.6.0.
+This preview1 is released earlier than usual because it includes an important new feature, JIT.</p>
+<h2>JIT</h2>
+<p>Ruby 2.6 introduces an initial implementation of JIT (Just-in-time) compiler.</p>
+<p>JIT compiler aims to improve performance of any Ruby program execution.
+Unlike ordinary JIT compilers for other languages, Ruby's JIT compiler does JIT compilation in a unique way, which prints C code to a disk and spawns common C compiler process to generate native code.
+See also: <a href="https://github.com/vnmakarov/ruby/tree/rtl_mjit_branch#mjit-organization">MJIT organization by Vladimir Makarov</a>.</p>
+<p>How to use: Just specify <code>--jit</code> in command line or <code>$RUBYOPT</code> environment variable. Specifying <code>--jit-verbose=1</code> allows to print basic information of ongoing JIT compilation. See <code>ruby --help</code> for other options.</p>
+<p>The main purpose of this JIT release is to provide a chance to check if it works for your platform and to find out security risks before the 2.6 release.
+Currently JIT compiler is supported only when Ruby is built by gcc or clang and the compiler is available on runtime. Otherwise you can't use it for now.</p>
+<p>As of 2.6.0-preview1, we're just preparing infrastructure for JIT and very few optimizations are implemented. You can measure some of potential improvements in micro benchmarks with this release, but it is NOT ready for benchmarking final performance of Ruby's JIT compiler, especially for large programs like Rails applications.</p>
+<p>We're going to implement method inlining in JIT compiler, which is expected to increase Ruby's performance significantly.</p>
+<p>Also, we're planning to increase the supported platforms, and the next plan is to support Visual Studio.</p>
+<p>Stay tuned for the new age of Ruby's performance.</p>
+<h2>New Features</h2>
+<ul>
+<li>
+<p>Add <code>Random.bytes</code>. [Feature #4938]</p>
+</li>
+<li>
+<p>Add <code>Binding#source_location</code>.  [Feature #14230]</p>
+<p>This method returns the source location of binding, a 2-element array of <code>__FILE__</code> and <code>__LINE__</code>.  Traditionally, the same information could be retrieved by <code>eval(&quot;[__FILE__, __LINE__]&quot;, binding)</code>, but we are planning to change this behavior so that <code>Kernel#eval</code> ignores <code>binding</code>'s source location [Bug #4352].  So, users should use this newly-introduced method instead of <code>Kernel#eval</code>.</p>
+</li>
+<li>
+<p>Add <code>:exception</code> option to let <code>Kernel.#system</code> raise error instead of returning <code>false</code>. [Feature #14386]</p>
+</li>
+</ul>
+<h2>Performance improvements</h2>
+<ul>
+<li>
+<p>Speedup <code>Proc#call</code> because we don't need to care about <code>$SAFE</code> any more.
+[Feature #14318]</p>
+<p>With <code>lc_fizzbuzz</code> benchmark which uses <code>Proc#call</code> so many times we can measure
+x1.4 improvements [Bug #10212].</p>
+</li>
+<li>
+<p>Speedup <code>block.call</code> where <code>block</code> is passed block parameter. [Feature #14330]</p>
+<p>Ruby 2.5 improves block passing performance. [Feature #14045]
+Additionally, Ruby 2.6 improves the performance of passed block calling.
+With micro-benchmark we can observe 2.6x improvement.</p>
+</li>
+</ul>
+<h2>Other notable changes since 2.5</h2>
+<ul>
+<li>
+<p><code>$SAFE</code> is a process global state and we can set <code>0</code> again. [Feature #14250]</p>
+</li>
+<li>
+<p>Passing <code>safe_level</code> to <code>ERB.new</code> is deprecated. <code>trim_mode</code> and <code>eoutvar</code> arguments are changed to keyword arguments. [Feature #14256]</p>
+</li>
+<li>
+<p>Merged RubyGems 2.7.6</p>
+</li>
+</ul>
+<p>See <a href="https://github.com/ruby/ruby/blob/v2_6_0_preview1/NEWS">NEWS</a>
+or the <a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview1">commit logs</a>
+for details.</p>
+<p>With those changes,
+<a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview1">1115 files changed, 23023 insertions(+), 14748 deletions(-)</a>
+since Ruby 2.5.0!</p>
+<p>Today, February 24th, is Ruby's 25th birthday.
+Happy birthday Ruby, and enjoy programming with Ruby 2.6.0-preview1!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16082501 bytes
+SHA1:   94b4a2f5f992dc9855364284e9c64316bf129c90
+SHA256: 2023c42676d9237481e1a97157d5e2ecc10db5e320d5b9cf872ec1d293265d61
+SHA512: 004696c4f087333ba7cb2285418dcce70f399966ae8fed817aab9759fd2d75beb088c4aeb294fcd4260112e8422f490cd4dbdfce402d73f96bb679b8bb3e1607
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19807007 bytes
+SHA1:   24d76f67bf913348eca783a2ecf6f3faf37299ae
+SHA256: 6c883927e80430cf07f2d90728d6c2c71164223f378a48ebf964d3b66319f623
+SHA512: 1e7f318cec1b7875fd9891df671078de7585b556695a2a85708483ddcacfd6e0b63b70ec2535e92ff981b4f72063721ed552df49688e066666fcd7ae520ae667
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14104578 bytes
+SHA1:   9f0fb79643a4673a839b0c8496eccc6e1dbd022d
+SHA256: 8bd6c373df6ee009441270a8b4f86413d101b8f88e8051c55ef62abffadce462
+SHA512: d9cb270529a97670d54f43a0236fab072714e715c39277dab70b7a1843ec818e6700e47e1384c7256f9e0ae41ab2c0b768a0de38a5ecf4f4fff5da6ef5ad4944
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11423984 bytes
+SHA1:   bbbc89d760cdaadbca3cbff587295864edeff0af
+SHA256: 1d99139116e4e245ce543edb137b2a8873c26e9f0bde88d8cee6789617cc8d0e
+SHA512: d12ff29778d8d940344619881b4d8247c2fb6b44ac2b2dbddb7078828e893cfac9a5a95b5588f0afdbed52bdb6dea95cff1b9ce3ad47dfa62209e97dab8810b6
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Recent News</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/en/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 Released</a></li>
+        
+        <li><a href="/en/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 Released</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

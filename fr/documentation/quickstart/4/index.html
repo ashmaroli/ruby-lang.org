@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby en vingt minutes</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/documentation/quickstart/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>Première nouveauté... la première ligne du bout de code ci-dessous. Elle
+débute par le caractère # (dièse ou <em>sharp</em>). En Ruby, toute ligne
+commençant par ce signe est un commentaire, qui sera totalement ignorée
+par l’interpréteur (IRB compris). Cependant, dans votre fichier,
+sachez que la toute première ligne (<code>#!/usr/bin/env ruby</code>) est
+l’inévitable exception à la règle que je viens d’énoncer : son rôle à
+elle est d’indiquer, sous un système d’exploitation Unix ou apparenté,
+la bonne façon de traiter le contenu du fichier. En l’occurence, elle
+signale qu’il s’agit d’un programme à manipuler avec l’interpréteur
+Ruby, dont elle indique la localisation.</p>
+<p>La méthode <code>say_hi</code> est devenue un tout petit peu plus complexe entre
+temps :</p>
+<!-- raw HTML omitted -->
+<p>Elle jette maintenant un coup d’œil au paramètre <code>@names</code> pour décider
+de la suite. S’il s’agit de l’absence de valeur signalée par <code>nil</code>, elle
+écrira trois points « ... »—ça ne sert à rien de dire bonjour dans le
+vide s’il n’y a personne, n’est-ce pas ?</p>
+<h2>Cycles, loopings… l’itération</h2>
+<p>Si le paramètre <code>@name</code>, qui est un objet, comme toute chose en Ruby,
+<em>comprend</em> la méthode <code>each</code>, cela signifie qu’il contient plusieurs
+choses, et donc qu’il serait intéressant de récupérer ces choses une par
+unes… de réaliser une itération, en somme. Dernier cas de figure, si
+<code>@names</code> n’est ni <code>nil</code>, ni une liste à parcourir, alors il s’agit
+d'une personne unique, et nous pouvons écrire son nom sans plus de
+manipulation.</p>
+<p>Voyons d’un peu plus près cette fameuse itération :</p>
+<!-- raw HTML omitted -->
+<p><code>each</code> est une méthode, un itérateur, qui travaille conjointement avec
+un bloc de code. Elle fait tourner ce bloc sur chaque élément récupéré
+dans une liste. Le bloc est délimité par les mot-clés <code>do</code> et <code>end</code> ; il
+s’agit en quelque sorte d’une fonction qui-ne-dit-pas-son-nom, ou
+fonction <em>lambda</em>, intégrée au reste du programme. Elle peut prendre des
+paramètres, qui sont indiqués entre deux caractères <em>pipe</em> |.</p>
+<p>Dans notre exemple, pour chaque item de la liste, le paramètre <code>name</code>
+prend la valeur de l’item en question, de sorte que l’expression <code>puts &quot;Hello #{name}&quot;</code> s’applique à ce nom. Et donc, après itération, à tous
+les noms, dans l’ordre de la liste <code>names</code>.</p>
+<p>La plupart des autres langages utilisent un itérateur célèbre, la «
+boucle for », ce qui donne par exemple en C :</p>
+<!-- raw HTML omitted -->
+<p>Ce qui fonctionne parfaitement, mais n’est pas spécialement élégant.
+Vous devez en effet définir une variable locale telle que <code>i</code>,
+déterminer combien d’itérations vont être effectuées, et expliciter
+clairement la façon dont la boucle va fonctionner avec le <code>i</code> et le
+reste… De fait, la façon de faire de Ruby est intrinsèquement plus
+confortable, puisque que tous ces détails sont l’affaire de la méthode
+<code>each</code>, qui les garde pour elle. De votre coté, vous ne faites que
+l’appeler sur un objet de votre choix, et vous vous en remettez à elle
+pour gérer la mécanique interne. Pour la petite histoire, <code>each</code>
+consiste essentiellement en un appel à un mot-clé, <code>yield</code>, qui renvoie
+son résultat au bloc appelant… <code>yield &quot;Albert&quot;</code>, <code>yield &quot;Brenda&quot;</code>, etc.
+Mais ce n’est pas l’objet de ce tutoriel.</p>
+<h2>Les blocs, tout simplement</h2>
+<p>La réelle puissance des blocs se dévoile dans leur utilisation dans des
+contextes plus compliqués que la manipulation de listes, pour lesquelles
+ils sont déjà très pratiques. Ils permettent non seulement de conserver
+au sein de la méthode le « pourquoi du comment » de son fonctionnement,
+mais également de gérer personnalisation, destruction et erreurs
+éventuelles—tout ça loin des yeux de l’utilisateur final de la méthode,
+qui s’en moque totalement.</p>
+<!-- raw HTML omitted -->
+<p>Cette méthode n’utilise pas <code>each</code>, mais la méthode <code>join</code> (si elle est
+comprise par <code>@names</code> ; sinon, elle écrit juste la valeur de <code>@names</code>,
+comme dans la méthode précédente). Cette approche consistant à se baser
+sur ce que la méthode <em>sait faire</em>, plutôt que sur ce qu’elle <em>est</em> (sur
+les méthodes disponibles plutôt que sur le type de l’objet traité), est
+désignée par l’expression <em>Duck Typing</em>. Le fameux « si ça marche comme
+un canard et que ça couine comme un canard, alors c’est un canard. » Le
+principal bénéfice de cette façon de faire est qu’elle ne limite pas de
+façon abusive les types de variables supportés. Si quelqu’un décide un
+jour, par génie ou bêtise, de créer un nouveau type de liste, et écrit
+une classe pour cela, tant que cette classe implémente la méthode <code>join</code>
+en collant à la sémantique des autres listes (<em>ie</em>. tant que <code>join</code> fait
+quelque chose de censé, tout simplement), alors tout fonctionnera
+parfaitement bien.</p>
+<h2>La SuperVersion finale du SuperProgramme</h2>
+<p>Nous voilà donc rendus au bout de l’examen de notre super programme,
+tirant parti des principales fonctionnalités de base de Ruby. Il
+contient la classe <code>MegaGreeter</code>, le reste du fichier étant simplement
+des appels à cette classe, la manipulation d’instances… Il reste un seul
+point d’ombre :</p>
+<!-- raw HTML omitted -->
+<p><code>__FILE__</code> est une variable « magique » qui contient le nom du fichier
+courant. <code>$0</code> contient quant à elle le nom du fichier utilisé pour
+lancer le programme courant. La ligne réalise donc le test « si c’est
+bien <em>ce</em> fichier que nous utilisons actuellement… », ce qui permet par
+exemple d’utiliser un fichier comme bibliothèque, en n’exécutant
+volontairement du code que si le fichier est exécuté, comme un programme
+autonome.</p>
+<h2>Bienvenue à bord</h2>
+<p>Notre rapide tour de Ruby touche maintenant à sa fin… mais il reste
+encore bien des choses à explorer ! À commencer par les différentes
+structures de contrôles offertes par Ruby, l’utilisation des blocs et de
+<code>yield</code>, les modules et les mixins, et plus encore. J’espère que cet
+avant-goût vous aura donné envie de poursuivre plus avant.</p>
+<p>Si tel est le cas, rendez-vous sur notre
+<a href="/fr/documentation">documentation</a>, qui rassemble des liens vers des
+manuels et tutoriels disponibles gratuitement en ligne.</p>
+<p>Bonne continuation !</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Lancez-vous</strong>, c’est facile !</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Essayez Ruby !</a></li>
+
+    
+    <li><a href="/fr/documentation/quickstart/">Apprenez Ruby en vingt minutes</a></li>
+    
+
+    
+    <li><a href="/fr/documentation/ruby-from-other-languages/">Vous venez d'un autre langage ?</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explorez</strong> un nouvel univers…</h3>
+  <ul class="menu">
+    
+    <li><a href="/fr/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/fr/libraries/">Bibliothèques</a></li>
+    
+
+    
+    <li><a href="/fr/documentation/success-stories/">Témoignages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participez</strong> à la communauté</h3>
+  <ul>
+    
+    <li><a href="/fr/community/mailing-lists/">Listes de diffusion</a>: discutez de Ruby avec des programmeurs du monde entier.</li>
+    
+
+    
+    <li><a href="/fr/community/user-groups/">Groupes d’utilisateur</a>: entrez en contact avec d’autres rubyistes de votre région.</li>
+    
+
+    
+    <li><a href="/fr/community/weblogs/">Blogs</a>: suivez toute l’actualité de la communauté Ruby.</li>
+    
+
+    
+    <li><a href="/fr/community/ruby-core/">Ruby Core</a>: apportez votre aide à l'élaboration du prochain Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Rapports de bugs</a>: aidez à corriger et améliorer Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>從其他程式語言到 Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/documentation/ruby-from-other-languages/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>從其他程式語言到 Ruby</h1>
+
+
+
+  <div id="content">
+    <p>當你第一眼看見 Ruby 程式碼，你一定會想起你熟悉的程式語言。這正是本文件的目的。Ruby 有許多語法和 Perl、Python 和 Java
+(以及其他程式語言) 類似，所以如果你已經熟悉這些程式語言，那麼學習 Ruby 易如反掌。</p>
+<p>這份文件包括兩大部份。這一部分的用意是整理從 <em>X</em> 語言到 Ruby 的重點。第二部分則從 Ruby
+的重要功能及特色著手，與其他程式語言來做比較。</p>
+<h2>重點整理: 從 <em>程式語言 X</em> 到 Ruby</h2>
+<ul>
+<li><a href="to-ruby-from-c-and-cpp/">從 C 和 C++ 到 Ruby</a></li>
+<li><a href="to-ruby-from-java/">從 Java 到 Ruby</a></li>
+<li><a href="to-ruby-from-perl/">從 Perl 到 Ruby</a></li>
+<li><a href="to-ruby-from-php/">從 PHP 到 Ruby</a></li>
+<li><a href="to-ruby-from-python/">從 Python 到 Ruby</a></li>
+</ul>
+<h2>重要的語言特色及一些訣竅</h2>
+<p>這裡是你學習 Ruby 的一些重點及提示。</p>
+<h3>迭代 (Iteration)</h3>
+<p>Ruby 有兩個常用的特色你可能沒見過，那就是 “程式區塊(blocks)” 和迭代子(iterators)”。不像使用索引的迴圈(例如 C,
+C++ 和 pre-1.5 Java)，或是迴圈控制結構(例如 Perl 的 <code>for (@a) {...}</code>，或是
+Python 的 <code>for i in aList: ...</code>)。在 Ruby 裡你會常常看到：</p>
+<!-- raw HTML omitted -->
+<p>關於更多 <code>each</code> 的資訊 (以及 <code>collect</code>, <code>find</code>, <code>inject</code>, <code>sort</code> 等等)，請參考
+<code>ri Enumerable</code> (和 <code>ri Enumerable#some_method</code>).</p>
+<h3>一切東西都有值</h3>
+<p>表達式(expression)和敘述(statement)沒有差別，都會有回傳值，即使那個值是 <strong>nil</strong>。例如下述用法：</p>
+<!-- raw HTML omitted -->
+<h3>Symbols 不是輕量化的字串</h3>
+<p>許多 Ruby 新手會搞不清楚什麼是 Symbols(符號) 可以做什麼用。</p>
+<p>Symbols 就如同一個識別符號。一個 symbol 就代表它是”誰”了，而不是代表它是”什麼”。打開 <code>irb</code> 來看一看它們的區別：</p>
+<!-- raw HTML omitted -->
+<p><code>object_id</code> 方法會回傳物件的識別編號。如果有兩個物件有相同的 <code>object_id</code> 表示它們其實是同一個(指向同一個記憶體位置)。 如你所見，使用過 Symbols 之後，任何相同名字的 Symbol 都是指記憶體裡的同一個物件。對任何相同名字的 Symbols，它們的
+<code>object_id</code> 都一樣。</p>
+<p>讓我們來看看字串 “george”，它們的 <code>object_id</code>
+並不相同。這表示它們在記憶體裡面是不同的物件。每次你建立一個新的字串，Ruby 就會分配新的記憶體空間給它。</p>
+<p>如果你不清楚何時使用 Symbol 何時用字串(String)，想想看用途究竟是物件的識別(例如一個雜湊 Hash 的
+key)，還是物件內容(比如這個例子的 “george”)。</p>
+<h3>所有東西都是物件</h3>
+<p>“所有東西都是物件” 並不是誇大，甚至是類別跟整數也是物件，你可以與其他物件一樣操作它們：</p>
+<!-- raw HTML omitted -->
+<p>譯註：在 Ruby 中任何類別都是由 <code>Class</code> 類別所實例(new)出來的物件。</p>
+<h3>可變的常數</h3>
+<p>常數(Constant)並不真的無法改變。如果你修改了一個已經有值的常數，你會得到一個警告訊息，但程式不會終止。當然這不表示你”應該”修改常數的值。</p>
+<h3>命名慣例</h3>
+<p>Ruby 規定了一些命名慣例。變數的識別名稱，大寫字母開頭的是常數、錢號(<code>$</code>)開頭的是全域變數、<code>@</code> 開頭是實例變數(instance
+variable)、<code>@@</code> 開頭則是類別變數。</p>
+<p>方法名稱可以允許大寫字母開頭，雖然可能造成一些混淆，例如：</p>
+<!-- raw HTML omitted -->
+<p>這裡的 <code>Constant</code> 是 10，但是 <code>Constant()</code> 卻是 11。</p>
+<h3>關鍵字參數</h3>
+<p>Ruby 自 2.0 起，方法可以使用關鍵字參數，用法與 Python 類似：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from A to B via mail.&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->via: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Pony Express&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->from: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;A&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from B to A via Pony Express.&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>一切為 true</h3>
+<p>在 Ruby 裡，除了 <strong>nil</strong> 和 <strong>false</strong> 之外的所有東西，都可以當做 true 值。在 C, Python
+和其他語言中，0 和一些其他值，例如空列表，會被當做 false。例如我們看看以下的 Python 程式(其他語言亦同)：</p>
+<!-- raw HTML omitted -->
+<p>這會輸出 “0 is false”。而在 Ruby 裡:</p>
+<!-- raw HTML omitted -->
+<p>這會輸出 “0 is true”。</p>
+<h3>存取修飾詞會作用到底</h3>
+<p>在下面的 Ruby 程式中，</p>
+<!-- raw HTML omitted -->
+<p>你可能會認為 <code>another_method</code> 是 public 的，但不是這樣。這個 <code>private</code>
+存取修飾到作用域(scope)結束，或是直到另一個存取修飾詞開始作用。方法預設都是 public 的：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 這個 another_method 是 private 的<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->another_method<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>public</code>, <code>private</code> 和 <code>protected</code> 其實也是一種方法，所以可以接受參數。如果你傳入一個 Symbol，那個該 Symbol 代表的方法就會改變存取權限。</p>
+<h3>方法存取權限</h3>
+<p>在 Java 裡，<code>public</code> 表示方法可以被任何人呼叫。<code>protected</code> 表示只有這個類別的實例、衍生類別的實例，以及相同
+package 類別的實例可以呼叫，而 <code>private</code> 表示除了這個類別的實例之外，其他都不行呼叫。</p>
+<p>在 Ruby 中，<code>public</code> 還是一樣是公開的意思，其他則有一點差異。<code>private</code>
+表示只有不指定接受者(receiver)時才可以呼叫，也就是只有 <strong>self</strong> 可以當成 private 方法的接受者。</p>
+<p><code>protected</code> 也有點不同。一個 protected 方法除了可以被一個類別或衍生類別的實例呼叫，也可以讓另一個相同類別的實例來當做接受者。 來看看 <a href="http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html">Ruby Language FAQ</a> 的例子：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->identifier<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x34ab50&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t2<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x342784&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->       <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 來讓 `identifier' 變成 protected，一樣沒問題<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 因為 protected 允許其他相同類別的實例呼叫<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->protected<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 來讓 `identifier' 變成 private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->private<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># NoMethodError: private method `identifier' called for #&lt;Test:0x342784&gt;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>類別是開放的</h3>
+<p>Ruby 的類別是開放的，你可以隨時打開它新增一點程式或是修改。即使是核心類別如 <code>Integer</code> 或是
+<code>Object</code>(這是所有類別的父類別) 都一樣。 Ruby on Rails 甚至定義了一堆時間方法到 <code>Integer</code> 去，例如：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 從一月一號 00:00 往後數 14 個小時<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># (你終於醒了吧 ;)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Time<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->mktime<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->2006<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->+<!-- raw HTML omitted --> <!-- raw HTML omitted -->14<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->hours<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Sun Jan 01 14:00:00<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>有趣的方法名稱</h3>
+<p>在 Ruby 裡，方法名稱允許用問號或驚嘆號結尾。慣例上，用來回答是非題的方法會用問號結尾 (例如 <code>Array#empty?</code>
+會回傳 <strong>true</strong> 如果方法接收者是空的)。有潛在 “危險” (表示有某種副作用，會修改 <strong>self</strong> 或參數值。例如 <code>exit!</code>
+等) 的方法會用驚嘆號結尾。</p>
+<p>但是這不表示所有會修改參數的方法一定有驚嘆號結尾，例如 <code>Array#replace</code> 就會替換內容成別的陣列，畢竟
+replace 的意思就是要修改替換自己。</p>
+<h3>單件方法</h3>
+<p>單件方法(Singleton methods)是個別物件才有的方法。它們只存在於你要定義的物件之中。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Expensive car&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Expensive car<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 其他物件就不受影響<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Missing 方法</h3>
+<p>當你呼叫一個不存在的方法，Ruby 仍然有辦法處理。它會改呼叫 <code>method_missing</code>
+這個方法，並把這個不存在的方法名稱傳進去當做參數。<code>method_missing</code> 預設會丟出一個 NameError
+例外，但是你可以根據你的需求重新定義過，也有許多函式庫這麼做。這是一個例子：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->__<!-- raw HTML omitted --> <!-- raw HTML omitted -->:a<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:b<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->10<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; Method __ was called, but not found. It has these<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># arguments: a, b, 10<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>以上程式會輸出呼叫的細節，但你可以隨意定義這個訊息。</p>
+<h3>傳遞訊息，不是呼叫函數</h3>
+<p>一個方法呼叫(method call)其實就是送一個 <strong>訊息(message)</strong> 給一個物件：</p>
+<!-- raw HTML omitted -->
+<h3>Blocks 也算是物件</h3>
+<p>程式區塊 Blocks (或叫做 closures) 被廣泛應用在標準函式庫。要執行一個程式區塊，可以用 <code>yield</code>
+，或是透過一個特別的參數讓它變成 <code>Proc</code>，例如：</p>
+<!-- raw HTML omitted -->
+<p>你也可以透過 <code>Proc.new</code> 或 <code>lambda</code> 在方法外建立程式區塊。</p>
+<p>同樣的，方法也可以當做物件：</p>
+<!-- raw HTML omitted -->
+<h3>操作符只是語法包裝</h3>
+<p>大部分的 Ruby 操作符(operators)只是一種方法呼叫的語法包裝(syntactic
+sugar)，加上一些優先權規則。你要的話，舉例來說，我們可以覆寫掉 Integer 的 + 方法：</p>
+<!-- raw HTML omitted -->
+<p>你不需要 C++ 的 <code>operator+</code> 等等。</p>
+<p>甚至有如陣列存取的 <code>[]</code> 和 <code>[]=</code> 可以定義。要定義一元的 + and – (想想看 +1 跟 -2)，你必須分別定義 <code>+@</code> 和
+<code>-@</code> 方法。</p>
+<p>以下的操作符則<strong>不是</strong>語法包裝。它們不是方法，不能被覆寫定義：</p>
+<!-- raw HTML omitted -->
+<p>此外 <code>+=</code>, <code>*=</code> 等只是 <code>var = var + other_var</code> 跟 <code>var = var * other_var</code>
+等的縮寫，因此也不能被覆寫定義。</p>
+<h2>更多資料</h2>
+<p>如果你需要更多 Ruby 知識，請參考 <a href="/zh_tw/documentation/">文件</a> 。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>上手入門</strong>，一點都不難!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在瀏覽器中試用 Ruby!</a></li>
+
+    
+    <li><a href="/zh_tw/documentation/quickstart/">20 分鐘 Ruby 體驗</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/ruby-from-other-languages/">從其他語言到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong> 新世界…</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_tw/documentation/">文件</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">學術研究</a></li>
+    
+
+    
+    <li><a href="/zh_tw/libraries/">函式庫</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong> 友善且持續成長的社群</h3>
+  <ul>
+    
+    <li><a href="/zh_tw/community/mailing-lists/">郵件論壇</a>: 與世界各地的程式設計師一同聊聊</li>
+    
+
+    
+    <li><a href="/zh_tw/community/user-groups/">使用者群組</a>: 與身旁的 Ruby 使用者接觸</li>
+    
+
+    
+    <li><a href="/zh_tw/community/weblogs/">部落格</a>: 了解 Ruby 社群中的最新消息</li>
+    
+
+    
+    <li><a href="/zh_tw/community/ruby-core/">Ruby 核心</a>: 幫助開發最新的 Ruby</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">問題追蹤</a>: 回報或解決 Ruby 問題</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

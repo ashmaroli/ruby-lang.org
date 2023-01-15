@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.1.0 Preview 1 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2021/11/09/ruby-3-1-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.1.0 Preview 1 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2021-11-09)<br>
+                         번역자: yous</p>
+
+    <p>Ruby 3.1.0-preview1 릴리스를 알리게 되어 기쁩니다.</p>
+<h2>YJIT: 새로운 실험 인프로세스 JIT 컴파일러</h2>
+<p>Ruby 3.1은 Shopify에서 개발한 새로운 인프로세스 JIT 컴파일러인 YJIT를 포함합니다.</p>
+<p><a href="https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/">Ruby 2.6이 2018년도에 MJIT를 발표</a>한 뒤, 성능은 굉장히 향상되었으며 <a href="https://www.ruby-lang.org/ko/news/2020/12/25/ruby-3-0-0-released/">작년에 드디어 Ruby3x3</a>을 달성했습니다. 하지만 Optcarrot이 인상적인 속도 향상을 보여줬음에도 JIT는 실제 세계의 비즈니스 애플리케이션들에 도움을 주지는 못했습니다.</p>
+<p>최근에 Shopify는 자사 Rails 애플리케이션 속도를 높이기 위해 Ruby에 많은 기여를 했습니다. YJIT는 중요한 기여로, Rails 애플리케이션의 성능 향상을 목표로 합니다.</p>
+<p>MJIT가 메서드 기반의 JIT 컴파일러고 외부 C 컴파일러를 이용하는 반면, YJIT는 기본 블록 버전 관리를 이용하며 JIT 컴파일러를 포함합니다. 게으른 기본 블록 버전 관리(Lazy Basic Block Versioning, LBBV)를 통해 우선 메서드의 시작 부분을 컴파일하고 인자와 변수의 타입이 동적으로 결정되면 점진적으로 나머지 부분을 컴파일합니다. 자세한 설명은 <a href="https://dl.acm.org/doi/10.1145/3486606.3486781">YJIT: CRuby를 위한 기본 블록 버전 관리 JIT 컴파일러</a>를 참고하세요.</p>
+<p>이 기술을 이용하여, YJIT는 대부분의 현실 세계 소프트웨어에 빠른 준비 시간과 성능 향상을 가져다주어 railsbench에서는 최대 22%, liquid-render에서는 최대 39%의 성능 향상이 이루어졌습니다.</p>
+<!-- raw HTML omitted -->
+<p>YJIT는 아직 실험적인 기능이기 때문에 기본적으로는 비활성화되어 있습니다. 만약 사용하고 싶다면 <code>--yjit</code> 명령어 옵션을 통해 활성화할 수 있습니다. 그리고 아직은 x86-64 플랫폼의 macOS 및 Linux로만 한정되어 있습니다.</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/18229">https://bugs.ruby-lang.org/issues/18229</a></li>
+<li><a href="https://shopify.engineering/yjit-just-in-time-compiler-cruby">https://shopify.engineering/yjit-just-in-time-compiler-cruby</a></li>
+<li><a href="https://www.youtube.com/watch?v=PBVLf3yfMs8">https://www.youtube.com/watch?v=PBVLf3yfMs8</a></li>
+</ul>
+<h2>debug gem: 새로운 디버거</h2>
+<p>새로운 디버거인 <a href="https://github.com/ruby/debug">debug.gem</a>이 포함됩니다. debug.gem은 빠른 디버거 구현체로 원격 디버깅, REPL 색상, IDE(VSCode) 통합 등의 다양한 기능을 제공합니다. <code>lib/debug.rb</code> 표준 라이브러리를 대체합니다.</p>
+<h2>error_highlight: 백트레이스에서의 세밀한 에러 위치</h2>
+<p>빌트인 gem인 error_highlight가 도입되었습니다. 백트레이스에 세밀한 에러 위치를 추가합니다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby test.rb
+test.rb:1:in `&lt;main&gt;': undefined method `time' for 1:Integer (NoMethodError)
+
+1.time {}
+ ^^^^^
+Did you mean?  times
+</code></pre></div></div>
+<p>이 gem은 기본적으로 활성화되어 있습니다. <code>--disable-error_highlight</code> 명령어 옵션을 통해 비활성화할 수 있습니다. 자세한 설명은 <a href="https://github.com/ruby/error_highlight">error_highlight 저장소</a>를 참고하세요.</p>
+<h2>Irb 개선</h2>
+<p>다음 프리뷰에서 설명될 예정입니다.</p>
+<h2>다른 주목할 만한 새로운 기능</h2>
+<h3>언어</h3>
+<ul>
+<li>
+<p>해시 리터럴과 키워드 인자의 값을 생략할 수 있습니다. <a href="https://bugs.ruby-lang.org/issues/14579">[Feature #14579]</a></p>
+<ul>
+<li><code>{x:, y:}</code>는 <code>{x: x, y: y}</code>의 편의 문법입니다.</li>
+<li><code>foo(x:, y:)</code>는 <code>foo(x: x, y: y)</code>의 편의 문법입니다.</li>
+</ul>
+</li>
+<li>
+<p>패턴 매칭에서 핀 연산자(<code>^</code>)에 표현식을 사용할 수 있습니다. <a href="https://bugs.ruby-lang.org/issues/17411">[Feature #17411]</a></p>
+</li>
+</ul>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Prime</span><span class="p">.</span><span class="nf">each_cons</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">find_all</span><span class="p">{</span><span class="n">_1</span> <span class="k">in</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)]}.</span><span class="nf">take</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nf">to_a</span>
+<span class="c1">#=&gt; [[3, 5], [5, 7], [11, 13]]</span>
+</code></pre></div></div>
+<h3>RBS</h3>
+<p>RBS는 Ruby 프로그램의 구조를 설명하기 위한 언어입니다. 자세한 설명은 <a href="https://github.com/ruby/rbs">RBS 저장소</a>를 참고하세요.</p>
+<p>Ruby 3.0.0 이후의 변경 사항:</p>
+<ul>
+<li><code>rbs collection</code>이 gem들의 RBS를 관리하기 위해 도입되었습니다. (<a href="https://github.com/ruby/rbs/blob/master/docs/collection.md">문서</a>)</li>
+<li>빌트인 및 표준 라이브러리의 많은 시그니처가 추가되거나 갱신되었습니다.</li>
+<li>다수의 버그 수정과 성능 향상도 포함합니다.</li>
+</ul>
+<p>더 많은 정보는 <a href="https://github.com/ruby/rbs/blob/master/CHANGELOG.md">CHANGELOG.md</a>를 참고하세요.</p>
+<h3>TypeProf</h3>
+<p>TypeProf는 Ruby를 위한 정적 타입 분석기입니다. 타입을 기술하지 않은 Ruby 코드로부터 RBS의 프로토타입을 생성합니다. 자세한 내용은 <a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">문서</a>를 참고하세요.</p>
+<p>Ruby 3.0.0 이후의 변경 사항:</p>
+<ul>
+<li><a href="https://github.com/ruby/typeprof/blob/master/doc/ide.md">실험적인 IDE 지원</a>이 구현되었습니다.</li>
+<li>다수의 버그 수정과 성능 향상을 포함합니다.</li>
+</ul>
+<h2>성능 향상</h2>
+<ul>
+<li>MJIT
+<ul>
+<li>Rails와 같은 작업량을 위하여 <code>--jit-max-cache</code>의 기본값이 100에서 10000으로 변경되었습니다.
+JIT 컴파일러는 더 이상 1000개의 명령어보다 긴 메서드의 컴파일을 건너뛰지 않습니다.</li>
+<li>Rails의 Zeitwerk를 지원하기 위해, 클래스 이벤트의 TracePoint가 활성화되었을
+때 JIT된 코드를 더 이상 취소하지 않습니다.</li>
+</ul>
+</li>
+</ul>
+<h2>그 외 3.0 이후 주목할 만한 변화</h2>
+<ul>
+<li>한 줄 패턴 매칭(예: <code>ary =&gt; [x, y, z]</code>)은 더 이상 실험적이지 않습니다.</li>
+<li>다중 대입의 평가 순서가 살짝 변경되었습니다. <a href="https://bugs.ruby-lang.org/issues/4443">[Bug #4443]</a>
+<ul>
+<li><code>foo[0], bar[0] = baz, qux</code>는 Ruby 3.0에서 <code>baz</code>, <code>qux</code>, <code>foo</code>, <code>bar</code> 순으로 평가되었습니다. Ruby 3.1에선 <code>foo</code>, <code>bar</code>, <code>baz</code>, <code>qux</code> 순으로 평가됩니다.</li>
+</ul>
+</li>
+<li>변수 너비 할당: 문자열 (실험적) <a href="https://bugs.ruby-lang.org/issues/18239">[Bug #18239]</a></li>
+</ul>
+<h3>표준 라이브러리 업데이트</h3>
+<ul>
+<li>다음 표준 라이브러리가 업데이트되었습니다.
+<ul>
+<li>RubyGems</li>
+<li>Bundler</li>
+<li>RDoc 6.4.0</li>
+<li>ReLine</li>
+<li>JSON 2.6.0</li>
+<li>Psych 4.0.2</li>
+<li>FileUtils 1.6.0</li>
+<li>Fiddle</li>
+<li>StringIO 3.0.1</li>
+<li>IO::Console 0.5.9</li>
+<li>IO::Wait 0.2.0</li>
+<li>CSV</li>
+<li>Etc 1.3.0</li>
+<li>Date 3.2.0</li>
+<li>Zlib 2.1.1</li>
+<li>StringScanner</li>
+<li>IpAddr</li>
+<li>Logger 1.4.4</li>
+<li>OStruct 0.5.0</li>
+<li>Irb</li>
+<li>Racc 1.6.0</li>
+<li>Delegate 0.2.0</li>
+<li>Benchmark 0.2.0</li>
+<li>CGI 0.3.0</li>
+<li>Readline(C-ext) 0.1.3</li>
+<li>Timeout 0.2.0</li>
+<li>YAML 0.2.0</li>
+<li>URI 0.11.0</li>
+<li>OpenSSL</li>
+<li>DidYouMean</li>
+<li>Weakref 0.1.1</li>
+<li>Tempfile 0.1.2</li>
+<li>TmpDir 0.1.2</li>
+<li>English 0.7.1</li>
+<li>Net::Protocol 0.1.2</li>
+<li>Net::Http 0.2.0</li>
+<li>BigDecimal</li>
+<li>OptionParser 0.2.0</li>
+<li>Set</li>
+<li>Find 0.1.1</li>
+<li>Rinda 0.1.1</li>
+<li>Erb</li>
+<li>NKF 0.1.1</li>
+<li>Base64 0.1.1</li>
+<li>OpenUri 0.2.0</li>
+<li>SecureRandom 0.1.1</li>
+<li>Resolv 0.2.1</li>
+<li>Resolv::Replace 0.1.0</li>
+<li>Time 0.2.0</li>
+<li>PP 0.2.1</li>
+<li>Prettyprint 0.1.1</li>
+<li>Drb 2.1.0</li>
+<li>Pathname 0.2.0</li>
+<li>Digest 3.1.0.pre2</li>
+<li>Un 0.2.0</li>
+</ul>
+</li>
+<li>다음 내장 gem이 업데이트되었습니다.
+<ul>
+<li>minitest 5.14.4</li>
+<li>power_assert 2.0.1</li>
+<li>rake 13.0.6</li>
+<li>test-unit 3.5.0</li>
+<li>rbs 1.6.2</li>
+<li>typeprof 0.20.0</li>
+</ul>
+</li>
+<li>다음 기본 gem은 이제 내장 gem입니다.
+<ul>
+<li>net-ftp</li>
+<li>net-imap</li>
+<li>net-pop</li>
+<li>net-smtp</li>
+<li>matrix</li>
+<li>prime</li>
+</ul>
+</li>
+</ul>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/v3_1_0_preview1/NEWS.md">NEWS</a>나
+<a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0_preview1">커밋 로그</a>를
+확인해주세요.</p>
+<p>이러한 변경 사항에 따라, Ruby 3.0.0 이후로 <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0_preview1#file_bucket">파일 2963개 수정, 529321줄 추가(+), 92305줄 삭제(-)</a>가
+이루어졌습니다!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20821221
+SHA1: 40dfd3db076a49fab9a0eee51e89d9b3d16a4e23
+SHA256: 540f49f4c3aceb1a5d7fb0b8522a04dd96bc4a22f9660a6b59629886c8e010d4
+SHA512: 63f528f20905827d03649ed9804e4a4e5c15078f9c6c8efcfb306baa7baafa17a406eb09a2c08b42e151e14af33b1aadbd9fb1cc84f9353d070b54bbf1ff950d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15742844
+SHA1: 22aa861b17031cd1b163b7443f5f2f5897c5895e
+SHA256: 86a836ad42f6a7a469fce71ffec48fd3184af55bf79e488b568a4f64adee551d
+SHA512: bdbd7c624197ca478658280d84123a8c12ae72425bc566dcc75989c5b5ef114dd57e64efc09e2413ed615d9b47621a70ace0f3612e8ca7ba853822ad9e88c0b0
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 25019629
+SHA1: ef5fa22890e55935db4b96b3089a8aea1335bd85
+SHA256: 4e8d118b2365164873148ac545a8fa36c098b846a9b19ebb9037f8ee9adb4414
+SHA512: 917803aac0848e00871614a09740b5c9cca26f200d68580dde61666633f1b7fee506e25ea4ed0c38eb20149417bf9f1ed449a4d2aec5b726de670e7177e5c07a
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby는</h2>
+<p>Ruby는 1993년에 Matz(마츠모토 유키히로) 씨가 처음 개발했고,
+현재는 오픈 소스로서 개발되고 있습니다. 여러 플랫폼에서 동작하며,
+특히 웹 개발에서 전 세계적으로 이용되고 있습니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.5.0 Rilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2017/12/25/ruby-2-5-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.5.0 Rilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2017-12-25<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 2.5.0.</p>
+<p>Ruby 2.5.0 adalah rilis pertama yang <em>stable</em> dari rangkaian Ruby 2.5.
+Versi ini mengenalkan banyak fitur baru dan perbaikan performa.
+Perubahan-perubahan penting tersebut di antaranya sebagai berikut:</p>
+<h2>Fitur Baru</h2>
+<ul>
+<li><code>rescue</code>/<code>else</code>/<code>ensure</code> sekarang diperbolehkan untuk digunakan langsung dengan
+blok <code>do</code>/<code>end</code>.
+<a href="https://bugs.ruby-lang.org/issues/12906">[Feature #12906]</a></li>
+<li>Menambahkan <code>yield_self</code> untuk menghasilkan blok yang diberikan dalam konteksnya.
+Tidak seperti <code>tap</code>, yang mengembalikan hasil dari blok.
+<a href="https://bugs.ruby-lang.org/issues/6721">[Feature #6721]</a></li>
+<li>Mendukung pengukuran <em>branch coverage</em> dan <em>method coverage</em>.
+<em>Branch coverage</em> mengindikasikan <em>branch</em> mana yang dieksekusi dan yang tidak.
+<em>Method coverage</em> mengindikasikan <em>method</em> mana yang dipanggil dan yang tidak.
+Dengan menjalankan sebuah <em>test suite</em> dengan fitur baru ini, Anda akan tahu
+<em>branch</em> dan <em>method</em> mana yang dieksekusi, dan menilai jumlah <em>coverage</em> dari
+<em>test suite</em> lebih ketat.
+<a href="https://bugs.ruby-lang.org/issues/13901">[Feature #13901]</a></li>
+<li>Hash#slice <a href="https://bugs.ruby-lang.org/issues/8499">[Feature #8499]</a>
+dan Hash#transform_keys <a href="https://bugs.ruby-lang.org/issues/13583">[Feature #13583]</a></li>
+<li>Struct.new dapat membuat kelas-kelas yang menerima <em>keyword argument</em>.
+<a href="https://bugs.ruby-lang.org/issues/11925">[Feature #11925]</a></li>
+<li>Enumerable#any?, all?, none?, and one? menerima sebuah <em>pattern argument</em>.
+<a href="https://bugs.ruby-lang.org/issues/11286">[Feature #11286]</a></li>
+<li><em>Top-level constant look-up</em> tidak lagi ada.
+<a href="https://bugs.ruby-lang.org/issues/11547">[Feature #11547]</a></li>
+<li>Salah satu pustaka yang kami sayangi, pp.rb, is sekarang dimuat secara otomatis.
+Anda tidak perlu lagi menulis <code>require &quot;pp&quot;</code>.
+<a href="https://bugs.ruby-lang.org/issues/14123">[Feature #14123]</a></li>
+<li>Mencetak <em>backtrace</em> dan pesan error dengan urutan terbalik (paling akhir dipanggil pertama,
+paling awal dipaggil terakhir). Ketika sebuah <em>backtrace</em> panjang muncul di terminal Anda (TTY),
+Anda dapat dengan mudah menemukan penyebabnya pada baris paling bawah dari <em>backtrace</em>.
+Perhatikan bahwa urutan dibalik jika <em>backtrace</em> dicetak
+ke terminal langsung.
+<a href="https://bugs.ruby-lang.org/issues/8661">[Feature #8661]</a> [experimental]</li>
+</ul>
+<h2>Perbaikan performa</h2>
+<ul>
+<li>Sekitar 5-10% perbaikan performa dengan menghilangkan semua instruksi <code>trace</code>
+dari keseluruhan <em>bytecode</em> (urutan instruksi).
+Instruksi <code>trace</code> ditambahkan untuk mendukung <code>TracePoint</code>.
+Namun, pada umumnya, <code>TracePoint</code> tidak digunakan dan instruksi <code>trace</code>
+adalah murni <em>overhead</em>. Sebagai gantinya, sekarang kami menggunakan sebuah teknik
+instrumentasi yang dinamis.
+Lihat <a href="https://bugs.ruby-lang.org/issues/14104">[Feature #14104]</a> untuk lebih detail.</li>
+<li><em>Block passing</em> oleh sebuah <em>block parameter</em> (misal <code>def foo(&amp;b); bar(&amp;b); end</code>)
+sekitar 3 kali lebih cepat dibanding Ruby 2.4 dengan teknik &quot;Lazy Proc allocation&quot;.
+<a href="https://bugs.ruby-lang.org/issues/14045">[Feature #14045]</a></li>
+<li><em>Mutex</em> ditulis kembali menjadi lebih kecil dan cepat.
+<a href="https://bugs.ruby-lang.org/issues/13517">[Feature #13517]</a></li>
+<li>ERB sekarang menghasilkan kode dari sebuah <em>template</em> dua kali secepat Ruby 2.4.</li>
+<li>Memperbaiki performa dari beberapa <em>built-in method</em> di antaranya <code>Array#concat</code>,
+<code>Enumerable#sort_by</code>, <code>String#concat</code>, <code>String#index</code>, <code>Time#+</code>, dan lainnya.</li>
+<li>IO.copy_stream menggunakan copy_file_range(2) untuk menyalin <em>offload</em>.
+<a href="https://bugs.ruby-lang.org/issues/13867">[Feature #13867]</a></li>
+</ul>
+<h2>Perubahan penting lainnya sejak 2.4</h2>
+<ul>
+<li>SecureRandom sekarang menggunakan sumber yang disediakan oleh OS ketimbang OpenSSL.
+<a href="https://bugs.ruby-lang.org/issues/9569">[Bug #9569]</a></li>
+<li>Mengubah cmath, csv, date, dbm, etc, fcntl, fiddle, fileutils, gdbm, ipaddr,
+scanf, sdbm, stringio, strscan, webrick, zlib dari pustaka standar
+menjadi <em>default gem</em>.</li>
+<li>Memperbarui <a href="https://github.com/k-takata/Onigmo/">Onigmo</a> ke 6.1.3.
+<ul>
+<li>Ini menambahkan <a href="https://github.com/k-takata/Onigmo/issues/87">absence operator</a>.</li>
+<li>Perhatikan bahwa <a href="https://www.ruby-lang.org/en/news/2017/03/22/ruby-2-4-1-released/">Ruby 2.4.1</a> juga mengandung perubahan ini.</li>
+</ul>
+</li>
+<li>Memperbarui Psych ke 3.0.2.</li>
+<li>Memperbarui RubyGems ke 2.7.3.</li>
+<li>Memperbarui RDoc ke 6.0.1
+<ul>
+<li><a href="https://github.com/ruby/rdoc/pull/512">Switch the lexer from IRB based one to Ripper</a>.
+Ini memperbaiki performasi dari <em>document generation</em> secara dramatis.</li>
+<li>Memperbaiki <em>bug</em> signifikan yang ada selama sepuluh tahun.</li>
+<li>Menambahkan dukungan sintaks Ruby baru dari versi terbaru.</li>
+</ul>
+</li>
+<li>Memperbarui versi Unicode ke 10.0.0.</li>
+<li><code>Thread.report_on_exception</code> sekaran diatur menjadi <em>true</em> secara <em>default</em>.
+Perubahan ini membantu <em>debugging</em> dari program yang <em>multi-threaded</em>.
+<a href="https://bugs.ruby-lang.org/issues/14143">[Feature #14143]</a></li>
+<li>IO#Write sekarang menerima banyak argumen.
+<a href="https://bugs.ruby-lang.org/issues/9323">[Feature #9323]</a></li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">NEWS</a>
+atau <a href="https://github.com/ruby/ruby/compare/v2_4_0...v2_5_0">commit logs</a>
+untuk detail.</p>
+<p>Dengan perubahan-perubahan tersebut,
+<a href="https://github.com/ruby/ruby/compare/v2_4_0...v2_5_0">6158 berkas berubah, 348484 sisipan(+), 82747 terhapus(-)</a>
+sejak Ruby 2.4.0!</p>
+<p>Selamat Natal, Selamat Berlibur, dan nikmati memprogram dengan Ruby 2.5!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15834941 bytes
+SHA1:   58f77301c891c1c4a08f301861c26b1ea46509f6
+SHA256: 46e6f3630f1888eb653b15fa811d77b5b1df6fd7a3af436b343cfe4f4503f2ab
+SHA512: 0712fe68611f5d0cd6dd54b814f825478e64b6a62bdf67bce431f4dca2dc00b1a33f77bebfbcd0a151118a1152554ab457decde435b424aa1f004bc0aa40580d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.zip">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19495617 bytes
+SHA1:   700b6f55d689a5c8051c8c292b9e77a1b50bf96e
+SHA256: 94559ea6e3c619423da604e503ce1dc1c465d6e0747a07fbdc5f294acaf14c24
+SHA512: e4324064cee8c65b80192e3eff287e915d2d40464d300744c36fb326ae4b1846911400a99d4332192d8a217009d3a5209b43eb5e8bc0b739035bef89cc493e84
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13955820 bytes
+SHA1:   827b9a3bcffa86d1fc9ed96d403cb9dc37731688
+SHA256: d87eb3021f71d4f62e5a5329628ac9a6665902173296e551667edd94362325cc
+SHA512: 8f6fdf6708e7470f55bc009db2567cd8d4e633ad0678d83a015441ecf5b5d88bd7da8fb8533a42157ff83b74d00b6dc617d39bbb17fc2c6c12287a1d8eaa0f2c
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11292472 bytes
+SHA1:   9c7babcf9e299be3f197d9091024ae458f1a1273
+SHA256: 1da0afed833a0dab94075221a615c14487b05d0c407f991c8080d576d985b49b
+SHA512: 55714a33d7661fe8b432f73c34fd67b49699f8b79df1cbd680a74899124d31111ab0f444677672aac1ba725820182940d485efb2db0bf2bc96737c5d40c54578
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

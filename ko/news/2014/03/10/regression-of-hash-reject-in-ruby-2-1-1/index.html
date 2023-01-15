@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 2.1.1의 Hash#reject의 회귀</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2014/03/10/regression-of-hash-reject-in-ruby-2-1-1/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 2.1.1의 Hash#reject의 회귀</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: sorah (2014-03-10)<br>
+                         번역자: marocchino</p>
+
+    <p>루비 2.1.0이나 이전에는 <code>Hash</code> 클래스를 상속받은 클래스에서 <code>reject</code> 메서드는
+자신의 클래스의 객체를 반환했습니다.
+하지만 루비 2.1.1에는 의도치 않게 상속된 클래스가 아닌 Hash 클래스를 반환하게
+변경되었습니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->Hash<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->reject<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->}.<!-- raw HTML omitted --><!-- raw HTML omitted -->class<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 2.1.0: Hash, 2.1.1: Hash<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->SubHash<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->reject<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->}.<!-- raw HTML omitted --><!-- raw HTML omitted -->class<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 2.1.0: SubHash, 2.1.1: Hash<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>(정확히 말하면, 인스턴스 변수 같은 다른 속성도 복사하지 않게 되었습니다.)</p>
+<p>루비 2.1.0부터 <a href="https://www.ruby-lang.org/ko/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/">버전 정책이 바뀌었기
+때문에</a>,
+루비 2.1.1은 패치 레벨 릴리스에 해당합니다. 패치 레벨 릴리스는 하위호환성이 있어야
+하므로, 앞으로 루비 2.1.1에 이런 행동의 변화는 있어서는 안 됩니다.</p>
+<p>이 회귀(regression)는 많은 라이브러리에 영향을 줄 수 있습니다. 예를 들어
+레일즈의 <code>HashWithIndifferentAccess</code>와 <code>OrderedHash</code>가 있습니다.
+<a href="https://github.com/rails/rails/issues/14188">Rails issue #14188</a></p>
+<p>이 행동은 루비 2.1.2에서 2.1.0의 동작으로 복구될 예정입니다. 하지만
+루비 2.2.0에서는 기본 동작이 될 것입니다.
+<a href="https://bugs.ruby-lang.org/issues/9223">Feature #9223</a>
+그래서 이 사양 변화에 따라 코드를 수정할 것을 권장합니다.</p>
+<p>이 사고는 한 커밋의 백 포트를 빼먹어서 생겼습니다. 좀 더 자세한 내용은
+<a href="http://blog.sorah.jp/2014/03/10/hash-reject-regression-in-ruby211">http://blog.sorah.jp/2014/03/10/hash-reject-regression-in-ruby211</a>를
+확인해 주세요.</p>
+<p>불편을 끼쳐 죄송하고 지원에 감사드립니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

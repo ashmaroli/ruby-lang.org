@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 2.4.0-rc1 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2016/12/12/ruby-2-4-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 2.4.0-rc1 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2016-12-12)<br>
+                         번역자: yous</p>
+
+    <p>루비 2.4.0-rc1의 릴리스를 알리게 되어 기쁘게 생각합니다.</p>
+<p>루비 2.4.0-rc1은 루비 2.4.0의 첫 번째 릴리스 후보입니다.
+rc1은 커뮤니티의 피드백을 받기 위해 릴리스되었습니다.
+아직 기능을 고칠 수 있으니 자유롭게
+<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport">피드백을 보내주세요</a>.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12142">해시 테이블의 성능을 향상시켰습니다(Vladimir Makarov)</a></h2>
+<p>해시 테이블(st_table)에 열린 주소 방식을 사용하고 추가순 배열을 추가함으로써
+내부 구조를 개선했습니다.
+이 개선 사항에 대해 많은 사람들이 토론했고, 특히 Yura Sokolov와 많은 토론이
+이루어졌습니다.</p>
+<h2>Binding#irb: <code>binding.pry</code>같은 REPL 세션을 시작합니다</h2>
+<p>디버깅 중에 변수의 값을 보려고 <code>p</code> 사용하는 경우가 많을 겁니다.
+<a href="https://github.com/pry/pry">pry</a>를 사용하면 애플리케이션 내에서
+<code>binding.pry</code>를 사용해 REPL을 시작하고 원하는 루비 코드를 실행할 수 있습니다.
+<a href="https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a">r56624</a>에서
+이와 비슷하게 irb에서 작동하는 <code>binding.irb</code>를 추가했습니다.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">Fixnum과 Bignum을 Integer로 통합했습니다</a></h2>
+<p><a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a>에서
+Integer 클래스의 세부 사항을 규정하고 있지 않지만,
+루비에는 두 개의 Integer 클래스, Fixnum과 Bignum이 포함되어 있었습니다.
+루비 2.4는 이 둘을 Integer로 통합합니다.
+Fixnum이나 Bignum 클래스를 변경하는 모든 C 확장을 고쳐야 합니다.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/12005">해당 이슈</a>와
+<a href="http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf">akr의 슬라이드</a>를
+참조하세요.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">String이 Unicode 대소문자 매핑을 지원합니다</a></h2>
+<p><code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code>가 이제 ASCII 대소문자
+매핑 대신 Unicode 대소문자 매핑을 다룹니다.</p>
+<h2>성능 향상</h2>
+<p>루비 2.4는 다음과 같은 언어 변경 및 성능 향상을 포함합니다.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p><code>[x, y].max</code> 및 <code>[x, y].min</code>은 특정 조건에서 임시 배열을 만들지 않도록
+최적화되었습니다.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>객체 할당을 줄이기 위해, 역참조 객체를 만들거나 <code>$~</code>를 변경하지 않은 채 정규식
+매칭을 수행하는 <code>Regexp#match?</code>를 추가했습니다.</p>
+<h3>그 외의 성능 향상</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">인스턴스 변수 접근 속도 향상</a></li>
+</ul>
+<h2>디버깅</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception 및 Thread.report_on_exception</a></h3>
+<p>루비는 다른 스레드가 명시적으로 조인하지 않는 이상 해당 스레드에서 발생한 예외는
+무시합니다.
+<code>report_on_exception = true</code>를 설정하면 스레드가 처리되지 않은 예외에 의해
+끝났는지 알 수 있게 됩니다.</p>
+<p><code>report_on_exception</code>의 기본값이 무엇이 되어야 할지, 또 스레드가 조인 없이
+가비지 컬렉션되었을 때 알려주는 report-on-GC에 대한 의견을 보내주세요.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">스레드의 교착 상태가 감지되었을 때 해당 스레드의 백트레이스와 의존성을 표시합니다</a></h3>
+<p>루비는 기다리고 있는 스레드의 교착 상태를 감지하지만, 이는 충분한 디버깅 정보를
+포함하고 있지 않았습니다.
+루비 2.4는 교착 상태를 감지하면 스레드의 백트레이스와 해당 스레드가 의존하는
+스레드를 보여줍니다.</p>
+<p>루비 2.4.0-rc1로 프로그래밍 해보고
+<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport">의견을 보내주세요</a>!</p>
+<h2>그 외의 중요한 2.3 이후의 변경 사항</h2>
+<ul>
+<li>OpenSSL 1.1.0을 지원합니다.(0.9.7과 그 이전 버전의 지원을 중단합니다)</li>
+<li>stdlib에서 ext/tk가 제거됩니다. <a href="https://bugs.ruby-lang.org/issues/8539">Feature #8539</a></li>
+<li>stdlib에서 XMLRPC가 제거됩니다. <a href="https://bugs.ruby-lang.org/issues/12160">Feature #12160</a></li>
+</ul>
+<p>자세한 사항은 <a href="https://github.com/ruby/ruby/blog/v2_4_0_rc1/NEWS">NEWS</a>나 커밋
+로그를 참조하세요.</p>
+<p>이러한 변경 사항에 따라, 루비 2.3.0 이후로
+<a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0_rc1">파일 2519개 수정, 288606줄 추가(+), 83896줄 삭제(-)</a>가
+이루어졌습니다!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12512729 bytes
+SHA1:   a0439652a97a2406b691e8a1e586e2cf08c258ba
+SHA256: 3b156b20f9df0dd62cbeeb8e57e66ea872d2a5b55fabdef1889650122bcc2ea7
+SHA512: b43902ac7794487197df55a45256819d2e7540b77f1ed4eb68def3e0473ee98860a400862075bafadbde74f242e1dfe36a18cd6fe05ac42aae1ea6dddc9978ce
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14098505 bytes
+SHA1:   6b242f9ec7b908c9aa26e497440684ba06d86927
+SHA256: e41ada7650eed2a5800534d1201ba7c88f1627085659df994f47ab4c5e327745
+SHA512: 26d3c60483ce2d6eaabd7077085102fad6633f18cf5d772bacf6f563670030cb7bba22d54d8b7dfa5eac8b52990371c4a6ad1c095dff6f6b3a7bbe1a8ffb3754
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9930088 bytes
+SHA1:   7c404e8bec9859f708927f7203d4f42187e678b7
+SHA256: 3f014b3186d10676da6c512d14c65db23ccc4bf200fed9d7c6f9a58fd1e3295b
+SHA512: 22e209e28da1f2394f50c0a7dd5d0d4d4c0c5a6b5b0b02260fad0267a0940b98f0e2b0f36a44f87d1612555cb3022f43cd136a5186c7f87650aa20264408d415
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15785968 bytes
+SHA1:   7d82386434ccbb1701f2995286bf29c8b9179e01
+SHA256: 14e6910e36618cddffeb22bad5f1052f907dc31ec93d4aa945bca0905d8a52c4
+SHA512: 5dd89320d429e5bd5faf3709be7e5b70f7355304d6324d7ac13a69187e5f1446ad5988c8186bc33f4fea8934288294f9d16fea173f39b2b39967746c4b03d1d4
+</code></pre></div></div>
+</li>
+</ul>
+<h2>릴리스 코멘트</h2>
+<p>릴리스 일정과 다른 정보는 아래 링크를 참조하세요.</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24">ReleaseEngineering24</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

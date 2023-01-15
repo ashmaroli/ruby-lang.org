@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.7.0-preview1 veröffentlicht</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2019/05/30/ruby-2-7-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.7.0-preview1 veröffentlicht</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von naruse am 30.5.2019<br>
+                         Übersetzt von Marvin Gülker</p>
+
+    <p>Wir freuen uns, die Veröffentlichung von Ruby 2.7.0-preview1
+bekanntgeben zu können.</p>
+<p>Diese Vorschau wird veröffentlicht, um bis zur geplanten finalen
+Freigabe im Dezember Erfahrungsberichte sammeln zu können. Sie enthält
+eine Anzahl neuer Funktionalitäten und Performanzverbesserungen,
+namentlich:</p>
+<ul>
+<li>Defragmentierung für den GC <em>(Campaction GC)</em></li>
+<li>Musterabgleiche</li>
+<li>Verbesserungen der interaktiven Kommandozeile <em>(REPL)</em></li>
+</ul>
+<h2>Defragmentierender GC</h2>
+<p>Die neue Version wird einen defragmentierenden GC <em>(Compaction GC)</em>
+einführen, der fragmentierten Arbeitsspeicherplatz defragmentieren
+kann.</p>
+<p>Einige Ruby-Programme, die mit mehreren Threads arbeiten, leiden
+derzeit unter Speicherfragmentierung. Dies verursacht einen hohen
+Speicherverbrauch und eine reduzierte Ausführungsgeschwindigkeit.</p>
+<p>Zur Behebung des Problems wird die neue Methode <code>GC.compact</code>
+eingeführt. Sie defragmentiert den Freispeicher <em>(Heap)</em>, indem sie
+noch aktive Objekte näher zusammenrückt, sodass weniger Speicherseiten
+benötigt werden und der Freispeicher insgesamt besser für
+Copy-on-Write geeignet ist. <a href="https://bugs.ruby-lang.org/issues/15626">#15626</a></p>
+<h2>Musterabgleiche [Experimentell]</h2>
+<p>Musterabgleiche sind eine häufig genutzte Funktion funktionaler
+Programmiersprachen. Mit 2.7.0 werden sie als experimentell in die
+Programmiersprache Ruby eingeführt. <a href="https://bugs.ruby-lang.org/issues/14912">#14912</a>
+Ein Musterabgleich untersucht das übergebene Objekt und weist seinen
+Wert dann zu, wenn er auf ein bestimmtes Muster passt.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'{...}'</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Weitere Details können Sie der Präsentation <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Musterabgleiche - Neue Funktion in Ruby 2.7</a>
+entnehmen.</p>
+<h2>Verbesserung der interaktiven Kommandozeile</h2>
+<p>Die mitgelieferte interaktive Kommandozeile <code>irb</code> <em>(REPL: Read-Eval-Print-Loop)</em>
+wird mehrzeiliges Editieren unterstützen. Dies wird mithilfe von
+<code>reline</code>, einer <code>readline</code>-kompatiblen reinen Ruby-Bibliothek,
+umgesetzt. Darüber hinaus wird <code>irb</code> besser mit RDoc integriert: es
+wird möglich, die Referenzdokumentation für eine bestimmte Klasse,
+ein bestimmtes Modul oder auch eine bestimmte Methode nachzuschlagen.
+<a href="https://bugs.ruby-lang.org/issues/14683">#14683</a>,
+<a href="https://bugs.ruby-lang.org/issues/14787">#14787</a>,
+<a href="https://bugs.ruby-lang.org/issues/14918">#14918</a>
+Schließlich werden von <code>binding.irb</code> angezeigte Quellcode-Zeilen und
+Ergebnisse von <code>inspect</code> farblich hevorgehoben werden.</p>
+<!-- raw HTML omitted -->
+<h2>Sonstige bemerkenswerte neue Funktionen</h2>
+<ul>
+<li>
+<p>Ein Methoden-Referenz-Operator, <!-- raw HTML omitted -->.:<!-- raw HTML omitted -->, wird als
+experimentell eingeführt. <a href="https://bugs.ruby-lang.org/issues/12125">#12125</a>, <a href="https://bugs.ruby-lang.org/issues/13581">#13581</a></p>
+</li>
+<li>
+<p>Blockparameter werden für abgekürzten Zugriff automatisch nummeriert (experimentell).
+<a href="https://bugs.ruby-lang.org/issues/4475">#4475</a></p>
+</li>
+<li>
+<p>Ruby verfügt bereits über endlose Range-Objekte. Nunmehr werden auch
+anfangslose Range-Objekte eingeführt. Diese sind vielleicht nicht so
+nützlich wie endlose Range-Objekte, könnten aber für
+domänenspezifische Sprachen praktisch sein.
+<a href="https://bugs.ruby-lang.org/issues/14799">#14799</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ary[..3]  # identical to ary[0..3]
+rel.where(sales: ..100)
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#tally</code> wird hinzugefügt. Die Methode zählt das Vorkommen
+jedes Elements.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>["a", "b", "c", "b"].tally
+#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Performanzverbesserungen</h2>
+<ul>
+<li>
+<p>JIT [Experimentell]</p>
+<ul>
+<li>
+<p>JIT-kompilierter Code wird neu zu weniger optimiertem Code
+kompiliert, wenn eine Optimierungsannahme sich als falsch
+herausstellt.</p>
+</li>
+<li>
+<p>Method-Inlining wird durchgeführt, wenn eine Methode als rein
+<em>(pure)</em> gilt. Diese Optimierung ist noch experimentell und
+zahlreiche Methoden gelten noch nicht als rein.</p>
+</li>
+<li>
+<p>Der Standardwert von <code>--jit-min-calls</code> wird von 5 auf 10.000
+geändert.</p>
+</li>
+<li>
+<p>Der Standardwert von <code>--jit-max-cache</code> wird von 1.000 auf 100
+geändert.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Sonstige bemerkenswerte Änderungen seit 2.6</h2>
+<ul>
+<li>
+<p>Die Nutzung von <code>Proc.new</code> und <code>proc</code> ohne Block in einer Methode,
+die einen Block erwartet, führt nun zu einer Warnung.</p>
+</li>
+<li>
+<p>Die Nutzung von <code>lambda</code> ohne block in einer Methode, die einen
+Block erwartet, erzeugt einen Fehler.</p>
+</li>
+<li>
+<p>Die Unicode- und Emoji-Version werden von 11.0.0 auf 12.0.0 angehoben.
+<a href="https://bugs.ruby-lang.org/issues/15321">[Feature #15321]</a></p>
+</li>
+<li>
+<p>Die Unicode-Version wird auf 12.1.0 angehoben, um Unterstützung für
+U+32FF SQUARE ERA NAME REIWA zu erhalten.  <a href="https://bugs.ruby-lang.org/issues/15195">[Feature #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>, <code>Date#jisx0301</code> und <code>Date.parse</code> implementieren
+provisorische Unterstützung für die neue japanische Ära. Dies ist
+keine offiziell unterstützte Änderung, sondern provisorisch bis zur
+Freigabe von JIS X 0301.
+<a href="https://bugs.ruby-lang.org/issues/15742">[Feature #15742]</a></p>
+</li>
+<li>
+<p>Ruby nutzt jetzt C99, welches der Compiler unterstützen muss.
+<a href="https://bugs.ruby-lang.org/issues/15347">[Misc #15347]</a></p>
+<ul>
+<li>Details zum genutzten Dialekt: <a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+</ul>
+<p>Siehe die
+<a href="https://github.com/ruby/ruby/blob/v2_7_0_preview1/NEWS">NEWS</a> oder
+die
+<a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview1">Commit-Logs</a>
+für weitere Details.</p>
+<p>Mit diesen Änderungen wurden <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview1">1727 Dateien geändert, 76022 Einfügungen(+), 60286 Löschungen(-)</a> seit Ruby 2.6.0!</p>
+<p>Viel Spaß bei der Programmierung mit Ruby 2.7!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16021286 bytes
+SHA1:   2fbecf42b03a9d4391b81de42caec7fa497747cf
+SHA256: c44500af4a4a0c78a0b4d891272523f28e21176cf9bc1cc108977c5f270eaec2
+SHA512: f731bc9002edd3a61a4955e4cc46a75b5ab687a19c7964f02d3b5b07423d2360d25d7be5df340e884ca9945e3954e68e5eb11b209b65b3a687c71a1abc24b91f
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   20283343 bytes
+SHA1:   7488346fa8e58203a38158752d03c8be6b1da65b
+SHA256: fdf25573e72e1769b51b8d541d0e1a894a5394dbfdf1b08215aa093079cca64c
+SHA512: b3b1f59dce94c242ef88a4e68381a4c3a6f90ba0af699083e5a1a00b0fb1dce580f057dad25571fe789ac9aa95aa6e9c071ebb330328dc822217ac9ea9fbeb3f
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14038296 bytes
+SHA1:   f7e70cbc2604c53a9e818a2fc59cd0e2d6c859fa
+SHA256: d45b4a1712ec5c03a35e85e33bcb57c7426b856d35e4f04f7975ae3944d09952
+SHA512: a36b241fc1eccba121bb7c2cc5675b11609e0153e25a3a8961b67270c05414b1aa669ce5d4a5ebe4c6b2328ea2b8f8635fbba046b70de103320b3fdcb3d51248
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11442988 bytes
+SHA1:   45e467debc194847a9e3afefb20b11e6dc28ea31
+SHA256: 8c546df3345398b3edc9d0ab097846f033783d33762889fd0f3dc8bb465c3354
+SHA512: d416e90bfa3e49cc0675c4c13243c8ec319b7a0836add1bd16bd7662d09eaf46656d26e772ef3b097e10779896e643edd8a6e4f885147e3235257736adfdf3b5
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Was ist Ruby</h2>
+<p>Die Programmiersprache Ruby wurde 1993 von Yukihiro „Matz“ Matsumoto
+erfunden und wird heute als quelloffene Software entwickelt. Sie läuft
+auf verschiedenen Plattformen und wird überall auf der Welt namentlich
+für die Webentwicklung genutzt.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

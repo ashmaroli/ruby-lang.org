@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.2.0 Released</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.2.0 Released</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 25 Dec 2014</p>
+
+    <p>We are pleased to announce the release of Ruby 2.2.0.</p>
+<p>Ruby 2.2 includes many new features and improvements for the increasingly
+diverse and expanding demands for Ruby.</p>
+<p>For example, Ruby's Garbage Collector is now able to collect Symbol type objects.
+This reduces memory usage of Symbols; because GC was previously unable
+to collect them before 2.2.
+Since Rails 5.0 will require Symbol GC, it will support only Ruby 2.2 or later.
+(See <a href="http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/">Rails 4.2 release post</a> for details.)</p>
+<p>Also, a reduced pause time thanks to the new Incremental Garbage Collector will
+be helpful for running Rails applications. Recent developments mentioned on the
+<a href="http://weblog.rubyonrails.org/">Rails blog</a>
+suggest that Rails 5.0 will take advantage of Incremental GC as well as
+Symbol GC.</p>
+<p>Another feature related to memory management is an additional option
+for <code>configure.in</code> to use jemalloc
+<a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a>.
+This feature is still experimental and currently disabled by default until we
+gather performance data and more use cases. When we are convinced of the
+benefits, this feature will be enabled by default.</p>
+<p>Experimental support for using vfork(2) with system() and spawn() have also
+been added. You can read more detail on
+<a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">tanaka-san's blog in Japanese</a>.
+This could potentially bring huge speed-up when a large process executes
+external commands many times.
+However vfork(2) is still not well understood and a potentially harmful
+system call. We would like to experiment to find out how much benefit can be
+gained by gathering performance data and use cases.</p>
+<p>Try and enjoy programming with Ruby 2.2.0, and report us your findings!</p>
+<h2>Notable Changes since 2.1</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">Incremental GC</a>
+(<a href="http://www.atdot.net/~ko1/activities/2014_rubyconf_pub.pdf">presentation at RubyConf 2014: &quot;Incremental GC for Ruby interpreter&quot;</a>)</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">Symbol GC</a>
+(<a href="http://www.slideshare.net/authorNari/symbol-gc">presentation at RubyKaigi 2014</a>)</li>
+<li>configure --with-jemalloc
+<a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a></li>
+<li>core libraries:
+<ul>
+<li>Support Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a></li>
+<li>New methods:
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>,
+Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a></li>
+<li>Float#next_float, Float#prev_float
+<a href="https://bugs.ruby-lang.org/issues/9834">#9834</a></li>
+<li>File.birthtime, File#birthtime
+<a href="https://bugs.ruby-lang.org/issues/9647">#9647</a></li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>bundled libraries:
+<ul>
+<li>Update Psych 2.0.8</li>
+<li>Update Rake 10.4.2</li>
+<li>Update RDoc 4.2.0</li>
+<li>Update RubyGems 2.4.5</li>
+<li>Update test-unit 3.0.8 (removed from repository but bundled in tarball)</li>
+<li>Update minitest 5.4.3 (removed from repository but bundled in tarball)</li>
+<li>Deprecate mathn</li>
+</ul>
+</li>
+<li>C API
+<ul>
+<li>Remove deprecated APIs</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="https://github.com/ruby/ruby/blob/v2_2_0/NEWS">NEWS in Ruby repository</a>
+for details.</p>
+<p>With those changes, 1557 files changed, 125039 insertions(+), 74376 deletions(-)
+from v2.1.0!</p>
+<h2>Download</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.bz2</a>
+<ul>
+<li>SIZE:   13304042 bytes</li>
+<li>MD5:    d03cd4690fec1fff81d096d1c1255fde</li>
+<li>SHA256: 1c031137999f832f86be366a71155113675b72420830ce432b777a0ff4942955</li>
+<li>SHA512: 04edc53e8cd1732c3ca61ebeb1d6133614beb10f77f9abb80d8d36352fe8aa205112068e460bf600b2c7e81e0ddcc3b311e7e027c320366f1bd992b3e378a6ad</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz</a>
+<ul>
+<li>SIZE:   16494584 bytes</li>
+<li>MD5:    cd03b28fd0b555970f5c4fd481700852</li>
+<li>SHA256: 7671e394abfb5d262fbcd3b27a71bf78737c7e9347fa21c39e58b0bb9c4840fc</li>
+<li>SHA512: 1ba0c68e1c8d2b60bbd1e218cf36463edbe34cf9418d7593702b631e68d02297465f752e71395f6cfa4104f4cd70a1eb44381ffb74bc7801758b830931fdcfc6</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.xz</a>
+<ul>
+<li>SIZE:   10304244 bytes</li>
+<li>MD5:    54b43c6c6c9dd4c4b08ceb03ad0ded7a</li>
+<li>SHA256: 848714e280fc5fb44dbac3b060b206e56c1947006324ee68a174d68b483ef8ca</li>
+<li>SHA512: cd7e52faa464df8aca7ccfa23a5f06248e1ad82bc8c9f1829aa1b51ff37b15973b8caaa68e914d837325b8d59427fda4f3cad82c50925e1c84e688324a2a155d</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip</a>
+<ul>
+<li>SIZE:   18441027 bytes</li>
+<li>MD5:    f8e1d0cee4f2d9535a9529ed23ae3700</li>
+<li>SHA256: e06c1e2b1248cf881749833084b2bec93f7612676009190ff9bc89b8fd07c29f</li>
+<li>SHA512: 364dd927b496520d95a1b06c68e1a265015f4cab08bdf3efaa323d385e7bf075eae47f2e1db78a629db0f3c0c1ed24e086603ba21e2da02ac06dd3c8b716766e</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Recent News</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/en/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 Released</a></li>
+        
+        <li><a href="/en/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 Released</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

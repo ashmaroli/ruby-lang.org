@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Излезе Ruby 2.3.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/news/2015/12/25/ruby-2-3-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Излезе Ruby 2.3.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Публикувана от naruse на 2015-12-25<br>
+                         Превод от Georgi Mitrev</p>
+
+    <p>Радваме се да обявим излизането на Ruby 2.3.0.</p>
+<p>Това е първият стабилен рилийз от Ruby 2.3 серията. Включени са много нови
+функционалности, например:</p>
+<p>Добавянето на <a href="https://bugs.ruby-lang.org/issues/11473">Frozen String Literal</a>. В Ruby 2.1 <code>&quot;str&quot;.freeze</code>
+е оптимизирано да намали броят на алокациите. Ruby 2.3 въвежда
+нов 'магически' коментар и опция, чрез които може да се обявят всички
+'string literals' във входните файлове. При дебъгване може да се подава
+опцията <code>--debug=frozen-string-literal</code>, която ще помогне при намирането
+на стрингове при получаване на <code>&quot;can't modify frozen String&quot;</code> грешки.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11537">Safe Navigation Operator</a>,
+който позволява
+<code>obj &amp;&amp; obj.foo</code> да бъде заместено от <code>obj&amp;.foo</code>. Подобни оператори
+вече съществуват в C#, Groovy и Swift. Добавени са също <code>Array#dig</code>
+и <code>Hash#dig</code>. Забележете, че <code>&amp;.</code> се държи като
+<a href="http://api.rubyonrails.org/v4.2.5/classes/Object.html#method-i-try-21">try! от Active Support</a>,
+който специфично обработва само <code>nil</code>.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11252">did_you_mean gem</a> e добавен
+към ruby-core. Библиотеката показва потенциални кандидати при <code>NameError</code>
+и <code>NoMethodError</code> за по-лесно дебъгване.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11788">RubyVM::InstructionSequence#to_binary и .load_from_binary</a>
+са добавени като експерименталнa функционалност. С тяхна помощ
+може да се създаде платформено-зависимо binary,
+което да използва по-малко памет и да зарежда по-бързо.</p>
+<p>Ruby 2.3 включва много подобрения по производителността. Например,
+<a href="https://bugs.ruby-lang.org/issues/11569">оптимизиран Proc#call</a>,
+<a href="https://bugs.ruby-lang.org/issues/11278">улеснено търсене на super-класове</a>,
+<a href="https://bugs.ruby-lang.org/issues/11420">добавяне на <code>st_table</code> в
+интерпретатора</a>,
+<a href="https://bugs.ruby-lang.org/issues/11170">по-умна структура от данни за instance променливи</a>,
+оптимизиране на алокирането на обекти и извикване на методи, както и много
+други.</p>
+<p>За пълен списък с промени, моля вижте
+<a href="https://github.com/ruby/ruby/blob/v2_3_0/NEWS">Новини</a> и
+<a href="https://github.com/ruby/ruby/blob/v2_3_0/ChangeLog">Списък с промени</a>.</p>
+<p>Весели празници и приятно ползване на Ruby 2.3!</p>
+<h2>Сваляне</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14185617 bytes
+SHA1:   6c8a832d49d22755ea8c45b6d53faf2ccc6d6ac9
+SHA256: ec7579eaba2e4c402a089dbc86c98e5f1f62507880fd800b9b34ca30166bfa5e
+SHA512: 77b707359e754c3616699d21697752741497c719dc3d6fdfb55ed639e76d52560d293ae54cbe5c63be78dc73fbe60f1b8615d704d017bdfe1994aa9747d26a6c
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17648682 bytes
+SHA1:   2dfcf7f33bda4078efca30ae28cb89cd0e36ddc4
+SHA256: ba5ba60e5f1aa21b4ef8e9bf35b9ddb57286cb546aac4b5a28c71f459467e507
+SHA512: 914d0201ecefaeb67aca0531146d2e89900833d8d2a597ec8a19be94529ab6b4be367f9b0cee2868b407288896cc14b64d96150223cac0aef8aafc46fc3dd7cc
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11294412 bytes
+SHA1:   96e620e38af351c8da63e40cfe217ec79f912ba1
+SHA256: 70125af0cfd7048e813a5eecab3676249582bfb65cfd57b868c3595f966e4097
+SHA512: d893c5e6db5a0533e0da48d899c619964388852ef90e7d1b92a4363d5f189cd2dba32a009581f62b9f42a8e6027975fc3c18b64faf356f5e3ac43a8d69ec5327
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19840511 bytes
+SHA1:   3f88617568d9a4f491e8b32dca532363f73eaa71
+SHA256: 8270bdcbc6b62a18fdf1b75bd28d5d6fc0fc26b9bd778d422393a1b98006020a
+SHA512: a3f397bb3c9c19d9b797552c5d60bb01c82db884cfa966df84881125bea35713cffd99f88fb86b271bae72d9cfb09ad9b33838cffcf6365c091459479914fdef
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последни новини</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/bg/news/2016/06/20/ruby-2-4-0-preview1-released/">Излезе Ruby 2.4.0-preview1</a></li>
+        
+        <li><a href="/bg/news/2016/04/26/ruby-2-3-1-released/">Излезе Ruby 2.3.1</a></li>
+        
+        <li><a href="/bg/news/2016/04/26/ruby-2-2-5-released/">Излезе Ruby 2.2.5</a></li>
+        
+        <li><a href="/bg/news/2016/04/01/ruby-2-1-10-released/">Излезе Ruby 2.1.10</a></li>
+        
+        <li><a href="/bg/news/2016/03/30/ruby-2-1-9-released/">Излезе Ruby 2.1.9</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

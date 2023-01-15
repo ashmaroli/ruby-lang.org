@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Tìm hiểu Ruby trong 25 phút</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/documentation/quickstart/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <h2>Giới thiệu</h2>
+<p>Đây là một bài hướng dẫn nhỏ, chỉ cần không quá 20 phút để hoàn thành. Giả thiết
+là bạn đã cài sẵn Ruby. (Nếu bạn chưa có Ruby, hãy <a href="/vi/documentation/installation/">cài đặt</a>
+trước khi bắt đầu nhé.)</p>
+<h2>Tương tác với Ruby</h2>
+<p>Ruby có một chương trình hiển thị kết quả của bất kỳ câu lệnh Ruby nào bạn gõ
+vào. Thử sức với Ruby code theo cách tương tác như thế này là một cách tuyệt vời
+để khám phá nó.</p>
+<p>Mở IRB (hiểu là Tương tác với Ruby).</p>
+<ul>
+<li>Nếu bạn sử dụng <strong>macOS</strong>, mở <code>Terminal</code> và gõ <code>irb</code> rồi enter.</li>
+<li>Nếu bạn sử dụng <strong>Linux</strong>, mở một shell và gõ <code>irb</code> rồi enter.</li>
+<li>Nếu bạn sử dụng <strong>Windows</strong>, mở <code>Interactive Ruby</code> từ phần Ruby trên
+Start Menu.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Rồi, nó đã mở. Giờ ta phải làm gì?</p>
+<p>Gõ: <code>&quot;Xin chào thế giới&quot;</code></p>
+<!-- raw HTML omitted -->
+<h2>Ruby phục vụ bạn!</h2>
+<p>Điều gì đã xảy ra vậy? Chúng ta vừa viết chương trình &quot;Xin chào thế giới&quot; ngắn
+nhất thế giới ư? Không phải vậy. Dòng thứ 2 chỉ là cách mà IRB nói cho ta biết
+kết quả của phép toán cuối cùng nó nhận được. Nếu muốn in ra &quot;Xin chào thế giới&quot;
+ta cần viết nhiều hơn:</p>
+<!-- raw HTML omitted -->
+<p><code>puts</code> là cú pháp cơ bản để in ra trong Ruby. Nhưng sau đó <code>=&gt; nil</code> là gì? Nó là
+kết quả của phép toán. <code>puts</code> luôn trả về nil - giá trị rỗng.</p>
+<h2>Máy tính miễn phí của bạn đây</h2>
+<p>Rõ ràng, chúng ta có thể sử dụng IRB như một chiếc máy tính cơ bản:</p>
+<!-- raw HTML omitted -->
+<p>Ba cộng hai. Quá dễ. Thế còn ba nhân hai thì sao? Bạn có thể gõ trực tiếp vì nó
+rất ngắn, tuy nhiên bạn có thể sẽ sửa lại những gì mình vừa nhập vào. Bấm nút
+<strong>mũi tên lên</strong> trên bàn phím và nó sẽ hiển thị dòng <code>3+2</code>. Nếu được, bạn có thể
+sử dụng phím mũi tên trái để di chuyển đến dấu <code>+</code> và thay nó bằng dấu <code>*</code>.</p>
+<!-- raw HTML omitted -->
+<p>Tiếp theo, hãy thử tính 3 bình phương:</p>
+<!-- raw HTML omitted -->
+<p>Trong Ruby, <code>**</code> nghĩa là &quot;bình phương&quot;. Nhưng nếu bạn muốn tìm căn bậc hai thì
+sao?</p>
+<!-- raw HTML omitted -->
+<p>Bạn thấy gì ở kết quả? Nếu bạn nghĩ, đó là &quot;căn bậc hai của 9&quot; thì bạn đã đúng.
+Nhưng hãy chú ý vào những thứ khác. Đầu tiên: <code>Math</code> là gì?</p>
+<h2>Gộp nhóm mã module theo chủ đề</h2>
+<p><code>Math</code> là một module của toán học. Các module phụ vụ hai vai trò trong Ruby. Ở
+đây là một vai trò: nhóm các phương thức giống nhau lại với nhau dưới một cái
+tên tương tự. <code>Math</code> còn có các phương thức như <code>sin()</code> và <code>tan()</code>.</p>
+<p>Tiếp theo là dấu chấm. Dấu chấm có tác dụng gì? Dấu chấm dùng để xác định nơi
+nhận của một câu lệnh. Câu lệnh là gì? Trong trường hợp này thì nó là <code>sqrt(9)</code>,
+nghĩa là gọi phương thức <code>sqrt</code>, viết tắt của &quot;căn bậc hai (square root)&quot; với
+tham số là 9.</p>
+<p>Kết quả của việc gọi phương thức này là <code>3.0</code>. Chú ý rằng nó không chỉ là <code>3</code>
+bởi vì phần lớn căn bậc 2 của một số không phải là một số nguyên, do đó phương
+thức luôn trả về một số thực.</p>
+<p>Nếu muốn lưu lại một vài kết quả của phép toán này, hãy gán kết quả cho một biến.</p>
+<!-- raw HTML omitted -->
+<p>Tuyệt vời như một chiếc máy tính, chúng ta đang vượt xa thông điệp <code>Xin chào thế giới</code> truyền thống mà ban đầu bài hướng dẫn giả sử...
+<a href="2/">Vậy chúng ta hãy quay lại nào</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

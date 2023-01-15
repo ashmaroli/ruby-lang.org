@@ -1,4 +1,1741 @@
----
-layout: news_feed
-lang: de
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Ruby RSS News</title>
+    <link>https://www.ruby-lang.org/de/feeds/news.rss</link>
+    <language>de-DE</language>
+    <ttl>40</ttl>
+    <description>Die letzten Neuigkeiten von ruby-lang.org.</description>
+    
+    <item>
+      <title>Ruby 3.0.0 veröffentlicht</title>
+      <description>&lt;p&gt;Wir freuen uns, die Veröffentlichung von Ruby 3.0.0
+bekannt geben zu können. Seit 2015 haben wir an Ruby 3 gearbeitet,
+dessen Ziele sich so beschreiben lassen: Performanz, Nebenläufigkeit
+und Typisierung. Mit besonderem Blick auf die Performanz hatte Matz
+angekündigt: „Ruby 3 wird 3-mal so schnell sein wie Ruby 2“, ein Satz,
+der auch bekannt ist als &lt;a href=&quot;https://blog.heroku.com/ruby-3-by-3&quot;&gt;Ruby 3x3&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Im &lt;a href=&quot;https://github.com/mame/optcarrot&quot;&gt;Optcarrot-Benchmark&lt;/a&gt;, der die Performanz eines einzelnen
+Threads anhand der Emulation eines NES-Spiels misst, erreichte Ruby 3
+die dreifache Performanz von Ruby 2.0! &lt;!-- raw HTML omitted --&gt;Dies wurde mit der
+unter &lt;a href=&quot;https://benchmark-driver.github.io/hardware.html&quot;&gt;benchmark-driver.github.io/hardware.html&lt;/a&gt;
+beschriebenen Umgebung mit
+&lt;a href=&quot;https://github.com/ruby/ruby/commit/8c510e4095&quot;&gt;Commit 8c510e4095&lt;/a&gt; als Ruby 3.0 gemessen.
+Möglicherweise ist es in Ihrer Umgebung oder Ihrem Benchmark nicht drei mal so schnell.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Ruby 3.0.0 erreicht diese Ziele durch die folgenden Maßnahmen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Performanz
+&lt;ul&gt;
+&lt;li&gt;MJIT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Nebenläufigkeit
+&lt;ul&gt;
+&lt;li&gt;Ractor&lt;/li&gt;
+&lt;li&gt;Fiber Scheduler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Typisierung (statische Analyse)
+&lt;ul&gt;
+&lt;li&gt;RBS&lt;/li&gt;
+&lt;li&gt;TypeProf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zusätzlich zu den genannten Performanzverbesserungen führt Ruby 3.0
+eine Reihe neuer Features ein, die nachfolgend beschrieben werden.&lt;/p&gt;
+&lt;h2&gt;Performanz&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Als ich erstmals „Ruby 3x3“ in der Keynote einer Konferenz erwähnte,
+sagten viele, auch Mitglieder des Konferenzteams, „Matz ist ein
+Aufschneider“. Tatsächlich fühlte ich mich so. Aber wir taten es.
+Ich bin gerührt zu sehen, dass es dem Core-Team gelungen ist, Ruby
+3.0 drei mal so schnell zu machen wie Ruby 2.0 (zumindest in manchen
+Benchmarks). --- Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;MJIT&lt;/h3&gt;
+&lt;p&gt;Der MJIT hat viele Verbesserungen gesehen. Siehe die NEWS für Details.&lt;/p&gt;
+&lt;p&gt;Mit Ruby 3.0 ist es Aufgabe des JIT, in bestimmten, abgrenzbaren Umgebungen wie in
+Spielen (&lt;a href=&quot;https://benchmark-driver.github.io/benchmarks/optcarrot/commits.html#chart-1&quot;&gt;Optcarrot&lt;/a&gt;), KI (&lt;a href=&quot;https://benchmark-driver.github.io/benchmarks/rubykon/commits.html&quot;&gt;Rubykon&lt;/a&gt;) oder sonstigen
+Anwendungen, die den Großteil ihrer Zeit mit dem oft wiederholten Aufruf
+einiger weniger Methoden verbringen, Performanzverbesserungen
+herbeizuführen.&lt;/p&gt;
+&lt;p&gt;Obwohl Ruby 3.0 &lt;a href=&quot;https://twitter.com/k0kubun/status/1256142302608650244&quot;&gt;die Größe des ge-JIT-eten Codes signifikant
+reduziert hat&lt;/a&gt; ist der JIT immer noch nicht geeignet, komplexe
+Umgebungen wie Rails zu optimieren, die sehr viel Zeit in vielen
+verschiedenen Methoden verbringen und die daher unter Nichttreffern im
+vom JIT verwendeten i-Cache leiden. Freuen Sie sich auf Ruby 3.1 für
+weitere Verbesserungen in dieser Hinsicht.&lt;/p&gt;
+&lt;h2&gt;Nebenläufigkeit / Parallelismus&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Wir leben in der Zeit von Mehrkernsystemen. Nebenläufigkeit ist sehr
+wichtig. Mit Ractor, zusammen mit asynchronen Fibers, wird Ruby eine
+wirklich nebenläufige Sprache. --- Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Ractor (experimentell)&lt;/h3&gt;
+&lt;p&gt;Ractor ist eine dem Aktorenmodell ähnliche Abstraktion für
+Nebenläufigkeit, um die parallele Ausführung von Code bei
+gleichzeitiger Beachtung von Thread-Sicherheit zu ermöglichen.&lt;/p&gt;
+&lt;p&gt;Sie können mehrere Ractors anlegen und sie parallel ausführen. Ractor
+ermöglicht es, thread-sichere parallele Programme zu schreiben, weil
+sich Ractors normale Objekte nicht teilen können. Die Kommunikation
+zwischen Ractors wird stattdessen über Nachrichten abgewickelt.&lt;/p&gt;
+&lt;p&gt;Um das Teilen von Objekten zu begrenzen, führt Ractor einige
+Beschränkungen für Rubys Syntax ein (die allerdings nicht greifen,
+wenn nicht mehrere Ractors verwendet werden).&lt;/p&gt;
+&lt;p&gt;Die Spezifikation und Implementation sind noch nicht abgeschlossen und
+können sich in Zukunft noch ändern, weshalb dieses Feature als
+experimentell markiert ist und bei Erstellung eines Ractors mit
+&lt;code&gt;Ractor.new&lt;/code&gt; eine entsprechende Warnung über „experimentelle Features“
+ausgegeben wird.&lt;/p&gt;
+&lt;p&gt;Das nachfolgende kleine Programm misst die Ausführungszeit der
+bekannten Tak-Funktion für Benchmarks
+(&lt;a href=&quot;https://de.wikipedia.org/wiki/Tak_(Funktion)&quot;&gt;Tak (Funktion) - Wikipedia&lt;/a&gt;),
+indem sie 4-mal sequentiell oder 4-mal parallel mit
+Ractors ausgeführt wird.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'benchmark'&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Benchmark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;bm&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# sequential version&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'seq'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# parallel version&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'par'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:take&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Benchmark result:
+          user     system      total        real
+seq  64.560736   0.001101  64.561837 ( 64.562194)
+par  66.422010   0.015999  66.438009 ( 16.685797)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Dieses Ergebnis wurde gemessen auf Ubuntu 20.04, Intel(R) Core(TM)
+i7-6700 (4 Kerne, 8 Hardware-Threads). Es zeigt, dass die parallele
+Version 3,87-mal so schnell ist wie die sequentielle Version.&lt;/p&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://docs.ruby-lang.org/en/3.0/ractor_md.html&quot;&gt;doc/ractor.md&lt;/a&gt; für weitere Details.&lt;/p&gt;
+&lt;h3&gt;Fiber Scheduler&lt;/h3&gt;
+&lt;p&gt;Zur Unterbrechung blockender Operationen wird &lt;code&gt;Fiber#scheduler&lt;/code&gt;
+eingeführt. Das ermöglicht leichtgewichtige Nebenläufigkeit ohne
+Änderungen bestehenden Codes. Schauen Sie sich für einen Überblick
+über die Funktionsweise &lt;a href=&quot;https://www.youtube.com/watch?v=Y29SSOS4UOc&quot;&gt;„Warte nicht auf mich: Skalierbare
+Nebenläufigkeit für Ruby 3“&lt;/a&gt; an.&lt;/p&gt;
+&lt;p&gt;Momentan unterstützte Klassen/Methoden:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Mutex#lock&lt;/code&gt;, &lt;code&gt;Mutex#unlock&lt;/code&gt;, &lt;code&gt;Mutex#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConditionVariable#wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Queue#pop&lt;/code&gt;, &lt;code&gt;SizedQueue#push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Thread#join&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Process.wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#wait&lt;/code&gt;, &lt;code&gt;IO#read&lt;/code&gt;, &lt;code&gt;IO#write&lt;/code&gt; und verwandte Methoden (z. B. &lt;code&gt;#wait_readable&lt;/code&gt;, &lt;code&gt;#gets&lt;/code&gt;, &lt;code&gt;#puts&lt;/code&gt; usw.).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#select&lt;/code&gt; wird &lt;em&gt;nicht unterstützt&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Das folgende Beispielprogramm führt mehrere HTTP-Anfragen nebenläufig
+aus:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'async'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'net/http'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'uri'&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;async&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://www.google.com/search?q=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Es nutzt &lt;a href=&quot;https://github.com/socketry/async&quot;&gt;async&lt;/a&gt;, das den Event-Loop bereitstellt. Dieser
+Event-Loop benutzt die Hooks von &lt;code&gt;Fiber#scheduler&lt;/code&gt;, um &lt;code&gt;Net::HTTP&lt;/code&gt;
+nicht-blockierend auszuführen. Andere Gems können diese Schnittstelle
+benutzen, um nicht-blockierende Ausführung für Ruby anzubieten und
+diese Gems können sogar mit anderen Implementierungen von Ruby (z. B.
+JRuby, TruffleRuby) interoperabel sein, da diese in der Lage sein
+sollten, dieselben nicht-blockierenden Hooks zu unterstützen.&lt;/p&gt;
+&lt;h2&gt;Statische Analyse&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Die 2010er Jahre waren eine Zeit statisch typisierter
+Programmiersprachen. Ruby verfolgt eine Zukunft mit statischer
+Typenüberprüfung, aber ohne Typendeklarationen, und zwar durch
+abstrakte Interpretation. RBS und TypeProf sind der erste Schritt in
+diese Zukunft. Weitere werden folgen. --- Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS ist eine Sprache zur Beschreibung der Typen von Ruby-Programmen.&lt;/p&gt;
+&lt;p&gt;Typprüfungsprogramme wie TypeProf und andere Werkzeuge mit
+RBS-Unterstützung werden mithilfe von RBS-Definitionen viel besser in
+der Lage sein, Ruby-Programme zu verstehen.&lt;/p&gt;
+&lt;p&gt;Mit RBS ist es nun möglich, die Definitionen von Klassen und Modulen
+zu beschreiben: Methoden der Klasse, Instanzvariablen und ihre Typen,
+Vererbungs- und Mix-In-Beziehungen.&lt;/p&gt;
+&lt;p&gt;RBS soll übliche Ruby-Idiome unterstützen und erlauben, komplexe Typen
+wie Union Types, überladene Methoden und Generics zu schreiben. RBS
+unterstützt mithilfe von Schnittstellen-Typen (&lt;em&gt;Interface Types&lt;/em&gt;) auch
+Duck Typing.&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 enthält das Gem &lt;code&gt;rbs&lt;/code&gt;, das das Parsing und die Verarbeitung
+von in RBS geschriebenen Typendefinitionen ermöglicht.&lt;/p&gt;
+&lt;p&gt;Nachfolgend ein kleines Beispiel von RBS mit Klassen-, Modul- und
+Konstantendefinitionen.&lt;/p&gt;
+&lt;div class=&quot;language-rbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;rbs&quot;&gt;module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` bedeutet Union Types, `User` or `Bot`.
+    def initialize: (String) -&amp;gt; void
+    def post: (String, from: User | Bot) -&amp;gt; Message   # Methodenüberladung wird unterstützt.
+            | (File, from: User | Bot) -&amp;gt; Message
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;README des rbs-Gems&lt;/a&gt; für mehr Details.&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;TypeProf ist ein Typanalysewerkzeug, das mit Ruby ausgeliefert wird.&lt;/p&gt;
+&lt;p&gt;Momentan fungiert TypeProf als eine Art automatisierte Typerkennung.&lt;/p&gt;
+&lt;p&gt;Es liest einfachen (nicht typenannotierten) Ruby-Code, analysiert,
+welche Methoden darin definiert werden und wie sie genutzt werden,
+und generiert den Prototyp einer Typensignatur im RBS-Format.&lt;/p&gt;
+&lt;p&gt;Nachfolgend eine einfache Demonstration von TypeProf.&lt;/p&gt;
+&lt;p&gt;Beispielhafte Eingabe:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# test.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:age&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;John&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;age: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Beispielhafte Ausgabe:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&amp;gt; [String, Integer]
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Sie können TypeProf ausführen, indem Sie die Eingabe in der Datei
+„test.rb“ speichern und das Kommando „typeprof test.rb“ ausführen.&lt;/p&gt;
+&lt;p&gt;Sie können &lt;a href=&quot;https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;amp;rbs=&quot;&gt;TypeProf online ausprobieren&lt;/a&gt;.  (Dies führt TypeProf
+serverseitig aus, daher bitten wir um Entschuldigung, falls es ausfällt).&lt;/p&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;die TypeProf-Dokumentation&lt;/a&gt; und die &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/demo.md&quot;&gt;Demos&lt;/a&gt; für Details.&lt;/p&gt;
+&lt;p&gt;TypeProf ist experimentell und noch nicht recht fertig; es wird nur
+eine Untermenge der Programmiersprache Ruby unterstützt und die
+Erkennung von Typfehlern ist noch beschränkt. Es wird aber umfassend
+weiterentwickelt, um die Sprachabdeckung, die Analyseperformanz und
+die Benutzbarkeit zu verbessern. Jegliche Rückmeldungen sind sehr
+willkommen.&lt;/p&gt;
+&lt;h2&gt;Sonstige erwähnenswerte neue Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Einzeiliges Pattern Matching (Musterabgleich) wurde neu gestaltet (experimentell).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;=&amp;gt;&lt;/code&gt; wurde hinzugefügt. Es funktioniert wie eine rechtsseitige Zuweisung.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 0&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;in&lt;/code&gt; wurde geändert, sodass es &lt;code&gt;true&lt;/code&gt; oder &lt;code&gt;false&lt;/code&gt; zurückgibt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# version 3.0&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; false&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# version 2.7&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; raise NoMatchingPatternError&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find-Idiom wird eingeführt. (experimentell)&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;a&quot;, 1]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;b&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;c&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [2, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, 3]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;End-lose Methodendefinition wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Hash#except&lt;/code&gt; ist jetzt eingebaut.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {:b=&amp;gt;2, :c=&amp;gt;3}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory View wird als experimentelles Feature eingeführt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dabei handelt es sich um eine neue C-API, die den Austausch roher
+Speicherabschnitte, wie ein numerisches Array oder Bitmap-Bilder,
+zwischen Erweiterungsbibliotheken (&lt;em&gt;C extensions&lt;/em&gt;) ermöglichen
+soll. Die Erweiterungsbibliotheken können auch die Metadaten des
+betroffenen Speicherabschnitts wie etwa Schnitt, Elementformat
+usw. teilen. Mit dieser Art von Metadaten können
+Erweiterungsbibliotheken sogar mehrdimensionale Arrays
+ordnungsgemäß teilen. Dieses Feature orientiert sich an Pythons
+Buffer Protocol.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Performanzverbesserungen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Das Einfügen langer Code-Abschnitte in IRB ist 53-mal schneller als
+es mit Ruby 2.7.0 der Fall war. Beispielsweise reduziert sich die
+Zeit um &lt;a href=&quot;https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b&quot;&gt;diesen Beispiel-Code&lt;/a&gt;
+einzufügen von 11,7 auf 0,22 Sekunden.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Zu IRB wurde das Kommando &lt;code&gt;measure&lt;/code&gt; hinzugefügt. Dieses erlaubt es, die Zeit einfacher Ausführungen zu messen.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb(main):001:0&amp;gt; 3
+=&amp;gt; 3
+irb(main):002:0&amp;gt; measure
+TIME is added.
+=&amp;gt; nil
+irb(main):003:0&amp;gt; 3
+processing time: 0.000058s
+=&amp;gt; 3
+irb(main):004:0&amp;gt; measure :off
+=&amp;gt; nil
+irb(main):005:0&amp;gt; 3
+=&amp;gt; 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Sonstige erwähnenswerte Änderungen seit 2.7&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Schlüsselwortargumente werden von anderen Argumenten abgetrennt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Grundsätzlich wird Code, der unter Ruby 2.7 eine Warnung erzeugte,
+nicht mehr funktionieren. Siehe dieses
+&lt;a href=&quot;https://www.ruby-lang.org/de/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/&quot;&gt;Dokument&lt;/a&gt;
+für weitere Details.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Übrigens unterstützt Argumentweiterleitung jetzt auch vorangehende
+Argumente.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:&quot;do_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Musterabgleiche (&lt;code&gt;case&lt;/code&gt;/&lt;code&gt;in&lt;/code&gt;) sind nicht länger experimentell.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Siehe die
+&lt;a href=&quot;https://docs.ruby-lang.org/en/3.0/syntax/pattern_matching_rdoc.html&quot;&gt;Pattern-Matching-Dokumentation&lt;/a&gt;
+für weitere Informationen.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die Besonderheiten von &lt;code&gt;$SAFE&lt;/code&gt; wurden vollständig entfernt.
+Es handelt sich nun um eine normale globale Variable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In Ruby 2.5 war die Reihenfolge der Backtraces umgekehrt worden.
+Diese Änderung ist rückgängig gemacht worden, d. h. die
+Fehlermeldung und die Nummer der Zeile, in der der Fehler auftrat,
+werden zuerst und die Aufrufer danach ausgegeben.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Einige Standardbibliotheken wurden aktualisiert.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.2.3&lt;/li&gt;
+&lt;li&gt;Bundler 2.2.3&lt;/li&gt;
+&lt;li&gt;IRB 1.3.0&lt;/li&gt;
+&lt;li&gt;Reline 0.2.0&lt;/li&gt;
+&lt;li&gt;Psych 3.3.0&lt;/li&gt;
+&lt;li&gt;JSON 2.5.1&lt;/li&gt;
+&lt;li&gt;BigDecimal 3.0.0&lt;/li&gt;
+&lt;li&gt;CSV 3.1.9&lt;/li&gt;
+&lt;li&gt;Date 3.1.0&lt;/li&gt;
+&lt;li&gt;Digest 3.0.0&lt;/li&gt;
+&lt;li&gt;Fiddle 1.0.6&lt;/li&gt;
+&lt;li&gt;StringIO 3.0.0&lt;/li&gt;
+&lt;li&gt;StringScanner 3.0.0&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden Bibliotheken werden nicht länger mitgeliefert.
+Installieren Sie die entsprechenden Gems, um diese Features zu
+nutzen.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sdbm&lt;/li&gt;
+&lt;li&gt;webrick&lt;/li&gt;
+&lt;li&gt;net-telnet&lt;/li&gt;
+&lt;li&gt;xmlrpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden Standardgems sind jetzt mitgelieferte Gems.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rexml&lt;/li&gt;
+&lt;li&gt;rss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden zur stdlib gehörenden Dateien sind nun Standardgems
+und werden auf rubygems.org veröffentlicht:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;abbrev&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;li&gt;drb&lt;/li&gt;
+&lt;li&gt;debug&lt;/li&gt;
+&lt;li&gt;erb&lt;/li&gt;
+&lt;li&gt;find&lt;/li&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-http&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-protocol&lt;/li&gt;
+&lt;li&gt;open-uri&lt;/li&gt;
+&lt;li&gt;optparse&lt;/li&gt;
+&lt;li&gt;pp&lt;/li&gt;
+&lt;li&gt;prettyprint&lt;/li&gt;
+&lt;li&gt;resolv-replace&lt;/li&gt;
+&lt;li&gt;resolv&lt;/li&gt;
+&lt;li&gt;rinda&lt;/li&gt;
+&lt;li&gt;set&lt;/li&gt;
+&lt;li&gt;securerandom&lt;/li&gt;
+&lt;li&gt;shellwords&lt;/li&gt;
+&lt;li&gt;tempfile&lt;/li&gt;
+&lt;li&gt;tmpdir&lt;/li&gt;
+&lt;li&gt;time&lt;/li&gt;
+&lt;li&gt;tsort&lt;/li&gt;
+&lt;li&gt;un&lt;/li&gt;
+&lt;li&gt;weakref&lt;/li&gt;
+&lt;li&gt;digest&lt;/li&gt;
+&lt;li&gt;io-nonblock&lt;/li&gt;
+&lt;li&gt;io-wait&lt;/li&gt;
+&lt;li&gt;nkf&lt;/li&gt;
+&lt;li&gt;pathname&lt;/li&gt;
+&lt;li&gt;syslog&lt;/li&gt;
+&lt;li&gt;win32ole&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+oder die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0&quot;&gt;Commit-Logs&lt;/a&gt;
+für weitere Informationen.&lt;/p&gt;
+&lt;p&gt;Mit diesen Änderungen wurden &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0#file_bucket&quot;&gt;4028 Dateien geändert, 200058 Einfügungen(+), 154063 Löschungen(-)&lt;/a&gt;
+seit Ruby 2.7.0!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ruby 3.0 ist ein Meilenstein. Die Sprache entwickelt sich weiter und bewahrt doch die Kompatibilität. Aber es ist nicht vorbei. Ruby wird weiter fortschreiten und wird noch besser werden. Behalten Sie uns im Auge! --- Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Frohe Weihnachten, schöne Ferien, und viel Spaß bei der Programmierung mit Ruby 3.0!&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19539509
+SHA1: 233873708c1ce9fdc295e0ef1c25e64f9b98b062
+SHA256: a13ed141a1c18eb967aac1e33f4d6ad5f21be1ac543c344e0d6feeee54af8e28
+SHA512: e62f4f63dc12cff424e8a09adc06477e1fa1ee2a9b2b6e28ca22fd52a211e8b8891c0045d47935014a83f2df2d6fc7c8a4fd87f01e63c585afc5ef753e1dd1c1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14374176
+SHA1: c142899d70a1326c5a71311b17168f98c15e5d89
+SHA256: 68bfaeef027b6ccd0032504a68ae69721a70e97d921ff328c0c8836c798f6cb1
+SHA512: 2a23c2894e62e24bb20cec6b2a016b66d7df05083668726b6f70af8338211cfec417aa3624290d1f5ccd130f65ee7b52b5db7d428abc4a9460459c9a5dd1a450
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 23862057
+SHA1: 2a9629102d71c7fe7f31a8c91f64e570a40d093c
+SHA256: a5e4fa7dc5434a7259e9a29527eeea2c99eeb5e82708f66bb07731233bc860f4
+SHA512: e5bf742309d79f05ec1bd1861106f4b103e4819ca2b92a826423ff451465b49573a917cb893d43a98852435966323e2820a4b9f9377f36cf771b8c658f80fa5b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Was ist Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby wurde zunächst 1993 von Matz (Yukihiro Matsumoto) entwickelt und
+ist heute quelloffene Software. Es läuft auf mehreren Plattformen und
+wird weltweit genutzt, insbesondere für die Webentwicklung.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von naruse am 25.12.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/12/25/ruby-3-0-0-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/12/25/ruby-3-0-0-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.0 RC1 veröffentlicht</title>
+      <description>&lt;p&gt;Wir freuen uns, die Veröffentlichung von Ruby 3.0.0-rc1 bekannt geben
+zu können.&lt;/p&gt;
+&lt;p&gt;Sie führt eine Reihe neuer Features und Performanzverbesserungen ein.&lt;/p&gt;
+&lt;h2&gt;Statische Analyse&lt;/h2&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS ist eine Sprache zur Beschreibung der Typen von Ruby-Programmen.&lt;/p&gt;
+&lt;p&gt;Typprüfungsprogramme wie TypeProf und andere Werkzeuge mit
+RBS-Unterstützung werden mithilfe von RBS-Definitionen viel besser in
+der Lage sein, Ruby-Programme zu verstehen.&lt;/p&gt;
+&lt;p&gt;Mit RBS ist es nun möglich, die Definitionen von Klassen und Modulen
+zu beschreiben: Methoden der Klasse, Instanzvariablen und ihre Typen,
+Vererbungs- und Mix-In-Beziehungen.&lt;/p&gt;
+&lt;p&gt;RBS soll übliche Ruby-Idiome unterstützen und erlauben, komplexe Typen
+wie Union Types, überladene Methoden und Generics zu schreiben. RBS
+unterstützt mithilfe von Schnittstellen-Typen (&lt;em&gt;Interface Types&lt;/em&gt;) auch
+Duck Typing.&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 enthält das Gem &lt;code&gt;rbs&lt;/code&gt;, das das Parsing und die Verarbeitung
+von in RBS geschriebenen Typendefinitionen ermöglicht.&lt;/p&gt;
+&lt;p&gt;Nachfolgend ein kleines Beispiel von RBS mit Klassen-, Modul- und
+Konstantendefinitionen.&lt;/p&gt;
+&lt;div class=&quot;language-rbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;rbs&quot;&gt;module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` bedeutet Union Types, `User` or `Bot`.
+    def initialize: (String) -&amp;gt; void
+    def post: (String, from: User | Bot) -&amp;gt; Message   # Methodenüberladung wird unterstützt.
+            | (File, from: User | Bot) -&amp;gt; Message
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;README des rbs-Gems&lt;/a&gt; für weitere Informationen.&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;TypeProf ist ein Typanalysewerkzeug, das mit Ruby ausgeliefert wird.&lt;/p&gt;
+&lt;p&gt;Momentan fungiert TypeProf als eine Art automatisierte Typerkennung.&lt;/p&gt;
+&lt;p&gt;Es liest einfachen (nicht typenannotierten) Ruby-Code, analysiert,
+welche Methoden darin definiert werden und wie sie genutzt werden,
+und generiert den Prototyp einer Typensignatur im RBS-Format.&lt;/p&gt;
+&lt;p&gt;Nachfolgend eine einfache Demonstration von TypeProf.&lt;/p&gt;
+&lt;p&gt;Beispielhafte Eingabe:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# test.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:age&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;John&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;age: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Beispielhafte Ausgabe:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&amp;gt; [String, Integer]
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Sie können TypeProf ausführen, indem Sie die Eingabe in der Datei
+„test.rb“ speichern und das Kommando „typeprof test.rb“ ausführen.&lt;/p&gt;
+&lt;p&gt;Sie können &lt;a href=&quot;https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;amp;rbs=&quot;&gt;TypeProf online ausprobieren&lt;/a&gt;.  (Dies führt TypeProf
+serverseitig aus, daher bitten wir um Entschuldigung, falls es ausfällt).&lt;/p&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;die Dokumentation&lt;/a&gt; und die &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/demo.md&quot;&gt;Demos&lt;/a&gt; für Details.&lt;/p&gt;
+&lt;p&gt;TypeProf ist experimentell und noch nicht recht fertig; es wird nur
+eine Untermenge der Programmiersprache Ruby unterstützt und die
+Erkennung von Typfehlern ist noch beschränkt. Es wird aber umfassend
+weiterentwickelt, um die Sprachabdeckung, die Analyseperformanz und
+die Benutzbarkeit zu verbessern. Jegliche Rückmeldungen sind sehr
+willkommen.&lt;/p&gt;
+&lt;h2&gt;Ractor (experimentell)&lt;/h2&gt;
+&lt;p&gt;Ractor ist eine dem Aktorenmodell ähnliche Abstraktion für
+Nebenläufigkeit, um die parallele Ausführung von Code bei
+gleichzeitiger Beachtung von Thread-Sicherheit zu ermöglichen.&lt;/p&gt;
+&lt;p&gt;Sie können mehrere Ractors anlegen und sie parallel ausführen. Ractor
+ermöglicht es, thread-sichere parallele Programme zu schreiben, weil
+sich Ractors normale Objekte nicht teilen können. Die Kommunikation
+zwischen Ractors wird stattdessen über Nachrichten abgewickelt.&lt;/p&gt;
+&lt;p&gt;Um das Teilen von Objekten zu begrenzen, führt Ractor einige
+Beschränkungen für Rubys Syntax ein (die allerdings nicht eingreifen,
+wenn nicht mehrere Ractors verwendet werden).&lt;/p&gt;
+&lt;p&gt;Die Spezifikation und Implementation sind noch nicht abgeschlossen und
+können sich in Zukunft noch ändern, weshalb dieses Feature als
+experimentell markiert ist und bei Erstellung eines Ractors mit
+&lt;code&gt;Ractor.new&lt;/code&gt; eine entsprechende Warnung ausgegeben wird.&lt;/p&gt;
+&lt;p&gt;Das folgende kleine Programm berechnet &lt;code&gt;n.prime?&lt;/code&gt; (&lt;code&gt;n&lt;/code&gt; ist ein relativ
+großer Integer) parallel mit zwei Ractors. Sie werden feststellen,
+dass die Programmausführung auf einem parallel arbeitenden Computer
+etwa 2-mal so schnell ist wie das entsprechende sequentielle Programm.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prime'&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# n.prime? mit den zugesandten Integers in r1, r2 läuft parallel&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;receive&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prime?&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# send parameters&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# wait for the results of expr1, expr2&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://github.com/ruby/ruby/blob/master/doc/ractor.md&quot;&gt;doc/ractor.md&lt;/a&gt; für weitere Details.&lt;/p&gt;
+&lt;h2&gt;Fiber Scheduler&lt;/h2&gt;
+&lt;p&gt;Zur Unterbrechung blockender Operationen wird &lt;code&gt;Fiber#scheduler&lt;/code&gt;
+eingeführt. Das ermöglicht leichtgewichtige Nebenläufigkeit ohne
+Änderungen bestehenden Codes. Schauen Sie sich für einen Überblick
+über die Funktionsweise &lt;a href=&quot;https://www.youtube.com/watch?v=Y29SSOS4UOc&quot;&gt;„Warte nicht auf mich: Skalierbare
+Nebenläufigkeit für Ruby 3“&lt;/a&gt; an.&lt;/p&gt;
+&lt;p&gt;Momentan unterstützte Klassen/Methoden:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Mutex#lock&lt;/code&gt;, &lt;code&gt;Mutex#unlock&lt;/code&gt;, &lt;code&gt;Mutex#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConditionVariable#wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Queue#pop&lt;/code&gt;, &lt;code&gt;SizedQueue#push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Thread#join&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Process.wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#wait&lt;/code&gt;, &lt;code&gt;IO#read&lt;/code&gt;, &lt;code&gt;IO#write&lt;/code&gt; und verwandte Methoden (z.B. &lt;code&gt;#wait_readable&lt;/code&gt;, &lt;code&gt;#gets&lt;/code&gt;, &lt;code&gt;#puts&lt;/code&gt; usw.).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#select&lt;/code&gt; wird &lt;em&gt;nicht unterstützt&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Erkläre Async-Gem mit Links). Das folgende Beispielprogramm führt
+mehrere HTTP-Anfragen nebenläufig aus:&lt;/p&gt;
+&lt;p&gt;(Erkläre das:)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;async ist das äußere Gem&lt;/li&gt;
+&lt;li&gt;async nutzt das neue Feature&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'async'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'net/http'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'uri'&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;python&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://www.google.com/search?q=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2&gt;Sonstige erwähnenswerte neue Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Einzeiliges Pattern Matching (Musterabgleich) wurde neu gestaltet (experimentell).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;=&amp;gt;&lt;/code&gt; wurde hinzugefügt. Es funktioniert wie eine rechtsseitige Zuweisung.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 0&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;in&lt;/code&gt; wurde geändert, sodass es &lt;code&gt;true&lt;/code&gt; oder &lt;code&gt;false&lt;/code&gt; zurückgibt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# version 3.0&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; false&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# version 2.7&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; wirft NoMatchingPatternError&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find-Idiom wird eingeführt. (experimentell)&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;a&quot;, 1]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;b&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;c&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [2, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, 3]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;End-lose Methodendefinition wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Hash#except&lt;/code&gt; ist jetzt eingebaut.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {:b=&amp;gt;2, :c=&amp;gt;3}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory View wird als experimentelles Feature eingeführt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dabei handelt es sich um eine neue C-API, die den Austausch roher
+Speicherabschnitte, wie ein numerisches Array oder Bitmap-Bilder,
+zwischen Erweiterungsbibliotheken (&lt;em&gt;C extensions&lt;/em&gt;) ermöglichen
+soll. Die Erweiterungsbibliotheken können auch die Metadaten des
+betroffenen Speicherabschnitts wie etwa Schnitt, Elementformat
+usw. teilen. Mit dieser Art von Metadaten können
+Erweiterungsbibliotheken sogar mehrdimensionale Arrays
+ordnungsgemäß teilen. Dieses Feature orientiert sich an Pythons
+Buffer Protocol.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Es gab viele Verbesserungen im MJIT. Siehe die NEWS für Details.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Das Einfügen langer Code-Abschnitte in IRB ist 53-mal schneller als
+es mit Ruby 2.7.0 der Fall war. Beispielsweise reduziert sich die
+Zeit um &lt;a href=&quot;https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b&quot;&gt;diesen Beispiel-Code&lt;/a&gt;
+einzufügen von 11,7 auf 0,22 Sekunden.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Sonstige erwähnenswerte Änderungen seit 2.7&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Schlüsselwortargumente werden von anderen Argumenten abgetrennt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Grundsätzlich wird Code, der unter Ruby 2.7 eine Warnung erzeugte,
+nicht mehr funktionieren. Siehe dieses
+&lt;a href=&quot;https://www.ruby-lang.org/de/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/&quot;&gt;Dokument&lt;/a&gt;
+für weitere Details.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Übrigens unterstützt Argumentweiterleitung jetzt auch vorangehende
+Argumente.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:&quot;do_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Musterabgleiche (&lt;code&gt;case&lt;/code&gt;/&lt;code&gt;in&lt;/code&gt;) sind nicht länger experimentell.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die Besonderheiten von &lt;code&gt;$SAFE&lt;/code&gt; wurden vollständig entfernt.
+Es handelt sich nun um eine normale globale Variable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In Ruby 2.5 war die Reihenfolge der Backtraces umgekehrt worden.
+Diese Änderung ist rückgängig gemacht worden, d. h. die
+Fehlermeldung und die Nummer der Zeile, in der der Fehler auftrat,
+werden zuerst und die Aufrufer danach ausgegeben.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Einige Standardbibliotheken wurden aktualisiert.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.2.2&lt;/li&gt;
+&lt;li&gt;Bundler 2.2.2&lt;/li&gt;
+&lt;li&gt;IRB 1.2.6&lt;/li&gt;
+&lt;li&gt;Reline 0.1.5&lt;/li&gt;
+&lt;li&gt;Psych 3.2.1&lt;/li&gt;
+&lt;li&gt;JSON 2.4.1&lt;/li&gt;
+&lt;li&gt;BigDecimal 3.0.0&lt;/li&gt;
+&lt;li&gt;CSV 3.1.9&lt;/li&gt;
+&lt;li&gt;Digest 3.0.0&lt;/li&gt;
+&lt;li&gt;Fiddle 1.0.4&lt;/li&gt;
+&lt;li&gt;StringIO 3.0.0&lt;/li&gt;
+&lt;li&gt;StringScanner 3.0.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden Bibliotheken werden nicht länger mitgeliefert.
+Installieren Sie die entsprechenden Gems, um diese Features zu
+nutzen.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;net-telnet&lt;/li&gt;
+&lt;li&gt;xmlrpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden Standardgems sind jetzt mitgelieferte Gems.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rexml&lt;/li&gt;
+&lt;li&gt;rss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden zur stdlib gehörenden Dateien sind nun Standardgems
+und werden auf rubygems.org veröffentlicht:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;abbrev&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;li&gt;drb&lt;/li&gt;
+&lt;li&gt;debug&lt;/li&gt;
+&lt;li&gt;erb&lt;/li&gt;
+&lt;li&gt;find&lt;/li&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-http&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-protocol&lt;/li&gt;
+&lt;li&gt;open-uri&lt;/li&gt;
+&lt;li&gt;optparse&lt;/li&gt;
+&lt;li&gt;pp&lt;/li&gt;
+&lt;li&gt;prettyprint&lt;/li&gt;
+&lt;li&gt;resolv-replace&lt;/li&gt;
+&lt;li&gt;resolv&lt;/li&gt;
+&lt;li&gt;rinda&lt;/li&gt;
+&lt;li&gt;set&lt;/li&gt;
+&lt;li&gt;securerandom&lt;/li&gt;
+&lt;li&gt;shellwords&lt;/li&gt;
+&lt;li&gt;tempfile&lt;/li&gt;
+&lt;li&gt;tmpdir&lt;/li&gt;
+&lt;li&gt;time&lt;/li&gt;
+&lt;li&gt;tsort&lt;/li&gt;
+&lt;li&gt;un&lt;/li&gt;
+&lt;li&gt;weakref&lt;/li&gt;
+&lt;li&gt;digest&lt;/li&gt;
+&lt;li&gt;io-nonblock&lt;/li&gt;
+&lt;li&gt;io-wait&lt;/li&gt;
+&lt;li&gt;nkf&lt;/li&gt;
+&lt;li&gt;pathname&lt;/li&gt;
+&lt;li&gt;syslog&lt;/li&gt;
+&lt;li&gt;win32ole&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0_rc1/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+oder die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_rc1&quot;&gt;Commit-Logs&lt;/a&gt;
+für weitere Details.&lt;/p&gt;
+&lt;p&gt;Mit diesen Änderungen wurden &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0&quot;&gt;3889 Dateien geändert, 195560 Einfügungen(+), 152740 Löschungen(-)&lt;/a&gt;
+seit Ruby 2.7.0!&lt;/p&gt;
+&lt;p&gt;Bitte testen Sie Ruby 3.0.0-rc1 und geben Sie uns Rückmeldungen!&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19488885
+SHA1: 34ede2128a90ef3217d9cab9efcdf20fc444f67c
+SHA256: e1270f38b969ce7b124f0a4c217e33eda643f75c7cb20debc62c17535406e37f
+SHA512: 798926db82d27366b39be97556ac5cb322986b96df913c398449bd3ece533e484a3047fe35e7a6241dfbd0f7da803438f5b04b805b33f95c73e3e41d0bb51183
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14341128
+SHA1: deff34cf67373dca166e9961051b6c4723aaaec6
+SHA256: f1adda082f9291e394d25ed32975abbef90962dc4c8b11130586a0151558e79a
+SHA512: f4f13dbfa1c96088eb3dbfba0cb1fe99f4e17197ee2d4b78fbe16496780797a10daa3f2ff9c38d2d7b316974101eccf45184708ad05491fb49898b3a7cc6d673
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 23902334
+SHA1: e3e20b4d0ec895e579ae416f2b7552c6be3596f7
+SHA256: 25ced95fa544af6a64d348dc5eace008edfda22f55ed1f6ad9f932b344e6196d
+SHA512: c81b3bf7ce582bf39fd7bc1e691d0777ed4cf38ca6b4d54bc9edaef076ae8bcecb6a86ebfd773591f7d8533e772517033c762d35fdc8b05cb4db4488c2bacec2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Was ist Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby wurde zunächst 1993 von Matz (Yukihiro Matsumoto) entwickelt und
+ist heute quelloffene Software. Es läuft auf mehreren Plattformen und
+wird weltweit genutzt, insbesondere für die Webentwicklung.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von naruse am 20.12.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Sun, 20 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/12/20/ruby-3-0-0-rc1-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/12/20/ruby-3-0-0-rc1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.0 Preview 2 veröffentlicht</title>
+      <description>&lt;p&gt;Wir freuen uns, die Veröffentlichung von Ruby 3.0.0-preview2
+ankündigen zu können.&lt;/p&gt;
+&lt;p&gt;Sie führt eine Reihe neuer Features und Performanzverbesserungen ein.&lt;/p&gt;
+&lt;h2&gt;Statische Analyse&lt;/h2&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS ist eine Sprache zur Beschreibung der Typen von Ruby-Programmen.&lt;/p&gt;
+&lt;p&gt;Typprüfungsprogramme wie TypeProf und andere Werkzeuge mit
+RBS-Unterstützung werden mithilfe von RBS-Definitionen viel besser in
+der Lage sein, Ruby-Programme zu verstehen.&lt;/p&gt;
+&lt;p&gt;Mit RBS ist es nun möglich, die Definitionen von Klassen und Modulen
+zu beschrieben: Methoden der Klasse, Instanzvariablen und ihre Typen,
+Vererbungs- und Mix-In-Beziehungen.&lt;/p&gt;
+&lt;p&gt;RBS soll übliche Ruby-Idiome unterstützen und erlauben, komplexe Typen
+wie Union Types, überladene Methoden und Generics zu schreiben. RBS
+unterstützt mithilfe von Schnittstellen-Typen (&lt;em&gt;Interface Types&lt;/em&gt;) auch
+Duck Typing.&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 enthält das Gem &lt;code&gt;rbs&lt;/code&gt;, das das Parsing und die Verarbeitung
+von in RBS geschriebenen Typendefinitionen ermöglicht.&lt;/p&gt;
+&lt;p&gt;Nachfolgend ein kleines Beispiel von RBS mit Klassen-, Modul- und
+Konstantendefinitionen.&lt;/p&gt;
+&lt;div class=&quot;language-rbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;rbs&quot;&gt;module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` bedeutet Union Types, `User` or `Bot`.
+    def initialize: (String) -&amp;gt; void
+    def post: (String, from: User | Bot) -&amp;gt; Message   # Methodenüberladung wird unterstützt
+            | (File, from: User | Bot) -&amp;gt; Message
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;README des rbs-Gem&lt;/a&gt; für weitere Informationen.&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;TypeProf ist ein Typanalysewerkzeug, das mit Ruby ausgeliefert wird.&lt;/p&gt;
+&lt;p&gt;Momentan fungiert TypeProf als eine Art Typenschnittstelle.&lt;/p&gt;
+&lt;p&gt;Es liest einfachen (nicht typenannotierten) Ruby-Code, analysiert
+welche Methoden darin definiert werden und wie sie genutzt werden, und
+generiert den Prototyp einer Typensignatur im RBS-Format.&lt;/p&gt;
+&lt;p&gt;Nachfolgend eine einfache Demonstration von TypeProf.&lt;/p&gt;
+&lt;p&gt;Beispielhafte Eingabe:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# test.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:age&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;John&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;age: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Beispielhafte Ausgabe:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&amp;gt; [String, Integer]
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Sie können TypeProf ausführen, indem Sie die Eingabe in der Datei
+„test.rb“ speichern und ein Kommando „typeprof test.rb“ ausführen.&lt;/p&gt;
+&lt;p&gt;Sie können &lt;a href=&quot;https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;amp;rbs=&quot;&gt;TypeProf online ausprobieren&lt;/a&gt;. (Dies führt TypeProf
+serverseitig aus, daher bitten wir um Entschuldigung, falls es ausfällt).&lt;/p&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;die Dokumentation&lt;/a&gt; und die &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/demo.md&quot;&gt;Demos&lt;/a&gt; für Details.&lt;/p&gt;
+&lt;p&gt;TypeProf ist experimentell und noch nicht recht fertig; es wird nur
+eine Untermenge der Programmiersprache Ruby unterstützt und die
+Erkennung von Typfehlern ist noch beschränkt. Es wird aber umfassend
+weiterentwickelt, um die Sprachabdeckung, die Analyseperformanz und
+die Benutzerbarkeit zu verbessern. Jegliche Rückmeldung sind sehr
+willkommen.&lt;/p&gt;
+&lt;h2&gt;Ractor (experimentell)&lt;/h2&gt;
+&lt;p&gt;Ractor ist eine dem Aktorenmodell ähnliche Abstraktion für
+Nebenläufigkeit, um die parallele Ausführung von Code bei
+gleichzeitiger Beachtung von Thread-Sicherheit zu ermöglichen.&lt;/p&gt;
+&lt;p&gt;Sie können mehrere Ractors anlegen und sie parallel ausführen. Ractor
+ermöglicht es, thread-sichere parallele Programme zu schreiben, weil
+sich Ractors normale Objekte nicht teilen können. Die Kommunikation
+zwischen Ractors wird stattdessen über Nachrichten abgewickelt.&lt;/p&gt;
+&lt;p&gt;Um das Teilen von Objekten zu begrenzen, führt Ractor einige
+Beschränkungen für Rubys Syntax ein (die allerdings nicht eingreifen,
+wenn nicht mehrere Ractors verwendet werden).&lt;/p&gt;
+&lt;p&gt;Die Spezifikation und Implementation sind noch nicht abgeschlossen und
+können sich in Zukunft noch ändern, weshalb dieses Feature als
+experimentell markiert ist und bei Erstellung eines Ractors mit
+&lt;code&gt;Ractor.new&lt;/code&gt; eine entsprechende Warnung ausgegeben wird.&lt;/p&gt;
+&lt;p&gt;Das folgende kleine Programm berechnet &lt;code&gt;n.prime?&lt;/code&gt; (&lt;code&gt;n&lt;/code&gt; ist ein relativ
+großer Integer) parallel mit zwei Ractors. Sie werden feststellen,
+dass die Programmausführung auf einem parallel arbeitenden Computer
+etwa 2-mal so schnell ist wie das entsprechende sequentielle Programm.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prime'&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# n.prime? mit den zugesandten Integers in r1, r2 läuft parallel&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recv&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prime?&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Verschicke Parameter&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Warte auf die Ergebnisse von expr1, expr2&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://github.com/ruby/ruby/blob/master/doc/ractor.md&quot;&gt;doc/ractor.md&lt;/a&gt; für mehr Details.&lt;/p&gt;
+&lt;h2&gt;Fiber Scheduler&lt;/h2&gt;
+&lt;p&gt;Zur Unterbrechung blockender Operationen wird &lt;code&gt;Fiber#scheduler&lt;/code&gt;
+eingeführt. Das ermöglicht leichtgewichtige Nebenläufigkeit ohne
+Änderungen bestehenden Codes. Schauen Sie sich für einen Überblick
+über die Funktionsweise &lt;a href=&quot;https://www.youtube.com/watch?v=Y29SSOS4UOc&quot;&gt;„Warte nicht auf mich: Skalierbare
+Nebenläufigkeit für Ruby 3“&lt;/a&gt; an.&lt;/p&gt;
+&lt;p&gt;Momentan unterstützte Klassen/Methoden:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Mutex#lock&lt;/code&gt;, &lt;code&gt;Mutex#unlock&lt;/code&gt;, &lt;code&gt;Mutex#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConditionVariable#wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Queue#pop&lt;/code&gt;, &lt;code&gt;SizedQueue#push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Thread#join&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Process.wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#wait&lt;/code&gt;, &lt;code&gt;IO#read&lt;/code&gt;, &lt;code&gt;IO#write&lt;/code&gt; und verwandte Methoden (z.B. &lt;code&gt;#wait_readable&lt;/code&gt;, &lt;code&gt;#gets&lt;/code&gt;, &lt;code&gt;#puts&lt;/code&gt; usw.).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#select&lt;/code&gt; wird &lt;em&gt;nicht unterstützt&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Erkläre Async-Gem mit Links). Das folgende Beispielprogramm führt
+mehrere HTTP-Anfragen nebenläufig aus:&lt;/p&gt;
+&lt;p&gt;(Erkläre das:)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;async ist das äußere Gem&lt;/li&gt;
+&lt;li&gt;async nutzt das neue Feature&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'async'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'net/http'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'uri'&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;python&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://www.google.com/search?q=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2&gt;Sonstige erwähnenswerte neue Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Einzeiliger Musterabgleich benutzt jetzt &lt;code&gt;=&amp;gt;&lt;/code&gt; statt &lt;code&gt;in&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# version 3.0&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 0&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# version 2.7&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find-Idiom wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;a&quot;, 1]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;b&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;c&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [2, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, 3]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;End-lose Methodendefinition wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Hash#except&lt;/code&gt; ist jetzt eingebaut.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {:b=&amp;gt;2, :c=&amp;gt;3}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory View wird als experimentelles Feature eingeführt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dabei handelt es sich um ein neues C-API, das den Austausch roher
+Speicherabschnitte, wie ein numerisches Array oder Bitmap-Bilder,
+zwischen Erweiterungsbibliotheken (&lt;em&gt;C extensions&lt;/em&gt;) ermöglichen
+soll. Die Erweiterungsbibliotheken können auch die Metadaten des
+betroffenen Speicherabschnitts wie etwa Schnitt, Elementformat
+usw. teilen. Mit dieser Art von Metadaten können
+Erweiterungsbibliotheken sogar mehrdimensionale Arrays
+ordnungsgemäß teilen. Dieses Feature orientiert sich an Pythons
+Buffer Protocol.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Performanzverbesserungen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Es gab viele Verbesserungen im MJIT. Siehe die NEWS für Details.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Das Einfügen langer Code-Abschnitte in IRB ist 53-mal schneller als
+es mit Ruby 2.7.0 der Fall war. Beispielsweise reduziert sich die
+Zeit, um &lt;a href=&quot;https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b&quot;&gt;diesen Beispiel-Code&lt;/a&gt; einzufügen von 11,7 auf 0,22
+Sekunden.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Sonstige erwähnenswerte Änderungen seit 2.7&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Schlüsselwortargumente werden von anderen Argumenten abgetrennt.
+&lt;ul&gt;
+&lt;li&gt;Grundsätzlich wird Code, der unter Ruby 2.7 eine Warnung erzeugte,
+nicht mehr funktionieren. Siehe dieses &lt;a href=&quot;https://www.ruby-lang.org/de/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/&quot;&gt;Dokument&lt;/a&gt; für weitere
+Details.&lt;/li&gt;
+&lt;li&gt;Übrigens unterstützt Argumentweiterleitung jetzt auch vorangehende
+Argumente.
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:&quot;do_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Die Besonderheiten von &lt;code&gt;$SAFE&lt;/code&gt; wurde vollständig entfernt. Es
+handelt sich nun um eine normale globale Variable.```&lt;/li&gt;
+&lt;li&gt;In Ruby 2.5 war die Reihenfolge der Backtraces umgekehrt worden.
+Diese Änderung ist rückgängig gemacht worden, d.h. die
+Fehlermeldung und die Nummer der Zeile, in der der Fehler auftrat,
+werden zuerst und die Aufrufer danach ausgegeben.&lt;/li&gt;
+&lt;li&gt;Einige Standardbibliotheken wurden aktualisiert.
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.2.0.rc.1&lt;/li&gt;
+&lt;li&gt;Bundler 2.2.0.rc.1&lt;/li&gt;
+&lt;li&gt;IRB 1.2.6&lt;/li&gt;
+&lt;li&gt;Reline 0.1.5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Die folgenden Bibliotheken werden nicht länger mitgeliefert.
+Installieren Sie die entsprechenden Gems, um diese Features zu
+nutzen.
+&lt;ul&gt;
+&lt;li&gt;net-telnet&lt;/li&gt;
+&lt;li&gt;xmlrpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Die folgenden Standardgems sind jetzt mitgelieferte Gems.
+&lt;ul&gt;
+&lt;li&gt;rexml&lt;/li&gt;
+&lt;li&gt;rss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Die folgenden zur stdlib gehörenden Dateien sind nun Standardgems
+und werden auf rubygems.org veröffentlicht:
+&lt;ul&gt;
+&lt;li&gt;abbrev&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;erb&lt;/li&gt;
+&lt;li&gt;find&lt;/li&gt;
+&lt;li&gt;io-nonblock&lt;/li&gt;
+&lt;li&gt;io-wait&lt;/li&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-http&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-protocol&lt;/li&gt;
+&lt;li&gt;nkf&lt;/li&gt;
+&lt;li&gt;open-uri&lt;/li&gt;
+&lt;li&gt;optparse&lt;/li&gt;
+&lt;li&gt;resolv&lt;/li&gt;
+&lt;li&gt;resolv-replace&lt;/li&gt;
+&lt;li&gt;rinda&lt;/li&gt;
+&lt;li&gt;securerandom&lt;/li&gt;
+&lt;li&gt;set&lt;/li&gt;
+&lt;li&gt;shellwords&lt;/li&gt;
+&lt;li&gt;tempfile&lt;/li&gt;
+&lt;li&gt;time&lt;/li&gt;
+&lt;li&gt;tmpdir&lt;/li&gt;
+&lt;li&gt;tsort&lt;/li&gt;
+&lt;li&gt;weakref&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0_preview2/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+oder die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview2&quot;&gt;Commit-Logs&lt;/a&gt;
+für mehr Details.&lt;/p&gt;
+&lt;p&gt;Mit diesen Änderungen wurden, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0&quot;&gt;3776 Dateien geändert, 181573 Einfügungen(+), 145096 Löschungen(-)&lt;/a&gt;
+since Ruby 2.7.0!&lt;/p&gt;
+&lt;p&gt;Probieren Sie 3.0.0-preview2 und geben Sie uns Rückmeldung!&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19378626
+SHA1: 25363b20225850224e7835e99906c52f2ff57792
+SHA256: 9de8661565c2b1007d91a580e9a7e02d23f1e8fc8df371feb15a2727aa05fd9a
+SHA512: 6fa4191425ae71e41894b60bd9c31d483a562ee8216886360ce18238ab48115b95be0367708612c45f634e7584fba8940a524ba0113ce0f36ce4df78a112d0b7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14244252
+SHA1: 54e4d3892ce480106382bd2d36dd7395e01b0f2a
+SHA256: 03078e82d4fb55c13837c69e56565fc49c451d11b1ca5e1b075d990d0957f181
+SHA512: 8b0e6e3ba7e5f95586b4438d965e7b09187ad599f4ac22dec3db7b176358514fe0c0890dde8912fef1ef92ffcde3f6f1228178eabadcf3a05601e5b6f05881ae
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 23907144
+SHA1: 064ee265c94b3df87e737622ba84437ea0d6aeaf
+SHA256: 19e295ae50934ddac2b366f0c7c8de9bd710d596b76eba02152f3641e5ce2b23
+SHA512: 598def50ef9e8ae1f44e05ff2c4e35acf252437286f08644ba5e301ebff2db399140bafa72868877100d6ffa736a4474cb7b99ecea8bdf835ed113ab250bb3d9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Was ist Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby wurde zunächst 1993 von Matz (Yukihiro Matsumoto) entwickelt und
+ist heute quelloffene Software. Es läuft auf mehreren Plattformen und
+wird weltweit genutzt, insbesondere für die Webentwicklung.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von naruse am 8.12.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/12/08/ruby-3-0-0-preview2-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/12/08/ruby-3-0-0-preview2-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.7.2 veröffentlicht</title>
+      <description>&lt;p&gt;Ruby 2.7.2 ist veröffentlicht worden.&lt;/p&gt;
+&lt;p&gt;Diese Veröffentlichung enthält eine bewusste Inkompatibilität.
+Veraltungswarnungen werden mit 2.7.2 ausgeschaltet. Sie können sie
+durch Angabe der Schalter -w oder -W:deprecated auf der Kommandozeile
+wieder einschalten. Weitere Informationen unten.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17000&quot;&gt;Feature #17000 2.7.2 schaltet standardmäßig Veraltungswarnungen aus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16345&quot;&gt;Feature #16345 Veraltungswarnungen nicht standardmäßig zeigen.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Diese Veröffentlichung enthält die neue Version von Webrick, die die
+in folgendem Artikel beschriebene Sicherheitslücke behebt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/&quot;&gt;CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_1...v2_7_2&quot;&gt;Commit-Logs&lt;/a&gt; für weitere Änderungen.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14708724
+SHA1: 7e30ca324464eab2f4c2a56d8ab4a37174998062
+SHA256: 65a590313d244d48dc2ef9a9ad015dd8bc6faf821621bbb269aa7462829c75ed
+SHA512: f07592cce4de3532c0fa1c84d53a134527d28ba95e310cd3487ac321c49ee680faeace285de544ee6db432a90aa7538a1d49ff10c72b235968ca362ef9be621d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16836767
+SHA1: cb9731a17487e0ad84037490a6baf8bfa31a09e8
+SHA256: 6e5706d0d4ee4e1e2f883db9d768586b4d06567debea353c796ec45e8321c3d4
+SHA512: e80dc16b60149d0d6fedf0ba7b556ae460ff328ee63e9d9e41f5021f67addcc98159cb27bddccaebd6e4b1cddf29266f1c01c32d9ec8bb665aed63c0a2295f2f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12037052
+SHA1: 82a1fe683460caa8edb6199707f2905634e5ffcc
+SHA256: 1b95ab193cc8f5b5e59d2686cb3d5dcf1ddf2a86cb6950e0b4bdaae5040ec0d6
+SHA512: 7972278b096aa768c7adf2befd26003e18781a29ca317640317d30d93d6e963ded197724c8e2f1dfe1e838c5647176d414a74732a62e931fb50d6f2e0f777349
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20618242
+SHA1: 9acee3d4e9399c3a2ddc2dd078dd2ee26327cc8f
+SHA256: c6b8597e5414f2b01a7cb25095319f2b0e780c95a98fee1ccf1ef022acf93dcc
+SHA512: 5f3a8d78bbd3d9700e5f0434d0cec2072816c02f5d5b55f24d4f9f0621c0c89f796e9ada32ed65f052a321845dd29709a1b76170c7dd0250bea6f8c18953a366
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Veröffentlichungskommentar&lt;/h2&gt;
+&lt;p&gt;Vielen Dank an die vielen Commiter, Entwickler und fehlermeldenden
+Nutzer, deren Beiträge diese Veröffentlichung möglich gemacht haben.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von nagachika am 2.10.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Fri, 02 Oct 2020 11:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/10/02/ruby-2-7-2-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/10/02/ruby-2-7-2-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</title>
+      <description>&lt;p&gt;Es wurde eine Sicherheitslücke in WEBrick entdeckt, die das
+Durchschmuggeln von HTTP-Requests ermöglichen könnte. Dieser
+Schwachstelle wurde die CVE-Nummer &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-25613&quot;&gt;CVE-2020-25613&lt;/a&gt; zugewiesen. Wir
+empfehlen mit Nachdruck, das Webrick-Gem zu aktualisieren.&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;WEBrick ist zu nachsichtig mit fehlerhaften
+Transfer-Encoding-Kopfzeilen umgegangen. Das kann zu einer
+uneinheitlichen Interpretation zwischen WEBrick und einigen
+HTTP-Proxy-Servern führen, die es Angreifern möglicherweise erlaubt,
+ein Request zu „schmuggeln“. Siehe &lt;a href=&quot;https://cwe.mitre.org/data/definitions/444.html&quot;&gt;CWE-444&lt;/a&gt; für Details.&lt;/p&gt;
+&lt;p&gt;Bitte aktualisieren Sie das Webrick-Gem auf Version 1.6.1 oder später.
+Dazu können Sie &lt;code&gt;gem update webrick&lt;/code&gt; benutzen. Wenn Sie Bundler
+verwenden, fügen Sie &lt;code&gt;gem &amp;quot;webrick&amp;quot;, &amp;quot;&amp;gt;= 1.6.1&amp;quot;&lt;/code&gt; zur &lt;code&gt;Gemfile&lt;/code&gt; hinzu.&lt;/p&gt;
+&lt;h2&gt;Betroffene Versionen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;webrick-Gem 1.6.0 oder früher&lt;/li&gt;
+&lt;li&gt;Mitgelieferte Versionen von Webrick in ruby 2.7.1 oder früher&lt;/li&gt;
+&lt;li&gt;Mitgelieferte Versionen von Webrick in ruby 2.6.6 oder früher&lt;/li&gt;
+&lt;li&gt;Mitgelieferte Versionen von Webrick in ruby 2.5.8 oder früher&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Danksagung&lt;/h2&gt;
+&lt;p&gt;Dank an &lt;a href=&quot;https://hackerone.com/piao&quot;&gt;piao&lt;/a&gt; für die Entdeckung des Problems.&lt;/p&gt;
+&lt;h2&gt;Historie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Erstmals veröffentlicht am 2020-09-29 06:30:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Geschrieben von mame am 29.9.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Tue, 29 Sep 2020 06:30:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.0 Preview 1 veröffentlicht</title>
+      <description>&lt;p&gt;Wir freuen uns, die Veröffentlichung von Ruby 3.0.0-preview1
+ankündigen zu können.&lt;/p&gt;
+&lt;p&gt;Sie führt eine Reihe neuer Features und Performanzverbesserungen ein.&lt;/p&gt;
+&lt;h2&gt;RBS&lt;/h2&gt;
+&lt;p&gt;Mithilfe von RBS lassen sich die Typen eines Ruby-Programms
+beschreiben.
+Typprüfungsprogramme wie type-profiler und andere Werkzeuge mit
+RBS-Unterstützung werden mithilfe von RBS-Definitionen viel besser in
+der Lage sein, Ruby-Programme zu verstehen.&lt;/p&gt;
+&lt;p&gt;Mit RBS ist es nun möglich, die Definitionen von Klassen und Modulen
+zu beschrieben: Methoden der Klasse, Instanzvariablen und ihre Typen,
+Vererbungs- und Mix-In-Beziehungen.&lt;/p&gt;
+&lt;p&gt;RBS soll übliche Ruby-Idiome unterstützen und erlauben, komplexe Typen
+wie Union Types, überladene Methoden und Generics zu schreiben. RBS
+unterstützt mithilfe von Schnittstellen-Typen (&lt;em&gt;Interface Types&lt;/em&gt;) auch
+Duck Typing.&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 enthält das Gem &lt;code&gt;rbs&lt;/code&gt;, das das Parsing und die Verarbeitung
+von in RBS geschriebenen Typendefinitionen ermöglicht.&lt;/p&gt;
+&lt;p&gt;Nachfolgend ein kleines Beispiel von RBS.&lt;/p&gt;
+&lt;div class=&quot;language-rbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;rbs&quot;&gt;module ChatApp
+  VERSION: String
+
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` bedeutet Union Types, `User` oder `Bot`.
+
+    def initialize: (String) -&amp;gt; void
+
+    def post: (String, from: User | Bot) -&amp;gt; Message   # Methodenüberladung wird unterstützt.
+            | (File, from: User | Bot) -&amp;gt; Message
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;README des rbs-Gem&lt;/a&gt; für weitere Informationen.&lt;/p&gt;
+&lt;h2&gt;Ractor (experimentell)&lt;/h2&gt;
+&lt;p&gt;Ractor ist eine dem Aktorenmodell ähnliche Abstraktion für
+Nebenläufigkeit, um die parallele Ausführung von Code bei
+gleichzeitiger Beachtung von Thread-Sicherheit zu ermöglichen.&lt;/p&gt;
+&lt;p&gt;Sie können mehrere Ractors anlegen und sie parallel ausführen. Ractor
+ermöglicht es, thread-sichere parallele Programme zu schreiben, weil
+sich Ractors normale Objekte nicht teilen können. Die Kommunikation
+zwischen Ractors wird stattdessen über Nachrichten abgewickelt.&lt;/p&gt;
+&lt;p&gt;Um das Teilen von Objekten zu begrenzen, führt Ractor einige
+Beschränkungen für Rubys Syntax ein (die allerdings nicht eingreifen,
+wenn nicht mehrere Ractors verwendet werden).&lt;/p&gt;
+&lt;p&gt;Die Spezifikation und Implementation sind noch nicht abgeschlossen und
+können sich in Zukunft noch ändern, weshalb dieses Feature als
+experimentell markiert ist und bei Erstellung eines Ractors eine
+entsprechende Warnung ausgegeben wird.&lt;/p&gt;
+&lt;p&gt;Das folgende kleine Programm berechnet &lt;code&gt;prime?&lt;/code&gt; parallel mit zwei
+Ractors und ist, wenn zwei oder mehr Prozessorkerne vorhanden sind,
+damit etwa 2-mal so schnell wie ein sequentielles Programm.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prime'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# n.prime? wird mit den gesendeten Integern in r1, r2 parallel ausgeführt&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recv&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prime?&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Parameter abschicken&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Warte auf die Ergebnisse von expr1, expr2&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Siehe &lt;a href=&quot;https://github.com/ruby/ruby/blob/master/doc/ractor.md&quot;&gt;doc/ractor.md&lt;/a&gt; für weitere Informationen.&lt;/p&gt;
+&lt;h2&gt;Scheduler (Experimentell)&lt;/h2&gt;
+&lt;p&gt;Zur Unterbrechung blockender Operationen wird &lt;code&gt;Thread#scheduler&lt;/code&gt;
+eingeführt. Das ermöglicht leichtgewichtige Nebenläufigkeit ohne
+Änderungen bestehenden Codes.&lt;/p&gt;
+&lt;p&gt;Momentan unterstützte Klassen/Methoden:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Mutex#lock&lt;/code&gt;, &lt;code&gt;Mutex#unlock&lt;/code&gt;, &lt;code&gt;Mutex#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConditionVariable#wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Queue#pop&lt;/code&gt;, &lt;code&gt;SizedQueue#push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Thread#join&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#wait&lt;/code&gt;, &lt;code&gt;IO#read&lt;/code&gt;, &lt;code&gt;IO#write&lt;/code&gt; und verwandte Methoden (z.B. &lt;code&gt;#wait_readable&lt;/code&gt;, &lt;code&gt;#gets&lt;/code&gt;, &lt;code&gt;#puts&lt;/code&gt; usw.).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#select&lt;/code&gt; wird &lt;em&gt;nicht unterstützt&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Der momentane Eintrittspunkt für Nebenläufigkeit ist
+&lt;code&gt;Fiber.schedule{...}&lt;/code&gt;. Das kann sich aber bis zur Veröffentlichung von
+Ruby 3 noch ändern.&lt;/p&gt;
+&lt;p&gt;Mit &lt;a href=&quot;https://github.com/socketry/async/pull/56&quot;&gt;&lt;code&gt;Async::Scheduler&lt;/code&gt;&lt;/a&gt; steht ein Test-Scheduler zur Verfügung.
+Siehe &lt;a href=&quot;https://github.com/ruby/ruby/blob/master/doc/scheduler.md&quot;&gt;&lt;code&gt;doc/scheduler.md&lt;/code&gt;&lt;/a&gt; für weitere Informationen. [Feature #16786]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ACHTUNG&lt;/strong&gt;: Diese Feature ist sehr experimentell. Sowohl der Name als
+auch das Feature selbst werden sich in der nächsten
+Vorschau-Veröffentlichung ändern.&lt;/p&gt;
+&lt;h2&gt;Sonstige erwähnenswerte neue Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Rechtsbündige Zuweisungsanweisung wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 55&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;End-lose Methodendefinition wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find-Idiom wird eingeführt.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;a&quot;, 1]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;b&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;c&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [2, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, 3]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Hash#except&lt;/code&gt; ist jetzt eingebaut.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {:b=&amp;gt;2, :c=&amp;gt;3}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory View wird als experimentelles Feature eingeführt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dabei handelt es sich um ein neues C-API, das den Austausch roher
+Speicherabschnitte, wie ein numerisches Array oder Bitmap-Bilder,
+zwischen Erweiterungsbibliotheken (&lt;em&gt;C extensions&lt;/em&gt;) ermöglichen
+soll. Die Erweiterungsbibliotheken können auch die Metadaten des
+betroffenen Speicherabschnitts wie etwa Schnitt, Elementformat
+usw. teilen. Mit dieser Art von Metadaten können
+Erweiterungsbibliotheken sogar mehrdimensionale Arrays
+ordnungsgemäß teilen. Dieses Feature orientiert sich an Pythons
+Buffer Protocol.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Performanzverbesserungen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Es gab viele Verbesserungen im MJIT. Siehe die NEWS für Details.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Sonstige erwähnenswerte Änderungen seit 2.7&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Schlüsselwortargumente werden von anderen Argumenten abgetrennt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Grundsätzlich wird Code, der unter Ruby 2.7 eine Warnung erzeugte,
+nicht mehr funktionieren. Siehe dieses &lt;a href=&quot;https://www.ruby-lang.org/de/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/&quot;&gt;Dokument&lt;/a&gt; für weitere
+Details.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Übrigens unterstützt Argumentweiterleitung jetzt auch vorangehende
+Argumente.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:&quot;do_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die Besonderheiten von &lt;code&gt;$SAFE&lt;/code&gt; wurde vollständig entfernt. Es
+handelt sich nun um eine normale globale Variable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In Ruby 2.5 war die Reihenfolge der Backtraces umgekehrt worden.
+Diese Änderung ist rückgängig gemacht worden, d.h. die
+Fehlermeldung und die Nummer der Zeile, in der der Fehler auftrat,
+werden zuerst und die Aufrufer danach ausgegeben.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Einige Standardbibliotheken wurden aktualisiert.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.2.0.rc.1&lt;/li&gt;
+&lt;li&gt;Bundler 2.2.0.rc.1&lt;/li&gt;
+&lt;li&gt;IRB 1.2.6&lt;/li&gt;
+&lt;li&gt;Reline 0.1.5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden Bibliotheken werden nicht länger mitgeliefert.
+Installieren Sie die entsprechenden Gems, um diese Features zu
+nutzen.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;net-telnet&lt;/li&gt;
+&lt;li&gt;xmlrpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Die folgenden Standardbibliotheken werden zu mitgelieferten Gems
+aufgewertet.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rexml&lt;/li&gt;
+&lt;li&gt;rss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Werte die stdlib zu mitgelieferten Gems auf. Die folgenden Gems
+wurden auf rubygems.org veröffentlicht:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;abbrev&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;erb&lt;/li&gt;
+&lt;li&gt;find&lt;/li&gt;
+&lt;li&gt;io-nonblock&lt;/li&gt;
+&lt;li&gt;io-wait&lt;/li&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-http&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-protocol&lt;/li&gt;
+&lt;li&gt;nkf&lt;/li&gt;
+&lt;li&gt;open-uri&lt;/li&gt;
+&lt;li&gt;optparse&lt;/li&gt;
+&lt;li&gt;resolv&lt;/li&gt;
+&lt;li&gt;resolv-replace&lt;/li&gt;
+&lt;li&gt;rinda&lt;/li&gt;
+&lt;li&gt;securerandom&lt;/li&gt;
+&lt;li&gt;set&lt;/li&gt;
+&lt;li&gt;shellwords&lt;/li&gt;
+&lt;li&gt;tempfile&lt;/li&gt;
+&lt;li&gt;time&lt;/li&gt;
+&lt;li&gt;tmpdir&lt;/li&gt;
+&lt;li&gt;tsort&lt;/li&gt;
+&lt;li&gt;weakref&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0_preview1/NEWS.md&quot;&gt;NEWS&lt;/a&gt; oder die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1&quot;&gt;commit logs&lt;/a&gt; für weitere Details.&lt;/p&gt;
+&lt;p&gt;Mit diesen Änderungen wurden &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1&quot;&gt;3385 Dateien geändert, 150159 Einfügungen(+), 124949 Löschungen(-)&lt;/a&gt;
+seit Ruby 2.7.0!&lt;/p&gt;
+&lt;p&gt;Bitte probieren Sie Ruby 3.0.0-preview1 aus und geben Sie uns Rückmeldung!&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15538340
+SHA1: 032697f3ace0a697cd72f68bac0032c31a8328d4
+SHA256: 013bdc6e859d76d67a6fcd990d401ed57e6e25896bab96d1d0648a877f556dbb
+SHA512: 3a6a6458d9c5f06555ab8705160f6b071f4dbe9d2a91cd7848852633657b495c480d74e4b2ff2cebddda556118d26bbb271160c989bc970bb1b5cb234e868d2f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 17747808
+SHA1: 2842d2af2568d74c8d4071f5f536889a6b149202
+SHA256: ce8bd7534e7ec2a870b24d2145ea20e9bbe5b2d76b7dfa1102dbee5785253105
+SHA512: b94892951f842a1538f4b99022606ac2c0b5031f1ede7eef3833a8caa9ed63e9b22868509173bfefb406f263c65211db75597b152b61f49e5ba2a875fce63a27
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12703060
+SHA1: 91d9fbe87504924148deeec90199d6ff4d7dcf56
+SHA256: aa7cce0c99f4ea2145fef9b78d74a44857754396790cd23bad75d759811e7a2a
+SHA512: dca5dcc965c434371947c100864090e29e649e19ae24b8bb2e88a534ebd8220c5a086035a999b1e8b1cd5ec154a6985a8d8dfea56095d712d62aeea7a2054f7d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 22002645
+SHA1: 4b5b61066373daf0a947d3fafe2645788504a164
+SHA256: a39a48ed9a8ca2c83d65d225a1bb3db331c6587a77ba156c20e630c1b4bfc23b
+SHA512: 10f6f28715a52093d7d9da82d1678147091b45e2f279e463626adea8efbf181485daa42565e5086057ffb45a097ffb8ff395c572b247b6b5da27d85933cf58a8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;3.0.0-preview2 Vorankündigung&lt;/h2&gt;
+&lt;p&gt;Wir planen, &lt;a href=&quot;https://github.com/mame/ruby-type-profiler&quot;&gt;&amp;quot;type-profiler&amp;quot;&lt;/a&gt;, ein Feature zur statischen Typanalyse, mitzuliefern. Wir halten Sie auf dem Laufenden!&lt;/p&gt;
+&lt;h2&gt;Was ist Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby wurde zunächst 1993 von Matz (Yukihiro Matsumoto) entwickelt und
+ist heute quelloffene Software. Es läuft auf mehreren Plattformen und
+wird weltweit genutzt, insbesondere für die Webentwicklung.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von naruse am 25.9.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/09/25/ruby-3-0-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/09/25/ruby-3-0-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Fukuoka Ruby Award 2021 — Einsendungen werden von Matz bewertet</title>
+      <description>&lt;p&gt;An die Ruby-Enthusiasten:&lt;/p&gt;
+&lt;p&gt;Die Regionalregierung von Fukuoka (Japan) und „Matz“ Matsumoto laden
+Sie zur Teilnahme an dem nachfolgend geschilderten Ruby-Wettbewerb
+ein. Wenn Sie ein interessantes Ruby-Programm entwickelt haben, seien
+Sie mutig und reichen Sie es ein.&lt;/p&gt;
+&lt;p&gt;Fukuoka Ruby Award 2021 — Großer Preis — 1 Million Yen!&lt;/p&gt;
+&lt;p&gt;Einsendeschluss: 4. Dezember 2020&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.digitalfukuoka.jp/javascripts/kcfinder/upload/images/fukuokarubyaward2017.png&quot; alt=&quot;Fukuoka Ruby Award&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Matz und eine Gruppe Juroren werden die Preisträger gemeinsam
+auswählen; der Große Preis ist mit einer Million Yen (ca. 8.100 €)
+dotiert. Frühere Preisträger waren unter anderem Rhomobile (USA) und
+das APEC Climate Center (Korea).&lt;/p&gt;
+&lt;p&gt;Die zum Wettbwerb eingereichten Programme müssen nicht gänzlich in Ruby
+geschrieben sein, sollten aber Gebrauch von Rubys einzigartigen
+Charakteristika machen.&lt;/p&gt;
+&lt;p&gt;Um in Frage zu kommen, muss das eingereichte Programm allerdings
+ungefähr während des letzten Jahres fertiggestellt oder aktualisiert
+worden sein. Wenn Sie ein Programm einreichen wollen, lesen Sie
+bitte die folgende Fukuoka-Webseite:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.digitalfukuoka.jp/events/226&quot;&gt;http://www.digitalfukuoka.jp/events/226&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Richten Sie Ihre Bewerbung an award@f-ruby.com.&lt;/p&gt;
+&lt;p&gt;„Matz wird Ihren Quellcode intensiv testen und prüfen, daher ist eine Teilnahme
+sehr sinnvoll! Der Wettbewerb ist kostenlos.“&lt;/p&gt;
+&lt;p&gt;Danke!&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von Fukuoka Ruby am 16.7.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/07/16/fukuoka-ruby-award-2021/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/07/16/fukuoka-ruby-award-2021/</link>
+    </item>
+    
+    <item>
+      <title>Unterstützung für Ruby 2.4 beendet</title>
+      <description>&lt;p&gt;Wir kündigen die Unterstützung für Rubys 2.4er-Serie ab.&lt;/p&gt;
+&lt;p&gt;Seit Ende März letzten Jahres befand sich die Unterstützung von Rubys
+2.4er-Serie in der Phase der Sicherheitsunterstützung. Nun, ein Jahr
+später, ist diese Phase ausgelaufen. Daher wurde am 31. März 2020
+jegliche Unterstützung für Rubys 2.4er-Serie eingestellt. Es werden
+daher weder Korrekturen für Sicherheitsprobleme noch für sonstige
+Fehler aus neueren Ruby-Versionen nach Ruby 2.4 zurückportiert und es
+wird für diese Version auch keine neuen Patch-Veröffentlichungen mehr
+geben. Zwar haben wir am 31. März 2020 noch Ruby 2.4.10
+veröffentlicht, doch diente das nur dazu, Nutzern ein wenig Zeit für
+die Aktualisierung auf neuere Versionen zu verschaffen. Wir empfehlen
+Ihnen dringend, so schnell wie möglich auf neuere Ruby-Versionen zu
+aktualisieren.&lt;/p&gt;
+&lt;h2&gt;Über die aktuell unterstützten Ruby-Versionen&lt;/h2&gt;
+&lt;h3&gt;Ruby 2.7er-Serie&lt;/h3&gt;
+&lt;p&gt;Derzeit in der normalen Unterstützungsphase.
+Wir portieren Fehlerkorrekturen zurück und veröffentlichen neue
+Versionen mit den Fehlerkorrekturen wann immer nötig. Wenn eine
+kritische Sicherheitslücke gefunden wird, beheben wir das Problem so
+schnell wie möglich und veröffentlichen eine neue Version.&lt;/p&gt;
+&lt;h3&gt;Ruby 2.6er-Serie&lt;/h3&gt;
+&lt;p&gt;Derzeit in der normalen Unterstützungsphase.
+Wir portieren Fehlerkorrekturen zurück und veröffentlichen neue
+Versionen mit den Fehlerkorrekturen wann immer nötig. Wenn eine
+kritische Sicherheitslücke gefunden wird, beheben wir das Problem so
+schnell wie möglich und veröffentlichen eine neue Version.&lt;/p&gt;
+&lt;h3&gt;Ruby 2.5er-Serie&lt;/h3&gt;
+&lt;p&gt;Derzeit in der Phase der Sicherheitsunterstützung.
+Wir portieren Korrekturen für Sicherheitsprobleme auf 2.5 zurück, aber
+keine sonstigen Fehlerkorrekturen. Wenn eine
+kritische Sicherheitslücke gefunden wird, beheben wir das Problem so
+schnell wie möglich und veröffentlichen eine neue Version.
+Wir planen, die Unterstützung für Rubys 2.5er-Serie Ende März 2021 einzustellen.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von usa am 5.4.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Sun, 05 Apr 2020 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/04/05/support-of-ruby-2-4-has-ended/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/04/05/support-of-ruby-2-4-has-ended/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.7.1 veröffentlicht</title>
+      <description>&lt;p&gt;Ruby 2.7.1 ist veröffentlicht worden.&lt;/p&gt;
+&lt;p&gt;Diese Version behebt einige Sicherheitslücken. Siehe die folgenden Links für Details.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/de/news/2020/03/19/json-dos-cve-2020-10663/&quot;&gt;CVE-2020-10663: Sicherheitslücke bei der Objekterstellung in JSON (weiterer Fehler behoben)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/de/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933/&quot;&gt;CVE-2020-10933: Heap kann durch Sicherheitslücke in Socket-Bibliothek ausgelesen werden&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v2_7_1&quot;&gt;Commit-Logs&lt;/a&gt; für weitere Informationen.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14684616
+SHA1: e83a084a4329e1e3f55591bf5ac0c8ebed6444b3
+SHA256: d703d58a67e7ed822d6e4a6ea9e44255f689a5b6ea6752d17e8d031849822202
+SHA512: 4af568f5210379239531dbc54d35739f6ff7ab1d7ffcafc54fed2afeb2b30450d2df386504edf96a494465b3f5fd90cb030974668aa7a1fde5a6b042ea9ca858
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16816471
+SHA1: 76e25fce50a87f76a3ccd6d0fdd9b7c792400249
+SHA256: d418483bdd0000576c1370571121a6eb24582116db0b7bb2005e90e250eae418
+SHA512: d54ec78d46644269a200cc64c84beed1baaea74189e0ffc167f90f4b9540bb6d9e7b19807c0990e1b13738b83d1e2bb4c712396d033db6a7501e6046fff12839
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12003684
+SHA1: 6c92300d7fd3e9cbb433e5e687535dc5300848eb
+SHA256: b224f9844646cc92765df8288a46838511c1cec5b550d8874bd4686a904fcee7
+SHA512: 79f98b1ea98e0b10ec79da1883e8fc84d48ffe5c09ae945cbebde94365e35a589d919aac965f74d70ca7e21370ecee631ac5a8f9c4eac61d62f5aa629f27bf31
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20591655
+SHA1: 8b0e887d47b54154fe856b61617d3e3d5c5adda7
+SHA256: de8d2aa018016428bd30eab430aaa5e22428c2a897865285c53907bb53d55b13
+SHA512: f5fafae966ca4cf96737d28ffd261dee7a1b76ab9d219af5eef34c88f6e958ca62777de322b4c7acea6523279d8e8483a0a2d82db0beb25c2bb2387ce6f3ee76
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Veröffentlichungskommentar&lt;/h2&gt;
+&lt;p&gt;Viele Beitragende, Entwickler und Nutzer, die Fehler meldeten, haben uns mit dieser Veröffentlichung geholfen. Danke für ihre Beiträge.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von naruse am 31.3.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Tue, 31 Mar 2020 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/03/31/ruby-2-7-1-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/03/31/ruby-2-7-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.6.6 veröffentlicht</title>
+      <description>&lt;p&gt;Ruby 2.6.6 ist veröffentlicht worden.&lt;/p&gt;
+&lt;p&gt;Diese Version behebt einige Sicherheitslücken. Siehe die folgenden Links für Details.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/de/news/2020/03/19/json-dos-cve-2020-10663/&quot;&gt;CVE-2020-10663: Sicherheitslücke bei der Objekterstellung in JSON (weiterer Fehler behoben)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/de/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933/&quot;&gt;CVE-2020-10933: Heap kann durch Sicherheitslücke in Socket-Bibliothek ausgelesen werden&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Siehe die &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_6_5...v2_6_6&quot;&gt;Commit-Logs&lt;/a&gt; für weitere Informationen.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14137163
+SHA1: 62adcc4c465a8790b3df87860551e7ad7d84f23d
+SHA256: f08b779079ecd1498e6a2548c39a86144c6c784dcec6f7e8a93208682eb8306e
+SHA512: 001851cf55c4529287ca7cc132afc8c7af4293cdef71feb1922da4901ece255ec453d7697b102a9a90aef2a048fe3d09017ea9378ab4a4df998c21ec3890cdbb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16180408
+SHA1: 2d78048e293817f38d4ede4ebc7873013e97bb0b
+SHA256: 364b143def360bac1b74eb56ed60b1a0dca6439b00157ae11ff77d5cd2e92291
+SHA512: 7c54aad974d13c140df0a7209cc111dada10ad402126271051222adb7f2b5053997353367f2cddf6c0336f67357f831aeab9f236851153c0db0d2014bf3e0614
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 11567284
+SHA1: 4dc8d4f7abc1d498b7bac68e82efc01a849f300f
+SHA256: 5db187882b7ac34016cd48d7032e197f07e4968f406b0690e20193b9b424841f
+SHA512: 86caf93dbf61d03781767ab5375a7edf4761f13ba08ccfefe16c0a7550499237e7390c2f72a95d42670d4fe76b2401b4218936187c62ec1572799e9e04c50d62
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.6.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19847926
+SHA1: 7fca2388cf9732163c005c1c7866368708305042
+SHA256: 0899af033c477c0eafeafd59925ce1165a651af6690c5812931d821b4a048d14
+SHA512: 25a8142c2d208705c4ec744ba4a65aa32b6de510cc6b716ab271ff12ec84430a34fac19ef2818570fd175ab76727506f683fa4d389842dcbb1069e732cf4fee3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Veröffentlichungskommentar&lt;/h2&gt;
+&lt;p&gt;Viele Beitragende, Entwickler und Nutzer, die Fehler meldeten, haben uns mit dieser Veröffentlichung geholfen. Danke für ihre Beiträge.&lt;/p&gt;
+
+&lt;p&gt;Geschrieben von nagachika am 31.3.2020&lt;br /&gt;Übersetzt von Marvin Gülker&lt;/p&gt;</description>
+      <pubDate>Tue, 31 Mar 2020 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/de/news/2020/03/31/ruby-2-6-6-released/</guid>
+      <link>https://www.ruby-lang.org/de/news/2020/03/31/ruby-2-6-6-released/</link>
+    </item>
+    
+  </channel>
+</rss>

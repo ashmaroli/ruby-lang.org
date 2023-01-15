@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Von Python zu Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/documentation/ruby-from-other-languages/to-ruby-from-python/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Von Python zu Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Auch Python ist (wie Ruby) eine dynamische Allzweck-Scriptsprache, und
+gehört somit zur engen Familie der <em>agilen Sprachen</em>. Im Vergleich zu
+Python gibt es in Ruby allerdings ein wenig mehr Syntax zu lernen. Mehr
+über Python findest du auf der <a href="http://python.org">Python-Website</a>.</p>
+<p>Ruby verletzt die Regeln des <a href="http://python.org/dev/peps/pep-0020/">Python-Zen</a> und kann Perl ähnlich
+sehen, was viele Pythonisten abschreckt. Bei genauerem Hinsehen wird
+deutlich, dass beide Sprache sehr ähnliche Ziele verfolgen, diese aber
+mit unterschiedlichen Mitteln erreichen.</p>
+<p>Die Communities von Python und Ruby sind deshalb oft in produktivem
+Kontakt.</p>
+<h3>Ähnlichkeiten</h3>
+<h4>Spracheigenschaften</h4>
+<ul>
+<li><strong>Alles ist ein Objekt</strong>, und Variablen sind Referenzen auf Objekte.</li>
+<li>Die <strong>Typisierung</strong> ist dynamisch, aber stark. Auch in Python ist
+<em>Duck Typing</em> verbreitet.</li>
+<li><strong>Klassen sind offen</strong> und können nach Belieben erweitert werden.</li>
+<li>Objekte und Klassen können <strong>eigene Methoden</strong> besitzen.</li>
+<li><strong>Introspektion</strong> und <strong>Meta-Programmierung</strong> sind möglich.</li>
+<li>Operatoren wie <code>+</code> oder <code>[]</code> können überschrieben werden.</li>
+<li><strong>Exceptions</strong> arbeiten ähnlich (wenn auch mit anderer Syntax).</li>
+</ul>
+<h4>Tools und Bibliotheken</h4>
+<ul>
+<li>Ruby selbst ist ein <strong>Interpreter</strong>: <code>ruby</code>.</li>
+<li>Ruby hat ein <strong>interaktives Interface</strong>: <code>irb</code>.</li>
+<li>Es gibt ein eingebautes <strong>Dokumentations-Tool</strong>: <a href="http://www.ruby-doc.org/stdlib/libdoc/rdoc/rdoc/index.html"><code>rdoc</code></a></li>
+<li>Man kann die <strong>Dokumentation über die
+Kommandozeile<!-- raw HTML omitted --><a href="#fn1">1</a><!-- raw HTML omitted --></strong> lesen: <code>ri</code>.</li>
+<li>Die verbreiteten <strong>Editoren</strong> bieten mittlerweile guten Ruby-Support.</li>
+<li>Es gibt eine reichhaltige <strong>Bibliothek</strong>.</li>
+<li>Es gibt moderne <strong>Web-Frameworks</strong> ;-)</li>
+</ul>
+<p><!-- raw HTML omitted -->1<!-- raw HTML omitted --> Zur Zeit bietet ri leider noch keine Informationen zur
+Sprache selbst, sondern nur zu eingebauten Klassen und Bibliotheken.
+Dafür gibt es die erste Version der <em>Pickaxe</em> (das bekannteste
+Ruby-Referenz-Buch) online auf <a href="http://www.rubycentral.com/book/">Englisch</a>.
+{: #fn1}</p>
+<h4>Syntax</h4>
+<ul>
+<li>Anweisungen benötigen <strong>kein Semikolon</strong> und enden mit der Zeile.</li>
+<li>Die meisten <strong>Schlüsselworte</strong> sind dieselben wie in Python.</li>
+<li><strong>Eckige Klammern</strong> erzeugen Listen, <strong>geschweifte Klammern</strong> erzeugen
+Hashes (Rubys <em>dict</em>). Schlüssel und Wert werden allerdings mit <code>=&gt;</code>
+getrennt anstatt mit Doppelpunkten.</li>
+<li>Auch Ruby neigt dazu, wesentlich kürzer zu sein als Java oder C.</li>
+</ul>
+<h3>Unterschiede</h3>
+<h4>Spracheigenschaften</h4>
+<ul>
+<li>Die Realisierung von <strong>Klassen</strong>, Attributen und Methoden
+unterscheidet sich stark von Python.</li>
+<li>Es gibt keine <em>new style</em>- und <em>old style</em>-Klassen.</li>
+<li>Man greift niemals direkt auf <strong>Instanzvariablen</strong> zu. In Ruby ruft
+man immer nur Methoden auf. Da in Ruby Klammern optional sind, kann
+man aber Methoden erstellen, die sich wie Attribute anfühlen (wie
+<em>Properties</em> in Python).</li>
+<li>Es gibt <code>public</code>, <code>private</code> und <code>protected</code>, um <strong>Zugriff auf
+Methoden</strong> zu steuern.</li>
+<li><strong>Mixins</strong> werden anstelle von <strong>Mehrfachvererbung</strong> benutzt.</li>
+<li>Man darf auch <strong>eingebaute Ruby-Klassen</strong> verändern.</li>
+<li>Es gibt <strong>Konstanten</strong> (die eine Warnung erzeugen, wenn man ihren Wert
+ändert.)</li>
+<li>Es gibt nur einen <strong>Listentyp</strong> (<code>Array</code>), der seinen Wert verändern
+kann, und der gleichzeitig als Tupel, Liste, Stack, Queue und Set
+fungiert. Für effiziente Mengenalgorithmen benutzt man allerdings
+<code>Set</code>.</li>
+<li>In Ruby läd man <strong>zusätzliche Dateien</strong> mit <code>require 'filename'</code>
+anstatt mit <code>import modulename</code>. <strong>Modul- und Ordnerhierarchien</strong> sind
+nur durch Konvention miteinander verbunden. Es gibt keine direkten
+Entsprechungen zu <code>from...import</code> und <code>import...as</code>.</li>
+<li>Ruby hat <strong>globale Variablen</strong> (<code>$foo</code>), die aber selten verwendet
+werden.</li>
+</ul>
+<h4>Strings, Symbole und Reguläre Ausrücke</h4>
+<ul>
+<li><strong>Ruby-Strings</strong> können ihren Wert ändern (sind also <em>mutable</em>).</li>
+<li>In Ruby werden statt Strings häufig <strong>Symbole</strong> verwendet, wenn der
+Inhalt des Strings nicht der Ausgabe dient. Symbole sind im Gegensatz
+zu Strings nicht veränderbar und existieren nur einmal im Speicher.</li>
+<li>In Ruby verhalten sich Strings in <code>'einfachen'</code> Anführungszeichen wie
+Pythons <code>r&quot;aw strings&quot;</code>.</li>
+<li>Alle Stringtypen dürfen <strong>mehrzeilig</strong> sein; anstatt Triple-Quotes
+werden häufig <code>&lt;&lt;-HEREDOCS</code> eingesetzt.</li>
+<li><strong>Interpretierte Stringliterale</strong> (<code>&quot;solche&quot;</code> und <code>%Q[solche]</code>) dürfen
+<code>&quot;#{Ruby-Code}&quot;</code> enthalten. Der Wert des Ausdrucks wird in einen
+String verwandelt und direkt eingefügt.</li>
+<li>Ruby kennt auch Pythons <strong>Format-Strings</strong> samt <code>%</code>-Methode; man
+verwendet allerdings Arrays statt Tupeln, um mehrere Argumente zu
+übergeben.</li>
+<li>Für <strong>reguläre Ausdrücke</strong> gibt es eine <code>/(?:einge\baute) Synta/x</code>.</li>
+<li>Die Ergebnisse des letzten Matches werden in den aus Perl bekannten
+Variablen <code>$1</code>, <code>$&amp;</code>, <code>$`</code> usw. abgelegt (diese Variablen sind
+allerdings lokal.) Für Objektorientierte gibt es die Klassen <code>Regexp</code>
+und <code>MatchData</code>.</li>
+</ul>
+<h4>Syntax</h4>
+<ul>
+<li><strong>Einrückung</strong> ist in Ruby freiwillig. Mehrzeilige Anweisungen werden
+mit <strong><code>end</code></strong> beendet.</li>
+<li>Kein explizites <strong><code>self</code></strong> in Methodensignaturen.</li>
+<li>Ruby hat <strong>Blöcke</strong>, die <a href="http://www.rubyist.net/~matz/slides/oscon2005/mgp00044.html">vielfältig</a> eingesetzt werden.</li>
+<li>In Ruby <strong>ist alles ein Ausdruck</strong>, so dass Code-Elemente fast
+beliebig kombiniert werden können.</li>
+<li><strong>Implizites <code>return</code></strong>: Der Wert des letzten Ausdrucks einer Methode
+wird zurückgegeben. Man kann <code>return</code> aber auch wie in Python explizit
+angeben.</li>
+<li>Es gibt ein paar <strong>erzwungene Namenskonventionen</strong> (z.B. beginnen
+Klassennamen immer mit einem Großbuchstaben, Variablen werden dagegen
+klein geschrieben.)</li>
+<li>Methoden können <strong>ohne Klammern</strong> aufgerufen werden (<code>require 'set'</code>
+usw.) Das hat zur Folge, dass man auf Methodenobjekte nur über
+<code>obj.method :name</code> zugreifen kann, die dann mittels <code>meth.call</code> oder
+<code>meth[]</code> aufgerufen werden.</li>
+<li><strong>Instanzen</strong> werden mit <code>Foo.new</code> erstellt, nicht mit <code>Foo()</code>. Die
+zugehörige Methode heißt <code>initialize</code> statt <code>__init__</code>.</li>
+<li><code>true</code>, <code>false</code> und <code>nil</code> sind Rubys <code>True</code>, <code>False</code> und <code>None</code>.</li>
+<li>In <strong>Bedingungen</strong> sind <em>nur</em> die Werte <code>nil</code> und <code>false</code> negativ.
+Alles andere (0, leere Strings und Listen usw.) ist positiv.</li>
+<li>Ruby benutzt <code>elsif</code> statt <code>elif</code>.</li>
+<li><strong>Namespaces</strong> werden mit dem <code>::</code>-Operator verknüpft, mit dem man
+auch auf Konstanten wie <code>Math::PI</code> zugreift.</li>
+<li>Ruby hat keine echten Keyword-Argumente; stattdessen werden Hashes mit
+optionalen Klammern eingesetzt.</li>
+<li>Ruby hat keine List-Comprehensions; stattdessen benutzt man die
+Methoden des Moduls <code>Enumerable</code>.</li>
+</ul>
+<h4>Konventionen</h4>
+<ul>
+<li><strong>Namen</strong>: Methoden und Variablen jeder Art sind <code>under_score</code>,
+Klassen <code>CapitalCase</code> und Konstanten <code>ALL_CAPITAL_CASE</code>.</li>
+<li><strong>Kommentare</strong> stehen <em>über</em> den Methoden und Klassen, wie in Java.</li>
+<li>Das <strong>Ändern eingebauter Klassen</strong> ist nicht geächtet, sondern wird
+fröhlich praktiziert.</li>
+<li><strong>Eingerückt</strong> wird mit zwei Leerzeichen.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Der Einstieg</strong> ist einfach!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Teste Ruby! (im Browser)</a></li>
+
+    
+    <li><a href="/de/documentation/quickstart/">Ruby in 20 Minuten</a></li>
+    
+
+    
+    <li><a href="/de/documentation/ruby-from-other-languages/">Ruby für Umsteiger</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Entdecke</strong> eine neue Welt…</h3>
+  <ul class="menu">
+    
+    <li><a href="/de/documentation/">Dokumentation</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/de/libraries/">Bibliotheken</a></li>
+    
+
+    
+    <li><a href="/de/documentation/success-stories/">Erfolgsgeschichten</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Beteilige dich</strong> an einer freundlichen und wachsenden Community.</h3>
+  <ul>
+    
+    <li><a href="/de/community/mailing-lists/">Mailing-Listen</a>: Sprich mit Programmierern auf der ganzen Welt über Ruby.</li>
+    
+
+    
+    <li><a href="/de/community/user-groups/">User-Groups</a>: Treffe Rubyisten in deiner Umgebung.</li>
+    
+
+    
+    <li><a href="/de/community/weblogs/">Weblogs</a>: Lies, was gerade jetzt in der Ruby-Community passiert.</li>
+    
+
+    
+    <li><a href="/de/community/ruby-core/">Ruby-Entwicklung</a>: Hilf mit, die neuesten Ruby-Versionen zu verbessern.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Fehler melden</a>: Melde einen Fehler oder hilf mit, offene Fehler zu beseitigen.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

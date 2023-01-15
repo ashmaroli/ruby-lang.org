@@ -1,4 +1,403 @@
----
-layout: news_feed
-lang: ru
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Новости Ruby</title>
+    <link>https://www.ruby-lang.org/ru/feeds/news.rss</link>
+    <language>ru-RU</language>
+    <ttl>40</ttl>
+    <description>Последние новости с ruby-lang.org.</description>
+    
+    <item>
+      <title>Конкурс на соискание премии Fukuoka Ruby 2022 - судить участников будет Matz</title>
+      <description>&lt;p&gt;Дорогие Ruby-энтузиасты,&lt;/p&gt;
+&lt;p&gt;Правительство Фукуоки, Япония, вместе с &amp;quot;Matz&amp;quot; Мацумото приглашают поучаствовать в конкурсе по Ruby. Если вы разработали интересную программу на Ruby, пожалуйста, примите участие.&lt;/p&gt;
+&lt;p&gt;Конкурс на соискание премии Fukuoka Ruby 2022, главный приз - 1 миллион иен!&lt;/p&gt;
+&lt;p&gt;Дедлайн подачи заявки: 3 декабря 2021 года.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.digitalfukuoka.jp/javascripts/kcfinder/upload/images/fukuokarubyaward2017.png&quot; alt=&quot;Fukuoka Ruby Award&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Matz и группа участников дискуссии выберут победителей конкурса. Главный приз соревнования - 1 миллион иен. В числе прошлых обладателей гран-при: Rhomobile (США) и APEC Climate Center (Корея).&lt;/p&gt;
+&lt;p&gt;Программы, участвующие в конкурсе, не обязаны быть написаны целиком на Ruby, однако должны использовать уникальные преимущества языка.&lt;/p&gt;
+&lt;p&gt;Программа должна быть разработана или разрабатываема в течение прошлого года или около того. Для входа проследуйте на сайт Фукуоки.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.digitalfukuoka.jp/events/242&quot;&gt;http://www.digitalfukuoka.jp/events/242&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Заявку отправляйте на адрес award@f-ruby.com&lt;/p&gt;
+&lt;p&gt;&amp;quot;Matz будет тщательно тестировать и проверять ваш исходный код, так что это много значит! Принять участие может любой.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Спасибо!&lt;/p&gt;
+
+&lt;p&gt;Опубликовал Fukuoka Ruby 03-08-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/08/03/fukuoka-ruby-award-2022/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/08/03/fukuoka-ruby-award-2022/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP</title>
+      <description>&lt;p&gt;В Net::FTP обнаружена уязвимость доверия к PASV-ответам FTP.
+Этой уязвимости присвоен идентификатор &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-31810&quot;&gt;CVE-2021-31810&lt;/a&gt;.
+Мы настоятельно рекомендуем обновить Ruby.&lt;/p&gt;
+&lt;p&gt;net-ftp является встроенным гемом Ruby 3.0.1, но т.к. есть трудности с его поставкой, следует обновить Ruby целиком.&lt;/p&gt;
+&lt;h2&gt;Подробности&lt;/h2&gt;
+&lt;p&gt;Вредоносный FTP-сервер может использовать ответ PASV так, что Net::FTP
+подключится к заданному IP адресу и порту. Это потенциально
+позволяет Net::FTP получать информацию о сервисах, которые иначе
+скрыты (например, злоумышленник может сканировать порты и доставать баннеры).&lt;/p&gt;
+&lt;h2&gt;Уязвимые версии&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.6: 2.6.7 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 2.7: 2.7.3 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 3.0: 3.0.1 и ниже&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Авторство&lt;/h2&gt;
+&lt;p&gt;Благодарим &lt;a href=&quot;https://hackerone.com/chinarulezzz&quot;&gt;Alexandr Savca&lt;/a&gt; за сообщение о проблеме.&lt;/p&gt;
+&lt;h2&gt;История&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Изначально опубликовано в 2021-07-07 09:00:00 UTC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Опубликовал shugo 07-07-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Wed, 07 Jul 2021 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP</title>
+      <description>&lt;p&gt;В Net::IMAP обнаружена уязвимость StartTLS stripping.
+Этой уязвимости присвоен идентификатор &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-32066&quot;&gt;CVE-2021-32066&lt;/a&gt;.
+Мы настоятельно рекомендуем обновить Ruby.&lt;/p&gt;
+&lt;p&gt;net-imap является встроенным гемом Ruby 3.0.1, но т.к. есть трудности с его поставкой, следует обновить Ruby целиком.&lt;/p&gt;
+&lt;h2&gt;Подробности&lt;/h2&gt;
+&lt;p&gt;Net::IMAP не генерирует исключение, когда StartTLS
+прерывает работу с неизвестным ответом, что позволяет
+обходить защиту TLS атакой man-in-the-middle,
+блокируя команду StartTLS. Это называется &amp;quot;атака StartTLS&amp;quot;.&lt;/p&gt;
+&lt;h2&gt;Уязвимые версии&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.6: 2.6.7 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 2.7: 2.7.3 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 3.0: 3.0.1 и ниже&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Авторство&lt;/h2&gt;
+&lt;p&gt;Благодарим &lt;a href=&quot;https://hackerone.com/chinarulezzz&quot;&gt;Alexandr Savca&lt;/a&gt; за сообщение о проблеме.&lt;/p&gt;
+&lt;h2&gt;История&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Изначально опубликовано в 2021-07-07 09:00:00 UTC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Опубликовал shugo 07-07-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Wed, 07 Jul 2021 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/07/07/starttls-stripping-in-net-imap/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/07/07/starttls-stripping-in-net-imap/</link>
+    </item>
+    
+    <item>
+      <title>Вышел Ruby 3.0.2</title>
+      <description>&lt;p&gt;Вышел Ruby 3.0.2.&lt;/p&gt;
+&lt;p&gt;Этот релиз включает в себя исправления уязвимостей.
+Ознакомьтесь с подробностями ниже.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/&quot;&gt;CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/07/07/starttls-stripping-in-net-imap/&quot;&gt;CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/05/02/os-command-injection-in-rdoc/&quot;&gt;CVE-2021-31799: Уязвимость внедрения команды в RDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;См. &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_1...v3_0_2&quot;&gt;коммиты&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Скачать&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19941179
+SHA1: e00784956ed2083a40e269d8b14e571b8fae9a0f
+SHA256: 5085dee0ad9f06996a8acec7ebea4a8735e6fac22f22e2d98c3f2bc3bef7e6f1
+SHA512: e1fba6f5429b5fca9c3f52a32535615fcf95fafa415efc71c46db4cce159f249112c01574c305026be5c50140335696042e47a74194caea045acbfaa4da738cd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14746080
+SHA1: cd04711ed3adecbe244c3b4391e67430d11fa9f8
+SHA256: 570e7773100f625599575f363831166d91d49a1ab97d3ab6495af44774155c40
+SHA512: 0f702e2d8ca1342a9d4284dbdd234a3588e057b92566353aa7c21835cf09a3932864b2acf459a976960a1704e9befa562155d36b98b7cda8bd99526e10a374c4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24293508
+SHA1: 9cde469fec5c9f8edd1d055fc4a9cc90b9611700
+SHA256: 79e34f7fab000cb64ede8c39724ae240e36ee5905c752d77ec61a067d5e4e1dd
+SHA512: 2eb1ce4d66b06ccdee835a017c0edd4028fff99a29f4a631ffb5b39289afcb6a88f79eb24cf09e78d2baaa7c3e494448e2701a0a976bb092de6f2929f1934325
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Комментарий к релизу&lt;/h2&gt;
+&lt;p&gt;Многие коммитеры, разработчики и пользователи, кто присылал баг-репорты, помогли нам сделать этот релиз.
+Благодарим за этот вклад.&lt;/p&gt;
+
+&lt;p&gt;Опубликовал nagachika 07-07-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Wed, 07 Jul 2021 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/07/07/ruby-3-0-2-released/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/07/07/ruby-3-0-2-released/</link>
+    </item>
+    
+    <item>
+      <title>Вышел Ruby 2.7.4</title>
+      <description>&lt;p&gt;Вышел Ruby 2.7.4.&lt;/p&gt;
+&lt;p&gt;Этот релиз включает в себя исправления уязвимостей.
+Ознакомьтесь с подробностями ниже.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/&quot;&gt;CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/07/07/starttls-stripping-in-net-imap/&quot;&gt;CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/05/02/os-command-injection-in-rdoc/&quot;&gt;CVE-2021-31799: Уязвимость внедрения команды в RDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;См. &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_3...v2_7_4&quot;&gt;коммиты&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Скачать&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14804934
+SHA1: f5bdecded2d68e4f2f0ab1d20137e8b4b0614e52
+SHA256: bffa8aec9da392eda98f1c561071bb6e71d217d541c617fc6e3282d79f4e7d48
+SHA512: f144c32c9cb0006dfcfa7d297f83f88b881f68c94f0130346c74dfd8758583a68d22accfd0fc9f31db304ab5ff0bc135bfb2868145c0dec1ee6cec5ac6c3725d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16915699
+SHA1: 86ec4a97bc43370050b5aef8d6ea3ed3938fb344
+SHA256: 3043099089608859fc8cce7f9fdccaa1f53a462457e3838ec3b25a7d609fbc5b
+SHA512: a317752e9a32c8d1261e67ca89c396722ee779ec8ba4594987812d065b73751f51485a1ede8044aae14b3b16e8d049c6953cef530ae1b82abb135b446c653f8a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12067588
+SHA1: 6e044d835f9f432cfa9441241c1ef66e3d607cbf
+SHA256: 2a80824e0ad6100826b69b9890bf55cfc4cf2b61a1e1330fccbcb30c46cef8d7
+SHA512: 2cbb70ecfdd69120e789023ddb2b25cab0d03bc33fdc367a8f74ca8a3ee785c18c8ded9de3ecee627c7e275ffb85147e6abf921b6a61e31851b37c7fedf45bf9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20701195
+SHA1: 32bdd5288dcc1e531832c14d26ff7cd218b55bc3
+SHA256: a4fe29bfc6a8338fe4b017705aa9d3358225ea305359520d4995096a4382034e
+SHA512: 2877b809bafe72cba789add85993a1954008012afcfb5fc4645e482478479bb02166b0d5ee12263983a6c828e6970eb1385632409793dcbc5185d7bbc9c4f349
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Комментарий к релизу&lt;/h2&gt;
+&lt;p&gt;Многие коммитеры, разработчики и пользователи, кто присылал баг-репорты, помогли нам сделать этот релиз.
+Благодарим за этот вклад.&lt;/p&gt;
+&lt;p&gt;Поддержка Ruby 2.7, включая этот релиз, основана на &amp;quot;Соглашении о стабильной версии Ruby&amp;quot; Ассоциации Ruby.&lt;/p&gt;
+
+&lt;p&gt;Опубликовал usa 07-07-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Wed, 07 Jul 2021 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/07/07/ruby-2-7-4-released/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/07/07/ruby-2-7-4-released/</link>
+    </item>
+    
+    <item>
+      <title>Вышел Ruby 2.6.8</title>
+      <description>&lt;p&gt;Вышел Ruby 2.6.8.&lt;/p&gt;
+&lt;p&gt;Этот релиз включает в себя исправления уязвимостей.
+Ознакомьтесь с подробностями ниже.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/&quot;&gt;CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/07/07/starttls-stripping-in-net-imap/&quot;&gt;CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/ru/news/2021/05/02/os-command-injection-in-rdoc/&quot;&gt;CVE-2021-31799: Уязвимость внедрения команды в RDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Обычно мы не вносим исправления в Ruby 2.6 за исключением исправлений уязвимости, однако этот релиз также содержит исправления некоторых регрессий и проблем сборки.
+См. &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_6_7...v2_6_8&quot;&gt;коммиты&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ruby 2.6 находится в фазе поддержки безопасности до марта 2022.
+После этого поддержка Ruby 2.6 завершится.
+Мы рекомендуем начать планировать миграцию на более новые версии Ruby, такие как 3.0 или 2.7.&lt;/p&gt;
+&lt;h2&gt;Скачать&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14131671
+SHA1: 7d38cacb6a0779f04b9f19f94406da97e95bbec4
+SHA256: dac96ca6df8bab5a6fc7778907f42498037f8ce05b63d20779dce3163e9fafe6
+SHA512: 51806d48187dfcce269ff904943dd008df800216ad4797f95481bdeecc2fbac40016bc02eabfff32414839ebb2087511d25eebfd6acead1a1d3813be6c10edf7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16202660
+SHA1: 949dce34bba3ae93fd302fe705017b03d13b69ab
+SHA256: 1807b78577bc08596a390e8a41aede37b8512190e05c133b17d0501791a8ca6d
+SHA512: 4f8b8736bdae8bb4b2b63d576232d376b4c87239d25bf7aa807d3eeea704cb8b06f465c37050be79b57a52b9bde65a5cc05679dd6df0f443c8e00a19513f882a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 11599488
+SHA1: fa5ad518ef31bbf5c3386dbcec7b57196a1e618e
+SHA256: 8262e4663169c85787fdc9bfbd04d9eb86eb2a4b56d7f98373a8fcaa18e593eb
+SHA512: d040ad2238523587d8f356fcb796b8b6ad7f8caff7dd6df09e3f7efcbfa0369e33600e78c7f2bc713ae77c040757cce5c4fec223cb9070209f2bf741899c556d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.8.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19868666
+SHA1: ece4908dd84c7aaefbe6b188c0aca39eaedb2a77
+SHA256: d5da2d7e1b9a6b570c66b3bb0cfa2de3ce21d002d2385a1fdf7195e2d0d1d5c7
+SHA512: 143ee01da2cba85a2dcb394b1a64b18a748aeb0eda4d6d2d83638706ce4bb05f60f3e80a0429878f823437e0dfba285f8080637523a552eb04aca87df63831dc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Комментарий к релизу&lt;/h2&gt;
+&lt;p&gt;Многие коммитеры, разработчики и пользователи, кто присылал баг-репорты, помогли нам сделать этот релиз.
+Благодарим за этот вклад.&lt;/p&gt;
+
+&lt;p&gt;Опубликовал usa 07-07-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Wed, 07 Jul 2021 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/07/07/ruby-2-6-8-released/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/07/07/ruby-2-6-8-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-31799: Уязвимость внедрения команды в RDoc</title>
+      <description>&lt;p&gt;В RDoc, поставляемом с Ruby, обнаружена уязвимость внедрения команды.
+Всем пользователям Ruby рекомендуется обновить RDoc до последней версии, которая исправляет проблему.&lt;/p&gt;
+&lt;h2&gt;Подробности&lt;/h2&gt;
+&lt;p&gt;Сообщество об уязвимости:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-31799&quot;&gt;CVE-2021-31799&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;RDoc использовал &lt;code&gt;Kernel#open&lt;/code&gt; для открытия локальных файлов. Если имя файла в проекте на Ruby начинается с &lt;code&gt;|&lt;/code&gt;, а заканчивается на &lt;code&gt;tags&lt;/code&gt;, то будет выполнена команда, идущая после символа &lt;code&gt;|&lt;/code&gt;. Вредоносный код на Ruby мог использовать это для выполнения произвольной команды, когда пользователь вводит команду &lt;code&gt;rdoc&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Пользователи Ruby, у которых версия RDoc имеет данную уязвимость, должны обновиться до последней версии RDoc.&lt;/p&gt;
+&lt;h2&gt;Уязвимые версии&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Все версии RDoc от 3.11 до 6.3.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Как обновиться&lt;/h2&gt;
+&lt;p&gt;Выполните следующую команду, чтобы обновить RDoc до последней версии (6.3.1 или выше), чтобы исправить уязвимость.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install rdoc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Если вы используете bundler, добавьте &lt;code&gt;gem &amp;quot;rdoc&amp;quot;, &amp;quot;&amp;gt;= 6.3.1&amp;quot;&lt;/code&gt; в ваш &lt;code&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Авторство&lt;/h2&gt;
+&lt;p&gt;Благодарим &lt;a href=&quot;https://hackerone.com/chinarulezzz&quot;&gt;Alexandr Savca&lt;/a&gt; за сообщение о проблеме.&lt;/p&gt;
+&lt;h2&gt;История&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Изначально опубликовано в 2021-05-02 09:00:00 UTC&lt;/li&gt;
+&lt;li&gt;Ruby 3.0.2 (поставляется с RDoc 6.3.1), Ruby 2.7.4 (поставляется с RDoc 6.2.1.1) and Ruby 2.6.8 (поставляется с RDoc 6.1.2.1) уже содержат исправления и потому не подвержены уязвимости&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Опубликовал aycabta 02-05-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Sun, 02 May 2021 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/05/02/os-command-injection-in-rdoc/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/05/02/os-command-injection-in-rdoc/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-28965: Уязвимость round-trip кодирования в REXML</title>
+      <description>&lt;p&gt;В геме REXML, поставляемом с Ruby, обнаружена уязвимость round-trip кодирования XML. Этой уязвимости присвоен идентификатор CVE &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28965&quot;&gt;CVE-2021-28965&lt;/a&gt;. Мы строго рекомендуем обновление гема REXML.&lt;/p&gt;
+&lt;h2&gt;Подробности&lt;/h2&gt;
+&lt;p&gt;При парсинге и сериализации специальным образом подготовленного документа XML гем REXML (включая тот, что поставляется с Ruby) может создать неправильный документ XML, со структурой, отличающейся от оригинального. Последствия во многом зависят от контекста, но это может привести к уязвимости в каких-нибудь программах, которые используют REXML.&lt;/p&gt;
+&lt;p&gt;Пожалуйста, обновите гем REXML до версии 3.2.5 или выше.&lt;/p&gt;
+&lt;p&gt;Если вы используете Ruby 2.6 или выше:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Пусть это будет Ruby 2.6.7, 2.7.3 или 3.0.1.&lt;/li&gt;
+&lt;li&gt;Либо вы можете выполнить &lt;code&gt;gem update rexml&lt;/code&gt;, чтобы обновить его. Если вы используете bundler, добавьте &lt;code&gt;gem &amp;quot;rexml&amp;quot;, &amp;quot;&amp;gt;= 3.2.5&amp;quot;&lt;/code&gt; в ваш &lt;code&gt;Gemfile&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Если вы используете Ruby 2.5.8 или ниже:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Пожалуйста, перейдите на Ruby 2.5.9.&lt;/li&gt;
+&lt;li&gt;&lt;!-- raw HTML omitted --&gt;Команда &lt;code&gt;gem update rexml&lt;/code&gt; на Ruby 2.5.8 и ниже вам не поможет.&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;Обратите внимание, что Ruby 2.5 находится в фазе EOL, поэтому рассмотрите возможность обновить Ruby до 2.6.7 или выше как можно скорей.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Уязвимые версии&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.5.8 и ниже (Команда &lt;code&gt;gem update rexml&lt;/code&gt; вам &lt;!-- raw HTML omitted --&gt;НЕ&lt;!-- raw HTML omitted --&gt; поможет на этой версии.)&lt;/li&gt;
+&lt;li&gt;Ruby 2.6.6 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 2.7.2 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 3.0.0&lt;/li&gt;
+&lt;li&gt;гем REXML 3.2.4 и ниже&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Авторство&lt;/h2&gt;
+&lt;p&gt;Благодарим &lt;a href=&quot;https://hackerone.com/jupenur&quot;&gt;Juho Nurminen&lt;/a&gt; за обнаружение проблемы.&lt;/p&gt;
+&lt;h2&gt;История&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Изначально опубликовано в 2021-04-05 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Опубликовал mame 05-04-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Mon, 05 Apr 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/04/05/xml-round-trip-vulnerability-in-rexml-cve-2021-28965/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/04/05/xml-round-trip-vulnerability-in-rexml-cve-2021-28965/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-28966: Уязвимость обхода каталога в Tempfile на Windows</title>
+      <description>&lt;p&gt;В библиотеке tmpdir, поставляемой с Ruby, на Windows обнаружена непредусмотренная уязвимость создания директории. Помимо этого есть и непредусмотренная уязвимость создания файла в библиотеке tempfile, поставляемой с Ruby на Windows, потому что под капотом она использует tmpdir. Этой уязвимости присвоен идентификатор CVE &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28966&quot;&gt;CVE-2021-28966&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Подробности&lt;/h2&gt;
+&lt;p&gt;Метод &lt;code&gt;Dir.mktmpdir&lt;/code&gt;, предоставляемый библиотекой tmpdir, принимает префикс и суффикс директории, которая создается из первого параметра. Префикс может содержать спецификаторы относительной директории &lt;code&gt;&amp;quot;..\\&amp;quot;&lt;/code&gt;, поэтому этот метод может использоваться для указания на любую директорию. Таким образом, если скрипт принимает префикс извне, и указанная директория имеет несоответствующие права, или процесс ruby имеет несоответствующие привилегии, злоумышленник может создать директорию или файл в любой директории.&lt;/p&gt;
+&lt;p&gt;Эта уязвимость аналогична &lt;a href=&quot;https://www.ruby-lang.org/en/news/2018/03/28/unintentional-file-and-directory-creation-with-directory-traversal-cve-2018-6914/&quot;&gt;CVE-2018-6914&lt;/a&gt;, но предыдущее исправление было не полноценно на Windows.&lt;/p&gt;
+&lt;p&gt;Все пользователи, использующие уязвимый релиз, должны немедленно обновиться.&lt;/p&gt;
+&lt;h2&gt;Уязвимые версии&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.7.2 и ниже&lt;/li&gt;
+&lt;li&gt;Ruby 3.0.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Авторство&lt;/h2&gt;
+&lt;p&gt;Благодарим &lt;a href=&quot;https://hackerone.com/bugdiscloseguys&quot;&gt;Bugdiscloseguys&lt;/a&gt; за обнаружение проблемы.&lt;/p&gt;
+&lt;h2&gt;История&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Изначально опубликовано в 2021-04-05 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Опубликовал mame 05-04-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Mon, 05 Apr 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/04/05/tempfile-path-traversal-on-windows-cve-2021-28966/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/04/05/tempfile-path-traversal-on-windows-cve-2021-28966/</link>
+    </item>
+    
+    <item>
+      <title>Вышел Ruby 3.0.1</title>
+      <description>&lt;p&gt;Вышел Ruby 3.0.1.&lt;/p&gt;
+&lt;p&gt;Этот релиз включает в себя исправления уязвимостей.
+Ознакомьтесь с подробностями ниже.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/en/news/2021/04/05/xml-round-trip-vulnerability-in-rexml-cve-2021-28965/&quot;&gt;CVE-2021-28965: Уязвимость round-trip кодирования в REXML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/en/news/2021/04/05/tempfile-path-traversal-on-windows-cve-2021-28966/&quot;&gt;CVE-2021-28966: Уязвимость обхода каталога в Tempfile на Windows&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;См. &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_0_1&quot;&gt;коммиты&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Скачать&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19664598
+SHA1: 60c72f3e501a3be9616385cad3e48bc89d6150a1
+SHA256: 369825db2199f6aeef16b408df6a04ebaddb664fb9af0ec8c686b0ce7ab77727
+SHA512: cb81db2c9b698cf8159b2ca6507f4c7f171e4eb387f5730c4b658ed632b7900a169808e6fbec0ee80598d937030ad5d9c56b63a2a339373ec5d9e1c06b7661d0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14486780
+SHA1: 3c5443960fe860ff7055bc02a4793140b9fb9b28
+SHA256: d06bccd382d03724b69f674bc46cd6957ba08ed07522694ce44b9e8ffc9c48e2
+SHA512: 97d2e883656060846b304368d9d836e2f3ef39859c36171c9398a0573818e4ed75bfd7460f901a9553f7f53518c505327a66e74f83704a881469f5ac61fe13d7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24014727
+SHA1: 311164da8f68abb58f8590356bf492fc2ab80192
+SHA256: c8703c33904c79613a41a750cc62d210c3c57fec0728476d66b0a9031a499d68
+SHA512: 395cdbd7fd42f0d2b42208c390db7ac2ed8d3e247d9b7fdaa43347a815b108a3680cbebf2ab8f05ec468ff02c832e2f3c1399e616f0f3e3016f6a6e894811b01
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Комментарий к релизу&lt;/h2&gt;
+&lt;p&gt;Многие коммитеры, разработчики и пользователи, кто присылал баг-репорты, помогли нам сделать этот релиз.
+Благодарим за этот вклад.&lt;/p&gt;
+
+&lt;p&gt;Опубликовал naruse 05-04-2021&lt;br /&gt;Перевел: nakilon&lt;/p&gt;</description>
+      <pubDate>Mon, 05 Apr 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/ru/news/2021/04/05/ruby-3-0-1-released/</guid>
+      <link>https://www.ruby-lang.org/ru/news/2021/04/05/ruby-3-0-1-released/</link>
+    </item>
+    
+  </channel>
+</rss>

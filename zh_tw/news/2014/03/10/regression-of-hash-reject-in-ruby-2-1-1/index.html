@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.1.1 誤變更了 Hash#reject 的行為</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2014/03/10/regression-of-hash-reject-in-ruby-2-1-1/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.1.1 誤變更了 Hash#reject 的行為</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 sorah 發表於 2014-03-10<br>
+                         翻譯： Juanito Fatas</p>
+
+    <p>在 Ruby 2.1.0 以及之前的版本，任何從 <code>Hash</code> 類別繼承來的 <code>reject</code> 方法，會回傳繼承類別的物件。但 Ruby 2.1.1 不小心改到這個行為，<code>reject</code> 現在會回傳純 Hash 物件，而不是從 Hash 繼承而來的類別。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->Hash<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->reject<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->}.<!-- raw HTML omitted --><!-- raw HTML omitted -->class<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 2.1.0: Hash, 2.1.1: Hash<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->SubHash<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->reject<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->}.<!-- raw HTML omitted --><!-- raw HTML omitted -->class<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 2.1.0: SubHash, 2.1.1: Hash<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>（精準的說，沒有複製到像是實體變數等額外的狀態。）</p>
+<p>根據先前修正的 Ruby 2.1.0 的<a href="https://www.ruby-lang.org/zh_tw/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/">版本發佈方針</a>，Ruby 2.1.1 不應該改變 <code>Hash#reject</code> 的行為。Ruby 2.1.1 是補丁等級的發佈，應該要保持向下相容性。</p>
+<p>這次錯誤的行為變更可能會有許多函式庫受影響，一個例子是 Rails 的 <code>HashWithIndifferentAccess</code> 與 <code>OrderedHash</code> 壞掉了，見：<a href="https://github.com/rails/rails/issues/14188">Rails' issue #14188</a>。</p>
+<p>Ruby 2.1.2 會把這個錯誤改正過來。但回傳純 Hash 將會是 Ruby 2.2.0 的預設行為，見：<a href="https://bugs.ruby-lang.org/issues/9223">Feature #9223</a>。所以我們推薦您提前針對此變動，相應修正程式碼。</p>
+<p>這次意外起源於漏了一個相容性提交。更多細節請參見：
+<a href="http://blog.sorah.jp/2014/03/10/hash-reject-regression-in-ruby211">http://blog.sorah.jp/2014/03/10/hash-reject-regression-in-ruby211</a>。</p>
+<p>造成您的不便深感抱歉，感謝您的支持。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

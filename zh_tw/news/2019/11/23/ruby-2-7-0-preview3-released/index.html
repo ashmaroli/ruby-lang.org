@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.7.0-preview3 發佈</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2019/11/23/ruby-2-7-0-preview3-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.7.0-preview3 發佈</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 發表於 2019-11-23<br>
+                         翻譯： Vincent Lin</p>
+
+    <p>我們很榮幸的宣布 Ruby 2.7.0-preview3 發布了。</p>
+<p>為了計畫於十二月發布的最終版本，我們發布了預覽版本以收集回饋。此次 preview3 發佈主要為確認關鍵字參數的兼容性。</p>
+<p>引入了許多新功能和性能提升，最值得注意的是：</p>
+<ul>
+<li>Compaction GC</li>
+<li>Pattern Matching</li>
+<li>REPL 改進</li>
+<li>位置參數和關鍵字參數的分離</li>
+</ul>
+<h2>Compaction GC</h2>
+<p>此版本引入了 Compaction GC，可以對零碎的記憶體空間進行整理。</p>
+<p>某些多執行緒的 Ruby 程式可能會導致記憶體碎片化，進而導致記憶體使用率增高和速度降低。</p>
+<p>引入了 <code>GC.compact</code> 方法來壓縮堆疊。此函數壓縮堆疊中的活動物件，以便可以使用更少的頁面，並且堆疊可能對於寫入時複製更友好。<a href="https://bugs.ruby-lang.org/issues/15626">[Feature #15626]</a></p>
+<h2>Pattern Matching [實驗性質]</h2>
+<p>在函數式編程語言中廣泛地被使用的 Pattern matching，作為實驗性的功能加入了。<a href="https://bugs.ruby-lang.org/issues/14912">[Feature #14912]</a></p>
+<p>它可以遍歷給定的物件並在其比對成功時賦值。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">json</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">END</span><span class="sh">
+{
+  "name": "Alice",
+  "age": 30,
+  "children": [{ "name": "Bob", "age": 2 }]
+}
+</span><span class="no">END</span>
+
+<span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span> <span class="c1">#=&gt; 2</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>更多詳細資訊，請參閱 <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Pattern matching - New feature in Ruby 2.7</a>。</p>
+<h2>REPL 改進</h2>
+<p><code>irb</code>，綑綁交互環境 (REPL; Read-Eval-Print-Loop)，現已支持多行編輯，由 <code>reline</code>、<code>readline</code> 實現純 Ruby 的支援。它還提供 rdoc 集成。在 irb 中您可以為指定的類別、模組或方法的顯示引用。<a href="https://bugs.ruby-lang.org/issues/14683">[Feature #14683]</a>、<a href="https://bugs.ruby-lang.org/issues/14787">[Feature #14787]</a>、<a href="https://bugs.ruby-lang.org/issues/14918">[Feature #14918]</a></p>
+<p>此外，<code>binding.irb</code> 中顯示的程式碼行和核心類別的檢查結果現在已經有著色了。</p>
+<!-- raw HTML omitted -->
+<h2>位置參數和關鍵字參數的分離</h2>
+<p>關鍵字參數和位置參數的自動轉換已被標記爲廢棄（deprecated），自動轉換將會在 Ruby 3 中被移除。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<ul>
+<li>
+<p>當 method 將 Hash 作爲最後一個參數傳入，或者傳入的參數沒有關鍵字的時候，会拋出警告。如果需要繼續將其視爲關鍵字參數，則需要加入兩個星號來避免警告並在 Ruby 3 在中行爲正常。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>當 mothod 傳入 Hash 到一個接受關鍵字參數的方法中，但沒有傳入足夠的位置參數，關鍵字參數會被視爲最後一個位置參數，並拋出一個警告。請將參數包裝爲 Hash 物件來避免警告，並在 Ruby 3 在中行爲正常。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>當 method 接受關鍵字參數傳入，但不會進行關鍵字分割（splat），且傳入同時含有 Symbol 和非 Symbol 的 key，那麼 Hash 會被分割，但是會拋出警告。你需要傳入兩個分開的 Hash 來確保 Ruby 3 中行爲正常。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>當一個 method 不接受關鍵字參數，但傳入了關鍵字參數，關鍵字會被視爲位置參數，不會有警告拋出。這一行爲會在 Ruby 3 中繼續工作。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>如果方法支援任意參數傳入，那麼非 Symbol 也會被允許作爲關鍵字參數傳入。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>**nil</code> 被允許使用在 method 的定義中，用來標記不接受關鍵字參數。以關鍵詞參數來使用這些方法會拋出 ArgumentError。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>將空的關鍵字分割（splat）傳入一個不接受關鍵字參數的方法不會繼續被當作空雜湊處理，除非空雜湊被作爲一個必要參數，並且這種情況會拋出警告。請移除雙星號將雜湊作爲位置參數傳入。<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span> <span class="c1"># []</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># {} and warning</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>   <span class="c1"># [{}]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>    <span class="c1"># {}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<p>注意：關鍵字參數不兼容時的警告目前被指出太過冗長，現在有兩種可能的解決方案正在討論：
+將警告預設為關閉
+（<a href="https://bugs.ruby-lang.org/issues/16345">#16345</a>），
+或是禁止重複警告
+（<a href="https://bugs.ruby-lang.org/issues/16289">#16289</a>），
+尚未做出最後的決定，但會在正式發佈的版本中修復。</p>
+<h2>其他值得注意的新特點</h2>
+<ul>
+<li>
+<p>方法引用運算符 <code>.:</code>，在早些版本中作為實驗性的功能加入，但已回復。
+<a href="https://bugs.ruby-lang.org/issues/12125">[Feature #12125]</a>、
+<a href="https://bugs.ruby-lang.org/issues/13581">[Feature #13581]</a>、
+<a href="https://bugs.ruby-lang.org/issues/16275">[Feature #16275]</a></p>
+</li>
+<li>
+<p>默認為區塊參數的編號參數作為實驗性的功能加入了。
+<a href="https://bugs.ruby-lang.org/issues/4475">[Feature #4475]</a></p>
+</li>
+<li>
+<p>無始範圍試驗性的加入了。他可能沒有無盡範圍那麼有用，但他以 DSL 為目的來說是好的。
+<a href="https://bugs.ruby-lang.org/issues/14799">[Feature #14799]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">ary</span><span class="p">[</span><span class="o">..</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># identical to ary[0..3]</span>
+<span class="n">rel</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">sales: </span><span class="o">..</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>新增了 <code>Enumerable#tally</code>，它將會計算每個元素出現的次數。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">].</span><span class="nf">tally</span>
+<span class="c1">#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>允許在 <code>self</code> 上調用私有方法 <a href="https://bugs.ruby-lang.org/issues/11297">[Feature #11297]</a> <a href="https://bugs.ruby-lang.org/issues/16123">[Feature #16123]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+<span class="k">end</span>
+<span class="kp">private</span> <span class="ss">:foo</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">foo</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>新增 <code>Enumerator::Lazy#eager</code>。它會從一個 lazy Enumerator 中產生一個 non-lazy 的 Enumerator。<a href="https://bugs.ruby-lang.org/issues/15901">[Feature #15901]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">a</span> <span class="o">=</span> <span class="sx">%w(foo bar baz)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="p">}.</span><span class="nf">eager</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">class</span>               <span class="c1">#=&gt; Enumerator</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"?"</span> <span class="p">}</span>  <span class="c1">#=&gt; ["FOO!?", "BAR!?", "BAZ!?"]</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>效能改進</h2>
+<ul>
+<li>
+<p>JIT [實驗性質]</p>
+<ul>
+<li>
+<p>當最佳化假設不成功時，JIT 後的程式碼將會重新編譯為成最佳化程度較低的程式碼。</p>
+</li>
+<li>
+<p>當方法（Method）被認為是純粹（pure）時，執行方法內聯。這種最佳化的方法仍然是實驗性質，許多方法都不被認為是純粹的。</p>
+</li>
+<li>
+<p><code>--jit-min-calls</code> 的預設值從 5 調整至 10,000。</p>
+</li>
+<li>
+<p><code>--jit-max-cache</code> 的預設值從 1,000 調整至 100。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>~~<code>Symbol#to_s</code>~~ (已取消), <code>Module#name</code>, <code>true.to_s</code>, <code>false.to_s</code> 和 <code>nil.to_s</code> 現在始終返回一個凍結（frozen）字串。返回的字串始終和給定的物件相等。 [實驗性質] <a href="https://bugs.ruby-lang.org/issues/16150">[Feature #16150]</a></p>
+</li>
+<li>
+<p><code>CGI.escapeHTML</code> 的效能得到了提升。<a href="https://github.com/ruby/ruby/pull/2226">GH-2226</a></p>
+</li>
+<li>
+<p>The performance of Monitor and MonitorMixin is improved.<a href="https://bugs.ruby-lang.org/issues/16255">[Feature #16255]</a></p>
+</li>
+</ul>
+<h2>其他從 2.6 版本以來顯著的變化</h2>
+<ul>
+<li>
+<p>一些函式庫被更新</p>
+<ul>
+<li>Bundler 2.1.0.pre.3
+(<a href="https://github.com/bundler/bundler/blob/2-1-stable/CHANGELOG.md#210pre3-november-8-2019">History</a>)</li>
+<li>RubyGems 3.1.0.pre.3
+(<a href="https://github.com/rubygems/rubygems/blob/3.1/History.txt">History</a>)</li>
+<li>CSV 3.1.2
+(<a href="https://github.com/ruby/csv/blob/v3.1.2/NEWS.md">NEWS</a>)</li>
+<li>Racc 1.4.15</li>
+<li>REXML 3.2.3
+(<a href="https://github.com/ruby/rexml/blob/v3.2.3/NEWS.md">NEWS</a>)</li>
+<li>RSS 0.2.8
+(<a href="https://github.com/ruby/rss/blob/v0.2.8/NEWS.md">NEWS</a>)</li>
+<li>StringScanner 1.0.3</li>
+<li>一些沒有原始版本的函式庫也得到了更新</li>
+</ul>
+</li>
+<li>
+<p>將函式庫升級為預設的 gems</p>
+<ul>
+<li>以下預設的 gem 已在 rubygems.org 上發佈
+<ul>
+<li>benchmark</li>
+<li>cgi</li>
+<li>delegate</li>
+<li>getoptlong</li>
+<li>net-pop</li>
+<li>net-smtp</li>
+<li>open3</li>
+<li>pstore</li>
+<li>singleton</li>
+</ul>
+</li>
+<li>以下預設的 gem 僅在 ruby 核心中升級，尚未發佈於 rubygems.org
+<ul>
+<li>monitor</li>
+<li>observer</li>
+<li>timeout</li>
+<li>tracer</li>
+<li>uri</li>
+<li>yaml</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>現在 <code>Proc.new</code> 和 <code>proc</code> 沒有 block 時，在有區塊的方法調用時會產生警告。</p>
+</li>
+<li>
+<p><code>lambda</code> 在方法調用時如果沒有 block 時會產生區塊錯誤。</p>
+</li>
+<li>
+<p>Unicode 和 Emoji 版本從 11.0.0 更新至 12.0.0。<a href="https://bugs.ruby-lang.org/issues/15321">[Feature #15321]</a></p>
+</li>
+<li>
+<p>更新 Unicode 至 12.1.0 版本，新增對於新年號令和 U+32FF 的支援。<a href="https://bugs.ruby-lang.org/issues/15195">[Feature #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>、<code>Date#jisx0301</code> 和 <code>Date.parse</code> 支持新的日本年號。<a href="https://bugs.ruby-lang.org/issues/15742">[Feature #15742]</a></p>
+</li>
+<li>
+<p>編譯器需必需支援 C99 <a href="https://bugs.ruby-lang.org/issues/15347">[Misc #15347]</a></p>
+<ul>
+<li>關於我們語言的詳細資訊：<a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+<li>
+<p>~~<code>Regexp#match{?}</code> 傳入 <code>nil</code> 會產生 TypeError。
+<a href="https://bugs.ruby-lang.org/issues/13083">[Feature #13083]</a>~~ 已取消</p>
+</li>
+</ul>
+<p>3895 個檔案變更，213426 行增加（+），96934 行刪減（-）</p>
+<p>請參考<a href="https://github.com/ruby/ruby/blob/v2_7_0_preview3/NEWS">新聞</a>或<a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview3">提交紀錄</a>來進一步了解。</p>
+<p>隨著這些變動，從 Ruby 2.6.0 至今的<a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview3">狀態</a>。</p>
+<p>享受使用 Ruby 2.7 編程吧！</p>
+<h2>下載</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14630824
+SHA1: 1fa35d8a26dfc814e92fa259095f4cf70f386f87
+SHA256: df2ddee659873e6fc30a8590ecffa49cf3a4ef81fa922b0d09f821b69ee88bc3
+SHA512: 5d8e99e3fd984c7d05c0bc483e1504e81ccdb920cbb2d78cad3c314e197b30316b692fd0199f836acac41246e3a713cb81dc6dd64c27cba56f807df4c193db1a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 16723536
+SHA1: 7554926ee29a344da4b53d67fc296d70fdbe60ca
+SHA256: 9baa1f5096ebc2a0923df628d7dc7105da3789c1bf8b873469d9010249736b00
+SHA512: 8fad3e761fd54036fee974a9f33e4db31d9a8a878b1181a08724388f5a1da548ab249136356f675797e9c43b565777bf22e6a419db1364336f134b31f4e75b33
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 11923988
+SHA1: f3c54538915483e5ddc714ac23414e7c47048b12
+SHA256: ad9d61e55ac224e3447a762e001965839846f9658f87a0e792840887cfe61b8c
+SHA512: 2b6844f34d32f1013dc3110043e6ece33a083b20f1343dea9a14311bda0017e8f56fc7d73be1616999b22ce430d7ba59a77bb0892d27c6d1ec243c3860086133
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview3.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20691541
+SHA1: d18b494cda4db751d8b3f5026404e348f3f682e3
+SHA256: 2bc95f67f271b6a41fc3dd40536705b4a7974df8a2fa33ff0758a60822291781
+SHA512: af9f728aebc53693cbd9f78a632c82e851e9f83dfc0c53979fdc37c627b11482c8435ce12dbb1d5a7253e998ea989759be699e6a00aae18384d2d765650cb0d7
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby 是什麼</h2>
+<p>Ruby 最初由 Matz（Yukihiro Matsumoto）於 1993 年開發出來，現在作為開源軟體開發。它可在多個平台上運行，並在世界各地使用，尤其適用於網站開發。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

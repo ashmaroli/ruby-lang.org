@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>從 PHP 到 Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/documentation/ruby-from-other-languages/to-ruby-from-php/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>從 PHP 到 Ruby</h1>
+
+
+
+  <div id="content">
+    <p>PHP 被廣泛的應用在網頁程式中，如果你想試試看 Ruby on Rails，或是你想要一個更加講究的多功能程式語言，Ruby 值得一看。</p>
+<h3>相似點</h3>
+<p>Ruby與PHP一樣的地方...</p>
+<ul>
+<li>Ruby是個動態型別的程式語言，你不用擔心宣告變數的問題。</li>
+<li>Ruby有類別，也有 <code>public</code>, <code>private</code>, 與 <code>protected</code> 方法，就像PHP 5一樣。</li>
+<li>也有變數以$號開頭 (在Ruby中表示這是全域變數)</li>
+<li>也有 <code>eval</code> 。</li>
+<li>有字串「內嵌」。不過不是用
+<code>&quot;$foo is a $bar&quot;</code> ，而是<code>&quot;#{foo} is a #{bar}&quot;</code>—跟PHP一樣，用單引號包住的字串就不會作用。</li>
+<li>也有Heredocs。</li>
+<li>Ruby也有例外處理，就像PHP 5一樣。</li>
+<li>Ruby也有非常廣泛的標準函式庫。</li>
+<li>陣列和雜湊就和你期望的一樣，只要你把 <code>array()</code> 換成 <code>{</code> 和 <code>}</code> ： <code>array('a' =&gt; 'b')</code> 變成
+<code>{'a' =&gt; 'b'}</code>。</li>
+<li><code>true</code> 和 <code>false</code> 和PHP一樣，但 <code>null</code> 變成了 <code>nil</code> 。</li>
+</ul>
+<h3>相異點</h3>
+<p>Ruby與PHP不同的地方...</p>
+<ul>
+<li>Ruby有強型別，你必須要使用 <code>to_s</code>, <code>to_i</code> 等方法來轉換型別。</li>
+<li>字串、數值、陣列、雜湊...等等。他們全都是物件。所以該用-1.abs而不是abs(-1)。</li>
+<li>呼叫方法時，可以省略括號。</li>
+<li>標準函式庫和擴充套件都被包裝成模組和類別了。</li>
+<li>反射(reflection)是 Ruby 物件與生俱來的能力，你不需要像在PHP 5中一樣使用 <code>Reflection</code> 類別。</li>
+<li>變數都是參照(references)。</li>
+<li>沒有抽象類別和介面。</li>
+<li>雜湊和陣列不可互換使用。</li>
+<li>只有 <code>false</code> and <code>nil</code> 是 false: <code>0</code>, <code>array()</code> and <code>&quot;&quot;</code> 在條件判斷時皆為真。</li>
+<li>幾乎所有東西都是方法呼叫，甚至是 <code>raise</code> (PHP的 <code>throw</code>).</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>上手入門</strong>，一點都不難!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在瀏覽器中試用 Ruby!</a></li>
+
+    
+    <li><a href="/zh_tw/documentation/quickstart/">20 分鐘 Ruby 體驗</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/ruby-from-other-languages/">從其他語言到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong> 新世界…</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_tw/documentation/">文件</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">學術研究</a></li>
+    
+
+    
+    <li><a href="/zh_tw/libraries/">函式庫</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong> 友善且持續成長的社群</h3>
+  <ul>
+    
+    <li><a href="/zh_tw/community/mailing-lists/">郵件論壇</a>: 與世界各地的程式設計師一同聊聊</li>
+    
+
+    
+    <li><a href="/zh_tw/community/user-groups/">使用者群組</a>: 與身旁的 Ruby 使用者接觸</li>
+    
+
+    
+    <li><a href="/zh_tw/community/weblogs/">部落格</a>: 了解 Ruby 社群中的最新消息</li>
+    
+
+    
+    <li><a href="/zh_tw/community/ruby-core/">Ruby 核心</a>: 幫助開發最新的 Ruby</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">問題追蹤</a>: 回報或解決 Ruby 問題</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

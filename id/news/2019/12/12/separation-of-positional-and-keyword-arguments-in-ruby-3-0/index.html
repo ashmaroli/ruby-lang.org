@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Pemisahan positional dan keyword argument pada Ruby 3.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Pemisahan positional dan keyword argument pada Ruby 3.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh mame tanggal 2019-12-12<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Artikel ini menjelaskan rencana <em>incompatibility</em> dari <em>keyword argument</em>
+pada Ruby 3.0</p>
+<h2>tl;dr</h2>
+<p>Pada Ruby 3.0, <em>positional</em> dan <em>keyword argument</em> akan dipisahkan. Ruby 2.7
+akan memberi peringatan terhadap perilaku yang akan berubah pada Ruby 3.0.
+Jika Anda melihat peringatan di bawah ini maka Anda perlu untuk memperbarui
+kode Anda:</p>
+<ul>
+<li><code>Menggunakan argument terakhir sebagai parameter argument sudah usang</code>, atau</li>
+<li><code>Melewatkan keyword argument sebagai parameter hash terakhir juga sudah usang</code>, atau</li>
+<li><code>Memisahkan argument terakhir ke positional dan keyword argument juga sudah usang</code></li>
+</ul>
+<p>Pada kebanyakan kasus, Anda dapat menghindari <em>compatibility</em> ini dengan
+menambahkan operator <em>double splat</em>. Operator ini secara langsung melewatkan
+<em>keyword argument</em> ketimbang sebuah objek <code>Hash</code>. Begitu juga, Anda mungkin
+menambahkan tanda kurung kurawal <code>{}</code> untuk secara langsung melewatkan sebuah
+objek <code>Hash</code> ketimbang <em>keyword argument</em>. Baca bagian &quot;Kasus Khusus&quot; di
+bawah ini untuk lebih detail.</p>
+<p>Pada Ruby 3, sebuah <em>method</em> yang mendelegasikan semua <em>argument</em> harus secara
+langsung mendelegasikan <em>keyword argument</em> dan <em>positional argument</em>. Jika
+Anda ingin tetap menggunakan perilaku delegasi yang ditemukan pada Ruby 2.7
+dan sebelumnya, gunakan <code>ruby2_keywords</code>. Lihat bagian &quot;Menangani delegasi
+argument&quot; untuk lebih detail.</p>
+<h2>Kasus Khusus</h2>
+<p>{: #typical-cases }</p>
+<p>Berikut adalah kasus yang paling khas. Anda dapat menggunakan operator <em>double
+splat</em> (<code>**</code>) untuk melewatkan <em>keyword</em> daripada sebuah <em>Hash</em>.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->h<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Pemanggilan method ini melewatkan sebuah positional Hash argument<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Pada Ruby 2.7: Hash secara otomatis diubah menjadi sebuah keyword argument<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Pada Ruby 3.0: Pemanggilan ini menyebabkan ArgumentError<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo.rb:11: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo.rb:2: warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    42<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Jika Anda ingin tetap menggunakan perilaku sebelumnya pada Ruby 3.0, gunakan double splat<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 42<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ini adalah kasus lainnya. Anda dapat menggunakan tanda kurung kurawal (<code>{}</code>)
+untuk melewatkan sebuah objek <em>Hash</em> ketimbang <em>keyword</em> secara langsung.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Pemanggilan ini hanya melewatkan sebuah keyword argument tanpa positional argument<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Pada Ruby 2.7: keyword diubah ke sebuah positional Hash argument<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Pada Ruby 3.0: Pemanggilan ini menyebabkan ArgumentError<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo2.rb:9: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo2.rb:2: warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    {:k=&gt;42}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Jika Anda ingin tetap menggunakan perilaku sebelumnya pada Ruby 3.0, gunakan<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># tanda kurung kurawal untuk mengubahnya menjadi sebuah explicit Hash<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->})<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; {:k=&gt;42}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Apa yang sudah usang?</h2>
+<p>{: #what-is-deprecated}</p>
+<p>Pada Ruby 2, <em>keyword argument</em> dapat dianggap sebagai <em>positional Hash argument</em>
+terakhir dan sebuah <em>positional Hash argument</em> terakhir dapat dianggap sebagai
+<em>keyword argument</em>.</p>
+<p>Karena pengubahan otomatis tersebut, kadang-kadang hal ini sangat kompleks dan
+sulit seperti yang dideskripsikan pada bagian terakhir. Sehingga, sekarang
+perilaku tersebut sudah usang pada Ruby 2.7 dan akan dihilangkan pada Ruby 3.
+Dengan kata lain, <em>keyword argument</em> akan dipisahkan seluruhnya dari
+<em>positional</em>-nya pada Ruby 3. Ketika Anda ingin melewatkan <em>keyword argument</em>,
+Anda seharusnya selalu menggunakan <code>foo(k: expr)</code> atau <code>foo(**expr)</code>. Jika
+Anda ingin menerima <em>keyword argument</em>, pada dasarnya Anda harus selalu
+menggunakan <code>def foo(k: default)</code> atau <code>def foo(k:)</code> atau <code>def foo(**kwargs)</code>.</p>
+<p>Ingat bahwa Ruby 3.0 tidak membedakan perilaku ketika memanggil sebuah <em>method</em>
+yang tidak menerima <em>keyword argument</em> dengan <em>method</em> yang menerima
+<em>keyword argument</em>. Sebagai contoh, kasus berikut ini tidak akan usang dan
+akan tetap berjalan pada Ruby 3.0. <em>Keyword argument</em> tetap dianggap sebagai
+sebuah <em>positional Hash argument</em>.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Hal ini karena gaya di atas sangat sering digunakan dan tidak ada ambiguitas
+saat bagaimana <em>argument</em> seharusnya diperlakukan. Melarang pengubahan ini
+akan menyebabkan <em>incompatibility</em> tambahan untuk manfaat yang sedikit.</p>
+<p>Namun demikian, gaya ini tidak direkomendasikan pada kode baru, kecuali anda
+sering melewatkan sebuah <em>Hash</em> sebagai sebuah <em>positional argument</em> dan juga
+menggunakan <em>keyword argument</em>. Jika tidak, gunakan <em>double splat</em>:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Akankah kode saya tidak berjalan pada Ruby 2.7?</h2>
+<p>{: #break-on-ruby-2-7 }</p>
+<p>Jawaban singkatnya adalah &quot;mungkin tidak&quot;.</p>
+<p>Perubahan pada Ruby 2.7 didesain sebagai sebuah migrasi menuju 3.0. Pada
+dasarnya, Ruby 2.7 hanya memperingatkan perilaku yang akan berubah pada Ruby 3,
+ini termasuk beberapa perubahan <em>incompatible</em> yang kami pertimbangkan sangat
+kecil. Lihat bagian &quot;Perubahan kecil lainnya&quot; untuk detail.</p>
+<p>Kecuali untuk peringatan dan perubahan kecil, Ruby 2.7 mencoba untuk tetap
+<em>compatible</em> dengan Ruby 2.6. Sehingga, kode Anda mungkin akan berjalan pada
+Ruby 2.7, walaupun mungkin mengeluarkan peringatan. Dengan menjalankannya pada
+Ruby 2.7, Anda dapat mengecek jika kode Anda siap untuk Ruby 3.0.</p>
+<p>Jika Anda ingin mematikan peringatan <em>deprecation</em>, mohon gunakan <em>command-line
+argument</em> <code>-W:no-deprecated</code> atau menambahkan <code>Warning[:deprecated] = false</code>
+pada kode Anda.</p>
+<h2>Menangani delegasi argument</h2>
+<p>{: #delegation }</p>
+<h3>Ruby 2.6 dan sebelumnya</h3>
+<p>{: #delegation-ruby-2-6-or-prior }</p>
+<p>Pada Ruby 2, Anda dapat menulis sebuah <em>method</em> delegasi dengan menerima sebuah
+<em>argument</em> <code>*rest</code> dan <code>&amp;block</code> dan melewatkan keduanya ke <em>method</em> tujuan.
+<em>Keyword argument</em> pada perilaku ini secara tidak langsung ditangani oleh
+pengubahan otomatis antara <em>positional</em> dan <em>keyword argument</em>.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 3</h3>
+<p>{: #delegation-ruby-3 }</p>
+<p>Anda butuh mendelegasikan <em>keyword argument</em> secara langsung.</p>
+<!-- raw HTML omitted -->
+<p>Kalau tidak, jika anda tidak membutuhkan <em>compatibility</em> dengan Ruby 2.6 atau
+sebelumnya dan Anda tidak mengubah <em>argument</em> apapun, Anda dapat menggunakan
+sintaks delegasi baru (<code>...</code>) yang dikenalkan pada Ruby 2.7.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 2.7</h3>
+<p>{: #delegation-ruby-2-7 }</p>
+<p>Secara singkat: gunakan <code>Module#ruby2_keywords</code> dan delegasikan <code>*args, &amp;block</code>.</p>
+<!-- raw HTML omitted -->
+<p><code>ruby2_keywords</code> menerima <em>keyword argument</em> sebagai <em>Hash argument</em> terakhir
+dan melewatkannya sebagai <em>keyword argument</em> ketika memanggil <em>method</em> lain.</p>
+<p>Faktanya, Ruby 2.7 memperbolehkan gaya baru delegasi pada kebanyakan kasus.
+Namun, ada sebuah <em>corner case</em> yang diketahui. Lihat pada bagian berikutnya.</p>
+<h3>Sebuah compatible delegation yang berjalan pada Ruby 2.6, 2.7, dan 3</h3>
+<p>{: #a-compatible-delegation }</p>
+<p>Secara singkat: menggunakan <code>Module#ruby2_keywords</code> lagi.</p>
+<!-- raw HTML omitted -->
+<p>Sayangnya, kami perlu untuk menggunakan delegasi gaya lama (seperti, tanpa
+<code>**kwargs</code>) karena Ruby 2.6 dan sebelumnya tidak dapat menangani gaya delegasi
+baru dengan benar. Ini adalah satu alasan dari pemisahan <em>keyword argument</em>;
+detail dijelaskan di bagian akhir. <code>ruby2_keywords</code> memperbolehkan Anda untuk
+menjalankan gaya lama walaupun pada Ruby 2.7 dan 3.0. Karena tidak ada
+<code>ruby2_keywords</code> pada 2.6 atau sebelumnya, mohon gunakan
+<a href="https://rubygems.org/gems/ruby2_keywords">ruby2_keywords gem</a> atau definisikan
+sendiri:</p>
+<!-- raw HTML omitted -->
+<hr />
+<p>Jika kode Anda tidak harus berjalan pada Ruby 2.6 atau sebelumnya, Anda bisa
+mencoba gaya baru pada Ruby 2.7. Pada kebanyakan kasusu, ini berjalan. Catat
+bahwa masih ada <em>corner case</em> berikut:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted -->       <!-- raw HTML omitted -->#=&gt; Ruby 2.7: []   ({} dibuang)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.7: [{}] (Anda dapat melewatkan {} dengan secara langsung melewatkan tanpa keyword)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Sebuah <em>Hash argument</em> kosong secara otomatis diubah dan diserap menjadi
+<code>**kwargs</code> dan pemanggilan delegasi menghilangkan <em>keyword hash</em> kosong,
+sehinggan tanpa argument dilewatkan ke <code>target</code>. Sejauh yang kami tahu,
+<em>corner case</em> hanya ini.</p>
+<p>Seperti yang tertulis di baris terakhir, Anda dapat menyelesaikan masalah ini
+dengan menggunakan <code>**{}</code>.</p>
+<p>Jika Anda sangat khawatir terkait <em>portability</em>, gunakan <code>ruby2_keywords</code>.
+(Diakui bahwa Ruby 2.6 dan sebelumnya memiliki banyak <em>corner case</em> pada
+<em>keyword argument</em>. :-) <code>ruby2_keywords</code> ke depan mungkin dihilangkan setelah
+masa Ruby 2.6 berakhir. Pada saat tersebut, kami merekomendasikan untuk secara
+langsung mendelegasikan <em>keyword argument</em> (lihat kode Ruby 3 di atas).</p>
+<h2>Perubahan kecil lainnya</h2>
+<p>{: #other-minor-changes }</p>
+<p>Ada tiga perubahan kecil terkait <em>keyword argument</em> pada Ruby 2.7.</p>
+<h3>1. Non-symbol key diperbolehkan pada keyword argument</h3>
+<p>{: #other-minor-changes-non-symbol-keys }</p>
+<p>Pada Ruby 2.6 dan sebelumnya, hanya <em>Symbol key</em> yang diperbolehkan pada
+<em>keyword argument</em>. <em>Keyword argument</em> dapat menggunakan <em>non-Symbol key</em> pada
+Ruby 2.7.</p>
+<!-- raw HTML omitted -->
+<p>Jika sebuah <em>method</em> menerima baik <em>optional</em> maupun <em>keyword argument</em>, objek
+<em>Hash</em> yang memiliki <em>Symbol</em> dan <em>non-Symbol</em> key dipisah menjadi dua pada
+Ruby 2.6. Pada Ruby 2.7, keduanya diterima sebagai <em>keyword</em> karena <em>non-Symbol
+key</em> diperbolehkan.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: [1, {&quot;key&quot;=&gt;42, :sym=&gt;43}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Gunakan tanda kurung kurawal untuk menjaga perilaku<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->},<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 and 2.7: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ruby 2.7 masih memisahkan <em>hash</em> dengan sebuah peringatan jika sebuah <em>Hash</em>
+atau <em>keyword argument</em> dengan <em>Symbol</em> dan <em>non-Symbol key</em> ke sebuah <em>method</em>
+yang menerima <em>keyword</em> secara langsung, tetapi tidak ada <em>keyword rest argument</em>
+(<code>**kwargs</code>). Perilaku ini akan dihilangkan pada Ruby 3 dan <code>ArgumentError</code>
+akan muncul.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.6 and 2.7: =&gt; [{&quot;key&quot;=&gt;42}, 43]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.7: warning: Splitting the last argument into positional and keyword parameters is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#           warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 3.0: ArgumentError<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>2. Double splat dengan sebuah hash kosong (<code>**{}</code>) melewati tanpa argument</h3>
+<p>{: #other-minot-changes-empty-hash }</p>
+<p>Ruby 2.6 dan sebelumnya melewatkan <code>**empty_hash</code> ke sebuah <em>Hash</em> kosong
+sebagai sebuah <em>positional argument</em>. Ruby 2.7 dan setelahnya akan melewatkan
+tanpa <em>argument</em>.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 dan sebelumnya: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 dan setelahnya: []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Catat bahwa <code>foo(**{})</code> tidak melewatkan apapun baik di Ruby 2.6 maupun Ruby 2.7.
+Pada Ruby 2.6 dan sebelumnya, <code>**{}</code> dihilangkan oleh <em>parser</em>. Hal ini berlaku
+sama seperti <code>**empty_hash</code> pada Ruby 2.7 dan setelahnya, memperbolehkan untuk
+jalan mudah melewatkan tanpa <em>keyword argument</em> ke sebuah <em>method</em>.</p>
+<p>Ketika memanggil sebuah <em>method</em> dengan jumlah <em>required positional argument</em>
+yang kurang pada Ruby 2.7, <code>foo(**empty_hash)</code> melewatkan sebuah <em>hash</em> kosong
+dengan sebuah peringatan untuk <em>compatible</em> dengan Ruby 2.6. Perilaku ini akan
+dihilangkan pada Ruby 3.0.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 dan sebelumnya: {}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#             warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 3.0: ArgumentError: wrong number of arguments<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>3. Sintaks no-keyword-argument (<code>**nil</code>) diperkenalkan</h3>
+<p>{: #other-minor-changes-double-splat-nil }</p>
+<p>Anda dapat menggunakan <code>**nil</code> pada sebuah definisi <em>method</em> untuk menandakan
+secara langsung bahwa <em>method</em> menerima tanpa <em>keyword argument</em>. Pemanggilan
+seperti ini dengan <em>keyword argument</em> akan menghasilkan <code>ArgumentError</code>.
+(Ini sebenarnya adalah fitur baru, bukan <em>compatibility</em>).</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 dan setelahnya: no keywords accepted (ArgumentError)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ini berguna untuk menandakan secara langsung jika <em>method</em> tidak dapat menerima
+<em>keyword argument</em>. Jika tidak, <em>keyword</em> akan diserap pada <em>rest argument</em>
+sesuai contoh di atas. Jika Anda memperluas sebuah <em>method</em> untuk menerima
+<em>keyword argument</em>, <em>method</em> mungkin memiliki <em>incompatibility</em> berikut:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Keyword yang dilewatkan diubah menjadi sebuah objek Hash (walaupun di Ruby 3.0)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{:k=&gt;1}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Jika method diperluas untuk menerima sebuah keyword<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->mode: <!-- raw HTML omitted --><!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->args<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Pemanggilan yang sudah ada mungkin tidak berjalan<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; ArgumentError: unknown keyword k<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Mengapa kami membuat usang konversi otomatis</h2>
+<p>{: #why-deprecated }</p>
+<p>Konversi otomatis pada mulanya muncul sebagai sebuah ide bagus dan bekerja
+dengan baik di banyak kasus. Namun, hal ini memiliki banyak <em>corner case</em> dan
+kami telah menerima banyak laporan <em>bug</em> terhadap perilaku tersebut.</p>
+<p>Konversi otomatis tidak bekerja dengan baik ketika sebuah <em>method</em> menerima
+<em>optional positional argument</em> dan <em>keyword argument</em>. Beberapa orang
+mengharapkan objek <em>Hash</em> terakhir dianggap sebagai sebuah <em>positional argument</em>
+dan lainnya mengharapkan diubah menjadi <em>keyword argument</em>.</p>
+<p>Berikut adalah salah satu kasus yang sangat membingungkan:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->=<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{}, {}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [1, {}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; expected: [{}, {}], actual: [1, {}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Pada Ruby 2, <code>foo({})</code> melewatkan sebuah <em>hash</em> kosong sebagai <em>normal argument</em>
+(contoh, <code>{}</code> ditetapkan sebagai <code>x</code>), sementara <code>bar({})</code> melewatkan sebuah
+<em>keyword argument</em> (contoh, <code>{}</code> ditetapkan sebagai <code>kwargs</code>). Sehingga,
+<code>any_method({})</code> sangat ambigu.</p>
+<p>Masalah yang sama juga berlaku pada <em>method</em> yang menerima <em>rest</em> dan <em>keyword
+argument</em>. Ini membuat delegasi langsung <em>keyword argument</em> tidak berjalan</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->()<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.6 dan sebelumnya: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 dan setelahnya:  []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo()</code> melewatkan tanpa <em>argument</em>, tetapi <em>target</em> menerima sebuah <em>hash
+argument</em> kosong pada Ruby 2.6. Hal ini karena <em>method</em> <code>foo</code> mendelegasikan
+<em>keyword</em> (<code>kwargs</code>) secara langsung. Ketika <code>foo()</code> dipanggil, <code>args</code> adalah
+sebuah <em>Array</em> kosong, <code>kwargs</code> adalah sebuah <em>Hash</em> kosong, dan <code>block</code>
+adalah <code>nil</code>. Kemudian, <code>target(*args, **kwargs, &amp;block)</code> melewatkan sebuah
+<em>Hash</em> kosong sebagai <em>argument</em> karena <code>**kwargs</code> secara otomatis diubah
+ke sebuah <em>positional Hash argument</em>.</p>
+<p>Konversi otomatis tidak hanya membingungkan orang akan tetapi membuat <em>method</em>
+kurang <em>extensible</em>. Lihat
+<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a> untuk lebih detail
+terkait alasan perubahan perilaku ini dan mengapa pilihan implementasi ini
+dibuat.</p>
+<h2>Rujukan</h2>
+<p>Artikel ini telah diperiksa (atau bahkan <em>co-authored</em>) oleh Jeremy Evans dan
+Benoit Daloze.</p>
+<h2>Riwayat</h2>
+<ul>
+<li>Diperbarui 2019-12-25: Pada 2.7.0-rc2, pesan peringatan sedikit diubah dan
+sebuah API untuk membenamkan peringatan telah ditambahkan.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

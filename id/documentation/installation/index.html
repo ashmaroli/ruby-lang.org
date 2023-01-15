@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Instalasi Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/documentation/installation/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Instalasi Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Dengan <em>package manager</em> dan alat bantu pihak ketiga, Anda mempunyai banyak
+pilihan untuk memasang dan mengatur Ruby.
+{: .summary}</p>
+<p>Anda mungkin telah memiliki Ruby yang terpasang di komputer Anda. Anda dapat
+mengeceknya di dalam sebuah <a href="https://en.wikipedia.org/wiki/List_of_terminal_emulators">terminal emulator</a> dengan mengetik:</p>
+<!-- raw HTML omitted -->
+<p>Ini seharusnya mengeluarkan informasi versi Ruby yang terpasang.</p>
+<h2>Pilih Metode Instalasi Anda</h2>
+<p>Ada banyak jalan untuk memasang Ruby:</p>
+<ul>
+<li>Pada sebuah sistem operasi <em>UNIX-like</em>, menggunakan <strong>package manager</strong>
+sistem adalah jalan paling mudah.
+Namun, versi Ruby yang akan terpasang biasanya bukan yang terbaru.</li>
+<li><strong>Installers</strong> dapat digunakan untuk memasang versi Ruby tertentu
+atau banyak versi Ruby. Ada juga sebuah <em>installer</em> untuk Windows.</li>
+<li><strong>Managers</strong> membantu Anda untuk berpindah antar versi Ruby yang berbeda
+pada sistem Anda.</li>
+<li>Dan terakhir, Anda juga dapat <strong>membangun Ruby dari kode sumbernya</strong>.</li>
+</ul>
+<p>Pada Windows 10, Anda juga dapat menggunakan <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem untuk Linux</a>
+untuk memasang satu dari distribusi Linux yang didukung dan metode instalasi
+apa pun yang tersedia pada sistem tersebut.</p>
+<p>Berikut adalah daftar metode instalasi yang tersedia:</p>
+<ul>
+<li><a href="#package-management-systems">Package Management Systems</a>
+<ul>
+<li><a href="#apt">Debian, Ubuntu</a></li>
+<li><a href="#yum">CentOS, Fedora, RHEL</a></li>
+<li><a href="#snap">Snap</a></li>
+<li><a href="#portage">Gentoo</a></li>
+<li><a href="#pacman">Arch Linux</a></li>
+<li><a href="#homebrew">macOS</a></li>
+<li><a href="#freebsd">FreeBSD</a></li>
+<li><a href="#openbsd">OpenBSD</a></li>
+<li><a href="#openindiana">OpenIndiana</a></li>
+<li><a href="#winget">Windows Package Manager</a></li>
+<li><a href="#chocolatey">Chocolatey package manager for Windows</a></li>
+<li><a href="#other-systems">Other Distributions</a></li>
+</ul>
+</li>
+<li><a href="#installers">Installers</a>
+<ul>
+<li><a href="#ruby-build">ruby-build</a></li>
+<li><a href="#ruby-install">ruby-install</a></li>
+<li><a href="#rubyinstaller">RubyInstaller</a> (Windows)</li>
+<li><a href="#rubystack">Ruby Stack</a></li>
+</ul>
+</li>
+<li><a href="#managers">Managers</a>
+<ul>
+<li><a href="#asdf-vm">asdf-vm</a></li>
+<li><a href="#chruby">chruby</a></li>
+<li><a href="#rbenv">rbenv</a></li>
+<li><a href="#rvm">RVM</a></li>
+<li><a href="#uru">uru</a></li>
+</ul>
+</li>
+<li><a href="#building-from-source">Membangun Ruby dari kode sumbernya</a></li>
+</ul>
+<h2>Package Management Systems</h2>
+<p>{: #package-management-systems}</p>
+<p>Jika Anda tidak dapat mengkompilasi Ruby sendiri dan tidak ingin menggunakan
+sebuah alat bantu pihak ketiga, Anda dapat menggunakan <em>package manager</em>
+sistem untuk memasang Ruby.</p>
+<p>Beberapa anggota komunitas Ruby sangat menyarankan Anda untuk tidak
+menggunakan <em>package manager</em> saat memasang Ruby dan sebaiknya menggunakan
+alat bantu.</p>
+<p>Ini mungkin sebagian besar <em>package manager</em> akan memasang versi Ruby
+lama ketimbang versi terbaru. Untuk menggunakan versi Ruby terbaru,
+cek nama <em>package</em> yang cocok dengan nomor versinya. Atau gunakan sebuah
+<a href="/id/documentation/installation/#installers">installer</a>.</p>
+<h3>apt (Debian atau Ubuntu)</h3>
+<p>{: #apt}</p>
+<p>Debian GNU/Linux dan Ubuntu menggunakan <em>apt package manager</em>.
+Anda dapat menggunakannya sebagai berikut:</p>
+<!-- raw HTML omitted -->
+<h3>yum (CentOS, Fedora, atau RHEL)</h3>
+<p>{: #yum}</p>
+<p>CentOS, Fedora, dan RHEL menggunakan <em>yum package manager</em>.
+Anda dapat menggunakannya sebagai berikut:</p>
+<!-- raw HTML omitted -->
+<p>Versi yang terpasang adalah versi Ruby terbaru yang tersedia
+saat waktu rilis versi distribusi tertentu.</p>
+<h3>snap (Ubuntu atau distribusi Linux lain)</h3>
+<p>{: #snap}</p>
+<p>Snap adalah sebuah <em>package manager</em> yang dikembangkan oleh Canonical.
+Ini tersedia <em>out-of-the-box</em> pada Ubuntu, tetapi snap juga berjalan
+pada banyak distribusi Linux lainnya.
+Anda dapat menggunakannya sebagai berikut:</p>
+<!-- raw HTML omitted -->
+<p>Kami memiliki beberapa <em>channel</em> tiap rangkaian minor Ruby.
+Sebagai contoh, perintah di bawah ini beralih ke Ruby 2.3:</p>
+<!-- raw HTML omitted -->
+<h3>portage (Gentoo)</h3>
+<p>{: #portage}</p>
+<p>Gentoo menggunakan <em>portage package manager</em>.</p>
+<!-- raw HTML omitted -->
+<p>Untuk memasang versi tertentu, atur <code>RUBY_TARGETS</code> pada <code>make.conf</code> Anda.
+Lihat <a href="http://www.gentoo.org/proj/en/prog_lang/ruby/">Gentoo Ruby Project website</a> untuk detail.</p>
+<h3>pacman (Arch Linux)</h3>
+<p>{: #pacman}</p>
+<p>Arch Linux menggunakan sebuah <em>package manager</em> bernama <em>pacman</em>.
+Untuk memasang Ruby, lakukan ini:</p>
+<!-- raw HTML omitted -->
+<p>Ini semestinya memasang versi Ruby terbaru yang <em>stable</em>.</p>
+<h3>Homebrew (macOS)</h3>
+<p>{: #homebrew}</p>
+<p>Versi Ruby 2.0 and diatasnya sudah dimasukkan secara <em>default</em> pada rilis
+macOS setidaknya sejak El Capitan (10.11).</p>
+<p><a href="http://brew.sh/">Homebrew</a> adalah sebuah <em>package manager</em> yang umumnya digunakan
+pada macOS.
+Memasang Ruby dengan menggunakan Homebrew sangat mudah:</p>
+<!-- raw HTML omitted -->
+<p>Ini semestinya memasang versi Ruby terbaru.</p>
+<h3>FreeBSD</h3>
+<p>{: #freebsd}</p>
+<p>FreeBSD menawarkan metode <em>pre-packaged</em> dan <em>source-based</em> untuk memasang Ruby.
+<em>Prebuilt package</em> dapat dipasang melalui <em>pkg tool</em>:</p>
+<!-- raw HTML omitted -->
+<p>Metode <em>source-based</em> dapat digunakan untuk memasang Ruby menggunakan
+<a href="https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/ports-using.html">Ports Collection</a>. Hal ini sangat berguna jika Anda
+ingin menyesuaikan konfigurasi.</p>
+<p>Informasi lebih lanjut terkait Ruby dan ekosistem sekelilingnya pada FreeBSD
+dapat ditemukan di <a href="https://wiki.freebsd.org/Ruby">FreeBSD Ruby Project website</a>.</p>
+<h3>OpenBSD</h3>
+<p>{: #openbsd}</p>
+<p>OpenBSD beserta distribusinya adJ memiliki <em>package</em> untuk tiga versi <em>major</em>
+dari Ruby. Perintah berikut memperbolehkan Anda untuk melihat versi yang
+tersedia dan untuk memasangnya:</p>
+<!-- raw HTML omitted -->
+<p>Anda dapat memasang lebih dari satu versi <em>major</em> satu sama lain karena
+setiap versi memiliki <em>binary</em> dengan nama yang berbeda
+(contoh <code>ruby27</code>, <code>ruby26</code>).</p>
+<p><em>Branch</em> <code>HEAD</code> dari OpenBSD <em>port collection</em> mungkin memiliki versi Ruby
+terbaru setelah beberapa hari dirilis, lihat
+<a href="https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/lang/ruby/?only_with_tag=HEAD">directory lang/ruby in the most recent ports collection</a>.</p>
+<h3>Ruby pada OpenIndiana</h3>
+<p>{: #openindiana}</p>
+<p>Untuk memasang Ruby pada <a href="http://openindiana.org/">OpenIndiana</a>, mohon gunakan
+Image Package Systems (IPS) <em>client</em>.
+Ini akan memasang <em>binary</em> Ruby terbaru dan RubyGems secara langsung
+dari <em>repository</em> OpenIndiana. Ini mudah:</p>
+<!-- raw HTML omitted -->
+<p>Namun demikian, alat bantu pihak ketiga mungkin adalah jalan terbaik untuk
+mendapatkan versi Ruby terbaru.</p>
+<h3>Windows Package Manager</h3>
+<p>{: #winget}</p>
+<p>Pada Windows, Anda dapat menggunakan
+<a href="https://github.com/microsoft/winget-cli">Windows Package Manager CLI</a> untuk
+memasang Ruby:</p>
+<!-- raw HTML omitted -->
+<h3>Chocolatey package manager untuk Windows</h3>
+<p>{: #chocolatey}</p>
+<p>Pada Windows juga, Anda dapat menggunakan
+<a href="https://chocolatey.org/install">Chocolatey Package Manager</a> untuk
+memasang Ruby:</p>
+<!-- raw HTML omitted -->
+<p>Perintah di atas akan menggunakan <code>msys2</code> yang telah ada atau memasang sendiri
+untuk Ruby <em>development environment</em> yang lengkap.</p>
+<h3>Distribusi Lainnya</h3>
+<p>{: #other-systems}</p>
+<p>Pada sistem lain, Anda dapat mencari <em>package repository</em> dari
+<em>manager</em> distribusi Linux Anda untuk Ruby. Kemungkinan lain, Anda dapat
+menggunakan sebuah <a href="/id/documentation/installation/#installers"><em>third-party installer</em></a>.</p>
+<h2>Installers</h2>
+<p>{: #installers}</p>
+<p>Jika versi Ruby yang disediakan oleh sistem atau <em>package manager</em> Anda telah
+usang, versi terbaru dapat dipasang menggunakan sebuah <em>installer</em> pihak ketiga.</p>
+<p>Beberapa dari mereka juga memperbolehkan Anda untuk memasang banyak versi
+dalam sistem yang sama; <em>manager</em> yang bersesuaian dapat membantu beralih
+antar versi Ruby yang berbeda.</p>
+<p>Jika Anda sedang merencanakan untuk mengunakan <a href="#rvm">RVM</a> sebagai
+<em>version manager</em>, Anda tidak perlu <em>installer</em> terpisah. Ini sudah ada dengan
+sendirinya.</p>
+<h3>ruby-build</h3>
+<p>{: #ruby-build}</p>
+<p><a href="https://github.com/rbenv/ruby-build#readme">ruby-build</a> adalah sebuah <em>plugin</em> untuk <a href="#rbenv">rbenv</a> yang
+memperbolehkan Anda untuk mengkompilasi dan memasang versi Ruby yang berbeda.
+ruby-build juga dapat digunakan sebagai <em>standalone program</em> tanpa rbenv.
+ruby-build tersedia untuk macOS, Linux, dan sistem operasi <em>UNIX-like</em> lainnya.</p>
+<h3>ruby-install</h3>
+<p>{: #ruby-install}</p>
+<p><a href="https://github.com/postmodern/ruby-install#readme">ruby-install</a> memperbolehkan Anda untuk mengkompilasi
+dan memasang versi Ruby yang berbeda ke dalam <em>directory</em> pilihan Anda.
+<a href="#chruby">chruby</a> adalah sebuah alat bantu pelengkap yang digunakan untuk
+beralih ke versi Ruby yang berbeda. ruby-install tersedia untuk macOS, Linux,
+dan sistem operasi <em>UNIX-like</em> lainnya.</p>
+<h3>RubyInstaller</h3>
+<p>{: #rubyinstaller}</p>
+<p>Pada Windows, <a href="https://rubyinstaller.org/">RubyInstaller</a> memberikan apa pun yang Anda
+butuhkan untuk memasang Ruby <em>development environment</em> sepenuhnya.</p>
+<p>Unduh, jalankan, dan selesai!</p>
+<h3>Ruby Stack</h3>
+<p>{: #rubystack}</p>
+<p>Jika Anda sedang memasang Ruby untuk menggunakan Ruby on Rails,
+Anda dapat menggunakan <em>installer</em> berikut:</p>
+<ul>
+<li><a href="http://bitnami.com/stack/ruby/installer">Bitnami Ruby Stack</a> menyediakan <em>development environment</em>
+lengkap untuk Rails. Bitnami Ruby Stack mendukung macOS, Linux, Windows,
+<em>virtual machines</em>, dan <em>cloud images</em>.</li>
+</ul>
+<h2>Managers</h2>
+<p>{: #managers}</p>
+<p>Banyak Rubyist menggunakan Ruby <em>manager</em> untuk mengatur banyak versi Ruby.
+<em>Manager</em> memperbolehkan Anda untuk beralih antar versi Ruby dengan mudah
+bahkan otomatis pada proyek dan kelebihan lainnya yang tidak didukung secara
+resmi. Meskipun demikian, Anda dapat menemukan dukungan dalam komunitas
+masing-masing.</p>
+<h3>asdf-vm</h3>
+<p>{: #asdf-vm}</p>
+<p><a href="https://asdf-vm.com/">asdf-vm</a> adalah sebuah <em>extendable version manager</em> yang dapat
+mengatur banyak versi <em>language runtime</em> berdasarkan sebuah proyek.
+Anda akan membutuhkan <em>plugin</em> <a href="https://github.com/asdf-vm/asdf-ruby">asdf-ruby</a> (dimana menggunakan
+<a href="#ruby-build">ruby-build</a>) untuk memasang Ruby.</p>
+<h3>chruby</h3>
+<p>{: #chruby}</p>
+<p><a href="https://github.com/postmodern/chruby#readme">chruby</a> memperbolehkan Anda untuk beralih antar banyak versi Ruby.
+chruby dapat mengatur Ruby yang terpasang dengan <a href="#ruby-install">ruby-install</a>
+atau bahkan dari kode sumber.</p>
+<h3>rbenv</h3>
+<p>{: #rbenv}</p>
+<p><a href="https://github.com/rbenv/rbenv#readme">rbenv</a> memperbolehkan Anda untuk mengatur banyak instalasi Ruby.
+Selagi rbenv tidak dapat memasang Ruby secara <em>default</em>, <em>plugin</em>
+<a href="#ruby-build">ruby-build</a> dapat. Kedua alat bantu ini tersedia untuk macOS,
+Linux, atau sistem operasi <em>UNIX-like</em> lainnya.</p>
+<h3>rbenv untuk Windows</h3>
+<p>{: #rbenv-for-windows}</p>
+<p><a href="https://github.com/ccmywish/rbenv-for-windows#readme">rbenv untuk Windows</a> memperbolehkan Anda untuk memasang
+dan mengatur banyak instalasi Ruby pada Windows. Alat bantu ini ditulis dalam
+PowerShell sehingga menyediakan sebuah jalan asli untuk menggunakan Ruby
+bagi pengguna Windows. Di samping itu, <em>command line interface</em> kompatibel
+dengan <a href="https://github.com/rbenv/rbenv#readme">rbenv</a> pada sistem <em>UNIX-like</em>.</p>
+<h3>RVM (&quot;Ruby Version Manager&quot;)</h3>
+<p>{: #rvm}</p>
+<p><a href="http://rvm.io/">RVM</a> memperbolehkan Anda untuk memasang dan mengatur banyak instalasi
+Ruby pada sistem Anda. RVM juga dapat mengatur <em>gemsets</em> yang berbeda.
+RVM tersedia untuk macOS, Linux, atau sistem operasi <em>UNIX-like</em> lainnya.</p>
+<h3>uru</h3>
+<p>{: #uru}</p>
+<p><a href="https://bitbucket.org/jonforums/uru">Uru</a> adalah sebuah <em>command line tool</em> yang ringan dan mendukung
+banyak <em>platform</em> yang membantu Anda untuk menggunakan banyak versi Ruby
+pada sistem operasi macOS, Linux, atau Windows.</p>
+<h2>Membangun dari Kode Sumber</h2>
+<p>{: #building-from-source}</p>
+<p>Tentu saja, Anda dapat memasang Ruby dari kode sumbernya.
+<a href="/id/downloads/">Unduh</a> dan <em>unpack tarball</em> tersebut, kemudian lakukan ini:</p>
+<!-- raw HTML omitted -->
+<p>Secara otomatis, ini akan memasang Ruby pada <code>/usr/local</code>.
+Untuk mengubahnya, tambahkan opsi <code>--prefix=DIR</code> di dalam skrip <code>./configure</code>.</p>
+<p>Anda dapat menemukan informasi lebih lanjut terkait membangun dari kode
+sumber pada <a href="https://github.com/ruby/ruby/blob/master/doc/contributing/building_ruby.md">instruksi Building Ruby</a>.</p>
+<p>Meskipun begitu, menggunakan alat bantu pihak ketiga atau <em>package manager</em>
+mungkin adalah ide yang lebih baik, karena Ruby yang terpasang tidak akan
+diatur oleh alat bantu apa pun.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Coba Sekarang</strong>, sangat mudah!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (langsung di browser Anda)</a></li>
+
+    
+    <li><a href="/id/documentation/quickstart/">Menguasai Ruby dalam 20 Menit</a></li>
+    
+
+    
+    <li><a href="/id/documentation/ruby-from-other-languages/">Dari Bahasa Pemrograman Lain ke Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Jelajahi</strong> sebuah dunia baru…</h3>
+  <ul class="menu">
+    
+    <li><a href="/id/documentation/">Dokumentasi</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Penelitian Akademis</a></li>
+    
+
+    
+    <li><a href="/id/libraries/">Pustaka</a></li>
+    
+
+    
+    <li><a href="/id/documentation/success-stories/">Kisah Sukses</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Bergabunglah</strong> dalam komunitas yang ramah dan makin berkembang.</h3>
+  <ul>
+    
+    <li><a href="/id/community/mailing-lists/">Mailing List</a>: Berdiskusi dengan programmer Ruby dari Indonesia dan seluruh dunia.</li>
+    
+
+    
+    <li><a href="/id/community/user-groups/">Komunitas Pengguna</a>: Berpartisipasilah dengan Rubyist di lokasi Anda.</li>
+    
+
+    
+    <li><a href="/id/community/weblogs/">Blog</a>: Ulasan terbaru dari komunitas Ruby.</li>
+    
+
+    
+    <li><a href="/id/community/ruby-core/">Ruby Core</a>: Silakan berkontribusi untuk versi Ruby terbaru.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Laporkan Masalah</a>: Lapor atau bantu memecahkan masalah yang ada di Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

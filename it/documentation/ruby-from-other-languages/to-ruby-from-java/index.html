@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Da Java a Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/it/documentation/ruby-from-other-languages/to-ruby-from-java/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/it/feeds/news.rss" rel="alternate" title="Ultime Notizie (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/it/">
+          <h1>Ruby</h1>
+          <h2>Il migliore amico dei programmatori</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cerca" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Da Java a Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Java è un linguaggio maturo, testato e veloce (contrariamente a quanto
+affermano i programmatori che non amano questo linguaggio). È anche
+tuttavia molto prolisso, quindi passando a Ruby il numero di righe di
+codice diminuirà sensibilmente. C’è anche da aspettarsi che la creazione
+di prototipi riutilizzabili risulti più facile e veloce.</p>
+<h3>Somiglianze</h3>
+<p>Come in Java, in Ruby…</p>
+<ul>
+<li>La memoria è gestita automaticamente tramite un garbage collector.</li>
+<li>Gli oggetti sono fortemente tipizzati.</li>
+<li>Ci sono metodi pubblici, privati e protetti.</li>
+<li>Esistono dei tool di documentazione embeddati, come RDoc, che generano
+documenti molto simili a quelli generati da JavaDoc.</li>
+</ul>
+<h3>Differenze</h3>
+<p>A differenza di Java, in Ruby…</p>
+<ul>
+<li>Non devi compilare il codice, viene eseguito direttamente.</li>
+<li>Ci sono molti toolkit di terze parti per creare interfacce grafiche,
+per esempio <a href="https://github.com/eumario/wxruby">WxRuby</a>, <a href="https://github.com/larskanis/fxruby">FXRuby</a>, <a href="https://ruby-gnome2.osdn.jp/">Ruby-GNOME2</a>, <a href="https://github.com/ryanmelt/qtbindings/">Qt</a>,
+o Ruby Tk (già integrato).</li>
+<li>Puoi usare la parola chiave <code>end</code> dopo aver definito delle classi o
+dei metodi, per esempio, senza dover usare delle parentesi graffe.</li>
+<li>Si usa <code>require</code> invece di <code>import</code>.</li>
+<li>Tutte le variabili membro sono private e si può accedere a tutto
+dall’esterno tramite metodi.</li>
+<li>Le parentesi nelle chiamate ai metodi sono normalmente opzionali e
+omesse di frequente.</li>
+<li>Ogni cosa è un oggetto, inclusi i numeri come 2 e 3.14159.</li>
+<li>Non vi è un controllo di tipo statico.</li>
+<li>I nomi delle variabili sono semplicemente delle “etichette”, non hanno
+un tipo associato.</li>
+<li>Non ci sono dichiarazioni di tipo, si può direttamente effettuare
+delle assegnazioni a nuove variabili quando ce n’è bisogno ed esse
+vengono popolate direttamente (per esempio tramite <code>a = [1,2,3]</code>
+invece che <code>int[] a = {1,2,3};</code>)</li>
+<li>Non esiste il casting. I tuoi unit test ti dovrebbero dire prima che
+il codice venga eseguito se verrà lanciata un’eccezione.</li>
+<li>Si creano oggetti usando assegnazioni come <code>test = TestClass.new(&quot;ciao!&quot;)</code> invece di <code>test = new TestClass(&quot;ciao!&quot;)</code></li>
+<li>Il costruttore si chiama sempre “initialize”, e non come il nome della
+classe.</li>
+<li>Esistono dei “miscugli” (mixins) invece delle interfacce.</li>
+<li>YAML tende ad essere più usato di XML.</li>
+<li>Si usa <code>nil</code> invece di <code>null</code>.</li>
+<li><code>==</code> e <code>equals()</code> sono gestiti in modo diverso in Ruby. Usa <code>==</code>
+quando vuoi testare un’equivalenza in Ruby (<code>equals()</code> in Java) e usa
+<code>equal?()</code> quando vuoi sapere se due oggetti sono lo stesso (<code>==</code> in
+Java).</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Per iniziare</strong>, è facile!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Prova Ruby! (nel tuo browser)</a></li>
+
+    
+    <li><a href="/it/documentation/quickstart/">Ruby in venti minuti</a></li>
+    
+
+    
+    <li><a href="/it/documentation/ruby-from-other-languages/">Ruby a partire da altri linguaggi</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Esplora</strong> un nuovo mondo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/it/documentation/">Documentazione</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/it/libraries/">Librerie</a></li>
+    
+
+    
+    <li><a href="/it/documentation/success-stories/">Esperienze Positive</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Partecipa</strong> ad una comunità amichevole e in crescita.</h3>
+  <ul>
+    
+    <li><a href="/it/community/mailing-lists/">Liste di Discussione</a>: Parla con altri programmatori Ruby da tutto il mondo.</li>
+    
+
+    
+    <li><a href="/it/community/user-groups/">Gruppi di Utenti</a>: Entra in contatto con "Rubysti" nella tua zona.</li>
+    
+
+    
+    <li><a href="/it/community/weblogs/">Blog</a>: Leggi cosa sta succedendo proprio adesso nella comunità di Ruby.</li>
+    
+
+    
+    <li><a href="/it/community/ruby-core/">Ruby Core</a>: Aiutaci a perfezionare l'ultimo Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Segnalaci o aiutaci a risolvere problemi in Ruby</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feed RSS</h3>
+    <p><a href="/it/feeds/news.rss">Ultime Notizie (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Questo sito in altre lingue:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/it/about/website/">Questo sito web</a> è mantenuto con orgoglio dai membri della comunità Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

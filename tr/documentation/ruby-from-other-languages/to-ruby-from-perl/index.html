@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Perl'den Ruby'ye</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/documentation/ruby-from-other-languages/to-ruby-from-perl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Perl'den Ruby'ye</h1>
+
+
+
+  <div id="content">
+    <p>Perl çok iyidir. Perl’ün dökümantasyonu çok iyidir. Perl’ün topluluğu …
+çok iyidir. Ancak bu dil biraz kalabalık ve karmaşıktır. Bu yüzden az
+zaman harcayan, daha belirli çizgileri olan ve başından beri eşsiz OO
+özellikleri olan bir dilin hasretini çeken Perl’cüler için Ruby uygun
+olabilir.</p>
+<h3>Benzerlikler</h3>
+<p>Perl’de olduğu gibi Ruby’de de,...</p>
+<ul>
+<li>CPAN benzeri bir paket yönetim sistemi vardır (<a href="http://guides.rubygems.org">RubyGems</a>)</li>
+<li>Regex’ler içine gömülüdür. Bon appétit!</li>
+<li>Birçok sık kullanılan özellik içinde gömülüdür.</li>
+<li>Parantezler çoğunlukla isteğe bağlıdır</li>
+<li>String’ler aynı şekilde çalışır.</li>
+<li>Perl gibi string ve regex belirleme yapıları vardır. (<code>%q{bu}</code>
+(tek-tırnak), veya <code>%Q{bu}</code> (çift-tırnaklı), ve <code>%w{bu tek-tırnaklı kelime listesi}</code> gibi. İsterseniz <code>%Q|bunu|</code> <code>%Q(veya)</code> <code>%Q^diğer bir^</code> sınırlayıcıyı da kullanabilirsiniz).</li>
+<li>Çift tırnak içinde değişken değerlerine <code>&quot;bu #{şekilde}&quot;</code>
+erişebilirsiniz. (Ayrıca bu <code>#{}</code> içine Ruby kodu da koyabilirsiniz.</li>
+<li>Shell komutu program içinden <code>`backtick’ler`</code> (ters tek tırnaklar) ile
+çağrılır (<code>tarih = `date` </code> gibi).</li>
+<li>Gömülü döküman aracı vardır (Ruby’ninki RDoc olarak adlandırılmıştır).</li>
+</ul>
+<h3>Farklar</h3>
+<p>Ruby’de Perl’den farklı olarak,...</p>
+<ul>
+<li>Perl’deki gibi içeriğe bağlı kurallar yoktur.</li>
+<li>Bir değişken gösterdiği nesne ile aynı şey değildir. Sadece nesneye
+referans verir.</li>
+<li><code>$</code> ve <code>@</code> karakterleri bazen değişken isminin ilk harfi olarak
+kullanılabilir. Ama bunlar tipi değil kapsamı belirtir. (global
+değişkenler <code>$</code> ile başlar, nesne nitelikleri <code>@</code> ile
+başlar ve sınıf nitelikleri <code>@@</code> ile başlar).</li>
+<li>Array değerleri parantezler yerine köşeli parantezler içinde
+gösterilir.</li>
+<li>Listelerden oluşan bir liste ürettiğinizde büyük bir liste oluşmaz.
+Array’lerden oluşan bir array elde edersiniz.</li>
+<li><code>sub</code> yerine <code>def</code> kullanılır.</li>
+<li>Her satırın sonunda noktalı virgül gerekmez. Lafı açılmışken, sınıf
+tanımları, fonksiyon tanımları ve case blokları <code>end</code> anahtar kelimesi ile
+biter.</li>
+<li>Nesneler güçlü tiplenirler. Nesnelerin tipini dönüştürmek için
+<code>foo.to_i</code>, <code>foo.to_s</code> gibi elle yapmalısınız.</li>
+<li><code>eq</code>, <code>ne</code>, <code>lt</code>, <code>gt</code>, <code>ge</code>, veya <code>le</code> yoktur.</li>
+<li>“Diamond” operatörü (<code>&lt;&gt;</code>) yoktur. Genellikle bunun yerine
+<code>IO.fonksiyon</code> kullanılır.</li>
+<li>“fat comma” (<code>=&gt;</code>) sadece hash içinde kullanılır.</li>
+<li><code>undef</code> yoktur. Ruby’de <code>nil</code> vardır. <code>nil</code> de diğer herşey gibi bir
+nesnedir. Tanımsız değişken ile aynı şey değildir. Boolean
+sorgulanırsa <code>false</code> olarak değer görür.</li>
+<li>Doğruluğu sorgulandığında sadece <code>false</code> ve <code>nil</code> olumsuz değer
+dönerler diğer herşey olumlu (true) değer döner ( <code>0</code>, <code>0.0</code>, ve <code>&quot;0&quot;</code>
+dahil herşey!)</li>
+<li><a href="http://www.perlmonks.org/">PerlMonks</a> gibi biryer yoktur. Ancak ruby-talk mailing list
+ihtiyaclarınızı karşılar.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Başlamak</strong>, çok kolay!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Ruby'yi Deneyin! (tarayıcınızda)</a></li>
+
+    
+    <li><a href="/tr/documentation/quickstart/">Yirmi Dakikada Ruby</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/ruby-from-other-languages/">Diğer Dillerden Ruby'ye</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Yeni Bir Dünya</strong> keşfedin…</h3>
+  <ul class="menu">
+    
+    <li><a href="/tr/documentation/">Belgeler</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Akademik Araştırma</a></li>
+    
+
+    
+    <li><a href="/tr/libraries/">Kütüphaneler</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/success-stories/">Başarı Hikayeleri</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Arkadaşça</strong> ve büyüyen bir topluluğa katılın.</h3>
+  <ul>
+    
+    <li><a href="/tr/community/mailing-lists/">Mail Listeleri</a>: Tüm dünyadan Ruby programcılarıyla görüşün.</li>
+    
+
+    
+    <li><a href="/tr/community/user-groups/">Kullanıcı Grupları</a>: Bölgenizdeki Ruby'cilerle temas kurun.</li>
+    
+
+    
+    <li><a href="/tr/community/weblogs/">Web günlükleri</a>: Ruby'de neler olduğunu takip edin.</li>
+    
+
+    
+    <li><a href="/tr/community/ruby-core/">Ruby Core</a>: En son Ruby'nin kaba taraflarının parlatılmasına yardımcı olun.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Sorun Takibi</a>: Ruby sorunlarını rapor edin ya da çözümüne yardım edin.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

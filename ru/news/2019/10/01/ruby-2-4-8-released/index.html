@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Вышел Ruby 2.4.8</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/news/2019/10/01/ruby-2-4-8-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Вышел Ruby 2.4.8</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Опубликовал usa 01-10-2019<br>
+                         Перевел: shprotru</p>
+
+    <p>Вышел релиз Ruby 2.4.8.</p>
+<p>Этот выпуск содержит исправления безопасности.
+Пожалуйста, ознакомьтесь с пунктами ниже для подробностей.</p>
+<ul>
+<li><a href="/ru/news/2019/10/01/code-injection-shell-test-cve-2019-16255/">CVE-2019-16255: Уязвимость внедрения кода в Shell#[] и Shell#test</a></li>
+<li><a href="/ru/news/2019/10/01/http-response-splitting-in-webrick-cve-2019-16254/">CVE-2019-16254: Разделение HTTP-ответа в WEBrick (Дополняющее исправление)</a></li>
+<li><a href="/ru/news/2019/10/01/nul-injection-file-fnmatch-cve-2019-15845/">CVE-2019-15845: Уязвимость NUL инъекции в File.fnmatch и File.fnmatch?</a></li>
+<li><a href="/ru/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/">CVE-2019-16201: Уязвимость отказа в обслуживании от регулярного выражения в дайджест-аутентификации WEBrick'а</a></li>
+</ul>
+<p>Ruby 2.4 теперь находится в состоянии обслуживания безопасности, до
+конца марта 2020 года.  После этой даты обслуживание Ruby 2.4
+прекратится. Мы рекомендуем начинать планирование перехода на более новые версии
+версии Ruby, такие как 2.6 или 2.5.</p>
+<p><strong>Обновлено (Окт 2 4:00 UTC):</strong> Мы работаем над проблемой, когда Ruby 2.4.8 из tarball'а не устанавливается под пользователем <em>без-рут</em> доступа. Переходите <a href="https://bugs.ruby-lang.org/issues/16197">[Bug #16197]</a> для подробностей.</p>
+<h2>Скачать</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 12204030
+SHA1: 5f742a8df243fa4e216ff6f0c26cc8222a182459
+SHA256: e30eedd91386bec81489d2637522c9017aebba46f98e8b502f679df6b2f6a469
+SHA512: 2d7e0f5ad766e2a12a1b53ff838e6bfe86244ffb7202196769c25e9df6f71f3ccdd8605e7ef35c53e54310bc82caf6b368ad5111dd0a3ad70a3aae1a7be93f08
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 13800260
+SHA1: a13b0915b7fb3dd0fe1ed6a4e3640034038ba6c9
+SHA256: 37f0d180afa56ec3e7a3669c6f1b6ee8a47a811261f0e1afa8f817c8b577bd68
+SHA512: 4e5068b73356a9fa0bd2c8aaa261909039653c62dc363dd8b36c9c73b11b9c4e6ade752d7c67f1b38c00e27a4861f94ce696158bd210035ea0b417d0887a329b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 9813812
+SHA1: adf24e0b0ad1755067435f21baa8d142bcaff5a9
+SHA256: a2a8f53ef14b891821dbbf67b081d7b9e223007a347000ff4a86a226a4708272
+SHA512: 5f51a8312c23c1c2bfbb9c59efbd789492a4a7e4b1d4e7764db6eaaa542008e814b40817f10825e22c7fa8715fb9187be5d09b06128da211559b3601785937ea
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15322048
+SHA1: 756a206a5f91c1237432f693b157a6842039d760
+SHA256: a84e1c946761b1ed947194b6248a50f9aee21ca412dcd6021973951fd846a035
+SHA512: dcf7dead5baed4ffbd68016581ef1162f78729db9b5a49501a04d68d768e9138faa6e293c91dd9203a9a28d406bb236dd633688f1e96a07906e37db273ac8846
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Комментарий к релизу</h2>
+<p>Спасибо всем кто помогал с этим релизом, особенно, тем кто выявлял уязвимости.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последние новости</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ru/news/2021/08/03/fukuoka-ruby-award-2022/">Конкурс на соискание премии Fukuoka Ruby 2022 - судить участников будет Matz</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-3-0-2-released/">Вышел Ruby 3.0.2</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-2-7-4-released/">Вышел Ruby 2.7.4</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

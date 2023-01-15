@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby в 20 минути</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/documentation/quickstart/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>Ако погледнем по-отблизо нашата нова програма, ще забележим, че
+присъства ред, който започва с #. В Ruby всичко, което започва с # е
+коментар и не се интерпретира. Конкретно в нашия пример се ползва
+специален случай, който показва как да бъде стартиран файла под
+UNIX-подобни операционни системи.</p>
+<p>Въведохме известна промяна в метода <code>say_hi</code>:</p>
+<!-- raw HTML omitted -->
+<p>В горния пример правим проверка на параметъра <code>@names</code> за да вземем
+решение. Ако е nil, отпечатваме три точки.</p>
+<h2>Цикли, познати като итерации</h2>
+<p>Ако обектът <code>@names</code> отговаря на <code>each</code>, би следвало да можем да минем
+през всеки един от неговите елементи и да отпечатаме неговата стойност.
+Ако това не стане, просто превръщаме обекта в низ и отпечатваме
+стандартния поздрав.</p>
+<p>Нека разгледаме итератора от близо:</p>
+<!-- raw HTML omitted -->
+<p>Методът <code>each</code> приема блок с код, който се изпълнява за всеки елемент от
+списъка, бит по бит, между ключовите думи <code>do</code> и <code>end.  Блокът е като анонимната функция @lambda</code>. Променливата между вертикалните черти е
+параметъра за този блок.</p>
+<p>В повечето езици за програмиране се ползва цикъл като <code>for</code> за обхождане
+на списъка, като това става на C по следния начин:</p>
+<!-- raw HTML omitted -->
+<p>Този вариант работи, но не е най-елегантното решение. Имаме нужда от
+променлива i, големината на списъка и описание на начина на обхождане. В
+Ruby това става много елегантно, като всички детайли са скрити в метода
+<code>each</code>. Вътрешната реализация на този метод просто извиква <code>yield &quot;Albert&quot;</code>, след това <code>yield &quot;Brenda&quot;</code> и накрая <code>yield &quot;Charles&quot;</code></p>
+<h2>Блокът, блясъкът на Ruby</h2>
+<p>Истинската мощ на блоковете може да видим в обработката на сложни
+списъци.</p>
+<!-- raw HTML omitted -->
+<p>Методът <code>say_bye</code> не използва <code>each</code>, а вместо това прави проверка дали
+<code>@names</code> отговаря на метода <code>join</code> и при положителен резултат го ползва.
+При отрицателен резултат просто отпечатва променливата като низ. Този
+метод не се интересува от типа на променливата, а се уповава на
+методите, на които отговаря, като това е познато като “Duck Typing” –
+“ако ходи като патица и кряка като патица, би трябвало да е патица”. По
+този начин не сме ограничени от типа на променливите. Ако някой друг
+напише подобен клас, единственото нещо, което трябва да присъства е
+имплементацията на метода <code>join</code> за да може всичко да работи правилно.</p>
+<h2>Стартиране на скрипта</h2>
+<p>Ползваме един последен трик за стартиране на скрипта:</p>
+<!-- raw HTML omitted -->
+<p><code>__FILE__</code> е специална променлива, която съдържа името на настоящия
+файл, а <code>$0</code> представлява името на файла, нужен за стартирането на
+програмата. Тази проверка има следното значение: “Ако това е главния
+изпълним файл ...”. Това ни позволява да ползваме скрипта като
+библиотека.</p>
+<h2>Вместо край на ръководството</h2>
+<p>Тук приключва краткото въведение в Ruby. Надяваме се това да Ви е
+запалило да научите и използвате този прекрасен език. Ако това е така,
+можете да прегледате раздела <a href="/bg/documentation/">Документация</a> , където
+ще намерите връзки към напълно безплатни самоучители и ръководства.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Започнете</strong> лесно е!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Пробвайте Ruby! (в браузъра)</a></li>
+
+    
+    <li><a href="/bg/documentation/quickstart/">Ruby в 20 минути</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/ruby-from-other-languages/">Ruby от други езици</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Изследвайте</strong> нов свят…</h3>
+  <ul class="menu">
+    
+    <li><a href="/bg/documentation/">Документация</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/bg/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/success-stories/">Успешни истории</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Участвайте</strong> в приятелски настроено общество.</h3>
+  <ul>
+    
+    <li><a href="/bg/community/mailing-lists/">Пощенски списъци</a>: Дискусии относно Ruby с програмисти от цял свят.</li>
+    
+
+    
+    <li><a href="/bg/community/user-groups/">Потребителски групи</a>: Свържете се с рубисти в твоя район.</li>
+    
+
+    
+    <li><a href="/bg/community/weblogs/">Блогове</a>: Прочетете какво се случва в Ruby обществото.</li>
+    
+
+    
+    <li><a href="/bg/community/ruby-core/">Ruby ядро</a>: Помогнете за разработката на Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Следене на бъгове</a>: Докладвайте или помогнете за решаването на проблеми в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

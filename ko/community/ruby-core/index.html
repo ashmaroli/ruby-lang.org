@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 코어</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/community/ruby-core/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby 코어</h1>
+
+
+
+  <div id="content">
+    <p>Ruby 개발 과정에 참여하고 싶다면 바로 지금이 최고의 타이밍입니다. 최근 몇 년간
+주목이 집중됨에 따라, Ruby 자체와 그 문서화의 향상이 더욱더 필요하게 되었습니다.
+어디서부터 시작해야 할까요?
+{: .summary}</p>
+<p>Ruby 개발에 관련된 주제들입니다.</p>
+<ul>
+<li><a href="#following-ruby">Git을 사용하여 Ruby 개발을 트래킹하기</a></li>
+<li><a href="#patching-ruby">패치들로 Ruby 개선하기</a></li>
+<li><a href="#branches-ruby">브랜치에 대한 안내</a></li>
+</ul>
+<h3>Git을 사용하여 Ruby 개발을 트래킹하기</h3>
+<p>{: #following-ruby}</p>
+<p>현재 최신 Ruby 코드의 주 저장소는 <a href="https://git.ruby-lang.org/ruby.git">git.ruby-lang.org/ruby.git</a>입니다.
+또한 <a href="https://github.com/ruby/ruby">GitHub에도 미러</a>가 있습니다. 기본적으로는 이 미러를 이용하세요.</p>
+<p>최신 Ruby 코드는 Git을 사용하여 받을 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>이제 <code>ruby</code> 디렉터리에는 Ruby의 최신 개발 버전(ruby-trunk)이 들어 있을 것입니다.</p>
+<p><a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">커미터가 아닌 사람들을 위한 개발 참가 방법</a>도 참고하세요.</p>
+<p>만약 커밋 권한을 가지고 있고, 무엇인가를 푸시하기를 원한다면,
+반드시 주 저장소를 이용해야 합니다.</p>
+<!-- raw HTML omitted -->
+<h3>패치들로 Ruby 개선하기</h3>
+<p>{: #patching-ruby}</p>
+<p>코어 팀은 패치나 버그 리포트를 <a href="https://bugs.ruby-lang.org/">이슈 트래커</a>에서
+관리하고 있습니다. 이 리포트들은 토론을 위해
+<a href="/ko/community/mailing-lists/">Ruby-Core 메일링 리스트</a>에도 등록됩니다. 그러므로 당신의 리퀘스트가
+공지되지 않을 염려는 없습니다. 또한, 메일링 리스트에 직접 패치를 보낼 수도
+있습니다. 어떤 방식을 사용하셔도, 계속 토론에 참여하시는 것이 좋습니다.</p>
+<p>패치를 다루는 방법에 대해 구체적인 가이드를 원하시면 마츠가 직접 쓴
+<a href="/en/community/ruby-core/writing-patches/">패치 작성자를 위한 지침</a>를 확인하세요.</p>
+<p>패치를 만드는 순서를 요약하자면,</p>
+<ol>
+<li>
+<p>GitHub에서 Ruby 소스코드를 체크아웃합니다.
+일반적으로 버그 수정을 위한 패치나 새로운 기능이 이미 Ruby 소스의 트렁크에
+등록되어 있습니다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/ruby/ruby.git
+</code></pre></div></div>
+<p>한 관리 브랜치에서만 일어나는 버그를 수정하려고 한다면, 해당 브랜치를
+체크아웃합니다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout ruby_X_X
+</code></pre></div></div>
+<p>X_X를 체크아웃하고 싶은 버전으로 변경하세요.</p>
+</li>
+<li>
+<p>개선된 코드를 추가합니다.</p>
+</li>
+<li>
+<p>패치를 만듭니다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git diff &gt; ruby-changes.patch
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://bugs.ruby-lang.org/">이슈 트래커</a>에 티켓을 만들거나
+<a href="/ko/community/mailing-lists/">Ruby-Core 메일링 리스트</a>에 패치와 패치를 설명한
+ChangeLog를 함께 메일로 보냅니다.</p>
+</li>
+<li>
+<p>패치에 대한 이의가 없으면 커미터들이 적용을 승인해 줄 것입니다.</p>
+</li>
+</ol>
+<p><strong>주의사항:</strong> 패치는 <a href="http://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html">unified diff</a>로 등록되어야 합니다. 패치의 머지에 관한
+더 자세한 정보는 <a href="http://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html#Merging%20with%20patch">the diffutils reference</a>를 확인해 주세요.</p>
+<p>Ruby 개발에 관한 토론들은 <a href="/ko/community/mailing-lists/">Ruby-Core 메일링 리스트</a>에
+모입니다. 그러므로 당신의 패치가 가치
+있는지 알고 싶거나, Ruby의 미래에 관한 토론을 하고 싶으시면 망설이지 말고
+참여하세요. 주제와 관련 없거나 논란이 될 만한 토론은 허용되지 않습니다.
+주제는 명확해야 하고 잘 생각해서 잘 쓰여야 합니다. 우리는 Ruby의 창조자에게 말을
+걸고 있으니 예의를 갖춥시다.</p>
+<p>Ruby의 코어 개발자들이 영어를 잘한다고 해도 많은 수가 일본에 살고 있으니 시차가 있습니다.
+영어와 동시에 진행되는 일어 개발 메일링 리스트도 있습니다. 클레임이 해결되지
+않았을 경우에도 인내심을 가지고 며칠 후에 다시 시도해주시길 바랍니다.</p>
+<h3>브랜치에 대한 안내</h3>
+<p>{: #branches-ruby}</p>
+<p>Ruby의 소스 코드는 2019년 4월 22일까지 서브버전에서 관리되어 왔습니다.
+그러므로 몇몇 버전은 그대로 서브버전에서 관리됩니다.
+다음 SVN 저장소를 이용할 수 있습니다.</p>
+<ul>
+<li><a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?root=ruby">&lt;URL:https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?root=ruby&gt;</a></li>
+</ul>
+<p>그렇지만 (브랜치 유지보수 담당자가 아니라면) 이를 신경쓸 필요는 없습니다.
+브랜치를 Git에서 체크아웃 할 수 있습니다.
+예를 들어 다음 명령을 실행하세요.</p>
+<!-- raw HTML omitted -->
+<p>X_X는 체크아웃 하고 싶은 브랜치 이름으로 변경하세요.</p>
+<p>브랜치를 변경하고 싶다면 <a href="https://bugs.ruby-lang.org/">이슈 트래커</a>에 이슈를 만들어주세요.
+다음 링크도 참고하세요.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>시작하기</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby!</a></li>
+
+    
+    <li><a href="/ko/documentation/quickstart/">20분 가이드</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/ruby-from-other-languages/">다른 언어에서 Ruby로</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>탐색하기</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ko/documentation/">문서</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">학술 연구</a></li>
+    
+
+    
+    <li><a href="/ko/libraries/">라이브러리</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/success-stories/">사용 사례</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>커뮤니티에 참여하기</strong></h3>
+  <ul>
+    
+    <li><a href="/ko/community/mailing-lists/">메일링 리스트</a>: 전 세계의 프로그래머와 Ruby와 관련된 대화를 나누기</li>
+    
+
+    
+    <li><a href="/ko/community/user-groups/">유저 그룹</a>: 근처의 루비스트와 연락하기</li>
+    
+
+    
+    <li><a href="/ko/community/weblogs/">웹로그</a>: Ruby 커뮤니티에서 지금 무슨 일이 일어나는지 읽기</li>
+    
+
+    
+    <li><a href="/ko/community/ruby-core/">Ruby 코어</a>: 최신 버전 Ruby의 연마를 돕기</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">이슈 관리</a>: Ruby에 관한 이슈를 제보하거나 해결을 돕기</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

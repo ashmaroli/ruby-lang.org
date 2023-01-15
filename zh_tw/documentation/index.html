@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>文件</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/documentation/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>文件</h1>
+
+
+
+  <div id="content">
+    <p>當想要寫 Ruby 程式時，這裡是一些可以幫上忙的入門教學、學習手冊和參考文件：
+{: .summary}</p>
+<h3>安裝 Ruby</h3>
+<p>儘管可以輕鬆的<a href="https://try.ruby-lang.org/">在瀏覽器試玩 Ruby </a>，你還是可以閱讀<a href="installation/">安裝指南</a>來幫助你安裝 Ruby。</p>
+<h3>入門</h3>
+<p><a href="/en/documentation/faq/">官方 FAQ</a>
+: 官方常見問題與解答。</p>
+<p><a href="https://rubykoans.com/">Ruby Koans</a>
+: Ruby Koans 導引你走上學習 Ruby 的啟蒙之路。可以學到 Ruby 語言、語法、結構、常用函數與函式庫。
+當然也少不了 Ruby 的文化。</p>
+<p><a href="https://poignant.guide">Why’s (Poignant) Guide to Ruby</a>
+: 非比尋常但玩味無窮的書，透過故事、幽默與漫畫來教會你 Ruby。由 <em>why the lucky
+stiff</em> 創作，本書是學習 Ruby 的經典大作。</p>
+<p><a href="http://www.techotopia.com/index.php/Ruby_Essentials">Ruby Essentials</a>
+: 免費的線上電子書，讓你可以一步步地學習 Ruby。</p>
+<p><a href="http://pine.fm/LearnToProgram/">Learn to Program</a>
+: 由 Chris Pine 撰寫的程式語言入門。適合完全沒有程式設計經驗的朋友。</p>
+<p><a href="https://learncodethehardway.org/ruby/">Learn Ruby the Hard Way</a>
+: 一系列說明完善的練習，導引你從完全零基礎一直介紹到物件導向程式設計與 Web 開發，</p>
+<h3>學習手冊</h3>
+<p><a href="http://www.ruby-doc.org/docs/ProgrammingRuby/">Programming Ruby</a>
+: 這是 Ruby 的第一本英文書，第一版開放線上免費閱讀 <a href="http://pragmaticprogrammer.com/titles/ruby/index.html">Pragmatic Programmers' book</a> 。</p>
+<p><a href="http://en.wikibooks.org/wiki/Ruby_programming_language">The Ruby Programming Wikibook</a>
+: 給初學者到中等程度的線上手冊以及語言參考。</p>
+<h3>參考文件</h3>
+<p><a href="https://docs.ruby-lang.org/en/">Official API Documentation</a>
+: 各種版本的 Ruby 官方 API 文件，包含當前未釋出的版本（trunk）。</p>
+<p><a href="http://www.ruby-doc.org/core">Ruby Core Reference</a>
+: 直接從原始碼拉出來的 <a href="https://ruby.github.io/rdoc/">RDoc</a> 文件，包括所有的核心類別和模組(例如 String、Array、Symbol 等)。</p>
+<p><a href="http://www.ruby-doc.org/stdlib">Ruby Standard Library Reference</a>
+: 也是從從原始碼拉出來的 RDoc 文件，記載了 Ruby 的標準函式庫。</p>
+<p><a href="https://docs.ruby-lang.org/en/master/extension_rdoc.html">Ruby C API Reference</a>
+: 官方 Ruby 的 C API 介紹文件，有助於你撰寫 C 擴充程式或是貢獻到 Ruby 的開發。</p>
+<p><a href="http://www.rubydoc.info/">RubyDoc.info</a>
+: 一站式站點，擁有 RubyGems 與 GitHub 上托管的 Ruby 專案的文件。</p>
+<p><a href="http://rubydocs.org/">Ruby &amp; Rails Searchable API Docs</a>
+: 可以聰明搜索 Ruby 與 Rails 的文件。</p>
+<p><a href="http://apidock.com/">APIdock</a>
+: Ruby、Rails 與 RSpec 的文件，具有使用者的評論。</p>
+<p><a href="https://rubyapi.org/">RubyAPI.org</a>
+: 簡單搜尋瀏覽 Ruby 類別、模組及方法。</p>
+<h3>編輯器與整合開發環境</h3>
+<p>您可以用操作系統內建的編輯器來撰寫 Ruby。為了更有效的寫程式，值得選個 Ruby 基本特性支援良好的編輯器（如：語法高亮、檔案瀏覽）或是有更進階功能的整合開發環境（如：程式碼補全、重構、支持測試等。）</p>
+<p>以下是 Ruby 程式設計師（Rubyist）間流行使用的開發工具清單：</p>
+<ul>
+<li>
+<p>Linux 與跨平台：</p>
+<ul>
+<li><a href="http://www.aptana.com/">Aptana Studio</a></li>
+<li><a href="http://www.gnu.org/software/emacs/">Emacs</a> 用 <a href="http://www.emacswiki.org/emacs/RubyMode">Ruby mode</a> 配 <a href="http://rsense.github.io/">Rsense</a></li>
+<li><a href="http://www.geany.org/">Geany</a></li>
+<li><a href="http://projects.gnome.org/gedit/screenshots.html">gedit</a></li>
+<li><a href="http://www.vim.org/">Vim</a> 用 <a href="https://github.com/vim-ruby/vim-ruby">vim-ruby</a> 插件與 <a href="http://rsense.github.io/">Rsense</a></li>
+<li><a href="http://www.jetbrains.com/ruby/">RubyMine</a></li>
+<li><a href="http://www.scintilla.org/SciTE.html">SciTe</a></li>
+<li><a href="https://netbeans.org/">NetBeans</a></li>
+<li><a href="http://www.sublimetext.com/">Sublime Text</a></li>
+<li><a href="https://atom.io/">Atom</a></li>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+</ul>
+</li>
+<li>
+<p>Windows 作業系統：</p>
+<ul>
+<li><a href="http://notepad-plus-plus.org/">Notepad++</a></li>
+<li><a href="http://www.e-texteditor.com/">E-TextEditor</a></li>
+<li><a href="http://www.sapphiresteel.com/">Ruby In Steel</a></li>
+</ul>
+</li>
+<li>
+<p>macOS 作業系統：</p>
+<ul>
+<li><a href="http://macromates.com/">TextMate</a></li>
+<li><a href="https://www.barebones.com/products/bbedit/">BBEdit</a></li>
+<li><a href="http://kapeli.com/dash">Dash</a> （瀏覽文件用）</li>
+</ul>
+</li>
+</ul>
+<h3>進階閱讀</h3>
+<p><a href="http://ruby-doc.org">Ruby-Doc.org</a> 維護了一份簡單易懂的英文文件列表。如有任何 Ruby 相關的問題，<a href="/en/community/mailing-lists/">郵件論壇</a>是個問問題的好地方。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>上手入門</strong>，一點都不難!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在瀏覽器中試用 Ruby!</a></li>
+
+    
+    <li><a href="/zh_tw/documentation/quickstart/">20 分鐘 Ruby 體驗</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/ruby-from-other-languages/">從其他語言到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong> 新世界…</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_tw/documentation/">文件</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">學術研究</a></li>
+    
+
+    
+    <li><a href="/zh_tw/libraries/">函式庫</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong> 友善且持續成長的社群</h3>
+  <ul>
+    
+    <li><a href="/zh_tw/community/mailing-lists/">郵件論壇</a>: 與世界各地的程式設計師一同聊聊</li>
+    
+
+    
+    <li><a href="/zh_tw/community/user-groups/">使用者群組</a>: 與身旁的 Ruby 使用者接觸</li>
+    
+
+    
+    <li><a href="/zh_tw/community/weblogs/">部落格</a>: 了解 Ruby 社群中的最新消息</li>
+    
+
+    
+    <li><a href="/zh_tw/community/ruby-core/">Ruby 核心</a>: 幫助開發最新的 Ruby</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">問題追蹤</a>: 回報或解決 Ruby 問題</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

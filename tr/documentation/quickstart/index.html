@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Yirmi Dakikada Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/documentation/quickstart/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <h2>Giriş</h2>
+<p>Bu tamamlaması 20 dakikadan fazla vakit almayacak küçük bir Ruby
+eğitmenidir. Halihazırda Ruby’nin sisteminizde kurulu olduğunu kabul
+eder. (eğer Ruby bilgisayarınızda yüklü değilse başlamadan önce
+<a href="/tr/documentation/installation/">kurun</a>.)</p>
+<h2>İnteraktif Ruby</h2>
+<p>Ruby kendisine girdiğiniz her Ruby satırının sonucunu gösteren bir
+programla beraber gelir. Ruby ile etkileşimli bir oturumda oynamak bu
+dili öğrenmek için dehşet verici bir yoldur.</p>
+<p>IRB’i açın (Interactive Ruby anlamına gelir).</p>
+<ul>
+<li>Eğer <strong>macOS</strong> kullanıyorsanız <code>Terminal</code> açın ve yazın : <code>irb</code>,
+sonra enter basın.</li>
+<li>Eğer <strong>Linux</strong> kullanıyorsanız konsol açın ve yazın : <code>irb</code>, sonra
+enter basın.</li>
+<li>Eğer <strong>Windows</strong> kullanıyorsanız başlat menüsü Ruby bölümünden
+<code>Interactive Ruby</code> çalıştırın.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Tamam açıldı şimdi ne yapacağız?</p>
+<p>Şunu yazın : <code>&quot;Hello World&quot;</code></p>
+<!-- raw HTML omitted -->
+<h2>Ruby Size İtaat Eder!</h2>
+<p>Ne yaptık şimdi? Dünyanın en kısa “Hello World” programını mı yazdık?
+Tam olarak değil. İkinci satır sadece IRB’in yaptığı işlemin sonucunu
+bildirme tekniği. Eğer ekrana “Hello World” yazdırmak istiyorsak daha
+fazla birşeyler yapmalıyız:</p>
+<!-- raw HTML omitted -->
+<p><code>puts</code> Ruby’de çıktı almak için en basit bir komut. Fakat bu <code>=&gt; nil</code> ne
+oluyor ki? Bu işlevin sonucudur. <code>puts</code> her zaman Ruby’de hiçbir şeyi
+ifade eden nil değerini döndürür.</p>
+<h2>Bedava Hesap Makinası Burada</h2>
+<p>IRB basit bir hesap makinası olarak kullanılabilir:</p>
+<!-- raw HTML omitted -->
+<p>Üç artı iki. Çok kolay. Peki üç <em>kere</em> iki nedir? Bunu girebileceğiniz
+gibi bir önce girdiğiniz satırı yukarı tuşuna basarak tekrar
+çağırabilirsiniz. Yukarı tuşuna basıp bunu test edin <code>+</code> işaretinin
+üstüne gidip silin ve <code>*</code> ile değiştirin.</p>
+<!-- raw HTML omitted -->
+<p>Sonra üçün karesini bulalım:</p>
+<!-- raw HTML omitted -->
+<p>Ruby’de <code>**</code> “üssü” demenin yoludur. Fakat bir sayının karekökü için ne
+yapmalı?</p>
+<!-- raw HTML omitted -->
+<p>Tamam, bu ne demek sizce? Tahmin ederseniz dokuzun karekökü alınmış.
+Haklısınız fakat daha yakından inceleyelim, en başta bu <code>Math</code> ne ?</p>
+<h2>Modüller, Kodları Başlıklar Altında Toplar</h2>
+<p><code>Math</code> matematik için bir dahili modüldür. Modüller Ruby’de iki hizmet
+sunarlar. Bir rolü şu: benzer görevler yapan metotları bir grup başlığı
+altında toplamak. <code>Math</code> içinde ayrıca <code>sin()</code> ve <code>tan()</code> gibi işlevler
+de vardır.</p>
+<p>Sonraki bir nokta işareti, nokta ne yapıyor? Nokta size mesajın
+alıcısını gösteriyor. Burada mesaj <code>sqrt(9)</code> metot çağrısı, parametresi
+9 olan “karekök” alma komutu.</p>
+<p>Bu metodun cevabı <code>3.0</code> dır. Dikkat ettiyseniz sadece <code>3</code> değil. Çünkü
+birçok karekök işleminin sonucu tamsayı değildir. Bu yüzden işlev kayan
+noktalı bir sayı geri döndürür.</p>
+<p>Peki bazı matematik işlemlerimizin sonucunu hatırlamak istersek? Cevabı
+bir değişkene atama yaparız.</p>
+<!-- raw HTML omitted -->
+<p>Bir hesap makinası için oldukça yeterli. Klasik <code>Hello World</code> mesajından
+uzaklaşmaya başladık, <a href="2/">geri dönelim.</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Başlamak</strong>, çok kolay!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Ruby'yi Deneyin! (tarayıcınızda)</a></li>
+
+    
+    <li><a href="/tr/documentation/quickstart/">Yirmi Dakikada Ruby</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/ruby-from-other-languages/">Diğer Dillerden Ruby'ye</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Yeni Bir Dünya</strong> keşfedin…</h3>
+  <ul class="menu">
+    
+    <li><a href="/tr/documentation/">Belgeler</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Akademik Araştırma</a></li>
+    
+
+    
+    <li><a href="/tr/libraries/">Kütüphaneler</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/success-stories/">Başarı Hikayeleri</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Arkadaşça</strong> ve büyüyen bir topluluğa katılın.</h3>
+  <ul>
+    
+    <li><a href="/tr/community/mailing-lists/">Mail Listeleri</a>: Tüm dünyadan Ruby programcılarıyla görüşün.</li>
+    
+
+    
+    <li><a href="/tr/community/user-groups/">Kullanıcı Grupları</a>: Bölgenizdeki Ruby'cilerle temas kurun.</li>
+    
+
+    
+    <li><a href="/tr/community/weblogs/">Web günlükleri</a>: Ruby'de neler olduğunu takip edin.</li>
+    
+
+    
+    <li><a href="/tr/community/ruby-core/">Ruby Core</a>: En son Ruby'nin kaba taraflarının parlatılmasına yardımcı olun.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Sorun Takibi</a>: Ruby sorunlarını rapor edin ya da çözümüne yardım edin.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 1.9.2 发布 - Ruby 官方网站</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2010/11/06/ruby-1-9-2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 1.9.2 发布 - Ruby 官方网站</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 XiaoBo Liu 发表于 2010-11-06</p>
+
+    <p>Ruby 1.9.2 已经发布，这是 1.9 系列的最新版本。</p>
+<h3>关于 Ruby 1.9.2</h3>
+<p>Ruby 1.9.2 相对于 1.9.1 主要更新了：</p>
+<ul>
+<li>更多新的方法</li>
+<li>新的 socket API (IPv6的支持)</li>
+<li>新的编码</li>
+<li>Random 类，支持各种随机数的生成</li>
+<li>修正时间的问题，不再有 2038 年的问题</li>
+<li>加强 regexp</li>
+<li>$: 不再包含当前的目录</li>
+<li>基于 libffi 重新制作 dl</li>
+<li>包装 libyaml 的新 psych 函式库. 可以用来取代syck</li>
+</ul>
+<p>详细参阅 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_0/NEWS">新闻</a> 和 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_0/ChangeLog">更新日志</a></p>
+<p>Ruby 1.9.2 已经通过 <a href="https://github.com/ruby/spec">RubySpec</a> 99% 以上的测试。</p>
+<h3>支持的平台</h3>
+<p>Ruby 1.9 has four support levels.</p>
+<p>支持
+: We verified that Ruby 1.9.2 works fine on it. And we can keep the
+1.9.2 maintained on it.</p>
+<ul>
+<li>Debian GNU/Linux 5.0 on IA32.</li>
+</ul>
+<p>尽力支持
+: We verified that Ruby 1.9.2 works mostly fine on them. And I believe
+we can keep the 1.9.2 maintained on it.</p>
+<ul>
+<li>mswin32, x64-mswin64, mingw32</li>
+<li>MacOS X 10.5 (Intel) and 10.6</li>
+<li>FreeBSD 6 and later (amd64, IA32)</li>
+<li>Solaris 10</li>
+<li>Symbian OS</li>
+</ul>
+<p>可能支持
+: I think Ruby 1.9.2 works fine on them with small modification,
+however, it is not verified. Patch is welcome.</p>
+<ul>
+<li>Other Linux distributions</li>
+<li>Other versions of MacOS X.</li>
+<li>cygwin</li>
+<li>AIX 5</li>
+<li>Other POSIX-compatible systems</li>
+<li>BeOS (Haiku)</li>
+</ul>
+<p>不支持
+: I do not think Ruby 1.9.2 works on them. Porting is welcome.</p>
+<ul>
+<li>Any other systems</li>
+</ul>
+<h3>FAQ</h3>
+<p>The standard library is installed in /usr/local/lib/ruby/1.9.1
+: This version number is &quot;library compatibility version&quot;. Ruby 1.9.2
+is mostly compatible with the 1.9.1, so its library is installed in
+the directory.</p>
+<p>It causes a LoadError
+: <code>$:</code> no longer includes the current directory. So some scripts need
+modification to work correctly. Anyway, your script should not depend
+on the current directory as well as possible.</p>
+<h3>下载</h3>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.bz2&gt;</a>
+SIZE
+: 8495472 bytes</p>
+<p>MD5
+: d8a02cadf57d2571cd4250e248ea7e4b</p>
+<p>SHA256
+: e9710990ed8c2e794123aba509010471915fb13c27dae0118831d2001a9c8d3b</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.gz&gt;</a>
+SIZE
+: 10787899 bytes</p>
+<p>MD5
+: 755aba44607c580fddc25e7c89260460</p>
+<p>SHA256
+: 8c0c4e261a921b5c406bf9e76ac23bf3c915651534e9d1b9e8c5d0bee4a7285c</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.zip&gt;</a>
+SIZE
+: 12159728 bytes</p>
+<p>MD5
+: e57a393ccd62ddece4c63bd549d8cf7f</p>
+<p>SHA256
+: e61521af06da71fde9f0c7c08baaf7415614d00c86ec5a7ab08b60a4f3185b2a</p>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

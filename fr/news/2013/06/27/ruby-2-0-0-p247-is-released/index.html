@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Sortie de la version 2.0.0-p247 de Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/news/2013/06/27/ruby-2-0-0-p247-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Sortie de la version 2.0.0-p247 de Ruby</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posté par nagachika le 2013-06-27<br>
+                         Traduit par Bruno Michel</p>
+
+    <p>La version 2.0.0-p247 de Ruby vient d'être publiée.</p>
+<p>Cette version inclut un correctif de sécurité sur la bibliothèque OpenSSL
+embarquée :</p>
+<ul>
+<li><a href="/fr/news/2013/06/27/hostname-check-bypassing-vulnerability-in-openssl-client-cve-2013-4073/">Vulnérabilité dans le client SSL permettant de contourner la vérification du nom de domaine
+(CVE-2013-4073)</a></li>
+</ul>
+<p>Elle contient également des correctifs de bugs.</p>
+<h2>Téléchargement</h2>
+<p>Vous pouvez télécharger cette version depuis :</p>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10804581 bytes
+MD5:    60913f3eec0c4071f44df42600be2604
+SHA256: 08e3d4b85b8a1118a8e81261f59dd8b4ddcfd70b6ae554e0ec5ceb99c3185e8a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13652782 bytes
+MD5:    c351450a0bed670e0f5ca07da3458a5b
+SHA256: 3e71042872c77726409460e8647a2f304083a15ae0defe90d8000a69917e20d3
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.zip">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15100206 bytes
+MD5:    7548f781d868456e84afcd0327c7f894
+SHA256: 40c938238075b1e7e8df5d7ebfd069a45b93066318d91da9024d81b20a1c5a8a
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Modifications</h2>
+<p>Les principaux correctifs sont listés ci-dessous.</p>
+<p>Voyez les <a href="https://bugs.ruby-lang.org/projects/ruby-200/issues?set_filter=1&amp;status_id=5">tickets</a>
+et le <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_0_0_247/ChangeLog">ChangeLog</a> pour plus de détails.</p>
+<h3>Arguments mots-clés</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/8040">#8040</a> modification de la priorité entre les arguments mots-clés et les arguments obligatoires.</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8416">#8416</a> super ne transmet pas les <code>**</code> nommés ou anonymes.</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8463">#8463</a> bug sur le Proc auto-splat avec les arguments nommés.</li>
+</ul>
+<h3>VM/Language Processing</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/8424">#8424</a> corrige une boucle infinie sur un débordement de pile avec TH_PUSH_TAG()</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8436">#8436</a> _<em>dir</em>_ ne fonctionne pas dans eval avec binding</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8489">#8489</a> Le tracepoint API: B_RETURN_EVENT n'est pas déclenché quand &quot;next&quot; est utilisé</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8341">#8341</a> block_given? (et le bloc actuel) persiste entre des appels à un proc créé depuis une méthode (en utilisant method().to_proc()).</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8531">#8531</a> block_given? (et le bloc actuel) persiste entre des appels à un proc créé par Symbol#to_proc.</li>
+</ul>
+<h3>RubyGems</h3>
+<p>La version embarquée de RubyGems est maintenant la 2.0.3.</p>
+<h3>Encodage</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/8516">#8516</a> IO#readchar retourne de mauvais codepoints sur des conversions d'encodage</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/8431">#8431</a> File.read() plante sur Win32SP3 32bit</li>
+</ul>
+<h3>Bibliothèques</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/8467">#8467</a> Rembobiner et itérer à travers IO gzippés provoquent des segmentation faults</li>
+<li><a href="https://bugs.ruby-lang.org/issues/8415">#8415</a> Net::IMAP#capability_response lève une exception &quot;Net::IMAP::ResponseParseError: unexpected token CRLF&quot; pour une CAPABILITY courante</li>
+</ul>
+<h2>Commentaire</h2>
+<p>De nombreux committers, testeurs et utilisateurs qui ont remonté des bugs
+m'ont aidé pour sortie cette version. Merci pour leurs contributions.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Actualité récente</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/fr/news/2022/02/18/ruby-3-1-1-released/">Ruby 3.1.1 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/12/25/ruby-3-1-0-released/">Ruby 3.1.0 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-7-5-released/">Ruby 2.7.5 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-6-9-released/">Ruby 2.6.9 est disponible</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

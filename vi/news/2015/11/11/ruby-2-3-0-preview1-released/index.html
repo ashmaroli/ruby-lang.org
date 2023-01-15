@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Phát hành Ruby 2.3.0-preview1</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2015/11/11/ruby-2-3-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Phát hành Ruby 2.3.0-preview1</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi naruse vào 11 Nov 2015<br>
+                         Dịch bởi Trung Lê</p>
+
+    <p>Chúng tôi hân hạnh công bố ấn bản Ruby 2.3.0-preview1.</p>
+<p>Ruby 2.3.0-preview1 là phiên bản thử nghiệm đầu tiên của Ruby 2.3.0.
+Giới thiệu cùng với phiên bản này bao gồm các cải tiến sau:</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11473">Frozen String Literal
+Pragma</a> được giới thiệu. Trên
+Ruby 2.1, &quot;str&quot;.freeze được tối ưu hoá để giảm số lượng đối tượng được
+tạo ra. Ruby 2.3 cho phép đóng băng tất cả chuỗi ký tự trong các
+file mã nguồn thông qua một magic comment và một cờ của command line.
+Ngoài ra người dùng còn có thể biết được vị trí đổi tượng được tạo
+khi gặp phải lỗi &quot;can't modify frozen String&quot; thông qua cờ <code>--enable-frozen-string-literal-debug</code>.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11537">Safe navigation operator</a>,
+chức năng này đã hiện diện trong C#, Groovy, và Swift. Cú pháp này
+được giới thiệu để làm giảm phiền toái xử lý <code>nil</code>, xem vd: <code>obj&amp;.foo</code>.
+<code>Array#dig</code> và <code>Hash#dig</code> cũng mới được bổ sung vào thư viện.</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11252">did_you_mean gem được kèm cùng</a>.
+did_you_mean gem hiển thị những gợi ý trong trường hợp gặp lỗi <code>NameError</code>
+hay <code>NoMethodError</code> giúp cho việc debug dễ dàng hơn.</p>
+<p>Hãy thử nghiệm Ruby 2.3.0-preview1 với ứng dụng của bạn và phản hồi cho
+chúng tôi biết nếu bạn có gặp bất cứ sự cố nào.</p>
+<h2>Các thay đổi tiêu biểu từ bản 2.2</h2>
+<ul>
+<li>TBD</li>
+</ul>
+<p>Xem <a href="https://github.com/ruby/ruby/blob/v2_3_0_preview1/NEWS">NEWS</a> và
+<a href="https://github.com/ruby/ruby/blob/v2_3_0_preview1/ChangeLog">ChangeLog</a>
+để biết thêm chi tiết.</p>
+<p>Với các thay đổi, 1036 files thay đổi, 81312 dòng bổ sung(+), 51322 dòng
+gỡ bỏ(-) từ Ruby 2.2.0.</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.tar.bz2</a></p>
+<ul>
+<li>SIZE:   14174035 bytes</li>
+<li>SHA1:   55ad4f04d7a33ab780458ee0999de9f6124217ea</li>
+<li>SHA256: 42b9c9e1740a5abe2855d11803524370bd95744c8dcb0068572ed5c969ac7f0f</li>
+<li>SHA512: ae6d46c87f59e1fd3703b76dfc45bfcf208625f95ab9f4559f0b9f7050e8681f1a6e419f5fa06b704c83e56879c3a9ff1337dba443bcfca76fadb49c97d97a93</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.tar.gz</a></p>
+<ul>
+<li>SIZE:   17560800 bytes</li>
+<li>SHA1:   6249572e5dca27d8c73a0cbf036e24e5d88fe82f</li>
+<li>SHA256: dc8f9d48392a2bb226df5f4b4fd2074d81af155cdf3f3799139a6e31e012aefe</li>
+<li>SHA512: 58384ef6e743dde20ea263692dab86ce9d6d22d722ef4c02a84396aa3128ce06d933d9b69078a3cd666d72320a8a6ffdc93296bc0d5338595b2a44c29d4db383</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.tar.xz</a></p>
+<ul>
+<li>SIZE:   11225228 bytes</li>
+<li>SHA1:   85b4f631efa4b6435b2b41df6ce6c46da294c4d4</li>
+<li>SHA256: a88e19d9dc001db8f49ca3986a8a4e69980affff876854585725e40de0eedcd8</li>
+<li>SHA512: 3be0f3ed4de73509b2f6975fe3fbe28bb4d51df87db6e2c0019e8a107edf49be60b2127ba5b18bca91f9f5964b07f1adde3042dac6327017359eeb130760672b</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview1.zip</a></p>
+<ul>
+<li>SIZE:   19777010 bytes</li>
+<li>SHA1:   3458666c250dd333ac4b537be25f1913dd311ea1</li>
+<li>SHA256: 0fc1d4450e9141f541038a4433f8fb49fb929e43c7bf5985685a4fa7b213a811</li>
+<li>SHA512: f53653cf11d8dce1d627f7db3a15acca29c74c78735406a5d64bbbdc39fac232ef63110eb4d83521bef40c6f3006d55bbeaf54d1ddab1d4b6e5a13cee9247e85</li>
+</ul>
+</li>
+</ul>
+<h2>Chú thích</h2>
+<p>Xin xem lịch ấn bản và các thông tin khác tại</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering23">ReleaseEngineering23</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

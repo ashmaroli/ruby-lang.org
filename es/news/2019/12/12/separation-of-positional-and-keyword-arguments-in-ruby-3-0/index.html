@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Separación de argumentos de palabra clave y posicionales en Ruby 3.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Separación de argumentos de palabra clave y posicionales en Ruby 3.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Publicado por mame el 2019-12-12<br>
+                         Traducción de vtamara</p>
+
+    <p>Este artículo explica la incompatibilidad planeada de los argumentos
+de palabra clave en Ruby 3.0</p>
+<h2>tl;dr</h2>
+<p>En Ruby 3.0 los argumentos posicionales y los argumentos de palabra clave
+serán separados.  Ruby 2.7 advertirá comportamientos que cambiarán en
+Ruby 3.0.  Si ve las siguientes advertencias, debe actualizar su código:</p>
+<ul>
+<li>Usar el último argumento como un parámetro de palabra clave es obsoleto, o</li>
+<li>Pasar  al argumento de palabra clave como último parámetro de diccionario
+(has) es obsoleto, o</li>
+<li>Dividir el último argumento en parámetros posicional y de palabra clave
+es obsoleto</li>
+</ul>
+<p>En la mayoría de casos, puede evitar la incompatibilidad agregando
+el operador <em>doble splat</em>.   Que especifica que se pasa un argumento
+de palabra clave en lugar de un objeto <code>Hash</code>.   De la misma forma,
+puede agregar llaves <code>{}</code> para pasar explícitamente un
+objeto <code>Hash</code>, en lugar de argumentos de palabra clave.  Lea la sección
+&quot;Casos típicos&quot; más adelante para ver detalles.</p>
+<p>En Ruby 3, un método que delega todos los argumentos debe delegar
+explícitamente argumentos de palabra clave además de los argumentos
+posicionales.  Si quiere mantener el comportamiento de delegación
+de Ruby 2.7 y anteriores, use <code>ruby2_keywords</code>.
+Vea más detalles en la sección &quot;Manejando la delegación de argumentos.&quot;</p>
+<h2>Casos típicos</h2>
+<p>{: #typical-cases }</p>
+<p>Aquí están los casos más típicos.  Puede usar un operador doble splat
+(<code>**</code>) para pasar palabras clave en lugar de un diccionario.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->h<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Esta llamada a un método pasa un argumento Hash posicional<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># In Ruby 2.7: El Hash se convierte automáticamente a argumento<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># de palabra clave.<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># En Ruby 3.0: Este llamado genera un ArgumentError<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo.rb:11: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo.rb:2: warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    42<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Si quiere mantener el comportamiento en Ruby 3.0, utilice un doble splat<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 42<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Aquí hay otro caso.  Puede usar llaves (<code>{}</code>) para pasar un diccionario
+en lugar de palabras claves explícitas.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Esta llamada pasa sólo un argumento de palabra clave y ningún<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># argumento posicional<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># En Ruby 2.7: La palabra clave se convierte en un argumento Hash posicional<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># En Ruby 3.0: Este llamado genera un ArgumentError<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo2.rb:9: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo2.rb:2: warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    {:k=&gt;42}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Si dese mantener el comportamiento en Ruby 3.0, emplee llaves para hacerlo<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># un Hash explícito.<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->})<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; {:k=&gt;42}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>¿Qué se ha vuelto obsoleto?</h2>
+<p>{: #what-is-deprecated }</p>
+<p>En Ruby 2, los argumentos de palabra clave puede tratarse como el último
+argumento Hash posicional y un último argumento Hash posicional puede
+tratarse como un argumento de palabra clave.</p>
+<p>Como la conversión automática es en ocasiones demasiado compleja y
+problemática, como se explica al final de la sección, se ha despreciado
+en Ruby 2.7 y se eliminará en Ruby 3.  En otras palabras, los argumentos
+de palabra clave se separarán por completa de los posicionales en
+Ruby 3.  Así que cuando quiera pasar argumento de palabra clave,
+debe usar siempre <code>foo(k: expr)</code> o <code>foo(**expr)</code>.
+Si desea aceptar argumentos de palabra clave, en principio debe usar
+siempre <code>def foo(k: default)</code> o <code>def foo(k:)</code> o
+<code>def foo(**kwargs)</code>.</p>
+<p>Note que Ruby 3.0 no se comporta de manera diferente cuando se llama un
+método que no acepta argumentos de palabra clave con argumentos
+de palabra clave.  Por ejemplo, el siguiente caso no va a ser obsoleto
+y seguirá operando en Ruby 3.0.  Los argumentos de palabra clave sigue
+tratándose como argumentos Hash posicionales.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Esto es porque el tal estilo se usa con mucha frecuencia, y no hay
+ambigüedad en la forma como deben tratarse los argumentos.
+Prohibir esta conversión resultaría en incompatibilidad adicional
+con poco beneficio.</p>
+<p>Sin embargo, no se recomienda este estilo en código nuevo, a menos
+que suela pasar un Has como argumento posicional, y también esté
+usando argumentos de palabra clave.  En otro caso, use un doble splat:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>¿Mí código se quebrará en Ruby 2.7?</h2>
+<p>{: #break-on-ruby-2-7 }</p>
+<p>La respuesta corta es &quot;posiblemente no&quot;.</p>
+<p>Los cambios en Ruby 2.7 se diseñaron como ruta de migración hacía
+3.0.  Mientras que en principio Ruby 2.7 solo advertirá sobre
+comportamientos que cambiarán en Ruby 3, incluye algunos cambios
+incompatibles que consideramos menores.  Ver detalles en la sección
+&quot;Otros cambios menores.&quot;</p>
+<p>Excepto por las advertencias y cambios menores, Ruby 2.7 trata de
+mantener compatibilidad con Ruby 2.6.  Así, que su código probablemente
+operará en Ruby 2.7, aunque emita algunas advertencia.
+Y al correrlo en Ruby 2.7, puede verificar que su código esté
+listo para Ruby 3.0</p>
+<p>Si desea deshabilitar los mensajes de obsolescencia, por favor use el
+argumento de la línea de ordenes <code>-W:no-deprecated</code> o añada a
+su código <code>Warning[:deprecated] = false</code>.</p>
+<h2>Manejando la delegación de argumentos</h2>
+<p>{: #delegation }</p>
+<h3>Ruby 2.6 o anteriores</h3>
+<p>{: #delegation-ruby-2-6-or-prior }</p>
+<p>En Ruby 2, puede escribir una delegación de un método aceptando un
+argumento <code>*rest</code>  y un argumento <code>&amp;block</code>, y pasando ambos al
+método objetivo.
+De esta manera, los argumentos de palabra clave también
+se manejan de manera implícita durante la conversión automática
+entre argumentos posicionales y argumentos de palabra clave.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 3</h3>
+<p>{: #delegation-ruby-3 }</p>
+<p>Necesita delegar explícitamente los argumntos de palabra clave.</p>
+<!-- raw HTML omitted -->
+<p>De manera alterna, si no necesita compatibilidad con Ruby 2.6 o anteriores
+y no altera ningún argumento, puede usar la nueva sintaxis para delegar
+(<code>...</code>) que se introduce en Ruby 2.7.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 2.7</h3>
+<p>{: #delegation-ruby-2-7 }</p>
+<p>Brevemente : use <code>Module#ruby2_keywords</code> y delege <code>*args, &amp;block</code>.</p>
+<!-- raw HTML omitted -->
+<p><code>ruby2_keywords</code> acepta argumentos de palabra clave como
+el último argumento Hash, y lo pasa como argumento de palabra clave
+cuando llama al otro método.</p>
+<p>De hecho, Ruby 2.7 permite el nuevo estilo de delegación en muchos casos.
+Sin embargo, hay un caso esquina conocido.  Ver la siguiente sección.</p>
+<h3>Una delegación compatible que funciona en Ruby 2.6, 2.7 y Ruby 3</h3>
+<p>{: #a-compatible-delegation }</p>
+<p>Brevemente: nuevamente use <code>Module#ruby2_keywords</code></p>
+<!-- raw HTML omitted -->
+<p>Infortunadamente, necesitamos usar la delegación en el estilo antiguo
+(i.e., sin <code>**kwargs</code>) porque Ruby 2.6 o anteriores no maneja el nuevo
+estilo de delegación correctamente.
+Esta es una de las razones para la separación de argumentos de palabras
+clave; los detalles se describen en la sección final.   Y <code>ruby2_keywords</code>
+le permite emplear el estilo antiguo incluso en Ruby 2.7 y Ruby 3.0.
+Como no hay <code>ruby2_keywords</code> definido en 2.6 o anterior, por favor use
+la <a href="https://rubygems.org/gems/ruby2_keywords">gema ruby2_keywords</a>
+od definalo usted mismo:</p>
+<!-- raw HTML omitted -->
+<hr />
+<p>Si su código no necesita ejecutarse con Ruby 2.6 o anteriores, puede
+intentar el nuevo estilo de Ruby 2.7.  En casi todos los casos, funciona.
+Note que, sin embargo, hay algunos casos esquina como los siguientes:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted -->       <!-- raw HTML omitted -->#=&gt; Ruby 2.7: []   ({} es ignorado)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.7: [{}] (Puede pasar {} pasando explícitamente la palabra clave &quot;no&quot;)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Un argumento Hash vacío se convierte automáticamente y es absorbido en
+<code>**kwargs</code>, y la llamada de delegación elimina la palabra clave vacía
+del hash, así que no se pasa argumento alguno a  <code>target</code>.
+Hasta donde sabemos, este es el único caso esquina.</p>
+<p>Como se hace notar en la última línea, usted puede sobrellevar este
+problema usando <code>**{}</code>.</p>
+<p>Si realmente se preocupa por la portabilidad, use <code>ruby2_keywords</code>.
+(Reconociendo que Ruby 2.6 y anteriores tienen muchos casos
+esquinas en los argumentos de palabras. :-)
+<code>ruby2_keywords</code> puede ser eliminado en el futuro después de que
+Ruby 2.6 alcance su fin-de-vida. En ese momento, recomendamos delegar
+argumentos de palabra reservada (ver el código para Ruby 3 antes presentado).</p>
+<h2>Otros cambios menores</h2>
+<p>{: #other-minor-changes }</p>
+<p>Hay otros cambios menores respecto a argumentos de palabra clave en
+Ruby 2.7.</p>
+<h3>1. Llaves que no son símbolos se permite como argumentos de palabra clave</h3>
+<p>En Ruby 2.6 o anteriores, sólo llaves que eran símbolos se permitían en
+argumentos de palabra clave.  En Ruby 2.7, los argumentos de palabra
+clave pueden usar llaves que no son símbolos.</p>
+<!-- raw HTML omitted -->
+<p>Si un método acepta tanto argumentos opcionales como de palabra clave,
+el objeto Hash que tenga llaves símbolos y otras que no sean símbolos
+se dividirá en dos en Ruby 2.6.
+En Ruby 2.7 ampos se acepta como palabras clave porque las llaves que
+no son símbolos son permitidas.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: [1, {&quot;key&quot;=&gt;42, :sym=&gt;43}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Use llaves para mantener el comportamiento<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->},<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 y 2.7: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ruby 2.7 aún divide diccionarios con una advertencia si se pasa un Hash
+o argumentos de palabras clave tanto con llaves que sean símbolos como
+con llaves que no sean símbolos a un método que acepte explícitamente
+palabras clave pero no el argumento de palabra clave para el resto
+(<code>**kwargs</code>).  Este comportamiento será eliminado en
+Ruby 3, y se lanzará un <code>ArgumentError</code>.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.6 and 2.7: =&gt; [{&quot;key&quot;=&gt;42}, 43]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.7: warning: Splitting the last argument into positional and keyword parameters is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#           warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 3.0: ArgumentError<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>2. Doble splat con un diccionario vacío (<code>**{}</code>) no pasa argumentos</h3>
+<p>{: #other-minor-changes-empty-hash }</p>
+<p>En Ruby 2.6 y anteriores, al pasar <code>**empty_hash</code> se pasa un
+Hash vacío como argumento posicional. En Ruby 2.7 o posteriores,
+no pasa argumento alguno.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 o anteriores: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 o posteriores: []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Note que <code>foo(**{})</code> no pasa dato alguno ni en Ruby 2.6 ni en
+2.7.  En Ruby 2.6 y anteriores, <code>**{}</code> es eliminado por el analizador
+sintáctico, y en Ruby 2.7 y posteriores, se trata igual que
+<code>**empty_hash</code>, permitiendo no pasar argumentos de palabra clave
+de manera sencilla a un método.</p>
+<p>En Ruby 2.7 cuando se llama un método con una cantidad insuficiente
+de argumentos posicionales, <code>foo(**empty_hash)</code> pasa un
+diccionario vacío y emite una advertencia, por compatibilidad con
+Ruby 2.6. Este comportamiento será eliminado en 3.0</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 o anterioes: {}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#             warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 3.0: ArgumentError: wrong number of arguments<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>3. Se introduce sintaxis sin-argumentos-de-palabra-clave (<code>**nil</code>)</h3>
+<p>Puede usar <code>**nil</code> en la definición de un método para marcar de manera
+explícita que el método no acepta argumentos de palabra clave.
+Llamar tales métodos con argumentos de palabra clave resultará en un
+<code>ArgumentError</code>. (En realidad es una nueva característica y no
+una incompatibilidad)</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 o posterior: no keywords accepted (ArgumentError)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Esto es útil para hacer explícito que el método no acepta argumentos
+de palabra clave.  De lo contrario los argumentos de palabra clave
+son absorbidos en el argumento para el resto en el ejemplo anterior.
+Si extiende un método para que acepte argumentos de palabra clave,
+el método podría tener incompatibilidades así:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Al pasar argumentos de palabra clave se convierten en un objeto Hash (aún en Ruby 3.0)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{:k=&gt;1}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Si el método se extiende para aceptar una palabra clave<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->mode: <!-- raw HTML omitted --><!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->args<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Las llamadas existentes pueden quebrarse<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; ArgumentError: unknown keyword k<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Razones para despreciar la conversión automática</h2>
+<p>{: #why-deprecated }</p>
+<p>La conversión automática inicialmente parecía una buena idea,
+y funcionó bien en muchos casos. Sin embargo, tenía muchos casos
+esquina, y hemos recibidos muchos reportes de fallas por el
+comportamiento.</p>
+<p>La conversión automática no funciona bien cuando un método acepta
+argumentos posicionales opciones y argumentos de palabra clave.
+Alguna gente espera que el último objeto Hash sea tratado como
+un argumento posicional, y otra espera que sea convertido
+en argumento de palabra clave.</p>
+<p>Este es uno de los casos más confusos:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->=<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{}, {}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [1, {}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; esperado : [{}, {}], realmente: [1, {}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>En Ruby 2, <code>foo({})</code> pasa un diccionario vacío como un argumento normal
+(i.e., <code>{}</code> se asigna a <code>x</code>), mientras que
+<code>bar({})</code> pasa un argumento de palabra clave (i.e, <code>{}</code> se asigna a <code>kwargs</code>).
+Así que <code>any_method({})</code> es muy ambiguo.</p>
+<p>Puede pensar que <code>bar({}, **{})</code> pasa el diccionario vacío a <code>x</code>d
+de forma explícita.
+Pero sorprendentemente, no opera como espera; aún imprime <code>[1, {}]</code>
+en Ruby 2.6.
+Esto es porque <code>**{}</code> es ignorado por el analizador en Ruby 2.6, y
+el primer argumento <code>{}</code> se convierte automáticamente a
+palabras clave (<code>**kwargs</code>).  En tal caso, necesita llamar
+<code>bar({}, {})</code>, que resulta muy extraño.</p>
+<p>El mismo problema ocurre con métodos que aceptan argumentos de palabra clave
+y resto.  Esto hace que no opere la delegación explícita de argumentos
+de palabra clave.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->()<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.6 o anteriores: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 o posteriores:  []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo()</code> no pasa argumentos, pero <code>target</code> recibe un argumento de diccionario
+vacío en Ruby 2.6. Esto es porque el método <code>foo</code> delega las
+palabras clave (<code>**kwargs</code>) explícitamente.  Cuando se llama <code>foo()</code>,
+<code>args</code>es un arreglo vacío, <code>kwargs</code> es un Hash vacío y <code>block</code> es <code>nil</code>.
+Y entonces  <code>target(*args, **kwargs, &amp;block)</code> pasa un Hash vacío
+como argumento porque <code>**kwargs</code> se convierte automáticamente a
+un argumento Hash posicional.</p>
+<p>La conversión automática no sólo confunde a la gente sino que hace
+el método menos extensible.  Ver más detalles en la
+<a href="https://bugs.ruby-lang.org/issues/14183">[Característica #14183]</a> y
+razones para el cambio de comportamiento, y porque se hicieron
+algunas elecciones de implementación.</p>
+<h2>Agradecimientos</h2>
+<p>Este artículo fue revisado amablemente (e incluso son co-autores) por
+Jeremy Evans y Benoit Daloze.</p>
+<h2>Historia</h2>
+<ul>
+<li>Actualizado 2019-12-25: En 2.7.0-rc2, el mensaje de advertencia
+fue cambiado levemente, y se agregó un API para eliminar la advertencia.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Noticias recientes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/es/news/2022/12/25/ruby-3-2-0-released/">Publicado Ruby 3.2.0</a></li>
+        
+        <li><a href="/es/news/2022/12/06/ruby-3-2-0-rc1-released/">Publicado Ruby 3.2.0 RC 1</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-0-5-released/">Publicado Ruby 3.0.5</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-2-7-7-released/">Publicado Ruby 2.7.7</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

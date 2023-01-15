@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.0.0-preview1 released</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2012/11/02/ruby-2-0-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.0.0-preview1 released</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 SJH 發表於 2012-11-02</p>
+
+    <p>Subject: [ruby-dev:46348] [ANN] ruby 2.0.0-preview1 released From:
+Yusuke Endoh &lt;mame tsg.ne.jp&gt; Date: Fri, 2 Nov 2012 09:17:39 +0900</p>
+<p>Hello all --</p>
+<p>We are pleased to announce the release of Ruby 2.0.0-preview1. Please
+check out the new features in Ruby 2.0 before final release!</p>
+<ul>
+<li>
+<p>https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-preview1.tar.bz2</p>
+<ul>
+<li>SIZE: 10309440 bytes</li>
+<li>MD5: 47a0f662f0e258aa1c5e429c310861b3</li>
+<li>SHA256: 79e5605003bf6766fbd123ce00a0027df716ba6d28494c35185909f7e61a5bdf</li>
+</ul>
+</li>
+<li>
+<p>https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-preview1.tar.gz</p>
+<ul>
+<li>SIZE: 12937316 bytes</li>
+<li>MD5: c7d73f3ddb6d25e7733626ddbad04158</li>
+<li>SHA256: 94b585560c05cb40fadd03e675bd3beb8271c2e976b45644cc765bf854cfd80c</li>
+</ul>
+</li>
+<li>
+<p>https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-preview1.zip</p>
+<ul>
+<li>SIZE: 14470260 bytes</li>
+<li>MD5: 4adb51aa69b56b81c81a8c5f892689cf</li>
+<li>SHA256: c327f3d91ed7033790244d5b263d7b346f3d8efe808079f5a598507fad90ee6e</li>
+</ul>
+</li>
+</ul>
+<h2>The new features in 2.0.0</h2>
+<ul>
+<li>Refinements</li>
+<li>Keyword arguments</li>
+<li>Enumerator#lazy</li>
+<li>Module#prepend</li>
+<li>Converting convention to Hash: #to_h</li>
+<li>%i: a literal for symbol array</li>
+<li>regexp engine is changed to Onigmo</li>
+<li>DTrace support</li>
+</ul>
+<p>... and more improvements. See NEWS for details.</p>
+<p>Unfortunately, no introductory document is available yet. (If you
+volunteer to write and provide, we may cite or refer to it in the next
+release announcement.)</p>
+<h2>The targets</h2>
+<p>All Ruby users, especially, the following people are strongly encouraged
+to provide feedback on anything you notice.</p>
+<ul>
+<li>All developers who want to make your products &quot;2.0 ready&quot;.</li>
+<li>Those who proposed 2.0 features.</li>
+<li>Ruby committers.</li>
+</ul>
+<p>Some 2.0 features are not implemented yet. In particular, we are
+planning to update Rubygems, Rdoc and Rake. DTrace support is NOT
+included in preview1; will be in preview2.</p>
+<ul>
+<li>6670: str.chars.last should be possible</li>
+<li>3346: __DIR__ revisited</li>
+<li>3731: Easier Embedding API for Ruby</li>
+<li>1586: Including a module already present in ancestors should not be
+ignored</li>
+<li>2294: [PATCH] ruby_bind_stack() to embed Ruby in coroutine</li>
+<li>1952: cannot stop with Ctrl+C</li>
+<li>2255: unicode parameters cannot be passed to ruby</li>
+</ul>
+<p>If you know other features that are accepted but not implemented, let us
+know.</p>
+<p>The stdlib Syck was completely replaced with Psych, which requires
+libyaml if you want to use YAML.</p>
+<p>We have taken considerable care in source-level compatibility with 1.9.
+We believe all &quot;normal&quot; programs will work without modification. So,
+please give it a try, and report if your program does not work.</p>
+<h2>The (rough) schedule</h2>
+<ul>
+<li>in early December: 2.0.0-preview2</li>
+<li>around Christmas time: code freeze</li>
+<li>at/after New Year: 2.0.0-rc1</li>
+<li>in early February: 2.0.0-rc2</li>
+<li>24 February: 2.0.0-p0</li>
+</ul>
+<h2>special thanks</h2>
+<p>I appreciate all who helped me (a lazy release manager). In particular,
+ko1 coordinated a lot, naruse covered almost all release jobs in place
+of me, and unak and Aaron Patterson reviewed the draft of this
+announcement. Thank you all!</p>
+<p>Yusuke Endoh &lt;mame / tsg.ne.jp&gt;</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

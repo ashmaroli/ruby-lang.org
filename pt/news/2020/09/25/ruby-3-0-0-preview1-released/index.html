@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Lançado Ruby 3.0.0 Preview 1</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pt/news/2020/09/25/ruby-3-0-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pt/feeds/news.rss" rel="alternate" title="Em português" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pt/">
+          <h1>Ruby</h1>
+          <h2>O melhor amigo do programador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Procurar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Lançado Ruby 3.0.0 Preview 1</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Escrito por naruse em 25/09/2020<br>
+                         Traduzido por jcserracampos</p>
+
+    <p>Temos o prazer de anunciar o lançamento do Ruby 3.0.0-preview1.</p>
+<p>Ele apresenta uma série de novos recursos e melhorias de desempenho.</p>
+<h2>RBS</h2>
+<p>RBS é uma linguagem para descrever os tipos de programas Ruby.
+Os verificadores de tipo, incluindo criador de perfil de tipos e outras ferramentas de suporte ao RBS, compreenderão os programas Ruby muito melhor com as definições do RBS.</p>
+<p>Você pode escrever a definição de classes e módulos: métodos definidos na classe, variáveis de instância e seus tipos e relações de herança / mix-in.
+O objetivo do RBS é oferecer suporte a padrões comumente vistos em programas Ruby e permite escrever tipos avançados, incluindo tipos de união, sobrecarga de método e genéricos. Ele também oferece suporte à <em>duck typing</em> com <em>tipos de interface</em>.</p>
+<p>Ruby 3.0 vem com gem <code>rbs</code>, que permite analisar e processar definições de tipo escritas em RBS.</p>
+<p>A seguir está um pequeno exemplo de RBS.</p>
+<div class="language-rbs highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="rbs">module ChatApp
+  VERSION: String
+
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` significa união de tipos, `User` ou `Bot`.
+
+    def initialize: (String) -&gt; void
+
+    def post: (String, from: User | Bot) -&gt; Message   # Sobrecarga de método é suportada.
+            | (File, from: User | Bot) -&gt; Message
+  end
+end
+</code></pre></div></div>
+<p>Veja <a href="https://github.com/ruby/rbs">README da gem rbs</a> para mais detalhes.</p>
+<h2>Ractor (experimental)</h2>
+<p>Ractor é uma abstração concorrente semelhante a um modelo de ator, projetada para fornecer um recurso de execução paralela sem preocupações com a segurança do thread.</p>
+<p>Você pode fazer vários ractores e executá-los em paralelo. Ractor permite fazer programas paralelos thread-safe porque ractors não podem compartilhar objetos normais. A comunicação entre os ractores é apoiada pela troca de mensagens.</p>
+<p>Para limitar o compartilhamento de objetos, o Ractor apresenta várias restrições à sintaxe do Ruby (sem vários Ractors, não há mudanças).</p>
+<p>A especificação e implementação não estão amadurecidas e serão alteradas no futuro, portanto, esse recurso é marcado como experimental e mostra o aviso de recurso experimental se um Ractor for criado.</p>
+<p>O pequeno programa a seguir calcula <code>prime?</code> em paralelo com dois ractores e cerca de x2 vezes mais rápido com dois ou mais núcleos do que o programa sequencial.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'prime'</span>
+
+<span class="c1"># n.prime? com inteiros r1 e r2 enviados rodando em parelelo</span>
+<span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">2</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span>
+  <span class="no">Ractor</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="no">Ractor</span><span class="p">.</span><span class="nf">recv</span>
+    <span class="n">n</span><span class="p">.</span><span class="nf">prime?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># envio de parâmetros</span>
+<span class="n">r1</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">r2</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">+</span> <span class="mi">15</span>
+
+<span class="c1"># aguardando os resultados de expr1, expr2</span>
+<span class="nb">p</span> <span class="n">r1</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+<span class="nb">p</span> <span class="n">r2</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+</code></pre></div></div>
+<p>Veja <a href="https://github.com/ruby/ruby/blob/master/doc/ractor.md">doc/ractor.md</a> para mais detalhes.</p>
+<h2>Scheduler (Experimental)</h2>
+<p><code>Thread#scheduler</code> é introduzido para interceptar operações bloqueantes. Isso permite concorrência leve sem alterar o código existente.</p>
+<p>Classes/métodos atualmente suportados:</p>
+<ul>
+<li><code>Mutex#lock</code>, <code>Mutex#unlock</code>e <code>Mutex#sleep</code></li>
+<li><code>ConditionVariable#wait</code></li>
+<li><code>Queue#pop</code> e <code>SizedQueue#push</code></li>
+<li><code>Thread#join</code></li>
+<li><code>Kernel#sleep</code></li>
+<li><code>IO#wait</code>, <code>IO#read</code>, <code>IO#write</code> e métodos correlatos (ex.: <code>#wait_readable</code>, <code>#gets</code>, <code>#puts</code> etc.).</li>
+<li><code>IO#select</code> <em>não é suportado</em>.</li>
+</ul>
+<p>O ponto de entrada atual para concorrência é <code>Fiber.schedule {...}</code> no entanto, está sujeito a alterações no momento em que o Ruby 3 for lançado.</p>
+<p>Atualmente, existe um agendador de teste disponível em <a href="https://github.com/socketry/async/pull/56"><code>Async::Scheduler</code></a>. Veja <a href="https://github.com/ruby/ruby/blob/master/doc/scheduler.md"><code>doc/scheduler.md</code></a> para mais detalhes. [Feature #16786]</p>
+<p><strong>cuidado</strong>: Este recurso é fortemente experimental. O nome e o recurso serão alterados na próxima versão de prévia.</p>
+<h2>Outros novos recursos notáveis</h2>
+<ul>
+<li>
+<p>A instrução de atribuição para a direita foi adicionada.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="nb">p</span> <span class="n">x</span> <span class="c1">#=&gt; 55</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>A definição de método sem a keyword <em>end</em> foi adicionada.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Find pattern foi adicionada.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">in</span> <span class="p">[</span><span class="o">*</span><span class="n">pre</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">post</span><span class="p">]</span>
+  <span class="nb">p</span> <span class="n">pre</span>  <span class="c1">#=&gt; ["a", 1]</span>
+  <span class="nb">p</span> <span class="n">x</span>    <span class="c1">#=&gt; "b"</span>
+  <span class="nb">p</span> <span class="n">y</span>    <span class="c1">#=&gt; "c"</span>
+  <span class="nb">p</span> <span class="n">post</span> <span class="c1">#=&gt; [2, "d", "e", "f", 3]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Hash#except</code> agora é nativo.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">3</span> <span class="p">}</span>
+<span class="nb">p</span> <span class="n">h</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="ss">:a</span><span class="p">)</span> <span class="c1">#=&gt; {:b=&gt;2, :c=&gt;3}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>A visualização da memória é adicionada como um recurso experimental</p>
+<ul>
+<li>Este é um novo conjunto C-API para trocar uma área de memória bruta, como uma matriz numérica e uma imagem de bitmap, entre bibliotecas de extensão. As bibliotecas de extensão também podem compartilhar os metadados da área de memória que consiste na forma, no formato do elemento e assim por diante. Usando esses tipos de metadados, as bibliotecas de extensão podem compartilhar até mesmo uma matriz multidimensional de forma adequada. Este recurso é projetado com referência ao protocolo de buffer do Python.</li>
+</ul>
+</li>
+</ul>
+<h2>Melhorias de desempenho</h2>
+<ul>
+<li>Muitas melhorias foram implementadas no MJIT. Veja NEWS em detalhes.</li>
+</ul>
+<h2>Outras mudanças notáveis desde 2.7</h2>
+<ul>
+<li>
+<p>Os argumentos de palavra-chave são separados de outros argumentos.</p>
+<ul>
+<li>
+<p>Em princípio, códigos que imprimem um aviso no Ruby 2.7 não funciona. Veja o <a href="https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">documento</a> em detalhe.</p>
+</li>
+<li>
+<p>A propósito, o encaminhamento de argumentos agora suporta argumentos principais.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+  <span class="nb">send</span><span class="p">(</span><span class="ss">:"do_</span><span class="si">#{</span> <span class="n">meth</span> <span class="si">}</span><span class="ss">"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>O recurso de <code>$SAFE</code> foi completamente removido; agora é uma variável global normal.</p>
+</li>
+<li>
+<p>A ordem de backtrace foi revertida em Ruby 2.5, mas foi cancelada. Agora ele se comporta como Ruby 2.4; uma mensagem de erro e o número da linha onde ocorre a exceção são impressos primeiro e seus chamadores são impressos posteriormente.</p>
+</li>
+<li>
+<p>Algumas bibliotecas padrão são atualizadas.</p>
+<ul>
+<li>RubyGems 3.2.0.rc.1</li>
+<li>Bundler 2.2.0.rc.1</li>
+<li>IRB 1.2.6</li>
+<li>Reline 0.1.5</li>
+</ul>
+</li>
+<li>
+<p>As seguintes bibliotecas não são mais gem padrão.
+Instale as gems correspondentes para usar esses recursos.</p>
+<ul>
+<li>net-telnet</li>
+<li>xmlrpc</li>
+</ul>
+</li>
+<li>
+<p>Promove gems padrão para gems nativas.</p>
+<ul>
+<li>rexml</li>
+<li>rss</li>
+</ul>
+</li>
+<li>
+<p>Promova stdlib para gem padrão. As seguintes gems padrão foram publicadas em rubygems.org</p>
+<ul>
+<li>abbrev</li>
+<li>base64</li>
+<li>English</li>
+<li>erb</li>
+<li>find</li>
+<li>io-nonblock</li>
+<li>io-wait</li>
+<li>net-ftp</li>
+<li>net-http</li>
+<li>net-imap</li>
+<li>net-protocol</li>
+<li>nkf</li>
+<li>open-uri</li>
+<li>optparse</li>
+<li>resolv</li>
+<li>resolv-replace</li>
+<li>rinda</li>
+<li>securerandom</li>
+<li>set</li>
+<li>shellwords</li>
+<li>tempfile</li>
+<li>time</li>
+<li>tmpdir</li>
+<li>tsort</li>
+<li>weakref</li>
+</ul>
+</li>
+</ul>
+<p>Veja <a href="https://github.com/ruby/ruby/blob/v3_0_0_preview1/NEWS.md">NEWS</a>
+ou <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1">commit logs</a>
+para mais detalhes.</p>
+<p>Com essas mudanças, <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1">3385 arquivos alterados, 150159 inserções(+), 124949 deleções(-)</a>
+desde Ruby 2.7.0!</p>
+<p>Por favor, experimente Ruby 3.0.0-preview1 e nos dê qualquer feedback!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15538340
+SHA1: 032697f3ace0a697cd72f68bac0032c31a8328d4
+SHA256: 013bdc6e859d76d67a6fcd990d401ed57e6e25896bab96d1d0648a877f556dbb
+SHA512: 3a6a6458d9c5f06555ab8705160f6b071f4dbe9d2a91cd7848852633657b495c480d74e4b2ff2cebddda556118d26bbb271160c989bc970bb1b5cb234e868d2f
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 17747808
+SHA1: 2842d2af2568d74c8d4071f5f536889a6b149202
+SHA256: ce8bd7534e7ec2a870b24d2145ea20e9bbe5b2d76b7dfa1102dbee5785253105
+SHA512: b94892951f842a1538f4b99022606ac2c0b5031f1ede7eef3833a8caa9ed63e9b22868509173bfefb406f263c65211db75597b152b61f49e5ba2a875fce63a27
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 12703060
+SHA1: 91d9fbe87504924148deeec90199d6ff4d7dcf56
+SHA256: aa7cce0c99f4ea2145fef9b78d74a44857754396790cd23bad75d759811e7a2a
+SHA512: dca5dcc965c434371947c100864090e29e649e19ae24b8bb2e88a534ebd8220c5a086035a999b1e8b1cd5ec154a6985a8d8dfea56095d712d62aeea7a2054f7d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 22002645
+SHA1: 4b5b61066373daf0a947d3fafe2645788504a164
+SHA256: a39a48ed9a8ca2c83d65d225a1bb3db331c6587a77ba156c20e630c1b4bfc23b
+SHA512: 10f6f28715a52093d7d9da82d1678147091b45e2f279e463626adea8efbf181485daa42565e5086057ffb45a097ffb8ff395c572b247b6b5da27d85933cf58a8
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Trailer de 3.0.0-preview2</h2>
+<p>Planejamos incluir <a href="https://github.com/mame/ruby-type-profiler">&quot;type-profiler&quot;</a> que é um recurso de análise de tipo estático. Fique ligado!</p>
+<h2>O que é Ruby</h2>
+<p>Ruby foi desenvolvido pela primeira vez por Matz (Yukihiro Matsumoto) em 1993,
+e agora é desenvolvido como Open Source. Ele roda em várias plataformas
+e é usado em todo o mundo, especialmente para desenvolvimento web.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Notícias Recentes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/pt/news/2020/10/02/ruby-2-7-2-released/">Lançado Ruby 2.7.2</a></li>
+        
+        <li><a href="/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Potencial Vulnerabilidade de Smuggling de Requisições HTTP no WEBrick</a></li>
+        
+        <li><a href="/pt/news/2020/09/25/ruby-3-0-0-preview1-released/">Lançado Ruby 3.0.0 Preview 1</a></li>
+        
+        <li><a href="/pt/news/2019/10/16/fukuoka-ruby-award-2020/">Competição 2020 Fukuoka Ruby Award - Submissões serão julgadas por Matz</a></li>
+        
+        <li><a href="/pt/news/2019/10/02/ruby-2-4-9-released/">Lançado Ruby 2.4.9</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de notícias (RSS)</h3>
+    <p><a href="/pt/feeds/news.rss">Em português</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Este site em outros idiomas:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pt/about/website/">Este website</a> é mantido com orgulho por membros da comunidade Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

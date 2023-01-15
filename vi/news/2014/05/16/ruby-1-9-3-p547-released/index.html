@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Phát hành Ruby 1.9.3-p547</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2014/05/16/ruby-1-9-3-p547-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Phát hành Ruby 1.9.3-p547</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi usa vào 16 May 2014<br>
+                         Dịch bởi Vinh Nguyễn</p>
+
+    <p>Ruby 1.9.3-p547 vừa được phát hành.</p>
+<p>Hiện tại Ruby 1.9.3 đang trong giai đoạn bảo trì bảo mật.
+Điều này có nghĩa là chúng tôi sẽ phát hành Ruby 1.9.3 chỉ khi một sự cố bảo mật xảy ra.
+Tuy nhiên có một ngoại lệ.
+Như đã nói trước đây, chúng tôi phát hành nếu có một regression (sự thối lui) nghiêm trọng được tìm thấy.</p>
+<p>Một số người dùng đã báo cáo những vấn đề trong môi trường sử dụng phiên bản cũ của OpenSSL với hệ điều hành Ubuntu 10.04 LTS.
+Đây là một regression (sự thối lui) đã được giới thiệu trong Ruby 1.9.3-p545.
+(Vấn đề tương tự đã xảy ra trong Ruby 2.1.1 và Ruby 2.0.0-p451 và đã được sửa với Ruby 2.1.2 và Ruby 2.0.0-p481.)
+Hãy nhìn vào <a href="https://bugs.ruby-lang.org/issues/9592">Lỗi #9592</a> để biết thêm chi tiết.</p>
+<p>Vì vậy, chúng tôi đã quyết định phát hành phiên bản này.
+Bạn chỉ nên nâng cấp nếu như bạn đã bị ảnh hưởng bởi vấn đề này.</p>
+<p>Lần phát hành này bao gồm hai sự thay đổi:</p>
+<ul>
+<li>một sự thay đổi cho các phiên bản cũ của OpenSSL (xem ở trên),</li>
+<li>một sự thay đổi nhỏ của <code>common.mk</code> cho việc quản lý các lần phát hành của chúng tôi (không ảnh hưởng đến người sử dụng).</li>
+</ul>
+<h2>Tải về</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.bz2">https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10036828 bytes
+MD5:    5363d399be7f827c77bf8ae5d1a69b38
+SHA256: ef588ed3ff53009b4c1833c83187ae252dd6c20db45e21a326cd4a16a102ef4c
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.gz">https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12582375 bytes
+MD5:    7531f9b1b35b16f3eb3d7bea786babfd
+SHA256: 9ba118e4aba04c430bc4d5efb09b31a0277e101c9fd2ef3b80b9c684d7ae57a1
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.zip">https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13970935 bytes
+MD5:    40ce2040860b18a330efe70b5ef072ba
+SHA256: 89c7639c75dd58af7ac77d01a6d035992f8c39de90fc5cbfcf6e8b54a6305900
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Chú thích của lần phát hành</h2>
+<p>Cảm ơn bạn đã báo cáo.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

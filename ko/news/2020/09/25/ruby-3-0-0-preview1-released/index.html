@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 3.0.0 Preview 1 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2020/09/25/ruby-3-0-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 3.0.0 Preview 1 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2020-09-25)<br>
+                         번역자: shia</p>
+
+    <p>루비 3.0.0-preview1 릴리스를 알리게 되어 기쁩니다.</p>
+<p>이는 많은 새 기능과 성능 향상을 포함하고 있습니다.</p>
+<h2>RBS</h2>
+<p>RBS는 루비 프로그램의 타입을 기술하기 위한 언어입니다.
+RBS를 지원하기 위한 타입 프로파일러와 다른 도구들을 포함하는 타입 검사기는 RBS 정의를 통해 루비 프로그램을 더 잘 이해합니다.</p>
+<p>클래스나 모듈에 정의된 메서드, 인스턴스 변수와 타입, 상속이나 믹스인 관계에 대한 정의를 작성할 수 있습니다.
+RBS의 목표는 루비 프로그램에서 흔히 보이는 패턴을 지원하는 것과 유니언 타입, 메서드 오버로딩, 제네릭을 포함하는 고급 타입을 지원하는 것입니다. 또한 <em>인터페이스 타입</em>을 이용해 덕타이핑을 지원합니다.</p>
+<p>루비 3.0은 RBS로 작성된 타입 정의를 해석하고 처리하는 <code>rbs</code> 젬을 포함합니다.</p>
+<p>다음은 RBS의 작은 예시입니다.</p>
+<div class="language-rbs highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="rbs">module ChatApp
+  VERSION: String
+
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|`는 유니언 타입을 의미합니다. 여기에서는 `User` 또는 `Bot`이라는 의미입니다.
+
+    def initialize: (String) -&gt; void
+
+    def post: (String, from: User | Bot) -&gt; Message   # 메서드 오버로딩이 지원됩니다.
+            | (File, from: User | Bot) -&gt; Message
+  end
+end
+</code></pre></div></div>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/rbs">rbs 젬의 README</a>를 확인하세요.</p>
+<h2>Ractor (실험적)</h2>
+<p>Ractor는 스레드 안전에 대한 걱정이 없는 병렬 실행을 제공하기 위해 설계된 액터 모델과 비슷한 동시 실행 추상화 모델입니다.</p>
+<p>여러 개의 ractor를 만들고 병렬로 실행할 수 있습니다. Ractor는 일반 객체를 공유할 수 없기 때문에 스레드 안전한 병렬 프로그램을 만들 수 있습니다.
+ractor 간의 통신은 메시지 넘기기를 통해서 지원됩니다.</p>
+<p>객체 공유를 제한하기 위해, Ractor는 루비 문법에 여러 제한을 추가했습니다(여러 개의 ractor를 사용하지 않는다면 차이는 없습니다).</p>
+<p>명세와 구현은 아직 완성되지 않았으므로 앞으로 변경될 수 있습니다. 그러므로 이 기능은 실험적으로 제공되며 Ractor가 생성되면 실험적 기능을 사용하고 있다는 경고를 표시합니다.</p>
+<p>다음은 <code>prime?</code>을 2개의 ractor를 통해 계산하는 프로그램입니다. 이는 2개 이상의 코어를 사용하는 경우, 순차적으로 실행하는 프로그램보다 약 2배 빠릅니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'prime'</span>
+
+<span class="c1"># r1, r2에 보낸 정수들로 'n.prime?'을 병렬 실행</span>
+<span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">2</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span>
+  <span class="no">Ractor</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="no">Ractor</span><span class="p">.</span><span class="nf">recv</span>
+    <span class="n">n</span><span class="p">.</span><span class="nf">prime?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># 매개 변수를 송신</span>
+<span class="n">r1</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">r2</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">+</span> <span class="mi">15</span>
+
+<span class="c1"># r1, r2의 실행 결과 대기</span>
+<span class="nb">p</span> <span class="n">r1</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+<span class="nb">p</span> <span class="n">r2</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+</code></pre></div></div>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/master/doc/ractor.md">doc/ractor.md</a>를 확인하세요.</p>
+<h2>스케줄러 (실험적)</h2>
+<p>블로킹 명령에 끼어들 수 있는 <code>Thread#scheduler</code>가 도입됩니다.
+이는 기존에 존재하는 코드를 변경하지 않고 가벼운 동시성을 지원할 수 있게 합니다.</p>
+<p>현재 지원되는 클래스와 메서드는 다음과 같습니다.</p>
+<ul>
+<li><code>Mutex#lock</code>, <code>Mutex#unlock</code>, <code>Mutex#sleep</code></li>
+<li><code>ConditionVariable#wait</code></li>
+<li><code>Queue#pop</code>, <code>SizedQueue#push</code></li>
+<li><code>Thread#join</code></li>
+<li><code>Kernel#sleep</code></li>
+<li><code>IO#wait</code>, <code>IO#read</code>, <code>IO#write</code>와 관련 메서드(예: <code>#wait_readable</code>, <code>#gets</code>, <code>#puts</code> 등).</li>
+<li><code>IO#select</code>는 <em>지원되지 않습니다</em>.</li>
+</ul>
+<p>현재 동시성을 위한 기점은 <code>Fiber.schedule{...}</code>입니다만, 이는 루비 3의 릴리스 때 변경될 가능성이 있습니다.</p>
+<p>현재 <a href="https://github.com/socketry/async/pull/56"><code>Async::Scheduler</code></a>의 테스트 스케줄러가 이용 가능합니다.
+자세한 내용은 <a href="https://github.com/ruby/ruby/blob/master/doc/scheduler.md"><code>doc/scheduler.md</code></a>를 확인하세요. [Feature #16786]</p>
+<p><strong>주의</strong>: 이 기능은 매우 실험적입니다. 이름과 기능 모두 다음 프리뷰 릴리스에서 변경될 수 있습니다.</p>
+<h2>그 이외의 주목할 만한 기능</h2>
+<ul>
+<li>
+<p>오른쪽으로 값을 할당하는 명령이 추가됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span>
+<span class="nb">p</span> <span class="n">x</span> <span class="c1">#=&gt; 55</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>end</code> 없는 메서드 정의가 추가됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>검색 패턴이 추가됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">in</span> <span class="p">[</span><span class="o">*</span><span class="n">pre</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">post</span><span class="p">]</span>
+  <span class="nb">p</span> <span class="n">pre</span>  <span class="c1">#=&gt; ["a", 1]</span>
+  <span class="nb">p</span> <span class="n">x</span>    <span class="c1">#=&gt; "b"</span>
+  <span class="nb">p</span> <span class="n">y</span>    <span class="c1">#=&gt; "c"</span>
+  <span class="nb">p</span> <span class="n">post</span> <span class="c1">#=&gt; [2, "d", "e", "f", 3]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Hash#except</code>가 내장됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">3</span> <span class="p">}</span>
+<span class="nb">p</span> <span class="n">h</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="ss">:a</span><span class="p">)</span> <span class="c1">#=&gt; {:b=&gt;2, :c=&gt;3}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메모리 뷰가 실험적인 기능으로 추가됩니다.</p>
+<ul>
+<li>이는 숫자 배열이나 비트맵 이미지와 같은 메모리 공간을 확장 라이브러리 간에 교환하기 위한 새로운 C-API 집합입니다. 확장 라이브러리는 모양, 요소의 형식 등으로 구성된 메모리 공간의 메타 정보를 공유할 수 있습니다. 이러한 메타 정보를 사용하여 확장 라이브러리는 다차원 배열을 적절하게 공유할 수 있습니다. 이 기능은 파이썬의 버퍼 프로토콜을 참고하여 설계되었습니다.</li>
+</ul>
+</li>
+</ul>
+<h2>성능 향상</h2>
+<ul>
+<li>MJIT에 많은 개선이 추가되었습니다. 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/v3_0_0_preview1/NEWS.md">NEWS</a>를 확인하세요.</li>
+</ul>
+<h2>그 이외의 2.7 이후로 주목할 만한 변경</h2>
+<ul>
+<li>
+<p>키워드 인자가 다른 인자들로부터 분리됩니다.</p>
+<ul>
+<li>
+<p>원칙적으로 루비 2.7에서 경고를 출력하는 코드는 동작하지 않습니다. 자세한 내용은 <a href="https://www.ruby-lang.org/ko/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">문서</a>를 확인하세요.</p>
+</li>
+<li>
+<p>한편, 인자를 전달할 때 앞쪽 인자를 사용할 수 있습니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+  <span class="nb">send</span><span class="p">(</span><span class="ss">:"do_</span><span class="si">#{</span> <span class="n">meth</span> <span class="si">}</span><span class="ss">"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p><code>$SAFE</code> 기능이 완전히 제거됩니다. 이 값은 이제 일반 전역 변수입니다.</p>
+</li>
+<li>
+<p>루비 2.5에서 백트레이스의 순서가 역순이 되었습니다만, 이를 취소합니다. 이제 백트레이스는 루비 2.4와 동일하게 동작합니다. 예외가 발생한 곳의 에러 메시지와 줄 번호가 가장 먼저 출력되며, 이를 호출한 곳의 정보가 그 뒤에 출력됩니다.</p>
+</li>
+<li>
+<p>표준 라이브러리를 업데이트했습니다.</p>
+<ul>
+<li>RubyGems 3.2.0.rc.1</li>
+<li>Bundler 2.2.0.rc.1</li>
+<li>IRB 1.2.6</li>
+<li>Reline 0.1.5</li>
+</ul>
+</li>
+<li>
+<p>다음 라이브러리들은 이제 기본으로 포함되지 않습니다.
+각 기능이 필요한 경우에는 해당하는 젬을 설치해주세요.</p>
+<ul>
+<li>net-telnet</li>
+<li>xmlrpc</li>
+</ul>
+</li>
+<li>
+<p>기본 젬이 내장 젬으로 승격됩니다.</p>
+<ul>
+<li>rexml</li>
+<li>rss</li>
+</ul>
+</li>
+<li>
+<p>표준 라이브러리가 기본 젬으로 승격됩니다. 다음 기본 젬들이 rubygems.org에서 배포 중입니다.</p>
+<ul>
+<li>abbrev</li>
+<li>base64</li>
+<li>English</li>
+<li>erb</li>
+<li>find</li>
+<li>io-nonblock</li>
+<li>io-wait</li>
+<li>net-ftp</li>
+<li>net-http</li>
+<li>net-imap</li>
+<li>net-protocol</li>
+<li>nkf</li>
+<li>open-uri</li>
+<li>optparse</li>
+<li>resolv</li>
+<li>resolv-replace</li>
+<li>rinda</li>
+<li>securerandom</li>
+<li>set</li>
+<li>shellwords</li>
+<li>tempfile</li>
+<li>time</li>
+<li>tmpdir</li>
+<li>tsort</li>
+<li>weakref</li>
+</ul>
+</li>
+</ul>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/v3_0_0_preview1/NEWS.md">NEWS</a>나
+<a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1">커밋 로그</a>를 확인해주세요.</p>
+<p>이러한 변경사항에 따라, 루비 2.7.0 이후로 <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1">파일 3385개 수정, 150159줄 추가(+), 124949줄 삭제</a>가 이루어졌습니다!</p>
+<p>루비 3.0.0-preview1을 사용해보시고, 피드백을 보내주세요!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15538340
+SHA1: 032697f3ace0a697cd72f68bac0032c31a8328d4
+SHA256: 013bdc6e859d76d67a6fcd990d401ed57e6e25896bab96d1d0648a877f556dbb
+SHA512: 3a6a6458d9c5f06555ab8705160f6b071f4dbe9d2a91cd7848852633657b495c480d74e4b2ff2cebddda556118d26bbb271160c989bc970bb1b5cb234e868d2f
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 17747808
+SHA1: 2842d2af2568d74c8d4071f5f536889a6b149202
+SHA256: ce8bd7534e7ec2a870b24d2145ea20e9bbe5b2d76b7dfa1102dbee5785253105
+SHA512: b94892951f842a1538f4b99022606ac2c0b5031f1ede7eef3833a8caa9ed63e9b22868509173bfefb406f263c65211db75597b152b61f49e5ba2a875fce63a27
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 12703060
+SHA1: 91d9fbe87504924148deeec90199d6ff4d7dcf56
+SHA256: aa7cce0c99f4ea2145fef9b78d74a44857754396790cd23bad75d759811e7a2a
+SHA512: dca5dcc965c434371947c100864090e29e649e19ae24b8bb2e88a534ebd8220c5a086035a999b1e8b1cd5ec154a6985a8d8dfea56095d712d62aeea7a2054f7d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 22002645
+SHA1: 4b5b61066373daf0a947d3fafe2645788504a164
+SHA256: a39a48ed9a8ca2c83d65d225a1bb3db331c6587a77ba156c20e630c1b4bfc23b
+SHA512: 10f6f28715a52093d7d9da82d1678147091b45e2f279e463626adea8efbf181485daa42565e5086057ffb45a097ffb8ff395c572b247b6b5da27d85933cf58a8
+</code></pre></div></div>
+</li>
+</ul>
+<h2>3.0.0-preview2 예고</h2>
+<p>정적 타입 분석 기능을 위한 <a href="https://github.com/mame/ruby-type-profiler">&quot;타입 프로파일러&quot;</a>를 포함할 예정입니다. 계속 지켜봐주세요!</p>
+<h2>루비는</h2>
+<p>루비는 1993년에 Matz(마츠모토 유키히로)가 처음 개발했고, 현재는 오픈 소스로서 개발되고 있습니다. 이는 여러 플랫폼에서 동작하며, 특히 웹 개발에서 전 세계적으로 이용되고 있습니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

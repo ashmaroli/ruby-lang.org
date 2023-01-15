@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Đến với Ruby từ các ngôn ngữ khác</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/documentation/ruby-from-other-languages/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Đến với Ruby từ các ngôn ngữ khác</h1>
+
+
+
+  <div id="content">
+    <p>Khi bạn xem các đoạn mã của Ruby, nó sẽ làm bạn liên tưởng tới các
+ngôn ngữ khác mà bạn đã sử dụng qua. Đây chính là chủ đích. Đa số
+cú pháp đều quen thuộc với những ngưởi sử dụng Perl, Python, và Java,
+vì vậy nếu bạn đã từng sử dụng qua thì việc làm quen với Ruby sẽ không
+mấy khó khăn.
+{: .summary}</p>
+<p>Tài liệu này có 2 phần chính. Phần đầu tiên là tóm tắt những gì
+bạn mong muốn khi chuyển từ ngôn ngữ <em>X</em> sang Ruby. Phần thứ hai thảo
+luận về các đặc điểm chính của Ruby và so sánh với những ngôn ngữ
+mà bạn đã quen thuộc.</p>
+<h2>Mong đợi gì: từ <em>ngôn ngữ X</em> đến Ruby</h2>
+<ul>
+<li><a href="to-ruby-from-c-and-cpp/">Đến với Ruby từ C và C++</a></li>
+<li><a href="to-ruby-from-java/">Đến với Ruby từ Java</a></li>
+<li><a href="to-ruby-from-perl/">Đến với Ruby từ Perl</a></li>
+<li><a href="to-ruby-from-php/">Đến với Ruby từ PHP</a></li>
+<li><a href="to-ruby-from-python/">Đến với Ruby từ Python</a></li>
+</ul>
+<h2>Một số vấn đề và tính năng quan trọng của ngôn ngữ</h2>
+<p>Dưới đây là một số ghi chú và gợi ý về tính năng của Ruby mà bạn sẽ thấy
+khi học Ruby.</p>
+<h3>Bước lặp</h3>
+<p>Hai đặc điểm của Ruby có một chút khác biệt với những gì bạn biết trước
+đây, trong số đó có một số thường hay được sử dụng, là &quot;blocks&quot; và vòng lặp.
+Thay vì phải lặp trên một index (như C, C++, hoặc Java 1.5 trở về trước),
+hoặc lặp trên một danh sách (như Perl <code>for (@a) {...}</code>, hay Python
+<code>for i in aList: ...</code>, thì với Ruby bạn sẽ thường xuyên thấy</p>
+<!-- raw HTML omitted -->
+<p>Để hiểu thêm về <code>each</code> (và cũng như <code>collect</code>, <code>find</code>, <code>inject</code>,
+<code>sort</code>, v.v..), xem <code>ri Enumerable</code> (và <code>ri Enumerable#some_method</code>).</p>
+<h3>Tất cả mọi thứ đều có giá trị</h3>
+<p>Không có sự khác nhau giữa biểu thức và mệnh đề. Tất cả đều có giá trị,
+thậm chí giá trị đó là <strong>nil</strong>. Đều có thể:</p>
+<!-- raw HTML omitted -->
+<h3>Các Symbol không phải là String</h3>
+<p>Những người mới học đều cố gắng hiểu được Symbol là gì, và nó được dùng
+cho việc gì.</p>
+<p>Symbol có thể được mô tả như là định danh. Symbol là thông tin về <strong>ai</strong>
+đó, chứ không phải về <strong>cái gì</strong> đó. Xem <code>irb</code> để thấy sự khác biệt:</p>
+<!-- raw HTML omitted -->
+<p><code>object_id</code> của phương thức trả về định danh của đối tượng. Nếu hai
+đối tượng có chung một <code>object_id</code>, thì như nhau (đều trỏ đến cùng
+một đối tượng trong vùng nhớ).</p>
+<p>Như bạn có thể thấy, một khi đã sử dụng Symbol một lần, thì những
+Symbol có cùng ký tự đều tham chiếu đến cùng một đối tượng trong bộ
+nhớ. Với bất kỳ 2 Symbol nào có ký tự giống nhau, thì <code>object_id</code>
+cũng giống nhau.</p>
+<p>Bây giờ hãy xem chuỗi String (“george”). Hai <code>object_id</code> không giống nhau.
+Điều đó nghĩa là nó được tham chiếu tới 2 đối tượng khác nhau trong vùng
+nhớ. Bất cứ khi nào bạn sử dụng new String, Ruby sẽ cấp phát vùng nhớ
+mới cho nó.</p>
+<p>Nếu bạn phân vân trong việc sử dụng Symbol hay String, hãy xem xét xem
+cái gì quan trọng hơn: định danh của một đối tượng (i.e một Hash key),
+hay là nội dung của nó (như ví dụ bên trên là “george”).</p>
+<h3>Mọi thứ đều là đối tượng (Object)</h3>
+<p>“Mọi thứ đều là đối tượng” không hề nói quá. Thậm chí lớp (Class) và số
+đều là đối tượng, và bạn có thể làm việc với chúng giống như các đối
+tượng khác:</p>
+<!-- raw HTML omitted -->
+<h3>Các biến hằng số (Constant)</h3>
+<p>Các hằng số không thực sự cố định. Nếu bạn chỉnh sửa một hằng số đã được
+khởi tạo, nó sẽ kích hoạt cảnh báo, nhưng không ngăn chương trình thực thi.
+Nó sẽ không báo rằng bạn <strong>cần</strong> định nghĩa lại hằng số.</p>
+<h3>Những quy tắc chung</h3>
+<p>Ruby áp dụng một số quy ước đặt tên. Nếu một định danh bắt đầu bằng ký
+tự hoa, thì đó là hằng số. Nếu nó bắt đầu bằng dấu <code>$</code>, thì đó là
+biến toàn cục. Nếu như bắt đầu với <code>@</code>, thì đó là một thể hiện của biến.
+Nếu như bắt đầu với <code>@@</code>, thì đó là biến của lớp.</p>
+<p>Các tên phương thức, đều có thể bắt đầu với các ký tự hoa.
+Điều này có thể dẫn đến sự nhầm lẫn, như ví dụ dưới đây:</p>
+<!-- raw HTML omitted -->
+<p>Bây giờ <code>Constant</code> là 10, nhưng <code>Constant()</code> là 11.</p>
+<h3>Các từ khóa đối số</h3>
+<p>Giống như Python, khi các phương thức của Ruby 2.0 có
+thể được định nghĩa qua việc sử dụng các tư khóa đối số:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Gửi từ A đến B qua mail.&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->via: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Pony Express&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->from: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;A&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Gửi từ B đến A qua Pony Express.&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Các chân lý tổng quát</h3>
+<p>Trong Ruby, tất cả mọi thứ ngoài trừ <strong>nil</strong> và <strong>false</strong> thì đều được
+xem là true. Trong C, Python và các ngôn ngữ khác, 0 và các giá trị khác,
+như các danh sách rỗng, đều được xem là false. Hãy xem đoạn mã Python
+dưới đây (ví dụ cũng được áp dụng với các ngôn ngữ khác):</p>
+<!-- raw HTML omitted -->
+<p>Sẽ trả về kết quả “0 is false”. tương tự với Ruby:</p>
+<!-- raw HTML omitted -->
+<p>Sẽ in ra “0 is true”.</p>
+<h3>Phạm vi áp dụng của các truy cập</h3>
+<p>Trong đoạn mã dưới đây,</p>
+<!-- raw HTML omitted -->
+<p>Bạn muốn <code>another_method</code> là public. Nhưng không. Truy cập <code>private</code>
+có phạm vi ảnh hướng đến toàn bộ các phương thức, hoặc cho đến khi
+xuất hiện truy cập khác. Mặc định, các phương thức đều public:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># phương thức another_method là private<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->another_method<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>public</code>, <code>private</code> và <code>protected</code> đều là các phương thức, vì vậy nó có thể
+có tham số. Nếu bạn truyền một symbol vào thì phương thức đó sẽ bị thay đổi.</p>
+<h3>Truy cập phương thức</h3>
+<p>Trong Java, <code>public</code> nghĩa là phương thức có thể được truy cập từ bất
+cứ đâu. <code>protected</code> nghĩa là thể hiện của lớp đó, và các lớp con của
+lớp đó, và không có lớp nào có thể truy cập ngoại trừ lớp con của nó,
+và <code>private</code> nghĩa là không có bất cứ lớp nào ngoài nó có thể truy cập
+vào phương thức đó.</p>
+<p>Ruby thì hơi khác một chút. <code>public</code> có nghĩa là phương thức công khai.
+<code>private</code> nghĩa là các phương thức được truy cập khi nó có thể được gọi
+mà không có một tiếp nhận rõ ràng. Chỉ có <strong>self</strong> được cho phép là nơi
+tiếp nhận khi gọi phương thức private.</p>
+<p><code>protected</code> là một truy cập cần được xem xét. Một phương thức protected có thể
+được gọi từ một lớp con của lớp thể hiện (lớp cha), nhưng cũng có thề được gọi
+bởi lớp thể hiện khác như là một lớp tiếp nhận của nó.
+Ví dụ, từ <a href="http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html">Ruby Language FAQ</a>:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->identifier<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x34ab50&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t2<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x342784&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->       <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># bây giờ chuyển `identifier' thành protected, và nó<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># vẫn hoạt động vì protected cho phép tham chiếu<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->protected<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># bây giờ chuyển `identifier' thành private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->private<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># NoMethodError: private method `identifier' called for #&lt;Test:0x342784&gt;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Các lớp đều mở</h3>
+<p>Các lớp trong Ruby đều mở. Bạn có thể mở, thêm vào, và thay đổi nó bất cứ lúc nào.
+Thậm chí các lớp lõi, như <code>Integer</code> hoặc thậm chí là <code>Object</code>, lớp chính của mọi
+đối tượng. Ruby on Rails định nghĩa một loạt các phương thức để xử lý thời gian
+trên <code>Integer</code>. Xem bên dưới:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 14 tiếng tính từ 00:00 ngày 1 tháng 1<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># (khi bạn thực sự thức dậy ;)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Time<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->mktime<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->2006<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->+<!-- raw HTML omitted --> <!-- raw HTML omitted -->14<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->hours<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Sun Jan 01 14:00:00<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Các tên phương thức hài hước</h3>
+<p>Trong Ruby, các phương thức có thể được kết thúc với dấu hỏi hoặc chấm than.
+theo quy ước, các phương thức mà trả lời các câu hỏi (ví dụ <code>Array#empty?</code>
+trả về <strong>true</strong> nếu mảng đó rỗng) kết thúc với dấu hỏi. Các phương thức có khả
+năng “nguy hiểm” (ví dụ các phương thức thay đổi <strong>self</strong> hay các đối số,
+<code>exit!</code> v.v) theo quy ước kết thúc với dấu chấm than. Tất cả các phương thức
+thay đổi các đối số không kết thúc với dấu chấm than. <code>Array#replace</code>
+thay đổi nội dung của mảng với nội dụng của mảng khác. Nó không có ý nghĩa nhiều
+để có một phương thức như thế mà <strong>không phải</strong> thay đổi chính nó.</p>
+<h3>Các phương thức đơn</h3>
+<p>Các phương thức đơn là các phương thức cho từng đối tượng. Nó chỉ có trên
+đối tượng mà bạn viết riêng cho nó.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Expensive car&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Expensive car<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Các đối tượng khác không bị ảnh hưởng<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Các phương thức bị thiếu</h3>
+<p>Ruby không từ bỏ nếu nó không thể tìm được một phương thức để phản
+hồi lại một thông điệp cụ thể. Nó được gọi là phương thức <code>method_missing</code>
+với tên phương thức và các đối số không thể tìm thấy. Mặc định, phương
+thức bị thiếu sẽ hiển thị ngoại lệ NameError, nhưng bạn có thể tái định
+nghĩa để phù hợp với ứng dụng cũng như thư viện của mình. Đây là một ví dụ:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->__<!-- raw HTML omitted --> <!-- raw HTML omitted -->:a<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:b<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->10<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; Phương thức __ được gọi, nhưng không tìm thấy. Nó có các<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># tham số: a, b, 10<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Đoạn mã bên trên chỉ in ra chi tiết của phương thức được gọi,
+nhưng bạn có thể xử lý thông điệp theo bất kỳ cách nào mà bạn
+cho là phù hợp.</p>
+<h3>Truyền thông điệp, không phải gọi chức năng</h3>
+<p>Gọi một phương thức thực chất là gửi <strong>thông điệp</strong> đến đối tượng khác:</p>
+<!-- raw HTML omitted -->
+<h3>Block cũng là đối tượng</h3>
+<p>Blocks (bao đóng) được sử dụng nhiều bởi các thư viện chuẩn.
+Để gọi một block, bạn cũng có thể dùng <code>yield</code>, hoặc làm cho
+nó thành một <code>Proc</code> bằng các thêm các đối số đặc biệt vào danh
+sách đối số, như thế này:</p>
+<!-- raw HTML omitted -->
+<p>Bạn cũng có thể tạo các block bên ngoài phương thức được gọi,
+bằng cách gọi <code>Proc.new</code> với một block hoặc gọi phương thức <code>lambda</code>.</p>
+<p>Tương tự như vậy, các phương thức cũng được tạo như đối tượng:</p>
+<!-- raw HTML omitted -->
+<h3>Toán tử và cú pháp</h3>
+<p>Hầu hết các toán tử trong Ruby chỉ là cú pháp (với một số quy tắc ưu tiên)
+để gọi phương thức. Ví dụ, bạn có thể viết lại phương thức Integers +</p>
+<!-- raw HTML omitted -->
+<p>Bạn không cần <code>toán tử +</code> của C++.</p>
+<p>Thậm chí bạn cũng có thể truy cập kiểu mảng nếu bạn định nghĩa
+các phương thức <code>[]</code> và <code>[]=</code>. Để định nghĩa toán tử nguyên phân + và -
+(như +1 và -2), bạn phải định nghĩa phương thức <code>+@</code> và <code>-@</code> tương ứng.
+Các toán tử dưới đây <strong>không</strong> có cú pháp. Nó không phải là các
+phương thức, và không thể tái định nghĩa:</p>
+<!-- raw HTML omitted -->
+<p>Thêm vào đó, <code>+=</code>, <code>*=</code> v.v. chỉ là cách viết tắt cho <code>var = var + other_var</code>,
+<code>var = var * other_var</code> v.v và cũng không thể tái định nghĩa.</p>
+<h2>Tham khảo thêm</h2>
+<p>Khi bạn đã sẵn sàng để nâng cao kiến thức về Ruby, xem phần
+<a href="/vi/documentation/">Tài liệu</a> của chúng tôi.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

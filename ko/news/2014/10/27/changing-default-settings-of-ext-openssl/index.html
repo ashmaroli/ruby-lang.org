@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>ext/openssl의 기본 설정 변경</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2014/10/27/changing-default-settings-of-ext-openssl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>ext/openssl의 기본 설정 변경</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: usa (2014-10-27)<br>
+                         번역자: marocchino</p>
+
+    <p>루비 2.1.4, 루비 2.0.0-p594, 루비 1.9.3-p550에서 ext/openssl의 기본 설정을
+변경하였습니다.
+이 수정으로 안전하지 않은 SSL/TLS 옵션이 꺼짐이 기본값이 됩니다.
+하지만, 이 수정은 SSL 연결에 문제를 일으킬 수도 있습니다.</p>
+<h2>상세 정보</h2>
+<p>OpenSSL은 여전히 프로토콜과 암호를 구현 중이고, 역사적 상황에 의해 지금도 안전하지 않은 것으로 간주됩니다.
+POODLE 취약점(<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566">CVE-2014-3566</a>) 같은,
+OpenSSL의 안전하지 않은 기능을 계속 사용할 경우,
+네트워크 통신의 안전을 유지하지 못할 수도 있습니다.
+그래서, <a href="https://bugs.ruby-lang.org/issues/9424">Bug #9424</a>에서 한 토론을 바탕으로,
+안전하지 않은 SSL/TLS 옵션을 꺼짐을 기본으로 변경하기로 결정했습니다.
+이 수정(밑의 링크)을 되돌릴 필요가 있다면, 리버스 패치를 적용하세요.</p>
+<p>2.1.4
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48098&amp;view=revision">r48098</a></p>
+<p>2.0.0-p594
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48110&amp;view=revision">r48110</a></p>
+<p>1.9.3-p550
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48121&amp;view=revision">r48121</a></p>
+<p>하지만, 이 수정을 되돌린다면, 네트워크의 안전을 보장할 수 없는 위험이있습니다.
+당신은 이 변경을 되돌리기 전에 그 점을 숙지하셔야 합니다.</p>
+<h3>루비에 포함된 라이브러리들</h3>
+<p>이 변경은 net/http, net/imap, net/pop에 반영됩니다.
+DRb와 WEBrick은 별도의 설정을 사용하기 떄문에, 영향받지 않습니다.</p>
+<h3>ext/openssl을 직접 사용하는 스크립트</h3>
+<p>이 변경은 <code>OpenSSL::SSL::SSLContext</code> 객체가 객체화될 때와 인스턴스 메서드 <code>set_params</code>가 불릴 때 반영됩니다.</p>
+<p>예를 들면, 이런 코드입니다.</p>
+<!-- raw HTML omitted -->
+<p>ext/openssl을 클라이언트 측에서 사용하는 경우, 이 변화가 아무런 문제가 없을 수도
+있다고 생각합니다.
+하지만, ext/openssl을 서버 측에서 사용하고 이 수정이 반영된다면, 일부 오래된
+클라이언트(윈도우 XP의 인터넷 익스플로러 6, 오래된 휴대폰의 브라우저 등)는
+서버에 접속할 수 없을 수도 있습니다.</p>
+<p>이 설정을 켤지 끌지는 당신의 선택입니다. 트레이드 오프를 생각해 보세요.</p>
+<h2>해결 방법</h2>
+<p>루비를 업데이트할 수 없지만, 안전하지 않은 SSL/TLS 옵션에 대처해야 한다면, 이 몽키
+패치를 적용하세요.</p>
+<!-- raw HTML omitted -->
+<h2>이 수정에 영향 받는 버전</h2>
+<ul>
+<li>루비 1.9.3 패치레벨 550 이후의 버전</li>
+<li>루비 2.0.0 패치레벨 594 이후의 버전</li>
+<li>루비 2.1.4 이후의 버전</li>
+<li>리비전 48097 이후의 트렁크</li>
+</ul>
+<h2>수정 이력</h2>
+<ul>
+<li>2014-10-27 12:00:00 (UTC) 최초 공개</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

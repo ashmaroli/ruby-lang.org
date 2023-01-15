@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>PythonからRubyへ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/ruby-from-other-languages/to-ruby-from-python/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>PythonからRubyへ</h1>
+
+
+
+  <div id="content">
+    <p>Pythonは、Rubyと同様、とてもよくできた汎用的なプログラミング言語です。
+PythonからRubyへやってきたなら、Pythonよりもほんの少しだけ構文が多いことに気づくでしょう。</p>
+<h3>Pythonとの類似</h3>
+<p>Pythonと同様に、Rubyは...</p>
+<ul>
+<li><code>irb</code>と呼ばれる対話型の実行環境があります。</li>
+<li>コマンドライン上でドキュメントを読めます
+(<code>pydoc</code>の代わりに<code>ri</code>コマンドを使います)。</li>
+<li>通常の改行を除いて、特殊な行区切りはありません。</li>
+<li>Pythonにおける三重引用符のように、文字列リテラルを複数行に記述できます。</li>
+<li>角かっこはリストを示すために使われ、
+波かっこは辞書(Rubyではハッシュと呼ばれます)を表すために使われます。</li>
+<li>配列は同じように機能します(
+要素を追加すれば配列は大きくなっていきます。
+<code>a3 = [ a1, a2 ]</code>のように書けば配列の配列を作って、
+それらを構造化することもできます)。</li>
+<li>オブジェクトは強力で動的な型付けを持ちます。</li>
+<li>すべてはオブジェクトです。そして、変数はオブジェクトへのただの参照です。
+キーワードは若干の違いがありますが、だいたい同じように機能します。</li>
+<li>rdocという埋め込み型のドキュメントツールがあります。</li>
+<li>第一級関数、無名関数、クロージャといった関数型プログラミングを行うための
+道具立てもそろっています。</li>
+</ul>
+<h3>Pythonとの違い</h3>
+<p>Pythonと違って、Rubyは...</p>
+<ul>
+<li>文字列は可変です。</li>
+<li>定数(値が変更されることを期待しない変数)をつくれます。</li>
+<li>名前付けについての規約がいくつかあります。
+たとえば、クラス名は大文字から始め、変数名は小文字で始めます。</li>
+<li>リストコンテナは、配列しかありません。配列は可変です。</li>
+<li>二重引用符で囲まれた文字列は、エスケープシーケンス(<code>\t</code>など)や、
+式展開(いちいち<code>+</code>で文字列連結すること無しに、
+Rubyの式を評価した結果を他の文字列に挿入可能にするしくみ)を解釈します。
+一重引用符で囲まれた文字列は、Pythonでいうraw文字列と同じ扱いとなります。</li>
+<li>クラスに新しいスタイル・古いスタイルといったものはありません
+(Python3からはこの問題はなくなりました。けれど、Python2との完全な後方互換性はありません)。</li>
+<li>属性には直接アクセスできません。
+Rubyでは、属性へのアクセスはすべてメソッド経由になります。</li>
+<li>メソッド呼び出しの括弧は基本的にオプションです。</li>
+<li>Pythonでアンダースコアの数によって実現しているアクセス制御は、
+<code>public</code>、<code>private</code>、<code>protected</code>を使って行います。</li>
+<li>多重継承の代わりにMix-inを使います。</li>
+<li>組み込みクラスにメソッドを追加したり、書き換えたりできます。
+どちらの言語でも任意の時点でクラスを開いたり編集できますが、
+Pythonでは組み込みクラスに対してはそれは許可されていないのに対し、
+Rubyではその制限はありません。</li>
+<li><code>True</code>と<code>False</code>は、<code>true</code>と<code>false</code>になります。
+また、<code>None</code>の代わりは<code>nil</code>になります。</li>
+<li>真か偽かの判定では、<code>false</code>と<code>nil</code>のみが偽と評価されます。
+それ以外の値(<code>0</code>、<code>0.0</code>、<code>&quot;&quot;</code>、<code>[]</code>など)はすべて真と評価されます。</li>
+<li><code>elif</code>の代わりに<code>elsif</code>を使います。</li>
+<li><code>import</code>の代わりに<code>require</code>を使います。それ以外の使い方は同じです。</li>
+<li>(docstring の代わりに)クラスやメソッドの<em>直前</em>に書かれた複数行のコメントは、
+ドキュメント生成に使われます。</li>
+<li>たくさんの省略記法があります。けれど、すぐに手になじむはずです。
+それらはRubyをより楽しく生産的に使えるようにするために用意されています。</li>
+<li>一度定義した変数を、(Pythonでいう<code>del</code>のように)未定義にする方法はありません。
+変数を<code>nil</code>で設定すれば、変数に入っていた値をGCできるようにはできますが、
+スコープが存在する限り変数自体はシンボルテーブルに残り続けます。</li>
+<li><code>yield</code>キーワードの振る舞いは異なります。
+Pythonでは、関数呼び出しの外側のスコープへ実行結果を返します。
+そのため、外側のコードは処理の再開について責任を負います。
+Rubyでは、<code>yield</code>は最後の引数として渡された別の関数が実行されます。
+そして、実行が完了すると処理を再開します。</li>
+<li>Pythonがサポートしている無名関数はラムダ式のみですが、
+Rubyはブロック、Procオブジェクト、ラムダ式といった種類の無名関数があります。</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

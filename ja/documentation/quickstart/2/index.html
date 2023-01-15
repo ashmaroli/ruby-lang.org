@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>20分ではじめるRuby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/quickstart/2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>いちいち入力せずに、何度も“Hello”と言いたい時にはどうすればいいでしょうか？
+メソッドを定義しましょう！</p>
+<!-- raw HTML omitted -->
+<p><code>def hi</code>というコードがメソッド定義のはじまりになります。
+これは、<code>hi</code>という名前のメソッドを定義しようとしていることをRubyに伝えるものです。
+次の行はメソッドの本体になります。この行は、すでに見た行、<code>puts &quot;Hello World&quot;</code>と
+同じものです。
+そして、最後の行の <code>end</code> は、メソッド定義が終わったことをRubyに伝えます。
+Rubyのレスポンス <code>=&gt; :hi</code> は、メソッド定義の終了を理解したことを表しています。
+なお、Ruby 2.0やそれ以前のバージョンのRubyでは、このレスポンスは <code>=&gt; nil</code>
+になります。が、その違いはここでは特に重要なことではないので、先に進みます。</p>
+<h2>簡潔で繰り返せるメソッド</h2>
+<p>それではこのメソッドを何度か実行してみましょう。</p>
+<!-- raw HTML omitted -->
+<p>簡単ですね。Rubyでのメソッド呼び出しはその名前をRubyに伝えるのと同じくらい簡単です。
+引数がなければ、名前以外は不要です。
+メソッドが引数を持たない場合、メソッド名の後ろに空のカッコをつけることができますが、
+省略しても構いません。</p>
+<p>全世界ではなく、特定の人にhelloと言いたい場合はどうすればいいでしょうか？
+名前を引数としてとるように<code>hi</code>を再定義すればいいのです。</p>
+<!-- raw HTML omitted -->
+<p>ちゃんと動いているようです。しかし、ここで何が起きているのか、ちょっと詳しく見てみましょう。</p>
+<h2>Stringに穴を開ける</h2>
+<p><code>#{name}</code>とは一体何なのでしょうか。これは、文字列に何かを挿入する際の
+Rubyでのやり方なのです。
+ブレースの間にあるものは（もし文字列でなければ）文字列に変換され、
+その外側の文字列の中に置き換えられます。
+このしくみは、誰かの名前を正しくcapitalizedするのにも使えます。</p>
+<!-- raw HTML omitted -->
+<p>ここでは他にもいろいろなトリックが使われています。
+一つはカッコなしでメソッド呼び出しが使われていることです。
+何をやっているか明確であれば、カッコは省略できます。
+それ以外のトリックは、デフォルト引数の<code>World</code>です。
+これは、「もしnameが与えられなければ、nameのデフォルト値である<code>&quot;World&quot;</code>を
+使う」という定義になります。</p>
+<h2>挨拶人(Greeter)への進化</h2>
+<p>もし本物の挨拶人がいたのなら、あなたの名前を覚えてくれる上、
+歓迎し、いつでも丁重に扱ってくれるでしょう。
+そのためにオブジェクトを使いたくなりそうです。
+“Greeter”クラスを作ってみましょう。</p>
+<!-- raw HTML omitted -->
+<p>新しいキーワードは<code>class</code>です。これはGreeterという新しいクラスと、
+そのクラスのメソッドをいくつか定義しています。また、<code>@name</code>にも
+気づいたかもしれません。これはインスタンス変数で、このクラスにある
+全てのメソッドで使うことができます。見ての通り、
+<code>say_hi</code> と <code>say_bye</code>で使われています。</p>
+<p>さて、どうすればこのGreeterクラスを動かせるでしょうか？
+<a href="../3/">オブジェクトを作りましょう。</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

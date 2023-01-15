@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.3.3 发布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2016/11/21/ruby-2-3-3-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.3.3 发布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 nagachika 发表于 2016-11-21<br>
+                         翻译： Delton Ding</p>
+
+    <p>Ruby 2.3.3 发布了。</p>
+<p>本次发布修复了有关于 Refinements 和 Module#prepend 的错误。
+对于同一个 class 混合使用 Module#refine 和 Module#prepend 会引发意料之外的 <code>NoMethodError</code>。
+这是一个上周 Ruby 2.3.2 发布的一个回归。
+参考 <a href="https://bugs.ruby-lang.org/issues/12920">Bug #12920</a> 来查阅更多细节。</p>
+<p>本次发布还包含一些其他的漏洞修复。
+请参考 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_3_3/ChangeLog">ChangeLog</a> 来进一步了解。</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14433673 bytes
+SHA1:   a8db9ce7f9110320f33b8325200e3ecfbd2b534b
+SHA256: 882e6146ed26c6e78c02342835f5d46b86de95f0dc4e16543294bc656594cc5b
+SHA512: 88f7782effd35bfe0b4c33140b5eb147d09b63fbb35b9c42d2200c010f387e2b70984ead1eca86569e8ec31f08b35289d440c0ca76b662dadb760f848e863d91
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17813577 bytes
+SHA1:   1014ee699071aa2ddd501907d18cbe15399c997d
+SHA256: 241408c8c555b258846368830a06146e4849a1d58dcaf6b14a3b6a73058115b7
+SHA512: 80d9f3aaf1d60b9b2f4a6fb8866713ce1e201a3778ef9e16f1bedb7ccda35aefdd7babffbed1560263bd95ddcfe948f0c9967b5077a89db8b2e18cacc7323975
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11444164 bytes
+SHA1:   f2318460606d410e80dd5c82862a93e5736534de
+SHA256: 1a4fa8c2885734ba37b97ffdb4a19b8fba0e8982606db02d936e65bac07419dc
+SHA512: 73dd6ed896ff52d953b153b2cab359c87953ea77521878f1ee16c1e217cc46bcb253100debe61ba631e6ffa0bc773e592d603a374508ed5189a311136ccd8d20
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19862248 bytes
+SHA1:   f0723ce176a829c9c33c31cdab6eca6ce0aef73e
+SHA256: cbffda17fdb1bbd86dd36de093524b0a9b5c92e007fd60acac1c9804b429886e
+SHA512: 5f75b77962c9d01fe591d87e20900d71a54c737e0d1198fae437729f21a9af84278a91ee73e850b5f49361b3cbf48af7a0a3ed9920cce932b58fd8e2420d5b26
+</code></pre></div></div>
+</li>
+</ul>
+<h2>发布记</h2>
+<p>许多提交者、开发者、和用户提供的漏洞报告帮助我们发布了这个版本。
+感谢诸位的贡献。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

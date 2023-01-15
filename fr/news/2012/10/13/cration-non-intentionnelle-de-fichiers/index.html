@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Création non-intentionnelle de fichiers</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/news/2012/10/13/cration-non-intentionnelle-de-fichiers/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Création non-intentionnelle de fichiers</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posté par Bruno Michel le 2012-10-13</p>
+
+    <p>Une vulnérabilité a été découverte, qui permet la création non-intentionnelle de fichiers en insérant de manière bien choisie des caractères NUL dans le chemin des fichiers.</p>
+<h2>Détails</h2>
+<p>Ruby permet de manipuler des données binaires arbitraires en tant que
+chaînes de caractères, y compris des caractères NUL. Par contre, les
+systèmes d'exploitation et autres bibliothèques ont tendance à être
+plus restrictifs et à utiliser NUL comme marqueur de fin de chaînes.
+Ainsi, pour les interfacer correctement avec Ruby, il convient de
+traiter correctement les caractères NUL.</p>
+<p>Cependant, certaines méthodes comme IO#open ne faisaient aucune
+vérification sur les noms de fichiers qui lui étaient passés, et
+transféraient telles quelles ces chaînes de caractères aux primitives de
+plus bas niveau. Cela pouvait conduire à la création non-intentionnelle
+de fichiers, comme dans cet exemple :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p File.exists?("foo")      #=&gt; false
+open("foo\0bar", "w") { |f| f.puts "hai" }
+p File.exists?("foo")      #=&gt; true
+p File.exists?("foo\0bar") #=&gt; raises ArgumentError
+</code></pre></div></div>
+<h2>Versions de Ruby affectées</h2>
+<ul>
+<li>Toutes les versions de Ruby 1.9.3 antérieurs au patchlevel 286</li>
+<li>Toutes les branches de développement de Ruby 2.0.0 antérieures à la
+révision r37163</li>
+</ul>
+<h2>Solution</h2>
+<p>Mettre à jour vers la version la plus récente.</p>
+<h2>Crédit</h2>
+<p>Ce problème a été remonté par Peter Bex.</p>
+<h2>Mises à jour</h2>
+<ul>
+<li>Initialement publiées le 2012-10-12 à 19:19:55 JST.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Actualité récente</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/fr/news/2022/02/18/ruby-3-1-1-released/">Ruby 3.1.1 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/12/25/ruby-3-1-0-released/">Ruby 3.1.0 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-7-5-released/">Ruby 2.7.5 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-6-9-released/">Ruby 2.6.9 est disponible</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

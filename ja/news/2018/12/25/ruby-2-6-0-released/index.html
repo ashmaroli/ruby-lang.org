@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.6.0 Released</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2018/12/25/ruby-2-6-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.6.0 Released</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 25 Dec 2018</p>
+
+    <p>Ruby 2.6シリーズの最初の安定版である、Ruby 2.6.0がリリースされました。</p>
+<p>Ruby 2.6.0には、多くの新しい機能やパフォーマンスの改善が含まれています。 その一部を以下に紹介します。</p>
+<h2>JIT [Experimental]</h2>
+<p>Ruby 2.6ではJIT (Just-in-time) コンパイラが導入されました。</p>
+<p>JITコンパイラはあらゆるRubyプログラムの実行を高速化することを目的としています。
+他言語の一般的なJITコンパイラと異なり、RubyのJITコンパイラはC言語のソースコードをファイルとしてディスクに書き、通常のCコンパイラを用いてネイティブコードに変換することでJITコンパイルを行うという手法を用いています。(参考: <a href="https://bugs.ruby-lang.org/projects/ruby/wiki/MJIT#MJIT-organization">MJIT organization by Vladimir Makarov</a>)</p>
+<p>JITコンパイルを有効にするには <code>--jit</code> オプションをコマンドラインまたは$RUBYOPT環境変数を指定します。<code>--jit-verbose=1</code>を指定すれば指定すれば実行中のJITコンパイルの基本的な情報を表示します。その他のオプションについては <code>ruby --help</code> か<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/MJIT#Basic-usage">ドキュメント</a>をご参照ください。</p>
+<p>現在のJITコンパイラを利用するためには、GCC、Clang、あるいはMicrosoft VC++によってビルドされたRubyでありかつ、そのコンパイラが実行時に利用可能である必要があります。</p>
+<p>Ruby 2.6.0の時点で、<a href="https://github.com/mame/optcarrot">Optcarrot</a>というCPU負荷中心のベンチマークにおいてRuby 2.5の<a href="https://gist.github.com/k0kubun/d7f54d96f8e501bbbc78b927640f4208">約1.7倍の性能向上</a>を達成しました。一方、Railsアプリケーションなどのメモリ負荷の高い環境における性能は現在改善中で、まだ性能向上が期待できる状態には達しておりません。詳細は<a href="https://medium.com/@k0kubun/ruby-2-6-jit-progress-and-future-84e0a830ecbf">Ruby 2.6 JIT - Progress and Future</a>をご覧ください。</p>
+<p>引き続き新時代のRubyの実効性能にご期待ください。</p>
+<h2><code>RubyVM::AbstractSyntaxTree</code> [Experimental]</h2>
+<p>Ruby 2.6では抽象構文木を扱う <code>RubyVM::AbstractSyntaxTree</code> モジュールが導入されました。</p>
+<p>このモジュールには、文字列をパースしてAST(抽象構文木)のNodeを返す<code>parse</code>メソッド、ファイルをパースする<code>parse_file</code>メソッドが実装されています。
+<code>RubyVM::AbstractSyntaxTree::Node</code> も導入されました。このクラスのインスタンスから位置情報や子ノードを取得することができます。この機能はexperimentalです。また、ASTの構造に関する互換性は保証されていません。</p>
+<h2>主要な新機能</h2>
+<ul>
+<li>
+<p><code>Kernel#yield_self</code> の別名として <code>then</code> が追加されました <a href="https://bugs.ruby-lang.org/issues/14594">[Feature #14594]</a></p>
+</li>
+<li>
+<p>ASCII以外の大文字でも定数を定義出来るようになりました <a href="https://bugs.ruby-lang.org/issues/13770">[Feature #13770]</a></p>
+</li>
+<li>
+<p>終端なしRange <a href="https://bugs.ruby-lang.org/issues/12912">[Feature #12912]</a></p>
+<p>終わりがないRange <code>(1..)</code> が書けるようになりました。始点から無限大までのような範囲を直観的に表現できるようになります。以下に典型的な用途を示します。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ary[1..]                          # マジックナンバー -1 なしで ary[1..-1] と同じ意味
+(1..).each {|index| ... }         # index が 1 から始まる無限ループ
+ary.zip(1..) {|elem, index| ... } # ary.each.with_index(1) { ... }
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#chain</code> と <code>Enumerator#+</code> が追加されました <a href="https://bugs.ruby-lang.org/issues/15144">[Feature #15144]</a></p>
+</li>
+<li>
+<p>Procを関数合成するオペレータ <code>Proc#&lt;&lt;</code> 、<code>Proc#&gt;&gt;</code> が追加されました <a href="https://bugs.ruby-lang.org/issues/6284">[Feature #6284]</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f = proc{|x| x + 2}
+g = proc{|x| x * 3}
+(f &lt;&lt; g).call(3) # -&gt; 11; identical to f(g(3))
+(f &gt;&gt; g).call(3) # -&gt; 15; identical to g(f(3))
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Binding#source_location</code> の追加 <a href="https://bugs.ruby-lang.org/issues/14230">[Feature #14230]</a></p>
+<ul>
+<li><code>binding</code>のソースコード上の位置を <code>__FILE__</code> と <code>__LINE__</code> の二要素配列として返します。従来でも <code>eval(&quot;[__FILE__, __LINE__]&quot;, binding)</code> とすることでこれらの情報は得られましたが、将来的に <code>Kernel#eval</code> はbindingのソースコード行を無視する変更を予定しているため <a href="https://bugs.ruby-lang.org/issues/4352">[Bug #4352]</a>、この新しいメソッドを用いることが今後は推奨されます。</li>
+</ul>
+</li>
+<li>
+<p><code>Kernel#system</code> の失敗時に、falseを返す代わりに例外を上げさせる <code>exception:</code> オプションを追加 <a href="https://bugs.ruby-lang.org/issues/14386">[Feature #14386]</a></p>
+</li>
+<li>
+<p>Coverage の oneshot_lines モードの追加 <a href="https://bugs.ruby-lang.org/issues/15022">[Feature#15022]</a></p>
+<ul>
+<li>コードカバレッジの測定で、「各ソースコード行を何回実行したか」ではなく、「各ソースコード行を1回でも実行したか否か」を記録するモード <code>oneshot_lines</code> が導入されました。各行に設定されたフックは高々1回しか実行されません。1回実行されたフックは除去されるので、その後はオーバーヘッド無しで実行されます。</li>
+<li><code>Coverage.start</code> に <code>oneshot_lines:</code> キーワード引数を追加しました。</li>
+<li><code>Coverage.result</code> に <code>stop:</code> と <code>clear:</code> キーワードを追加しました。<code>clear</code> が真のとき、カウンタが0クリアされます。<code>stop</code>が真のとき、カバレッジ測定を終了します。</li>
+<li><code>Coverage.line_stub</code> を追加しました。これは、指定されたソースコードの行カバレッジの「スタブ」を生成する簡単な補助関数です。</li>
+</ul>
+</li>
+<li>
+<p><code>FileUtils#cp_lr</code> が追加されました。ディレクトリ構造を再帰的に再現し、各ファイルは元のファイルへのハードリンクとするコピーです（cp -lrと同様の効果）。<a href="https://bugs.ruby-lang.org/issues/4189">[Feature #4189]</a></p>
+</li>
+</ul>
+<h2>パフォーマンスの改善</h2>
+<ul>
+<li>
+<p>後述の<code>$SAFE</code>の変更に伴って考慮すべきことが減ったため、<code>Proc#call</code>が高速化されました <a href="https://bugs.ruby-lang.org/issues/14318">[Feature #14318]</a>
+<code>Proc#call</code> を大量に呼び出す <code>lc_fizzbuzz</code> ベンチマークにおいては、1.4倍高速化されています <a href="https://bugs.ruby-lang.org/issues/10212">[Bug #10212]</a>。</p>
+</li>
+<li>
+<p><code>block</code> がブロックパラメータである時、<code>block.call</code>が高速化されました <a href="https://bugs.ruby-lang.org/issues/14330">[Feature #14330]</a>
+Ruby 2.5ではブロック渡しの性能が改善されましたが <a href="https://bugs.ruby-lang.org/issues/14045">[Feature #14045]</a>、加えてRuby 2.6では渡されたブロックの呼び出しも改善されました。マイクロベンチマークは2.6倍の高速化が確認されています。</p>
+</li>
+<li>
+<p>Transient Heap (<code>theap</code>) が導入されました。<a href="https://bugs.ruby-lang.org/issues/14858">[Bug #14858]</a> <a href="https://bugs.ruby-lang.org/issues/14989">[Feature #14989]</a></p>
+<p>theap は、特定のクラスが利用する短寿命メモリを管理します。現状、<code>Array</code>、<code>Object</code>（ユーザー定義オブジェクト）、<code>Struct</code>および8要素以下の小さな<code>Hash</code>オブジェクトが theap に対応しています。小さな短寿命<code>Hash</code>オブジェクトの生成は2倍程度高速になりました。<code>rdoc</code> ベンチマークでは、6～7%の性能改善が計測されています。</p>
+</li>
+<li>
+<p>コルーチンをネイティブ実装することによって、Fiberのコンテキスト切り替えの性能が大幅に向上しました（<code>arm32</code>、<code>arm64</code>、<code>ppc64le</code>、<code>win32</code>、<code>win64</code>、<code>x86</code>、<code>amd64</code>)。<a href="https://bugs.ruby-lang.org/issues/14739">[Feature ＃14739]</a></p>
+<p><code>Fiber.yield</code>と<code>Fiber＃resume</code>は64ビットLinuxでは約5倍高速です。<code>Fiber</code>を多用するプログラムでは、全体で最大5％の改善が見込まれます。</p>
+</li>
+</ul>
+<h2>その他の注目すべき 2.5 からの変更点</h2>
+<ul>
+<li>
+<p><code>$SAFE</code> はプロセスグローバルで扱われることになると共に、<code>0</code>以外を設定した後に<code>0</code>に戻せるようになりました <a href="https://bugs.ruby-lang.org/issues/14250">[Feature #14250]</a></p>
+</li>
+<li>
+<p><code>ERB.new</code>に<code>safe_level</code>を渡すのは非推奨になりました。また、<code>trim_mode</code>と<code>eoutvar</code>はキーワード引数に変更されました。 <a href="https://bugs.ruby-lang.org/issues/14256">[Feature #14256]</a></p>
+</li>
+<li>
+<p>サポートする Unicode のバージョンを 11 に更新しました。<a href="http://blog.unicode.org/2018/09/new-japanese-era.html">新元号用合字対応</a>のため、Ruby 2.6 では今後の TEENY リリースで、12 そして 12.1 への更新が予定されています。</p>
+</li>
+<li>
+<p>RubyGems 3.0.1 をマージしました。 <code>--ri</code> と <code>--rdoc</code> オプションは使えなくなりました。<code>--document</code> または <code>--no-document</code> を利用してください。</p>
+</li>
+<li>
+<p><a href="https://github.com/bundler/bundler">Bundler</a> を Default gems として標準添付しました。</p>
+</li>
+<li>
+<p><code>rescue</code> 無しの <code>else</code> が文法エラーとなるようになりました  [EXPERIMENTAL]<a href="https://bugs.ruby-lang.org/issues/14606">[Feature #14606]</a></p>
+</li>
+</ul>
+<p>その他詳細については、<a href="https://github.com/ruby/ruby/blob/v2_6_0/NEWS">NEWS</a> ファイルまたは<a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0">コミットログ</a>を参照してください。</p>
+<p>なお、こうした変更により、Ruby 2.5.0 以降では <a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0">6437 個のファイルに変更が加えられ、231471 行の追加と 98498 行の削除が行われました</a> !</p>
+<p>メリークリスマス。Ruby 2.6 とともに良いお年を！</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16687800 bytes
+SHA1:   c95f4e86e21390270dad3ebb94491fd42ee2ce69
+SHA256: f3c35b924a11c88ff111f0956ded3cdc12c90c04b72b266ac61076d3697fc072
+SHA512: 01f886b0c0782a06315c4a46414e9f2b66ee634ba4349c8e0697f511793ae3c56d2ad3cad6563f2b0fdcedf0ff3eba51b9afab907e7e1ac243475772f8688382
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.zip">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   20582054 bytes
+SHA1:   a804e63d18da12107e1d101918a3d8f4c5462a27
+SHA256: 8a4fb6ca58202495c9682cb88effd804398bd0ef023e3e36f001ca88d8b5855a
+SHA512: 16d66ec4a2c6a2e928d5b50e094a5efa481ac6e4d5ed77459d351ef19fe692aa59b68307e3e25229eec5f30ae2f9adae2663bafe9c9d44bfb45d3833d77839d4
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14585856 bytes
+SHA1:   b8638eb806efbf7b6af87b24ccc6ad915f262318
+SHA256: c89ca663ad9a6238f4b1ec4d04c7dff630560c6e6eca6d30857c4d394f01a599
+SHA512: ca3daf9acf11d3db2900af21b66231bd1f025427a9d2212b35f6137ca03f77f57171ddfdb99022c8c8bcd730ff92a7a4af54e8a2a770a67d8e16c5807aa391f1
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11918536 bytes
+SHA1:   9ddaeba3505d2855460c8c653159fc0ac8928c0f
+SHA256: acb00f04374899ba8ee74bbbcb9b35c5c6b1fd229f1876554ee76f0f1710ff5f
+SHA512: c56eaf85ef7b79deb34ee4590b143c07f4fc83eb79775290761aee5a7c63374659613538a41f25706ed6e19e49d5c67a1014c24d17f29948294c7abd0b0fcea8
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

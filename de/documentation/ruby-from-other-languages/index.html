@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby für Umsteiger</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/documentation/ruby-from-other-languages/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby für Umsteiger</h1>
+
+
+
+  <div id="content">
+    <p>Wenn du zum ersten Mal Ruby-Code siehst, wird er dich wahrscheinlich an
+andere Programmiersprachen erinnern, die du benutzt hast. Das ist
+Absicht. Der größte Teil der Syntax ist (unter anderem) Perl-, Python-
+und Java-Programmierern vertraut. Wenn du diese Sprachen also schon mal
+benutzt hast, wird das Lernen von Ruby ein Kinderspiel.
+{: .summary}</p>
+<p>Dieses Dokument besteht aus zwei Teilen: Der erste versucht, eine
+Dauerfeuer-Zusammenfassung darüber zu geben, was dich erwartet, wenn du
+von <em>Sprache X</em> zu Ruby wechselst. Der zweite Teil geht auf die
+Hauptbestandteile von Ruby ein und vergleicht sie mit Konstrukten
+anderer Sprachen, die du bereits kennst.</p>
+<h2><!-- raw HTML omitted -->Von <em>Sprache X</em> zu Ruby: Was erwartet mich?<!-- raw HTML omitted --></h2>
+<ul>
+<li><a href="to-ruby-from-c-and-cpp/">Von C und C++ zu Ruby</a></li>
+<li><a href="to-ruby-from-java/">Von Java zu Ruby</a></li>
+<li><a href="to-ruby-from-perl/">Von Perl zu Ruby</a></li>
+<li><a href="to-ruby-from-php/">Von PHP zu Ruby</a></li>
+<li><a href="to-ruby-from-python/">Von Python zu Ruby</a></li>
+</ul>
+<h2>Wichtige Features und ein paar Fallen</h2>
+<p>Hier sind ein paar Hinweise zu wichtigen Ruby-Features, denen du beim
+Lernen begegnen wirst.</p>
+<h3>Iteration</h3>
+<p>Zwei Dinge, denen du in dieser Form vermutlich noch nicht begegnet bist,
+und an die man sich ein wenig gewöhnen muss, sind Blöcke und Iteratoren.
+In Ruby iteriert man weder über einen Index (wie in C), noch über eine
+Liste (wie in Perls <code>for (@a) {...}</code> oder Pythons <code>for item in aList:</code>),
+sondern in den meisten Fällen so:</p>
+<!-- raw HTML omitted -->
+<p>Mehr zu <code>each</code> (und seine Artgenossen <code>collect</code>/<code>map</code>, <code>find</code>, <code>inject</code>,
+<code>sort</code> etc.) erfährst du über <code>ri Enumerable</code>
+(bzw. <code>ri Enumerable#methodenname</code>).</p>
+<h3>Alles hat einen Wert</h3>
+<p>Es gibt in Ruby keinen Unterschied zwischen einem Ausdruck und einer
+Anweisung. Alles hat einen Wert, auch wenn er manchmal nur <code>nil</code> ist.
+Damit ist so etwas möglich:</p>
+<!-- raw HTML omitted -->
+<h3>Symbole sind keine Strings</h3>
+<p>Viele Ruby-Anfänger kämpfen damit, zu verstehen, was Symbole sind und
+wofür sie benutzt werden können.</p>
+<p>Symbole sind am einfachsten als Identitäten (IDs) zu verstehen. Bei
+einem Symbol ist wichtig, <em>wer</em> es ist, nicht <em>was</em> es ist. Starte <code>irb</code>
+und du siehst den Unterschied:</p>
+<!-- raw HTML omitted -->
+<p>Die Methode <code>object_id</code> liefert die ID eines Objektes. Haben zwei
+Objekte dieselbe <code>object_id</code>, dann sind sie identisch (zeigen auf
+dasselbe Objekt im Speicher.)</p>
+<p>Wie du siehst, zeigt jedes gleichnamige Symbol auf dasselbe Objekt im
+Speicher, und zwar von dem Moment an, in dem du das Symbol zum ersten
+mal benutzt. Zwei Symbole mit denselben Zeichen haben die selbe <code>object_id</code>.</p>
+<p>Die Strings hingegen (<code>&quot;george&quot;</code>) haben eine unterschiedliche <code>object_id</code>.
+Das bedeutet, dass sie auf zwei verschiedene Objekte im Speicher zeigen.
+Immer wenn du einen neuen String benutzt, reserviert Ruby dafür Speicher.</p>
+<p>Wenn du nicht genau weißt, ob du ein Symbol oder einen String brauchst,
+überlege dir, was wichtiger ist: die Identität des Objektes (z. B. ein
+Schlüssel in einem Hash) oder sein Inhalt (“george” im obigen Beispiel).</p>
+<h3>Alles ist ein Objekt</h3>
+<p>Das ist keine Übertreibung. Sogar Klassen und Zahlen sind Objekte, und
+du kannst mit ihnen dasselbe tun wie mit jedem anderen Objekt:</p>
+<!-- raw HTML omitted -->
+<h3>Variable Konstanten</h3>
+<p>Konstanten sind in Ruby nicht wirklich konstant. Wenn du eine schon
+initialisierte Konstante veränderst, wird eine Warnung erzeugt, aber das
+Programm läuft weiter. Was nicht heißt, dass du Konstanten umdefinieren
+<em>solltest</em>.</p>
+<h3>Namenskonventionen</h3>
+<p>Ruby erzwingt einige Namenskonventionen. Wenn ein Bezeichner mit einem
+Großbuchstaben beginnt, dann ist er eine Konstante. Beginnt er mit einem
+Dollarzeichen (<code>$</code>), dann ist er eine globale Variable. Wenn er mit <code>@</code>
+anfängt, ist es eine Instanzvariable, und Klassenvariablen beginnen mit
+<code>@@</code>.</p>
+<p>Methodennamen dürfen allerdings auch mit einem Großbuchstaben beginnen.
+Das kann zu Verwirrung führen, wie das folgende Beispiel zeigt:</p>
+<!-- raw HTML omitted -->
+<p>Nun hat <code>Constant</code> den Wert 10, aber die Funktion <code>Constant()</code> gibt 11
+aus.</p>
+<p>Nützlich ist dies, wenn man eine Methode genauso nennen möchte wie eine
+Klasse. Die folgenden Aufrufe generieren drei mal dasselbe Array mit den
+Zahlen von 1 bis 5:</p>
+<!-- raw HTML omitted -->
+<h3>Benannte Argumente</h3>
+<p>Seit Ruby 2.0 können Methoden wie auch in Python mit benannten Argumenten
+(Keyword-Argumenten) aufgerufen werden:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from A to B via mail.&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->via: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Pony Express&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->from: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;A&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from B to A via Pony Express.&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Die reine Wahrheit</h3>
+<p>In Ruby wird alles außer <code>nil</code> und <code>false</code> als Wahr (true) behandelt. In
+C, Python und vielen anderen Sprachen verhalten sich die Zahl 0, leere
+Listen und andere Werte als Unwahr (false). Sieh dir dazu folgenden
+Python-Code an (das Beispiel funktioniert auch in anderen Sprachen):</p>
+<!-- raw HTML omitted -->
+<p>Hier wird “0 ist false” ausgeben. Dasselbe in Ruby:</p>
+<!-- raw HTML omitted -->
+<p>Ruby gibt “0 ist true” aus.</p>
+<h3>Sichtbarkeits-Modifikatoren gelten bis zum Ende des Blocks</h3>
+<p>Im folgenden Ruby-Code:</p>
+<!-- raw HTML omitted -->
+<p>könnte man erwarten, dass <code>another_method</code> <em>public</em> ist. Falsch.
+<code>private</code> gilt bis zum Ende des Blocks, oder bis ein anderer Modifikator
+aufgerufen wird. Standardmäßig sind Methoden <em>public</em>:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># another_method ist &quot;private&quot;.<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->another_method<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>public</code>, <code>private</code> und <code>protected</code> sind in Wirklichkeit Methoden und akzeptieren Parameter. Wenn du ein Symbol an eine davon übergibst, wird die Sichtbarkeit der Methode mit diesem Namen geändert:</p>
+<!-- raw HTML omitted -->
+<h3>Sichtbarkeit von Methoden</h3>
+<p>In Java bedeutet <em>public</em>, dass jeder eine Methode aufrufen darf.
+<em>protected</em> bedeutet, dass nur die Klasse selbst, ihre Instanzen und von
+ihr abgeleitete Klassen und deren Instanzen Zugriff haben. <em>private</em>
+beschränkt den Zugriff ganz auf die Klasse und ihre Instanzen.</p>
+<p>Ruby verhält sich anders. <em>public</em> ist natürlich öffentlich. <em>private</em>
+bedeutet, dass die Methode nicht mit einem expliziten Empfänger
+aufgerufen werden kann, mit anderen Worten: Der Empfänger ist immer
+<code>self</code>.</p>
+<p>Bei <em>protected</em> muss man aufpassen: Eine so geschützte Methode kann ohne
+Empfänger in der Klasse und abgeleiteten Klassen aufgerufen werden (wie
+bei <em>private</em>), aber zusätzlich auch mit einer anderen Instanz dieser
+Klasse als Empfänger.</p>
+<p>Ein Beispiel aus den <a href="http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html">Ruby Language FAQ</a>:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->identifier<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x34ab50&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t2<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x342784&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->       <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># <code>identifier' ist jetzt &quot;protected&quot;; das funktioniert noch,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# weil </code>other' eine Instanz derselben Klasse ist<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->protected<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># nun ist `identifier' &quot;private&quot;<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->private<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># NoMethodError: private method `identifier' called for #&lt;Test:0x342784&gt;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Offene Klassen</h3>
+<p>Ruby-Klassen sind offen. Du kannst sie jeder Zeit verändern und ihnen
+Methoden hinzufügen. Sogar eingebaute Klassen wie <code>Integer</code> oder <code>Object</code>
+(die Mutter aller Objekte) sind erweiterbar. ActiveSupport fügt <code>Integer</code>
+viele Methoden zur Erzeugung von Zeitangaben hinzu:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 14 Stunden nach 00:00 am 1. Januar<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># (oder &quot;als du endlich aufwachst&quot; ;)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Time<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->mktime<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->2006<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->+<!-- raw HTML omitted --> <!-- raw HTML omitted -->14<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->hours<!-- raw HTML omitted -->  <!-- raw HTML omitted -->#-&gt; Sun Jan 01 14:00:00<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Lustige Namen für Methoden</h3>
+<p>In Ruby dürfen Methoden mit einem Frage- oder Ausrufezeichen enden. Die
+Konvention ist, dass Methoden, die auf eine Ja-Nein-Frage antworten, ein
+Fragezeichen erhalten: <code>Array#empty?</code> liefert <code>true</code>, wenn das Array
+leer ist. Potentiell gefährliche Methoden (die den Empfänger selbst
+verändern wie <code>String#reverse!</code>, oder das brutale <code>exit!</code>) enden mit
+einem Ausrufezeichen.</p>
+<p>Aber nicht alle Methoden, die ihre Empfänger verändern, haben ein
+Ausrufezeichen. <code>Array#replace</code> ersetzt den Inhalt des Arrays mit dem
+Inhalt eines anderen. Es macht wenig Sinn, eine derartige Methode zu
+schreiben, die den Empfänger <em>nicht</em> verändert.</p>
+<h3>Singleton-Methoden</h3>
+<p>Singleton-Methoden sind Methoden für Objekte. Sie gehören nur zu dem
+Objekt, für das du sie definierst:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->  <!-- raw HTML omitted -->#-&gt; billig<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;teuer&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->  <!-- raw HTML omitted -->#-&gt; teuer<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Andere Objekte werden nicht beeinflusst:<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->car<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->  <!-- raw HTML omitted -->#-&gt; billig<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Fehlende Methoden</h3>
+<p>Ruby gibt nicht auf, wenn es zu einem Aufruf keine passende Methode
+finden kann. Es ruft stattdessen die Methode <code>method_missing</code> auf und
+übergibt den Namen der fehlenden Methode und die Argumente.
+Standardmäßig erzeugt <code>method_missing</code> einen <code>NameError</code>, aber du kannst
+es umdefinieren, so dass es besser in deine Anwendung passt (was viele
+Bibliotheken auch tun.) Hier ist ein Beispiel:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->__<!-- raw HTML omitted --> <!-- raw HTML omitted -->:a<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:b<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->10<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#-&gt; Die Methode __ wurde nicht gefunden.<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#-&gt; Folgende Argumente wurden übergeben: a, b, 10<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Der obige Code gibt nur die Details des Aufrufs aus, aber du kannst die
+Botschaft natürlich auch völlig anders behandeln.</p>
+<h3>Botschaften senden statt Funktionen aufrufen</h3>
+<p>Ein Methodenaufruf ist in Ruby in Wirklichkeit eine Botschaft an ein
+Objekt:</p>
+<!-- raw HTML omitted -->
+<h3>Blöcke sind Objekte, sie wissen es nur noch nicht</h3>
+<p>Blöcke werden überall in der Standardbibliothek benutzt. Um einen Block
+aufzurufen, kannst du <code>yield</code> benutzen, oder du machst eine
+<code>Proc</code>-Instanz daraus, indem du einen speziellen Parameter zur Signatur
+hinzufügst:</p>
+<!-- raw HTML omitted -->
+<p>Du kannst Blockobjekte auch außerhalb von Methodenaufrufen erzeugen,
+indem du <code>Proc.new</code> oder die Methode <code>lambda</code> mit dem Block aufrufst.</p>
+<p>In ähnlicher Weise können auch aus Methoden Objekte gemacht werden:</p>
+<!-- raw HTML omitted -->
+<h3>Operatoren sind syntaktischer Zucker</h3>
+<p>Die meisten Operatoren in Ruby sind nur Methodenaufrufe mit einer
+speziellen Syntax (und ein paar Vorrangregeln). Du kannst zum Beispiel
+die Methode <code>+</code> für <code>Integer</code> überschreiben:</p>
+<!-- raw HTML omitted -->
+<p>Du brauchst kein <code>operator+</code> oder ähnliches.</p>
+<p>Du kannst sogar Elementzugriff in der Art eines Arrays ermöglichen, wenn
+du die Methoden <code>[]</code> und <code>[]=</code> definierst. Um das unäre <code>+</code> und <code>-</code> zu
+überschreiben (für Vorzeichen), musst du die Methoden <code>+@</code> und <code>-@</code>
+benutzen.</p>
+<p>Die folgenden Operatoren sind <em>kein</em> syntaktischer Zucker. Sie sind
+keine Methoden, und können nicht umdefiniert werden:</p>
+<!-- raw HTML omitted -->
+<p>Zudem sind <code>+=</code>, <code>*=</code>, usw. nur Abkürzungen für <code>foo = foo + bar</code>,
+<code>foo = foo * bar</code> usw. und können deshalb auch nicht überschrieben werden.</p>
+<h2>Weiterlesen</h2>
+<p>Wenn du bereit für noch mehr Ruby-Wissen bist, dann schau dir die
+<a href="/de/documentation/">Dokumentation</a> an.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Der Einstieg</strong> ist einfach!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Teste Ruby! (im Browser)</a></li>
+
+    
+    <li><a href="/de/documentation/quickstart/">Ruby in 20 Minuten</a></li>
+    
+
+    
+    <li><a href="/de/documentation/ruby-from-other-languages/">Ruby für Umsteiger</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Entdecke</strong> eine neue Welt…</h3>
+  <ul class="menu">
+    
+    <li><a href="/de/documentation/">Dokumentation</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/de/libraries/">Bibliotheken</a></li>
+    
+
+    
+    <li><a href="/de/documentation/success-stories/">Erfolgsgeschichten</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Beteilige dich</strong> an einer freundlichen und wachsenden Community.</h3>
+  <ul>
+    
+    <li><a href="/de/community/mailing-lists/">Mailing-Listen</a>: Sprich mit Programmierern auf der ganzen Welt über Ruby.</li>
+    
+
+    
+    <li><a href="/de/community/user-groups/">User-Groups</a>: Treffe Rubyisten in deiner Umgebung.</li>
+    
+
+    
+    <li><a href="/de/community/weblogs/">Weblogs</a>: Lies, was gerade jetzt in der Ruby-Community passiert.</li>
+    
+
+    
+    <li><a href="/de/community/ruby-core/">Ruby-Entwicklung</a>: Hilf mit, die neuesten Ruby-Versionen zu verbessern.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Fehler melden</a>: Melde einen Fehler oder hilf mit, offene Fehler zu beseitigen.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Official Ruby FAQ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/faq/1/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p><em>If you wish to report errors or suggest improvements for this FAQ,
+please go to our
+<a href="https://github.com/ruby/www.ruby-lang.org/">GitHub repository</a>
+and open an issue or pull request.</em></p>
+<h2>General questions</h2>
+<h3>What is Ruby?</h3>
+<p>Ruby is a simple and powerful object-oriented programming language, created by
+Yukihiro Matsumoto (who goes by the handle &quot;Matz&quot; in this document and on the
+mailing lists).</p>
+<p>Like Perl, Ruby is good at text processing. Like Smalltalk, everything in Ruby
+is an object, and Ruby has blocks, iterators, meta-classes and other good
+stuff.</p>
+<p>You can use Ruby to write servers, experiment with prototypes, and for
+everyday programming tasks. As a fully-integrated object-oriented language,
+Ruby scales well.</p>
+<p>Ruby features:</p>
+<ul>
+<li>Simple syntax,</li>
+<li>Basic OO features (classes, methods, objects, and so on),</li>
+<li>Special OO features (mixins, singleton methods, renaming, and so on),</li>
+<li>Operator overloading,</li>
+<li>Exception handling,</li>
+<li>Iterators and closures,</li>
+<li>Garbage collection,</li>
+<li>Dynamic loading (depending on the architecture),</li>
+<li>High transportability (runs on various Unices, Windows, DOS, macOS, OS/2,
+Amiga, and so on).</li>
+</ul>
+<h3>Show me some Ruby code!</h3>
+<p>Let's define a class called <code>Person</code>, with a name and an age. We'll test our
+code by creating a few people and examining them.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Person
+  attr_accessor :name, :age
+
+  def initialize(name, age)
+    @name = name
+    @age  = age.to_i
+  end
+
+  def inspect
+    "#{name} (#{age})"
+  end
+end
+
+p1 = Person.new("Elmo", 4)
+p2 = Person.new("Zoe", 7)
+
+p1  # =&gt; Elmo (4)
+p2  # =&gt; Zoe (7)
+</code></pre></div></div>
+<p>Now let's populate an array of people by reading their names and ages from a
+file <code>ages</code> containing lines like:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bert:    8
+Cookie: 11
+Elmo:    4
+Ernie:   8
+Zoe:     7
+</code></pre></div></div>
+<p>The code uses regular expressions to parse successive lines from the input
+file, creating a new <code>Person</code> object for each match and pushing it onto the
+end of the array <code>people</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>people = Array.new
+
+File.foreach("ages") do |line|
+  people &lt;&lt; Person.new($1, $2) if line =~ /(.*):\s+(\d+)/
+end
+
+people  # =&gt; [Bert (8), Cookie (11), Elmo (4), Ernie (8), Zoe (7)]
+</code></pre></div></div>
+<p>Now, let's sort the result based on the person's age. There are many ways to
+do this. We can define a sort block, which tells Ruby how to do the comparison
+of two people:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sorted = people.sort {|a, b| a.age &lt;=&gt; b.age }
+sorted  # =&gt; [Elmo (4), Zoe (7), Bert (8), Ernie (8), Cookie (11)]
+</code></pre></div></div>
+<p>Another way would be to change the comparison method for class <code>Person</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Person
+  def &lt;=&gt;(other)
+    age &lt;=&gt; other.age
+  end
+end
+people.sort  # =&gt; [Elmo (4), Zoe (7), Bert (8), Ernie (8), Cookie (11)]
+</code></pre></div></div>
+<h3>Why the name “Ruby”?</h3>
+<p>Influenced by Perl, Matz wanted to use a jewel name for his new language, so
+he named Ruby after a colleague's birthstone.</p>
+<p>Later, he realized that Ruby comes right after Perl in several situations.
+In birthstones, pearl is June, ruby is July. When measuring font sizes,
+pearl is 5pt, ruby is 5.5pt. He thought Ruby was a good name for a
+programming language newer (and hopefully better) than Perl.</p>
+<p>(Based on an explanation from Matz in <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/394">[ruby-talk:00394]</a>
+on June 11, 1999.)</p>
+<h3>What is the history of Ruby?</h3>
+<p>The following is a summary of a posting made by Matz in
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/382">[ruby-talk:00382]</a> on June 4, 1999.
+(The birthday of Ruby has been corrected in
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-list/15977">[ruby-list:15977]</a>.)</p>
+<blockquote>
+<p>Well, Ruby was born on February 24, 1993. I was talking with my colleague
+about the possibility of an object-oriented scripting language. I knew Perl
+(Perl4, not Perl5), but I didn't like it really, because it had the smell of
+a toy language (it still has). The object-oriented scripting language seemed
+very promising.</p>
+</blockquote>
+<blockquote>
+<p>I knew Python then. But I didn't like it, because I didn't think it was a
+true object-oriented language---OO features appeared to be an add-on to the
+language. As a language manic and OO fan for 15 years, I really wanted a
+genuine object-oriented, easy-to-use scripting language. I looked for, but
+couldn't find one.</p>
+</blockquote>
+<blockquote>
+<p>So, I decided to make it. It took several months to make the interpreter
+run. I put into it the features I love to have in my language, such as
+iterators, exception handling, garbage collection.</p>
+</blockquote>
+<blockquote>
+<p>Then, I reorganized the features of Perl into a class library, and
+implemented them. I posted Ruby 0.95 to the Japanese domestic newsgroups
+in Dec. 1995.</p>
+</blockquote>
+<blockquote>
+<p>Since then, highly active mailing lists have been established and
+web pages formed.</p>
+</blockquote>
+<h3>Where is the Ruby Home Page?</h3>
+<p>The official Ruby Home Page is <a href="https://www.ruby-lang.org">www.ruby-lang.org</a>.
+Besides the English and Japanese versions, there exist translations
+into various other languages.</p>
+<p>Good starting points for finding Ruby information are the
+<a href="/en/documentation/">Documentation</a> and <a href="/en/community/">Community</a>
+pages.</p>
+<h3>Is there a Ruby newsgroup?</h3>
+<p>comp.lang.ruby was established in May, 2000 (thanks to the efforts of
+<a href="mailto:schneiker@jump.net">Conrad Schneiker</a>).</p>
+<h3>Is there a Ruby mailing list?</h3>
+<p>There are several mailing lists talking about Ruby. See the
+<a href="/en/community/mailing-lists/">Mailing Lists</a>
+page for more information.</p>
+<p>You can search the mailing list archives using
+<a href="http://blade.nagaokaut.ac.jp/ruby/ruby-talk/index.shtml">http://blade.nagaokaut.ac.jp/ruby/ruby-talk/index.shtml</a>.
+(This is the URL for the ruby-talk list, munge as required for the others).</p>
+<h3>How can I thread the mailing list in mutt?</h3>
+<!-- raw HTML omitted -->
+<p>For some of the Ruby mailing lists, the mailing list software adds a prefix
+to the subject lines, for example <code>ruby-core:1234</code>. This can confuse the
+threading in some mail user agents.</p>
+<p>In mutt, you can get threading to work using the following variable setting.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># reply regexp, to support MLs like ruby-talk.
+set reply_regexp="^(\[[a-z0-9:-]+\][[:space:]]*)?(re([\[0-9\]+])*|aw):[[:space:]]*"
+</code></pre></div></div>
+<h3>Which is correct, “Ruby” or “ruby”?</h3>
+<p>Officially, the language is called “Ruby”. On most systems, it is invoked
+using the command <code>ruby</code>. It's OK to use “ruby” instead of “Ruby”.</p>
+<p>Please don't use “RUBY” as the language name.</p>
+<p>Originally, or historically, it was called “ruby”.</p>
+<h3>Are there any Ruby books?</h3>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>Programming Ruby: The Pragmatic Programmer's Guide,
+(the Pickaxe Book) by David Thomas and Andrew Hunt: ISBN 0-20171-089-7,
+Addison-Wesley, October 2000.</p>
+</li>
+<li>
+<p>A Japanese language Ruby reference book by Matz et al. and published by
+ASCII is available in Japan (ISBN 4-7561-3254-5). An English translation,
+“The Ruby Programming Language”, is available from O'Reilly &amp; Associates
+(ISBN 978-0596516178).</p>
+</li>
+<li>
+<p>A Japanese language “Ruby Pocket Reference” is published by O'Reilly Japan
+(ISBN 4-87311-023-8). Let O'Reilly in the US know if you'd like to see a
+translation.</p>
+</li>
+<li>
+<p>In addition, “Mastering Regular Expressions”, by Jeffrey Friedl,
+(the Hip Owl Book): ISBN 1-56592-257-3 from O'Reilly &amp; Associates,
+is a reference work that covers the art and implementation of regular
+expressions in various programming languages. Most of it is highly
+relevant to Ruby regular expressions.</p>
+</li>
+</ul>
+<h3>Which editors provide support for Ruby?</h3>
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="http://www.gnu.org/software/emacs/emacs.html">Emacs</a>
+or <a href="http://www.xemacs.org/">XEmacs</a>: <code>ruby-mode.el</code> is supplied in the Ruby
+distribution. With some versions of XEmacs, you may need to add
+<code>(load &quot;font-lock&quot;)</code> to your <code>.emacs</code> file to allow <code>ruby-mode.el</code> to detect
+the syntax highlighting package you are using.</li>
+<li><a href="http://www.vim.org/">Vim</a>: Vim 5.7 and later have Ruby syntax files as
+standard in the runtime package. For prior versions, a syntax file for Ruby
+is available at
+<a href="http://www.xs4all.nl/~hipster/lib/ruby/ruby.vim">http://www.xs4all.nl/~hipster/lib/ruby/ruby.vim</a>.</li>
+<li><a href="http://jedit.sourceforge.net/">Jedit</a>: A portable editor written in Java,
+comes with support for Ruby.</li>
+<li><a href="http://www.nedit.org">Nedit</a>: Eric Santonacci has written Ruby support for
+Nedit, available from
+<a href="ftp://ftp.talc.fr/pub/ruby/ruby.nedit-0.1.tar.gz">ftp://ftp.talc.fr/pub/ruby/ruby.nedit-0.1.tar.gz</a>.</li>
+<li>Barry Shultz has written a Ruby definition file for TextPad, available at
+<a href="https://www.textpad.com/add-ons/synn2t.html">https://www.textpad.com/add-ons/synn2t.html</a>.</li>
+</ul>
+<h3>How can I annotate Ruby code with its results?</h3>
+<!-- raw HTML omitted -->
+<p>People commonly annotate Ruby code by showing the results of executing each
+statement as a comment attached to that statement. For example, in the
+following code, we show that the assignment generates the string &quot;Billy Bob&quot;,
+and then the result of extracting some substrings.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str = "Billy" + " Bob"           # =&gt; "Billy Bob"
+str[0,1] + str[2,1] + str[-2,2]  # =&gt; "Blob"
+</code></pre></div></div>
+<p>Emacs and vim users can integrate this with their editing environments, which
+is useful if you want to send people e-mail with annotated Ruby code. Having
+installed <code>xmp</code>, Emacs users can add the following to their <code>.emacs</code> file:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(defun ruby-xmp-region (reg-start reg-end)
+  "Pipe the region through Ruby's xmp utility and replace the region with
+   the result."
+  (interactive "r")
+  (shell-command-on-region reg-start reg-end
+                           "ruby -r xmp -n -e 'xmp($_, \"%l\t\t# %r\n\")'"
+                           t))
+(global-set-key [(meta f10)] 'ruby-xmp-region)
+</code></pre></div></div>
+<p>Vim users can use the mapping (thanks to hipster):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>map &lt;M-F10&gt; :!ruby -r xmp -n -e 'xmp($_, "\%l\t\t\# \%r\n")'&lt;CR&gt;
+</code></pre></div></div>
+<p>In both cases, highlight a region of code and hit Meta-F10 to annotate it.</p>
+<h3>I can't understand Ruby even after reading the manual!</h3>
+<!-- raw HTML omitted -->
+<p>The syntax of Ruby has been fairly stable since Ruby 1.0, but new features are
+added every now and then. So, the books and the online documentation can get
+behind.</p>
+<p>If you have a problem, feel free to ask in the mailing list
+(see the <a href="/en/community/mailing-lists/">Mailing Lists page</a>).
+Generally you'll get timely answers from Matz himself, the
+author of the language, from other gurus, and from those who have solved
+problems similar to your own.</p>
+<p>Please include the output of <code>ruby -v</code> along with any problematic
+source code.</p>
+<p>If you have a problem using <a href="../10/#irb"><code>irb</code></a>,
+be aware that it has some limitations.
+Try the script using <code>irb --single-irb</code>, or directly using the
+<code>ruby</code> command.</p>
+<p>There might be similar questions in the mailing list, and it is good
+netiquette to read through recent mails (RFC1855:3.1.1, 3.1.2) before asking.
+But do ask on the list, and a correct answer will be forthcoming.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

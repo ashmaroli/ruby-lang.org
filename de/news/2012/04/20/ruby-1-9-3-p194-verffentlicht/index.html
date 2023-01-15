@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 1.9.3-p194 veröffentlicht</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2012/04/20/ruby-1-9-3-p194-verffentlicht/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 1.9.3-p194 veröffentlicht</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von Quintus am 20.4.2012</p>
+
+    <p>Ruby 1.9.3-p194 ist veröffentlicht worden.</p>
+<p>Dieses Release behebt ein Sicherheitsproblem in RubyGems, das dazu
+führte, dass SSL-Server für Repositories nicht verifiziert wurden.
+Daneben sind in diesem Release natürlich auch viele weitere Fehler
+behoben worden.</p>
+<p>Hierbei handelt es sich um die neueste stabile Version der 1.9er-Serie.</p>
+<h3>Sicherheitsfix für RubyGems: SSL-Server-Verifikation für entfernte Repositories</h3>
+<p>Dieses Release behebt zwei Sicherheitsprobleme in RubyGems:</p>
+<ul>
+<li>Verifikation von SSL-Zertifikaten der Server aktiviert</li>
+<li>Umleitungen von HTTPS auf HTTP verboten</li>
+</ul>
+<p>Benutzern, die HTTPS-Quellen in ihrer <code>.gemrc</code> oder <code>/etc/gemrc</code>
+verwenden, wird empfohlen, auf 1.9.3-p194 zu aktualisieren.</p>
+<p>Das folgende ist ein Auszug aus den <a href="https://github.com/rubygems/rubygems/blob/1.8/History.txt">Veröffentlichungshinweisen von
+RubyGems 1.8.23</a>.</p>
+<blockquote>
+<p>Dieses Release erhöht die Sicherheit von RubyGems’ Kommunikation mit
+HTTPS-Servern. Wenn Sie einen eigenen RubyGems-Server über SSL
+betreiben, dessen Zertifikat nicht global gültig ist, wird dieses
+Release RubyGems dazu veranlassen, sich nicht mehr mit diesem Server
+zu verbinden.
+Die Art und Weise, wie RubyGems SSL-Zertifikate handhabt, kann
+mithilfe der <code>:ssl_ca_cert</code> und <code>:ssl_verify_mode</code>-Direktiven in der
+<strong>~/.gemrc</strong> und <strong>/etc/gemrc</strong> festgelegt werden. Es wird empfohlen,
+<code>:ssl_ca_cert</code> auf das Ihr CA-Zertifikat oder das Zertifikatsbundle
+mit Ihrer CA-Zertifizierung zu setzen.</p>
+<p>Ein Wert von 0 für <code>:ssl_verify_mode</code> veranlasst RubyGems, überhaupt
+keine SSL-Zertifikatsprüfungen durchzuführen, was jedoch nicht
+empfohlen wird.</p>
+</blockquote>
+<h3>Fixes</h3>
+<ul>
+<li>Sicherheitsfix für RubyGems: SSL-Server-Verifikationsfehler für
+entfernte Repositories</li>
+<li>Andere Bugfixes</li>
+</ul>
+<p>Für nähere Informationen siehe die <a href="https://bugs.ruby-lang.org/projects/ruby-193/issues?set_filter=1&amp;status_id=5">Tickets</a> und das <a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_3_194/ChangeLog">Changelog</a>.</p>
+<h3>Download</h3>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.bz2">ruby-1.9.3-p194.tar.bz2</a></p>
+<p>: <strong>MD5-Summe</strong></p>
+<p>2278eff4cfed3cbc0653bc73085caa34</p>
+<p><strong>SHA256</strong></p>
+<p>a9d1ea9eaea075c60048369a63b35b3b5a06a30aa214a3d990e0bb71212db8fa</p>
+<p><strong>Größe</strong></p>
+<p>9.841.223 Byte</p>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz">ruby-1.9.3-p194.tar.gz</a></p>
+<p>: <strong>MD5-Summe</strong></p>
+<p>bc0c715c69da4d1d8bd57069c19f6c0e</p>
+<p><strong>SHA256</strong></p>
+<p>46e2fa80be7efed51bd9cdc529d1fe22ebc7567ee0f91db4ab855438cf4bd8bb</p>
+<p><strong>Größe</strong></p>
+<p>12.432.239 Byte</p>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.zip">ruby-1.9.3-p194.zip</a></p>
+<p>: <strong>MD5-Summe</strong></p>
+<p>77e67b15234e442d4a3dcc450bc70fea</p>
+<p><strong>SHA256</strong></p>
+<p>77474cfb92385b3a0b4c346553048bc65bfe68d4f220128329671a0234cb124d</p>
+<p><strong>Größe</strong></p>
+<p>13.898.712 Byte</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Phát hành Ruby 2.4.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2016/12/25/ruby-2-4-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Phát hành Ruby 2.4.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi naruse vào 25 Dec 2016</p>
+
+    <p>Chúng tôi rất hân hạnh được thông báo về việc phát hành Ruby phiên bản 2.4.0.</p>
+<p>Ruby 2.4.0 là phiên bản stable đầu tiên của Ruby 2.4.0 gồm nhiều tính năng mới như:</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12142">Giới thiệu cải tiến hash table (bởi Vladimir Makarov)</a></h2>
+<p>Cải thiện cấu trúc bên trong của hash table (st_table) bằng việc giới thiệu
+open addressing và một mảng bao hàm có thứ tự.
+Cải thiện này đã được rất nhiều người chấp nhận, đặc biệt là Yura Sokolov.</p>
+<h2>Binding#irb: Bắt đầu một REPL session tương tự như <code>binding.pry</code></h2>
+<p>Thông thường bạn có thể dùng <code>p</code> để xem giá trị của các biến trong quá trình debug.
+Với <a href="https://github.com/pry/pry">pry</a> bạn có thể dùng <code>binding.pry</code> để chạy REPL và
+debug ở bất kỳ dòng code nào.
+<a href="https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a">r56624</a>
+giới thiệu <code>binding.irb</code> có tính năng tương tự trong IRB.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">Hợp nhất Fixnum và Bignum vào Integer</a></h2>
+<p>Mặc dù chuẩn <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a>
+không mô tả chi tiết nội dung của lớp Integer,
+Ruby hiện đang có hai lớp Integer: Fixnum và Bignum.
+Ruby 2.4 gộp hai lớp này thành một lớp là Integer.
+Tất cả các extensions của C mà có liên quan đến lớp Fixnum hoặc Bignum
+thì cần được thay đổi.</p>
+<p>Xem thêm <a href="https://bugs.ruby-lang.org/issues/12005">the ticket</a> và <a href="http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf">akr's slides</a>.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">Class String hỗ trợ Unicode trong xử lí chữ hoa, chữ thường</a></h2>
+<p>Hàm <code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code> bây giờ đã có thể xử lý hoa-thường cho cả Unicode (thay vì chỉ cho ASCII).</p>
+<h2>Các cải thiện về hiệu năng</h2>
+<p>Ruby 2.4 cũng bao gồm các cải thiện về hiệu năng như sau:</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p><code>[x, y].max</code> và <code>[x, y].min</code> đã được cải tiến để không tạo ra một mảng tạm trong một số trường hợp.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>Hàm <code>Regexp#match?</code> đã được thêm vào với chức năng thực hiện việc kiểm tra một
+biểu thức chính quy mà không tạo ra một đối tượng cho các tham chiếu ngược lai
+và thay đổi <code>$~</code> nhằm giảm việc khởi tạo các đối tượng.</p>
+<h3>Những sự cải thiện về hiệu năng khác</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">Tăng tốc độ truy cập biến instance</a></li>
+</ul>
+<h2>Debugging</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception and Thread.report_on_exception</a></h3>
+<p>Ruby sẽ bỏ qua các exception trong các thread nếu không có một thread khác tham
+gia vào tiến trình của thread có exception. Tuy nhiên với việc set <code>report_on_exception = true</code>,
+bạn có thể nhận biết được việc thread bị kết thúc bởi một exception chưa được xử lý.</p>
+<p>Gửi góp ý cho chúng tôi về giá trị mặc định của <code>report_on_exception</code>
+và report-on-GC (tính năng sẽ đưa ra báo cáo khi một thread được dọn dẹp mà không tham gia).</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">Khi phát hiện ra Thread Deadlock, Ruby sẽ hiển thị các threads bị lỗi với backtrace và dependency</a></h3>
+<p>Ruby đã có cơ chế phát hiện deadlock của các threads, tuy nhiên các thông tin
+được báo cáo về deadlock thường không đầy đủ cho việc debug.
+Từ bản 2.4 trở đi, khi phát hiện ra Deadlock, Ruby sẽ hiển thị các thread cùng với
+backtrace và các threads liên quan.</p>
+<h2>Thay đổi đáng chú ý so với phiên bản 2.3</h2>
+<ul>
+<li>Hỗ trợ OpenSSL 1.1.0 (ngừng hỗ trợ cho 0.9.7 hoặc cũ hơn)</li>
+<li>ext/tk được bỏ khỏi stdlib <a href="https://bugs.ruby-lang.org/issues/8539">Feature #8539</a></li>
+<li>XMLRPC được bỏ khỏi stdlib <a href="https://bugs.ruby-lang.org/issues/12160">Feature #12160</a></li>
+</ul>
+<p>Xem thêm <a href="https://github.com/ruby/ruby/blob/v2_4_0/NEWS">Thông tin</a>
+hoặc lịch sử commit để biết thêm chi tiết.</p>
+<p>Với những sự thay đổi này,
+<a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0">2519 files changed, 288606 insertions(+), 83896 deletions(-)</a>
+so với Ruby 2.3.0!</p>
+<p>Giáng sinh vui vẻ :) đừng quên Ruby 2.4!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12572424 bytes
+SHA1:   944d2588308391b20a89642472454d1dfe7b2360
+SHA256: 440bbbdc49d08d3650f340dccb35986d9399177ad69a204def56e5d3954600cf
+SHA512: bef7bb53f63fb74073d071cc125fb67b273ed0779ef43c2d2969089b9ca21fff1bd012281c5b748f7a3c24dd26e71730d7248c05a01cb23ab2089eb4d02115fe
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14104044 bytes
+SHA1:   d44a3c50a0e742341ed3033d5db79d865151a4f4
+SHA256: 152fd0bd15a90b4a18213448f485d4b53e9f7662e1508190aa5b702446b29e3d
+SHA512: 21c9f596b42dd9cba7a53963a59fed0c2e0c1eb960a4ac7087ea3eaa991ce9252d32639e1edcb75b1d709bc07c4820a6dc336ab427d0643c6e6498e0eacdbc8b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9906880 bytes
+SHA1:   038804bbd0e77508dd2510b729a9f3b325489b2e
+SHA256: 3a87fef45cba48b9322236be60c455c13fd4220184ce7287600361319bb63690
+SHA512: 975a5388592adc038461e0acebb6c0efee242891b2ea8621476401458efe2bc0fdd317d3bf99beb745b0b3808410efdff33862da29c95c027f457943721e3ab6
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15758757 bytes
+SHA1:   29e1bab11551011718c35a51827edcb55bd656fc
+SHA256: 5c2bbfa26fd6a15a2d70961874b0f3a386206fcc5f698e240dd8b0c9f0f18c5e
+SHA512: 31d932372ce490eeac0a70bc8dcf842909a90435422398d069c05cf01d994936064b8f4e60879e28a8655c1296eb8e180e348cb95e001ed6ca73cda0ff77de23
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

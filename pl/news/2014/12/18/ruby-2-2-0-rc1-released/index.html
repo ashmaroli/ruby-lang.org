@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Wydano Ruby 2.2.0-rc1</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pl/news/2014/12/18/ruby-2-2-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pl/feeds/news.rss" rel="alternate" title="Ostatnie Wiadomości (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pl/">
+          <h1>Ruby</h1>
+          <h2>Najlepszy Przyjaciel Programisty</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pl/" class="home">Home</a>
+
+  <a href="/pl/downloads/">Pobierz</a>
+
+  <a href="/pl/documentation/">Dokumentacja</a>
+
+  <a href="/pl/libraries/">Biblioteki</a>
+
+  <a href="/pl/community/">Społeczność</a>
+
+  <a href="/pl/news/">Wiadomości</a>
+
+  <a href="/pl/security/">Bezpieczeństwo</a>
+
+  <a href="/pl/about/">O języku Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pl/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pl/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Szukaj" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Wydano Ruby 2.2.0-rc1</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Zamieszczone przez naruse 2014-12-18<br>
+                         Tłumaczone przez crabonature</p>
+
+    <p>Jest nam miło ogłosić wydanie Rubiego 2.2.0-rc1.
+Po RC1, wszystkie zmiany zostaną ograniczone tylko do poprawiania błędów.
+Finalne wydanie Rubiego 2.2.0 jest zaplanowane na 25 grudnia 2014.</p>
+<p>Ruby 2.2 zawiera wiele nowych funkcjonalności i udoskonaleń dla coraz bardziej
+zróżnicowanych i poszerzonych wymagań.</p>
+<p>Dla przykładu, odśmiecacz pamięci w Rubim jest w stanie obsługiwać obiekty typu Symbol.
+Redukuje to zużycie pamięci dla symboli; przed Rubim 2.2 mechanizm odśmiecania pamięci nie
+był w stanie ich obsługiwać. Rails 5.0 będzie wymagało Symbol GC, będzie
+wspierało tylko Rubiego 2.2 lub późniejsze.
+(Zobacz <a href="http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/">wpis na blogu Rails</a>
+po szczegóły.)</p>
+<p>Także zredukowany czas wstrzymania dzięki nowemu Incremental Garbage Collector
+będzie przydatny dla uruchomionych aplikacji Railsowych. Bieżące osiągnięcia wspomniane we <a href="http://weblog.rubyonrails.org/">blogu Rails</a> sugerują, że Rails 5.0 będą wykorzystywać Incremental GC jak również Symbol GC.</p>
+<p>Kolejna funkcjonalność związana z zarządzaniem pamięcią to dodana opcja w <code>configure.in</code>
+by używać jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Funkcjonalność #9113</a>.
+Jest to eksperymentalna funkcjonalność i domyślnie nieaktywna.
+Potrzebujemy zebrać przypadki użycia i dane odnośnie wydajności.
+Gdy będziemy przekonani o korzyściach, funkcjonalność będzie domyślnie włączona.</p>
+<p>Eksperymentalne wsparcie dla używania vfork(2) z system() i spawn() także zostało dodane.
+Więcej szczegółów możesz przeczytać na <a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">blogu tanaka-sana po japońsku</a>.
+Potencjalnie spowoduje to ogromne przyspieszenie gdy duży proces wykonuje
+zewnętrze komendy wiele razy.
+Ale vfork(2) jest nadal niezbyt zrozumiałym i potencjalnie ryzykownym wywołaniem systemowym.
+Chcemy się przekonać jak wiele zysku to przyniesie poprzez zebranie przypadków
+użycia i danych odnośnie wydajności.</p>
+<p>Wypróbuj i miłego programowania z Rubim 2.2.0-rc1, oraz poinformuj nas o
+swoich spostrzeżeniach!</p>
+<h2>Znaczące zmiany od 2.1</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">Incremental GC</a> (<a href="http://magazine.rubyist.net/?0048-YARVManiacs">YARV Maniacs No.12</a>)</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">Symbol GC</a> (<a href="http://www.slideshare.net/authorNari/symbol-gc">prezentacja na RubyKaigi 2014</a>)</li>
+<li>konfiguracja --with-jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Funkcjonalność #9113</a></li>
+<li>wbudowane biblioteki:
+<ul>
+<li>Wsparcie dla Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a></li>
+<li>Nowe metody:
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>, Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a></li>
+<li>Float#next_float, Float#prev_float <a href="https://bugs.ruby-lang.org/issues/9834">#9834</a></li>
+<li>File.birthtime, File#birthtime <a href="https://bugs.ruby-lang.org/issues/9647">#9647</a></li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dołączone biblioteki:
+<ul>
+<li>Aktualizacja Psych 2.0.8</li>
+<li>Aktualizacja Rake 10.4.0</li>
+<li>Aktualizacja RDoc 4.2.0.alpha (21b241a)</li>
+<li>Aktualizacja RubyGems 2.4.5</li>
+<li>Aktualizacja test-unit 3.0.8 (usunięta z repozytorium ale załączona w tarballu)</li>
+<li>Aktualizacja minitest 5.4.3 (usunięta z repozytorium ale załączona w tarballu)</li>
+<li>mathn oznaczone jako przestarzałe</li>
+</ul>
+</li>
+<li>C API
+<ul>
+<li>Usunięcie przestarzałych APIs</li>
+</ul>
+</li>
+</ul>
+<p>Zobacz <a href="https://github.com/ruby/ruby/blob/v2_2_0_rc1/NEWS">Wiadomości w repozytorium Rubiego (WIP)</a> po szczegóły.</p>
+<p>Z tymi zmianami, 1548 zmienionych plików, 123658 wstawień(+), 74306 usunięć(-) od v2.1.0!</p>
+<h2>Pobieranie</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.bz2</a>
+<ul>
+<li>SIZE:   12475612 bytes</li>
+<li>MD5:    7144732d30dd4547c0a59862b3345d54</li>
+<li>SHA256: e6a1f8d45ea749bdc92eb1269b77ec475bc600b66039ff90d77db8f50820a896</li>
+<li>SHA512: 181201168360bee37dceeef3481a69e8a333a5d329680031fd9d371d30ac64460bbdf4db07546133024f541774e51301f1630cfd988c5e5bf2464834f3abe6bf</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.gz</a>
+<ul>
+<li>SIZE:   15531233 bytes</li>
+<li>MD5:    51f218fabc3ceb7bf3fe5f4f87ddebd3</li>
+<li>SHA256: a59c8db71b967015ad7c259ba8ef638c7943ec78580412bb86e97791a9322b6b</li>
+<li>SHA512: 4a35e78c4c0747f9c79e506e98acc117efb0be72fc103d6f9c13d5eb5efa5c6d6748f491526fc7ebb24397f25238f06d552f841e9e898be30aa7cd6c2df38494</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.xz</a>
+<ul>
+<li>SIZE:   9675108 bytes</li>
+<li>MD5:    3f482b88eda45c1bc6bab1921763ce52</li>
+<li>SHA256: dcfad9bb6e0b513b03f08f86b195da6a6a7045559b558d3493decac0e0abb86c</li>
+<li>SHA512: 3ec8955d8a269a1e5f28c3e0e6023bd613f244c83914a4a8c96d2761b11914c21ce67cfadb2bcebc480d9c0b9c7b54da6dfa67cdf4b4350db2a85d379265ffed</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.zip</a>
+<ul>
+<li>SIZE:   17219660 bytes</li>
+<li>MD5:    49f5aae44c00f4d57be47576c29a53bd</li>
+<li>SHA256: 1bd3e83d44b4e5879b4ecdc496d19905bc03637a8c88027c2dc98a369f1ebb83</li>
+<li>SHA512: bf0e39e5add532ca338095ad6eaaafbe4f84cc9df1e8d4bad986c44e17614623430c2670d9751865e8d645cb483007d5473be82536b985ccab40a7dde72c4161</li>
+</ul>
+</li>
+</ul>
+<h2>Komentarz do wydania</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115">2.2.0 Znane problemy</a></li>
+</ul>
+<p>Zobacz także harmonogram wydań i inne informacje:</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22">Wydania22</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktualności</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/pl/news/2016/06/20/ruby-2-4-0-preview1-released/">Wydano Ruby 2.4.0-preview1</a></li>
+        
+        <li><a href="/pl/news/2014/12/25/ruby-2-2-0-released/">Wydano Ruby 2.2.0</a></li>
+        
+        <li><a href="/pl/news/2014/12/18/ruby-2-2-0-rc1-released/">Wydano Ruby 2.2.0-rc1</a></li>
+        
+        <li><a href="/pl/news/2014/11/28/ruby-2-2-0-preview2-released/">Wydano Ruby 2.2.0-preview2</a></li>
+        
+        <li><a href="/pl/news/2014/11/13/ruby-2-1-5-is-released/">Wydano Ruby 2.1.5</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/pl/feeds/news.rss">Ostatnie Wiadomości (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pl/" class="home">Home</a>
+
+  <a href="/pl/downloads/">Pobierz</a>
+
+  <a href="/pl/documentation/">Dokumentacja</a>
+
+  <a href="/pl/libraries/">Biblioteki</a>
+
+  <a href="/pl/community/">Społeczność</a>
+
+  <a href="/pl/news/">Wiadomości</a>
+
+  <a href="/pl/security/">Bezpieczeństwo</a>
+
+  <a href="/pl/about/">O języku Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Ta strona w innych językach:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pl/about/logo/">Logo Rubiego</a> jest Zastrzeżone &copy; 2006, Yukihiro Matsumoto; licencjonowane na warunkach <a href="http://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a>.<br><br> Serwis powstał w języku Ruby przy użyciu <a href="http://www.jekyllrb.com/">Jekyll</a>. Utrzymaniem serwisu zajmuje się społeczność Rubiego. Projekt strony <a href="https://twitter.com/jasonzimdars">Jason Zimdars</a>. Proszę udziel nam wsparcia na <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> lub skontaktuj się z naszym <a href="mailto:webmaster@ruby-lang.org">webmasterem</a> jeśli masz jakieś pytania lub komentarze dotyczące tego serwisu.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

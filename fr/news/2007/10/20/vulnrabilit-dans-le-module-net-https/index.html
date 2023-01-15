@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Vulnérabilité dans le module Net::HTTPS</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/news/2007/10/20/vulnrabilit-dans-le-module-net-https/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Vulnérabilité dans le module Net::HTTPS</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posté par Jean-Denis Vauguet le 2007-10-20</p>
+
+    <p>Un trou de sécurité a été détecté dans la bibliothèque net/https.
+<a href="http://www.isecpartners.com/advisories/2007-006-rubyssl.txt">Informations détaillées par le rapporteur</a> ou ci-dessous (en
+anglais).</p>
+<h4>Impact</h4>
+<p>The vulnerability exists in the connect method within http.rb file which
+fails to call post_connection_check after the SSL connection has been
+negotiated. Since the server certificate's CN is not validated against
+the requested DNS name, the attacker can impersonate the target server
+in a SSL connection. The integrity and confidentiality benefits of SSL
+are thereby eliminated.</p>
+<h4>Vulnerable versions</h4>
+<p>1.8 series
+: * 1.8.4 and all prior versions</p>
+<ul>
+<li>1.8.5-p113 and all prior versions</li>
+<li>1.8.6-p110 and all prior versions</li>
+</ul>
+<p>Development version (1.9 series)
+: All versions before 2006-09-23</p>
+<h4>Solution</h4>
+<p>1.8 series</p>
+<p>: Please upgrade to 1.8.6-p111 or 1.8.5-p114.</p>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p111.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p111.tar.gz&gt;</a></li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.5-p114.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.5-p114.tar.gz&gt;</a></li>
+</ul>
+<p>Then you should use Net::HTTP#enable_post_connection_check= to
+enable post_connection_check.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  http = Net::HTTP.new(host, 443)
+  http.use_ssl = true
+  http.enable_post_connection_check = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+  store = OpenSSL::X509::Store.new
+  store.set_default_paths
+  http.cert_store = store
+  http.start {
+    response = http.get("/")
+  }
+</code></pre></div></div>
+<p>Please note that a package that corrects this weakness may already be
+available through your package management software.</p>
+<p>Development version (1.9 series)
+: Please update your Ruby to a version after 2006-09-23. The default
+value of Net::HTTP#enable_post_connection_check is true on Ruby
+1.9.</p>
+<h4>Changes</h4>
+<ul>
+<li>2007-10-04 16:30 +09:00 added description for
+enable_post_connection_check to `Solution'.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Actualité récente</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/fr/news/2022/02/18/ruby-3-1-1-released/">Ruby 3.1.1 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/12/25/ruby-3-1-0-released/">Ruby 3.1.0 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-7-5-released/">Ruby 2.7.5 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-6-9-released/">Ruby 2.6.9 est disponible</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

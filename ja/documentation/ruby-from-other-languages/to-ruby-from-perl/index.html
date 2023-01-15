@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>PerlからRubyへ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/ruby-from-other-languages/to-ruby-from-perl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>PerlからRubyへ</h1>
+
+
+
+  <div id="content">
+    <p>Perlはすばらしい言語です。ドキュメントもすばらしいし、Perlコミュニティもすばらしいコミュニティです。
+最初から洗練されたオブジェクト指向の機能が組み込まれた言語を求めているPerl使いにとって、
+Rubyは答えになるかもしれません。</p>
+<h3>Perlとの類似</h3>
+<p>Perlと同様に、Rubyは…</p>
+<ul>
+<li>CPANのような、<a href="http://guides.rubygems.org">RubyGems</a>という名前のパッケージ管理システムがあります。</li>
+<li>正規表現エンジンが組み込まれています。</li>
+<li>たくさんの便利な組み込みライブラリがあります。</li>
+<li>括弧はしばしば省略されます。</li>
+<li>文字列は基本的に同じように使えます。</li>
+<li>一般的な区切り文字や正規表現構文はPerlと同様です。
+<code>%q{this}</code>(一重引用符)や<code>%Q{this}</code>(二重引用符)、
+<code>%w{this for a single-quoted list of words}</code>のようになります。
+区切り文字は、望むなら<code>%Q|can|</code> <code>%Q(use)</code> <code>%Q^other^</code>のようにもできます。</li>
+<li>二重引用符の文字列中に、<code>&quot;looks #{like} this&quot;</code> のような形で式展開すること
+ができます(<code>#{}</code>の中に任意のRubyコードを置くことができます)。</li>
+<li>シェルコマンドを実行するには<code>`backticks`</code>のようにします。</li>
+<li>rdocという組み込みのドキュメントツールがあります。</li>
+</ul>
+<h3>Perlとの違い</h3>
+<p>Perlと違って、Rubyは…</p>
+<ul>
+<li>Perlのようなコンテキスト依存のルールはありません。</li>
+<li>変数はオブジェクトそのものではありません。常にオブジェクトへの参照です。</li>
+<li>変数名の最初の1文字に<code>$</code>や<code>@</code>などが使われることがあります。
+これらは型ではなく、スコープを示します
+(<code>$</code>はグローバル変数、<code>@</code>はインスタンス変数、<code>@@</code>はクラス変数
+であることを示します)。</li>
+<li>配列リテラルは括弧ではなく角括弧を使います。</li>
+<li>リストの中にリストを入れると、それはフラットな一つのリスト
+になるわけではありません。代わりに配列の配列が得られます。</li>
+<li><code>sub</code>の代わりに<code>def</code>を使います。</li>
+<li>行の終わりにセミコロンは必要ありません。
+関数定義やクラス定義、case文の終わりを示すには、
+<code>end</code>キーワードを使います。</li>
+<li>オブジェクトは強く型付けされています。
+他の型に変換するには、<code>foo.to_i</code>や<code>foo.to_s</code>などの変換メソッドを
+呼び出す必要があります。</li>
+<li><code>eq</code>、<code>ne</code>、<code>lt</code>、<code>gt</code>、<code>ge</code>、<code>le</code>はありません。</li>
+<li>ダイアモンド演算子(<code>&lt;&gt;</code>)はありません。
+<code>IO.some_method</code>を代わりに使います。</li>
+<li><code>=&gt;</code>はハッシュリテラルにだけ使われます。</li>
+<li><code>undef</code>はありません。Rubyには<code>nil</code>があります。
+<code>nil</code>は(Rubyにおける他の値と同様に)オブジェクトで、
+未定義の変数とは異なります。
+真偽値のように扱った場合、<code>nil</code>は<code>false</code>と評価されます。</li>
+<li>真か偽かの判定では、<code>false</code>と<code>nil</code>のみが偽と評価されます。
+それ以外の値(<code>0</code>、<code>0.0</code>、<code>&quot;0&quot;</code>など)はすべて真と評価されます。</li>
+<li><a href="http://www.perlmonks.org/">PerlMonks</a>はありませんが、ruby-listメーリングリストなどの質問場所があります。</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

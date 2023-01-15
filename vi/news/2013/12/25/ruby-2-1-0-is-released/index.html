@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.1.0 được phát hành</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2013/12/25/ruby-2-1-0-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.1.0 được phát hành</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi nurse vào 25 Dec 2013<br>
+                         Dịch bởi Trung Lê</p>
+
+    <p>Chúng tôi hân hạnh công bố Ruby 2.1.0 đã được phát hành.</p>
+<p>Ruby 2.1 có nhiều cải tiến bao gồm tăng tốc mà không có vấn đề
+về tương thích.</p>
+<p>Hãy thử ngay!</p>
+<h2>Tải về</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.bz2</a>
+<ul>
+<li>SIZE:   12007442 bytes</li>
+<li>MD5:    1546eeb763ac7754365664be763a1e8f</li>
+<li>SHA256: 1d3f4ad5f619ec15229206b6667586dcec7cc986672c8fbb8558161ecf07e277</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz</a>
+<ul>
+<li>SIZE:   15076389 bytes</li>
+<li>MD5:    9e6386d53f5200a3e7069107405b93f7</li>
+<li>SHA256: 3538ec1f6af96ed9deb04e0965274528162726cc9ba3625dcf23648df872d09d</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.zip">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.zip</a>
+<ul>
+<li>SIZE:   16603067 bytes</li>
+<li>MD5:    2fc3a80b56da81b906a9bb6fc7ca8399</li>
+<li>SHA256: d40d7bfb39ca2e462dea61dcbbcf33426b60e6e553335c3afb39b4d827a6891c</li>
+</ul>
+</li>
+</ul>
+<h2>Thay đổi từ since 2.0</h2>
+<p>Các thay đổi lớn:</p>
+<ul>
+<li>VM (method cache)</li>
+<li>RGenGC (Xem <a href="http://rubykaigi.org/2013/talk/S73">bài thuyết trình của ko1 tại RubyKaigi</a> và <a href="http://www.atdot.net/~ko1/activities/rubyconf2013-ko1_pub.pdf">tại RubyConf 2013</a>)</li>
+<li>refinements <a href="https://bugs.ruby-lang.org/issues/8481">#8481</a> <a href="https://bugs.ruby-lang.org/issues/8571">#8571</a></li>
+<li>cú pháp thay đổi
+<ul>
+<li>Rational/Complex Literal <a href="https://bugs.ruby-lang.org/issues/8430">#8430</a></li>
+<li>giá trị trả về của hàm def <a href="https://bugs.ruby-lang.org/issues/3753">#3753</a></li>
+</ul>
+</li>
+<li>Bignum
+<ul>
+<li>dùng GMP <a href="https://bugs.ruby-lang.org/issues/8796">#8796</a></li>
+</ul>
+</li>
+<li>String#scrub <a href="https://bugs.ruby-lang.org/issues/8414">#8414</a></li>
+<li>Socket.getifaddrs <a href="https://bugs.ruby-lang.org/issues/8368">#8368</a></li>
+<li>RDoc 4.1.0 và RubyGems 2.2.0</li>
+<li>&quot;literal&quot;.freeze đã dược tối ưu hoá <a href="https://bugs.ruby-lang.org/issues/9042">#9042</a></li>
+<li>thêm Exception#cause <a href="https://bugs.ruby-lang.org/issues/8257">#8257</a></li>
+<li>cập nhật thư viện như BigDecimal, JSON, NKF, Rake, RubyGems, và RDoc</li>
+<li>gỡ bỏ curses <a href="https://bugs.ruby-lang.org/issues/8584">#8584</a></li>
+</ul>
+<p>Xem thêm chi tiết tại: <a href="https://github.com/ruby/ruby/blob/v2_1_0_rc1/NEWS">NEWS trong Ruby repository (WIP)</a>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

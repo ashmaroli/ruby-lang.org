@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Đến với Ruby từ Python</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/documentation/ruby-from-other-languages/to-ruby-from-python/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Đến với Ruby từ Python</h1>
+
+
+
+  <div id="content">
+    <p>Python là một ngôn ngữ lập trình khác khá tốt. Khi chuyển từ Python qua Ruby,
+bạn sẽ học thêm một vài cú pháp.</p>
+<h3>Điểm tương đồng</h3>
+<p>Giống như Python, trong Ruby,...</p>
+<ul>
+<li>Có một dấu nhắc tương tác (được gọi là <code>irb</code>).</li>
+<li>Bạn có thể đọc các doc trên cửa sổ dòng lệnh (với lệnh <code>ri</code> thay vì
+<code>pydoc</code>).</li>
+<li>Không có dòng kết thúc đặc biệt (ngoài trừ xuống dòng).</li>
+<li>Các chuỗi có thể kéo dài nhiều dòng giống như chuỗi triple-quoted của
+Python.</li>
+<li>Ngoặc vuông dùng cho list, và ngoặc nhọn dùng cho dict (trong Ruby
+được gọi là &quot;hash&quot;).</li>
+<li>Các mảng hoạt động như nhau (khi thêm vào sẽ làm tăng phần tử mảng,
+nhưng khi kết hợp lại như <code>a3=[ a1, a2 ]</code> sẽ thành mảng trong mảng).</li>
+<li>Đối tượng là kiểu dữ liệu chủ đạo.</li>
+<li>Tất cả mọi thứ đều là đối tượng, và các biến chỉ tham chiếu đến đối tượng.</li>
+<li>Mặc dù từ khóa có một chút khác biệt, nhưng các ngoại lệ hoạt động như
+nhau.</li>
+<li>Công cụ doc được tích hợp sẵn (trong Ruby là rdoc).</li>
+</ul>
+<h3>Khác biệt</h3>
+<p>Khác với Python, trong Ruby,...</p>
+<ul>
+<li>Chuỗi có thể thay đổi.</li>
+<li>Bạn có thể tạo hằng số (giá trị của các biến không thay đổi).</li>
+<li>Viết theo quy ước trong một số trường hợp (ví dụ tên lớp phải bắt đầu
+bằng ký tự in hoa, các biến bắt đầu với ký tự thường).</li>
+<li>Chỉ có một loại danh sách chứa (một mảng), và có thể thay đổi.</li>
+<li>Các chuỗi trong dấu nháy kép cho phép chuyển đổi tuần tự (như <code>\t</code>)
+và cú pháp &quot;thay đổi biểu thức&quot; đặc biệt (cho phép bạn có thể chèn
+trực tiếp vào kết quả của biểu thức đó mà không cần phải <code>&quot;gắn &quot; + &quot;các chuỗi &quot; + &quot;vào nhau&quot;</code>). Các chuỗi nằm trong dấu nháy đơn tương
+tự như <code>r&quot;raw strings&quot;</code> của Python.</li>
+<li>Không có các lớp &quot;new style&quot; và &quot;old style&quot;. Chỉ có 1 loại (Python
+3+ không có vấn đề này, nhưng nó không hoàn toàn tương thích với
+Python 2).</li>
+<li>Bạn không thể truy cập trực tiếp thuộc tính. Trong Ruby tất cả đểu
+thông qua việc gọi phương thức.</li>
+<li>Dấu ngoặc đơn khi gọi phương thức được tùy chọn.</li>
+<li>Có các truy cập <code>public</code>, <code>private</code>, và <code>protected</code> thay vì
+gạch dưới <code>_voluntary_</code> <code>__convention__</code> trong Python.</li>
+<li>“mixins” được sử dụng thay cho đa kế thừa.</li>
+<li>Bạn có thể chỉnh sửa các phương thức trong lớp được xây dựng sẵn. Cả
+hai ngôn ngữ đều là mã nguồn mở và bạn có thể chỉnh sửa các lớp ở bất
+kỳ đâu, nhưng Python ngăn chặn việc thay đổi mã nguồn được xây dựng sẵn
+<ul>
+<li>Ruby thì không.</li>
+</ul>
+</li>
+<li>Bạn có <code>true</code> và <code>false</code> thay vì <code>True</code> và <code>False</code> (và <code>nil</code> thay cho
+<code>None</code>).</li>
+<li>Khi kiểm tra đúng sai, chỉ có <code>false</code> và <code>nil</code> là dành cho giá trị
+sai. Tất cả mọi thứ còn lại đều là true (bao gồm <code>0</code>, <code>0.0</code>, <code>&quot;&quot;</code>, và
+<code>[]</code>).</li>
+<li>Dùng <code>elsif</code> thay vì <code>elif</code>.</li>
+<li>Dùng <code>require</code> thay vì <code>import</code>. tuy nhiên cách dùng thì như nhau.</li>
+<li>Các dòng ghi chú được viết phía <em>trên</em> (ngoại trừ docstrings viết
+bên dưới) được dùng để tạo chú thích.</li>
+<li>Số lượng phím tắt giúp bạn dễ nhớ và dễ học hơn. Nó làm cho ngôn
+ngữ Ruby dễ dàng tiếp cận và thú vị hơn.</li>
+<li>Không có cách nào gỡ bỏ một biến đã được thiết lập (như lệnh <code>del</code>
+trong Python). Bạn có thể gán giá trị <code>nil</code> cho biến, làm cho nội
+dung cũ được xoá, tuy nhiên biến đó vẫn sẽ tồn tại trong bảng symbol.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

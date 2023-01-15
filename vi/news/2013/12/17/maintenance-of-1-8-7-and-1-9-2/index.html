@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Gia hạn bảo trì vá bảo mật cho Ruby 1.8.7 và 1.9.2</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2013/12/17/maintenance-of-1-8-7-and-1-9-2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Gia hạn bảo trì vá bảo mật cho Ruby 1.8.7 và 1.9.2</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi zzak vào 17 Dec 2013<br>
+                         Dịch bởi Trung Lê</p>
+
+    <p>Có hiệu lực ngay bây giờ, 1.8.7 và 1.9.2 sẽ được tiếp tục hỗ trợ các vá
+bảo mật cho đến tháng 6, 2014.</p>
+<ul>
+<li>Terence Lee (<a href="https://twitter.com/hone02">@hone02</a>)
+và Zachary Scott (<a href="https://twitter.com/_zzak">@_zzak</a>)
+sẽ tiếp nhận vai trò bảo trì.</li>
+<li>Sau giai đoạn 6 tháng bảo trì, chúng tôi có thể thêm vào
+các thành viên cho 6 tháng tiếp theo.</li>
+</ul>
+<p>Làm được gia hạn này là do sự giúp đỡ bởi <a href="http://heroku.com/">Heroku</a>,
+xem trên blog của họ <a href="https://blog.heroku.com/archives/2013/12/5/a_patch_in_time_securing_ruby/">A Patch in Time: Securing Ruby</a>
+để biết thêm chi tiết.</p>
+<h3>Thông báo các vấn đề</h3>
+<p>Trong giai đoạn gia hạn này, chúng tôi sẽ <em>chỉ</em> áp các vá bảo mật vào mã
+cho <a href="https://bugs.ruby-lang.org/projects/ruby-187/repository">1.8.7</a> và <a href="https://bugs.ruby-lang.org/projects/ruby-192/repository">1.9.2</a>.</p>
+<p>Chúng tôi coi bảo mật là một vấn đề hệ trọng, nếu bạn tìm thấy lỗ hổng
+xin hãy báo cho chúng tôi qua security@ruby-lang.org.
+Mailing list này riêng tư và các vấn đề thông báo sẽ được công bố
+sau khi vá được phát hành.</p>
+<p>Xin xem <a href="https://www.ruby-lang.org/en/security/">ruby-lang.org/en/security</a> để biết thêm chi tiết.</p>
+<h3>Về quản lý phát hành</h3>
+<p>Như tôi đã đề cập ở trên, chúng tôi sẽ chỉ áp dụng các vá bảo mật và
+tăng cấp vá (patch level).</p>
+<p>Chúng tôi sẽ không phát hành các bản được vá của 1.8.7 hoặc 1.9.2 trên ruby-lang.org.
+Nhưng bạn có thể tùy thích đóng gói lại từ nguồn.</p>
+<p>Lí do là vì chúng tôi không muốn tiếp nhận thêm các vé mới, bởi vì các ấn
+bản chính sẽ tăng trách nhiệm của ruby-core trong việc theo dõi và bảo trì.
+Nhóm của chúng tối hiện không đủ nguồn lực, nên chúng tôi khuyến khích nâng
+cấp hơn là hỗ trợ các bản lỗi thời.</p>
+<h3>Tại sao lài hồi sinh 1.8.7?</h3>
+<p>Bạn có thể nhớ công bố 6 tháng trước của bài <a href="https://www.ruby-lang.org/en/news/2013/06/30/we-retire-1-8-7/">xế chiều 1.8.7</a>.</p>
+<p>Trong khi ruby-core sẽ không tiếp tục bảo trì 1.8.7 hay 1.9.2, Terence
+và Zachary sẽ hỗ trợ các phiên bản vá lỗi như là một phần tài trợ công ty.</p>
+<p>Trong quá khứ chúng tôi đã hỗ trợ các nhà cung cấp muốn bảo toàn các phiên
+bản lỗi thời. Trong năm 2009, bao trì của Ruby 1.8.6 được chuyển giao cho
+Engine Yard khi họ phát hành 1.8.6-p369.</p>
+<h3>Lời ngỏ khuyến khích</h3>
+<p>Chúng tôi muốn nhân cơ hội này khuyến khích bạn nâng cấp lên các phiên
+bản được hỗ trợ càng sớm càng tốt. Nhiều thành viên ruby-core đã bỏ ra
+nhiều giờ để cải thiện tốc độ và chức năng của Ruby trong 2.0+ và chúng
+tôi mong các bạn tận dụng nó.</p>
+<p>Cảm bạn đã tiếp tục ủng hộ và hãy cùng làm cho Ruby tốt hơn!</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

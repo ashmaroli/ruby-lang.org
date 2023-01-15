@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Излезе Ruby 2.2.0-preview2</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/news/2014/11/28/ruby-2-2-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Излезе Ruby 2.2.0-preview2</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Публикувана от naruse на 2014-11-28<br>
+                         Превод от Georgi Mitrev</p>
+
+    <p>Имаме удоволствието да обявим излизането на Ruby 2.2.0-preview2.</p>
+<p>Ruby 2.2.0-preview2 е вторият предварителен преглед на Ruby 2.2.0.
+Включени са много новости и подобрения.</p>
+<p>Например, Symbol GC прави символите garbage collectable.
+Това намалява използваната памет за символи, защото досега те не се събираха от GC.
+Rails 5.0 ще се възползва от Symbol GC и затова ще изисква минимална версия на
+Ruby 2.2. (Виж <a href="http://weblog.rubyonrails.org/2014/8/20/Rails-4-2-beta1/">блог пост на Rails</a> за повече детайли.)</p>
+<p>Освен това новият Incremental GC намалява паузата на garbage collection, което
+допълнително подпомага работата на Rails приложения.</p>
+<p>Новост, вързана с управлението на паметта, е добавянето на опция за
+configure.in да използва jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a>.
+Опцията е изключена по подразбиране поради експерименталната си природа.
+Когато се убедим от ползите й, тя ще бъде включена по подразбиране.</p>
+<p>Друга тема е <a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">използването на vfork(2) в system() и spawn() (Японски)</a>.
+Очаква се това да доведе до значителни забързвания в случаите, когато голям
+процес многократно извиква външни команди.</p>
+<p>Приятно ползване на Ruby 2.2.0-preview2!</p>
+<h2>Значителни промени от 2.1</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">Incremental GC</a> (<a href="http://magazine.rubyist.net/?0048-YARVManiacs">YARV Maniacs No.12</a>)</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">Symbol GC</a> (<a href="http://www.slideshare.net/authorNari/symbol-gc">presentation at RubyKaigi 2014</a>)</li>
+<li>configure --with-jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a></li>
+<li>основни библиотеки:
+<ul>
+<li>Поддръжка на Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a></li>
+<li>Нови методи:
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>, Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a></li>
+<li>Float#next_float, Float#prev_float <a href="https://bugs.ruby-lang.org/issues/9834">#9834</a></li>
+<li>File.birthtime, File#birthtime <a href="https://bugs.ruby-lang.org/issues/9647">#9647</a></li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>включени библиотеки:
+<ul>
+<li>Актуализация на Psych 2.0.6</li>
+<li>Актуализация на Rake 10.4.0</li>
+<li>Актуализация на RDoc 4.2.0.alpha (21b241a)</li>
+<li>Актуализация на RubyGems 2.4.4+ (2f6e42e)</li>
+<li>rubygems 2.4.4+ (2f6e42e)</li>
+<li>Актуализация на test-unit 3.0.7 (премахнато от хранилището, но включено в
+tarball-а)</li>
+<li>Актуализация нa minitest 5.4.3 (премахнато от хранилището, но включено в
+tarball-а)</li>
+<li>Маркиране на mathn за премахване в бъдеще</li>
+</ul>
+</li>
+<li>C API
+<ul>
+<li>Премахнати остарели API-та</li>
+</ul>
+</li>
+</ul>
+<p>Виж <a href="https://github.com/ruby/ruby/blob/v2_2_0_preview2/NEWS">NEWS в Ruby хранилището</a> за повече информация.</p>
+<p>С тези промени, 1239 променени файла, 98343 добавени реда(+), 61858 премахнати
+реда(-).</p>
+<h2>Сваляне</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2</a>
+<ul>
+<li>SIZE:   12505279 bytes</li>
+<li>MD5:    d7abace25a8ffe861cb2807bef1c58a6</li>
+<li>SHA256: 9e49583f3fad3888fefc85b719fdb210a88ef54d80f9eac439b7ca4232fa7f0b</li>
+<li>SHA512: c654d4c047f9463a5fb81eaea0fa5ab7bf316962bc7fb0fb356861e6336ce8ce2162c7779d8b27f72d7bc0e9604b5e5af2910abcb0b0a1f197b3138eaddfd4a5</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz</a>
+<ul>
+<li>SIZE:   15505521 bytes</li>
+<li>MD5:    bde388d6f10012a92d5dc36196fd6755</li>
+<li>SHA256: dfcef7b01bd3acb41da6689993ac8dd30e2ecd4fd14bc1a833f46188a9fe2614</li>
+<li>SHA512: e2d316a679c15c021e40b0f9b7810b319c6a5e771a9b869fda35b6745aecac881bbb05d62192893799816a8673e05c8f17713f10ccdec077f546483608ab85c1</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz</a>
+<ul>
+<li>SIZE:   9649216 bytes</li>
+<li>MD5:    0d582e28b92ce9d1456e40fb8d821422</li>
+<li>SHA256: d14d1fa045263fa242a515d7b9e8c485bf8a9ee9d9d3012dc2b6add0f3a370c6</li>
+<li>SHA512: 4a8a75ab21b2bd43db4a22d9c63f189f3c7805d575d662b07a4ddc25aa5b156b0c23053d8c48eecf23d5e22f1ea7131467f1cdc48f9ae0a83214b4cd46b08491</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip</a>
+<ul>
+<li>SIZE:   17239396 bytes</li>
+<li>MD5:    d94160c214016863932c25cc1ac6ff90</li>
+<li>SHA256: 88d6c73ee1a4f5fe1f8ad37fe1f56c1ca50622f1338c20b9d46bbb5c2cd94040</li>
+<li>SHA512: 0a021d31f54c47c5c3901ef6f2ab02a1bfb5cc698f971978c1e16b1aeda78fdadec0c1cdd48af1c8784b8f72ad00d35cf2433d78e20d4447fa0630e02b4e3917</li>
+</ul>
+</li>
+</ul>
+<h2>Допълнително</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115">2.2.0 Известни проблеми</a></li>
+</ul>
+<p>За повече информация:</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22">ReleaseEngineering22</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последни новини</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/bg/news/2016/06/20/ruby-2-4-0-preview1-released/">Излезе Ruby 2.4.0-preview1</a></li>
+        
+        <li><a href="/bg/news/2016/04/26/ruby-2-3-1-released/">Излезе Ruby 2.3.1</a></li>
+        
+        <li><a href="/bg/news/2016/04/26/ruby-2-2-5-released/">Излезе Ruby 2.2.5</a></li>
+        
+        <li><a href="/bg/news/2016/04/01/ruby-2-1-10-released/">Излезе Ruby 2.1.10</a></li>
+        
+        <li><a href="/bg/news/2016/03/30/ruby-2-1-9-released/">Излезе Ruby 2.1.9</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

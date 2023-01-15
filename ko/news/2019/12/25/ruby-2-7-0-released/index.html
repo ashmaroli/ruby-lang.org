@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 2.7.0 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2019/12/25/ruby-2-7-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 2.7.0 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2019-12-25)<br>
+                         번역자: shia</p>
+
+    <p>루비 2.7.0 릴리스를 알리게 되어 기쁩니다.</p>
+<p>이는 많은 새 기능과 성능 향상을 포함하고 있습니다. 특히 눈에 띄는 것은 다음과 같습니다.</p>
+<ul>
+<li>패턴 매칭</li>
+<li>REPL 개선</li>
+<li>압축 GC</li>
+<li>위치 인자와 키워드 인자 분리</li>
+</ul>
+<h2>패턴 매칭 [실험적]</h2>
+<p>함수형 언어에서 널리 사용되는 패턴 매칭 기능이 실험적으로 도입되었습니다.
+<a href="https://bugs.ruby-lang.org/issues/14912">[Feature #14912]</a></p>
+<p>이는 주어진 객체를 순회하다가 패턴이 일치하는 경우 그 값을 대입합니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">json</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">END</span><span class="sh">
+{
+  "name": "Alice",
+  "age": 30,
+  "children": [{ "name": "Bob", "age": 2 }]
+}
+</span><span class="no">END</span>
+
+<span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span> <span class="c1">#=&gt; 2</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>더 자세한 설명은 <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Pattern matching - New feature in Ruby 2.7</a>을 확인해 주세요.</p>
+<h2>REPL 개선</h2>
+<p>루비에 포함되어 있는 상호작용 환경(REPL; Read-Eval-Print-Loop)인 <code>irb</code>가
+이제 여러 줄 편집을 지원합니다.
+이는 <code>readline</code>과 호환되는 순수 루비 구현인 <code>reline</code>으로 동작합니다.
+또한 rdoc 통합도 제공됩니다. <code>irb</code>에서 주어진 클래스, 모듈, 메서드의 레퍼런스를 볼 수 있습니다.
+<a href="https://bugs.ruby-lang.org/issues/14683">[Feature #14683]</a>,
+<a href="https://bugs.ruby-lang.org/issues/14787">[Feature #14787]</a>,
+<a href="https://bugs.ruby-lang.org/issues/14918">[Feature #14918]</a></p>
+<p>그뿐만 아니라, <code>binding.irb</code>에서 보이는 소스 코드나 코어 클래스 객체의
+inspect 결과에 색이 추가되었습니다.</p>
+<!-- raw HTML omitted -->
+<h2>압축 GC</h2>
+<p>이 릴리스는 단편화된 메모리를 최적화할 수 있는 압축 GC를 도입합니다.</p>
+<p>몇몇 멀티 스레드를 이용하는 루비 프로그램은 메모리 단편화를 일으킬 수 있고,
+이는 과다한 메모리 사용과 성능 저하로 이어질 수 있습니다.</p>
+<p>힙 공간을 압축하는 <code>GC.compact</code> 메서드가 도입되었습니다.
+이 함수는 더 적은 페이지를 사용하고, 힙이 CoW(Copy on Write)에 유리하도록
+힙 내부에 살아있는 객체들을 압축합니다.
+<a href="https://bugs.ruby-lang.org/issues/15626">[Feature #15626]</a></p>
+<h2>위치 인자와 키워드 인자 분리</h2>
+<p>키워드 인자와 위치 인자의 자동 변환이 폐기 예정 상태가 되었습니다.
+이 변환은 루비 3에서 제거될 예정입니다.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<p>자세한 설명은 &quot;<a href="https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">Separation of positional and keyword arguments in Ruby 3.0</a>&quot;(영문)을 참고하세요.
+밑에서는 변경만을 설명합니다.</p>
+<ul>
+<li>
+<p>메서드 호출이 마지막 인자로 Hash를 넘기며 아무 키워드도 넘기지 않을 때,
+호출된 메서드는 키워드를 받을 때 경고가 발생합니다.
+계속 키워드로 취급되도록 하려면, 이중 스플랫(double splat) 연산자를 추가해서
+경고를 피하고 루비 3에서 올바르게 동작하도록 하세요.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메서드 호출이 키워드를 넘기고 호출된 메서드도 키워드를 받을 때,
+필요한 위치 인자가 부족한 경우 키워드들을 마지막 위치 인자로 간주하고 경고가 발생합니다.
+경고를 피하고 루비 3에서 올바르게 동작하도록 하려면 인자를 키워드 대신 해시로 넘기세요.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메서드가 키워드 스플랫(splat)은 받지 않고 특정 키워드는 받을 때,
+심볼과 심볼이 아닌 키를 모두 포함한 해시 또는 키워드 스플랫을
+메서드에 넘긴 경우 경고가 발생합니다.
+루비 3에서 올바르게 동작하려면 메서드를 호출하는 코드가 별도의 해시를 넘기도록
+수정해야 합니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메서드가 키워드를 받지 않는데 키워드와 함께 호출되면,
+키워드는 위치 인자에 해당하는 해시로 인식되고, 경고가 발생하지 않습니다.
+이 동작은 루비 3에서도 유지될 것입니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메서드가 임의의 키워드를 받으면 심볼이 아닌 키도 키워드 인자로 허용됩니다.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메서드가 키워드를 받지 않음을 명시하기 위해 메서드 정의에서 <code>**nil</code>을 사용할 수 있습니다.
+이러한 메서드를 키워드와 함께 호출하면 ArgumentError가 발생합니다.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>키워드를 받지 않는 메서드에 빈 키워드 스플랫을 넘겼을 때, 더 이상 빈 해시를 넘기지 않습니다.
+파라미터가 필요한 경우 빈 해시를 넘기지만, 경고가 발생합니다.
+위치 인자로서 해시를 넘기려면 이중 스플랫(double splat)을 제거하세요.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span> <span class="c1"># []</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># {} and warning</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>   <span class="c1"># [{}]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>    <span class="c1"># {}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<p>만약 폐기 경고를 비활성화하고 싶다면, 실행시에 <code>-W:no-deprecated</code>를 넘기거나,
+<code>Warning[:deprecated] = false</code>를 코드에 추가해주세요.</p>
+<h2>이외의 주목할 만한 새 기능</h2>
+<ul>
+<li>
+<p>번호 지정 파라미터가 기본 블록 파라미터로서 실험적으로 도입되었습니다.
+<a href="https://bugs.ruby-lang.org/issues/4475">[Feature #4475]</a></p>
+</li>
+<li>
+<p>시작 값을 지정하지 않는 범위 연산자가 실험적으로 추가됩니다.
+종료 지정이 없는 범위 연산자처럼 유용하지 않을 수도 있습니다만, DSL 용도로는 유용할 것입니다.
+<a href="https://bugs.ruby-lang.org/issues/14799">[Feature #14799]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">ary</span><span class="p">[</span><span class="o">..</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># identical to ary[0..3]</span>
+<span class="n">rel</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">sales: </span><span class="o">..</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#tally</code>가 추가됩니다. 이는 각 요소가 몇 번 출현했는지를 셉니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">].</span><span class="nf">tally</span>
+<span class="c1">#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>self</code>에 private 메서드를 호출하는 것이 허용됩니다.
+<a href="https://bugs.ruby-lang.org/issues/11297">[Feature #11297]</a>,
+<a href="https://bugs.ruby-lang.org/issues/16123">[Feature #16123]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+<span class="k">end</span>
+<span class="kp">private</span> <span class="ss">:foo</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">foo</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerator::Lazy#eager</code>가 추가됩니다.
+지연 열거자(lazy enumerator)에서 지연 없는 열거자를 생성합니다.
+<a href="https://bugs.ruby-lang.org/issues/15901">[Feature #15901]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">a</span> <span class="o">=</span> <span class="sx">%w(foo bar baz)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="p">}.</span><span class="nf">eager</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">class</span>               <span class="c1">#=&gt; Enumerator</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"?"</span> <span class="p">}</span>  <span class="c1">#=&gt; ["FOO!?", "BAR!?", "BAZ!?"]</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>성능 향상</h2>
+<ul>
+<li>
+<p>JIT [실험적]</p>
+<ul>
+<li>
+<p>최적화 가정이 유효하지 않은 경우 JIT으로 컴파일된 코드는 최적화 레벨이 낮은
+코드로 재컴파일됩니다.</p>
+</li>
+<li>
+<p>순수하다고 판단된 메서드를 인라인으로 삽입하게 됩니다.
+이 최적화는 아직 실험적이며 많은 메서드는 아직 순수하다고 판단되지 않는 상태입니다.</p>
+</li>
+<li>
+<p><code>--jit-min-calls</code>의 기본값이 5에서 10,000으로 변경됩니다.</p>
+</li>
+<li>
+<p><code>--jit-max-cache</code>의 기본값이 1,000에서 100으로 변경됩니다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Fiber의 캐싱 전략이 변경되었으며, 생성 속도가 빨라집니다.
+<a href="https://github.com/ruby/ruby/pull/2224">GH-2224</a></p>
+</li>
+<li>
+<p><code>Module#name</code>, <code>true.to_s</code>, <code>false.to_s</code>, <code>nil.to_s</code>가 이제 항상 얼린 문자열을 반환합니다.
+주어진 객체에 대해 항상 동일한 문자열이 반환됩니다. [실험적]
+<a href="https://bugs.ruby-lang.org/issues/16150">[Feature #16150]</a></p>
+</li>
+<li>
+<p><code>CGI.escapeHTML</code>의 성능이 향상되었습니다.
+<a href="https://github.com/ruby/ruby/pull/2226">GH-2226</a></p>
+</li>
+<li>
+<p>Monitor와 MonitorMixin의 성능이 향상되었습니다.
+<a href="https://bugs.ruby-lang.org/issues/16255">[Feature #16255]</a></p>
+</li>
+<li>
+<p>1.9에서 도입된 메서드 호출마다의 캐시가 개선되어 캐시의 적중률이 89%에서 94%로 향상되었습니다.
+<a href="https://github.com/ruby/ruby/pull/2583">GH-2583</a></p>
+</li>
+<li>
+<p>RubyVM::InstructionSequence#to_binary 메서드가 생성하는 컴파일된 바이너리의 사이즈가 작아집니다.  [Feature #16163]</p>
+</li>
+</ul>
+<h2>그 이외의 2.6 이후로 주목할 만한 변경</h2>
+<ul>
+<li>
+<p>표준 라이브러리를 업데이트했습니다.</p>
+<ul>
+<li>Bundler 2.1.2
+(<a href="https://github.com/bundler/bundler/releases/tag/v2.1.2">릴리스 노트</a>)</li>
+<li>RubyGems 3.1.2
+<ul>
+<li>(<a href="https://github.com/rubygems/rubygems/releases/tag/v3.1.0">3.1.0 릴리스 노트</a>)</li>
+<li>(<a href="https://github.com/rubygems/rubygems/releases/tag/v3.1.1">3.1.1 릴리스 노트</a>)</li>
+<li>(<a href="https://github.com/rubygems/rubygems/releases/tag/v3.1.2">3.1.2 릴리스 노트</a>)</li>
+</ul>
+</li>
+<li>Racc 1.4.15</li>
+<li>CSV 3.1.2
+(<a href="https://github.com/ruby/csv/blob/v3.1.2/NEWS.md">NEWS</a>)</li>
+<li>REXML 3.2.3
+(<a href="https://github.com/ruby/rexml/blob/v3.2.3/NEWS.md">NEWS</a>)</li>
+<li>RSS 0.2.8
+(<a href="https://github.com/ruby/rss/blob/v0.2.8/NEWS.md">NEWS</a>)</li>
+<li>StringScanner 1.0.3</li>
+<li>기존 버전이 없는 다른 몇몇 라이브러리도 업데이트되었습니다.</li>
+</ul>
+</li>
+<li>
+<p>다음 라이브러리들은 이제 기본으로 포함되지 않습니다.
+각 기능이 필요한 경우에는 해당하는 젬을 설치해주세요.</p>
+<ul>
+<li>CMath (cmath 젬)</li>
+<li>Scanf (scanf 젬)</li>
+<li>Shell (shell 젬)</li>
+<li>Synchronizer (sync 젬)</li>
+<li>ThreadsWait (thwait 젬)</li>
+<li>E2MM (e2mmap 젬)</li>
+</ul>
+</li>
+<li>
+<p><code>profile.rb</code>가 표준 라이브러리에서 제거되었습니다.</p>
+</li>
+<li>
+<p>표준 라이브러리가 기본 젬으로 승격됩니다.</p>
+<ul>
+<li>다음 기본 젬들이 rubygems.org 에서 배포중입니다.
+<ul>
+<li>benchmark</li>
+<li>cgi</li>
+<li>delegate</li>
+<li>getoptlong</li>
+<li>net-pop</li>
+<li>net-smtp</li>
+<li>open3</li>
+<li>pstore</li>
+<li>singleton</li>
+</ul>
+</li>
+<li>다음 기본 젬들은 ruby-core에서는 젬으로 승격되었지만, 아직 rubygems.org에서 배포하고 있지 않습니다.
+<ul>
+<li>monitor</li>
+<li>observer</li>
+<li>timeout</li>
+<li>tracer</li>
+<li>uri</li>
+<li>yaml</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>블록을 넘긴 메서드의 호출 안에서 블록이 없는 <code>Proc.new</code>와 <code>proc</code>을 사용하면 경고가 발생합니다.</p>
+</li>
+<li>
+<p>블록을 넘긴 메서드의 호출 안에서 블록이 없는 <code>lambda</code>는 에러가 발생합니다.</p>
+</li>
+<li>
+<p>유니코드와 에모지의 버전을 11.0.0에서 12.0.0으로 업데이트했습니다.
+<a href="https://bugs.ruby-lang.org/issues/15321">[Feature #15321]</a></p>
+</li>
+<li>
+<p>유니코드를 일본의 새로운 연호 레이와를 가리키는 코드(U+32FF SQUARE ERA NAME REIWA)에 대한 지원을 추가한 12.1.0으로 업데이트했습니다.
+<a href="https://bugs.ruby-lang.org/issues/15195">[Feature #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>, <code>Date#jisx0301</code>, <code>Date.parse</code>에서 새 일본 연호를 지원합니다.
+<a href="https://bugs.ruby-lang.org/issues/15742">[Feature #15742]</a></p>
+</li>
+<li>
+<p>루비 빌드에 C99를 지원하는 컴파일러를 요구합니다.
+<a href="https://bugs.ruby-lang.org/issues/15347">[Misc #15347]</a></p>
+<ul>
+<li>이에 대한 자세한 정보: <a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://github.com/ruby/ruby/blob/v2_7_0/NEWS">NEWS</a>나
+<a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0">커밋 로그</a>에서
+더 자세한 설명을 확인할 수 있습니다.</p>
+<p>이러한 변경사항에 따라, 루비 2.6.0 이후로 <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0">파일 4190개 수정, 227498줄 추가(+), 99979줄 삭제(-)</a>가 이루어졌습니다!</p>
+<p>메리 크리스마스, 행복한 휴일 보내시고, 루비 2.7과 함께 즐거운 프로그래밍 하세요!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14703381
+SHA1: b54f4633174dbc55db77d9fd6d0ef90cc35503af
+SHA256: 7aa247a19622a803bdd29fdb28108de9798abe841254fe8ea82c31d125c6ab26
+SHA512: 8b8dd0ceba65bdde53b7c59e6a84bc6bf634c676bfeb2ff0b3604c362c663b465397f31ff6c936441b3daabb78fb7a619be5569480c95f113dd0453488761ce7
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 16799684
+SHA1: 6f4e99b5556010cb27e236873cb8c09eb8317cd5
+SHA256: 8c99aa93b5e2f1bc8437d1bbbefd27b13e7694025331f77245d0c068ef1f8cbe
+SHA512: 973fc29b7c19e96c5299817d00fbdd6176319468abfca61c12b5e177b0fb0d31174a5a5525985122a7a356091a709f41b332454094940362322d1f42b77c9927
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 11990900
+SHA1: 943c767cec037529b8e2d3cc14fc880cad5bad8d
+SHA256: 27d350a52a02b53034ca0794efe518667d558f152656c2baaf08f3d0c8b02343
+SHA512: dd5690c631bf3a2b76cdc06902bcd76a89713a045e136debab9b8a81ff8c433bbb254aa09e4014ca1cf85a69ff4bcb13de11da5e40c224e7268be43ef2194af7
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20571744
+SHA1: fbebdd3a2a641f9a81f7d8db5abd926acea27e80
+SHA256: 8bf2050fa1fc76882f878fd526e4184dc54bd402e385efa80ef5fd3b810522e0
+SHA512: 5060f2dd3bfd271ef255b17589d6d014260d7ec2d97b48112b717ee01c62fe125c3fe04f813e02d607cea3f0a2a812b14eb3a28d06c2551354dfeff5f4c3dd6b
+</code></pre></div></div>
+</li>
+</ul>
+<h2>루비는</h2>
+<p>루비는 1993년에 Matz(마츠모토 유키히로)가 처음 개발했고, 현재는 오픈 소스로서 개발되고 있습니다.
+이는 여러 플랫폼에서 동작하며, 특히 웹 개발에서 전 세계적으로 이용되고 있습니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

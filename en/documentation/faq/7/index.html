@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Official Ruby FAQ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/faq/7/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p><em>If you wish to report errors or suggest improvements for this FAQ,
+please go to our
+<a href="https://github.com/ruby/www.ruby-lang.org/">GitHub repository</a>
+and open an issue or pull request.</em></p>
+<h2>Methods</h2>
+<h3>How does Ruby choose which method to invoke?</h3>
+<p>Ruby binds all messages to methods dynamically. It searches first for
+singleton methods in the receiver, then for methods defined in the receiver's
+own class, and finally for methods defined in the receiver's superclasses
+(including any modules which may have been mixed in). You can see the order
+of searching by displaying <code>ClassName.ancestors</code>, which shows the ancestor
+classes and modules of <code>ClassName</code>.</p>
+<p>If after searching the alternatives a matching method could not be found,
+Ruby tries to invoke a method called <code>method_missing</code>, repeating the same
+search procedure to find it. This allows you to handle messages to unknown
+methods, and is often used to provide dynamic interfaces to classes.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Emphasizable
+  def emphasize
+    "**#{self}**"
+  end
+end
+
+class String
+  include Emphasizable
+end
+
+String.ancestors
+  # =&gt; [String, Emphasizable, Comparable, Object, Kernel, BasicObject]
+
+"Wow!".emphasize  # =&gt; "**Wow!**"
+</code></pre></div></div>
+<p>When the method <code>emphasize</code> is searched for, it is not found in class
+<code>String</code>, so Ruby searches next in the module <code>Emphasizable</code>.</p>
+<p>In order to override a method that already exists in the receiver's class,
+e.g. <code>String#capitalize</code>, you need to insert the module into the
+ancestor chain in front of that class, by using <code>prepend</code>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module PrettyCapitalize
+  def capitalize
+    "**#{super}**"
+  end
+end
+
+class String
+  prepend PrettyCapitalize
+end
+
+String.ancestors
+  # =&gt; [PrettyCapitalize, String, Comparable, Object, Kernel, BasicObject]
+
+"hello".capitalize  # =&gt; "**Hello**"
+</code></pre></div></div>
+<h3>Are <code>+</code>, <code>-</code>, <code>*</code>, ... operators?</h3>
+<p><code>+</code>, <code>-</code>, and the like are not operators but method calls.
+They can, therefore, be overloaded by new definitions.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class MyString &lt; String
+  def -(other)
+    self[0...other.size]  # self truncated to other's size
+  end
+end
+</code></pre></div></div>
+<p>However, the following are built-in control structures, not methods,
+which cannot be overridden:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=, .., ..., not, ||, &amp;&amp;, and, or, ::
+</code></pre></div></div>
+<p>To overload or to define the unary <code>+</code> and <code>-</code> operators,
+you need to use <code>+@</code> and <code>-@</code> as the method names.</p>
+<p><code>=</code> is used to define a method to set an attribute of the object:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Test
+  def attribute=(val)
+    @attribute = val
+  end
+end
+
+t = Test.new
+t.attribute = 1
+</code></pre></div></div>
+<p>If operators such as <code>+</code> and <code>-</code> are defined, Ruby automatically handles
+the self assignment forms (<code>+=</code>, <code>-=</code>, and so on).</p>
+<h3>Where are <code>++</code> and <code>--</code> ?</h3>
+<p>Ruby does not have the autoincrement and autodecrement operators.
+You can use <code>+= 1</code> and <code>-= 1</code> instead.</p>
+<h3>What is a singleton method?</h3>
+<p>{: #singleton-method}</p>
+<p>A singleton method is an instance method associated with one specific object.</p>
+<p>You create a singleton method by including the object in the definition:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo; end
+
+foo = Foo.new
+bar = Foo.new
+
+def foo.hello
+  puts "Hello"
+end
+
+foo.hello
+bar.hello
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello
+prog.rb:11:in `&lt;main&gt;': undefined method `hello' for #&lt;Foo:0x000000010f5a40&gt; (NoMethodError)
+</code></pre></div></div>
+<p>Singleton methods are useful when you want to add a method to an object and
+creating a new subclass is not appropriate.</p>
+<h3>All these objects are fine, but does Ruby have any simple functions?</h3>
+<p>Yes and no. Ruby has methods that look like functions in languages such
+as C or Perl:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def hello(name)
+  puts "Hello, #{name}!"
+end
+
+hello("World")
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello, World!
+</code></pre></div></div>
+<p>However, they are actually method calls with the receiver omitted.
+In this case, Ruby assumes the receiver is self.</p>
+<p>So, <code>hello</code> resembles a function but it's actually a method belonging to
+class <code>Object</code> and sent as a message to the hidden receiver self.
+Ruby is a pure object-oriented language.</p>
+<p>Of course you can use such methods as if they were functions.</p>
+<h3>So where do all these function-like methods come from?</h3>
+<p>Almost all classes in Ruby are derived from class <code>Object</code>. The definition
+of class <code>Object</code> mixes in the methods defined in the <code>Kernel</code> module.
+These methods are therefore available within every object in the system.</p>
+<p>Even if you are writing a simple Ruby program without classes, you are
+actually working inside class <code>Object</code>.</p>
+<h3>Can I access an object's instance variables?</h3>
+<p>An object's instance variables (those variables starting with <code>@</code>) are not
+directly accessible outside the object. This promotes good encapsulation.
+However, Ruby makes it easy for you to define accessors to these instance
+variables in such a way that users of your class can treat instance variables
+just like attributes. Just use one or more of <code>attr_reader</code>, <code>attr_writer</code>,
+or <code>attr_accessor</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Person
+  attr_reader   :name           # read only
+  attr_accessor :wearing_a_hat  # read/write
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+p = Person.new("Dave")
+p.name           # =&gt; "Dave"
+p.wearing_a_hat  # =&gt; nil
+p.wearing_a_hat = true
+p.wearing_a_hat  # =&gt; true
+</code></pre></div></div>
+<p>You can also define your own accessor functions (perhaps to perform
+validation, or to handle derived attributes). The read accessor is simply a
+method that takes no parameters, and the assignment accessor is a method name
+ending in <code>=</code> that takes a single parameter. Although there can be no space
+between the method name and the <code>=</code> in the method definition, you can insert
+spaces there when you call the method, making it look like any other
+assignment. You can also utilize self assignments such as <code>+=</code> and <code>-=</code>,
+as long as the corresponding <code>+</code> or <code>-</code> methods are defined.</p>
+<h3>What's the difference between <code>private</code> and <code>protected</code>?</h3>
+<p>The visibility keyword <code>private</code> makes a method callable only in a function
+form, without an explicit receiver, and so it can only have <code>self</code> as its
+receiver. A private method is callable only within the class in which the
+method was defined or in its subclasses.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Test
+  def foo
+    99
+  end
+
+  def test(other)
+    p foo
+    p other.foo
+  end
+end
+
+t1 = Test.new
+t2 = Test.new
+
+t1.test(t2)
+
+# Now make `foo' private
+
+class Test
+  private :foo
+end
+
+t1.test(t2)
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>99
+99
+99
+prog.rb:8:in `test': private method `foo' called for #&lt;Test:0x00000000b57a48&gt; (NoMethodError)
+        from prog.rb:23:in `&lt;main&gt;'
+</code></pre></div></div>
+<p>Protected methods are also callable only from within their own class or
+its subclasses, but they can be called both in function form and using
+a receiver. For example:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def &lt;=&gt;(other)
+  age &lt;=&gt; other.age
+end
+</code></pre></div></div>
+<p>Will compile if <code>age</code> is a protected method, but not if it is private.</p>
+<p>These features help you control access to your class's internals.</p>
+<h3>How can I change the visibility of a method?</h3>
+<p>You change the visibility of methods using <code>private</code>, <code>protected</code>, and
+<code>public</code>. When used without parameters during a class definition, they affect
+the visibility of subsequent methods. When used with parameters, they change
+the visibility of the named methods.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo
+  def test
+    puts "hello"
+  end
+  private :test
+end
+
+foo = Foo.new
+foo.test
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prog.rb:9:in `&lt;main&gt;': private method `test' called for #&lt;Foo:0x0000000284dda0&gt; (NoMethodError)
+</code></pre></div></div>
+<p>You can make a class method private using <code>private_class_method</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Foo
+  def self.test
+    puts "hello"
+  end
+  private_class_method :test
+end
+
+Foo.test
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prog.rb:8:in `&lt;main&gt;': private method `test' called for Foo:Class (NoMethodError)
+</code></pre></div></div>
+<p>The default visibility for the methods defined in a class is public.
+The exception is the instance initializing method, <code>initialize</code>.</p>
+<p>Methods defined at the toplevel are also public by default.</p>
+<h3>Can an identifier beginning with a capital letter be a method name?</h3>
+<p>Yes, it can, but we don't do it lightly! If Ruby sees a capitalized name
+followed by a space, it will probably (depending on the context) assume it's
+a constant, not a method name. So, if you use capitalized method names,
+always remember to put parameter lists in parentheses, and always put the
+parentheses next to the method name with no intervening spaces.
+(This last suggestion is a good idea anyway!)</p>
+<h3>Calling <code>super</code> gives an <code>ArgumentError</code>.</h3>
+<p>Invoking <code>super</code> with no parameters in a method passes all the arguments of
+that method to a method of the same name in a superclass. If the number of
+arguments to the original method disagrees with that of the higher-level
+method, an <code>ArgumentError</code> is raised. To get around this, simply call <code>super</code>
+and pass a suitable number of arguments.</p>
+<h3>How can I call the method of the same name two levels up?</h3>
+<p><code>super</code> invokes the same named method one level up. If you are overloading a
+method in a more distant ancestor, use <code>alias</code> to give it a new name before
+masking it with your method definition. You can then call it using that
+aliased name.</p>
+<h3>How can I invoke an original built-in method after redefining it?</h3>
+<p>Within the method definition, you can use <code>super</code>. You can also use <code>alias</code>
+to give it an alternative name. Finally, you can call the original method as
+a singleton method of <code>Kernel</code>.</p>
+<h3>What is a destructive method?</h3>
+<p>{: #destructive-method}</p>
+<p>A destructive method is one which alters the state of an object. <code>String</code>,
+<code>Array</code>, <code>Hash</code>, and others have such methods. Often there are two
+versions of a method, one with a plain name, the other with the same name,
+but followed by <code>!</code>. The plain version creates a copy of the receiver, makes
+its change to it, and returns the copy. The “bang” version (with the <code>!</code>)
+modifies the receiver in place.</p>
+<p>Beware, however, that there are a fair number of destructive methods that
+do not have an <code>!</code>, including assignment methods (<code>name=</code>), array assignment
+(<code>[]=</code>), and methods such as <code>Array.delete</code>.</p>
+<h3>Why can destructive methods be dangerous?</h3>
+<p>Remember that assignment in most cases just copies object references, and that
+parameter passing is equivalent to assignment. This means you can end up with
+multiple variables referencing the same object. If one of those variables is
+used to invoke a destructive method, the object referenced by all of them will
+be changed.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo(str)
+  str.sub!(/foo/, "baz")
+end
+
+obj = "foo"
+foo(obj)     # =&gt; "baz"
+obj          # =&gt; "baz"
+</code></pre></div></div>
+<p>In this case the actual argument is altered.</p>
+<h3>Can I return multiple values from a method?</h3>
+<p>Yes and no.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def m1
+  return 1, 2, 3
+end
+
+def m2
+  [1, 2, 3]
+end
+
+m1  # =&gt; [1, 2, 3]
+m2  # =&gt; [1, 2, 3]
+</code></pre></div></div>
+<p>So, only one thing is returned, but that thing can be an arbitrarily complex
+object. In the case of arrays, you can use multiple assignment to get the
+effect of multiple return values. For example:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo
+  [20, 4, 17]
+end
+
+a, b, c = foo
+a              # =&gt; 20
+b              # =&gt; 4
+c              # =&gt; 17
+</code></pre></div></div>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

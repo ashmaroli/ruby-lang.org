@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.1.0 Dirilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2021/12/25/ruby-3-1-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.1.0 Dirilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2021-12-25<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 3.1.0.
+Ruby 3.1 menjaga kompatibilitas dengan Ruby 3.0 dan menambahkan banyak fitur.</p>
+<h2>YJIT: Compiler JIT eksperimental baru</h2>
+<p>Ruby 3.1 menggabungkan YJIT, sebuah <em>compiler</em> JIT baru yang dikembangkan oleh
+Shopify.</p>
+<p>Sejak <a href="https://www.ruby-lang.org/id/news/2018/12/25/ruby-2-6-0-released/">Ruby 2.6 mengenalkan MJIT pada 2018</a>,
+kinerjanya sangat meningkat dan akhirnya
+<a href="https://www.ruby-lang.org/id/news/2020/12/25/ruby-3-0-0-released/">kami mecapai Ruby3x3 tahun lalu</a>.
+Meskipun <em>Optcarrot</em> telah menunjukkan peningkatan luar biasa, JIT belum
+memberikan manfaat untuk aplikasi dunia nyata.</p>
+<p>Baru-baru ini Shopify berkontribusi banyak memperbaiki Ruby dengan meningkatkan
+kinerja aplikasi <em>Rails</em> mereka. YJIT adalah sebuah kontribusi penting
+dan bertujuan untuk memperbaiki kinerja dari aplikasi <em>Rails</em>.</p>
+<p>Walaupun MJIT adalah sebuah <em>method-based compiler</em> JIT dan menggunakan sebuah
+<em>compiler</em> C eksternal, YJIT menggunakan <em>Basic Block Versioning</em> dan memasukkan
+<em>compiler</em> JIT ke dalamnya. Dengan <em>Lazy Basic Block Versioning</em> (LBBV),
+pertama ini akan meng-<em>compile</em> awal dari sebuah <em>method</em> dan secara bertahap
+meng-<em>compile</em> sisanya ketika <em>argument types</em> dan variabel ditentukan secara
+dinamis. Lihat
+<a href="https://dl.acm.org/doi/10.1145/3486606.3486781">YJIT: a basic block versioning JIT compiler for CRuby</a>
+untuk pengenalan.</p>
+<p>Dengan teknologi ini, YJIT meraih waktu <em>warmup</em> cepat dan peningkatan kinerja
+pada kebanyakan aplikasi dunia nyata hingga 22% pada <em>railsbench</em>
+dan 39% pada <em>liquid-render</em>.</p>
+<p>YJIT merupakan sebuah fitur yang masih eksperimental dan dinonaktifkan secara
+<em>default</em>. Jika Anda ingin menggunakannya, tetapkan <code>--yjit</code> pada
+opsi <em>command-line</em>. Fitur ini terbatas pada <em>Unix-like platform</em> dengan
+arsitektur x86-64 saat ini.</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/18229">https://bugs.ruby-lang.org/issues/18229</a></li>
+<li><a href="https://shopify.engineering/yjit-just-in-time-compiler-cruby">https://shopify.engineering/yjit-just-in-time-compiler-cruby</a></li>
+<li><a href="https://www.youtube.com/watch?v=PBVLf3yfMs8">https://www.youtube.com/watch?v=PBVLf3yfMs8</a></li>
+</ul>
+<h2>debug gem: Sebuah debugger baru</h2>
+<p>Sebuah <em>debugger</em> yang telah ditulis ulang dengan lengkap
+<a href="https://github.com/ruby/debug">debug.gem</a> di-<em>bundle</em> dengan Ruby. <em>debug.gem</em>
+memiliki fitur-fitur berikut:</p>
+<ul>
+<li>Meningkatkan kinerja <em>debugging</em> (ini tidak memperlambat aplikasi meskipun dengan <em>debugger</em>).</li>
+<li>Mendukung <em>remote debugging</em>.</li>
+<li>Mendukung <em>rich debugging frontend</em> (<em>VS Code</em> dan <em>Chrome browser</em> yang didukung saat ini).</li>
+<li>Mendukung <em>multi-process/multi-thread debugging</em>.</li>
+<li><em>Colorful</em> REPL.</li>
+<li>dan fitur bermanfaat lainnya, seperti <em>record</em> &amp; <em>replay</em>, <em>tracing</em>, dan sebagainya.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Ruby telah mem-<em>bundle</em> <em>lib/debug.rb</em>, tetapi pustaka ini tidak dipelihara dengan
+baik karena memiliki masalah kinerja dan fitur. <em>debug.gem</em> menggantikan
+<em>lib/debug.rb</em> secara keseluruhan.</p>
+<h2>error_highlight: Lokasi fine-grained error pada backtrace</h2>
+<p>Sebuah <em>built-in gem</em>, <em>error_highlight</em>, diperkenalkan. <em>Gem</em> ini memberikan
+lokasi <em>fine-grained error</em> pada <em>backtrace</em>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby test.rb
+test.rb:1:in `&lt;main&gt;': undefined method `time' for 1:Integer (NoMethodError)
+
+1.time {}
+ ^^^^^
+Did you mean?  times
+</code></pre></div></div>
+<p>Saat ini, hanya <code>NameError</code> yang didukung.</p>
+<p><em>Gem</em> ini diaktifkan secara <em>default</em>. Anda dapat menonaktikannya dengan
+menggunakan opsi <em>command-line</em> <code>--disable-error_highlight</code>.
+Lihat <a href="https://github.com/ruby/error_highlight">repositori</a> untuk detail.</p>
+<h2>IRB Autocomplete dan Documentation Display</h2>
+<p>IRB sekarang memiliki sebuah fitur <em>autocomplete</em> di mana Anda dapat mengetik
+kode dan dialog kandidat <em>autocomplete</em> akan muncul. Anda bisa menggunakan
+<em>Tab</em> dan <em>Shift+Tab</em> untuk memilih kandidat ke atas dan ke bawah.</p>
+<p>Jika dokumentasi terpasang ketika Anda memilih sebuah kandidat <em>autocomplete</em>,
+sebuah dialog akan muncul disamping dialog kandidat <em>autocomplete</em>, menampilkan
+bagian dari dokumentasi. Anda dapat membaca dokumentasi sepenuhnya dengan
+menekan <em>Alt+d</em>.</p>
+<!-- raw HTML omitted -->
+<h2>Fitur penting lainnya</h2>
+<h3>Bahasa</h3>
+<ul>
+<li>
+<p>Nilai pada literal <em>Hash</em> dan <em>keyword argument</em> dapat diabaikan. <a href="https://bugs.ruby-lang.org/issues/14579">[Feature #14579]</a></p>
+<ul>
+<li><code>{x:, y:}</code> adalah sebuah <em>syntax sugar</em> dari <code>{x: x, y: y}</code>.</li>
+<li><code>foo(x:, y:)</code> adalah sebuah <em>syntax sugar</em> dari <code>foo(x: x, y: y)</code>.</li>
+</ul>
+</li>
+<li>
+<p><em>Pin operator</em> (<code>^</code>) pada <em>pattern matching</em> sekarang mengambil sebuah <em>expression</em>. <a href="https://bugs.ruby-lang.org/issues/17411">[Feature #17411]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Prime</span><span class="p">.</span><span class="nf">each_cons</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">find_all</span><span class="p">{</span><span class="n">_1</span> <span class="k">in</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)]}.</span><span class="nf">take</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nf">to_a</span>
+<span class="c1">#=&gt; [[3, 5], [5, 7], [11, 13]]</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Tanda kurung dapat diabaikan pada <em>one-line pattern matching</em>. <a href="https://bugs.ruby-lang.org/issues/16182">[Feature #16182]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="n">_</span><span class="p">,</span> <span class="n">x</span>
+<span class="p">{</span><span class="ss">y: </span><span class="mi">2</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="ss">y:
+</span><span class="n">x</span> <span class="c1">#=&gt; 1</span>
+<span class="n">y</span> <span class="c1">#=&gt; 2</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h3>RBS</h3>
+<p>RBS adalah sebuah bahasa untuk mendeskripsikan struktur dari program Ruby.
+Lihat <a href="https://github.com/ruby/rbs">repositori</a> untuk detail.</p>
+<p>Perubahan sejak Ruby 3.0.0:</p>
+<ul>
+<li>Parameter <em>generic type</em> dapat dibatasi. (<a href="https://github.com/ruby/rbs/pull/844">PR</a>)</li>
+<li>Alias pada <em>generic type</em> telah didukung. (<a href="https://github.com/ruby/rbs/pull/823">PR</a>)</li>
+<li><code>rbs collection</code> diperkenalkan untuk mengatur <em>gem</em> dari RBS. (<a href="https://github.com/ruby/rbs/blob/master/docs/collection.md">doc</a>)</li>
+<li>Banyak <em>signature</em> pada pustaka <em>built-in</em> dan standar ditambahkan/diperbarui.</li>
+<li>Selain itu, memuat banyak perbaikan <em>bug</em> dan peningkatan kinerja.</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/rbs/blob/master/CHANGELOG.md">RBS changelog</a>
+untuk lebih detail.</p>
+<h3>TypeProf</h3>
+<p><em>TypeProf</em> adalah sebuah <em>static type analyzer</em> untuk Ruby.
+<em>TypeProf</em> menghasilkan sebuah prototipe RBS dari kode Ruby yang
+<em>non-type-annotated</em>.
+Lihat <a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">dokumentasi</a>
+untuk detail.</p>
+<p>Perubahan utama sejak Ruby 3.0.0 adalah sebuah dukungan IDE eksperimental yang
+dikenal dengan &quot;TypeProf for IDE&quot;.</p>
+<p><img src="https://cache.ruby-lang.org/pub/media/ruby310_typeprof_ide_demo.png" alt="Demo of TypeProf for IDE" /></p>
+<p><em>VS Code extension</em> menampilkan sebuah perkiraan (atau secara langsung tertulis
+pada sebuah berkas RBS) <em>method signature</em> di atas setiap definisi <em>method</em>,
+menggarisbawahi kode yang mungkin menyebabkan <em>name error</em> atau <em>type error</em>
+dengan garis merah, dan melengkapi nama <em>method</em> (seperti menampilkan kandidat
+<em>method</em>).
+Lihat <a href="https://github.com/ruby/typeprof/blob/master/doc/ide.md">dokumentasi</a>
+untuk detail.</p>
+<p>Rilis ini juga berisi banyak perbaikan <em>bug</em> dan peningkatan kinerja.</p>
+<h2>Peningkatan kinerja</h2>
+<ul>
+<li>MJIT
+<ul>
+<li>Untuk beban kerja seperti <em>Rails</em>, <em>default</em> <code>--jit-max-cache</code> diubah dari
+100 menjadi 10000. <em>Compiler</em> JIT tidak lagi mengabaikan <em>compilation</em>
+dari <em>method</em> yang memiliki panjang lebih dari 1000 instruksi.</li>
+<li>Untuk mendukung <em>Zeitwerk</em> dari <em>Rails</em>, <em>JIT-ed code</em> tidak lagi dibatalkan
+ketika sebuah <em>TracePoint</em> untuk <em>class event</em> diaktifkan.</li>
+</ul>
+</li>
+</ul>
+<h2>Perubahan penting lainnya sejak 3.0</h2>
+<ul>
+<li>
+<p><em>One-line pattern matching</em>, seperti <code>ary =&gt; [x, y, z]</code> tidak lagi eksperimental.</p>
+</li>
+<li>
+<p><em>Multiple assignment evaluation order</em> telah diubah sedikit. <a href="https://bugs.ruby-lang.org/issues/4443">[Bug #4443]</a></p>
+<ul>
+<li><code>foo[0], bar[0] = baz, qux</code> sebelumnya diproses dengan urutan <code>baz</code>, <code>qux</code>,
+<code>foo</code>, dan kemudian <code>bar</code> pada Ruby 3.0. Pada Ruby 3.1, ini diproses dengan
+urutan <code>foo</code>, <code>bar</code>, <code>baz</code>, dan kemudian <code>qux</code>.</li>
+</ul>
+</li>
+<li>
+<p><em>Variable Width Allocation: Strings</em> (eksperimental) <a href="https://bugs.ruby-lang.org/issues/18239">[Bug #18239]</a></p>
+</li>
+<li>
+<p><em>Psych</em> 4.0 mengubah <code>Psych.load</code> untuk menggunakan <code>safe_load</code> secara <em>default</em>.
+Anda mungkin perlu menggunakan <em>Psynch</em> 3.3.2 untuk menggunakan fitur ini.
+<a href="https://bugs.ruby-lang.org/issues/17866">[Bug #17866]</a></p>
+</li>
+</ul>
+<h3>Pembaruan pustaka standar</h3>
+<ul>
+<li><em>Default gem</em> berikut telah diperbarui.
+<ul>
+<li>RubyGems 3.3.3</li>
+<li>base64 0.1.1</li>
+<li>benchmark 0.2.0</li>
+<li>bigdecimal 3.1.1</li>
+<li>bundler 2.3.3</li>
+<li>cgi 0.3.1</li>
+<li>csv 3.2.2</li>
+<li>date 3.2.2</li>
+<li>did_you_mean 1.6.1</li>
+<li>digest 3.1.0</li>
+<li>drb 2.1.0</li>
+<li>erb 2.2.3</li>
+<li>error_highlight 0.3.0</li>
+<li>etc 1.3.0</li>
+<li>fcntl 1.0.1</li>
+<li>fiddle 1.1.0</li>
+<li>fileutils 1.6.0</li>
+<li>find 0.1.1</li>
+<li>io-console 0.5.10</li>
+<li>io-wait 0.2.1</li>
+<li>ipaddr 1.2.3</li>
+<li>irb 1.4.1</li>
+<li>json 2.6.1</li>
+<li>logger 1.5.0</li>
+<li>net-http 0.2.0</li>
+<li>net-protocol 0.1.2</li>
+<li>nkf 0.1.1</li>
+<li>open-uri 0.2.0</li>
+<li>openssl 3.0.0</li>
+<li>optparse 0.2.0</li>
+<li>ostruct 0.5.2</li>
+<li>pathname 0.2.0</li>
+<li>pp 0.3.0</li>
+<li>prettyprint 0.1.1</li>
+<li>psych 4.0.3</li>
+<li>racc 1.6.0</li>
+<li>rdoc 6.4.0</li>
+<li>readline 0.0.3</li>
+<li>readline-ext 0.1.4</li>
+<li>reline 0.3.0</li>
+<li>resolv 0.2.1</li>
+<li>rinda 0.1.1</li>
+<li>ruby2_keywords 0.0.5</li>
+<li>securerandom 0.1.1</li>
+<li>set 1.0.2</li>
+<li>stringio 3.0.1</li>
+<li>strscan 3.0.1</li>
+<li>tempfile 0.1.2</li>
+<li>time 0.2.0</li>
+<li>timeout 0.2.0</li>
+<li>tmpdir 0.1.2</li>
+<li>un 0.2.0</li>
+<li>uri 0.11.0</li>
+<li>yaml 0.2.0</li>
+<li>zlib 2.1.1</li>
+</ul>
+</li>
+<li><em>Bundled gem</em> berikut telah diperbarui.
+<ul>
+<li>minitest 5.15.0</li>
+<li>power_assert 2.0.1</li>
+<li>rake 13.0.6</li>
+<li>test-unit 3.5.3</li>
+<li>rexml 3.2.5</li>
+<li>rbs 2.0.0</li>
+<li>typeprof 0.21.1</li>
+</ul>
+</li>
+<li><em>Default gem</em> berikut sekarang adalah <em>bundled gem</em>. Anda perlu menambahkan
+pustaka berikut pada <code>Gemfile</code> yang terdapat pada <em>bundler environment</em>.
+<ul>
+<li>net-ftp 0.1.3</li>
+<li>net-imap 0.2.2</li>
+<li>net-pop 0.1.1</li>
+<li>net-smtp 0.3.1</li>
+<li>matrix 0.4.2</li>
+<li>prime 0.1.2</li>
+<li>debug 1.4.0</li>
+</ul>
+</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v3_1_0/NEWS.md">NEWS</a>
+atau <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0">commit logs</a>
+untuk lebih detail.</p>
+<p>Dengan perubahan tersebut, <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0#file_bucket">3124 berkas berubah, 551760 sisipan(+), 99167 terhapus(-)</a>
+sejak Ruby 3.0.0!</p>
+<p>Selamat natal, selamat berlibur, dan nikmati memprogram dengan Ruby 3.1!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20103517
+SHA1: e4e8c20dd2a1fdef4d3e5bd5a3461000dd17f226
+SHA256: 50a0504c6edcb4d61ce6b8cfdbddaa95707195fab0ecd7b5e92654b2a9412854
+SHA512: 76009d325e961e601d9a287e36490cbc1f3b5dbf4878fa6eab2c4daa5ff2fed78cbc7525cd87b09828f97cbe2beb30f528928bcc5647af745d03dffe7c5baaa9
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14709096
+SHA1: 92b603c2a69fb25d66c337a63e94280984edea11
+SHA256: 1a0e0b69b9b062b6299ff1f6c6d77b66aff3995f63d1d8b8771e7a113ec472e2
+SHA512: a2bb6b5e62d5fa06dd9c30cf84ddcb2c27cb87fbaaffd2309a44391a6b110e1dde6b7b0d8c659b56387ee3c9b4264003f3532d5a374123a7c187ebba9293f320
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 24388179
+SHA1: e37435956d6f840a0e8758d7374bc7e0e346105f
+SHA256: a3bfcd486d09c065d46421da0ff3d430ce4423fefd80cea63c6595d83ae4af0e
+SHA512: 67db71144e06da2c1c25eaf413d1417c99a4b18738a573f9e3371c11ea242eee9dcbdc3de17336f25ab5060039fe034e57298943d344be9cd9eb33bb56e2e1c6
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Apa itu Ruby</h2>
+<p>Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada tahun 1993
+dan sekarang dikembangkan sebagai <em>Open Source</em>. Ruby berjalan di berbagai
+<em>platform</em> dan digunakan di seluruh dunia, khususnya pengembangan <em>web</em>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

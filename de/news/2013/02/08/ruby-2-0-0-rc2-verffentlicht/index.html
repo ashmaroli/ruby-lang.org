@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.0.0-rc2 veröffentlicht</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2013/02/08/ruby-2-0-0-rc2-verffentlicht/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.0.0-rc2 veröffentlicht</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von Quintus am 8.2.2013</p>
+
+    <p>Der zweite Release Candidate von Ruby 2 ist veröffentlicht worden. Dies
+ist der letzte Release Candidate vor Ruby 2 und wir bitten darum, alle
+Probleme, die möglicherweise auftreten, zu melden.</p>
+<h3>Neue Features in Ruby 2</h3>
+<ul>
+<li>Benannte Argumente</li>
+<li><a href="http://www.ruby-doc.org/core-2.0/Enumerable.html#method-i-lazy">Enumerable#lazy</a></li>
+<li><a href="http://www.ruby-doc.org/core-2.0/Module.html#method-i-prepend">Module#prepend</a></li>
+<li>#to_h: Konvention zur Konvertierung in ein Hash</li>
+<li><code>%i</code> Literal zur Erstellung eines Arrays von Symbolen</li>
+<li>Aktualisierte Engine für reguläre Ausdrücke: Onigmo (ein Fork von
+Oniguruma)</li>
+<li><a href="http://www.ruby-doc.org/core-2.0/Enumerator.html#method-i-size">Enumerator#size</a> und <a href="http://www.ruby-doc.org/core-2.0/Range.html#method-i-size">Range#size</a></li>
+<li>DTrace-Support</li>
+<li>TracePoint</li>
+<li>Optimierte Performance für <code>require</code> (insbesondere auf Windows)</li>
+<li>Support für NativeClient</li>
+<li>Verbesserung der Dokumentation</li>
+<li>Erweitertes asynchrones Interrupt-Handling</li>
+<li>Startzeit-Parameter zum Tuning der Stackgröße</li>
+<li>Refinements [<em>experimentell</em>]</li>
+</ul>
+<p>...und viel mehr. Siehe <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/tags/v2_0_0_rc2/NEWS?view=markup">NEWS</a> für Details.</p>
+<p>Hier noch einige Artikel Dritter zum Thema:</p>
+<ul>
+<li><a href="https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails">Ruby 2.0 on Rails</a></li>
+<li><a href="http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/">Preview of the new features in Ruby 2.0.0</a></li>
+<li><a href="http://www.infoq.com/news/2012/11/ruby-20-preview1">Ruby 2.0 Preview 1 Released, Final Release in February 2013</a></li>
+<li><a href="http://timelessrepo.com/refinements-in-ruby">Refinements in Ruby</a></li>
+<li><a href="http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html">Ruby 2.0初のプレビュー版がリリース！ 注目機能は!?</a> (japanisch)</li>
+<li><a href="https://speakerdeck.com/nagachika/rubyist-enumeratorlazy">怠惰なRubyistへの道 – Enumerator::Lazy の使いかた</a> (Enumerator::Lazy,
+japanisch)</li>
+</ul>
+<p>(Wenn Sie freiwillig Artikel schreiben möchten, können wir diese in der
+nächsten Ankündigung zitieren oder referenzieren)</p>
+<h3>Weiteres</h3>
+<h4>Inkompatibilitäten</h4>
+<p>Es gibt drei größere uns bekannte Inkompatibilitäten:</p>
+<ul>
+<li>Das Standardencoding für Ruby-Skripte ist nun UTF-8 <a href="https://bugs.ruby-lang.org/issues/6679">[#6679]</a>.
+Einige Leute berichten, dass dies existierende Programme betrifft,
+beispielsweise werden einige Benchmark-Programme sehr langsam
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/46547">[ruby-dev:46547]</a>. Die Spec hierzu kann sich zum offiziellen
+Release noch ändern.</li>
+<li><strong>iconv</strong> wurde entfernt. Es war bereits in Ruby 1.9 bei der
+Einführung von M17n als <em>deprecated</em> markiert worden und ist damit
+durch String#encode obsolet. Nutzen Sie dieses stattdessen.</li>
+<li>Es gibt binäre Inkompatibilitäten (<em>ABI breakage</em>,
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/48984">[ruby-core:489894]</a>. Wir denken, dass normale Nutzer einfach
+ihre Extension-Libraries neu installieren können/sollten. SIE DÜRFEN
+KEINE <code>.so</code>- ODER <code>.bundle</code>-DATEIEN VON RUBY 1.9 KOPIEREN.</li>
+</ul>
+<p>Daneben gibt es noch einige kleinere Inkompatibilitäten
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/49119">[ruby-core:49119]</a>. Melden Sie alle weiteren Inkompatibilitäten,
+die Ihnen auffallen.</p>
+<p>FYI: Wir arbeiten an Upgrade-Hinweisen, aber einige Teile sind bereits
+veraltet:
+<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft">https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft</a></p>
+<h4>Zum Status von Refinements</h4>
+<p>2.0.0 wird Refinements als <strong>experimentelles Feature</strong> enthalten, weil
+wir uns nicht auf eine detaillierte Spec einigen konnten. Das bedeutet,
+dass sich ihr Verhalten in zukünftigen Versionen von Ruby ändern kann.</p>
+<h4>Spezielle Danksagungen</h4>
+<p>Ich danke allen, die die Preview und ersten Release Candidate
+ausprobiert haben. Darüber hinaus bin all den hart arbeitenden
+Contributors meinen Dank schuldig. Ich bin wirklich all den Leuten, die
+mir bei dieser Veröffentlichung geholfen haben, sehr dankbar.</p>
+<h3>Download</h3>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2">ruby-2.0.0-rc2.tar.bz2</a></p>
+<p>: <strong>MD5-Summe</strong></p>
+<p>e92420131bd7994513e0bf09a3e2a19b</p>
+<p><strong>SHA256</strong></p>
+<p>d55f897bb04283c5fa80223d96d990fe8ecb598508dd59443b356cbba1f66145</p>
+<p><strong>Größe</strong></p>
+<p>10.822.239 Byte</p>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz">ruby-2.0.0-rc2.tar.gz</a></p>
+<p>: <strong>MD5-Summe</strong></p>
+<p>9d5e6f26db7c8c3ddefc81fdb19bd41a</p>
+<p><strong>SHA256</strong></p>
+<p>87072ab3e6d393d47f7402682364e4f24efe1c518969795cc01fcdeeb0e646f3</p>
+<p><strong>Größe</strong></p>
+<p>13.616.756 Byte</p>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip">ruby-2.0.0-rc2.zip</a></p>
+<p>: <strong>MD5-Summe</strong></p>
+<p>1a2d33f1c50e32ca1532f8dea4790d53</p>
+<p><strong>SHA256</strong></p>
+<p>c28e9baf3aa00b41b8823c16df436ae143e8a63e43e7a53302f23119e13d0ebf</p>
+<p><strong>Größe</strong></p>
+<p>15.118.480 Byte</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

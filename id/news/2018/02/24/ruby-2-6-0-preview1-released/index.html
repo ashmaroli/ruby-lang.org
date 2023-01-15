@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.6.0-preview1 Rilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2018/02/24/ruby-2-6-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.6.0-preview1 Rilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2018-02-24<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 2.6.0-preview1.</p>
+<p>Ruby 2.6.0-preview1 adalah <em>preview</em> pertama menuju Ruby 2.6.0.
+preview1 ini dirilis lebih awal daripada biasanya karena rilis ini mengandung
+sebuah fitur baru yang penting, JIT.</p>
+<h2>JIT</h2>
+<p>Ruby 2.6 memperkenalkan sebuah implementasi awal dari <em>compiler</em> JIT (Just-in-time).</p>
+<p><em>Compiler</em> JIT bertujuan untuk memperbaiki performa dari program Ruby apapun
+yang dieksekusi. Berbeda dengan JIT <em>compiler</em> biasanya pada bahasa pemrograman
+lain, <em>compiler</em> JIT dari Ruby melakukan kompilasi JIT melalui sebuah jalan
+unik, yang mencetak kode C ke sebuah <em>disk</em> dan mengeluarkan proses <em>compiler</em>
+C untuk menghasilkan kode asli.
+Lihat juga: <a href="https://github.com/vnmakarov/ruby/tree/rtl_mjit_branch#mjit-organization">MJIT organization by Vladimir Makarov</a>.</p>
+<p>Bagaimana cara menggunakan: Tetapkan <code>--jit</code> pada <em>command line</em> atau <code>$RUBYOPT</code>
+<em>environment variable</em>. Menetapkan <code>--jit-verbose=1</code> memperbolehkan untuk
+mencetak informasi dasar dari kompilasi JIT yang berjalan. Lihat <code>ruby --help</code>
+untuk pilihan lainnya.</p>
+<p>Tujuan utama dari rilis JIT ini adalah untuk menyediakan sebuah kesempatan untuk
+mengecek jika ini berjalan di <em>platform</em> Anda dan menemukan risiko keamanan
+sebelum rilis 2.6. Saat ini, <em>compiler</em> JIT didukung hanya ketika Ruby dibuat
+oleh gcc atau clang dan <em>compiler</em> tersedia saat <em>runtime</em>. Jika sebaliknya,
+Anda tidak dapat menggunakannya.</p>
+<p>Sampai versi 2.6.0-preview1, kami hanya menyiapkan infrastruktur untuk JIT dan
+sangat sedikit optimasi yang diimplementasikan. Anda dapat mengukur beberapa
+potensi perbaikan ke dalam mikro <em>benchmark</em> melalui rilis ini, tetapi
+ini tidak siap untuk proses final <em>benchmark</em> performa dari <em>compiler</em> JIT-nya
+Ruby, khususnya untuk program yang besar seperti aplikasi Rail.</p>
+<p>Kami akan mengimplementasikan <em>method inlining</em> di <em>compiler</em> JIT, yang mana
+diharapkan meningkatkan performa Ruby secara signifikan.</p>
+<p>Begitu juga, kami sedang merencanakan untuk menambah <em>platform</em> yang didukung,
+dan rencana selanjutnya adalah mendukung Visual Studio.</p>
+<p>Nantikan era baru dari performa Ruby.</p>
+<h2>Fitur Baru</h2>
+<ul>
+<li>
+<p>Menambahkan <code>Random.bytes</code>. [Feature #4938]</p>
+</li>
+<li>
+<p>Menambahkan <code>Binding#source_location</code>. [Feature #14230]</p>
+<p><em>Method</em> ini mengembalikan lokasi sumber <em>binding</em>, sebuah <em>array</em> dua elemen dari <code>__FILE__</code> dan <code>__LINE__</code>. Secara tradisional, informasi yang sama mungkin dapat diambil dengan <code>eval(&quot;[__FILE__, __LINE__]&quot;)</code>, tetapi kami sedang merencanakan untuk mengubah perilaku ini sehingga <code>Kernel#eval</code> mengabaikan sumber lokasi <code>binding</code> [Bug #4352]. Sehingga, pengguna menggunakan <em>method</em> baru yang dikenalkan daripada <code>Kernel#eval</code>.</p>
+</li>
+<li>
+<p>Menambahkan opsi <code>:exception</code> agar membiarkan <code>Kernel.#system</code> menampilkan <em>error</em> daripada mengembalikan <code>false</code>. [Feature #14386]</p>
+</li>
+</ul>
+<h2>Perbaikan performa</h2>
+<ul>
+<li>
+<p>Mempercepat <code>Proc#call</code> karena kami tidak peduli dengan <code>$SAFE</code> lagi.
+[Feature #14318]</p>
+<p>Dengan <em>benchmark</em> <code>lc_fizzbuzz</code> yang menggunakan <code>Proc#call</code> berkali-kali,
+kita dapat mengukur x1.4 kemajuan [Bug #10212].</p>
+</li>
+<li>
+<p>Mempercepat <code>block.call</code> di mana <code>block</code> diterima parameter <em>block</em>. [Feature #14330]</p>
+<p>Ruby 2.5 memperbaiki performa <em>block passing</em>. [Feature #14045]
+Selain itu, Ruby 2.6 memperbaiki performa dari pemanggilan <em>passed block</em>.
+Dengan mikro <em>benchmark</em> kita dapat mengamati 2.6x kemajuan.</p>
+</li>
+</ul>
+<h2>Perubahan penting lainnya sejak 2.5</h2>
+<ul>
+<li>
+<p><code>$SAFE</code> adala sebuah proses <em>state</em> global dan kita dapat mengatur ke <code>0</code> lagi. [Feature #14250]</p>
+</li>
+<li>
+<p>Menempatkan parameter <code>safe_level</code> ke <code>ERB.new</code> tidak berlaku lagi. Argumen
+<code>trim_mode</code> dan <code>eoutvar</code> diubah menjadi argumen kata kunci. [Feature #14256]</p>
+</li>
+<li>
+<p>Menggabungkan RubyGems 2.7.6</p>
+</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v2_6_0_preview1/NEWS">NEWS</a>
+atau <a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview1">commit logs</a>
+untuk detail.</p>
+<p>Dengan perubahan tersebut,
+<a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview1">1115 berkas berubah, 23023 sisipan(+), 14748 terhapus(-)</a>
+sejak Ruby 2.5.0!</p>
+<p>Hari ini, 24 Februari, adalah ulang tahun Ruby ke-25.
+Selamat ulang tahun Ruby, dan nikmati memprogram dengan Ruby 2.6.0-preview1!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16082501 bytes
+SHA1:   94b4a2f5f992dc9855364284e9c64316bf129c90
+SHA256: 2023c42676d9237481e1a97157d5e2ecc10db5e320d5b9cf872ec1d293265d61
+SHA512: 004696c4f087333ba7cb2285418dcce70f399966ae8fed817aab9759fd2d75beb088c4aeb294fcd4260112e8422f490cd4dbdfce402d73f96bb679b8bb3e1607
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19807007 bytes
+SHA1:   24d76f67bf913348eca783a2ecf6f3faf37299ae
+SHA256: 6c883927e80430cf07f2d90728d6c2c71164223f378a48ebf964d3b66319f623
+SHA512: 1e7f318cec1b7875fd9891df671078de7585b556695a2a85708483ddcacfd6e0b63b70ec2535e92ff981b4f72063721ed552df49688e066666fcd7ae520ae667
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14104578 bytes
+SHA1:   9f0fb79643a4673a839b0c8496eccc6e1dbd022d
+SHA256: 8bd6c373df6ee009441270a8b4f86413d101b8f88e8051c55ef62abffadce462
+SHA512: d9cb270529a97670d54f43a0236fab072714e715c39277dab70b7a1843ec818e6700e47e1384c7256f9e0ae41ab2c0b768a0de38a5ecf4f4fff5da6ef5ad4944
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11423984 bytes
+SHA1:   bbbc89d760cdaadbca3cbff587295864edeff0af
+SHA256: 1d99139116e4e245ce543edb137b2a8873c26e9f0bde88d8cee6789617cc8d0e
+SHA512: d12ff29778d8d940344619881b4d8247c2fb6b44ac2b2dbddb7078828e893cfac9a5a95b5588f0afdbed52bdb6dea95cff1b9ce3ad47dfa62209e97dab8810b6
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

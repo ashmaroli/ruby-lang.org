@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Миграция от други езици</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/documentation/ruby-from-other-languages/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Миграция от други езици</h1>
+
+
+
+  <div id="content">
+    <p>Когато за първи път се сблъскате с код, писан на Ruby, е вероятно да ви напомни
+на езици за програмиране, които вече ползвате. Това е направено с цел. Много
+от синтаксиса е заимстван от Perl, Python и Java (както и от други езици),
+затова научаването на Ruby би било много по-лесно.
+{: .summary}</p>
+<p>Този страница е разделена на две секции. Първата е обобщение на нещата, които
+ще видите от езика <em>X</em> в Ruby. Втората секция е посветена на някои от основните
+принципи на езика.</p>
+<h2>Какво да очакваме</h2>
+<ul>
+<li><a href="to-ruby-from-c-and-cpp/">Oт C/C++ към Ruby</a></li>
+<li><a href="to-ruby-from-java/">Oт Java към Ruby</a></li>
+<li><a href="to-ruby-from-perl/">Oт Perl към Ruby</a></li>
+<li><a href="to-ruby-from-php/">Oт PHP към Ruby</a></li>
+<li><a href="to-ruby-from-python/">Oт Python към Ruby</a></li>
+</ul>
+<h2>Важни неща в езика</h2>
+<p>Това са някои насоки за нещата, с които ще се запознаете при изучаването на Ruby.</p>
+<h3>Итерация</h3>
+<p>Две от нещата, с които може би не сте се сблъсквали са &quot;блоковете&quot; и
+итераторите.  Вместо да използваме цикъл с индекс (както в C, C++ или във
+версиите на Java преди 1.5), итерацията на списък (в Perl <code>for (@a) {...}</code> или
+в Python <code>for i in aList: ...</code>) може да се осъществи с:</p>
+<!-- raw HTML omitted -->
+<p>За повече информация относно <code>each</code> (и неговите приятели <code>collect</code>, <code>find</code>,
+<code>inject</code>, <code>sort</code> и т.н.) можете да използвате командата <code>ri Enumerable</code> (и <code>ri Enumerable#име_на_метод</code>).</p>
+<h3>Всичко има стойност</h3>
+<p>Няма разлика между expression и statement. Всичко има стойност, дори и тя да
+бъде <code>nil</code>:</p>
+<!-- raw HTML omitted -->
+<h3>Символите не са опростен вариант на низовете</h3>
+<p>Много хора, учещи Ruby, имат трудности с разбирането на символите и тяхната
+употреба.</p>
+<p>Символите могат да се приемат за идентификатори. Стартирайте <code>irb</code> и вижте
+разликата:</p>
+<!-- raw HTML omitted -->
+<p>Методът <code>object_id</code> връща идентификатора на обекта. Ако два обекта имат един и
+същи <code>object_id</code>, те са еднакви (сочат към един и същ обект в паметта).</p>
+<p>Както може да видим когато използваме символи, всеки един от тях има
+характеристики с референция към обект в паметта. За всеки символ, имащ еднаква
+характеристика, идентификаторът на обекта съвпада.</p>
+<p>Ако погледнем примера с низовете виждаме, че техните <code>object_id</code> не съвпадат.
+Това означава, че те реферират към два отделни обекта в паметта. Това е така,
+тъй като при създаването на нов низ се заделя памет отделно.</p>
+<p>Ако се чудите дали да ползвате низ или символ, помислете кое е по-важно:
+идентификацията на обекта (например ключ на хеш) или неговото съдържание
+(&quot;george&quot; в горният пример).</p>
+<h3>Всичко е обект</h3>
+<p>&quot;Всичко е обект&quot; не е хипербола. Дори класовете и числата са обекти:</p>
+<!-- raw HTML omitted -->
+<h3>Променливи константи</h3>
+<p>Константите всъщност не са константни. Ако промените съдържанието на
+съществуваща константа ще получите предупреждение, но това няма да наруши
+изпълнението на програмата. Това не значи, че <strong>трябва</strong> да предефинирате
+константи.</p>
+<h3>Конвенции при наименуването</h3>
+<p>Ruby ни &quot;принуждава&quot; да ползваме някои конвенции при наименуването. Ако
+идентификаторът започва с главна буква, той е константа. Ако започва с <code>$</code>,
+той е глобална променлива. Ако започва с <code>@</code> той е променлива на инстанцията,
+а с <code>@@</code> се именуват клас променливите.</p>
+<p>Въпреки това може да ползваме главна буква за името на метод, въпреки, че това
+може да доведе до объркване:</p>
+<!-- raw HTML omitted -->
+<p><code>Constant</code> е променлива със стойност 10, но <code>Constant()</code> извиква метод,
+който връща 11.</p>
+<h3>Именувани аргументи</h3>
+<p>Както в Python, от Ruby 2.0 методите могат да използват именувани аргументи:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from A to B via mail.&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->via: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Pony Express&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->from: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;A&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from B to A via Pony Express.&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Универсалната истина</h3>
+<p>В Ruby всяко нещо, различно от <code>nil</code> и <code>false</code>, е <code>true</code>. В C, Python и други
+езици <code>0</code>, <code>&quot;&quot;</code> и други се считат за <code>false</code>. Нека разгледаме пример с код
+на Python:</p>
+<!-- raw HTML omitted -->
+<p>Изхода от кода е <code>0 is false</code>. Еквивалента, написан на Ruby:</p>
+<!-- raw HTML omitted -->
+<p>На екрана се изписва <code>0 is true</code>.</p>
+<h3>Модификаторите за достъп важат до края на декларацията</h3>
+<!-- raw HTML omitted -->
+<p>Може би очаквате <code>another_method</code> да бъде <code>public</code>, но това не е така.
+Модификатора <code>private</code> важи до употребата на друг модификатор. По подразбиране
+всички методи са <code>public</code>:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># another_method is private<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->another_method<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>public</code>, <code>private</code> и <code>protected</code> всъщност са методи и за това могат да приемат
+параметри. Ако подадем символ на този метод, променяме видимостта на метода с
+име на символа.</p>
+<h3>Достъп до метод</h3>
+<p>В Java, <code>public</code> означава, че методът е достъпен за всички. <code>protected</code>
+означава, че инстанциите на класа и всички наследяващи го класове, както и
+класове в същият package могат да го достъпят. <code>private</code> означава, че
+единствено инстанциите на класа имат достъп до метода.</p>
+<p>В Ruby нещата стоят по малко по-различен начин. <code>public</code> работи по същият
+начин. <code>private</code> се използва за модификатор за достъп, който прави методите
+достъпни, когато се викат без explicit receiver. В този случай единствено
+<code>self</code> може да е получател на извикването на <code>private</code> метод.</p>
+<p>Към <code>protected</code> трябва да се подхожда с внимание. <code>protected</code> метод може да
+бъде извикан от клас или инстанция на наследен клас, но също така и с друга
+инстанции като неговият receiver.</p>
+<p>Пример, взет от <a href="http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html">Ruby Language FAQ</a>:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->identifier<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x34ab50&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t2<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x342784&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->       <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># now make <code>identifier' protected; it still works&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# because protected allows </code>other' as receiver<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->protected<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># now make `identifier' private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->private<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># NoMethodError: private method `identifier' called for #&lt;Test:0x342784&gt;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Отворени класове</h3>
+<p>Класовете в Ruby могат винаги да бъдат отворени, за да се допълват и променят.
+Всеки вграден клас от стандартната библиотека, като <code>Integer</code> или дори <code>Object</code>,
+родителят на всички обекти, може да бъде променен. Ruby on Rails дефинира
+множество методи за употребата на дати и времена във <code>Integer</code>. Пример:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 14 hours from 00:00 January 1st<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># (aka when you finally wake up ;)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Time<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->mktime<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->2006<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->+<!-- raw HTML omitted --> <!-- raw HTML omitted -->14<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->hours<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Sun Jan 01 14:00:00<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Методи със странни имена</h3>
+<p>В Ruby е разрешено да използваме &quot;?&quot; и &quot;!&quot; като последен символ в името на
+метод. По конвенция методи, които завършват с &quot;?&quot; (например <code>Array#empty?</code>
+връща <code>true</code> ако receiver празен) връща булев израз. Потенциално &quot;опасни&quot;
+методи (тоест методи, променящи <code>self</code> или аргументите си, например <code>exit!</code>)
+завършват с &quot;!&quot;. Не всички методи, променящи аргументите си, завършват с &quot;!&quot;.
+. <code>Array#replace</code> заменя съдържанието на масив със съдържанието на друг масив.
+Няма смисъл да има подобен метод, който не променя себе си.</p>
+<h3>Singleton методи</h3>
+<p>Singleton методите са асоциирани с един единствен метод:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Expensive car&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Expensive car<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Other objects are not affected<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Липсващи методи</h3>
+<p>Ruby не се отказва, ако не може да намери метод, отговарящ на дадено съобщение
+към обект. Когато това стане, се извиква метода <code>method_missing</code>. По
+подразбиране <code>method_missing</code> активира изключение, но поради динамиката на
+Ruby можем да го предефинираме, както правят много библиотеки:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->__<!-- raw HTML omitted --> <!-- raw HTML omitted -->:a<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:b<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->10<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; Method __ was called, but not found. It has these<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># arguments: a, b, 10<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>При изпълнението на горният код се извеждат детайли относно извикването на
+метода, но Вие можете свободно да контролирате следствието от този метод.</p>
+<h3>Предаване на метод</h3>
+<p>Извикването на метод представлява изпращане на <strong>съобщение</strong> към друг обект:</p>
+<!-- raw HTML omitted -->
+<h3>Блоковете са обекти, които просто не го знаят</h3>
+<p>Блоковете (всъщност closures) се използват интензивно в стандартната
+библиотека. При извикването на блок можем да ползваме <code>yield</code> или да го
+направим <code>Proc</code> чрез добавянето на специален аргумент:</p>
+<!-- raw HTML omitted -->
+<p>Можем да създаваме блокове извън методи чрез <code>Proc.new</code> или чрез метода
+<code>lambda</code>. Впрочем, методите също са обекти:</p>
+<!-- raw HTML omitted -->
+<h3>Операторите са синтактична захар</h3>
+<p>Повечето оператори са &quot;синтактична захар&quot; за извиквания на методи. Може
+например да се предифинира <code>Integer#+</code>:</p>
+<!-- raw HTML omitted -->
+<p>Не е нужен <code>operator+</code> от C++ например.</p>
+<p>Може дори и да се направи достъп, подобен на този при масивите, ако се
+предефинират <code>[]</code> и <code>[]=</code>. <code>+</code> и <code>-</code> могат също да бъдат предефинирани
+съответно чрез <code>+@</code> и <code>-@</code>.</p>
+<p>Операторите, които следват, не са методи и поради това не могат да бъдат
+предефинирани:</p>
+<!-- raw HTML omitted -->
+<p>В допълнение <code>+=</code>, <code>*=</code> и т.н са съкращения за <code>var = var + other_var</code>,
+<code>var = var * other_var</code> и не могат да бъдат предефинирани.</p>
+<h2>Научете още</h2>
+<p>Ако сте готови за още знания, посетете <a href="/bg/documentation/">документацията</a>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Започнете</strong> лесно е!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Пробвайте Ruby! (в браузъра)</a></li>
+
+    
+    <li><a href="/bg/documentation/quickstart/">Ruby в 20 минути</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/ruby-from-other-languages/">Ruby от други езици</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Изследвайте</strong> нов свят…</h3>
+  <ul class="menu">
+    
+    <li><a href="/bg/documentation/">Документация</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/bg/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/success-stories/">Успешни истории</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Участвайте</strong> в приятелски настроено общество.</h3>
+  <ul>
+    
+    <li><a href="/bg/community/mailing-lists/">Пощенски списъци</a>: Дискусии относно Ruby с програмисти от цял свят.</li>
+    
+
+    
+    <li><a href="/bg/community/user-groups/">Потребителски групи</a>: Свържете се с рубисти в твоя район.</li>
+    
+
+    
+    <li><a href="/bg/community/weblogs/">Блогове</a>: Прочетете какво се случва в Ruby обществото.</li>
+    
+
+    
+    <li><a href="/bg/community/ruby-core/">Ruby ядро</a>: Помогнете за разработката на Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Следене на бъгове</a>: Докладвайте или помогнете за решаването на проблеми в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

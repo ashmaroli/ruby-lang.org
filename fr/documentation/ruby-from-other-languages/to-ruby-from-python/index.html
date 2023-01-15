@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>De Python à Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/documentation/ruby-from-other-languages/to-ruby-from-python/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>De Python à Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Python est un autre très bon langage généraliste. Si vous passez de
+Python à Ruby, vous verrez qu’il y a un peu plus d’éléments syntaxiques
+à retenir, quelques astuces, aussi—mais que dans l’ensemble, le tout
+n’est pas trop éloigné.</p>
+<h3>Similarités</h3>
+<p>Tout comme en Python, en Ruby…</p>
+<ul>
+<li>il existe une console interactive ou 'shell' (commande <code>irb</code> pour <em>Interactive Ruby</em>) ;</li>
+<li>la documentation est accessible dans le terminal par la commande <code>ri</code>,
+à l’instar de <code>pydoc</code> ;</li>
+<li>il n’y a pas besoin de signe particulier pour marquer la fin des
+lignes, si ce n’est passer à la ligne suivante ;</li>
+<li>les chaînes peuvent s’étaler sur plusieurs lignes, comme avec le
+système de <em>triple-quotes</em> de Python ;</li>
+<li>on trouve des crochets pour les listes, des accolades pour les
+dictionnaires (que Ruby designe comme des hashs) ;</li>
+<li>le comportement des tableaux est le même (l’addition donne un nouveau
+long tableau, mais la composition, comme dans <code>@a3 = [ a1, a2 ]</code>,
+donne un tableau de tableaux) ;</li>
+<li>les objets sont fortement mais dynamiquement typés ;</li>
+<li>tout est un objet. Les variables ne sont que des noms pour les objets
+qu’elles référencent ;</li>
+<li>bien que les mot-clés soient légèrement différents, les exceptions
+agissent de la même manière ;</li>
+<li>un outil de documentation embarqué est disponible (RDOC, <code>rdoc</code>).</li>
+</ul>
+<h3>Différences</h3>
+<p>Contrairement à Python, en Ruby…</p>
+<ul>
+<li>les chaînes sont altérables ;</li>
+<li>vous pouvez créer des constantes (pour Ruby, des variables dont la
+valeur n’est pas censée changer) ;</li>
+<li>quelques règles de nommage sont imposées (par exemple, les noms de
+classes débutent par une majuscule, de même que les constantes ; les
+variables commencent par une minuscule ; etc.) ;</li>
+<li>il n’existe qu’un seul type de conteneur (le tableau), altérable ;</li>
+<li>les chaînes de caractères entre guillemets doubles admettent les
+séquences d’échappement, telles que <code>\t</code>, ainsi qu’une syntaxe de
+substitution d’expression. Elle permet notamment d’insérer directement
+le résultat d’expressions dans d’autres chaînes sans utiliser le <code>+</code>.
+Les chaînes entre guillemets simples sont la même chose que <code>r&quot;raw string&quot;</code> de Python ;</li>
+<li>il n’y a aucune distinction entre des classes <em>old style</em> et <em>new
+style</em>, il n’en existe qu’un seul type ;</li>
+<li>l’accès aux attributs de classe se réalise toujours par des méthodes,
+jamais directement ;</li>
+<li>les parenthèses dans les appels de méthodes sont bien souvent
+optionnelles ;</li>
+<li>les mot-clés <code>public</code>, <code>private</code> et <code>protected</code> sont utilisés pour
+gérer l’accès aux classes, au lieu des syntaxes basées sur le signe
+<code>_</code> ;</li>
+<li>l’héritage multiple se réalise à travers le mécanisme des mixins ;</li>
+<li>il est possible de ré-ouvrir une classe et de la modifier à loisir, y
+compris durant l’exécution ;</li>
+<li>on utilisera <code>true</code> au lieu de <code>True</code>, <code>false</code> au lieu de <code>False</code>, et
+<code>nil</code> au lieu de <code>None</code> ;</li>
+<li>seuls <code>false</code> et <code>nil</code> s’évaluent à faux dans les tests conditionnels
+; tout le reste est intrinsèquement vrai, y compris <code>0</code>, <code>0.0</code>,
+<code>&quot;...&quot;</code>, <code>[]</code>, etc. ;</li>
+<li>on écrira <code>elsif</code> au lieu de <code>elif</code> ;</li>
+<li>et <code>require</code> au lieu d’<code>import</code> ;</li>
+<li>l’ajout de documentation embarquée se fait par RDoc, avec la syntaxe
+usuelles des commentaires, et au-dessus des sections (et non en
+dessous) ;</li>
+<li>un certain nombre de raccourcis sont offerts, dont la mémorisation est
+cependant assez rapide.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Lancez-vous</strong>, c’est facile !</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Essayez Ruby !</a></li>
+
+    
+    <li><a href="/fr/documentation/quickstart/">Apprenez Ruby en vingt minutes</a></li>
+    
+
+    
+    <li><a href="/fr/documentation/ruby-from-other-languages/">Vous venez d'un autre langage ?</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explorez</strong> un nouvel univers…</h3>
+  <ul class="menu">
+    
+    <li><a href="/fr/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/fr/libraries/">Bibliothèques</a></li>
+    
+
+    
+    <li><a href="/fr/documentation/success-stories/">Témoignages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participez</strong> à la communauté</h3>
+  <ul>
+    
+    <li><a href="/fr/community/mailing-lists/">Listes de diffusion</a>: discutez de Ruby avec des programmeurs du monde entier.</li>
+    
+
+    
+    <li><a href="/fr/community/user-groups/">Groupes d’utilisateur</a>: entrez en contact avec d’autres rubyistes de votre région.</li>
+    
+
+    
+    <li><a href="/fr/community/weblogs/">Blogs</a>: suivez toute l’actualité de la communauté Ruby.</li>
+    
+
+    
+    <li><a href="/fr/community/ruby-core/">Ruby Core</a>: apportez votre aide à l'élaboration du prochain Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Rapports de bugs</a>: aidez à corriger et améliorer Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

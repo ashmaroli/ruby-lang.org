@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 설치하기</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/documentation/installation/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby 설치하기</h1>
+
+
+
+  <div id="content">
+    <p>Ruby를 설치하고 관리할 수 있는 다양한 패키지 관리 시스템들과 서드파티 도구들이 있습니다.</p>
+<p>{: .summary}</p>
+<p>컴퓨터에 이미 Ruby가 설치되어 있을 수도 있습니다.
+이를 확인하려면 <a href="https://ko.wikipedia.org/wiki/%EB%8B%A8%EB%A7%90_%EC%97%90%EB%AE%AC%EB%A0%88%EC%9D%B4%ED%84%B0_%EB%AA%A9%EB%A1%9D">터미널</a>을 열고 다음 명령어를 입력하세요.</p>
+<!-- raw HTML omitted -->
+<p>이 명령은 설치된 Ruby에 대한 정보를 알려줄 것입니다.</p>
+<h2>설치 방법 선택하기</h2>
+<p>Ruby를 설치하는 방법은 여럿 있습니다.</p>
+<ul>
+<li>UNIX-계열의 운영체제를 사용하신다면, 운영체제의
+<strong>패키지 관리자</strong>를 사용하는 게 가장 쉽습니다.
+하지만, 패키지의 Ruby는 보통 최신 버전이 아닙니다.</li>
+<li><strong>인스톨러</strong>는 특정 버전이나 여러 버전을 설치하는데
+사용할 수 있습니다. Windows용 인스톨러도 있습니다.</li>
+<li><strong>관리자</strong>는 시스템에 설치된 여러 Ruby 버전 간의
+전환을 도와줍니다.</li>
+<li>마지막으로 <strong>소스에서 빌드</strong> 하실 수도 있습니다.</li>
+</ul>
+<p>Windows 10을 사용 중이라면 <a href="https://docs.microsoft.com/ko-kr/windows/wsl/about">Windows Subsystem for Linux</a>를 사용하여
+지원되는 Linux 배포판 중 하나를 설치하고, 해당 시스템에 맞는 설치 방법을
+사용할 수 있습니다.</p>
+<p>이 목록은 각 다른 요구사항과 플랫폼을 위한 주요 설치방법입니다.</p>
+<ul>
+<li><a href="#package-management-systems">패키지 관리 시스템</a>
+<ul>
+<li><a href="#apt">Debian, Ubuntu</a></li>
+<li><a href="#yum">CentOS, Fedora, RHEL</a></li>
+<li><a href="#snap">Snap</a></li>
+<li><a href="#portage">Gentoo</a></li>
+<li><a href="#pacman">Arch Linux</a></li>
+<li><a href="#homebrew">macOS</a></li>
+<li><a href="#freebsd">FreeBSD</a></li>
+<li><a href="#openbsd">OpenBSD</a></li>
+<li><a href="#openindiana">OpenIndiana</a></li>
+<li><a href="#winget">Windows 패키지 관리자</a></li>
+<li><a href="#chocolatey">Chocolatey 패키지 관리자</a></li>
+<li><a href="#other-systems">다른 배포판</a></li>
+</ul>
+</li>
+<li><a href="#installers">인스톨러</a>
+<ul>
+<li><a href="#ruby-build">ruby-build</a></li>
+<li><a href="#ruby-install">ruby-install</a></li>
+<li><a href="#rubyinstaller">RubyInstaller</a> (Windows)</li>
+<li><a href="#rubystack">Ruby Stack</a></li>
+</ul>
+</li>
+<li><a href="#managers">관리자</a>
+<ul>
+<li><a href="#chruby">chruby</a></li>
+<li><a href="#rbenv">rbenv</a></li>
+<li><a href="#rvm">RVM</a></li>
+<li><a href="#uru">uru</a></li>
+</ul>
+</li>
+<li><a href="#building-from-source">소스에서 빌드하기</a></li>
+</ul>
+<h2>패키지 관리 시스템(Package Management Systems)</h2>
+<p>{: #package-management-systems}</p>
+<p>자신의 Ruby를 컴파일할 수 없고, 서드 파티 도구를 사용하고 싶지 않다면,
+Ruby를 설치하기 위해 자신의 시스템의 패키지 관리자를 사용할 수 있습니다.</p>
+<p>Ruby 커뮤니티의 일부 회원들은 Ruby를 설치할 때 패키지 관리자를 사용하지
+말아야 하고, 대신 도구를 사용해야 한다고 느끼고 있습니다.</p>
+<p>대부분의 패키지 관리자들은 오래된 버전의 Ruby를 설치합니다.
+최신의 Ruby를 사용하고자 한다면, 패키지의 버전 번호가 올바른지 확인하거나
+특정 <a href="/ko/documentation/installation/#installers">인스톨러</a>를 사용하세요.</p>
+<h3>apt (Debian이나 Ubuntu)</h3>
+<p>{: #apt}</p>
+<p>Debian GNU/Linux와 Ubuntu는 apt 패키지 관리 시스템을 사용합니다.
+다음과 같이 사용할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<h3>yum (CentOS, Fedora, RHEL)</h3>
+<p>{: #yum}</p>
+<p>CentOS, Fedora, RHEL은 yum 패키지 관리 시스템을 사용합니다.
+다음과 같이 사용할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>설치된 버전은 보통 그 특정 배포 버전 릴리스 시기의 최신 버전의 Ruby입니다.</p>
+<h3>snap (Ubuntu나 다른 리눅스 배포판)</h3>
+<p>{: #snap}</p>
+<p>Snap은 Canonical에 의해 개발된 패키지 매니저입니다. 이는 Ubuntu에서 바로 사용 가능합니다만, 다른 리눅스 배포판에서도 동작합니다.
+다음과 같이 사용할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>Ruby의 마이너 시리즈를 위한 채널을 제공합니다. 예를 들어, 다음 명령은 Ruby 2.3으로 변경할 수 있게 해줍니다.</p>
+<!-- raw HTML omitted -->
+<h3>portage (Gentoo)</h3>
+<p>{: #portage}</p>
+<p>Gentoo는 portage 패키지 관리자를 사용합니다.</p>
+<!-- raw HTML omitted -->
+<p>특정 버전을 설치하려면, <code>make.conf</code>에 <code>RUBY_TARGETS</code>를 설정하세요.
+더 자세한 정보는 <a href="http://www.gentoo.org/proj/en/prog_lang/ruby/">Gentoo Ruby 프로젝트 웹 사이트</a>를 확인하세요.</p>
+<h3>pacman (Arch Linux)</h3>
+<p>{: #pacman}</p>
+<p>Arch Linux는 pacman이라는 이름의 패키지 관리자를 사용합니다.
+Ruby를 받으려면, 다음과 같이 하면 됩니다.</p>
+<!-- raw HTML omitted -->
+<p>이는 Ruby의 최신 안정판을 설치할 것입니다.</p>
+<h3>Homebrew (macOS)</h3>
+<p>{: #homebrew}</p>
+<p>엘 캐피탄(10.11)부터 모하비(10.14)까지의 macOS 릴리스에서는 Ruby 2.0 이상이 포함되어 있습니다.</p>
+<p><a href="http://brew.sh/">Homebrew</a>는 macOS에서 일반적으로 사용되는 패키지 관리자입니다.
+Homebrew를 사용해 새로운 버전의 Ruby를 설치하는 것은 쉽습니다.</p>
+<!-- raw HTML omitted -->
+<p>이 명령어는 최신 Ruby 버전을 설치할 것입니다.</p>
+<h3>FreeBSD</h3>
+<p>{: #freebsd}</p>
+<p>FreeBSD는 패키지와 소스로부터 설치하는 방법을 모두 제공합니다.
+pkg를 이용하여 패키지를 설치할 수 있습니다:</p>
+<!-- raw HTML omitted -->
+<p><a href="https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/ports-using.html">포트 컬렉션</a>을 사용하여 Ruby를 소스로부터 설치
+할 수 있습니다. 이는 설치 설정을 변경하고 싶을 때 유용합니다.</p>
+<p>FreeBSD 상의 Ruby와 그 환경에 대해서 더 자세한 정보는
+<a href="https://wiki.freebsd.org/Ruby">FreeBSD Ruby Project 웹사이트</a>에서 얻을 수 있습니다.</p>
+<h3>OpenBSD</h3>
+<p>{: #openbsd}</p>
+<p>OpenBSD와 그 배포판인 adJ에는 3개의 Ruby 메이저 버전의 패키지가 있습니다.
+다음 명령을 통해 설치 가능한 버전을 확인하고 설치할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>각 버전의 바이너리는 다른 이름(예: <code>ruby27</code>, <code>ruby26</code>)을 가지고 있으므로
+동시에 여러 메이저 버전을 설치할 수 있습니다.</p>
+<p>가장 최신의 Ruby 버전이 릴리스된 며칠 후면 OpenBSD 포트 컬렉션의 <code>HEAD</code> 브랜치에
+이 플랫폼을 위한 Ruby 버전이 추가되어 있을 것입니다.
+<a href="https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/lang/ruby/?only_with_tag=HEAD">가장 최신의 포트 컬렉션의 lang/ruby 디렉터리</a>를 확인하세요.</p>
+<h3>OpenIndiana에서의 Ruby</h3>
+<p>{: #openindiana}</p>
+<p><a href="http://openindiana.org/">OpenIndiana</a>에서 Ruby를 설치하려면,
+Image Packaging System (IPS) 클라이언트를 사용해 주십시오.
+이것은 OpenSolaris 저장소로부터 최신
+Ruby 바이너리와 RubyGems를 직접 받아 설치합니다. 아주 쉽습니다.</p>
+<!-- raw HTML omitted -->
+<p>하지만, 서드파티 도구를 사용하는 것이 최신 버전의 Ruby를 얻는 더 좋은 방법입니다.</p>
+<h3>Windows 패키지 관리자</h3>
+<p>{: #winget}</p>
+<p>Windows에서 <a href="https://github.com/microsoft/winget-cli">Windows 패키지 관리자 CLI</a>를
+사용해서 Ruby를 설치할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<h3>Chocolatey 패키지 관리자</h3>
+<p>{: #chocolatey}</p>
+<p>또한 Windows에서 <a href="https://chocolatey.org/install">Chocolatey 패키지 관리자</a>를
+사용해서 Ruby를 설치할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><code>msys2</code>가 이미 설치되어 있다면 이를 그대로 사용하고, 아니면 완전한 Ruby 개발
+환경을 위해서 새로 설치합니다.</p>
+<h3>다른 배포판</h3>
+<p>다른 시스템에서는 자신의 Linux 배포 관리자를 위한 패키지 저장소를 검색할 수 있습니다.
+아니면 <a href="/ko/documentation/installation/#installers">서드파티 인스톨러</a>를 사용할 수도 있습니다.</p>
+<h2>인스톨러</h2>
+<p>{: #installers}</p>
+<p>시스템이나 패키지 관리자에서 제공하는 Ruby가 구 버전이라면, 서드 파티 인스톨러를
+사용해 새로운 버전의 Ruby를 설치할 수 있습니다.</p>
+<p>어떤 인스톨러는 여러 버전의 Ruby를 같은 시스템에 설치하게 합니다.
+관련된 관리자는 다른 Ruby 간의 전환을 도와줍니다.</p>
+<p><a href="#rvm">RVM</a>을 버전 관리자로 사용할 계획이라면 포함되어 있으므로 별도의 인스톨러는
+필요 없습니다.</p>
+<h3>ruby-build</h3>
+<p>{: #ruby-build}</p>
+<p><a href="https://github.com/rbenv/ruby-build#readme">ruby-build</a>는 다른 버전의 Ruby를 임의의 디렉터리에
+컴파일하고 설치할 수 있게 하는 <a href="#rbenv">rbenv</a>의 플러그인입니다.
+ruby-build는 rbenv 없이 독자적으로 사용 할 수도 있습니다.
+macOS, Linux나 다른 UNIX-계열 운영체제에서만 사용 가능합니다.</p>
+<h3>ruby-install</h3>
+<p>{: #ruby-install}</p>
+<p><a href="https://github.com/postmodern/ruby-install#readme">ruby-install</a>은 다른 버전의 Ruby를 임의의 디렉터리에
+컴파일하고 설치할 수 있게 합니다. <a href="#chruby">chruby</a>도 Ruby 버전을 변경하는
+좋은 도구입니다.
+macOS, Linux나 다른 UNIX-계열 운영체제에서만 사용 가능합니다.</p>
+<h3>RubyInstaller</h3>
+<p>{: #rubyinstaller}</p>
+<p>Windows에서는 <a href="https://rubyinstaller.org/">RubyInstaller</a>는 전체 Ruby 개발 환경을 설정하는데
+필요한 모든 것을 제공합니다.</p>
+<p>다운로드 받으시고 인스톨러를 실행하기만 하면 끝입니다!</p>
+<h3>Ruby Stack</h3>
+<p>{: #rubystack}</p>
+<p>Ruby on Rails를 사용하기 위해 Ruby를 설치하신다면 다음 인스톨러를 사용할 수 있습니다.</p>
+<ul>
+<li><a href="http://bitnami.com/stack/ruby/installer">Bitnami Ruby Stack</a>는 Ruby on Rails를 위한 완전한 개발환경을 제공합니다.
+macOS, Linux, Windows, 가상 머신, 클라우드 이미지를 지원합니다.</li>
+</ul>
+<h2>관리자</h2>
+<p>많은 루비스트들이 여러 버전의 Ruby를 관리하기 위해 Ruby 관리자를 사용합니다.
+각 프로젝트에서 서로 다른 Ruby 버전을 사용할 수 있도록 간단하게 또는
+자동으로 버전을 변경해주며 그 이외의 장점들이 있지만, 공식적으로 지원되는 것은 아닙니다.
+하지만, 각각의 커뮤니티에서 도움을 구할 수 있습니다.</p>
+<h3>asdf-vm</h3>
+<p>{: #asdf-vm}</p>
+<p><a href="https://asdf-vm.com/">asdf-vm</a>은 프로젝트 단위로 여러 언어 런타임 버전을 관리할 수 있는
+확장 가능한 버전 관리자입니다. Ruby를 설치하려면 <a href="https://github.com/asdf-vm/asdf-ruby">asdf-ruby</a>
+플러그인이 필요합니다(이는 <a href="#ruby-build">ruby-build</a>를 사용합니다).</p>
+<h3>chruby</h3>
+<p>{: #chruby}</p>
+<p><a href="https://github.com/postmodern/chruby#readme">chruby</a>는 여러 Ruby 간의 전환을 하게 합니다.
+chruby는 <a href="#ruby-install">ruby-install</a>로 설치된 Ruby뿐만
+아니라 소스에서 빌드 된 Ruby도 관리할 수 있습니다.</p>
+<h3>rbenv</h3>
+<p>{: #rbenv}</p>
+<p><a href="https://github.com/rbenv/rbenv#readme">rbenv</a>는 여러 종류의 Ruby를 설치할 수 있게 합니다.
+rbenv 자체는 Ruby 설치를 지원하지 않습니다만, <a href="#ruby-build">ruby-build</a>라는
+유명한 플러그인에서 Ruby를 설치할 수 있습니다.
+rbenv, ruby-build 모두 macOS, Linux나 다른 UNIX-계열 운영체제에서 사용가능합니다.</p>
+<h3>rbenv for Windows</h3>
+<p>{: #rbenv-for-windows}</p>
+<p><a href="https://github.com/ccmywish/rbenv-for-windows#readme">rbenv for Windows</a>는 Windows에서 여러 종류의 Ruby를 설치하고
+관리할 수 있도록 합니다. 이는 PowerShell로 작성되었으므로 Windows에서 Ruby를
+이용하는 사용자들에게 자연스러운 수단을 제공합니다. 또한 커맨드 라인 인터페이스는
+UNIX-계열 운영체제의 <a href="https://github.com/rbenv/rbenv#readme">rbenv</a>와 호환됩니다.</p>
+<h3>RVM (&quot;Ruby Version Manager&quot;)</h3>
+<p>{: #rvm}</p>
+<p><a href="http://rvm.io/">RVM</a>은 시스템에 여러 종류의 Ruby를 설치하고 관리할 수 있게 해줍니다.
+RVM은 다른 gemset도 관리해 줍니다.
+macOS, Linux나 다른 UNIX-계열 운영체제에서만 사용 가능합니다.</p>
+<h3>uru</h3>
+<p>{: #uru}</p>
+<p><a href="https://bitbucket.org/jonforums/uru">Uru</a>는 macOS, Linux, Windows에서 여러 Ruby를 사용하게 하는 가벼운
+멀티 플랫폼 커맨드 라인 툴입니다.</p>
+<h2>소스에서 빌드하기</h2>
+<p>{: #building-from-source}</p>
+<p>물론, 소스로부터 Ruby를 설치할 수도 있습니다.
+tarball을 <a href="/ko/downloads/">다운로드</a>, 압축을 풀고 이 명령어를 입력하세요.</p>
+<!-- raw HTML omitted -->
+<p>기본적으로, 이 명령어는 Ruby를 <code>/usr/local</code>에 설치합니다.
+변경하시려면 <code>./configure</code> 스크립트에 <code>--prefix=DIR</code> 옵션을 넘기세요.</p>
+<p><a href="https://github.com/ruby/ruby/blob/master/doc/contributing/building_ruby.md">Ruby 빌드하기 문서</a>에서 소스로부터 Ruby를 설치하는 법에 관련된
+추가 정보를 얻을 수 있습니다.</p>
+<p>서드파티 도구나 패키지 관리자를 사용하시는 것이 더 좋습니다.
+왜냐하면, 이렇게 설치된 Ruby는 어떤 도구로도 관리되지 않기 때문이죠.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>시작하기</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby!</a></li>
+
+    
+    <li><a href="/ko/documentation/quickstart/">20분 가이드</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/ruby-from-other-languages/">다른 언어에서 Ruby로</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>탐색하기</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ko/documentation/">문서</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">학술 연구</a></li>
+    
+
+    
+    <li><a href="/ko/libraries/">라이브러리</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/success-stories/">사용 사례</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>커뮤니티에 참여하기</strong></h3>
+  <ul>
+    
+    <li><a href="/ko/community/mailing-lists/">메일링 리스트</a>: 전 세계의 프로그래머와 Ruby와 관련된 대화를 나누기</li>
+    
+
+    
+    <li><a href="/ko/community/user-groups/">유저 그룹</a>: 근처의 루비스트와 연락하기</li>
+    
+
+    
+    <li><a href="/ko/community/weblogs/">웹로그</a>: Ruby 커뮤니티에서 지금 무슨 일이 일어나는지 읽기</li>
+    
+
+    
+    <li><a href="/ko/community/ruby-core/">Ruby 코어</a>: 최신 버전 Ruby의 연마를 돕기</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">이슈 관리</a>: Ruby에 관한 이슈를 제보하거나 해결을 돕기</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

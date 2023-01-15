@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>To Ruby From Python</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/ruby-from-other-languages/to-ruby-from-python/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>To Ruby From Python</h1>
+
+
+
+  <div id="content">
+    <p>Python is another very nice general purpose programming language. Going
+from Python to Ruby, you’ll find that there’s a little bit more syntax
+to learn than with Python.</p>
+<h3>Similarities</h3>
+<p>As with Python, in Ruby,...</p>
+<ul>
+<li>There’s an interactive prompt (called <code>irb</code>).</li>
+<li>You can read docs on the command line (with the <code>ri</code> command instead
+of <code>pydoc</code>).</li>
+<li>There are no special line terminators (except the usual newline).</li>
+<li>String literals can span multiple lines like Python’s triple-quoted
+strings.</li>
+<li>Brackets are for lists, and braces are for dicts (which, in Ruby, are
+called “hashes”).</li>
+<li>Arrays work the same (adding them makes one long array, but composing
+them like this <code>a3 = [ a1, a2 ]</code> gives you an array of arrays).</li>
+<li>Objects are strongly and dynamically typed.</li>
+<li>Everything is an object, and variables are just references to objects.</li>
+<li>Although the keywords are a bit different, exceptions work about the
+same.</li>
+<li>You’ve got embedded doc tools (Ruby’s is called rdoc).</li>
+<li>There is good support for functional programming with first-class
+functions, anonymous functions, and closures.</li>
+</ul>
+<h3>Differences</h3>
+<p>Unlike Python, in Ruby,...</p>
+<ul>
+<li>Strings are mutable.</li>
+<li>You can make constants (variables whose value you don’t intend to
+change).</li>
+<li>There are some enforced case-conventions (ex. class names start with a
+capital letter, variables start with a lowercase letter).</li>
+<li>There’s only one kind of list container (an Array), and it’s mutable.</li>
+<li>Double-quoted strings allow escape sequences (like <code>\t</code>) and a special
+“expression substitution” syntax (which allows you to insert the
+results of Ruby expressions directly into other strings without having
+to <code>&quot;add &quot; + &quot;strings &quot; + &quot;together&quot;</code>). Single-quoted strings are like
+Python’s <code>r&quot;raw strings&quot;</code>.</li>
+<li>There are no “new style” and “old style” classes. Just one kind.
+(Python 3+ doesn’t have this issue, but it isn’t fully backward
+compatible with Python 2.)</li>
+<li>You never directly access attributes. With Ruby, it’s all method
+calls.</li>
+<li>Parentheses for method calls are usually optional.</li>
+<li>There’s <code>public</code>, <code>private</code>, and <code>protected</code> to enforce access,
+instead of Python’s <code>_voluntary_</code> underscore <code>__convention__</code>.</li>
+<li>“mixins” are used instead of multiple inheritance.</li>
+<li>You can add or modify the methods of built-in classes. Both languages
+let you open up and modify classes at any point, but Python prevents
+modification of built-ins — Ruby does not.</li>
+<li>You’ve got <code>true</code> and <code>false</code> instead of <code>True</code> and <code>False</code> (and <code>nil</code>
+instead of <code>None</code>).</li>
+<li>When tested for truth, only <code>false</code> and <code>nil</code> evaluate to a false
+value. Everything else is true (including <code>0</code>, <code>0.0</code>, <code>&quot;&quot;</code>, and <code>[]</code>).</li>
+<li>It’s <code>elsif</code> instead of <code>elif</code>.</li>
+<li>It’s <code>require</code> instead of <code>import</code>. Otherwise though, usage is the
+same.</li>
+<li>The usual-style comments on the line(s) <em>above</em> things (instead of
+docstrings below them) are used for generating docs.</li>
+<li>There are a number of shortcuts that, although give you more to
+remember, you quickly learn. They tend to make Ruby fun and very
+productive.</li>
+<li>There’s no way to unset a variable once set (like Python’s <code>del</code>
+statement). You can reset a variable to <code>nil</code>, allowing the old
+contents to be garbage collected, but the variable will remain in the
+symbol table as long as it is in scope.</li>
+<li>The <code>yield</code> keyword behaves differently. In Python it will return
+execution to the scope outside the function's invocation. External
+code is responsible for resuming the function. In Ruby <code>yield</code> will
+execute another function that has been passed as the final argument,
+then immediately resume.</li>
+<li>Python supports just one kind of anonymous functions, lambdas, while
+Ruby contains blocks, Procs, and lambdas.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

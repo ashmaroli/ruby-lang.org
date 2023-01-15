@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby Core</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/community/ruby-core/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby Core</h1>
+
+
+
+  <div id="content">
+    <p>Ahora es un momento fantástico para seguir el desarrollo de Ruby.
+Con la mayor atención que Ruby ha recibido en los últimos años,
+existe una creciente necesidad de buenos talentos para ayudar a mejorar Ruby
+y documentar sus partes. Entonces, ¿por dónde empezar?
+{: .summary}</p>
+<p>Los temas relacionados con el desarrollo de Ruby que se tratan aquí son:</p>
+<ul>
+<li><a href="#following-ruby">Usando Git para rastrear el desarrollo de Ruby</a></li>
+<li><a href="#patching-ruby">Mejorando Ruby, Parche por Parche</a></li>
+<li><a href="#branches-ruby">Nota sobre las ramas</a></li>
+</ul>
+<h3>Usando Git para rastrear el desarrollo de Ruby</h3>
+<p>{: #following-ruby}</p>
+<p>El repositorio principal actual del último código fuente de Ruby es
+<a href="https://git.ruby-lang.org/ruby.git">git.ruby-lang.org/ruby.git</a>.
+También existe un repositorio <a href="https://github.com/ruby/ruby">espejo en GitHub</a>. En lo general, usa el
+repositorio espejo, por favor.</p>
+<p>Puedes obtener el último código fuente de Ruby usando Git.
+Desde tu línea de comandos:</p>
+<!-- raw HTML omitted -->
+<p>El directorio <code>ruby</code> ahora contendrá el último código fuente
+para la versión de desarrollo de Ruby (ruby-trunk).</p>
+<p>Vease también <a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">Cómo unirse a nuestro desarrollo como no contribuyente de código fuente</a>.</p>
+<p>Si tienes permisos de contribución al código fuente y deseas empujar cambios,
+deberías usar el repositorio principal.</p>
+<!-- raw HTML omitted -->
+<h3>Mejorando Ruby, Parche por Parche</h3>
+<p>{: #patching-ruby}</p>
+<p>El equipo central mantiene un <a href="https://bugs.ruby-lang.org/">rastreador de problemas</a> para enviar parches e
+informes de errores a Matz y al grupo. Estos informes también se envían a
+la <a href="/es/community/mailing-lists/">lista de distribución de Ruby-Core</a> para discusión,
+así que puedes estar seguro que tu petición no pasará desapercibida.
+También puedes enviar tus parches directamente a la lista de
+distribución. De cualquier manera, te invitamos a formar parte de las
+discusiones siguientes.</p>
+<p>Consulta la <a href="/es/community/ruby-core/writing-patches/">Guía del redactor de Parches</a> para obtener algunos consejos,
+directamente de Matz, sobre cómo hacer que tus parches sean considerados.</p>
+<p>En resumen, los pasos para crear un parche son:</p>
+<ol>
+<li>
+<p>Consulta una copia del código fuente de Ruby de GitHub.
+Por lo general, los parches para la corrección de errores
+o las nuevas funciones deben enviarse al tronco de la fuente de Ruby.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/ruby/ruby.git
+</code></pre></div></div>
+<p>Si estás solucionando un error que es específico de una sola rama de mantenimiento,
+revisa una copia de la rama respectiva.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout ruby_X_X
+</code></pre></div></div>
+<p>X_X debe ser reemplazado por la versión que desees revisar.</p>
+</li>
+<li>
+<p>Agrega tus mejoras al código.</p>
+</li>
+<li>
+<p>Crea un parche.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git diff &gt; ruby-changes.patch
+</code></pre></div></div>
+</li>
+<li>
+<p>Crea un ticket en el <a href="https://bugs.ruby-lang.org/">rastreador de problemas</a> o envía tu parche
+a la <a href="/es/community/mailing-lists/">lista de distribución de Ruby-Core</a> con un registro de ChangeLog
+describiendo tu parche.</p>
+</li>
+<li>
+<p>Si no surgen problemas sobre el parche, los contribuyentes darán
+la aprobación para aplicarlo.</p>
+</li>
+</ol>
+<p><strong>Por favor ten en cuenta:</strong> los parches deben enviarse como una <a href="http://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html">diferencia unificada</a>.
+Para obtener más información sobre cómo se fusionan los parches, consulta <a href="http://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html#Merging%20with%20patch">la referencia de diffutils</a>.</p>
+<p>La discusión sobre el desarrollo de Ruby converge en la
+<a href="/es/community/mailing-lists/">Lista de distribución de Ruby-Core</a>. Entonces, si tienes curiosidad
+sobre si tu parche vale la pena o si deseas iniciar una discusión
+sobre el futuro de Ruby, no dudes en subir a bordo.
+Ten presente que las discusiones fuera de tema no se toleran en esta lista,
+el nivel de ruido debe ser muy bajo, los temas deben ser puntuales, bien concebidos y
+bien escritos. Ya que nos dirigimos al creador de Ruby, tengamos un poco de reverencia.</p>
+<p>Ten en cuenta que muchos de los desarrolladores principales de Ruby viven en Japón y, aunque muchos
+hablan muy bien inglés, hay una diferencia de zona horaria significativa.
+También tienen un cuerpo completo de listas de desarrollo japonesas sucediendo
+junto a las contrapartes inglesas. Se paciente,
+si tu petición no se resuelve, se persistente, inténtalo de nuevo unos días más tarde.</p>
+<h3>Nota sobre las ramas</h3>
+<p>{: #branches-ruby}</p>
+<p>El código fuente de Ruby se había gestionado en el repositorio de Subversion hasta el 22 de abril de 2019.
+Por lo tanto, algunas ramas aún pueden administrarse bajo Subversion.
+Puedes ver el repositorio de SVN.</p>
+<ul>
+<li><a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?root=ruby">&lt;URL:https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?root=ruby&gt;</a></li>
+</ul>
+<p>Sin embargo, no tienes que preocuparte por eso (a menos que seas un mantenedor de rama).
+Puedes consultar las ramas en tu copia de trabajo de Git.
+Por ejemplo, ejecuta el siguiente comando.</p>
+<!-- raw HTML omitted -->
+<p>X_X debe ser reemplazado por la versión que desees revisar.</p>
+<p>Si deseas modificar las ramas, por favor, abre una incidencia en nuestro <a href="https://bugs.ruby-lang.org/">rastreador de problemas</a>.
+Ver también la siguiente sección.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Iníciate</strong>, ¡es fácil!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">¡Prueba Ruby! (en tu navegador)</a></li>
+
+    
+    <li><a href="/es/documentation/quickstart/">Ruby en 20 Minutos</a></li>
+    
+
+    
+    <li><a href="/es/documentation/ruby-from-other-languages/">Ruby desde otros lenguajes</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explora</strong> un nuevo mundo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/es/documentation/">Documentación</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Investigación académica</a></li>
+    
+
+    
+    <li><a href="/es/libraries/">Bibliotecas</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Casos exitosos (en inglés)</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participa</strong> en una amistosa y creciente comunidad.</h3>
+  <ul>
+    
+    <li><a href="/es/community/mailing-lists/">Listas de correo</a>: Habla sobre Ruby con desarrolladores alrededor del mundo.</li>
+    
+
+    
+    <li><a href="/es/community/user-groups/">Grupos de usuarios</a>: Ponte en contacto con otros Rubyistas en tu localidad.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs (en inglés)</a>: Entérate de lo que está sucediendo en la comunidad.</li>
+    
+
+    
+    <li><a href="/es/community/ruby-core/">Ruby Core</a>: Ayuda a mejorar el futuro de Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Reportes de errores</a>: Reporta o ayuda a resolver problemas en Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

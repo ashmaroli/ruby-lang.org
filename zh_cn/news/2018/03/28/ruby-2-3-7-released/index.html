@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.3.7 已发布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2018/03/28/ruby-2-3-7-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.3.7 已发布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 usa 发表于 2018-03-28<br>
+                         翻译： Delton Ding</p>
+
+    <p>Ruby 2.3.7 已发布。此次发布修复了近 70 个漏洞，包括数个安全漏洞。请检查以下主题以了解详情。</p>
+<ul>
+<li><a href="/zh_cn/news/2018/03/28/http-response-splitting-in-webrick-cve-2017-17742/">CVE-2017-17742: WEBrick 回复分离缺陷</a></li>
+<li><a href="/zh_cn/news/2018/03/28/large-request-dos-in-webrick-cve-2018-8777/">CVE-2018-8777: WEBrick 大请求 DoS 缺陷</a></li>
+<li><a href="/zh_cn/news/2018/03/28/unintentional-file-and-directory-creation-with-directory-traversal-cve-2018-6914/">CVE-2018-6914: tempfile 和 tmpdir 库中意外创建文件和目录的缺陷</a></li>
+<li><a href="/zh_cn/news/2018/03/28/buffer-under-read-unpack-cve-2018-8778/">CVE-2018-8778: String#unpack 中缓冲区欠读缺陷</a></li>
+<li><a href="/zh_cn/news/2018/03/28/poisoned-nul-byte-unixsocket-cve-2018-8779/">CVE-2018-8779: UNIXServer 与 UNIXSocket 中污染的 NUL 字节可创建意外的 Socket</a></li>
+<li><a href="/zh_cn/news/2018/03/28/poisoned-nul-byte-dir-cve-2018-8780/">CVE-2018-8780: Dir 中污染的 NUL 字节可触发意外目录穿越</a></li>
+<li><a href="/en/news/2018/02/17/multiple-vulnerabilities-in-rubygems/">RubyGems 存在多个安全风险</a></li>
+</ul>
+<p>请查看 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_3_7/ChangeLog">ChangeLog</a> 以了解细节。</p>
+<p>此版本后，我们会终止 Ruby 2.3 的正常维护，并启动安全性维护阶段。这意味着 Ruby 2.3.7 版本后除了安全性修复将不会被移植任何漏洞修复。安全性维护阶段计划持续 1 年，在此阶段后，Ruby 2.3 的维护会彻底结束。因此，我们建议您着手升级至 Ruby 2.5 或 2.4。</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14421177 bytes
+SHA1:   3bb88965405da5e4de2432eeb445fffa8a66fb33
+SHA256: 18b12fafaf37d5f6c7139c1b445355aec76baa625a40300598a6c8597fc04d8e
+SHA512: e72754f7703f0706c4b0bccd053035536053451fe069a55427984cc0bc5692b86bd51c243c5f62f78527c66b08300d2e4aa19b73e6ded13d6020aa2450e66a7d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17859100 bytes
+SHA1:   540996fec64984ab6099e34d2f5820b14904f15a
+SHA256: 35cd349cddf78e4a0640d28ec8c7e88a2ae0db51ebd8926cd232bb70db2c7d7f
+SHA512: 1ceccf00981d6d60e7587e89a04cc028f976950313ee445db5afd03e323472d3e69a35423733b24f9cbd9729f034cf80d2233b5c159764839f5bee4ca7052fe0
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11438124 bytes
+SHA1:   c489248730cbce7721edd3e97de81e68eec938b2
+SHA256: c61f8f2b9d3ffff5567e186421fa191f0d5e7c2b189b426bb84498825d548edb
+SHA512: fd91c8db3d3aa4cc962a62f27b4d1a71f6b5567ab836e6dbfbbb1553eb269d11e12faf9e36af6c489c33b54fd89dab99bfe81a563158b704877f0628d6f5bc5a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19911423 bytes
+SHA1:   ec6870b39125238d8d57d642225592896ed3b6d9
+SHA256: ffa42eeff928624a05dc7ad39426c855c6e9a757417f17b6fe9e54664ec91012
+SHA512: c85255a7f43c7df2fb11be4f9aa96e2ae70a94d3e963ccff4d8c1349ad6d455d9a436812efb24c91e451e68b8f81e5d335c6d5811b2a0e945a7070c305054434
+</code></pre></div></div>
+</li>
+</ul>
+<h2>发布记</h2>
+<p>感谢所有帮助此版本发布的人。</p>
+<p>Ruby 2.3 的维护，包括这个版本是基于 Ruby 协会的「Ruby 稳定版本协议」进行维护的。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

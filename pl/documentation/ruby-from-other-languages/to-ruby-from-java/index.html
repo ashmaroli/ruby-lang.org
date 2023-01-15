@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby a Java</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pl/documentation/ruby-from-other-languages/to-ruby-from-java/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pl/feeds/news.rss" rel="alternate" title="Ostatnie Wiadomości (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pl/">
+          <h1>Ruby</h1>
+          <h2>Najlepszy Przyjaciel Programisty</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pl/" class="home">Home</a>
+
+  <a href="/pl/downloads/">Pobierz</a>
+
+  <a href="/pl/documentation/">Dokumentacja</a>
+
+  <a href="/pl/libraries/">Biblioteki</a>
+
+  <a href="/pl/community/">Społeczność</a>
+
+  <a href="/pl/news/">Wiadomości</a>
+
+  <a href="/pl/security/">Bezpieczeństwo</a>
+
+  <a href="/pl/about/">O języku Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pl/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pl/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Szukaj" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby a Java</h1>
+
+
+
+  <div id="content">
+    <p>Java jest językiem dojrzałym. Jest przetestowany. Jest także szybki (w
+przeciwieństwie do tego co mówi tłum przeciwników Javy). Jest także dość
+rozwlekła w zapisie. Przechodząc z Javy na Rubiego, oczekuj że twój kod
+skurczy się znacząco. Możesz także oczekiwać, że mniej czasu zajmie ci
+tworzenie szybkich prototypów.</p>
+<h3>Podobieństwa</h3>
+<p>Tak jak w Javie, w Rubim…</p>
+<ul>
+<li>Pamięć jest zarządzana przez garbage collector.</li>
+<li>Obiekty są silnie typowane.</li>
+<li>Występują metody publiczne, prywatne i chronione.</li>
+<li>Istnieją wbudowane narzędzia dokumentujące (te Rubiego nazywane są
+RDoc). Dokumentacja wygenerowana przez rdoc bardzo przypomina tą
+wygenerowaną przez javadoc.</li>
+</ul>
+<h3>Różnice</h3>
+<p>W przeciwieństwie do Javy, w Rubim…</p>
+<ul>
+<li>Nie musisz kompilować twojego kodu. Po prostu go uruchamiasz.</li>
+<li>Istnieją inne toolkity GUI. Użytkownicy Rubiego mogą spróbować
+<a href="https://github.com/eumario/wxruby">WxRuby</a>, <a href="https://github.com/larskanis/fxruby">FXRuby</a>, <a href="https://ruby-gnome2.osdn.jp/">Ruby-GNOME2</a>, <a href="https://github.com/ryanmelt/qtbindings/">Qt</a>,
+lub dla przykładu wbudowanego w Rubiego Tk.</li>
+<li>Używasz słowa kluczowego <code>end</code>, które kończy definicję takich rzeczy
+jak klasy, w przeciwieństwie do oznaczania bloku kodu nawiasami
+klamrowymi.</li>
+<li>Używasz <code>require</code> zamiast <code>import</code>.</li>
+<li>Wszystkie atrybuty/właściwości klas są prywatne. Dostęp do nich
+istnieje tylko przez metody (akcesory).</li>
+<li>Nawiasy w wywołaniach metod są zazwyczaj opcjonalne i często pomijane.</li>
+<li>Wszystko jest obiektem, włączając liczby jak 2 czy 3.14159.</li>
+<li>Brak statycznej typizacji.</li>
+<li>Nazwy zmiennych są tylko etykietami. Nie mają one powiązanego z nimi
+typu.</li>
+<li>Brak deklaracji typów. Po prostu nadajesz zmiennej nowe nazwy w razie
+potrzeby a one po prostu zostaną utworzone (np. <code>a = [1,2,3]</code> w
+przeciwieństwie do <code>int[] a = {1,2,3};</code>).</li>
+<li>Brak konieczności rzutowania. Po prostu wywołaj metody. Twoje testy
+jednostkowe powiedzą tobie nawet przed uruchomieniem kodu, czy
+zobaczysz wyjątek.</li>
+<li>Używasz <code>foo = Foo.new(&quot;hi&quot;)</code> zamiast <code>Foo foo = new Foo(&quot;hi&quot;)</code>.</li>
+<li>Konstruktor zawsze nazywa się “initialize” niezależnie od nazwy klasy.</li>
+<li>Używasz domieszkowania klas (ang. “mixins”) zamiast interfejsów.</li>
+<li>Preferowany jest YAML wobec XMLa.</li>
+<li>Istnieje <code>nil</code> zamiast <code>null</code>.</li>
+<li><code>==</code> i <code>equals()</code> są obsługiwane inaczej w Rubim. Używaj <code>==</code> kiedy chcesz
+sprawdzić równość w Rubim (<code>equals()</code> w Java). Używaj <code>equal?()</code>
+kiedy chcesz wiedzieć czy dwa obiekty są takie same (<code>==</code> w Java).</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Zacznij</strong>, to proste!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Wypróbuj Ruby! (w twojej przeglądarce)</a></li>
+
+    
+    <li><a href="/pl/documentation/quickstart/">Ruby w 20 Minut</a></li>
+    
+
+    
+    <li><a href="/pl/documentation/ruby-from-other-languages/">Ruby a inne języki programowania</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Poznaj</strong> nowy świat…</h3>
+  <ul class="menu">
+    
+    <li><a href="/pl/documentation/">Dokumentacja</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/pl/libraries/">Biblioteki</a></li>
+    
+
+    
+    <li><a href="/pl/documentation/success-stories/">Udane wdrożenia</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Dołącz</strong> do przyjaznej i rozrastającej się społeczności.</h3>
+  <ul>
+    
+    <li><a href="/pl/community/mailing-lists/">Listy dyskusyjne</a>: Porozmawiaj o Ruby z programistami z całego świata.</li>
+    
+
+    
+    <li><a href="/pl/community/user-groups/">Grupy Użytkowników</a>: Bądź w kontakcie z użytkownikami Rubiego z Twojej okolicy.</li>
+    
+
+    
+    <li><a href="/pl/community/weblogs/">Blogi</a>: Czytaj na bieżąco co dzieje się w społeczności języka Ruby.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Pomóż dopracować najnowszą wersję Rubiego.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Śledzenie problemów</a>: Zgłoś lub pomóż rozwiązać problemy w Rubim.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/pl/feeds/news.rss">Ostatnie Wiadomości (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pl/" class="home">Home</a>
+
+  <a href="/pl/downloads/">Pobierz</a>
+
+  <a href="/pl/documentation/">Dokumentacja</a>
+
+  <a href="/pl/libraries/">Biblioteki</a>
+
+  <a href="/pl/community/">Społeczność</a>
+
+  <a href="/pl/news/">Wiadomości</a>
+
+  <a href="/pl/security/">Bezpieczeństwo</a>
+
+  <a href="/pl/about/">O języku Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Ta strona w innych językach:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pl/about/logo/">Logo Rubiego</a> jest Zastrzeżone &copy; 2006, Yukihiro Matsumoto; licencjonowane na warunkach <a href="http://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a>.<br><br> Serwis powstał w języku Ruby przy użyciu <a href="http://www.jekyllrb.com/">Jekyll</a>. Utrzymaniem serwisu zajmuje się społeczność Rubiego. Projekt strony <a href="https://twitter.com/jasonzimdars">Jason Zimdars</a>. Proszę udziel nam wsparcia na <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> lub skontaktuj się z naszym <a href="mailto:webmaster@ruby-lang.org">webmasterem</a> jeśli masz jakieś pytania lub komentarze dotyczące tego serwisu.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

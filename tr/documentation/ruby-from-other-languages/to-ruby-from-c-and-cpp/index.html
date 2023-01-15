@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>C ve C++ dan Ruby'ye</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>C ve C++ dan Ruby'ye</h1>
+
+
+
+  <div id="content">
+    <p>Ruby’de kodunuzun C’den veya C++’dan nasıl farklı olacağını bir bullet
+liste ile anlatmak çok zor, çünkü oldukça fazla fark var. Bir sebep Ruby
+runtime sizin için birçok şeyi yapar. Ruby , C’nin “saklı mekanizma yok”
+prensibinden çok uzak görünür—Ruby’nin tüm amacı işin çoğunu runtime’ın
+omuzlarına yükleyerek insanların işini kolaylaştırmak. Ruby kullanırken
+eğer kodunuzu optimize etmeye çalışmıyorsanız &quot;derleyiciyi mutlu etmeye&quot;
+çalışmazsınız.</p>
+<p>Bunun anlamı, eşdeğer bir C veya C++ programa göre Ruby programının daha
+yavaş çalışmasını bekleyebilirsiniz ama ne kadar az kod yazarak ve ne
+kadar kısa sürede çalışan bir program elde ettiğinize şaşıracaksınız.
+Ruby , C++ dan çok daha basittir ve her işinizi görür.</p>
+<p>Ruby dinamik yazılımdır , static değildir—runtime bir çok şeyi ismi gibi
+program çalışırken ayarlar. Örneğin Ruby programınızın hangi modüllere
+bağlanacağını (yükleyip kullanacağını) bilmeye veya hangi metodun çağrılacağını
+önceden bilmeye gerek yoktur.</p>
+<p>Ne mutlu ki, Ruby ve C arasında genetik bir bağlantı vardır. Ruby
+“extension modüles” destekler. Bu modüller C’de yazılmış ama Ruby
+programın içinde aynı bir Ruby modülüymüş gibi kullanabildiğiniz
+modüllerdir. Bu sayede Ruby programınızın yüksek performan isteyen
+kısımlarında C ile yazılmış kodlar kullanabilirsiniz.</p>
+<p>Ve tabii ki Ruby’nin kendisi de C ile yazılmıştır.</p>
+<h3>C ile Benzerlikler</h3>
+<p>C gibi Ruby de,...</p>
+<ul>
+<li>Prosedürel programlama yapabilirsiniz (fakat arka planda o hala
+nesne-yönelimli olacaktır).</li>
+<li>Operatörlerin birçoğu aynıdır (birleşik eşitlemeler ve ikili
+işlemciler dahil). Ama ruby’de <code>++</code> ve <code>--</code> yoktur.</li>
+<li><code>__FILE__</code> ve <code>__LINE__</code> aynıdır.</li>
+<li>Özel <code>const</code> deyimi olmamasına rağmen sabitleriniz vardır. Const
+olmadan isimlendirme ile sabitler belirtilir, büyük harfle başlayan
+isimler sabit demektir.</li>
+<li>String’ler çift tırnak içindedir.</li>
+<li>Stringler mutasyona uğrayabilir.</li>
+<li>Man sayfaları gibi birçok dökümanı terminal ekranında görebilirsiniz—
+<code>ri</code> komutu yardımıyla yapılır.</li>
+<li>Aynı şekilde komut satırı debugger mümkündür.</li>
+</ul>
+<h3>C++ ile Benzerlikler</h3>
+<p>C++ gibi Ruby de,...</p>
+<ul>
+<li>Çoğunlukla aynı operatörler kullanılır (<code>::</code> dahil). <code>&lt;&lt;</code> ile genelde
+listelere elemanlar eklenir. Bir fark olarak Ruby’de <code>-&gt;</code> kullanılmaz
+herzaman <code>.</code> kullanılır.</li>
+<li><code>public</code>, <code>private</code>, ve <code>protected</code> benzer işlev görür.</li>
+<li>Kalıtım deyimi halen tek karakterdir ama <code>:</code> yerine <code>&lt;</code> kullanılır.</li>
+<li>C++ nın kullandığı <code>namespace</code> benzeri şekilde kodunuzu “modul”ler
+içine koyabilirsiniz.</li>
+<li>Sıradışı durumlar benzer işlenir, özel olmak uğruna kullanılan
+deyimler farklıdır.</li>
+</ul>
+<h3>C’den Farklılıklar</h3>
+<p>Ruby’de C’den farklı olarak,...</p>
+<ul>
+<li>Kodunuzu derlemenize gerek yoktur, doğrudan çalıştırabilirsiniz.</li>
+<li>Nesneler güçlü tiplenir (ve değişkenlerin tipi yoktur).</li>
+<li>Makrolar ya da önyükleme komutları yoktur. Cast yoktur. İşaretçiler
+(veya işaretçi aritmetiği) yoktur. typedef, sizeof ya da enum yoktur.</li>
+<li>Header dosyalar yoktur. Fonksiyonlarınızı (genelde metod denir) ve
+sınıflarınızı kaynak dosyalarınıza yazarsınız.</li>
+<li><code>#define</code> yoktur. Bunun yerine sabitleri kullanın.</li>
+<li>Ruby 1.8 itibarıyla kod makina ya da byte koduna dönüştürüleceğine
+direk runtime içinde işlenmektedir.</li>
+<li>Tüm değişkenler heap'te yaşar. Dahası hafızadan kendiniz
+boşaltmak zorunda değilsiniz—garbage collector bunu kontrol eder.</li>
+<li>Metodlara argümanları değer olarak değil referans olarak geçirilir.</li>
+<li><code>#include &lt;foo&gt;</code> veya <code>#include &quot;foo&quot;</code> yerine <code>require 'foo'</code>
+kullanılır.</li>
+<li>Assembly yazamazsınız.</li>
+<li>Satır sonlarında noktalı virgüller yoktur.</li>
+<li><code>if</code> ve <code>while</code> koşul deyimlerinde parantez kullanılmaz.</li>
+<li>Metod çağrıları için parantezler sıklıkla isteğe bağlıdır.</li>
+<li>Süslü parantezler kullanılmaz, <code>while</code> gibi çok satırlı yapıları sonlandırmak
+için sadece <code>end</code> anahtar kelimesini kullanın.</li>
+<li><code>do</code> kelimesi “blok”lar için kullanılır C’deki gibi “do statement”
+yoktur.</li>
+<li>“Blok” farklı bir anlama gelir. Bir metod çağrısına bağlanmış kod
+bloğunu ifade eder ve metod çalışırken bloğu çağırır.</li>
+<li>Değişken tanımlaması yoktur. Değişkene ihtiyaç duyduğunuz anda bir
+atama ile değerini belirlersiniz.</li>
+<li>Doğruluğu test edilirken sadece <code>false</code> ve <code>nil</code> yanlış olarak
+değerlendirilir. Diğer herşey (<code>0</code>, <code>0.0</code>, ve <code>&quot;0&quot;</code> dahil) doğru
+olarak değerlendirilir.</li>
+<li><code>char</code> yoktur—onlar sadece 1-harfli stringlerdir.</li>
+<li>Stringler bir null byte ile bitmezler.</li>
+<li>Array’ler köşeli parantez içindedir, süslü parantez değil.</li>
+<li>Array’ler içlerine daha fazla eleman koydukça büyürler.</li>
+<li>Eğer iki array’i toplarsanız yeni ve büyük bir array elde edilir (tabii ki
+heap'te tutulur),
+işaretçi aritmetiği yapılmaz.</li>
+<li>Herşey bir eşitliktir ve değer döner (yani <code>while</code> gibi deyimler
+gerçekte bir değer dönüşü yaparlar)</li>
+</ul>
+<h3>C++’tan Farklar</h3>
+<p>Ruby’de C++’tan farklı,...</p>
+<ul>
+<li>Harici referanslar yoktur. Şu demek Ruby’de tüm değişkenler bir objeye
+referans eden isimlerdir.</li>
+<li>Objeler güçlü ama <em>dinamik</em> tiplenirler. Runtime bir
+metodun çalışabilirliğini <em>çalışırken</em> araştırır.</li>
+<li>Sınıf inşaa edici metod sınıfın adı yerine <code>initialize</code> olarak
+adlandırılır.</li>
+<li>Herzaman tüm metodlar gerçeldir.</li>
+<li>“Class” (static) değişken isimleri herzaman <code>@@</code> ile başlar
+(<code>@@total_widgets</code> daki gibi).</li>
+<li>Üye değişkenlere direk erişemezsiniz—Tüm public üye değişkenlere
+ulaşmak için (Ruby’de attribute denir) metodlar kullanılır.</li>
+<li><code>this</code> yerine <code>self</code> kullanılır.</li>
+<li>Bazı metodların sonunda ’?’ ve ’!’ vardır, bunlar metod isminin
+parçasıdır işlem değildir.</li>
+<li>Çoklu kalıtım yoktur. Fakat Ruby &quot;mixin&quot;lere sahiptir (bir modülün tüm örnek
+metodlarını &quot;miras alabilirsiniz&quot;).</li>
+<li>Bazı zorunlu harf boyut gelenekleri vardır (örn. sınıf isimleri büyük
+harfle başlar , değişkenler küçük harfle başlar).</li>
+<li>Metod çağrılarında parantez kullanılması genelde isteğe bağlıdır.</li>
+<li>Herhangibir zamanda sınıf kodunu tekrar açıp içine metod
+ekleyebilirsiniz.</li>
+<li>C++ şablonlarına ihtiyaç yoktur (bir değişkene çalıştırma esnasında
+herhangi bir obje atayabileceğiniz ve her durumda tiplerin çalışma zamanında
+anlaşılacağı için). Tip dönüşümüne gerek yoktur.</li>
+<li>Tekrarlamalar biraz farklı yapılır. Ruby’de farklı bir tekrar nesnesi
+kullanılmaz. (<code>vector&lt;T&gt;::const_iterator iter</code> gibi) fakat bunun
+yerine taşıyıcı nesnenin bir yineleyici metodu (<code>each</code> gibi) kullanılır, bu
+metod bir kod bloğu alır ve ardarda gelen öğeleri bu bloğa geçirir.</li>
+<li>Sadece iki container tip vardır: <code>Array</code> ve <code>Hash</code>.</li>
+<li>Tip dönüşümüne gerek yoktur. Ruby mantığına sahip oldukça siz de
+gereksiz olduğunu göreceksiniz.</li>
+<li>Multithread gömülüdür, fakat Ruby 1.8 ile birlikte “green threads”
+olarak adlandırıldı (sadece interpreter içinde işlenirler) native
+thread’a zıt olarak.</li>
+<li>Ruby ile bir birim test kütüphanesi birlikte gelir.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Başlamak</strong>, çok kolay!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Ruby'yi Deneyin! (tarayıcınızda)</a></li>
+
+    
+    <li><a href="/tr/documentation/quickstart/">Yirmi Dakikada Ruby</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/ruby-from-other-languages/">Diğer Dillerden Ruby'ye</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Yeni Bir Dünya</strong> keşfedin…</h3>
+  <ul class="menu">
+    
+    <li><a href="/tr/documentation/">Belgeler</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Akademik Araştırma</a></li>
+    
+
+    
+    <li><a href="/tr/libraries/">Kütüphaneler</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/success-stories/">Başarı Hikayeleri</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Arkadaşça</strong> ve büyüyen bir topluluğa katılın.</h3>
+  <ul>
+    
+    <li><a href="/tr/community/mailing-lists/">Mail Listeleri</a>: Tüm dünyadan Ruby programcılarıyla görüşün.</li>
+    
+
+    
+    <li><a href="/tr/community/user-groups/">Kullanıcı Grupları</a>: Bölgenizdeki Ruby'cilerle temas kurun.</li>
+    
+
+    
+    <li><a href="/tr/community/weblogs/">Web günlükleri</a>: Ruby'de neler olduğunu takip edin.</li>
+    
+
+    
+    <li><a href="/tr/community/ruby-core/">Ruby Core</a>: En son Ruby'nin kaba taraflarının parlatılmasına yardımcı olun.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Sorun Takibi</a>: Ruby sorunlarını rapor edin ya da çözümüne yardım edin.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

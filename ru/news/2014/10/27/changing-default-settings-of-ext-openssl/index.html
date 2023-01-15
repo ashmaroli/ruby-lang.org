@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Изменились дефолтные настройки ext/openssl</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/news/2014/10/27/changing-default-settings-of-ext-openssl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Изменились дефолтные настройки ext/openssl</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Опубликовал usa 27-10-2014<br>
+                         Перевел: gazay</p>
+
+    <p>Мы изменили дефолтные настройки ext/openssl в Ruby 2.1.4, Ruby 2.0.0-p594 и Ruby 1.9.3-p550.
+С этими изменениями небезопасные опции SSL/TLS теперь выключены по умолчанию.
+Несмотря на эти изменения, проблемы в соединении SSL все еще вероятны.</p>
+<h2>Детали</h2>
+<p>OpenSSL до сих пор реализует протоколы и шифры, исторически признанные небезопасными на сегодняшний день.
+Например, POODLE уязвимость (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566">CVE-2014-3566</a>).
+Если вы продолжите использовать OpenSSL с подобными небезопасными фичами, возможно, вы не сможете обеспечить безопасность
+сетевых коммуникаций. Так, основываясь на дискуссии в <a href="https://bugs.ruby-lang.org/issues/9424">Bug #9424</a>,
+мы решили отключить подобные опции для SSL/TLS по умолчанию.
+Если вам надо отменить эти изменения (показанные ниже), примените обратный патч, чтобы включить эти опции снова.</p>
+<p>2.1.4
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48098&amp;view=revision">r48098</a></p>
+<p>2.0.0-p594
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48110&amp;view=revision">r48110</a></p>
+<p>1.9.3-p550
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48121&amp;view=revision">r48121</a></p>
+<p>В любом случае, если вы отмените эти изменения, есть риск, что вы не сможете гарантировать безопасность сетевых коммуникаций.
+Вы должны понимать последстивия этих изменений, прежде чем отменять их.</p>
+<h3>Встроенные библиотеки Ruby</h3>
+<p>Это изменение затрагивает net/http, net/imap и net/pop.
+С тех пор как DRb и WEBrick настраиваются отдельно, это изменение не затрагивает их.</p>
+<h3>Скрипты, которые используют ext/openssl напрямую</h3>
+<p>Это изменение влияет на метод <code>set_params</code> объекта <code>OpenSSL::SSL::SSLContext</code>.</p>
+<p>Например, в следующем коде:</p>
+<!-- raw HTML omitted -->
+<p>Когда ext/openssl используется на стороне клиента, мы предполагаем, что никаких проблем с представленными изменениями быть не должно.
+Но, если вы используете ext/openssl на серверной стороне и у вас есть код, приведенный выше, некоторые
+старые клиенты (Internet Explorer 6 на Windows XP, браузеры в старых мобильных телефонах и т.п.), возможно не смогут подключиться к серверу.</p>
+<p>Применять или не применять данные изменения – решение остается за вами.</p>
+<h2>Обходной путь</h2>
+<p>Если вы не можете обновить Ruby, но хотите отключить небезопасные опции SSL/TLS, примените следующий манкипатч:</p>
+<!-- raw HTML omitted -->
+<h2>Версии, затронутые изменениями</h2>
+<ul>
+<li>Ruby 1.9.3 patchlevel 550 и позднее</li>
+<li>Ruby 2.0.0 patchlevel 594 и позднее</li>
+<li>Ruby 2.1.4 и позднее</li>
+<li>ревизия 48097 и позднее в trunk</li>
+</ul>
+<h2>История</h2>
+<ul>
+<li>Оригинал опубликован 2014-10-27 12:00:00 (UTC)</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последние новости</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ru/news/2021/08/03/fukuoka-ruby-award-2022/">Конкурс на соискание премии Fukuoka Ruby 2022 - судить участников будет Matz</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-3-0-2-released/">Вышел Ruby 3.0.2</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-2-7-4-released/">Вышел Ruby 2.7.4</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.1.1 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2014/02/24/ruby-2-1-1-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.1.1 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 24 Feb 2014</p>
+
+    <p>今日は Ruby の 21 回目の誕生日ですので、Ruby 2.1 の新しいパッチリリース、Ruby 2.1.1 をリリースします。</p>
+<p><a href="https://www.ruby-lang.org/ja/news/2013/12/25/ruby-2-1-0-is-released/">Ruby 2.1</a> は Ruby 1.9 から始まる Ruby 2 系の最新の安定版です。Ruby 2.1 は以前からの互換性を重視するとともに、様々な高速化が行われており、Rails その他の用途でより快適な環境を得ることができます。</p>
+<p>パッチリリースである Ruby 2.1.1 ではリリース後に見つかった様々なバグを修正しています。
+バグ修正の詳細については<a href="https://bugs.ruby-lang.org/projects/ruby-21/issues?set_filter=1&amp;status_id=5">チケット</a> や <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_1_1/ChangeLog">ChangeLog</a> をご覧下さい。</p>
+<p>なお以前お伝えしましたとおり、Ruby 2.1 では<a href="https://www.ruby-lang.org/ja/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/">新しいバージョン表記</a>を採用していますので、単純に「Ruby 2.1.1」というのがこのリリースの名称になります。</p>
+<p><strong>追記:</strong> Ruby 2.1.1 において、<code>Hash#reject</code> の不具合が発見されました。詳細はこちらをご覧ください: <a href="https://www.ruby-lang.org/ja/news/2014/03/10/regression-of-hash-reject-in-ruby-2-1-1/">Ruby 2.1.1 に含まれる Hash#reject の不具合について</a></p>
+<h2>Download</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.bz2</a>
+<ul>
+<li>SIZE:   11990697 bytes</li>
+<li>MD5:    53edc33b2f590ecdd9f6a344b9d92d0d</li>
+<li>SHA256: 96aabab4dd4a2e57dd0d28052650e6fcdc8f133fa8980d9b936814b1e93f6cfc</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz</a>
+<ul>
+<li>SIZE:   15092388 bytes</li>
+<li>MD5:    e57fdbb8ed56e70c43f39c79da1654b2</li>
+<li>SHA256: c843df31ae88ed49f5393142b02b9a9f5a6557453805fd489a76fbafeae88941</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.zip">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.zip</a>
+<ul>
+<li>SIZE:   16618363 bytes</li>
+<li>MD5:    02c1dbff9c550d2d808444c8fef483bc</li>
+<li>SHA256: 6c226d3f3a4bd1a9356077473d1915968f45af6775660bb8ec5e245a337e3b14</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

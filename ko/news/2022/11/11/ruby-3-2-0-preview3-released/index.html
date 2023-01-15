@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.2.0 Preview 3 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2022/11/11/ruby-3-2-0-preview3-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.2.0 Preview 3 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2022-11-11)<br>
+                         번역자: shia</p>
+
+    <p>Ruby 3.2.0-preview3 릴리스를 알리게 되어 기쁩니다. Ruby 3.2는 많은 기능과 성능 향상을 포함하고 있습니다.</p>
+<h2>WASI 기반 웹어셈블리 지원</h2>
+<p>WASI에 기반해 웹어셈블리를 지원하는 첫 이식판입니다. 이를 통해 CRuby 바이너리는 웹 브라우저, 서버리스 엣지 환경, 그 이외의 웹어셈블리/WASI를 사용 가능한 환경에서 동작할 수 있습니다. 현재 이 이식판은 스레드 API를 사용하지 않는 기본적인 테스트와 부트스트랩 테스트 스위트를 통과합니다.</p>
+<p><img src="https://i.imgur.com/opCgKy2.png" alt="" /></p>
+<h3>배경</h3>
+<p><a href="https://webassembly.org/">웹어셈블리(Wasm)</a>는 본래 웹 브라우저에서 프로그램을 안전하고 빠르게 실행하기 위해서 만들어졌습니다. 하지만 그 목적 중 하나인 프로그램을 다양한 환경에서 안전하고 효율적으로 실행하는 것은 웹뿐만이 아니라 일반적인 애플리케이션도 바라던 것입니다.</p>
+<p><a href="https://wasi.dev/">WASI(The WebAssembly System Interface)</a>는 이러한 용도를 위해 설계되었습니다. 이러한 애플리케이션은 운영체제와 통신해야 합니다만, 웹어셈블리는 시스템 인터페이스를 가지지 않는 가상 머신 위에서 동작합니다. WASI는 이 인터페이스를 표준화합니다.</p>
+<p>Ruby의 웹어셈블리/WASI 지원은 이러한 프로젝트들을 활용하기 위함입니다. 이를 통해 Ruby 개발자들이 약속한 플랫폼에서 움직이는 애플리케이션을 작성할 수 있습니다.</p>
+<h3>사용 예시</h3>
+<p>이는 개발자가 웹어셈블리 환경에서 CRuby를 활용할 수 있도록 돕습니다. 하나의 예로, <a href="https://try.ruby-lang.org/playground/">TryRuby playground</a>의 CRuby 지원이 있습니다. 이제 CRuby를 웹 브라우저 상에서 직접 사용해볼 수 있습니다.</p>
+<h3>기술적인 부분</h3>
+<p>현재 WASI와 웹어셈블리 자체에는 Fiber, 예외 처리, GC를 구현하기 위한 일부 기능이 부족합니다. 이는 여전히 개발 중이라는 점도 있지만, 보안 때문이기도 합니다. 그래서 CRuby는 사용자 공간에서의 실행을 제어하기 위한 바이너리 변환 기술인 Asyncify를 사용해 그 차이를 메꿉니다.</p>
+<p>나아가서 Ruby 앱을 간단하게 단일 .wasm 파일로 패키징할 수 있도록 <a href="https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby">WASI 상에 VFS</a>를 구현했습니다. 이는 Ruby 앱의 배포를 쉽게 해줄 것입니다.</p>
+<h3>관련 링크</h3>
+<ul>
+<li><a href="https://github.com/ruby/ruby/pull/5407">Add WASI based WebAssembly support #5407</a></li>
+<li><a href="https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9">An Update on WebAssembly/WASI Support in Ruby</a></li>
+</ul>
+<h2>ReDoS에 대한 정규표현식 개선</h2>
+<p>정규표현식 일치는 기대와는 다르게 시간이 오래 걸리는 경우가 있습니다. 신뢰할 수 없는 입력에 대해서 비효율적일 가능성이 있는 정규표현식을 일치시키고 있다면, 공격자는 이를 이용해 효율적으로 서비스 거부 공격(이를 정규표현식 DoS, 또는 ReDoS라고 부릅니다)이 가능합니다.</p>
+<p>ReDoS의 위협을 현저하게 완화할 수 있는 2개의 개선을 도입했습니다.</p>
+<h3>개선된 정규표현식 일치 알고리즘</h3>
+<p>Ruby 3.2부터 정규표현식 일치 알고리즘이 메모이제이션 기술에 의해 매우 개선됩니다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Ruby 3.1에서 10초가 걸리지만, Ruby 3.2에서는 0.003초가 걸립니다.
+
+/^a*b?a*$/ =~ "a" * 50000 + "x"
+</code></pre></div></div>
+<p>이 개선된 알고리즘은 대부분의 정규표현식 일치(실험에서는 약 90%)가 선형 시간으로 완료됩니다.</p>
+<p>(Preview 사용자에게: 이 최적화는 각 일치마다 입력의 길이에 비례하여 메모리를 소비할 수 있습니다. 이 메모리 확보는 필요할 때까지 발생하지 않으며, 일반적인 정규표현식 일치는 입력 길이에 비해 최대 10배 소비할 뿐이므로, 실상황에서 문제는 없을 것이라고 예상합니다. 만약 실제 애플리케이션에서 정규표현식 일치로 인한 메모리 부족이 발생하는 경우에는 보고해주세요.)</p>
+<p>기능 제안 티켓은 <a href="https://bugs.ruby-lang.org/issues/19104">https://bugs.ruby-lang.org/issues/19104</a>입니다.</p>
+<h3>정규표현식 타임아웃</h3>
+<p>위에서 설명한 최적화는 고급 기능(e.g. 역참조나 전후방탐색)이나 매우 큰 고정 회수 반복을 포함하는 정규표현식에서는 적용할 수 없습니다. 이러한 경우를 위한 방법으로, 정규표현식 일치에 타임아웃 기능이 추가되었습니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="sr">/^a*b?a*()\1$/</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span>
+<span class="c1">#=&gt; Regexp::TimeoutError is raised in one second</span>
+</code></pre></div></div>
+<p><code>Regexp.timeout</code>은 전역 설정임에 주의하세요. 일부의 특수한 정규표현식에 대해서만 다른 타임아웃 설정을 사용하고 싶다면, <code>Regexp.new</code> 의 <code>timeout</code> 키워드를 사용할 수 있습니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># 이 정규표현식은 타임아웃 설정이 없습니다.</span>
+<span class="n">long_time_re</span> <span class="o">=</span> <span class="no">Regexp</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'^a*b?a*()\1$'</span><span class="p">,</span> <span class="ss">timeout: </span><span class="no">Float</span><span class="o">::</span><span class="no">INFINITY</span><span class="p">)</span>
+
+<span class="n">long_time_re</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1"># never interrupted</span>
+</code></pre></div></div>
+<p>기능 제안 티켓은 <a href="https://bugs.ruby-lang.org/issues/17837">https://bugs.ruby-lang.org/issues/17837</a>입니다.</p>
+<h2>그 이외의 주목할 만한 새 기능</h2>
+<h3>서드파티 소스 코드를 더 이상 내장하지 않음</h3>
+<ul>
+<li>
+<p><code>libyaml</code>, <code>libffi</code>와 같은 서드파티 라이브러리의 소스 코드를 더 이상 포함하지 않습니다.</p>
+<ul>
+<li>
+<p>libyaml의 소스 코드는 psych로부터 제거되었습니다. Ubuntu/Debian 환경에서는 <code>libyaml-dev</code>가 필요합니다. 패키지 이름은 각 환경별로 다를 수 있습니다.</p>
+</li>
+<li>
+<p>동봉된 libffi 소스 코드도 <code>fiddle</code>로부터 제거되었습니다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>언어</h3>
+<ul>
+<li>
+<p>익명 나머지 인수, 익명 나머지 키워드 인수가 파라미터로서뿐만 아니라,
+인수로서도 사용할 수 있게 됩니다. [<a href="https://bugs.ruby-lang.org/issues/18351">Feature #18351</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">baz</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+  <span class="n">quux</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>1개의 위치 인수와 나머지를 키워드로 받는 프록은 인수를 자동으로 전개하지
+않습니다. [<a href="https://bugs.ruby-lang.org/issues/18633">Bug #18633</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">proc</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="o">|</span> <span class="n">a</span><span class="p">}.</span><span class="nf">call</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Ruby 3.1 and before</span>
+<span class="c1"># =&gt; 1</span>
+<span class="c1"># Ruby 3.2 and after</span>
+<span class="c1"># =&gt; [1, 2]</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>상수 대입에서의 상수 평가 순서가 단일 속성 대입 시의 평가 순서와
+일관성을 가지게 됩니다. 다음 코드의 경우,</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">foo</span><span class="o">::</span><span class="no">BAR</span> <span class="o">=</span> <span class="n">baz</span>
+</code></pre></div></div>
+<p><code>foo</code>는 이제 <code>baz</code>보다 먼저 호출됩니다. 마찬가지로 상수의 다중 대입에서도
+왼쪽에서 오른쪽으로 평가됩니다. 다음 코드의 경우,</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="n">foo1</span><span class="o">::</span><span class="no">BAR1</span><span class="p">,</span> <span class="n">foo2</span><span class="o">::</span><span class="no">BAR2</span> <span class="o">=</span> <span class="n">baz1</span><span class="p">,</span> <span class="n">baz2</span>
+</code></pre></div></div>
+<p>아래와 같은 순서로 평가됩니다.</p>
+<ol>
+<li><code>foo1</code></li>
+<li><code>foo2</code></li>
+<li><code>baz1</code></li>
+<li><code>baz2</code></li>
+</ol>
+<p>[<a href="https://bugs.ruby-lang.org/issues/15928">Bug #15928</a>]</p>
+</li>
+<li>
+<p>검색 패턴은 이제 정식 기능입니다.
+[<a href="https://bugs.ruby-lang.org/issues/18585">Feature #18585</a>]</p>
+</li>
+<li>
+<p><code>*args</code>와 같은 나머지 파라미터를 받는 메서드에서 <code>foo(*args)</code>를 통해 키워드 인수를
+위임하고 싶은 경우, 반드시 <code>ruby2_keywords</code>를 사용해야 합니다. 다르게 말하면,
+<code>*args</code>를 사용해 키워드 인수를 위임하고 싶은 모든 메서드는 예외 없이
+<code>ruby2_keywords</code>를 사용해야 합니다. 이 변경으로 라이브러리가 Ruby 3 이상을
+요구하게 되었을 때 다른 위임 방식으로의 마이그레이션이 간단해집니다.
+지금까지 메서드가 <code>*args</code>를 넘겨받았을 때, <code>ruby2_keywords</code> 플래그가 유지되었습니다만,
+이는 의도치 않은 동작이었으며, 일관성이 없었습니다. 빠져있었던 <code>ruby2_keywords</code>를
+찾아내기 위한 좋은 방법 중 한 가지로 테스트를 실행한 뒤, 실패하는 각각의 테스트에서
+키워드 인수를 받는 마지막 메서드를 찾고, 그곳에서 <code>puts nil, caller, nil</code>를 사용하세요.
+그리고 나서 호출 체인의 각 메서드/블록이 키워드를 위임할 때 <code>ruby2_keywords</code>를
+올바르게 사용하고 있는지 확인하세요. [<a href="https://bugs.ruby-lang.org/issues/18625">Bug #18625</a>] [<a href="https://bugs.ruby-lang.org/issues/16466">Bug #16466</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># 의도치 않게 Ruby 2.7-3.1에서 ruby2_keywords 없이 동작했습니다만,</span>
+<span class="c1"># Ruby 3.2+에서는 ruby2_keywords가 필요합니다. ruby2_keywords를 사용하지 않는 경우,</span>
+<span class="c1"># #foo, #bar 양쪽에 (*args, **kwargs)나 (...)이 필요합니다.</span>
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="ss">k: </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>성능 향상</h2>
+<h3>YJIT</h3>
+<ul>
+<li>arm64, aarch64 상의 UNIX 환경을 지원합니다.</li>
+<li>YJIT 빌드하기 위해서는 Rust 1.58.1 이상을 요구합니다. [<a href="https://bugs.ruby-lang.org/issues/18481">Feature #18481</a>]</li>
+</ul>
+<h2>3.1 이후로 주목할 만한 변경</h2>
+<ul>
+<li>
+<p>Hash</p>
+<ul>
+<li><code>Hash#shift</code>는 이제 해시가 비어있다면
+기본 값이나 기본 프록을 호출한 결과 값을 반환하는 대신
+언제나 nil을 반환합니다. [<a href="https://bugs.ruby-lang.org/issues/16908">Bug #16908</a>]</li>
+</ul>
+</li>
+<li>
+<p>MatchData</p>
+<ul>
+<li><code>MatchData#byteoffset</code>이 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+</ul>
+</li>
+<li>
+<p>Module</p>
+<ul>
+<li><code>Module.used_refinements</code>가 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/14332">Feature #14332</a>]</li>
+<li><code>Module#refinements</code>가 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+<li><code>Module#const_added</code>가 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/17881">Feature #17881</a>]</li>
+</ul>
+</li>
+<li>
+<p>Proc</p>
+<ul>
+<li><code>Proc#dup</code>은 서브클래스의 인스턴스를 반환합니다. [<a href="https://bugs.ruby-lang.org/issues/17545">Bug #17545</a>]</li>
+<li><code>Proc#parameters</code>는 이제 람다 키워드를 받습니다. [<a href="https://bugs.ruby-lang.org/issues/15357">Feature #15357</a>]</li>
+</ul>
+</li>
+<li>
+<p>Refinement</p>
+<ul>
+<li><code>Refinement#refined_class</code>가 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+</ul>
+</li>
+<li>
+<p>RubyVM::AbstractSyntaxTree</p>
+<ul>
+<li><code>parse</code>, <code>parse_file</code>, <code>of</code>에 <code>error_tolerant</code> 옵션이 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/19013">Feature #19013</a>]</li>
+</ul>
+</li>
+<li>
+<p>Set</p>
+<ul>
+<li>Set은 이제 <code>require &quot;set&quot;</code>할 필요 없이 사용 가능한 내장 클래스입니다. [<a href="https://bugs.ruby-lang.org/issues/16989">Feature #16989</a>]
+현재는 <code>Set</code> 상수를 사용하거나 <code>Enumerable#to_set</code>을 호출하면 자동으로 로드됩니다.</li>
+</ul>
+</li>
+<li>
+<p>String</p>
+<ul>
+<li><code>String#byteindex</code>와 <code>String#byterindex</code>가 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+<li>유니코드 버전이 14.0.0, 에모지 버전이 14.0으로 갱신되었습니다. [<a href="https://bugs.ruby-lang.org/issues/18037">Feature #18037</a>]
+(이는 정규표현식에도 적용됩니다)</li>
+<li><code>String#bytesplice</code>가 추가되었습니다. [<a href="https://bugs.ruby-lang.org/issues/18598">Feature #18598</a>]</li>
+</ul>
+</li>
+<li>
+<p>Struct</p>
+<ul>
+<li><code>keyword_init: true</code> 없이 <code>Struct.new</code>에 키워드 인수를 넘겨
+Struct 클래스를 초기화할 수 있습니다. [<a href="https://bugs.ruby-lang.org/issues/16806">Feature #16806</a>]</li>
+</ul>
+</li>
+</ul>
+<h2>호환성 문제</h2>
+<p>주의: 기능 버그 수정은 포함되어 있지 않습니다.</p>
+<h3>삭제된 상수</h3>
+<p>폐기 예정이었던 상수가 삭제됩니다.</p>
+<ul>
+<li><code>Fixnum</code>, <code>Bignum</code> [<a href="https://bugs.ruby-lang.org/issues/12005">Feature #12005</a>]</li>
+<li><code>Random::DEFAULT</code> [<a href="https://bugs.ruby-lang.org/issues/17351">Feature #17351</a>]</li>
+<li><code>Struct::Group</code></li>
+<li><code>Struct::Passwd</code></li>
+</ul>
+<h3>삭제된 메서드</h3>
+<p>폐기 예정이었던 메서드가 삭제됩니다.</p>
+<ul>
+<li><code>Dir.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>File.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>Kernel#=~</code> [<a href="https://bugs.ruby-lang.org/issues/15231">Feature #15231</a>]</li>
+<li><code>Kernel#taint</code>, <code>Kernel#untaint</code>, <code>Kernel#tainted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+<li><code>Kernel#trust</code>, <code>Kernel#untrust</code>, <code>Kernel#untrusted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h2>Stdlib 호환성 문제</h2>
+<ul>
+<li><code>Psych</code>는 더 이상 <code>libyaml</code> 소스 코드를 포함하지 않습니다.
+이용자는 패키지 매니저를 사용해서 스스로 <code>libyaml</code> 라이브러리를 설치해야합니다. [<a href="https://bugs.ruby-lang.org/issues/18571">Feature #18571</a>]</li>
+</ul>
+<h2>C API 변경</h2>
+<h3>갱신된 C API</h3>
+<p>다음 API가 갱신됩니다.</p>
+<ul>
+<li>PRNG 갱신
+<ul>
+<li><code>rb_random_interface_t</code>가 갱신되어 이제 버전을 가집니다.
+이 인터페이스를 구버전으로 사용하고 있다면 새 인터페이스를 사용해야 합니다.
+또한 <code>init_int32</code> 함수를 정의할 필요가 있습니다.</li>
+</ul>
+</li>
+</ul>
+<h3>삭제된 C API</h3>
+<p>다음 폐기 예정인 API가 삭제됩니다.</p>
+<ul>
+<li><code>rb_cData</code> 변수.</li>
+<li>&quot;taintedness&quot;와 &quot;trustedness&quot; 함수. [<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h3>표준 라이브러리 갱신</h3>
+<ul>
+<li>
+<p>SyntaxSuggest</p>
+<ul>
+<li><code>syntax_suggest</code>(구 <code>dead_end</code>)의 기능이 Ruby에 통합됩니다.
+[<a href="https://bugs.ruby-lang.org/issues/18159">Feature #18159</a>]</li>
+</ul>
+</li>
+<li>
+<p>ErrorHighlight</p>
+<ul>
+<li>TypeError와 ArgumentError가 발생한 인수를 가리킵니다.</li>
+</ul>
+</li>
+</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test.rb:2:in `+': nil can't be coerced into Integer (TypeError)
+
+sum = ary[0] + ary[1]
+               ^^^^^^
+</code></pre></div></div>
+<ul>
+<li>다음 기본 gem이 갱신되었습니다.
+<ul>
+<li>RubyGems 3.4.0.dev</li>
+<li>bigdecimal 3.1.2</li>
+<li>bundler 2.4.0.dev</li>
+<li>cgi 0.3.2</li>
+<li>date 3.2.3</li>
+<li>error_highlight 0.4.0</li>
+<li>etc 1.4.0</li>
+<li>io-console 0.5.11</li>
+<li>io-nonblock 0.1.1</li>
+<li>io-wait 0.3.0.pre</li>
+<li>ipaddr 1.2.4</li>
+<li>json 2.6.2</li>
+<li>logger 1.5.1</li>
+<li>net-http 0.2.2</li>
+<li>net-protocol 0.1.3</li>
+<li>ostruct 0.5.5</li>
+<li>psych 5.0.0.dev</li>
+<li>reline 0.3.1</li>
+<li>securerandom 0.2.0</li>
+<li>set 1.0.3</li>
+<li>stringio 3.0.3</li>
+<li>syntax_suggest 0.0.1</li>
+<li>timeout 0.3.0</li>
+</ul>
+</li>
+<li>다음 내장 gem이 갱신되었습니다.
+<ul>
+<li>minitest 5.16.3</li>
+<li>net-imap 0.2.3</li>
+<li>rbs 2.6.0</li>
+<li>typeprof 0.21.3</li>
+<li>debug 1.6.2</li>
+</ul>
+</li>
+<li>다음 기본 gem은 이제 내장 gem이 되었습니다.</li>
+</ul>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/v3_2_0_preview3/NEWS.md">NEWS</a>나
+<a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview3">커밋 로그</a>를
+확인해 주세요.</p>
+<p>이러한 변경사항에 따라, Ruby 3.1.0 이후로 <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview3#file_bucket">파일 2719개 수정, 191269줄 추가(+), 120315줄 삭제(-)</a>가
+이루어졌습니다!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20086542
+SHA1: dafca8116d36ceaa32482ab38359768de8c3ae5e
+SHA256: c041d1488e62730d3a10dbe7cf7a3b3e4268dc867ec20ec991e7d16146640487
+SHA512: 860634d95e4b9c48f18d38146dfbdc3c389666d45454248a4ccdfc3a5d3cd0c71c73533aabf359558117de9add1472af228d8eaec989c9336b1a3a6f03f1ae88
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14799804
+SHA1: c94e2add05502cb5c39afffc995b7c8f000f7df0
+SHA256: d3f5619de544240d92a5d03aa289e71bd1103379622c523a0e80ed029a74b3bb
+SHA512: c1864e2e07c3711eaa17d0f85dfbcc6e0682b077782bb1c155315af45139ae66dc4567c73682d326975b0f472111eb0a70f949811cb54bed0b3a816ed6ac34df
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.zip">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 24426893
+SHA1: 346c051c4be7ab8d0b551fd2ff8169785697db62
+SHA256: cf49aa70e7ebd8abebffd5e49cd3bd92e5b9f3782d587cc7ed88c98dd5f17069
+SHA512: 4f22b5ea91be17ef5f68cf0acb1e3a226dcc549ad71cc9b40e623220087c4065ca9bea942710f668e5c94ca0323da8d2ccd565f95a9085c1a0e38e9c0543b22f
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby는</h2>
+<p>Ruby는 1993년에 Matz(마츠모토 유키히로) 씨가 처음 개발했고,
+현재는 오픈 소스로서 개발되고 있습니다. 여러 플랫폼에서 동작하며,
+특히 웹 개발에서 전 세계적으로 이용되고 있습니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

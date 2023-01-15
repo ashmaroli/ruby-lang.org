@@ -1,4 +1,2325 @@
----
-layout: news_feed
-lang: es
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Noticias de Ruby por RSS</title>
+    <link>https://www.ruby-lang.org/es/feeds/news.rss</link>
+    <language>es-ES</language>
+    <ttl>40</ttl>
+    <description>Las últimas noticias de ruby-lang.org en español.</description>
+    
+    <item>
+      <title>Publicado Ruby 3.2.0</title>
+      <description>&lt;p&gt;Nos complace anunciar la publicación de Ruby 3.2.0.
+Ruby 3.2 añade muchas características y mejoras en desempeño.&lt;/p&gt;
+&lt;h2&gt;Soporte para WebAssembly basado en WASI&lt;/h2&gt;
+&lt;p&gt;Este es un porte inicial del soporte para WebAssembly basado en WASI.
+Esto permite que un binario de CRuby esté disponible en un navegador Web,
+en un ambiente sin servidor Edge y en otros tipos de empotrados
+de WebAssembly/WASI.
+Actualmente este porte pasa los juegos de pruebas básicas y de bootstrap
+que no usan la API de Threads.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/opCgKy2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Trasfondo&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://webassembly.org/&quot;&gt;WebAssembly (Wasm)&lt;/a&gt; inicialmente se introdujo
+para ejecutar programas de manera segura y rápida en navegadores web.
+Pero buena parte de su objetivo --ejecutar programar eficientemente y con
+seguridad-- es anhelado hace tiempo no sólo para el web sino para aplicaciones
+en general.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://wasi.dev/&quot;&gt;WASI (The WebAssembly System Interface)&lt;/a&gt; fue diseñado
+para ese caso de uso.  Dado que una aplicación necesita comunicarse con
+el sistema operativo pero WebAssembly corre en una máquina virtual sin
+interfaz al sistema operativo, WASI estandariza dicha interfaz.&lt;/p&gt;
+&lt;p&gt;El soporte para WebAssembly/WASI en ruby pretende aprovechar estos
+proyectos.  Habilita a los desarrolladores de ruby para escribir aplicaciones
+que corran en esas plataformas prometidas.&lt;/p&gt;
+&lt;h3&gt;Caso de uso&lt;/h3&gt;
+&lt;p&gt;Este soporte promueve que los desarrolladores utilicen
+CRuby en un ambiente WebAssembly.  Un caso de uso de ejemplo es
+el soporte CRuby del
+&lt;a href=&quot;https://try.ruby-lang.org/playground/&quot;&gt;espacio de entrenamiento TryRuby&lt;/a&gt;.
+Ahora usted puede probar CRuby original en su navegador web.&lt;/p&gt;
+&lt;h3&gt;Puntos técnicos&lt;/h3&gt;
+&lt;p&gt;Hoy en día WASI y WebAssembly carecen de algunas características para
+implementar Fibras, excepciones y el Recolector de Basura porque aún está
+evolucionado y también por razones de seguridad.
+Así que CRuby llena ese vació mediante Asyncify, que es una técnica de
+transformación binaria para controlar la ejecución en el espacio
+del usuario.&lt;/p&gt;
+&lt;p&gt;Además, construimos un &lt;a href=&quot;https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby&quot;&gt;Sistema Virtual de Archivos (VFS) sobre WASI&lt;/a&gt;
+que permite empaquetar con facilidad aplicación Ruby en un sólo archivo
+.wasm. Esto hace un poco más fácil la distribución de aplicaciones.&lt;/p&gt;
+&lt;h3&gt;Enlaces relacionados&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5407&quot;&gt;Add WASI based WebAssembly support #5407&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9&quot;&gt;An Update on WebAssembly/WASI Support in Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;YJIT listo para producción&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/X9ulfac.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;YJIT ya no es experimental
+&lt;ul&gt;
+&lt;li&gt;Se ha probado con cargas de producción por más de un año y a demostrado ser
+estable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;YJIT ahora soporta tanto CPUs x86-64 como arm64/aarch64 en Linux, MacOS,
+BSD y otras plataformas UNIX.
+&lt;ul&gt;
+&lt;li&gt;Esta versión trae soporte para procesadores Mac M1/M2, AWS Graviton,
+Raspberry Pi 4 y más.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;La compilación de YJIT ahora requiere Rust 1.58.0+. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18481&quot;&gt;Característica #18481&lt;/a&gt;]
+&lt;ul&gt;
+&lt;li&gt;Para asegurar que CRuby se compila con YJIT, por favor instale
+rustc &amp;gt;= 1.58.0 antes de ejecutar el script &lt;code&gt;./configure&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Por favor comuníquese con el equipo de YJIT en caso de que tenga
+algún inconveniente.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;La versión 3.2 es más veloz que la 3.1, y tiene alrededor de 1/3 de
+sobrecarga de memoria.
+&lt;ul&gt;
+&lt;li&gt;En general YJIT es 41% más rápido (media geométrica) que el intérprete
+de Ruby en  &lt;a href=&quot;https://github.com/Shopify/yjit-bench&quot;&gt;yjit-bench&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;La memoria física para el código JIT se localiza tardiamente. A diferencia
+de Ruby 3.1, el RSS de un proceso Ruby se minimiza porque las páginas
+de memoria virtual localizadas con &lt;code&gt;--yjit-exec-mem-size&lt;/code&gt; no se
+mapearán a páginas de memoria física sino hasta que en efecto sean
+utilizadas por el código JIT.&lt;/li&gt;
+&lt;li&gt;Se introduce código al Recolector de Basura que libera todas las páginas
+cuando el consumo de memoria del código JIT alcanza &lt;code&gt;--yjit-exec-mem-size&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;RubyVM::YJIT.runtime_stats retorna métricas del código del Recolector de
+Basura además de las llaves existentes &lt;code&gt;inline_code_size&lt;/code&gt; y
+&lt;code&gt;outlined_code_size&lt;/code&gt;:
+&lt;code&gt;code_gc_count&lt;/code&gt;, &lt;code&gt;live_page_count&lt;/code&gt;, &lt;code&gt;freed_page_count&lt;/code&gt;, y
+&lt;code&gt;freed_code_size&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;La mayoría de las estadísticas producidas por &lt;code&gt;RubyVM::YJIT.runtime_stats&lt;/code&gt;
+ahora están disponibles en las versiones publicadas.
+&lt;ul&gt;
+&lt;li&gt;Sencillamente ejecute ruby con &lt;code&gt;--yjit-stats&lt;/code&gt; para calcular
+estadísticas stats (esto incurre en alguna sobrecarga en el tiempo
+de ejecución).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;YJIT ahora está optimizado para aprovechar Formas de Objetos (Object Shapes).
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18776&quot;&gt;Característica #18776&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Aprovecha la invalidación de constantes a una escala más fina para
+invalidar menos código cuando se definen nuevas constantes.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18589&quot;&gt;Característica #18589&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;El valor predeterminado de &lt;code&gt;--yjit-exec-mem-size&lt;/code&gt; se ha cambiado a 64 (MiB).&lt;/li&gt;
+&lt;li&gt;El valor predeterminado de &lt;code&gt;--yjit-call-threshold&lt;/code&gt; se ha cambiado a 30.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejora en Regexp contra Denegación de Servicio por Expresión Regular (ReDoS)&lt;/h2&gt;
+&lt;p&gt;Es conocido que la correspondencia de expresiones regulares puede tomar
+un tiempo inesperadamente largo. Si su código intenta hacer corresponder una
+expresión regular ineficiente con un entrada no confiable, un atacante
+puede explotarlo y producir efectivamente una Denegación de Servicio (también
+llamada Denegación de Servicio por Expresión Regular o ReDoS).&lt;/p&gt;
+&lt;p&gt;Hemos introducido dos mejoras que mitigan significativamente un ReDoS.&lt;/p&gt;
+&lt;h3&gt;Algoritmo de correspondencia mejorado&lt;/h3&gt;
+&lt;p&gt;Desde Ruby 3.2, el algoritmo de correspondencia de expresiones regulares ha
+sido mejorado significativamente empleando técnicas de memorización.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Esta correspondencia tarda 10 segundos. en Ruby 3.1, y 0.003 seg. en Ruby 3.2
+
+/^a*b?a*$/ =~ &quot;a&quot; * 50000 + &quot;x&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://cache.ruby-lang.org/pub/media/ruby320_regex_1.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://cache.ruby-lang.org/pub/media/ruby320_regex_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;El algoritmo de correspondencia mejorado permite que la mayoría de
+correspondencia de expresiones regulares (cerca del 90% en nuestros
+experimentos) se complete en tiempo lineal.&lt;/p&gt;
+&lt;p&gt;(Para usuarios de la versión preview: esta optimización puede consumir memoria
+proporcional a la longitud de la entrada por cada correspondencia. Esperamos
+que no se presenten problemas prácticos porque la localización de memoria
+para esto usualmente se hace de manera tardía, y una correspondencia de Regexp
+normal debería consumir a lo sumo 10 veces la memoria de la entrada. Si
+se le agota la memoria al hacer correspondencia de expresiones regulares
+en aplicaciones del mundo real, por favor repórtelo.)&lt;/p&gt;
+&lt;p&gt;La propuesta original es &lt;a href=&quot;https://bugs.ruby-lang.org/issues/19104&quot;&gt;https://bugs.ruby-lang.org/issues/19104&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Temporizador de Regexp&lt;/h3&gt;
+&lt;p&gt;La optimización anterior no puede aplicarse a algunos tipos de expresiones
+regulares, como las que incluyen características avanzadas (e.g.,
+referencias-anteriores --back-references-- y mirar-alrededor --look-arond--),
+o con un número inmenso y fijo de repeticiones.  Como medida alternativa,
+también se introduce un temporizador para expresiones regulares.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;/^a*b?a*()\1$/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; Regexp::TimeoutError is raised in one second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Tenga en cuenta que &lt;code&gt;Regexp.timeout&lt;/code&gt; es una configuración global. Si quiere
+emplear configuraciones del temporizadores diferentes para algunas
+expresiones regulares especiales, puede usar la palabra clave &lt;code&gt;timeout&lt;/code&gt;
+de &lt;code&gt;Regexp.new&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Esta regexp no tiene tiempo límite&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'^a*b?a*()\1$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;timeout: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;INFINITY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# nunca se interrumpe&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;La propuesta original es &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17837&quot;&gt;https://bugs.ruby-lang.org/issues/17837&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Otras características nuevas y notables&lt;/h2&gt;
+&lt;h3&gt;SyntaxSuggest&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;La característica de &lt;code&gt;syntax_suggest&lt;/code&gt; (antes llamada &lt;code&gt;dead_end&lt;/code&gt;) se ha
+integrado en Ruby. Le ayuda a encontrar la posición de errores tales como
+&lt;code&gt;end&lt;/code&gt;s falantes o superfluos, para permitirle continuar su camino
+más rápido, como en el siguiente ejemplo:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Unmatched `end', missing keyword (`do', `def`, `if`, etc.) ?
+
+  1  class Perro
+&amp;gt; 2    defladra
+&amp;gt; 3    end
+  4  end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18159&quot;&gt;Característica #18159&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;ErrorHighlight&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ahora puede resaltar errores en los argumentos relevantes para
+errores &lt;code&gt;TypeError&lt;/code&gt; y &lt;code&gt;ArgumentError&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;test.rb:2:in `+': nil can't be coerced into Integer (TypeError)
+
+sum = ary[0] + ary[1]
+               ^^^^^^
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3&gt;Lenguaje&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Los argumentos anónimos para el resto y con palabra clave para el resto ahora
+pueden ser pasados como argumentos, en lugar de sólo ser usados en
+parámetros de métodos.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18351&quot;&gt;Característica #18351&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;quux&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Un proc que acepte un solo argumento posicional y palabras clave
+ya no hará splat automáticamente. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18633&quot;&gt;Falla #18633&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.1 and before&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.2 and after&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [1, 2]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El orden de evaluación de la asignación de constantes para constantes
+establecidas en objetos explícitos se ha hecho consistente con el
+orden de evaluación de la asignación de atributos. Por ejemplo con
+este código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;foo&lt;/code&gt; ahora es llamado antes que &lt;code&gt;baz&lt;/code&gt;. De forma similar, para
+asignaciones múltiples a constantes, se usa un orden de evaluación
+de izquierda a derecha. Por ejemplo con el siguiente código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;n&quot;&gt;foo1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Ahora se usa el siguiente orden de evaluación:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;foo1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz2&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15928&quot;&gt;Falla #15928&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El patrón Find ya no es experimental.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18585&quot;&gt;Característica #18585&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Los métodos que reciben un parámetro para el resto (como &lt;code&gt;*args&lt;/code&gt;)
+y que quieren delegar argumentos de palabra clave como
+&lt;code&gt;foo(*args)&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;
+(si es que aún hace falta). En otras palabras, todos los métodos
+que quieren delegar argumentos de palabra clave por medio de
+&lt;code&gt;*args&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;,
+sin excepción.  Esto hará más fácil la transición a otras formas
+de delegación una vez una librería pueda requerir
+Ruby 3+. Antes, la opción &lt;code&gt;ruby2_keywords&lt;/code&gt;
+se mantenía si el método receptor tomaba &lt;code&gt;*args&lt;/code&gt;, pero esto
+era una falla y una inconsistencia.  Una buena técnica para encontrar
+dónde puede faltar &lt;code&gt;ruby2_keywords&lt;/code&gt; es ejecutar la suite de pruebas,
+y donde falle buscar el último método que debe recibir
+argumentos de palabra clave , usar &lt;code&gt;puts nil, caller, nil&lt;/code&gt; allí.
+Después revisar que cada método/bloque en la cadena de llamados que delegue
+palabras clave esté marcado correctamente como &lt;code&gt;ruby2_keywords&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18625&quot;&gt;Falla #18625&lt;/a&gt;] [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16466&quot;&gt;Falla #16466&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Accidentalmente funcionaba sin ruby2_keywords en Ruby 2.7-3.1,&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# necesita ruby2_keywords en 3.2+.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Así como (*args, **kwargs) o (...) se necesitarían tanto en #foo&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# como  #bar cuando deje de usar ruby2_keywords.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;k: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejoras en desempeño&lt;/h2&gt;
+&lt;h3&gt;MJIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;El compilador MJIT se ha vuelto a implementar en Ruby como
+&lt;code&gt;ruby_vm/mjit/compiler&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;El compilador MJIT se ejecuta en un proceso bifurcado en lugar de
+hacerlo en un hilo (thread) nativo llamado trabajador MJIT
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18968&quot;&gt;Característica #18968&lt;/a&gt;]
+&lt;ul&gt;
+&lt;li&gt;Como resultado de esto, ya no soporta Microsoft Visual Studio (MSWIN).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MinGW ya no es soportado. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18824&quot;&gt;Característica #18824&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Renombrar &lt;code&gt;--mjit-min-calls&lt;/code&gt; por &lt;code&gt;--mjit-call-threshold&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Se cambió el valor predeterminado para &lt;code&gt;--mjit-max-cache&lt;/code&gt; de 10000 a 100.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;PubGrub&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bundler 2.4 ahora usa el resolvedor &lt;a href=&quot;https://github.com/jhawthorn/pub_grub&quot;&gt;PubGrub&lt;/a&gt; en lugar de &lt;a href=&quot;https://github.com/CocoaPods/Molinillo&quot;&gt;Molinillo&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PubGrub es la siguiente generación de algoritmos de resolución usado
+por el manejador de paquetes &lt;code&gt;pub&lt;/code&gt; para el lenguaje de programación Dart.&lt;/li&gt;
+&lt;li&gt;Puede obtener resultados de resolución diferentes tras este cambio.
+Por favor reporte tales casos como &lt;a href=&quot;https://github.com/rubygems/rubygems/issues&quot;&gt;Incidentes de RubyGems/Bundler&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RubyGems seguirá usando el resolvedor Molinillo en Ruby 3.2.
+Planeamos remplazarlo por PubGrub en el futuro.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Otros cambios notables desde 3.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Data&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nueva clase central para representar un objeto con valor inmutable.
+La clase es similar a Struct y comparte parcialmente la implementación,
+pero tiene una API más limpia y estricta [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16122&quot;&gt;Característica #16122&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Medicion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:cantidad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:unidad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;distancia&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Medicion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'km'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; #&amp;lt;data Medicion cantidad=100, unidad=&quot;km&quot;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;peso&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Medicion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;cantidad: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;unidad: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'kg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; #&amp;lt;data Medicion cantidad=50, unidad=&quot;kg&quot;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;peso&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;cantidad: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                         &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; #&amp;lt;data Medicion cantidad=40, unidad=&quot;kg&quot;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;peso&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cantidad&lt;/span&gt;                                   &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 50&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;peso&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cantidad&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;                                &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; NoMethodError: undefined method `cantidad='&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Hash#shift&lt;/code&gt; ahora siempre retorna &lt;code&gt;nil&lt;/code&gt; si el diccionario está vacío,
+en lugar de retornar el valor predeterminado o llamar el
+proc predeterminado. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16908&quot;&gt;Falla #16908&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MatchData&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;MatchData#byteoffset&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Módulos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module.used_refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/14332&quot;&gt;Característica #14332&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#const_added&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17881&quot;&gt;Característica #17881&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Proc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Proc#dup&lt;/code&gt; retorna una instancia de subclase. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17545&quot;&gt;Falla #17545&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Proc#parameters&lt;/code&gt; ahora acepta la palabra clave &lt;code&gt;lambda&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15357&quot;&gt;Característica #15357&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Refinamiento&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Refinement#refined_class&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RubyVM::AbstractSyntaxTree&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Se agrega la opción &lt;code&gt;error_tolerant&lt;/code&gt; a &lt;code&gt;parse&lt;/code&gt;, &lt;code&gt;parse_file&lt;/code&gt; y &lt;code&gt;of&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/19013&quot;&gt;Característica #19013&lt;/a&gt;]
+Con esta opción&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Se suprime &lt;code&gt;SyntaxError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Se retorna un AST con entradas inválidas&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;end&lt;/code&gt; se complementa cuando el reconocedor llega al final de la
+entrada pero &lt;code&gt;end&lt;/code&gt; es insuficiente.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;end&lt;/code&gt; se trata como una palabra reservada con base en la indentación.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Sin la opción error_tolerant&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;raiz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AbstractSyntaxTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+def m
+  a = 10
+  if
+end
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; &amp;lt;internal:ast&amp;gt;:33:in `parse': syntax error, unexpected `end' (SyntaxError)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Con la opción error_tolerant&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;raiz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AbstractSyntaxTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;error_tolerant: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+def m
+  a = 10
+  if
+end
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; #&amp;lt;RubyVM::AbstractSyntaxTree::Node:SCOPE@1:0-4:3&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# `end` se trata como palabra reservada con base en la indentación&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;raiz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AbstractSyntaxTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;~&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;error_tolerant: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+module Z
+  class Foo
+    foo.
+  end
+
+  def bar
+  end
+end
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raiz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [#&amp;lt;RubyVM::AbstractSyntaxTree::Node:CLASS@2:2-4:5&amp;gt;, #&amp;lt;RubyVM::AbstractSyntaxTree::Node:DEFN@6:2-7:5&amp;gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Se agrega la opción &lt;code&gt;keep_tokens&lt;/code&gt; a &lt;code&gt;parse&lt;/code&gt;, &lt;code&gt;parse_file&lt;/code&gt; y &lt;code&gt;of&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/19070&quot;&gt;Característica #19070&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AbstractSyntaxTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;x = 1 + 2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;keep_tokens: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tokens&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [[0, :tIDENTIFIER, &quot;x&quot;, [1, 0, 1, 1]], [1, :tSP, &quot; &quot;, [1, 1, 1, 2]], ...]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; &quot;x = 1 + 2&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Conjuntos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Set&lt;/code&gt; ahora está disponible como una clase incorporada que no exige
+&lt;code&gt;require &amp;quot;set&amp;quot;&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16989&quot;&gt;Característica #16989&lt;/a&gt;]
+Ahora se llama de manera automática al usar la constante &lt;code&gt;Set&lt;/code&gt; o con una
+llamada a &lt;code&gt;Enumerable#to_set&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cadenas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se han añadido &lt;code&gt;String#byteindex&lt;/code&gt; y &lt;code&gt;String#byterindex&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se actualizó Unicode a la versión 15.0.0 y Emoji a la version 15.0.
+[[Característica #18039]]
+(también aplica para Regexp)&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;String#bytesplice&lt;/code&gt;.  [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18598&quot;&gt;Característica #18598&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Struct&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Una clase &lt;code&gt;Struct&lt;/code&gt; también puede inicializarse con argumentos de
+palabra clave sin &lt;code&gt;keyword_init: true&lt;/code&gt; en &lt;code&gt;Struct.new&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16806&quot;&gt;Característica #16806&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Publicacion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Struct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:nombre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Publicacion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hola&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; #&amp;lt;struct Publicacion id=1, nombre=&quot;hola&quot;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Desde Ruby 3.2, el siguiente código también opera sin keyword_init: true.&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Publicacion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;nombre: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hola&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; #&amp;lt;struct Publicacion id=1, nombre=&quot;hello&quot;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad&lt;/h2&gt;
+&lt;p&gt;Nota: Excluyendo arreglos de fallas.&lt;/p&gt;
+&lt;h3&gt;Constantes eliminadas&lt;/h3&gt;
+&lt;p&gt;Las siguientes constantes en desuso han sido eliminadas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fixnum&lt;/code&gt; y &lt;code&gt;Bignum&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Característica #12005&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Random::DEFAULT&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17351&quot;&gt;Característica #17351&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Group&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Passwd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Métodos eliminados&lt;/h3&gt;
+&lt;p&gt;Los siguientes métodos en desuso han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Dir.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;File.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#=~&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15231&quot;&gt;Característica #15231&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#taint&lt;/code&gt;, &lt;code&gt;Kernel#untaint&lt;/code&gt;, &lt;code&gt;Kernel#tainted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#trust&lt;/code&gt;, &lt;code&gt;Kernel#untrust&lt;/code&gt;, &lt;code&gt;Kernel#untrusted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad en Stdlib&lt;/h2&gt;
+&lt;h3&gt;Ya no se incluyen fuentes de terceros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ya no incluimos código fuente de terceros como &lt;code&gt;libyaml&lt;/code&gt; y &lt;code&gt;libffi&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;La fuente de &lt;code&gt;libyaml&lt;/code&gt; fue eliminada de &lt;code&gt;psych&lt;/code&gt;. Puede tener que
+instalar &lt;code&gt;libyaml-dev&lt;/code&gt; en plataformas Ubuntu/Debian. El nombre del
+paquete difiere en cada plataforma.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El código fuente incluido de &lt;code&gt;libffi&lt;/code&gt; también fue eliminado de &lt;code&gt;fiddle&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Psych&lt;/code&gt; ya no incluye las fuentes de libyaml.
+Los usuarios necesitan instalar la librería libyaml por su cuenta
+con el sistema de paquetes. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18571&quot;&gt;Característica #18571&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Psych y fiddle soportaban compilación estática con versiones específicas
+de las fuentes de libyaml y libffi.  Puede compilar psych con
+libyaml-0.2.5 así:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./configure &lt;span class=&quot;nt&quot;&gt;--with-libyaml-source-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/path/to/libyaml-0.2.5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Y puede compilar fiddle con libffi-3.4.4 así:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./configure &lt;span class=&quot;nt&quot;&gt;--with-libffi-source-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/path/to/libffi-3.4.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;[[Feature #18571]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Actualización al API en C&lt;/h2&gt;
+&lt;h3&gt;Funciones actualizadas del API en C&lt;/h3&gt;
+&lt;p&gt;Se actualizaron las siguientes funciones del API.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generador de números seudo aleatorios (PRNG)
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rb_random_interface_t&lt;/code&gt; actualizado y con versiones.
+Las librerías de extensión que usan esta interfaz y construidas
+para versiones antiguas.
+También la función &lt;code&gt;init_int32&lt;/code&gt; debe ser definida.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Funciones eliminadas del API en C&lt;/h3&gt;
+&lt;p&gt;Los siguientes elementos del APIs han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;variable &lt;code&gt;rb_cData&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;funciones &amp;quot;taintedness&amp;quot; y &amp;quot;trustedness&amp;quot;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Actualizaciones a la librería estándar&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bundler&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Añadido soporte para --ext=rust para empaquetar gemas simples con
+extensiones Rust. [&lt;a href=&quot;https://github.com/rubygems/rubygems/pull/6149&quot;&gt;GH-rubygems-6149&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;La clonación de repositorios git es más rápida [&lt;a href=&quot;https://github.com/rubygems/rubygems/pull/4475&quot;&gt;GH-rubygems-4475&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RubyGems&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Agrega soporte mswin para el constructor cargo. [&lt;a href=&quot;https://github.com/rubygems/rubygems/pull/6167&quot;&gt;GH-rubygems-6167&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ERB&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se implementa &lt;code&gt;ERB::Util.html_escape&lt;/code&gt; más rápido que &lt;code&gt;CGI.escapeHTML&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;Ya no localiza un objeto String cuando no se requiere escapar
+caracteres.&lt;/li&gt;
+&lt;li&gt;Evita llamar métodos &lt;code&gt;#to_s&lt;/code&gt; cuando un argumento ya es String.&lt;/li&gt;
+&lt;li&gt;Se agrega &lt;code&gt;ERB::Escape.html_escape&lt;/code&gt; como alias de
+&lt;code&gt;ERB::Util.html_escape&lt;/code&gt;, que no ha tenido un parchado-monkey
+de Rails.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IRB&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se han añadido ordenes de integración con debug.gem: &lt;code&gt;debug&lt;/code&gt;, &lt;code&gt;break&lt;/code&gt;,
+&lt;code&gt;catch&lt;/code&gt;, &lt;code&gt;next&lt;/code&gt;, &lt;code&gt;delete&lt;/code&gt;, &lt;code&gt;step&lt;/code&gt;, &lt;code&gt;continue&lt;/code&gt;, &lt;code&gt;finish&lt;/code&gt;, &lt;code&gt;backtrace&lt;/code&gt;,
+&lt;code&gt;info&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Funcionan incluso si no tiene &lt;code&gt;gem &amp;quot;debug&amp;quot;&lt;/code&gt; en su Gemfile.&lt;/li&gt;
+&lt;li&gt;Ver también: &lt;a href=&quot;https://st0012.dev/whats-new-in-ruby-3-2-irb&quot;&gt;What's new in Ruby 3.2's IRB?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Se han añadido más ordenes como de Pry y  características.
+&lt;ul&gt;
+&lt;li&gt;Se añadieron &lt;code&gt;edit&lt;/code&gt; y &lt;code&gt;show_cmds&lt;/code&gt; (como &lt;code&gt;help&lt;/code&gt; en Pry).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ls&lt;/code&gt; recibe la opción &lt;code&gt;-g&lt;/code&gt; o &lt;code&gt;-G&lt;/code&gt; para filtrar la salida.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;show_source&lt;/code&gt; es un alias de &lt;code&gt;$&lt;/code&gt; y acepta entradas sin comillas.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;whereami&lt;/code&gt; es un alias de &lt;code&gt;@&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las siguientes gemas predeterminadas han sido actualizadas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.4.1&lt;/li&gt;
+&lt;li&gt;abbrev 0.1.1&lt;/li&gt;
+&lt;li&gt;benchmark 0.2.1&lt;/li&gt;
+&lt;li&gt;bigdecimal 3.1.3&lt;/li&gt;
+&lt;li&gt;bundler 2.4.1&lt;/li&gt;
+&lt;li&gt;cgi 0.3.6&lt;/li&gt;
+&lt;li&gt;csv 3.2.6&lt;/li&gt;
+&lt;li&gt;date 3.3.3&lt;/li&gt;
+&lt;li&gt;delegate 0.3.0&lt;/li&gt;
+&lt;li&gt;did_you_mean 1.6.3&lt;/li&gt;
+&lt;li&gt;digest 3.1.1&lt;/li&gt;
+&lt;li&gt;drb 2.1.1&lt;/li&gt;
+&lt;li&gt;english 0.7.2&lt;/li&gt;
+&lt;li&gt;erb 4.0.2&lt;/li&gt;
+&lt;li&gt;error_highlight 0.5.1&lt;/li&gt;
+&lt;li&gt;etc 1.4.2&lt;/li&gt;
+&lt;li&gt;fcntl 1.0.2&lt;/li&gt;
+&lt;li&gt;fiddle 1.1.1&lt;/li&gt;
+&lt;li&gt;fileutils 1.7.0&lt;/li&gt;
+&lt;li&gt;forwardable 1.3.3&lt;/li&gt;
+&lt;li&gt;getoptlong 0.2.0&lt;/li&gt;
+&lt;li&gt;io-console 0.6.0&lt;/li&gt;
+&lt;li&gt;io-nonblock 0.2.0&lt;/li&gt;
+&lt;li&gt;io-wait 0.3.0&lt;/li&gt;
+&lt;li&gt;ipaddr 1.2.5&lt;/li&gt;
+&lt;li&gt;irb 1.6.2&lt;/li&gt;
+&lt;li&gt;json 2.6.3&lt;/li&gt;
+&lt;li&gt;logger 1.5.3&lt;/li&gt;
+&lt;li&gt;mutex_m 0.1.2&lt;/li&gt;
+&lt;li&gt;net-http 0.3.2&lt;/li&gt;
+&lt;li&gt;net-protocol 0.2.1&lt;/li&gt;
+&lt;li&gt;nkf 0.1.2&lt;/li&gt;
+&lt;li&gt;open-uri 0.3.0&lt;/li&gt;
+&lt;li&gt;open3 0.1.2&lt;/li&gt;
+&lt;li&gt;openssl 3.1.0&lt;/li&gt;
+&lt;li&gt;optparse 0.3.1&lt;/li&gt;
+&lt;li&gt;ostruct 0.5.5&lt;/li&gt;
+&lt;li&gt;pathname 0.2.1&lt;/li&gt;
+&lt;li&gt;pp 0.4.0&lt;/li&gt;
+&lt;li&gt;pstore 0.1.2&lt;/li&gt;
+&lt;li&gt;psych 5.0.1&lt;/li&gt;
+&lt;li&gt;racc 1.6.2&lt;/li&gt;
+&lt;li&gt;rdoc 6.5.0&lt;/li&gt;
+&lt;li&gt;readline-ext 0.1.5&lt;/li&gt;
+&lt;li&gt;reline 0.3.2&lt;/li&gt;
+&lt;li&gt;resolv 0.2.2&lt;/li&gt;
+&lt;li&gt;resolv-replace 0.1.1&lt;/li&gt;
+&lt;li&gt;securerandom 0.2.2&lt;/li&gt;
+&lt;li&gt;set 1.0.3&lt;/li&gt;
+&lt;li&gt;stringio 3.0.4&lt;/li&gt;
+&lt;li&gt;strscan 3.0.5&lt;/li&gt;
+&lt;li&gt;syntax_suggest 1.0.2&lt;/li&gt;
+&lt;li&gt;syslog 0.1.1&lt;/li&gt;
+&lt;li&gt;tempfile 0.1.3&lt;/li&gt;
+&lt;li&gt;time 0.2.1&lt;/li&gt;
+&lt;li&gt;timeout 0.3.1&lt;/li&gt;
+&lt;li&gt;tmpdir 0.1.3&lt;/li&gt;
+&lt;li&gt;tsort 0.1.1&lt;/li&gt;
+&lt;li&gt;un 0.2.1&lt;/li&gt;
+&lt;li&gt;uri 0.12.0&lt;/li&gt;
+&lt;li&gt;weakref 0.1.2&lt;/li&gt;
+&lt;li&gt;win32ole 1.8.9&lt;/li&gt;
+&lt;li&gt;yaml 0.2.1&lt;/li&gt;
+&lt;li&gt;zlib 3.0.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las siguientes gemas incluidas han sido actualizadas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;minitest 5.16.3&lt;/li&gt;
+&lt;li&gt;power_assert 2.0.3&lt;/li&gt;
+&lt;li&gt;test-unit 3.5.7&lt;/li&gt;
+&lt;li&gt;net-ftp 0.2.0&lt;/li&gt;
+&lt;li&gt;net-imap 0.3.3&lt;/li&gt;
+&lt;li&gt;net-pop 0.1.2&lt;/li&gt;
+&lt;li&gt;net-smtp 0.3.3&lt;/li&gt;
+&lt;li&gt;rbs 2.8.2&lt;/li&gt;
+&lt;li&gt;typeprof 0.21.3&lt;/li&gt;
+&lt;li&gt;debug 1.7.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ver en la publicación de GitHub &lt;a href=&quot;https://github.com/ruby/logger/releases&quot;&gt;GitHub Releases of logger&lt;/a&gt;
+o en la bitácora de cambios los detalles de las gemas predeterminadas e
+incluidas.&lt;/p&gt;
+&lt;p&gt;Ver más detalles en &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_2_0/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+o en &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0&quot;&gt;la bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Con estos cambios, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0#file_bucket&quot;&gt;3048 archivos cambiados, 218253 inserciones(+), 131067 eliminaciones(-)&lt;/a&gt;
+desde Ruby 3.1.0!&lt;/p&gt;
+&lt;p&gt;¡Feliz navidad, felices fiestas y disfrute programar con Ruby 3.2!&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20440715
+SHA1: fb4ab2ceba8bf6a5b9bc7bf7cac945cc94f94c2b
+SHA256: daaa78e1360b2783f98deeceb677ad900f3a36c0ffa6e2b6b19090be77abc272
+SHA512: 94203051d20475b95a66660016721a0457d7ea57656a9f16cdd4264d8aa6c4cd8ea2fab659082611bfbd7b00ebbcf0391e883e2ebf384e4fab91869e0a877d35
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15058364
+SHA1: bcdae07183d66fd902cb7bf995545a472d2fefea
+SHA256: d2f4577306e6dd932259693233141e5c3ec13622c95b75996541b8d5b68b28b4
+SHA512: 733ecc6709470ee16916deeece9af1c76220ae95d17b2681116aff7f381d99bc3124b1b11b1c2336b2b29e468e91b90f158d5ae5fca810c6cf32a0b6234ae08e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24583271
+SHA1: 581ec7b9289c2a85abf4f41c93993ecaa5cf43a5
+SHA256: cca9ddbc958431ff77f61948cb67afa569f01f99c9389d2bbedfa92986c9ef09
+SHA512: b7d2753825cc0667e8bb391fc7ec59a53c3db5fa314e38eee74b6511890b585ac7515baa2ddac09e2c6b6c42b9221c82e040af5b39c73e980fbd3b1bc622c99d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lo que es Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby fue desarrollado inicialmente por Matz (Yukihiro Matsumoto) en 1993,
+y ahora es desarrollado como Código Abierto. Corre en múltiples plataformas
+y se usa en todo el mundo especialmente para desarrollo web.&lt;/p&gt;
+
+&lt;p&gt;Publicado por naruse el 2022-12-25&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Sun, 25 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/12/25/ruby-3-2-0-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/12/25/ruby-3-2-0-released/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 3.2.0 RC 1</title>
+      <description>&lt;p&gt;Nos complace anunciar la publicación de Ruby 3.2.0-rc1.
+Ruby 3.2 añade muchas características y mejoras en desempeño.&lt;/p&gt;
+&lt;h2&gt;Soporte para WebAssembly basado en WASI&lt;/h2&gt;
+&lt;p&gt;Este es un porte inicial del soporte para WebAssembly basado en WASI.
+Esto permite que un binario de CRuby esté disponible en un navegador Web,
+en un ambiente sin servidor Edge y en otros tipos de empotrados
+de WebAssembly/WASI.
+Actualmente este porte pasa los juegos de pruebas básicas y de bootstrap
+que no usan la API de Threads.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/opCgKy2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Trasfondo&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://webassembly.org/&quot;&gt;WebAssembly (Wasm)&lt;/a&gt; inicialmente se introdujo
+para ejecutar programas de manera segura y rápida en navegadores web.
+Pero buena parte de su objetivo --ejecutar programar eficientemente y con
+seguridad-- es anhelado hace tiempo no sólo para el web sino para aplicaciones
+en general.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://wasi.dev/&quot;&gt;WASI (The WebAssembly System Interface)&lt;/a&gt; fue diseñado
+para ese caso de uso.  Dado que una aplicación necesita comunicarse con
+el sistema operativo pero WebAssembly corre en una máquina virtual sin
+interfaz al sistema operativo, WASI estandariza dicha interfaz.&lt;/p&gt;
+&lt;p&gt;El soporte para WebAssembly/WASI en ruby pretende aprovechar estos
+proyectos.  Habilita a los desarrolladores de ruby para escribir aplicaciones
+que corran en esas plataformas prometidas.&lt;/p&gt;
+&lt;h3&gt;Caso de uso&lt;/h3&gt;
+&lt;p&gt;Este soporte promueve que los desarrolladores utilicen
+CRuby en un ambiente WebAssembly.  Un caso de uso de ejemplo es
+el soporte CRuby del
+&lt;a href=&quot;https://try.ruby-lang.org/playground/&quot;&gt;espacio de entrenamiento TryRuby&lt;/a&gt;.
+Ahora usted puede probar CRuby original en su navegador web.&lt;/p&gt;
+&lt;h3&gt;Puntos técnicos&lt;/h3&gt;
+&lt;p&gt;Hoy en día WASI y WebAssembly carecen de algunas características para
+implementar Fibras, excepciones y el Recolector de Basura porque aún está
+evolucionado y también por razones de seguridad.
+Así que CRuby llena ese vació mediante Asyncify, que es una técnica de
+transformación binaria para controlar la ejecución en el espacio
+del usuario.&lt;/p&gt;
+&lt;p&gt;Además, construimos un &lt;a href=&quot;https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby&quot;&gt;Sistema Virtual de Archivos (VFS) sobre WASI&lt;/a&gt;
+que permite empaquetar con facilidad aplicación Ruby en un sólo archivo
+.wasm. Esto hace un poco más fácil la distribución de aplicaciones.&lt;/p&gt;
+&lt;h3&gt;Enlaces relacionados&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5407&quot;&gt;Add WASI based WebAssembly support #5407&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9&quot;&gt;An Update on WebAssembly/WASI Support in Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejora en Regexp contra Denegación de Servicio por Expresión Regular (ReDoS)&lt;/h2&gt;
+&lt;p&gt;Es conocido que la correspondencia de expresiones regulares puede tomar
+un tiempo inesperadamente largo. Si su código intenta hacer corresponder una
+expresión regular ineficiente con un entrada no confiable, un atacante
+puede explotarlo y producir efectivamente una Denegación de Servicio (también
+llamada Denegación de Servicio por Expersión Regular o ReDoS).&lt;/p&gt;
+&lt;p&gt;Hemos introducido dos mejoras que mitigan significativamente un ReDoS.&lt;/p&gt;
+&lt;h3&gt;Algoritmo de correspondecia mejorado&lt;/h3&gt;
+&lt;p&gt;Desde Ruby 3.2, el algoritmo de correspondencia de expresiones regulares ha
+sido ejorado significativamente empleando técnicas de memorización.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Esta corresponencia tarda 10 seg. en Ruby 3.1, y 0.003 seg. en Ruby 3.2
+
+/^a*b?a*$/ =~ &quot;a&quot; * 50000 + &quot;x&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://cache.ruby-lang.org/pub/media/ruby320_regex_1.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://cache.ruby-lang.org/pub/media/ruby320_regex_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;El algoritmo de correspondencia mejorado permite que la mayoría de
+correspondencia de expresiones regulares (cerca del 90% en nuestros
+experimentos) se complete en tiempo lineal.&lt;/p&gt;
+&lt;p&gt;(Para usuarios de la versión preview: esta optimización puede consumir memoria
+proporcional a la longitud de la entrada por cada correspondencia. Esperamos
+que no se presenten problemas prácticos porque la localización de memoria
+para esto usualmente se hace de manera tardía, y una correspondencia de Regexp
+normal debería consumir a lo sumo 10 veces la memoria de la entrada. Si
+se le agota la memoria al hacer correspondencia de expresiones regulares
+en aplicaciones del mundo real, por favor repórtelo.)&lt;/p&gt;
+&lt;p&gt;La propuesta original es &lt;a href=&quot;https://bugs.ruby-lang.org/issues/19104&quot;&gt;https://bugs.ruby-lang.org/issues/19104&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Temporizador de Regexp&lt;/h3&gt;
+&lt;p&gt;La optimización anterior no puede aplicarse a algunos tipos de expresiones
+regulares, como las que incluyen características avanzadas (e.g.,
+referencias-anteriores --back-references-- y mirar-alrededor --look-arond--),
+o con un número inmenso y fijo de repeticiones.  Como medida alternativa,
+también se introduce un temporizador para expresiones regulares.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;/^a*b?a*()\1$/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; Regexp::TimeoutError is raised in one second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Tenga en cuenta que &lt;code&gt;Regexp.timeout&lt;/code&gt; es una configuración global. Si quiere
+emplear configuraciones del temporizadores diferentes para algunas
+expresiones regulares especiales, puede usar la palabra clave &lt;code&gt;timeout&lt;/code&gt;
+de &lt;code&gt;Regexp.new&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Esta regexp no tiene tiempo límite&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'^a*b?a*()\1$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;timeout: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;INFINITY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# nunca se interrumpe&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;La propuesta original es &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17837&quot;&gt;https://bugs.ruby-lang.org/issues/17837&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Otras características nuevas y notables&lt;/h2&gt;
+&lt;h3&gt;SyntaxSuggest&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;La característica de &lt;code&gt;syntax_suggest&lt;/code&gt; (antes llamada &lt;code&gt;dead_end&lt;/code&gt;) se ha
+integrado en Ruby. Le ayuda a encontrar la posición de errores tales como
+&lt;code&gt;end&lt;/code&gt;s falantes o superfluos, para permitirle continuar su camino
+más rápido, como en el siguiente ejemplo:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Unmatched `end', missing keyword (`do', `def`, `if`, etc.) ?
+
+  1  class Perro
+&amp;gt; 2    defladra
+&amp;gt; 4    end
+  5  end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18159&quot;&gt;Característica #18159&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;ErrorHighlight&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ahora puede resaltar errores en los argumentos relevantes para
+errores &lt;code&gt;TypeError&lt;/code&gt; y &lt;code&gt;ArgumentError&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;test.rb:2:in `+': nil can't be coerced into Integer (TypeError)
+
+sum = ary[0] + ary[1]
+               ^^^^^^
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3&gt;Lenguaje&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Los argumentos anónimos para el resto y con palabra clave para el resto ahora
+pueden ser pasados como argumentos, en lugar de sólo ser usados en
+parámetros de métodos.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18351&quot;&gt;Característica #18351&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;quux&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Un proc que acepte un solo argumento posicional y palabras clave
+ya no hará splat automaticamente. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18633&quot;&gt;Falla #18633&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.1 and before&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.2 and after&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [1, 2]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El orden de evaluación de la asignación de constantes para constantes
+establecidas en objetos explícitos se ha hecho consistente con el
+orden de evaluación de la asignación de atributos. Por ejemplo con
+este código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;foo&lt;/code&gt; ahora es llamado antes que &lt;code&gt;baz&lt;/code&gt;. De forma similar, para
+asignaciones múltiples a constantes, se usa un orden de evaluación
+de izquierda a derecha. Por ejemplo con el siguiente código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;n&quot;&gt;foo1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Ahora se usa el siguiente orden de evaluación:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;foo1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz2&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15928&quot;&gt;Falla #15928&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El patrón Find ya no es experimental.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18585&quot;&gt;Característica #18585&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Los métodos que reciben un parámetro para el resto (como &lt;code&gt;*args&lt;/code&gt;)
+y que quieren delegar argumentos de palabra clave como
+&lt;code&gt;foo(*args)&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;
+(si es que aún hace falta). En otras palabras, todos los métodos
+que quieren delegar argumentos de palabra clave por medio de
+&lt;code&gt;*args&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;,
+sin excepción.  Esto hará más fácil la transición a otras formas
+de delegación una vez una librería pueda requerir
+Ruby 3+. Antes, la opción &lt;code&gt;ruby2_keywords&lt;/code&gt;
+se mantenía si el método receptor tomaba &lt;code&gt;*args&lt;/code&gt;, pero esto
+era una falla y una inconsistencia.  Una buena técnica para encontrar
+donde puede faltar &lt;code&gt;ruby2_keywords&lt;/code&gt; es ejecutar la suite de pruebas,
+y donde falle buscar el último método que debe recibir
+argumentos de palabra clave , usar &lt;code&gt;puts nil, caller, nil&lt;/code&gt; allí.
+Después revisar que cada método/bloque en la cadena de llamados que delegue
+palabras clave esté marcado correctamente como &lt;code&gt;ruby2_keywords&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18625&quot;&gt;Falla #18625&lt;/a&gt;] [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16466&quot;&gt;Falla #16466&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Accidentalmente funcionaba sin ruby2_keywords en Ruby 2.7-3.1,&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# necesita ruby2_keywords en 3.2+.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Así como (*args, **kwargs) o (...) se necesitarían tanto en #foo&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# como  #bar cuando deje de usar ruby2_keywords.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;k: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejoras en desempeño&lt;/h2&gt;
+&lt;h3&gt;YJIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;YJIT ahora soporta tanto CPUs x86-64 como arm64/aarch64 en Linux, MacOS,
+BSD and otras plataformas UNIX.&lt;/li&gt;
+&lt;li&gt;Esta versión trae soporta para procesadores Mac M1/M2, AWS Graviton y
+Raspberry Pi 4 ARM64.&lt;/li&gt;
+&lt;li&gt;La compilación de YJIT requiere Rust 1.58.1+. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18481&quot;&gt;Característica #18481&lt;/a&gt;]
+&lt;ul&gt;
+&lt;li&gt;Para asegurar que CRuby se compila con YJIT, por favor instale
+rustc &amp;gt;= 1.58.0 y ejecute &lt;code&gt;./configure&lt;/code&gt; con &lt;code&gt;--enable-yjit&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Por favor comuniquese con el equipo de YJIT en caso de que tenga
+algún inconveniente.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;La memoria física para el código JIT se localiza tardiamente. A diferencia
+de Ruby 3.1, el RSS de un proceso Ruby se minimiza porque las páginas
+de memoria virtual localizadas con &lt;code&gt;--yjit-exec-mem-size&lt;/code&gt; no se
+mapearán a páginas de memoria física sino hasta que en efecto sean
+utilizadas por el código JIT.&lt;/li&gt;
+&lt;li&gt;Se introduce código al Recolector de Basura que libera todas las páginas
+cuando el consumo de memoria del código JIT alcanza &lt;code&gt;--yjit-exec-mem-size&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;RubyVM::YJIT.runtime_stats retorna métricas del código del
+Recolector de Basura además de las llaves existentes
+&lt;code&gt;inline_code_size&lt;/code&gt; y &lt;code&gt;outlined_code_size&lt;/code&gt;:
+&lt;code&gt;code_gc_count&lt;/code&gt;, &lt;code&gt;live_page_count&lt;/code&gt;, &lt;code&gt;freed_page_count&lt;/code&gt;, y
+&lt;code&gt;freed_code_size&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;La mayoría de las estadísticas producidas por RubyVM::YJIT.runtime_stats
+ahora están disponibles en las versiones publicadas.
+&lt;ul&gt;
+&lt;li&gt;Sencillamente ejecute ruby con &lt;code&gt;--yjit-stats&lt;/code&gt; para calcular
+estadísticas stats (esto incurre en alguna sobrecarga en el tiempo
+de ejecución).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;YJIT ahora está optimizado para aprovechar Formas de Objetos (Object Shapes).
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18776&quot;&gt;Característica #18776&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Aprovecha in-validación de constantes a una escala más fina para
+invalidar menos código cuando se definen nuevas constantes.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18589&quot;&gt;Característica #18589&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;MJIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;El compilador MJIT se ha vuelto a implementar en Ruby como una librería
+estándar &lt;code&gt;mjit&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;El compilador MJIT se ejecuta en un proceso Ruby bifurcado en lugar de
+hacerlo en un hilo (thread) nativo llamado trabajador MJIT
+[[Característica #18968]]
+&lt;ul&gt;
+&lt;li&gt;Como resultado de esto, ya no soporta Microsoft Visual Studio (MSWIN).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MinGW ya no es soportado. [[Característica #18824]]&lt;/li&gt;
+&lt;li&gt;Renombrar &lt;code&gt;--mjit-min-calls&lt;/code&gt; por &lt;code&gt;--mjit-call-threshold&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Se cambió el valor predeterminado para &lt;code&gt;--mjit-max-cache&lt;/code&gt; de 10000 a 100.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;PubGrub&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bundler 2.4 ahora usa el resolvedor &lt;a href=&quot;https://github.com/jhawthorn/pub_grub&quot;&gt;PubGrub&lt;/a&gt; en lugar de &lt;a href=&quot;https://github.com/CocoaPods/Molinillo&quot;&gt;Molinillo&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PubGrub es la siguiente generación de algoritmos de resolución usado
+por el manejador de paquetes &lt;code&gt;pub&lt;/code&gt; para el lenguaje de programación Dart.&lt;/li&gt;
+&lt;li&gt;Puede obtener resultados de resolución diferentes tras este cambio.
+Por favor reportenos tales casos como &lt;a href=&quot;https://github.com/rubygems/rubygems/issues&quot;&gt;Incidentes de RubyGems/Bundler&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RubyGems seguirá usando el resolvedor Molinillo en Ruby 3.2.
+Planeamos remplazarlo por PubGrub en el futuro.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Otros cambios notables desde 3.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash#shift ahora siempre retorna nil si el hash está vacío,
+en lugar de retornar el valor predeterminado o llamar el
+proc predeterminado. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16908&quot;&gt;Falla #16908&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MatchData&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;MatchData#byteoffset&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Módulos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module.used_refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/14332&quot;&gt;Característica #14332&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#const_added&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17881&quot;&gt;Característica #17881&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Proc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Proc#dup&lt;/code&gt; retorna una instancia de subclase. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17545&quot;&gt;Falla #17545&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Proc#parameters&lt;/code&gt; ahora acepta la palabra clave lambda. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15357&quot;&gt;Característica #15357&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Refinamiento&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Refinement#refined_class&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RubyVM::AbstractSyntaxTree&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se agrega la opción &lt;code&gt;error_tolerant&lt;/code&gt; a &lt;code&gt;parse&lt;/code&gt;, &lt;code&gt;parse_file&lt;/code&gt; y &lt;code&gt;of&lt;/code&gt;.
+[[Característica #19013]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Conjuntos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Set&lt;/code&gt; ahora está disponible como una clase incorporada que no exige
+&lt;code&gt;require &amp;quot;set&amp;quot;&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16989&quot;&gt;Característica #16989&lt;/a&gt;]
+Ahora se llama de manera automática al usar la constante &lt;code&gt;Set&lt;/code&gt; o con una
+llamada a &lt;code&gt;Enumerable#to_set&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cadenas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se han añadido &lt;code&gt;String#byteindex&lt;/code&gt; y &lt;code&gt;String#byterindex&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se actualizó Unicode a la versión 15.0.0 y Emoji a la version 15.0.
+[[Característica #18039]]
+(también aplica para Regexp)&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;String#bytesplice&lt;/code&gt;.  [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18598&quot;&gt;Característica #18598&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Struct&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una clase &lt;code&gt;Struct&lt;/code&gt; también puede inicializarse con argumentos de
+palabra clave sin &lt;code&gt;keyword_init: true&lt;/code&gt; en &lt;code&gt;Struct.new&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16806&quot;&gt;Característica #16806&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad&lt;/h2&gt;
+&lt;p&gt;Nota: Excluyendo arreglos de fallas.&lt;/p&gt;
+&lt;h3&gt;Constantes eliminadas&lt;/h3&gt;
+&lt;p&gt;Las siguientes constantes despreciadas han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fixnum&lt;/code&gt; y &lt;code&gt;Bignum&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Característica #12005&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Random::DEFAULT&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17351&quot;&gt;Característica #17351&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Group&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Passwd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Métodos eliminados&lt;/h3&gt;
+&lt;p&gt;Los siguientes métodos despreciados han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Dir.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;File.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#=~&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15231&quot;&gt;Característica #15231&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#taint&lt;/code&gt;, &lt;code&gt;Kernel#untaint&lt;/code&gt;, &lt;code&gt;Kernel#tainted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#trust&lt;/code&gt;, &lt;code&gt;Kernel#untrust&lt;/code&gt;, &lt;code&gt;Kernel#untrusted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad en Stdlib&lt;/h2&gt;
+&lt;h3&gt;Ya no se incluyen fuentes de terceros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ya no incluimos código fuente de terceros como &lt;code&gt;libyaml&lt;/code&gt; y &lt;code&gt;libffi&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;La fuente de &lt;code&gt;libyaml&lt;/code&gt; fue eliminada de &lt;code&gt;psych&lt;/code&gt;. Puede tener que
+instalar &lt;code&gt;libyaml-dev&lt;/code&gt; en plataformas Ubuntu/Debian. El nombre del
+paquete difiere en cada plataforma.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El código fuente incluido de &lt;code&gt;libffi&lt;/code&gt; también fue eliminado de &lt;code&gt;fiddle&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Psych&lt;/code&gt; ya no incluye las fuentes de libyaml.
+Los usuarios necesitan instalar la librería libyaml por su cuenta
+con el sistema de paquetes. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18571&quot;&gt;Característica #18571&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Psych y fiddle soportaban compilación estática con versiones específicas
+de las fuentes de libyaml y libffi.  Puede compilar psych con
+libyaml-0.2.5 así:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./configure &lt;span class=&quot;nt&quot;&gt;--with-libyaml-source-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/path/to/libyaml-0.2.5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Y puede compilar fifdel con libffi-3.4.4 así:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./configure &lt;span class=&quot;nt&quot;&gt;--with-libffi-source-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/path/to/libffi-3.4.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;[[Feature #18571]]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Actualización al API en C&lt;/h2&gt;
+&lt;h3&gt;Funciones actualizadas del API en C&lt;/h3&gt;
+&lt;p&gt;Se actualizaron las siguientes funciones del API.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generador de números seudo aleatorios (PRNG)
+&lt;code&gt;rb_random_interface_t&lt;/code&gt; actualizado y con versiones.
+Las librerías de extensión que usan esta interfaz y construidas
+para versiones antiguas.
+También la función &lt;code&gt;init_int32&lt;/code&gt; debe ser definida.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Funciones eliminadas del API en C&lt;/h3&gt;
+&lt;p&gt;Los siguientes elementos del APIs han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;variable &lt;code&gt;rb_cData&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;funciones &amp;quot;taintedness&amp;quot; y &amp;quot;trustedness&amp;quot;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Actualizaciones a la librería estándar&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Las siguientes gemas predeterminadas han sido actualizadas
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.4.0.dev&lt;/li&gt;
+&lt;li&gt;benchmark 0.2.1&lt;/li&gt;
+&lt;li&gt;bigdecimal 3.1.2&lt;/li&gt;
+&lt;li&gt;bundler 2.4.0.dev&lt;/li&gt;
+&lt;li&gt;cgi 0.3.2&lt;/li&gt;
+&lt;li&gt;date 3.3.0&lt;/li&gt;
+&lt;li&gt;delegate 0.3.0&lt;/li&gt;
+&lt;li&gt;did_you_mean 1.6.2&lt;/li&gt;
+&lt;li&gt;digest 3.1.1&lt;/li&gt;
+&lt;li&gt;drb 2.1.1&lt;/li&gt;
+&lt;li&gt;erb 4.0.2&lt;/li&gt;
+&lt;li&gt;error_highlight 0.5.1&lt;/li&gt;
+&lt;li&gt;etc 1.4.0&lt;/li&gt;
+&lt;li&gt;fcntl 1.4.1&lt;/li&gt;
+&lt;li&gt;fiddle 1.1.1&lt;/li&gt;
+&lt;li&gt;fileutils 1.7.0&lt;/li&gt;
+&lt;li&gt;forwardable 1.3.3&lt;/li&gt;
+&lt;li&gt;getoptlong 0.2.0&lt;/li&gt;
+&lt;li&gt;io-console 0.5.11&lt;/li&gt;
+&lt;li&gt;io-nonblock 0.2.0&lt;/li&gt;
+&lt;li&gt;io-wait 0.3.0.pre&lt;/li&gt;
+&lt;li&gt;ipaddr 1.2.5&lt;/li&gt;
+&lt;li&gt;irb 1.5.1&lt;/li&gt;
+&lt;li&gt;json 2.6.2&lt;/li&gt;
+&lt;li&gt;logger 1.5.2&lt;/li&gt;
+&lt;li&gt;mutex_m 0.1.2&lt;/li&gt;
+&lt;li&gt;net-http 0.3.1&lt;/li&gt;
+&lt;li&gt;net-protocol 0.2.0&lt;/li&gt;
+&lt;li&gt;nkf 0.1.2&lt;/li&gt;
+&lt;li&gt;open-uri 0.3.0&lt;/li&gt;
+&lt;li&gt;openssl 3.1.0.pre&lt;/li&gt;
+&lt;li&gt;optparse 0.3.0&lt;/li&gt;
+&lt;li&gt;ostruct 0.5.5&lt;/li&gt;
+&lt;li&gt;pathname 0.2.1&lt;/li&gt;
+&lt;li&gt;pp 0.4.0&lt;/li&gt;
+&lt;li&gt;pstore 0.1.2&lt;/li&gt;
+&lt;li&gt;psych 5.0.0&lt;/li&gt;
+&lt;li&gt;racc 1.6.1&lt;/li&gt;
+&lt;li&gt;rdoc 6.5.0&lt;/li&gt;
+&lt;li&gt;reline 0.3.1&lt;/li&gt;
+&lt;li&gt;resolv 0.2.2&lt;/li&gt;
+&lt;li&gt;securerandom 0.2.1&lt;/li&gt;
+&lt;li&gt;set 1.0.3&lt;/li&gt;
+&lt;li&gt;stringio 3.0.3&lt;/li&gt;
+&lt;li&gt;syntax_suggest 1.0.1&lt;/li&gt;
+&lt;li&gt;timeout 0.3.1&lt;/li&gt;
+&lt;li&gt;tmpdir 0.1.3&lt;/li&gt;
+&lt;li&gt;tsort 0.1.1&lt;/li&gt;
+&lt;li&gt;un 0.2.1&lt;/li&gt;
+&lt;li&gt;uri 0.12.0&lt;/li&gt;
+&lt;li&gt;win32ole 1.8.9&lt;/li&gt;
+&lt;li&gt;zlib 3.0.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Las siguientes gemas incluidas han sido actualizadas
+&lt;ul&gt;
+&lt;li&gt;minitest 5.16.3&lt;/li&gt;
+&lt;li&gt;power_assert 2.0.2&lt;/li&gt;
+&lt;li&gt;test-unit 3.5.5&lt;/li&gt;
+&lt;li&gt;net-ftp 0.2.0&lt;/li&gt;
+&lt;li&gt;net-imap 0.3.1&lt;/li&gt;
+&lt;li&gt;net-pop 0.1.2&lt;/li&gt;
+&lt;li&gt;net-smtp 0.3.3&lt;/li&gt;
+&lt;li&gt;rbs 2.8.1&lt;/li&gt;
+&lt;li&gt;typeprof 0.21.3&lt;/li&gt;
+&lt;li&gt;debug 1.7.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Las siguientes gemas predeterminadas ahora son gemas incluidas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ver más detalles en &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_2_0_rc1/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+o en &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_rc1&quot;&gt;la bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Con estos cambios, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_rc1#file_bucket&quot;&gt;2846 archivos cambiados, 203950 inserciones(+), 127153 eliminaciones(-)&lt;/a&gt;
+desde Ruby 3.1.0!&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20253652
+SHA1: 9b45af61ef1ae3c21ab88d7c9e30b80060116ac3
+SHA256: 3bb9760c1ac1b66416aaa4899809f6ccd010e57038eaaeca19a383fd56275dac
+SHA512: 798157d785ebae94cb128d3c134fa35e0e90c654972e531cb6562823042f3fb68a270226f7b1cf0c42572ef2b1488a1a3e44f88389ad2a6f9ca4b280a2a8e759
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14934012
+SHA1: 5576e304786d466410f27a345dc1cb66f2c773f6
+SHA256: 0d45b3af14e84337882a2021235a091ae5dcfc0baaf31dccc479b71d96dd07bc
+SHA512: d38fcb1e09eb9984f3b2347e65ae7406129c2578d068a25d33b5b4f021ec3b567a9abe56c2acbec6d07a3c2b4bc7b485dbd330cbfbb3a96350f60a2bb94d016e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24473024
+SHA1: 8fdc85363ce61e0b8f04da36e709d49028d04a75
+SHA256: 7ff32473be108534548e401aaa9092c37a27f73323ea4091c33901c714c87ee5
+SHA512: 07adf6a9c89fdcf420e7b131f40f2b1f4aca036aa6f28539ade26ca552f84a75e0698f77a8b774d2ea52b8c756c4982ef319bda5afa786c081a31dd9873c5ef7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lo que es Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby fue desarrollado inicialmente por Matz (Yukihiro Matsumoto) en 1993,
+y ahora es desarrollado como Código Abierto. Corre en múltiples plataformas
+y se usa en todo el mundo especialmente para desarrollo web.&lt;/p&gt;
+
+&lt;p&gt;Publicado por naruse el 2022-12-06&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Tue, 06 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/12/06/ruby-3-2-0-rc1-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/12/06/ruby-3-2-0-rc1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.3 Released</title>
+      <description>&lt;p&gt;Ruby 3.1.3 ha sido publicado.&lt;/p&gt;
+&lt;p&gt;Esta versión incluye una corrección de seguridad.
+Por favor revise los temas siguientes para ver detalles.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/&quot;&gt;CVE-2021-33621: División de respuesta HTTP en CGI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta versión también incluye una corrección a una falla de compilación con
+Xcode 14 y macOS 13 (Ventura).
+Ver detalles en el &lt;a href=&quot;https://bugs.ruby-lang.org/issues/18912&quot;&gt;incidente relacionado&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ver más detalles en la &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_2...v3_1_3&quot;&gt;bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.3.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.3.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20906051
+SHA1: bd35f56a1cc1760ea582c67cbf669556dc7ae2fd
+SHA256: 5ea498a35f4cd15875200a52dde42b6eb179e1264e17d78732c3a57cd1c6ab9e
+SHA512: 550cfda2ae492312009a58316e18fd77ea92852718b37443bcd76aac84ba6694fb841fe19bf23bee099f96f5aeed9d03e77c8c02fb194e414eca5f707adbbf90
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.3.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.3.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15300224
+SHA1: 12998178c3d17fa8a9d8300c7caab460b0e698c0
+SHA256: 4ee161939826bcdfdafa757cf8e293a7f14e357f62be7144f040335cc8c7371a
+SHA512: 4b0fd334ae56132ba98b8a69adad54bdcf7f7aeabd5eba5b0f0399a3868e2054f9026ca1b1cb2dbb197a9e9b0610b263481949c0623a62071546bc5adff8ca69
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.3.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.3.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25226279
+SHA1: fdc6186085b78536936dff7141e5d0f6fbdfe3bb
+SHA256: 9e5de00a1d259a2c6947605825ecf6742d5216bd389af28f9ed366854e59b09e
+SHA512: 3901380a27157639dee72f80231790886d269cc741a6c9e0f6472554855be86bdb93f71577ed8d93e817ef0c8d9a168fcd6f6d426fabb465dd0dd22b5a56cfc9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentario sobre la versión&lt;/h2&gt;
+&lt;p&gt;Muchos contribuidores, desarrolladores y usuarios proveyeron reportes
+de fallas que nos ayudaron a completar esta versión.
+Gracias por sus contribuciones.&lt;/p&gt;
+
+&lt;p&gt;Publicado por nagachika el 2022-11-24&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Thu, 24 Nov 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/11/24/ruby-3-1-3-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/11/24/ruby-3-1-3-released/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 3.0.5</title>
+      <description>&lt;p&gt;Ruby 3.0.5 ha sido publicado.&lt;/p&gt;
+&lt;p&gt;Esta versión incluye una corrección de seguridad.
+Por favor revise los temas siguientes para ver detalles.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/&quot;&gt;CVE-2021-33621: División de respuesta HTTP en CGI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta versión también incluye algunas correcciones a fallas.
+Ver más detalles en la &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_4...v3_0_5&quot;&gt;bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.5.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 21312118
+SHA1: 95e69c79c0cf173f87727b76994ddf0725d5fafc
+SHA256: 9afc6380a027a4fe1ae1a3e2eccb6b497b9c5ac0631c12ca56f9b7beb4848776
+SHA512: ea45fcd2ca53b87f18fd8696d00a1e340d2495443216aaf87d3f643cb5bd8bb614a1faacd82d07e7f2b72172397c728316a82d7c34a7b4566191268ea517ccf7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.5.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.5.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15880196
+SHA1: 844ede3938c652f5f9bf5dbf1b99f5a6c41b11b6
+SHA256: cf7cb5ba2030fe36596a40980cdecfd79a0337d35860876dc2b10a38675bddde
+SHA512: 1c69d18210a2156f7696c678a8d54bf05c4dc49a1401c1ecc5760b1c23fb6ac14053873a225564664d6a327cda274ce72f47d112a6ad8d378f978de4e507e9a0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.5.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.5.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25691385
+SHA1: 5511c7b30e203ff0b3528453898b62781e97154b
+SHA256: 4b63c59ebdc0abcea139a561d67dfa9770af2d9619390f34b8a53f9625a1090d
+SHA512: 953cef1dd97395e04059cc76ee2a74348f2c9da0b2727c5406af26e88072e8c0bde91835354cb9f1b44f3a81a49ea7b807d7f048d138fd74ba3cabbf7859f2b3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentario sobre la versión&lt;/h2&gt;
+&lt;p&gt;Muchos contribuidores, desarrolladores y usuarios proveyeron reportes
+de fallas que nos ayudaron a completar esta versión.
+Gracias por sus contribuciones.&lt;/p&gt;
+&lt;p&gt;El mantenimiento de Ruby 3.0, incluyendo esta versión se basa en el
+&amp;quot;Acuerdo por una versión estable de Ruby&amp;quot; de la Asociación Ruby.&lt;/p&gt;
+
+&lt;p&gt;Publicado por usa el 2022-11-24&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Thu, 24 Nov 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/11/24/ruby-3-0-5-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/11/24/ruby-3-0-5-released/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 2.7.7</title>
+      <description>&lt;p&gt;Ruby 2.7.7 ha sido publicado.&lt;/p&gt;
+&lt;p&gt;Esta versión incluye una corrección de seguridad.
+Por favor revise los temas siguientes para ver detalles.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/&quot;&gt;CVE-2021-33621: División de respuesta HTTP en CGI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta versión también incluye algunas correcciones a problemas de compilación.
+No se considera que afecten la compatibilidad con versiones anteriores.
+Ver más detalles en la &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_6...v2_7_7&quot;&gt;bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14850886
+SHA1: dfcd86b459a9d4bbdf2d4eb82ad3476cb9820892
+SHA256: cf800820c9e69cdd31a8cdab920391f74ed935db2397a905afabd48961913658
+SHA512: 24cc772ac1b56d3bb423f1b33716f221bf534f3717a506bf8235a698f8a454db7d79d94ae9a84067153c2f737b3f8f6085f34e36cc04be0d75ae2fdd57718870
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16947579
+SHA1: a038ab04e9d6dff7f9e7187b65497b29d4400597
+SHA256: e10127db691d7ff36402cfe88f418c8d025a3f1eea92044b162dd72f0b8c7b90
+SHA512: 7e6259f0e7a5687d12fded914dcb93e283e956022be40ef8fc6a27f66be14e057d8101b05c7b042b43fc24e3b5c4092d1675917a814d74b08adb63a3388baed2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12101804
+SHA1: 28e2b97728bf89f64a1b787821660d5412657057
+SHA256: b38dff2e1f8ce6e5b7d433f8758752987a6b2adfd9bc7571dbc42ea5d04e3e4c
+SHA512: a19be3f0dfce040fe79f439e606f179d6750d2cc6e7b64fd65933edd487f5995573f7d0730beec9d3edadf942f8e9216f01ab3fff189d6cbe9d46a9add3e2683
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20730295
+SHA1: bf41b294f428a4f8a38894f8fa613dd6f889c317
+SHA256: 7b48a8411bb79a06e9edbbb7380bd82527697b7d8f62840b985111003317bae0
+SHA512: 90dabc0fcedc25e3e46d5e9f2dff01c56e142c2e71b95c4c5f4da056f1e47cb320ef8b949282fd9594869e91cd76eab27ad70061be6c26b0d0d8837ae0fb8309
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentario sobre la versión&lt;/h2&gt;
+&lt;p&gt;Muchos contribuidores, desarrolladores y usuarios proveyeron reportes
+de fallas que nos ayudaron a completar esta versión.
+Gracias por sus contribuciones.&lt;/p&gt;
+
+&lt;p&gt;Publicado por usa el 2022-11-24&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Thu, 24 Nov 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/11/24/ruby-2-7-7-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/11/24/ruby-2-7-7-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-33621: División de respuesta HTTP en CGI</title>
+      <description>&lt;p&gt;Hemos publicado las versiones 0.3.5, 0.2.2 y 0.1.0.2 de la gema cgi,
+que incluyen una corrección de seguridad para una vulnerabilidad
+de división de respuesta HTTP.
+A esta vulnerabilidad se le ha asignado el identificador CVE
+&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-33621&quot;&gt;CVE-2021-33621&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Detalles&lt;/h2&gt;
+&lt;p&gt;En una aplicación que genere una respuesta HTTP usando la gema cgi
+con una dato no confiable suministrado por el usuario, un atacante
+podría explotar la falla para inyectar contenido malicioso
+en el encabezado o en el cuerpo de la respuesta HTTP.&lt;/p&gt;
+&lt;p&gt;Así mismo el contenido del objeto &lt;code&gt;CGI::Cookie&lt;/code&gt; no estaba siendo
+verificado de manera apropiada.  En una aplicación que cree un objeto
+&lt;code&gt;CGI::Cookie&lt;/code&gt; con base en datos suministrados por el usuario,
+un atacante podría explotar la falla para inyectar atributos
+inválidos en el encabezado &lt;code&gt;Set-Cookie&lt;/code&gt;. Pensamos que es poco
+probable que haya aplicaciones así, pero hemos incluido un cambio
+para verificar los argumentos de &lt;code&gt;CGI::Cookie#initialize&lt;/code&gt; de manera
+preventiva.&lt;/p&gt;
+&lt;p&gt;Por favor actualice la gema cgi a una de las versiones 0.3.5, 0.2.2 o 0.1.0.2
+o posteriores.  Puede ejecutar &lt;code&gt;gem update cgi&lt;/code&gt; para actualizarla.
+Si está usando bundler, por favor agregue &lt;code&gt;gem &amp;quot;cgi&amp;quot;, &amp;quot;&amp;gt;= 0.3.5&amp;quot;&lt;/code&gt; a su
+&lt;code&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Versiones afectadas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;gema cgi 0.3.3 y anteriores&lt;/li&gt;
+&lt;li&gt;gema cgi 0.2.1 y anteriores&lt;/li&gt;
+&lt;li&gt;gema cgi 0.1.1, 0.1.0.1 y 0.1.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Creditos&lt;/h2&gt;
+&lt;p&gt;Agradecemos a &lt;a href=&quot;https://hackerone.com/htokumaru?type=user&quot;&gt;Hiroshi Tokumaru&lt;/a&gt;
+por descubrir los problemas.&lt;/p&gt;
+&lt;h2&gt;Historia&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Publicado originalmente el 2022-11-22 02:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Publicado por mame el 2022-11-22&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Tue, 22 Nov 2022 02:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 3.2.0 Preview 3</title>
+      <description>&lt;p&gt;Nos complace anunciar la publicación de Ruby 3.2.0-preview3.
+Ruby 3.2 añade muchas características y mejoras en desempeño.&lt;/p&gt;
+&lt;h2&gt;Soporte para WebAssembly basado en WASI&lt;/h2&gt;
+&lt;p&gt;Este es un porte inicial del soporte para WebAssembly basado en WASI.
+Esto permite que un binario de CRuby esté disponible en navegadores Web,
+ambientes sin servidor Edge y otros empotrables WebAssembly/WASI.
+Actualmente este porte pasa los juegos de pruebas básicas de bootstrap
+que no usan la API de Threads.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/opCgKy2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Trasfondo&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://webassembly.org/&quot;&gt;WebAssembly (Wasm)&lt;/a&gt; inicialmente se introdujo
+para ejecutar programas de manera segura y rápida en navegadores web.
+Pero buena parte de su objetivo --ejecutar programar eficientemente y con
+seguridad-- es anhelado hace tiempo no sólo para el web sino para aplicaciones
+en general.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://wasi.dev/&quot;&gt;WASI (The WebAssembly System Interface)&lt;/a&gt; fue diseñado
+para ese caso de uso.  Dado que una aplicación necesita comunicarse con
+el sistema operativo pero WebAssembly corre en una máquina virtual sin
+interfaz al sistema operativo, WASI estandariza dicha interfaz.&lt;/p&gt;
+&lt;p&gt;El soporte para WebAssembly/WASI en ruby pretende aprovechar estos
+proyectos.  Habilita a los desarrolladores de ruby para escribir aplicaciones
+que corran en esa plataforma prometida.&lt;/p&gt;
+&lt;h3&gt;Caso de uso&lt;/h3&gt;
+&lt;p&gt;Este soporte hace posible que los desarrolladores utilicen
+CRuby en un ambiente WebAssembly.  Un caso de uso de ejemplo es
+el soporte CRuby del
+&lt;a href=&quot;https://try.ruby-lang.org/playground/&quot;&gt;espacio de entrenamiento TryRuby&lt;/a&gt;.
+Ahora usted puede probar CRuby original en su navegador web.&lt;/p&gt;
+&lt;h3&gt;Puntos técnicos&lt;/h3&gt;
+&lt;p&gt;Hoy en día WASI y WebAssembly carecen de algunas características para
+implementar Fibras, excepciones y el Recolector de Basura porque aún está
+evolucionado y también por razones de seguridad.
+Así que CRuby llena ese vació mediante Asyncify, que es una técnica de
+transformación binaria para controlar la ejecución en el espacio
+del usuario.&lt;/p&gt;
+&lt;p&gt;Además, construimos un &lt;a href=&quot;https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby&quot;&gt;Sistema Virtual de Archivos (VFS) sobre WASI&lt;/a&gt;
+que permite empaquetar con facilidad aplicación Ruby en un sólo archivo
+.wasm. Esto hace un poco más fácil la distribución de aplicaciones.&lt;/p&gt;
+&lt;h3&gt;Enlaces relacionados&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5407&quot;&gt;Add WASI based WebAssembly support #5407&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9&quot;&gt;An Update on WebAssembly/WASI Support in Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejora en Regexp contra Denegación de Servicio por Expresión Regular (ReDoS)&lt;/h2&gt;
+&lt;p&gt;Es conocido que la correspondencia de expresiones regulares puede tomar
+un tiempo inesperadamente largo. Si su código intenta hacer corresponder una
+expresión regular ineficiente con un entrada no confiable, un atacante
+puede explotarlo y producir efectivamente una Denegación de Servicio (también
+llamada Denegación de Servicio por Expersión Regular o ReDoS).&lt;/p&gt;
+&lt;p&gt;Hemos introducido dos mejoras que mitigan significativamente un ReDoS.&lt;/p&gt;
+&lt;h3&gt;Algoritmo de correspondecia mejorado&lt;/h3&gt;
+&lt;p&gt;Desde Ruby 3.2, el algoritmo de correspondencia de expresiones regulares ha
+sido ejorado significativamente empleando técnicas de memorización.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Esta corresponencia tarda 10 seg. en Ruby 3.1, y 0.003 seg. en Ruby 3.2
+
+/^a*b?a*$/ =~ &quot;a&quot; * 50000 + &quot;x&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;El algoritmo de correspondencia mejorado permite que la mayoría de
+correspondencia de expresiones regulares (cerca del 90% en nuestros
+experimentos) se complete en tiempo lineal.&lt;/p&gt;
+&lt;p&gt;(Para usuarios de la versión preview: esta optimización puede consumir memoria
+proporcional a la longitud de la entrada por cada correspondencia. Esperamos
+que no se presenten problemas prácticos porque la localización de memoria
+para esto usualmente se hace de manera tardía, y una correspondencia de Regexp
+normal debería consumir a lo sumo 10 veces la memoria de la entrada. Si
+se le agota la memoria al hacer correspondencia de expresiones regulares
+en aplicaciones del mundo real, por favor repórtelo.)&lt;/p&gt;
+&lt;p&gt;La propuesta original es &lt;a href=&quot;https://bugs.ruby-lang.org/issues/19104&quot;&gt;https://bugs.ruby-lang.org/issues/19104&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Temporizador de Regexp&lt;/h3&gt;
+&lt;p&gt;La optimización anterior no puede aplicarse a algunos tipos de expresiones
+regulares, como las que incluyen características avanzadas (e.g.,
+referencias-anteriores --back-references-- y mirar-alrededor --look-arond--),
+o con un número inmenso y fijo de repeticiones.  Como medida alternativa,
+también se introduce un temporizador para expresiones regulares.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;/^a*b?a*()\1$/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; Regexp::TimeoutError is raised in one second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Tenga en cuenta que &lt;code&gt;Regexp.timeout&lt;/code&gt; es una configuración global. Si quiere
+emplear configuraciones del temporizadores diferentes para algunas
+expresiones regulares especiales, puede usar la palabra clave &lt;code&gt;timeout&lt;/code&gt;
+de &lt;code&gt;Regexp.new&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Esta regexp no tiene tiempo límite&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'^a*b?a*()\1$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;timeout: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;INFINITY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# nunca se interrumpe&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;La propuesta original es &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17837&quot;&gt;https://bugs.ruby-lang.org/issues/17837&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Otras características nuevas y notables&lt;/h2&gt;
+&lt;h3&gt;Ya no se incluyen fuentes de terceros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ya no incluimos código fuente de terceros como &lt;code&gt;libyaml&lt;/code&gt; y &lt;code&gt;libffi&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;la fuente de &lt;code&gt;libyaml&lt;/code&gt; fue eliminada de &lt;code&gt;psych&lt;/code&gt;. Puede instalar
+&lt;code&gt;libyaml-dev&lt;/code&gt; en plataformas Ubuntu/Debian. El nombre del
+paquete difiere en cada plataforma.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;el código fuente incluido de &lt;code&gt;libffi&lt;/code&gt; también fue eliminado de &lt;code&gt;fiddle&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Lenguaje&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Los argumentos anónimos para el resto y con palabra clave para el resto ahora
+pueden ser pasados como argumentos, en lugar de sólo ser usados en
+parámetros de métodos.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18351&quot;&gt;Característica #18351&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;quux&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Un proc que acepte un solo argumento posicional y palabras clave
+ya no hará splat automaticamente. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18633&quot;&gt;Falla #18633&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.1 and before&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.2 and after&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [1, 2]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El orden de evaluación de la asignación de constantes para constantes
+establecidas en objetos explícitos se ha hecho consistente con el
+orden de evaluación de la asignación de atributos. Por ejemplo con
+este código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;foo&lt;/code&gt; ahora es llamado antes que &lt;code&gt;baz&lt;/code&gt;. De forma similar, para
+asignaciones múltiples a constantes, se usa un orden de evaluación
+de izquierda a derecha. Por ejemplo con el siguiente código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;n&quot;&gt;foo1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Ahora se usa el siguiente orden de evaluación:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;foo1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz2&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15928&quot;&gt;Falla #15928&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El patrón Find ya no es experimental.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18585&quot;&gt;Característica #18585&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Los métodos que reciben un parámetro para el resto (como &lt;code&gt;*args&lt;/code&gt;)
+y que quieren delegar argumentos de palabra clave como
+&lt;code&gt;foo(*args)&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;
+(si es que aún hace falta). En otras palabras, todos los métodos
+que quieren delegar argumentos de palabra clave por medio de
+&lt;code&gt;*args&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;,
+sin excepción.  Esto hará más fácil la transición a otras formas
+de delegación una vez una librería pueda requerir
+Ruby 3+. Antes, la opción &lt;code&gt;ruby2_keywords&lt;/code&gt;
+se mantenía si el método receptor tomaba &lt;code&gt;*args&lt;/code&gt;, pero esto
+era una falla y una inconsistencia.  Una buena técnica para encontrar
+posibles &lt;code&gt;ruby2_keywords&lt;/code&gt; faltantes es ejecutar la suite de pruebas,
+y donde falle buscar el último método que debe recibir
+argumentos de palabra clave , usar &lt;code&gt;puts nil, caller, nil&lt;/code&gt; allí,
+y revisar que cada método/bloque en la cadena de llamados que delegue
+palabras clave esté marcado correctamente como &lt;code&gt;ruby2_keywords&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18625&quot;&gt;Falla #18625&lt;/a&gt;] [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16466&quot;&gt;Falla #16466&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Accidentalmente funcionaba sin ruby2_keywords en Ruby 2.7-3.1,&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# necesita ruby2_keywords en 3.2+.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Así como (*args, **kwargs) o (...) se necesitarían tanto en #foo&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# como  #bar cuando deje de usar ruby2_keywords.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;k: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejoras en desempeño&lt;/h2&gt;
+&lt;h3&gt;YJIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Soporte para arm64 / aarch64 sobre plataformas UNIX.&lt;/li&gt;
+&lt;li&gt;La compilación de YJIT requiere Rust 1.58.1+. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18481&quot;&gt;Característica #18481&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Otros cambios notables desde 3.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash#shift ahora siempre retorna nil si el hash está vacío,
+en lugar de retornar el valor predeterminado o llamar el
+proc predeterminado. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16908&quot;&gt;Falla #16908&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MatchData&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;MatchData#byteoffset&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Módulos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module.used_refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/14332&quot;&gt;Característica #14332&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#const_added&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17881&quot;&gt;Característica #17881&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Proc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Proc#dup&lt;/code&gt; retorna una instancia de subclase. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17545&quot;&gt;Falla #17545&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Proc#parameters&lt;/code&gt; ahora acepta la palabra clave lambda. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15357&quot;&gt;Característica #15357&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Refinamiento&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Refinement#refined_class&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RubyVM::AbstractSyntaxTree&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se agrega la opción &lt;code&gt;error_tolerant&lt;/code&gt; a &lt;code&gt;parse&lt;/code&gt;, &lt;code&gt;parse_file&lt;/code&gt; y &lt;code&gt;of&lt;/code&gt;.
+[[Característica #19013]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Conjuntos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Set&lt;/code&gt; ahora está disponible como una clase incorporada que no exige
+&lt;code&gt;require &amp;quot;set&amp;quot;&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16989&quot;&gt;Característica #16989&lt;/a&gt;]
+Ahora se llama de manera automática al usar la constante &lt;code&gt;Set&lt;/code&gt; o con una
+llamada a &lt;code&gt;Enumerable#to_set&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cadenas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se han añadido &lt;code&gt;String#byteindex&lt;/code&gt; y &lt;code&gt;String#byterindex&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se actualizó Unicode a la versión 14.0.0 y Emoji a la version 14.0.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18037&quot;&gt;Característica #18037&lt;/a&gt;]
+(también aplica para Regexp)&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;String#bytesplice&lt;/code&gt;.  [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18598&quot;&gt;Característica #18598&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Struct&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una clase &lt;code&gt;Struct&lt;/code&gt; también puede inicializarse con argumentos de
+palabra clave sin &lt;code&gt;keyword_init: true&lt;/code&gt; en &lt;code&gt;Struct.new&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16806&quot;&gt;Característica #16806&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad&lt;/h2&gt;
+&lt;p&gt;Nota: Excluyendo arreglos de fallas.&lt;/p&gt;
+&lt;h3&gt;Constantes eliminadas&lt;/h3&gt;
+&lt;p&gt;Las siguientes constantes despreciadas han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fixnum&lt;/code&gt; y &lt;code&gt;Bignum&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Característica #12005&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Random::DEFAULT&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17351&quot;&gt;Característica #17351&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Group&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Passwd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Métodos eliminados&lt;/h3&gt;
+&lt;p&gt;Los siguientes métodos despreciados han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Dir.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;File.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#=~&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15231&quot;&gt;Característica #15231&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#taint&lt;/code&gt;, &lt;code&gt;Kernel#untaint&lt;/code&gt;, &lt;code&gt;Kernel#tainted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#trust&lt;/code&gt;, &lt;code&gt;Kernel#untrust&lt;/code&gt;, &lt;code&gt;Kernel#untrusted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad en Stdlib&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Psych&lt;/code&gt; ya no incluye las fuentes de libyaml.
+Los usuarios necesitan instalar la librería libyaml por su cuenta
+con el sistema de paquetes. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18571&quot;&gt;Característica #18571&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Actualización al API en C&lt;/h2&gt;
+&lt;h3&gt;Funciones actualizadas del API en C&lt;/h3&gt;
+&lt;p&gt;Se actualizaron las siguientes funciones del API.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generador de números seudo aleatorios (PRNG)
+&lt;code&gt;rb_random_interface_t&lt;/code&gt; actualizado y con versiones.
+Las librerías de extensión que usan esta interfaz y construidas
+para versiones antiguas.
+También la función &lt;code&gt;init_int32&lt;/code&gt; debe ser definida.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Funciones eliminadas del API en C&lt;/h3&gt;
+&lt;p&gt;Los siguientes elementos del APIs han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;variable &lt;code&gt;rb_cData&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;funciones &amp;quot;taintedness&amp;quot; y &amp;quot;trustedness&amp;quot;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Actualizaciones a la librería estándar&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SyntaxSuggest&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;La característica de &lt;code&gt;syntax_suggest&lt;/code&gt; antes llamada &lt;code&gt;dead_end&lt;/code&gt; se ha
+integrado en Ruby [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18159&quot;&gt;Característica #18159&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ErrorHighlight&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ahora puede resaltar errores en argumentos de TypeError y ArgumentError&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;test.rb:2:in `+': nil can't be coerced into Integer (TypeError)
+
+sum = ary[0] + ary[1]
+               ^^^^^^
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Las siguientes gemas predeterminadas han sido actualizadas
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.4.0.dev&lt;/li&gt;
+&lt;li&gt;bigdecimal 3.1.2&lt;/li&gt;
+&lt;li&gt;bundler 2.4.0.dev&lt;/li&gt;
+&lt;li&gt;cgi 0.3.2&lt;/li&gt;
+&lt;li&gt;date 3.2.3&lt;/li&gt;
+&lt;li&gt;error_highlight 0.4.0&lt;/li&gt;
+&lt;li&gt;etc 1.4.0&lt;/li&gt;
+&lt;li&gt;io-console 0.5.11&lt;/li&gt;
+&lt;li&gt;io-nonblock 0.1.1&lt;/li&gt;
+&lt;li&gt;io-wait 0.3.0.pre&lt;/li&gt;
+&lt;li&gt;ipaddr 1.2.4&lt;/li&gt;
+&lt;li&gt;json 2.6.2&lt;/li&gt;
+&lt;li&gt;logger 1.5.1&lt;/li&gt;
+&lt;li&gt;net-http 0.2.2&lt;/li&gt;
+&lt;li&gt;net-protocol 0.1.3&lt;/li&gt;
+&lt;li&gt;ostruct 0.5.5&lt;/li&gt;
+&lt;li&gt;psych 5.0.0.dev&lt;/li&gt;
+&lt;li&gt;reline 0.3.1&lt;/li&gt;
+&lt;li&gt;securerandom 0.2.0&lt;/li&gt;
+&lt;li&gt;set 1.0.3&lt;/li&gt;
+&lt;li&gt;stringio 3.0.3&lt;/li&gt;
+&lt;li&gt;syntax_suggest 0.0.1&lt;/li&gt;
+&lt;li&gt;timeout 0.3.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Las siguientes gemas incluidas han sido actualizadas
+&lt;ul&gt;
+&lt;li&gt;minitest 5.16.3&lt;/li&gt;
+&lt;li&gt;net-imap 0.2.3&lt;/li&gt;
+&lt;li&gt;rbs 2.6.0&lt;/li&gt;
+&lt;li&gt;typeprof 0.21.3&lt;/li&gt;
+&lt;li&gt;debug 1.6.2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Las siguientes gemas predeterminadas ahora son gemas incluidas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ver más detalles en &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_2_0_preview3/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+o en &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview3&quot;&gt;la bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Con estos cambios, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview3#file_bucket&quot;&gt;2719 archivos cambiados, 191269 inserciones(+), 120315 eliminaciones(-)&lt;/a&gt;
+desde Ruby 3.1.0!&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20086542
+SHA1: dafca8116d36ceaa32482ab38359768de8c3ae5e
+SHA256: c041d1488e62730d3a10dbe7cf7a3b3e4268dc867ec20ec991e7d16146640487
+SHA512: 860634d95e4b9c48f18d38146dfbdc3c389666d45454248a4ccdfc3a5d3cd0c71c73533aabf359558117de9add1472af228d8eaec989c9336b1a3a6f03f1ae88
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14799804
+SHA1: c94e2add05502cb5c39afffc995b7c8f000f7df0
+SHA256: d3f5619de544240d92a5d03aa289e71bd1103379622c523a0e80ed029a74b3bb
+SHA512: c1864e2e07c3711eaa17d0f85dfbcc6e0682b077782bb1c155315af45139ae66dc4567c73682d326975b0f472111eb0a70f949811cb54bed0b3a816ed6ac34df
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview3.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24426893
+SHA1: 346c051c4be7ab8d0b551fd2ff8169785697db62
+SHA256: cf49aa70e7ebd8abebffd5e49cd3bd92e5b9f3782d587cc7ed88c98dd5f17069
+SHA512: 4f22b5ea91be17ef5f68cf0acb1e3a226dcc549ad71cc9b40e623220087c4065ca9bea942710f668e5c94ca0323da8d2ccd565f95a9085c1a0e38e9c0543b22f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lo que es Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby fue desarrollado inicialmente por Matz (Yukihiro Matsumoto) en 1993,
+y ahora es desarrollado como Código Abierto. Corre en múltiples plataformas
+y se usa en todo el mundo especialmente para desarrollo web.&lt;/p&gt;
+
+&lt;p&gt;Publicado por naruse el 2022-11-11&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Fri, 11 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/11/11/ruby-3-2-0-preview3-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/11/11/ruby-3-2-0-preview3-released/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 3.2.0 Preview 2</title>
+      <description>&lt;p&gt;Nos complace anunciar la publicación de Ruby 3.2.0-preview2.
+Ruby 3.2 añade muchas características y mejoras en desempeño.&lt;/p&gt;
+&lt;h2&gt;Soporte para WebAssembly basado en WASI&lt;/h2&gt;
+&lt;p&gt;Esta es un porte inicial del soporte para WebAssembly basado en WASI.
+Esto permite que un binario de CRuby esté disponible en navegadores Web,
+ambientes sin servidor Edge y otros empotrables WebAssembly/WASI.
+Actualmente este porte pasa los juegos de pruebas básicas de bootstrap
+que no usan el API de Threads.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/opCgKy2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Trasfondo&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://webassembly.org/&quot;&gt;WebAssembly (Wasm)&lt;/a&gt; fue introducido inicialmente
+para ejecutar programas de manera segura y rápida en navegadores web.
+Pero buena parte de su objetivo --ejecutar programar eficientemente y con
+seguridad-- es anhelado hace tiempo no sólo para el web sino para aplicaciones
+en general.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://wasi.dev/&quot;&gt;WASI (The WebAssembly System Interface)&lt;/a&gt; fue diseñado
+para ese caso de uso.  Aunque una aplicación necesita comunicarse con
+el sistema operativo, WebAssembly corre en una máquina virtual que no tiene
+una interfaz del sistema.  WASI lo estandariza.&lt;/p&gt;
+&lt;p&gt;El soporte para WebAssembly/WASI en ruby pretende aprovechar estos
+proyectos.  Habilita a los desarrolladores de ruby para escribir aplicaciones
+que corran en esa plataforma prometida.&lt;/p&gt;
+&lt;h3&gt;Caso de uso&lt;/h3&gt;
+&lt;p&gt;Este soporte hace posible que los desarrolladores utilicen
+CRuby en un ambiente WebAssembly.  Un caso de uso de ejemplo es
+el soporte CRuby del
+&lt;a href=&quot;https://try.ruby-lang.org/playground/&quot;&gt;espacio de juego TryRuby&lt;/a&gt;.
+Ahora usted puede probar CRuby original en su navegador web.&lt;/p&gt;
+&lt;h3&gt;Puntos técnicos&lt;/h3&gt;
+&lt;p&gt;Hoy en día WASI y WebAssembly carecen de algunas características para
+implementar Fibras, excepciones y el Recolector de Basura porque aún está
+evolucionado y también por razones de seguridad.
+Así que CRuby llena ese vació mediante Asyncify, que es una técnica de
+transformación binaria para controlar la ejecución en el espacio
+del usuario.&lt;/p&gt;
+&lt;p&gt;Además, construimos un &lt;a href=&quot;https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby&quot;&gt;Sistema Virtual de Archivos (VFS) sobre WASI&lt;/a&gt;
+que permite empaquetar con facilidad aplicación Ruby en un sólo archivo
+.wasm. Esto hace un poco más fácil la distribución de aplicaciones.&lt;/p&gt;
+&lt;h3&gt;Enlaces relacionados&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5407&quot;&gt;Add WASI based WebAssembly support #5407&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9&quot;&gt;An Update on WebAssembly/WASI Support in Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Temporizadore para Regexp&lt;/h2&gt;
+&lt;p&gt;Se introduce una característica de temporizador durante concordancias de
+expresiones regulares.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;/^a*b?a*$/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; Regexp::TimeoutError is raised in one second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Se sabe que la concordancia de expresiones regulares puede tardar un tiempo
+inesperadamente largo.  Si su código intenta concordar una expresión regular
+posiblemente ineficiente con una cadena no confiable, un atacante podría
+explotarlo para lograr una Denegación de Servicio efectiva (también llamada
+Denegación de servicio por expresiones regulares o ReDoS).&lt;/p&gt;
+&lt;p&gt;El riesgo de Denegaciones de Servicio (DoS) puede prevenirse o mitigarse
+significativamente al configurar &lt;code&gt;Regexp.timeout&lt;/code&gt; de acuerdo a los
+requerimientos de su aplicación Ruby.  Por favor pruébelo en su aplicación,
+después le damos la bienvenida a su retroalimentación.&lt;/p&gt;
+&lt;p&gt;Observe que &lt;code&gt;Regexp.timeout&lt;/code&gt; es una configuración global. Si quiere usar una
+configuración del temporizador diferente para una cierta
+expresión regular, puede usar la palabra reservada &lt;code&gt;timeout&lt;/code&gt;
+junto con &lt;code&gt;Regexp.new&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Esta regexp no tiene tiempo límite&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^a*b?a*$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;timeout: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# nunca interrumpido&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;La propuesta original está en &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17837&quot;&gt;https://bugs.ruby-lang.org/issues/17837&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Otras características nuevas y notables&lt;/h2&gt;
+&lt;h3&gt;Ya no se incluyen fuentes de terceros&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ya no incluimos las fuentes de terceros como &lt;code&gt;libyaml&lt;/code&gt; y &lt;code&gt;libffi&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;la fuente de &lt;code&gt;libyaml&lt;/code&gt; fue eliminada de &lt;code&gt;psych&lt;/code&gt;. Puede instalar
+&lt;code&gt;libyaml-dev&lt;/code&gt; en plataformas Ubuntu/Debian. El nombre del
+paquete difiere en cada plataforma.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;libffi&lt;/code&gt; será eliminado de &lt;code&gt;fiddle&lt;/code&gt; durante la segunda versión previa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Lenguaje&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Argumentos anónimos para el resto y con palabra clave para el resto ahora
+pueden ser pasados como argumentos, en lugar de sólo ser usados en
+parámetros de métodos.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18351&quot;&gt;Característica #18351&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;quux&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Un proc que acepte un solo argumento posicional y palabras clave
+ya no hará splat automaticamente. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18633&quot;&gt;Falla #18633&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.1 and before&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.2 and after&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [1, 2]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El orden de evaluación de la asignación de constantes para constantes
+establecidas en objetos explícitos se ha hecho consistente con el
+orden de evaluación de la asignación de atributos. Con este código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;foo&lt;/code&gt; ahora es llamado antes que &lt;code&gt;baz&lt;/code&gt;. De forma similar, para
+asignaciones múltiples a constantes, se usa un orden de evalulacón
+de izquierda a derecha. Con el siguiente código:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;n&quot;&gt;foo1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Ahora se usa el siguiente orden de evaluación:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;foo1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz2&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15928&quot;&gt;Falla #15928&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El patrón Find ya no es experimental.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18585&quot;&gt;Característica #18585&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Los métodos que reciben un parametro para el resto (como &lt;code&gt;*args&lt;/code&gt;)
+y que quieren delegar argumentos de palabra clave con
+&lt;code&gt;foo(*args)&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;
+(si es que aún hace falta). En otras palabras, todos los métodos
+que quieren delegar argumentos de palabra clave por medio de
+&lt;code&gt;*args&lt;/code&gt; ahora deben marcarse con &lt;code&gt;ruby2_keywords&lt;/code&gt;,
+sin excepción.  Esto hará más fácil la transición a otras formas
+de delegación una vez una librería pueda requerir
+Ruby 3+. Antes, la opción &lt;code&gt;ruby2_keywords&lt;/code&gt;
+se mantenía si el método receptor tomaba &lt;code&gt;*args&lt;/code&gt;, pero esto
+era una falla y una inconsistencia.  Una buena técnica para encontrar
+posibles &lt;code&gt;ruby2_keywords&lt;/code&gt; faltantes es ejecutar la suite de pruebas,
+y donde falle buscar el último método que debe recibiri
+argumentos de palabra clave , usar &lt;code&gt;puts nil caller, nil&lt;/code&gt; allí,
+y revisar que cada método/bloque en la cadena de llamados que delegue
+palabras clave esté marcado correctamente como &lt;code&gt;ruby2_keywords&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18625&quot;&gt;Falla #18625&lt;/a&gt;] [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16466&quot;&gt;Falla #16466&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Accidentalmente funcionaba sin ruby2_keywords en Ruby 2.7-3.1,&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# necesita ruby2_keywords en 3.2+.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Tal como (*args, **kwargs) o (...) se necesitarían tanto en #foo&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# como  #bar cuando se migró de ruby2_keywords.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;k: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Mejoras en desempeño&lt;/h2&gt;
+&lt;h3&gt;YJIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Soporte para arm64 / aarch64 sobre plataformas UNIX.&lt;/li&gt;
+&lt;li&gt;La compilación de YJIT requiere Rust 1.58.1+. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18481&quot;&gt;Característica #18481&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Otros cambios notables desde 3.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash#shift ahora siempre retorna nil si el hash está vacío,
+en lugar de retornar el valor predeterminado o llamar el
+proc predeterminado. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16908&quot;&gt;Falla #16908&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MatchData&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;MatchData#byteoffset&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Modulos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module.used_refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/14332&quot;&gt;Característica #14332&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#refinements&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Module#const_added&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17881&quot;&gt;Característica #17881&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Proc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Proc#dup&lt;/code&gt; retorna una instancia de subclase. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17545&quot;&gt;Falla #17545&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Proc#parameters&lt;/code&gt; ahora acepta la palabra reservada lambda. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15357&quot;&gt;Característica #15357&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Refinamiento&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;Refinement#refined_class&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Característica #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Conjuntos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Set&lt;/code&gt; ahora está disponible como una clase incorporada que no necesita
+&lt;code&gt;require &amp;quot;set&amp;quot;&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16989&quot;&gt;Característica #16989&lt;/a&gt;]
+Ahora se llama de manera automática al usar la constante &lt;code&gt;Set&lt;/code&gt; o con una
+llamada a &lt;code&gt;Enumerable#to_set&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cadenas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se han añadido &lt;code&gt;String#byteindex&lt;/code&gt; y &lt;code&gt;String#byterindex&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Característica #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Se actualizó Unicode a la versión 14.0.0 y Emoji a la version 14.0. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18037&quot;&gt;Característica #18037&lt;/a&gt;]
+(también aplica para Regexp)&lt;/li&gt;
+&lt;li&gt;Se ha añadido &lt;code&gt;String#bytesplice&lt;/code&gt;.  [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18598&quot;&gt;Característica #18598&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Struct&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Una clase &lt;code&gt;Struct&lt;/code&gt; también puede inicializarse con argumentos de
+palabra reservada sin &lt;code&gt;keyword_init: true&lt;/code&gt; en &lt;code&gt;Struct.new&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16806&quot;&gt;Característica #16806&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad&lt;/h2&gt;
+&lt;p&gt;Nota: Excluyendo arreglos de fallas.&lt;/p&gt;
+&lt;h3&gt;Constantes eliminadas&lt;/h3&gt;
+&lt;p&gt;Las siguientes constantes despreciadas han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fixnum&lt;/code&gt; y &lt;code&gt;Bignum&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Característica #12005&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Random::DEFAULT&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17351&quot;&gt;Característica #17351&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Group&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Passwd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Métodos eliminados&lt;/h3&gt;
+&lt;p&gt;Los siguientes métodos despreciados han sido eliminados.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Dir.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;File.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Característica #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#=~&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15231&quot;&gt;Característica #15231&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#taint&lt;/code&gt;, &lt;code&gt;Kernel#untaint&lt;/code&gt;, &lt;code&gt;Kernel#tainted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#trust&lt;/code&gt;, &lt;code&gt;Kernel#untrust&lt;/code&gt;, &lt;code&gt;Kernel#untrusted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Asuntos de compatibilidad en Stdlib&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Psych&lt;/code&gt; ya no incluye las fuentes de libyaml.
+Los usuarios necesitan instalar la librería libyaml por si mismos
+con el sistema de paquetes. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18571&quot;&gt;Característica #18571&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Actualización al API en C&lt;/h2&gt;
+&lt;h3&gt;Eliminado del API en C&lt;/h3&gt;
+&lt;p&gt;Las siguientes APIs han sido eliminadas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;variable &lt;code&gt;rb_cData&lt;/code&gt; .&lt;/li&gt;
+&lt;li&gt;funciones &amp;quot;taintedness&amp;quot; y &amp;quot;trustedness&amp;quot;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Característica #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Actualizaciones a la librería estándar&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Se actualizaron las siguientes gemas predeterminadas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Se actualizaron las siguientes gemas incluidas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las siguientes gemas predeterminadas ahora son gemas incluidas (bundled).
+Debe agregar las siguientes librerías al &lt;code&gt;Gemfile&lt;/code&gt; en entornos que usan
+&lt;code&gt;bundler&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ver más detalles en &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_2_0_preview2/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+o en &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview2&quot;&gt;la bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Con esos cambios, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview2#file_bucket&quot;&gt;2393 archivos cambiados, 168931 inserciones(+), 113411 eliminaciones(-)&lt;/a&gt;
+desde Ruby 3.1.0!&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19816780
+SHA1: 2106c77fc1600daf41ae137ecc4cf7937e27f67f
+SHA256: 8a78fd7a221b86032f96f25c1d852954c94d193b9d21388a9b434e160b7ed891
+SHA512: 5e9ddcb1a43cff449b0062cc716bfb80a9ebbb14a1b063f34005e2998c2c5033badb44e882232db9b2fceda9376f6615986e983511fda2575d60894752b605cc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14578112
+SHA1: 538b3ea4dc0d99f60f8bd6f71e65a56ceeb41c18
+SHA256: 01fac0929dccdabc0686c1109da6c187897a401da9ff8851242befa92f7fd430
+SHA512: 0f4cc919284fdfa1a42b6381760d1b3a4660da4b0fcdd2adf01ea04a425548b3c5ac090866915675db73964a1055090e54dd97cf4628cbb69403e541c71c28ff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24150109
+SHA1: 69ffffc52cad626166f73f21f25c29c9d73fe0e8
+SHA256: 67f9ad3110be1975b3ce547c0a6e2c910dfc1945fd6e9bb1bd340568897c6554
+SHA512: 1447e099e7a8da0ff206fda6f4e466640d6e86e9da8148315ab0154684b1fd22c02c0022b5a2f4d3fc00103b4e8cef8e35a770174921fd8c6abeca9ad41c1818
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lo que es Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby fue desarrollado inicialmente por Matz (Yukihiro Matsumoto) en 1993,
+y ahora es desarrollado como Código Abierto. Corre en múltiples plataformas
+y se usa en todo el mundo especialmente para desarrollo web.&lt;/p&gt;
+
+&lt;p&gt;Publicado por naruse el 2022-09-09&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Fri, 09 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/09/09/ruby-3-2-0-preview2-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/09/09/ruby-3-2-0-preview2-released/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 3.1.2</title>
+      <description>&lt;p&gt;Ruby 3.1.2 ha sido publicado.&lt;/p&gt;
+&lt;p&gt;Esta versión incluye correcciones de seguridad.
+Por favor revise los temas siguientes para ver detalles.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/&quot;&gt;CVE-2022-28738: Doble free en compilación de expresiones regulares&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: Desbordamiento de buffer en conversión de String a Float&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ver más detalles en la &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_1...v3_1_2&quot;&gt;bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20553628
+SHA1: b0d86c60457fdfbcb532cb681877a2f790f66b25
+SHA256: 61843112389f02b735428b53bb64cf988ad9fb81858b8248e22e57336f24a83e
+SHA512: 9155d1150398eaea7c9954af61ecf8dfdb885cfcf63a67bbcf6c92e282cd3ccac0ff9234d039286a9623297b65197441438c37f707e31d270ce2fe11e8f38a44
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15101588
+SHA1: 4c47f1dfeeb23fc55d65bcae50cf70c23bc28aa3
+SHA256: ca10d017f8a1b6d247556622c841fc56b90c03b1803f87198da1e4fd3ec3bf2a
+SHA512: 4a74e9efc6ea4b3eff4fec7534eb1fff4794d021531defc2e9937e53c6668db8ecdc0fff2bc23d5e6602d0df344a2caa85b31c5414309541e3d5313ec82b6e21
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24837444
+SHA1: 2e04f25dc73d7236fd4f4a170329793cd5e7dc38
+SHA256: f2bb80de50bcc17c29c1995d87d657d461ede6a73e71db44c0cf77f65f32e9b6
+SHA512: fa3ba25a051bd1e0ea1ee9fadfeef674f2f3217b1468ccb24975c4a19493115cdeb0015a78d391d08870947de95a8c7409f1c00fed51dc49d40cc3e6cda25bb7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentario sobre la versión&lt;/h2&gt;
+&lt;p&gt;Muchos contribuidores, desarrolladores y usuarios proveyeron reportes
+de fallas que nos ayudaron a completar esta versión.
+Gracias por sus contribuciones.&lt;/p&gt;
+
+&lt;p&gt;Publicado por naruse and mame el 2022-04-12&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/04/12/ruby-3-1-2-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/04/12/ruby-3-1-2-released/</link>
+    </item>
+    
+    <item>
+      <title>Publicado Ruby 3.0.4</title>
+      <description>&lt;p&gt;Ruby 3.0.4 ha sido publicado.&lt;/p&gt;
+&lt;p&gt;Esta versión incluye correcciones de seguridad.
+Por favor revise los temas siguientes para ver detalles.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/&quot;&gt;CVE-2022-28738: Doble free en compilación de expresiones regulares&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/es/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: Desbordamiento de buffer en conversión de String a Float&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ver más detalles en la &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_3...v3_0_4&quot;&gt;bitácora de cambios&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Descargas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 21139486
+SHA1: 9c995a7a5cc3300ea1adb734017545e19d0af3ca
+SHA256: 70b47c207af04bce9acea262308fb42893d3e244f39a4abc586920a1c723722b
+SHA512: 0dfded6826063c1b39bf625a6e13b46c109cb160c8648b78f0965f70e7c7a1a65f1c117fc8f2cf8bdb34d7cbf79fecf1f45d169d2323406d66ab27b18bde1d22
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15830368
+SHA1: 14461adca874d42a06a11851029dec877d9d28de
+SHA256: 8e22fc7304520435522253210ed0aa9a50545f8f13c959fe01a05aea06bef2f0
+SHA512: 53bf7dd403b0c68af9691882ad8ed7422c8d1f496627428fb4c3caf0b0313715524b744c5f453aced2d49e16e55f3f45b46b9a77aa3097dbfcae7caa0208194b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25517085
+SHA1: 6700ef07e3f7c4582d1b8004bfcce6cb4075b951
+SHA256: d4ce9fd565a81ce138ea26382c8880f0456883b2539e18510e1d845293a095cb
+SHA512: 2d97099161bcd17c5fdf1c70da6e062ae410186e7c1235e3b1df5bad6085e370bed3cf1ebd89ed9b5918cd386ae47d1f986a3c96c32f0c8a0b9375e56b66a1d9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentario sobre la versión&lt;/h2&gt;
+&lt;p&gt;Muchos contribuidores, desarrolladores y usuarios proveyeron reportes
+de fallas que nos ayudaron a completar esta versión.
+Gracias por sus contribuciones.&lt;/p&gt;
+
+&lt;p&gt;Publicado por nagachika and mame el 2022-04-12&lt;br /&gt;Traducción de vtamara&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/es/news/2022/04/12/ruby-3-0-4-released/</guid>
+      <link>https://www.ruby-lang.org/es/news/2022/04/12/ruby-3-0-4-released/</link>
+    </item>
+    
+  </channel>
+</rss>

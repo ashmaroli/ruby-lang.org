@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Tìm hiểu Ruby trong 25 phút</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/documentation/quickstart/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>Vậy hãy nhìn sâu hơn vào chương tình mới của chúng ta, chú ý các dòng ban đầu,
+bắt đầu bởi dấu thăng (#). Trong Ruby, bất cứ thứ gì trong một dòng phía sau
+dấu thăng là một bình luận và trình biên dịch sẽ bỏ qua. Dòng đầu tiên của tập
+tin là trường hợp đặc biệt, hệ điều hành nhân Unix sẽ cho shell biết cách chạy
+tập tin. Mục đích của các bình luận là để làm rõ hơn.</p>
+<p>Phương thức <code>xin_chao</code>đã trở nên phức tạp hơn một chút:</p>
+<!-- raw HTML omitted -->
+<p>Chương trình sẽ dựa vào biến ví dụ <code>@names</code> để đưa ra quyết định. Nếu nó rỗng
+thì chỉ in ra ba dấu chấm. Không có lý nào lại đi chào không ai cả, phải vậy
+chứ?</p>
+<h2>Chu kỳ và vòng lặp—a.k.a. lặp đi lặp lại</h2>
+<p>Nếu đối tượng <code>@names</code> phản hồi <code>each</code> (mỗi), nó nghĩa là bạn có thể lặp đi
+lặp lại, vì thế nó lặp đi lặp lại và mỗi lần chào một người. Cuối cùng, nếu
+<code>@names</code> là thứ gì đó, tự động chuyển nó thành xâu và thực hiện chào như mặc
+định.</p>
+<p>Chúng ta hãy nhìn sấu hơn vào phép lặp:</p>
+<!-- raw HTML omitted -->
+<p><code>each</code> là phương thức cho phép một khối lệnh chạy mỗi lần gặp một thành phần
+trong danh sách, và đoạn ở giữa <code>do</code> và <code>end</code> là khối lệnh. Một khối lệnh
+giống như một hàm bất định hay <code>lambda</code>. Biến nằm giữa 2 dấu gạch dọc là tham
+số cho khối lệnh này.</p>
+<p>Điều xảy ra ở đây là với tất cả các mục trong một danh sách, <code>name</code> ràng buộc
+với các phần tử của danh sách, và cú pháp <code>puts &quot;Xin chào #{name}!&quot;</code> sẽ chạy
+với cái tên đó.</p>
+<p>Phần lớn các ngôn ngữ lập trình khác làm việc với một danh sách bằng vòng lặp
+<code>for</code>, ví dụ trong C sẽ như này:</p>
+<!-- raw HTML omitted -->
+<p>Nó vẫn hoạt động tuy nhiên không được hay cho lắm. Bạn cần một biến đếm <code>i</code>,
+xác định được độ dài của danh sách, và cần phải giải thích làm thế nào để đi
+hết danh sách. Cách của Ruby hay hơn nhiều, tất cả chi tiết quản lý được ẩn
+trong phương thức <code>each</code>, tất cả những gì bạn cần làm là nói với vó cần phải
+làm gì với các thành phần. Trong đó, phương thức <code>each</code> về cơ bản sẽ gọi
+<code>yield &quot;Albert&quot;</code>, sau đó <code>yeld &quot;Brenda&quot;</code> rồi <code>yield &quot;Charles&quot;</code>, vv.</p>
+<h2>Khối lệnh, ánh sáng lấp lánh trên các cạnh của Ruby</h2>
+<p>Sức mạnh thực sự của khối lệnh là khi xử lý các đối tượng phức tạp hơn danh
+sách. Ngoài việc xử lý các chi tiết nội dung đơn giản trong phương thức, bạn
+còn có thể xử lý thiết lập, teardown và lỗi - tất cả ẩn đi khỏi sự chú ý của
+người dùng.</p>
+<!-- raw HTML omitted -->
+<p>Phương thức <code>tam_biet</code> không sử dụng <code>each</code>, thay vào đó nó kiểm tra xem nếu
+<code>@names</code> có đáp ứng phương thức <code>join</code> không, nếu có thì sử dụng nó. Mặt khác
+nó chỉ in ra các biến dưới dạng xâu. Phương thức này không quan tâm tới <em>kiểu</em>
+của biến, chỉ dựa vào phương thức mà nó hỗ trợ được gọi là &quot;Duck Typing&quot;,
+giống như &quot;nếu nó đi giống con vịt và quạc quạc giống con vịt...&quot;. Lợi ích của
+điều này là không cần thiết phải hạn chế kiểu biến được hỗ trợ. Nếu ai đó đến
+với một kiểu danh sách lớp mới, miễn là nó thực thi phương thức <code>join</code> với
+cùng một ngữ nghĩa như các danh sách khác, mọi thứ sẽ hoạt động theo đúng kế
+hoạch.</p>
+<h2>Bắt đầu kịch bản</h2>
+<p>Vậy, đó là lớp MegaGreeter, phần còn lại của tập tin chỉ để gọi phương thức
+trong lớp đó. Có một mẹọ cuối cùng để chú ý, đó là dòng</p>
+<!-- raw HTML omitted -->
+<p><code>__FILE__</code> là biến kỳ diệu, nó chứa tên của tập tin hiện tại. <code>$0</code> là tên của
+tập tin sử dụng để bắt đầu chương trình. Kiểm tra này nói rằng &quot;Nếu đây là tập
+tin chính được sử dụng...&quot; nghĩa là nó cho phép một tập tin có thể sử dụng như
+một thư viện và không phải thực thi mã bên trong, nhưng nếu nó là một tập tin
+có thể thực thi thì mã sẽ được thực thi.</p>
+<h2>Xem xét tự giới thiệu</h2>
+<p>Vì vậy, đó là nó sử dụng cho tour tham quan nhanh về Ruby. Có rất nhiều điều
+cần khám phá, các cấu trúc điều khiển khác nhau mà Ruby cung cấp; cách sử dụng
+của các khối lệnh và <code>yield</code>; các module như mixins; và còn nhiều hơn nữa. Tôi
+hy vọng những thú vị ban đầu này của Ruby sẽ khiến bạn muốn học thêm nữa.</p>
+<p>Nếu vậy, hãy đi đến khu vực <a href="/vi/documentation/">Tài liệu</a> của chúng tôi, nơi
+có vô vàn đường dẫn tới các bài chỉ dẫn và hướng dẫn sử dụng, tất cả đều miễn
+phi trực tuyến.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

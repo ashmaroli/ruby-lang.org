@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Инсталиране на Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/documentation/installation/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Инсталиране на Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Има няколко начина за инсталиране на Ruby.
+Тази страница описва как това може да стане с помощта на пакетни мениджъри,
+инсталатори и мениджъри за управление и инсталиране на Ruby. Обяснено е и как
+да се инсталира от изходен код.
+{: .summary}</p>
+<h2>Изберете метод за инсталиране</h2>
+<p>Съществуват няколко начина да бъде инсталиран Ruby:</p>
+<ul>
+<li>Най-лесният начин за инсталиране на Ruby на UNIX системи е чрез
+използването на <strong>пакетният мениджър</strong> на системата. В повечето случаи
+обаче това няма да инсталира най-новата версия на Ruby.</li>
+<li>Могат да бъдат използвани и <strong>инсталатори</strong> за инсталиране на една или
+повече Ruby версии. Налични са и за Windows.</li>
+<li><strong>Мениджъри</strong> се използват за смяна между различните инсталирани версии
+на Ruby.</li>
+</ul>
+<p>Следва списък с наличните методи за инсталиране за различни платформи.</p>
+<ul>
+<li><a href="#package-management-systems">Пакетни мениджъри</a>
+<ul>
+<li><a href="#apt">Debian, Ubuntu</a></li>
+<li><a href="#yum">CentOS, Fedora, RHEL</a></li>
+<li><a href="#portage">Gentoo</a></li>
+<li><a href="#pacman">Arch Linux</a></li>
+<li><a href="#homebrew">macOS</a></li>
+<li><a href="#solaris">Solaris, OpenIndiana</a></li>
+<li><a href="#other-systems">Други системи</a></li>
+</ul>
+</li>
+<li><a href="#installers">Инсталатори</a>
+<ul>
+<li><a href="#ruby-build">ruby-build</a></li>
+<li><a href="#ruby-install">ruby-install</a></li>
+<li><a href="#rubyinstaller">RubyInstaller</a> (Windows)</li>
+<li><a href="#railsinstaller">RailsInstaller и Ruby Stack</a></li>
+</ul>
+</li>
+<li><a href="#managers">Мениджъри</a>
+<ul>
+<li><a href="#chruby">chruby</a></li>
+<li><a href="#rbenv">rbenv</a></li>
+<li><a href="#rvm">RVM</a></li>
+<li><a href="#uru">uru</a></li>
+</ul>
+</li>
+<li><a href="#building-from-source">Инсталация от изходен код</a></li>
+</ul>
+<h2>Пакетни мениджъри</h2>
+<p>{: #package-management-systems}</p>
+<p>Ако не можете да компилирате Ruby и не искате да използвате допълнителен
+софтуер, може да използвате пакетният мениджър на вашата система.</p>
+<p>Някои членове на Ruby общността са на мнението, че не трябва да се използва
+пакетният мениджър за инсталиране на Ruby и че трябва да се използват
+специализирани затова инструменти. Предимствата и недостатъците са извън
+обхвата на статията, но основната причина е, че повечето пакетни мениджъри
+имат стара версия на Ruby в хранилищата си. Ако искате да използвате текущата
+версия на Ruby се уверете, че използвате правилното име на пакет или
+използвайте някой от начините за инсталиране по-долу.</p>
+<h3>apt (Debian или Ubuntu)</h3>
+<p>{: #apt}</p>
+<p>Debian GNU/Linux и Ubuntu използват пакетният мениджър apt.
+Използва се по следният начин:</p>
+<!-- raw HTML omitted -->
+<p>По времето на писане, пакетът ruby-full инсталира Ruby 2.3.1, което е стара
+стабилна версия.</p>
+<h3>yum (CentOS, Fedora, или RHEL)</h3>
+<p>{: #yum}</p>
+<p>CentOS, Fedora, и RHEL използват пакетният мениджър yum.
+Използва се по следният начин:</p>
+<!-- raw HTML omitted -->
+<p>Обикновено се инсталира последната версия на Ruby, която е била
+налична по времето на излизането на специфичната версия на дистрибуцията.</p>
+<h3>portage (Gentoo)</h3>
+<p>{: #portage}</p>
+<p>Gentoo използва пакетният мениджър portage.</p>
+<!-- raw HTML omitted -->
+<p>По подразбиране това ще се опита да инсталира версии 1.9 и 2.0, но са налични и
+други.
+За инсталирането на специфична версия, задайте <code>RUBY_TARGETS</code> в <code>make.conf</code>.
+Вижте <a href="http://www.gentoo.org/proj/en/prog_lang/ruby/">сайтът за Ruby на Gentoo</a> за повече информация.</p>
+<h3>pacman (Arch Linux)</h3>
+<p>{: #pacman}</p>
+<p>Arch Linux използва пакетният мениджър pacman.</p>
+<!-- raw HTML omitted -->
+<p>Това ще инсталира последната стабилна версия на Ruby.</p>
+<h3>Homebrew (macOS)</h3>
+<p>{: #homebrew}</p>
+<p>Ruby 2.0 е включен в OS X Mavericks.
+OS X Mountain Lion, Lion, и Snow Leopard са с вграден Ruby 1.8.7.</p>
+<p>Много потребители на macOS ползват <a href="http://brew.sh/">Homebrew</a> за пакетен
+мениджър. С него е много е лесно да се инсталира нова версия на Ruby:</p>
+<!-- raw HTML omitted -->
+<p>Това би трябвало да инсталира последната версия на Ruby.</p>
+<h3>Ruby на Solaris и OpenIndiana</h3>
+<p>{: #solaris}</p>
+<p>Ruby 1.8.7 е наличен за Solaris от версия 8 до 10 на
+<a href="http://www.sunfreeware.com">Sunfreeware</a> и на Blastwave.
+Ruby 1.9.2p0 също може да бъде инсталиран от <a href="http://www.sunfreeware.com">Sunfreeware</a>,
+но е стара версия.</p>
+<p>За да инсталирате Ruby на <a href="http://openindiana.org/">OpenIndiana</a>, моля ползвайте
+<a href="http://opensolaris.org/os/project/pkg/">Image Packaging System (IPS)</a>.
+Това ще инсталира последните версии на Ruby и RubyGems директно от
+хранилището на OpenSolaris за Ruby 1.9. Лесно е:</p>
+<!-- raw HTML omitted -->
+<p>Обмислете и използването на специални инструменти, за да инсталирате
+последната версия на Ruby.</p>
+<h3>Други системи</h3>
+<p>{: #other-systems}</p>
+<p>Може да потърсите в пакетните хранилищата на вашата дистрибуция или да
+използвате описаните по-долу методи за инсталиране.</p>
+<h2>Инсталатори</h2>
+<p>{: #installers}</p>
+<p>Ако версията на Ruby във вашият пакетен мениджър е прекалено стара, може да
+инсталирате нова с помощта на специален инсталатор. Някои от тях позволяват
+инсталирането и използването на множество версии на една система; съществуват
+и мениджъри, които улесняват смяната между версиите.
+Ако планирате да използвате <a href="#rvm">RVM</a> като мениджър на версиите няма да ви
+е нужен отделен инсталатор.</p>
+<h3>ruby-build</h3>
+<p>{: #ruby-build}</p>
+<p><a href="https://github.com/rbenv/ruby-build#readme">ruby-build</a> е плъгин за <a href="#rbenv">rbenv</a>, който
+позволява компилирането и инсталирането на различни версии на Ruby в
+произволни директории.
+ruby-build може да бъде използван и самостоятелно, без rbenv.
+Наличен е за macOS, Linux и други UNIX системи.</p>
+<h3>ruby-install</h3>
+<p>{: #ruby-install}</p>
+<p><a href="https://github.com/postmodern/ruby-install#readme">ruby-install</a> позволява инсталирането на множество версии на
+Ruby в произволни директории.
+Съществува и <a href="#chruby">chruby</a>, което осъществява смянате между различните
+версии.
+Налично е за macOS, Linux и други UNIX системи.</p>
+<h3>RubyInstaller</h3>
+<p>{: #rubyinstaller}</p>
+<p>Потребителите на Windows могат да използват <a href="https://rubyinstaller.org/">RubyInstaller</a>, за
+да инсталират Ruby. Пакетът осигурява всичко необходимо за разработката на Ruby
+приложения на Windows.</p>
+<p>Просто свалете и изпълнете!</p>
+<h3>RailsInstaller и Ruby Stack</h3>
+<p>{: #railsinstaller}</p>
+<p>Ако инсталирате Ruby, за да използвате Ruby on Rails, може да използвате
+следните инсталатори:</p>
+<ul>
+<li><a href="http://railsinstaller.org/">RailsInstaller</a>,
+използва RubyInstaller, но предоставя допълнителни инструменти, спомагащи
+разработването на Rails приложения.
+Налично за OS X и Windows.</li>
+<li><a href="http://bitnami.com/stack/ruby/installer">Bitnami Ruby Stack</a>,
+осигурява пълна среда за разработка за Rails.
+Поддържа macOS, Linux, Windows и виртуални машини.</li>
+</ul>
+<h2>Мениджъри</h2>
+<p>{: #managers}</p>
+<p>Много Ruby разработчици използват специални мениджъри за управлението
+на множество Ruby инсталации, което имат разнообразни ползи. Те не са официално
+поддържани, но имат много отзивчиви общности.</p>
+<h3>chruby</h3>
+<p>{: #chruby}</p>
+<p><a href="https://github.com/postmodern/chruby#readme">chruby</a> позволява смяната между различни версии на Ruby.
+Различните версии могат да се инсталират чрез <a href="#ruby-install">ruby-install</a>
+или да се компилират от изходен код.</p>
+<h3>rbenv</h3>
+<p>{: #rbenv}</p>
+<p><a href="https://github.com/rbenv/rbenv#readme">rbenv</a> също позволява използването на множество версии на Ruby.
+Официално не поддържа инсталирането на Ruby, но затова съществува популярният
+плъгин <a href="#ruby-build">ruby-build</a>.
+И двата инструмента са налични за macOS, Linux и други UNIX системи.</p>
+<h3>RVM (&quot;Ruby Version Manager&quot;)</h3>
+<p>{: #rvm}</p>
+<p><a href="http://rvm.io/">RVM</a> позволява инсталирането и използването на множество инсталации на
+Ruby. Също така позволява и създаването на gemsets.
+Налично е за macOS, Linux и други UNIX системи.</p>
+<h3>uru</h3>
+<p>{: #uru}</p>
+<p><a href="https://bitbucket.org/jonforums/uru">Uru</a> е лек, мултиплатформен инструмент, който помага при ползването на
+една или повече версии на Ruby за macOS, Linux или Windows системи.</p>
+<h2>Компилиране от изходен код</h2>
+<p>{: #building-from-source}</p>
+<p>Ruby може да бъде инсталиран от изходен код.
+<a href="/bg/downloads/">Свалете</a> и разархивирайте, след това изпълнете следните
+команди:</p>
+<!-- raw HTML omitted -->
+<p>По подразбиране това ще инсталира Ruby в <code>/usr/local</code>.
+За да промените това, подайте опцията <code>--prefix=DIR</code> към <code>./configure</code> скрипта.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Започнете</strong> лесно е!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Пробвайте Ruby! (в браузъра)</a></li>
+
+    
+    <li><a href="/bg/documentation/quickstart/">Ruby в 20 минути</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/ruby-from-other-languages/">Ruby от други езици</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Изследвайте</strong> нов свят…</h3>
+  <ul class="menu">
+    
+    <li><a href="/bg/documentation/">Документация</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/bg/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/success-stories/">Успешни истории</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Участвайте</strong> в приятелски настроено общество.</h3>
+  <ul>
+    
+    <li><a href="/bg/community/mailing-lists/">Пощенски списъци</a>: Дискусии относно Ruby с програмисти от цял свят.</li>
+    
+
+    
+    <li><a href="/bg/community/user-groups/">Потребителски групи</a>: Свържете се с рубисти в твоя район.</li>
+    
+
+    
+    <li><a href="/bg/community/weblogs/">Блогове</a>: Прочетете какво се случва в Ruby обществото.</li>
+    
+
+    
+    <li><a href="/bg/community/ruby-core/">Ruby ядро</a>: Помогнете за разработката на Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Следене на бъгове</a>: Докладвайте или помогнете за решаването на проблеми в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

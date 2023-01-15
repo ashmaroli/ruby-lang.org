@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Liberada la versión 2.2.0-rc1 de Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/news/2014/12/18/ruby-2-2-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Liberada la versión 2.2.0-rc1 de Ruby</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Publicado por naruse el 2014-12-18<br>
+                         Traducción de David Padilla</p>
+
+    <p>Estamos muy contentos de anunciar la entrega de Ruby 2.2.0-rc1.
+Después de RC1, todos los cambios que se hagan a esta versión será solo para
+corregir errores.
+La entrega final de Ruby 2.2.0 está agendada para ser liberada en Diciembre 25
+del 2014.</p>
+<p>Ruby 2.2 incluye mucha funcionalidad nueva y mejoras para las necesidades modernas
+de Ruby.</p>
+<p>Por ejemplo, el Recolector de Basura ahora puede deshacerse de objetos de clase Symbol.
+Esto reduce el uso de memoria de los objetos de esta clase; versiones anteriores a 2.2 no
+eliminaban de memoria este tipo de objetos.</p>
+<p>Uno de los requerimientos de Rails 5.0 es precisamente que este tipo de objetos
+sean recolectados, por lo tanto solo podrá ser soportado en la versión Ruby 2.2
+o superiores.
+(Ver <a href="http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/">el post de la entrega de Rails 4.2</a> para más detalles.)</p>
+<p>También se va a reducir el tiempo de espera gracias al nuevo Recolector de Basura
+Incremental lo que será muy util para las aplicaciones de Rails. Algunos avances
+recientes mencionados en el <a href="http://weblog.rubyonrails.org/">blog de Rails</a>
+sugieren que Rails 5.0 va a beneficiarse del Recolector de Basura Incremental así
+como de la eliminación de objetos Symbol.</p>
+<p>Otra característica nueva relacionada al manejo de memoria es una opción adicional
+en <code>configure.in</code> para utilizar jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Característica #9113</a>.</p>
+<p>Esta funcionalidad es experimental y se encuentra actualmente deshabilitada por defecto hasta
+que podamos recolectar más datos del desempeño y casos de uso. Cuando estemos
+convencidos de que es un beneficio, habilitaremos la opción por defecto.</p>
+<p>También ha sido incorporado soporte experimental para utilizar vfork(2) con
+system() y spawn(). Puedes leer más detalles en el <a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">blog en japonés de tanaka-san</a>.
+Esta característica podría potencialmente traer beneficios enormes de velocidad
+cuando se ejecuten procesos muy grandes varias veces.</p>
+<p>Aún así, vfork(2) no ha sido debidamente estudiado y podría generar llamadas
+al sistema dañinas. Queremos experimentar más para saber que tanto beneficio
+se puede obtener recolectando información de desempeño y otros casos de uso.</p>
+<p>¡Disfruta programar con Ruby 2.2.0-rc1 y avísanos si encuentras algún problema!</p>
+<h2>Cambios notables desde 2.1</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">Recolector de Basura Incremental</a> (<a href="http://magazine.rubyist.net/?0048-YARVManiacs">YARV Maniacs No.12</a>)</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">Recolector de objetos de clase Symbol</a> (<a href="http://www.slideshare.net/authorNari/symbol-gc">Presentación en RubyKaigi 2014</a>)</li>
+<li>configure --with-jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a></li>
+<li>librerías:
+<ul>
+<li>Soporte para Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a></li>
+<li>New methods:
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>, Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a></li>
+<li>Float#next_float, Float#prev_float <a href="https://bugs.ruby-lang.org/issues/9834">#9834</a></li>
+<li>File.birthtime, File#birthtime <a href="https://bugs.ruby-lang.org/issues/9647">#9647</a></li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>librerías incluídas:
+<ul>
+<li>Actualizacíon de Psych 2.0.8</li>
+<li>Actualización de Rake 10.4.0</li>
+<li>Actualización de RDoc 4.2.0.alpha (21b241a)</li>
+<li>Actualización de RubyGems 2.4.5</li>
+<li>Actualización de test-unit 3.0.8 (retirado del repositorio pero incluído en el tarball)</li>
+<li>Actualización de minitest 5.4.3 (retirado del repositorio pero incluído en el tarball)</li>
+<li>Deprecar mathn</li>
+</ul>
+</li>
+<li>API de C
+<ul>
+<li>Retirar APIs deprecadas</li>
+</ul>
+</li>
+</ul>
+<p>Para más detalles pueden leer <a href="https://github.com/ruby/ruby/blob/v2_2_0_rc1/NEWS">NEWS en el repositorio de Ruby (WIP)</a>.</p>
+<p>Con estos cambios, 1548 archivos cambiaron, 123658 inserciones(+), 74306 borrados(-) desde v2.1.0!</p>
+<h2>Descarga</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.bz2</a>
+<ul>
+<li>SIZE:   12475612 bytes</li>
+<li>MD5:    7144732d30dd4547c0a59862b3345d54</li>
+<li>SHA256: e6a1f8d45ea749bdc92eb1269b77ec475bc600b66039ff90d77db8f50820a896</li>
+<li>SHA512: 181201168360bee37dceeef3481a69e8a333a5d329680031fd9d371d30ac64460bbdf4db07546133024f541774e51301f1630cfd988c5e5bf2464834f3abe6bf</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.gz</a>
+<ul>
+<li>SIZE:   15531233 bytes</li>
+<li>MD5:    51f218fabc3ceb7bf3fe5f4f87ddebd3</li>
+<li>SHA256: a59c8db71b967015ad7c259ba8ef638c7943ec78580412bb86e97791a9322b6b</li>
+<li>SHA512: 4a35e78c4c0747f9c79e506e98acc117efb0be72fc103d6f9c13d5eb5efa5c6d6748f491526fc7ebb24397f25238f06d552f841e9e898be30aa7cd6c2df38494</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.xz</a>
+<ul>
+<li>SIZE:   9675108 bytes</li>
+<li>MD5:    3f482b88eda45c1bc6bab1921763ce52</li>
+<li>SHA256: dcfad9bb6e0b513b03f08f86b195da6a6a7045559b558d3493decac0e0abb86c</li>
+<li>SHA512: 3ec8955d8a269a1e5f28c3e0e6023bd613f244c83914a4a8c96d2761b11914c21ce67cfadb2bcebc480d9c0b9c7b54da6dfa67cdf4b4350db2a85d379265ffed</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.zip</a>
+<ul>
+<li>SIZE:   17219660 bytes</li>
+<li>MD5:    49f5aae44c00f4d57be47576c29a53bd</li>
+<li>SHA256: 1bd3e83d44b4e5879b4ecdc496d19905bc03637a8c88027c2dc98a369f1ebb83</li>
+<li>SHA512: bf0e39e5add532ca338095ad6eaaafbe4f84cc9df1e8d4bad986c44e17614623430c2670d9751865e8d645cb483007d5473be82536b985ccab40a7dde72c4161</li>
+</ul>
+</li>
+</ul>
+<h2>Comentarios de la entrega</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115">Problemas conocidos de 2.2.0</a></li>
+</ul>
+<p>Para más información de la agenda de entregas:</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22">ReleaseEngineering22</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Noticias recientes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/es/news/2022/12/25/ruby-3-2-0-released/">Publicado Ruby 3.2.0</a></li>
+        
+        <li><a href="/es/news/2022/12/06/ruby-3-2-0-rc1-released/">Publicado Ruby 3.2.0 RC 1</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-0-5-released/">Publicado Ruby 3.0.5</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-2-7-7-released/">Publicado Ruby 2.7.7</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Para Ruby a partir de C e C++</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pt/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pt/feeds/news.rss" rel="alternate" title="Em português" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pt/">
+          <h1>Ruby</h1>
+          <h2>O melhor amigo do programador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Procurar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Para Ruby a partir de C e C++</h1>
+
+
+
+  <div id="content">
+    <p>É difícil escrever uma lista balizada demonstrando como o seu código
+será diferente em Ruby por comparação a C e C++ pois a diferença é
+tremenda. Uma das razões, é que o Ruby runtime faz muito do trabalho
+pelo programador.</p>
+<p>O Ruby parece estar tão longe quanto possível do principio de “sem
+mecanismos escondidos” do C — o objectivo principal do Ruby é
+tornar o trabalho humano mais fácil ás custas de entregar ao runtime um
+maior volume de trabalho. A menos que, ou até que, se dedique a
+optimizar o seu código, não terá de se preocupar minimamente em “manter
+o seu compilador feliz” quando usa o Ruby.</p>
+<p>Dito isto, e para começar, deverá esperar que o seu código Ruby seja
+executado muito mais lentamente do que código “equivalente” em C ou C++.
+Ao mesmo tempo, ficará espantado com a rapidez com a qual poderá pôr um
+programa em Ruby a correr, bem como com a quantidade diminuta de linhas
+de código necessárias para o escrever. O Ruby é muito, muito mais
+simples que o C++—irá estraga-lo com mimos!</p>
+<p>O Ruby é tipado dinamicamente e não estaticamente—o runtime faz tanto
+trabalho quanto possível em tempo de execução. Por exemplo, o
+programador não precisará de saber a que módulos o seu programa em Ruby
+irá “ligar-se” (isto é, carregar e usar) ou saber de antemão que métodos
+irá chamar.</p>
+<p>Felizmente, acontece que o Ruby e o C mantêm uma saudável relação
+simbiótica. O Ruby suporta os chamados “módulos de expansão”. Estes são
+um tipo de módulo que se pode usar a partir da sua aplicação em Ruby (e
+que, vistos do exterior parecem ser e agem como qualquer outro módulo de
+Ruby), mas que no entanto são escritos em C. Deste modo, poderá dividir
+as partes do seu projecto em Ruby e utilizar C puro onde a performance é
+mais critica.</p>
+<p>E, claro, o Ruby em si é escrito em C.</p>
+<h3>Semelhanças com o C</h3>
+<p>Como em C, no Ruby…</p>
+<ul>
+<li>Poderá programar processualmente (no entanto o código será orientado a
+objectos por detrás de cena)</li>
+<li>Os operadores são, na sua maioria, os mesmos (inclusive os operadores
+de atribuição composta (exe.: a *= b + c) e também os operadores de
+lógica binária). No entanto o Ruby não tem os operadores <code>++</code> e <code>--</code>.</li>
+<li>Tem o <code>__FILE__</code> e o <code>__LINE__</code>.</li>
+<li>Pode usar constantes, no entanto não existe a palavra reservada
+<code>const</code>. A “constância” é garantida por uma convenção de nomenclatura
+– todos os nomes começados com letra maiúscula são reservados para
+constantes.</li>
+<li>As strings (cadeias de caracteres em C) são delimitadas por aspas.</li>
+<li>As strings são mutáveis.</li>
+<li>Tal como as man pages, poderá ler a maioria da documentação no
+terminal – usando para isso o comando <code>ri</code></li>
+<li>Tem o mesmo tipo de depuradores em linha de comandos.</li>
+</ul>
+<h3>Semelhanças com o C++</h3>
+<p>Como com o C++, em Ruby…</p>
+<ul>
+<li>A maioria dos operadores são os mesmos (inclusive o <code>::</code>). É comum
+utilizar <code>&lt;&lt;</code> para acrescentar elementos a uma lista. No entanto
+atenção: em Ruby nunca se usa <code>-&gt;</code>—é sempre <code>.</code>.</li>
+<li>As palavras reservadas <code>public</code>, <code>private</code> e <code>protected</code> têm
+comportamentos semelhantes.</li>
+<li>A sintaxe de herança é ainda apenas um caracter, mas é o <code>&lt;</code> em vez de
+<code>:</code> .</li>
+<li>Pode colocar o seu código em “módulos”, semelhantes ao modo como o
+<code>namespace</code> é usado em C++.</li>
+<li>As excepções têm um funcionamento semelhante, no entanto a
+nomenclatura das palavras reservadas foi mudada para proteger os
+inocentes!</li>
+</ul>
+<h3>Diferenças do C</h3>
+<p>Ao contrario do C, em Ruby…</p>
+<ul>
+<li>Os objectos são fortemente tipados (e as próprias variáveis não têm
+qualquer tipo).</li>
+<li>Não existem macros ou pre-processador. Não existem casts. Não existem
+ponteiros (nem aritmética de ponteiros). Não existem typedefs, sizeof
+ou enums.</li>
+<li>Não existem ficheiros header. Basta definir funções (normalmente
+chamados de “métodos”) e classes nos ficheiros de código fonte.</li>
+<li>Não se usa <code>#define</code>. Ao invés usam-se constantes.</li>
+<li>A partir da versão 1.8 de Ruby, o código é interpretado em tempo de
+execução em vês de ser compilado para qualquer tipo de código maquina
+ou binário.</li>
+<li>As variaveis residem em memoria. Mais ainda, não precisam de se
+preocupar em liberta-las—o <code>garbage collector</code> encarrega-se disso por
+si.</li>
+<li>Os argumentos são passados aos métodos (por exemplo: funções) por
+referência, não por valor.</li>
+<li>Usa-se <code>require 'foo'</code> em vez de <code>#include &lt;foo&gt;</code> ou <code>#include &quot;foo&quot;</code>.</li>
+<li>Não se pode baixar ao assembly.</li>
+<li>As linhas não acabam com ponto e virgula.</li>
+<li>Nas construções lógicas <code>if</code> e <code>while</code> não se usam parênteses.</li>
+<li>A utilização de parênteses na chamada a metodos (por exemplo: funções)
+é normalmente opcional.</li>
+<li>Normalmente não se usa chavetas – basta usar a palavra reservada end
+para terminar um bloco de código expandido por múltiplas linhas(por
+exemplo um ciclo <code>while</code>).</li>
+<li>A palavra reservada <code>do</code> é utilizada nos chamados “blocos”. Não existe
+a construção <code>do</code> como em C.</li>
+<li>O termo “bloco” é usado para algo completamente diferente. Usa-se para
+bloco de código que se associa a uma chamada de método para que o
+corpo do método possa fazer chamadas ao bloco enquanto é executado.</li>
+<li>Não existem declarações de variáveis. Simplesmente atribuem-se valores
+assim que surja a necessidade.</li>
+<li>Num teste lógico, apenas false e nil são avaliados como falso. Tudo o
+resto é verdadeiro (incluindo <code>0</code>, <code>0.0</code>, e <code>&quot;0&quot;</code>).</li>
+<li>Não existe o <code>char</code>—é apenas uma string de apenas uma letra.</li>
+<li>As strings não acabam com um byte nulo.</li>
+<li>Os arrays literais são colocados dentro de parênteses rectos em vez de
+chavetas.</li>
+<li>Os arrays crescem automaticamente quando se lhes acrescente elementos.</li>
+<li>Se somar dois arrays obterá um array novo e maior (alojado em memoria,
+é claro) em vez de fazer aritmética de ponteiros.</li>
+<li>Frequentemente tudo será considerado uma expressão (o que quer dizer
+que coisas como ciclos <code>while</code> serão avaliados com um <code>rvalue</code>).</li>
+</ul>
+<h3>Diferenças do C++</h3>
+<p>Ao contrario do C++, no Ruby,...</p>
+<ul>
+<li>Não existem referências explícitas. O que quer dizer que em Ruby cada
+variável e apenas um nome automaticamente desreferenciado para algum
+objecto.</li>
+<li>Os objectos são fortemente mas dinamicamente tipados. O runtime
+descobre em tempo de execução se a chamada a método realmente
+funciona.</li>
+<li>O “construtor” é chamado <code>initialize</code> em vez de um nome de uma classe.</li>
+<li>Todos os métodos são sempre virtuais.</li>
+<li>Nomes de variáveis de classe (estáticas) começam sempre por
+<code>@</code> (por exemplo <code>@valor_total</code>).</li>
+<li>Não se pode aceder directamente a variáveis de membros todo o acesso a
+variáveis públicas de membros (chamadas em Ruby de atributos) é feito
+através de métodos.</li>
+<li>Usa-se <code>self</code> em vez de <code>this</code>.</li>
+<li>Alguns nomes de métodos terminam em ’?’ ou ’!’. E a terminação faz
+realmente parte do nome.</li>
+<li>Não existe múltipla herança por si só. Embora em Ruby possa haver
+“mixins” (por exe.: pode-se herdar todas as instancias de métodos de
+um modulo).</li>
+<li>Nas chamadas a métodos, os parênteses são opcionais.</li>
+<li>Pode-se reabrir uma classe a qualquer momento e adicionar novos
+métodos.</li>
+<li>Não há a necessidade de utilização de templates de C++ (uma vez que se
+pode atribuir qualquer tipo de objecto a qualquer variável e os tipos
+são descobertos em tempo de execução de qualquer modo). Também não
+existe casting.</li>
+<li>A iteração é feita de uma maneira algo diferente. Em Ruby não
+utilizará um objecto iterador separado (como por exemplo
+<code>vector&lt;T&gt;:const_iterator iter</code>) mas ao invés os objectos criados
+podem misturar o modulo <code>enumerator</code> e fazer uma chamada a um método
+como por exemplo <code>meu_obj.each</code>.</li>
+<li>Existem apenas dois tipos contentores: <code>Array</code> e <code>Hash</code>.</li>
+<li>Não existe conversão de tipo. No entanto provavelmente aperceber-se-á
+que tal não é necessário.</li>
+<li>As capacidades multithreading são nativas, mas a partir do Ruby 1.8,
+elas são “threads ecológicas” (implementadas apenas dentro do
+interpretador) por oposição a threads nativas.</li>
+<li>O Ruby vem complementado com uma biblioteca standard de testes
+unitários.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Primeiros passos</strong>, é fácil!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/pt/documentation/quickstart/">Ruby em Vinte Minutos</a></li>
+    
+
+    
+    <li><a href="/pt/documentation/ruby-from-other-languages/">Ruby a partir de outras linguagens</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> um novo mundo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/pt/documentation/">Documentação</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/pt/libraries/">Bibliotecas</a></li>
+    
+
+    
+    <li><a href="/pt/documentation/success-stories/">Histórias de sucesso</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participe</strong> de uma comunidade simpática e em crescimento.</h3>
+  <ul>
+    
+    <li><a href="/pt/community/mailing-lists/">Listas de E-mail</a>: Fale sobre Ruby com programadores de todo o mundo.</li>
+    
+
+    
+    <li><a href="/pt/community/user-groups/">Grupos de Usuários</a>: Entre em contato com colegas da sua área.</li>
+    
+
+    
+    <li><a href="/pt/community/weblogs/">Weblogs</a>: Leia sobre o que está acontecendo agora na comunidade Ruby.</li>
+    
+
+    
+    <li><a href="/pt/community/ruby-core/">Ruby Core</a>: Ajude a polir as arestas da última versão do Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Informe ou ajude a resolver problemas do Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feeds de notícias (RSS)</h3>
+    <p><a href="/pt/feeds/news.rss">Em português</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Este site em outros idiomas:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pt/about/website/">Este website</a> é mantido com orgulho por membros da comunidade Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.3.0-preview2 發佈</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2015/12/11/ruby-2-3-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.3.0-preview2 發佈</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 發表於 2015-12-11<br>
+                         翻譯： Juanito Fatas</p>
+
+    <p>很高興告訴大家 Ruby 2.3.0-preview2 發佈了。</p>
+<p>Ruby 2.3.0-preview2 是 Ruby 2.3.0 系列的第二個預覽版。
+包含了許多改進與新功能。</p>
+<p>引入<a href="https://bugs.ruby-lang.org/issues/11473">冰凍字串常量編譯指示（Frozen String Literal Pragma）</a>。Ruby 2.1 針對了 <code>&quot;str&quot;.freeze</code> 進行優化，減少了物件的佔用空間。Ruby 2.3 引入了新的魔法註解以及命令行選項，用來指定一個檔案裡的字串，全部默認為無法修改的字串（Frozen String）。除此之外，在除錯時也可以透過使用 <code>--debug=frozen-string-literal</code> 來找到 <code>&quot;can't modify frozen String&quot;</code> 錯誤發生的地方。</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11537">安全調用運算子</a>（<a href="https://instagram.com/p/-M9l6mRPLR/">又稱孤獨運算子</a> <code>&amp;.</code>），引入了 C#、Groovy 以及 Swift 都有的安全調用運算子，用來簡化 <code>nil</code> 的處理：<code>obj&amp;.foo</code>。另新增了 <code>Array#dig</code> 和 <code>Hash#dig</code> 方法。</p>
+<p><a href="https://bugs.ruby-lang.org/issues/11252">did_you_mean 納入標準函式庫</a>。did_you_mean gem 針對 <code>NameError</code> 以及 <code>NoMethodError</code> 會顯示可能的正確拼寫，進而簡化除錯。</p>
+<p>引入 <a href="https://bugs.ruby-lang.org/issues/11788">RubyVM::InstructionSequence#to_binary 和 .load_from_binary</a> 作為實驗性的功能，用來實作 ISeq（bytecode）預編譯系統。</p>
+<p>Ruby 2.3 引入了許多效能優化，譬如：
+<a href="https://bugs.ruby-lang.org/issues/11569">優化了 Proc#call</a>、
+<a href="https://bugs.ruby-lang.org/issues/11278">重新處理了方法進入點的資料結構</a>、
+<a href="https://bugs.ruby-lang.org/issues/11420">引入了新的資料結構：表</a>，以及在機器碼層級針對了記憶體配置與方法呼叫進行了調校，以及許多其他的效能優化。</p>
+<p>請嘗試並享受與 Ruby 2.3.0-preview2 的編碼時光，有任何問題敬請回報！</p>
+<h2>自 2.2 起重要的變化</h2>
+<p>請參閱 <a href="https://github.com/ruby/ruby/blob/v2_3_0_preview2/NEWS">NEWS</a> 和
+<a href="https://github.com/ruby/ruby/blob/v2_3_0_preview2/ChangeLog">ChangeLog</a>
+來進一步了解。</p>
+<p>以上變化自 Ruby 2.2.0 以來，計有 <a href="https://github.com/ruby/ruby/compare/v2_2_0...v2_3_0_preview2">1097 變更的檔案，程式碼新增 97466 行，移除了 58685 行</a>。</p>
+<h2>下載</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.bz2</a></p>
+<ul>
+<li>SIZE:   14126752 bytes</li>
+<li>SHA1:   7e717ef7a0a1523ad696b5fe693f7f7a613a3810</li>
+<li>SHA256: e9b0464e50b2e5c31546e6b8ca8cad71fe2d2146ccf88b7419bbe9626af741cb</li>
+<li>SHA512: e397f321d4338edba8d005d871408775f03d975da90c8abcfdb457a1bc7e6c87efe58c53b2c3bc122e9f58f619767b271bcc8d5d9663ed4b4288c60556e8d288</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.gz</a></p>
+<ul>
+<li>SIZE:   17623519 bytes</li>
+<li>SHA1:   2deaf3ccbbfc5e08d3d840a4f1c33ff5f62f931d</li>
+<li>SHA256: cb1c745bda33ba9e812b48c87852571ef6486f985c5e6ff4508a137d1c9734a3</li>
+<li>SHA512: 83022f99775eb139beec281d59029dcc7c59de1e313182685b0a785334ac53d0c445212460d00d065169b922949263f30a1f981e19fc6e59814e79e6e53ae8e0</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.tar.xz</a></p>
+<ul>
+<li>SIZE:   11249780 bytes</li>
+<li>SHA1:   e1dfca06cd3c2cf6456a7feb0b1cd0752bde1a3b</li>
+<li>SHA256: 7c3119268af87c137f415301b299281762453ad78f86e35562be014dabd67b11</li>
+<li>SHA512: ab3376145d95a2188e6345984f0e5592c8d33515d7046a2ab2565dc418fa2306cdcf797aae9494d4d10446ada54ba638d8a8ad2d4b7510544d7eaea3de4faa87</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0-preview2.zip</a></p>
+<ul>
+<li>SIZE:   19841531 bytes</li>
+<li>SHA1:   db7fa5291d90e0a9c6f75c0cd068bc54050520d6</li>
+<li>SHA256: 90d036fd1ec40aa8f5493821ac162bf69f505c5977db54afe53b8bf689d79b9d</li>
+<li>SHA512: 05784df420018aaae7d09d41e872df708e861cacc74dc8ee97a9e3ac7458cb12b937523ad6def34d5ae2890a0cf037a8d61e365beb88d28acd84879b9391ad65</li>
+</ul>
+</li>
+</ul>
+<h2>發佈記</h2>
+<p>其他資訊請參考發佈時程：</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering23">ReleaseEngineering23</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

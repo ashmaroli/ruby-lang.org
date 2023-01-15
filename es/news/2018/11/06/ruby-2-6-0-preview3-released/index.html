@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Publicado Ruby 2.6.0-preview3</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/news/2018/11/06/ruby-2-6-0-preview3-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Publicado Ruby 2.6.0-preview3</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Publicado por naruse el 2018-11-06<br>
+                         Traducción de vtamara</p>
+
+    <p>Nos complace anunciar la publicación de Ruby 2.6.0-preview3.</p>
+<p>Ruby 2.6.0-preview3 es la tercera vista premiliminar de Ruby 2.6.0.
+Esta vista preliminar 3 se publica para probar nuevas
+características antes del Candidato a Publicación.</p>
+<h2>JIT</h2>
+<p>Ruby 2.6 introduce una implementación inicial de un compilador JIT
+(Just-in-time).</p>
+<p>Un compilador JIT busca mejorar el desempeño de cualquier ejecución de un
+programa en Ruby.
+A diferencia de los compiladores JIT ordinarios para otros lenguajes, el
+compilador JIT de Ruby hace la compilación JIT de manera única,
+emitiendo código C en un disco y lanzando el proceso ordinario de
+compilación en C para generar código nativo.
+Ver también: <a href="https://github.com/vnmakarov/ruby/tree/rtl_mjit_branch#mjit-organization">MJIT organization by Vladimir Makarov</a>.</p>
+<p>Forma de uso: Sólo especifique <code>--jit</code> en la línea de ordenes o en la
+varialbe de entorno <code>$RUBYOPT</code>.
+Al especificar <code>--jit-verbose=1</code> se presentará información básica de la
+compilación JIT.  Vea más opciones con <code>ruby --help</code>.</p>
+<p>El propósito principal de esta versión JIT es darle oportunidad de
+comprobar que funciona en su plataforma y encontrar riesgos de seguridad
+antes de la versión 2.6.
+El compilador JIT es soportado cuando Ruby se construye con GCC, Clang o
+Microsoft VC++, que debe estar disponible en tiempo de ejecución.  De
+lo contrario no podrá usarlo por el momento.</p>
+<p>Con Ruby 2.6.0 preview3, hemos alcanzado una mejora en velocidad de 1.7 veces
+sobre Ruby 2.5 con una carga de trabajo intensiva en el uso de la CPU,
+denominada Optcarrot <a href="https://gist.github.com/k0kubun/d7f54d96f8e501bbbc78b927640f4208">https://gist.github.com/k0kubun/d7f54d96f8e501bbbc78b927640f4208</a>.
+Vamos a a mejorar el desempeño de cargas de trabajo intensivas en el uso
+de memoria tales como las aplicaciones Rails.</p>
+<p>Este pendiente de la nueva era del desempeño de Ruby.</p>
+<h2>RubyVM::AST [Experimental]</h2>
+<p>Ruby 2.6 introduce el módulo <code>RubyVM::AST</code>.</p>
+<p>Este módulo tiene un método <code>parse</code> que puede reconocer código ruby en una cadena y retornar nodos del AST (Abstract Syntax Tree - Árbol de sintaxis abstract), y el método <code>parse_file</code> que reconoe código ruby en un archivo y retorna nodos del AST.
+También se introduce la clase <code>RubyVM::AST::Node</code>. Puede obtener información de la localización y los nodos hijos de objetos <code>Node</code>. Esta característica es experimental.  No se garantiza compatibilidad de la estructura de los nodos AST.</p>
+<h2>Nuevas características</h2>
+<ul>
+<li>
+<p>Se agregó el alias <code>then</code> a <code>Kernel#yield_self</code>. <a href="https://bugs.ruby-lang.org/issues/14594">[Característica #14594]</a></p>
+</li>
+<li>
+<p><code>else</code> sin <code>rescue</code> ahora causa un error de sintaxis.  [EXPERIMENTAL]</p>
+</li>
+<li>
+<p>Los nombres de constantes pueden comenzar con una letra mayúscula fuera de la tabla AASCII.  <a href="https://bugs.ruby-lang.org/issues/13770">[Característica #13770]</a></p>
+</li>
+<li>
+<p>Rangos no acotados <a href="https://bugs.ruby-lang.org/issues/12912">[Característica #12912]</a></p>
+<p>Se introduce un rango no acotado <code>(1..)</code>. Funciona como si no terminara.  A continuación se presenta un uso típico:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ary[1..]                          # igual a ary[1..-1] sin el mágico -1
+(1..).each {|index| ... }         # ciclo infinito desde el índice 1
+ary.zip(1..) {|elem, index| ... } # ary.each.with_index(1) { ... }
+</code></pre></div></div>
+</li>
+<li>
+<p>Añadido <code>Binding#source_location</code>.  <a href="https://bugs.ruby-lang.org/issues/14230">[Característica #14230]</a></p>
+<p>Este método retorna la localización en la fuente de una unión,  un arreglo de 2 elementos <code>__FILE__</code> y <code>__LINE__</code>.  Tradicionalmente, la misma información podría recuperarse con <code>eval(&quot;[__FILE__, __LINE__]&quot;, binding)</code>, pero planeamos cambiar este comportamiento para que <code>Kernel#eval</code> ignore la localización de uniones en las fuentes <a href="https://bugs.ruby-lang.org/issues/4352">[Falla #4352]</a>.  Así que los usuarios deberían emplear este método recién introducido en lugar de <code>Kernel#eval</code>.</p>
+</li>
+<li>
+<p>Añadir la opción <code>:exception</code> para que <code>Kernel.#system</code> lance un error en lugar de retornar <code>false</code>.  <a href="https://bugs.ruby-lang.org/issues/14386">[Característica #14386]</a></p>
+</li>
+</ul>
+<h2>Mejoras en desempeño</h2>
+<ul>
+<li>
+<p>Mejorada la velocidad de <code>Proc#call</code> porque ya no necesitamos preocuparnos por <code>$SAFE</code>.  <a href="https://bugs.ruby-lang.org/issues/14318">[Característica #14318]</a></p>
+<p>Con la prueba de referencia <code>lc_fizzbuzz</code> que usa <code>Proc#call</code> repetidas veces podemos medir mejoras de 1.4 veces <a href="https://bugs.ruby-lang.org/issues/10212">[Falla #10212]</a>.</p>
+</li>
+<li>
+<p>Mejorada velocidad de <code>block.call</code> cuando <code>block</code> es un parámetro de
+bloque pasado a una función. <a href="https://bugs.ruby-lang.org/issues/14330">[Característica #14330]</a></p>
+<p>Ruby 2.5 mejora el desempeño al pasar bloques. <a href="https://bugs.ruby-lang.org/issues/14045">[Característica #14045]</a>
+Además, Ruby 2.6 mejora el desempeño al llamar bloques pasados.
+Con micro-pruebas de referencia podemos observar una mejora de 2.6 veces.</p>
+</li>
+<li>
+<p>Se introduce la estructura de datos Montón transitorio (Transient Heap - theap). [Falla #14858] [Característica #14989]
+theap es un montón usado para objetos en memoria de corta duración que son
+apuntados por clases específicas (Array, Hash, Object, and Struct).
+Por ejemplo, hacer objetos Hash pequeños y de corta duración es 2 veces
+más rápido.  Con la prueba de referencia rdoc, observamos una mejora en
+desempeño de entre 6 y 7%.</p>
+</li>
+</ul>
+<h2>Otros cambios notables desde 2.5</h2>
+<ul>
+<li>
+<p><code>$SAFE</code> es el estado global del proceso y podemos ponerlo nuevamente en <code>0</code>.  <a href="https://bugs.ruby-lang.org/issues/14250">[Característica #14250]</a></p>
+</li>
+<li>
+<p>Es obsoleto pasar <code>safe_level</code> a <code>ERB.new</code>. Los argumentos <code>trim_mode</code> y <code>eoutvar</code> se cambian a argumentos de palabra clave (keyword arguments). <a href="https://bugs.ruby-lang.org/issues/14256">[Característica #14256]</a></p>
+</li>
+<li>
+<p>Mezclado RubyGems 3.0.0.beta2. Se eliminaron las opciones <code>--ri</code> y <code>--rdoc</code>. Por favor use las opciones <code>--document</code> y <code>--no-document</code> en lugar de esas.</p>
+</li>
+<li>
+<p>Mezclado <a href="https://github.com/bundler/bundler">Bundler</a> como una gema por omisión.</p>
+</li>
+</ul>
+<p>Vea detalles en <a href="https://github.com/ruby/ruby/blob/v2_6_0_preview3/NEWS">NOTICIAS</a>
+o en <a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview3">la bitácora de commits</a>.</p>
+<p>Con esos cambios,
+<a href="https://github.com/ruby/ruby/compare/v2_5_0...v2_6_0_preview3">cambiaron 6474 archivos, 171888 inserciones(+), 46617 eliminaciones (-)</a>
+desde Ruby 2.5.0!</p>
+<p>Disfrute programar con Ruby 2.6.0-preview3!</p>
+<h2>Descargas</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17071670 bytes
+SHA1:   67836fda11fa91e0b988a6cc07989fbceda025b4
+SHA256: 60243e3bd9661e37675009ab66ba63beacf5dec748885b9b93916909f965f27a
+SHA512: 877278cd6e9b947f5bb6ed78136efb232dcc9c5c218b7236576171e7c3cd7f6b7d10d07d8402014a14aba1fcd1913a4370f0725c561ead41d8a3fe92029f7f76
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.zip">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   21537655 bytes
+SHA1:   45f3c90dfffe03b746f21f24152666e361cbb41a
+SHA256: 9152af9e700349dcfa2eec196dd91587d42d70a6837fa2c415ebba1167587be1
+SHA512: 335de36cf56706326f4acc4bbd35be01e0ac5fff30d0a69b2e1630ba4c78f0e711822d1623d0099a517c824b154917d2f60be192dfb143a422cf1d17b38e1183
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14973451 bytes
+SHA1:   5f2df5d8c5a3888ccb915d36a3532ba32cda8791
+SHA256: 1f09a2ac1ab26721923cbf4b9302a66d36bb302dc45e72112b41d6fccc5b5931
+SHA512: d1693625723796e8902f3e4c4fae444f2912af9173489f7cf18c99db2a217afc971b082fce7089e39f8edd54d762d2b4e72843c8306ed29b05ccb15ac03dbb5b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview3.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12291692 bytes
+SHA1:   7f8216247745215e9645568e7a02140f9a029b31
+SHA256: 9856d9e0e32df9e5cdf01928eec363d037f1a76dab2abbf828170647beaf64fe
+SHA512: b4d3b17ecf96272c43cd7518c0b54dee63fc1150ad143e1d9c9d708506fe78676c80eb96cc47b8d46d1128bd483a53f16c944963a03d1f99f00131b74714df7b
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Noticias recientes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/es/news/2022/12/25/ruby-3-2-0-released/">Publicado Ruby 3.2.0</a></li>
+        
+        <li><a href="/es/news/2022/12/06/ruby-3-2-0-rc1-released/">Publicado Ruby 3.2.0 RC 1</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-0-5-released/">Publicado Ruby 3.0.5</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-2-7-7-released/">Publicado Ruby 2.7.7</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

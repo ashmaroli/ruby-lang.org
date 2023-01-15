@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Lançado Ruby 2.7.2</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pt/news/2020/10/02/ruby-2-7-2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pt/feeds/news.rss" rel="alternate" title="Em português" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pt/">
+          <h1>Ruby</h1>
+          <h2>O melhor amigo do programador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Procurar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Lançado Ruby 2.7.2</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Escrito por nagachika em 02/10/2020<br>
+                         Traduzido por jcserracampos</p>
+
+    <p>Ruby 2.7.2 foi lançado.</p>
+<p>Esta versão contém incompatibilidade intencional. Alertas de depreciação estão desativadas por padrão no 2.7.2 em diante.
+Você pode ativar esses alertas de depreciação especificando as opções -w ou -W:deprecated na linha de comando.
+Por favor, veja os tópicos abaixo para detalhes.</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/17000">Feature #17000 2.7.2 turns off deprecation warnings by default</a></li>
+<li><a href="https://bugs.ruby-lang.org/issues/16345">Feature #16345 Don't emit deprecation warnings by default.</a></li>
+</ul>
+<p>Esta versão contém a nova versão de webrick com uma correção de seguração descrita neste artigo.</p>
+<ul>
+<li><a href="/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Potencial Vulnerabilidade de Smuggling de Requisições HTTP no WEBrick</a></li>
+</ul>
+<p>Veja <a href="https://github.com/ruby/ruby/compare/v2_7_1...v2_7_2">commit logs</a> para outras alterações.</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14708724
+SHA1: 7e30ca324464eab2f4c2a56d8ab4a37174998062
+SHA256: 65a590313d244d48dc2ef9a9ad015dd8bc6faf821621bbb269aa7462829c75ed
+SHA512: f07592cce4de3532c0fa1c84d53a134527d28ba95e310cd3487ac321c49ee680faeace285de544ee6db432a90aa7538a1d49ff10c72b235968ca362ef9be621d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 16836767
+SHA1: cb9731a17487e0ad84037490a6baf8bfa31a09e8
+SHA256: 6e5706d0d4ee4e1e2f883db9d768586b4d06567debea353c796ec45e8321c3d4
+SHA512: e80dc16b60149d0d6fedf0ba7b556ae460ff328ee63e9d9e41f5021f67addcc98159cb27bddccaebd6e4b1cddf29266f1c01c32d9ec8bb665aed63c0a2295f2f
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 12037052
+SHA1: 82a1fe683460caa8edb6199707f2905634e5ffcc
+SHA256: 1b95ab193cc8f5b5e59d2686cb3d5dcf1ddf2a86cb6950e0b4bdaae5040ec0d6
+SHA512: 7972278b096aa768c7adf2befd26003e18781a29ca317640317d30d93d6e963ded197724c8e2f1dfe1e838c5647176d414a74732a62e931fb50d6f2e0f777349
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20618242
+SHA1: 9acee3d4e9399c3a2ddc2dd078dd2ee26327cc8f
+SHA256: c6b8597e5414f2b01a7cb25095319f2b0e780c95a98fee1ccf1ef022acf93dcc
+SHA512: 5f3a8d78bbd3d9700e5f0434d0cec2072816c02f5d5b55f24d4f9f0621c0c89f796e9ada32ed65f052a321845dd29709a1b76170c7dd0250bea6f8c18953a366
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Comentário de Versão</h2>
+<p>Obrigado às várias pessoas que fizeram commits, pessoas desenvolvedoras e usuárias que informaram bugs e contribuíram para que esta versão fosse possível.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Notícias Recentes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/pt/news/2020/10/02/ruby-2-7-2-released/">Lançado Ruby 2.7.2</a></li>
+        
+        <li><a href="/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Potencial Vulnerabilidade de Smuggling de Requisições HTTP no WEBrick</a></li>
+        
+        <li><a href="/pt/news/2020/09/25/ruby-3-0-0-preview1-released/">Lançado Ruby 3.0.0 Preview 1</a></li>
+        
+        <li><a href="/pt/news/2019/10/16/fukuoka-ruby-award-2020/">Competição 2020 Fukuoka Ruby Award - Submissões serão julgadas por Matz</a></li>
+        
+        <li><a href="/pt/news/2019/10/02/ruby-2-4-9-released/">Lançado Ruby 2.4.9</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de notícias (RSS)</h3>
+    <p><a href="/pt/feeds/news.rss">Em português</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Este site em outros idiomas:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pt/about/website/">Este website</a> é mantido com orgulho por membros da comunidade Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

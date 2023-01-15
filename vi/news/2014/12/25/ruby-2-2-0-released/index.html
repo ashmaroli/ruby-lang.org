@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Phát hành Ruby 2.2.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2014/12/25/ruby-2-2-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Phát hành Ruby 2.2.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi naruse vào 25 Dec 2014<br>
+                         Dịch bởi Nhat Tan</p>
+
+    <p>Rất vui khi được thông báo ấn bản Ruby 2.2.0.</p>
+<p>Ruby 2.2 cung cấp nhiều tính năng và cải tiến mới nhằm phục vụ nhu cầu ngày càng đa dạng và mở rộng cho Ruby.</p>
+<p>Ví dụ: Symbol GC giúp tự động thu hồi bộ nhớ cho Symbols. Nó giúp cho giảm tải
+đáng kể dung lượng Symbols tạo ra, bởi vì trước bản Ruby 2.2 thì GC không thể
+thu hồi bộ nhớ sử dụng của Symbols. Vì Rails 5.0 bắt buộc yêu cầu chức năng
+Symbol GC, thế nên Rails 5.0 sẽ chỉ hỗ trợ Ruby 2.2.
+(Xem <a href="http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/">bài post trên Rails' blog</a>
+để thêm chi tiết.)</p>
+<p>Ngoài ra Incremental GC mới cũng giúp giảm thời tạm dừng của việc thu hồi bộ
+nhớ, thực sự hữu dụng khi chạy các ứng dụng Rails. Gần đây các lập trình viên đã đề cập trên <a href="http://weblog.rubyonrails.org/">Rails blog</a> cho rằng Rails 5.0 sẽ tận dụng lợi thế của Incremental GC cũng như Symbol GC.</p>
+<p>Một tính năng khác liên quan đến việc quản lý bộ nhớ là một lựa chọn cho
+configure.in để sử dụng jemalloc
+<a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a>.
+Đây là là một tính năng thử nghiệm với mặc định không được bật lên cho đến khi chúng tôi thu thập được nhiều hơn use case và peformance data. Nếu tất cả đều ở
+trạng thái hoạt động tốt và ổn định thì tính năng này sẽ mặc định được bật lên.</p>
+<p>Hỗ trợ thực nghiệm cho việc sử dụng vfork(2) trong system() và spawn() cũng đã được thêm vào. Bạn có thể xem chi tiết hơn trên <a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">tanaka-san’s blog bằng Tiếng Nhật</a>. Điều này giúp tăng tốc rất nhiều khi một tiến trình lớn thực hiện những lệnh bên ngoài nhiều lần. Tuy nhiên vfork(2) vẫn chưa được hiểu rõ và là một system call nguy hiểm tiềm ẩn. Chúng tôi muốn thực nghiệm để có thể biết được các lợi ích nó mang lại qua việc thu thập thông tin về peformance data và use cases.</p>
+<p>Mong nhận được nhiều phản hồi trong qua trình sử dụng Ruby 2.2.0 từ các bạn.</p>
+<h2>Các thay đổi đáng chú ý so với bản 2.1</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">Incremental GC</a>
+(<a href="http://www.atdot.net/~ko1/activities/2014_rubyconf_pub.pdf">bài diễn thuyết tại RubyConf 2014: “Incremental GC for Ruby interpreter”</a>)</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">Symbol GC</a>
+(<a href="http://www.slideshare.net/authorNari/symbol-gc">bài diễn thuyết tại RubyKaigi 2014</a>)</li>
+<li>configure --with-jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a></li>
+<li>core libraries:
+<ul>
+<li>Hỗ trợ Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a></li>
+<li>Hàm mới:
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>, Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a></li>
+<li>Float#next_float, Float#prev_float <a href="https://bugs.ruby-lang.org/issues/9834">#9834</a></li>
+<li>File.birthtime, File#birthtime <a href="https://bugs.ruby-lang.org/issues/9647">#9647</a></li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>bundled libraries:
+<ul>
+<li>Nâng cấp Psych 2.0.8</li>
+<li>Nâng cấp Rake 10.4.2</li>
+<li>Nâng cấp RDoc 4.2.0</li>
+<li>Nâng cấp RubyGems 2.4.5</li>
+<li>Nâng cấp test-unit 3.0.8 (xoá khỏi repository nhưng được kèm cùng tarball)</li>
+<li>Nâng cấp minitest 5.4.3 (xoá khỏi repository nhưng được kèm cùng tarball)</li>
+<li>Deprecate mathn</li>
+</ul>
+</li>
+<li>C API
+<ul>
+<li>Xoá deprecated APIs</li>
+</ul>
+</li>
+</ul>
+<p>Xem thêm chi tiết tại
+<a href="https://github.com/ruby/ruby/blob/v2_2_0/NEWS">NEWS trong Ruby repository</a>.</p>
+<p>Với những thay đổi, 1557 file đã được thay đổi, 125039 insertions(+), 74376 deletions(-).</p>
+<h2>Download</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.bz2</a>
+<ul>
+<li>SIZE:   13304042 bytes</li>
+<li>MD5:    d03cd4690fec1fff81d096d1c1255fde</li>
+<li>SHA256: 1c031137999f832f86be366a71155113675b72420830ce432b777a0ff4942955</li>
+<li>SHA512: 04edc53e8cd1732c3ca61ebeb1d6133614beb10f77f9abb80d8d36352fe8aa205112068e460bf600b2c7e81e0ddcc3b311e7e027c320366f1bd992b3e378a6ad</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz</a>
+<ul>
+<li>SIZE:   16494584 bytes</li>
+<li>MD5:    cd03b28fd0b555970f5c4fd481700852</li>
+<li>SHA256: 7671e394abfb5d262fbcd3b27a71bf78737c7e9347fa21c39e58b0bb9c4840fc</li>
+<li>SHA512: 1ba0c68e1c8d2b60bbd1e218cf36463edbe34cf9418d7593702b631e68d02297465f752e71395f6cfa4104f4cd70a1eb44381ffb74bc7801758b830931fdcfc6</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.xz</a>
+<ul>
+<li>SIZE:   10304244 bytes</li>
+<li>MD5:    54b43c6c6c9dd4c4b08ceb03ad0ded7a</li>
+<li>SHA256: 848714e280fc5fb44dbac3b060b206e56c1947006324ee68a174d68b483ef8ca</li>
+<li>SHA512: cd7e52faa464df8aca7ccfa23a5f06248e1ad82bc8c9f1829aa1b51ff37b15973b8caaa68e914d837325b8d59427fda4f3cad82c50925e1c84e688324a2a155d</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip</a>
+<ul>
+<li>SIZE:   18441027 bytes</li>
+<li>MD5:    f8e1d0cee4f2d9535a9529ed23ae3700</li>
+<li>SHA256: e06c1e2b1248cf881749833084b2bec93f7612676009190ff9bc89b8fd07c29f</li>
+<li>SHA512: 364dd927b496520d95a1b06c68e1a265015f4cab08bdf3efaa323d385e7bf075eae47f2e1db78a629db0f3c0c1ed24e086603ba21e2da02ac06dd3c8b716766e</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

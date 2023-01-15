@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Changement des options par défaut de ext/openssl</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/news/2014/10/27/changing-default-settings-of-ext-openssl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Changement des options par défaut de ext/openssl</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posté par usa le 2014-10-27<br>
+                         Traduit par Geoffrey Roguelon</p>
+
+    <p>Nous avons changé les options par défaut de ext/openssl dans Ruby 2.1.4,
+Ruby 2.0.0-p594 et Ruby 1.9.3-p550.
+Avec ce changement, les options non-sécurisées de SSL/TLS sont désactivées par défaut.
+Cependant, avec ce changement, il se peut que certains problèmes apparaissent
+avec les connexions SSL.</p>
+<h2>Détails</h2>
+<p>OpenSSL implémente encore des protocoles et des algorithmes de chiffrement
+reconnus comme vulnérables pour des raisons historiques.
+Par exemple, la faille POODLE (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566">CVE-2014-3566</a>),
+si vous continuez à utiliser OpenSSL avec ce genre de fonctionnalités, il se
+peut que vous ne puissiez garantir la sécurité de vos échanges réseaux.
+Par conséquent, suite à la discussion du <a href="https://bugs.ruby-lang.org/issues/9424">bug #9424</a>,
+nous avons décidé de désactiver les options non-sécurisées de SSL/TLS par défaut.
+Si vous avez besoin d'annuler ce changement (inclus ci-dessous), appliquez le
+patch inverse pour revenir en arrière.</p>
+<p>2.1.4
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48098&amp;view=revision">r48098</a></p>
+<p>2.0.0-p594
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48110&amp;view=revision">r48110</a></p>
+<p>1.9.3-p550
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48121&amp;view=revision">r48121</a></p>
+<p>Néanmoins, si vous annulez ce changement, vous risquez de ne plus pouvoir
+garantir la sécurité de vos communications réseaux.
+Vous devez comprendre les implications de ce changement avant de le supprimer.</p>
+<h3>Bibliothèques incluses dans Ruby</h3>
+<p>Ce changement affecte les bilbiothèques net/http, net/imap et net/pop.
+Depuis que DRb et WEBrick gèrent leurs options séparément, ce changement ne les
+concerne pas.</p>
+<h3>Scripts utilisant ext/openssl directement</h3>
+<p>Ce changement affecte les instances de l'objet <code>OpenSSL::SSL::SSLContext</code> et les
+appels de la méthode d'instance <code>set_params</code>.</p>
+<p>Plus particulièrement les codes du type :</p>
+<!-- raw HTML omitted -->
+<p>Quand vous utilisez ext/openssl côté client, nous partons du principe que ce
+changement ne posera pas de problème.
+Par contre, si vous utilisez ext/openssl côté serveur et que vous utilisez ces
+nouvelles options, il se peut que certains anciens clients (Internet Explorer 6
+sur Windows XP, les navigateurs sur les vieux mobiles, etc…) ne puissent pas se
+connecter au serveur.</p>
+<p>Cette décision vous appartient d'appliquer ou non ce changement, considérez le
+pour et le contre.</p>
+<h2>Solution alternative</h2>
+<p>Si vous ne pouvez pas mettre à jour Ruby mais que vous devez vous prémunir des
+options non-sécurisées de SSL/TLS, appliquez le patch suivant à vos projets :</p>
+<!-- raw HTML omitted -->
+<h2>Versions concernées</h2>
+<ul>
+<li>Ruby 1.9.3 patchlevel 550 et plus récent</li>
+<li>Ruby 2.0.0 patchlevel 594 et plus récent</li>
+<li>Ruby 2.1.4 et plus récent</li>
+<li>révision 48097 du trunk et plus récente</li>
+</ul>
+<h2>Historique</h2>
+<ul>
+<li>Article publié le 27 octobre 2014 à 12h00 (UTC)</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Actualité récente</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/fr/news/2022/02/18/ruby-3-1-1-released/">Ruby 3.1.1 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/12/25/ruby-3-1-0-released/">Ruby 3.1.0 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-7-5-released/">Ruby 2.7.5 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-6-9-released/">Ruby 2.6.9 est disponible</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

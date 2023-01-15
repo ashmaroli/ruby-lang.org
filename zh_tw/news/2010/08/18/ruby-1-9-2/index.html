@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 1.9.2 已經釋出</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2010/08/18/ruby-1-9-2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 1.9.2 已經釋出</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 SJH 發表於 2010-08-18</p>
+
+    <p>Ruby 1.9.2 已經釋出. 此為 Ruby 1.9 系列的最新版本.</p>
+<h3>About Ruby 1.9.2</h3>
+<p>除了下列部分外，Ruby 1.9.2 大部分相容於 1.9.1 :</p>
+<ul>
+<li>許多新的方法.</li>
+<li>新的 socket API (支援 IPv6).</li>
+<li>新的編碼.</li>
+<li>支援不同亂數產生器的 Random 類別.</li>
+<li>重新實作了 Time . 不會有 2038 年問題.</li>
+<li>regexp 的加強.</li>
+<li>$: 符號不再包含目前目錄.</li>
+<li>基於 libffi 重新實作的 dl.</li>
+<li>包裝 libyaml 的新 psych 函式庫. 可以用來取代 syck.</li>
+</ul>
+<p>詳細資料請參閱 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_0/NEWS">新聞</a> 與 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_0/ChangeLog">更動</a> .</p>
+<p>Ruby 1.9.2 已經通過 <a href="https://github.com/ruby/spec">RubySpec</a> 99% 以上的測試.</p>
+<h3>支援的平台</h3>
+<p>Ruby 1.9 可分為以下四種支援的程度.</p>
+<p>Supported (支援)
+: 經過驗證,在此平台上可以正確的執行 Ruby 1.9.2 . 而且我們會在此平台上持續維護 1.9.2 的版本.</p>
+<ul>
+<li>Debian GNU/Linux 5.0 on IA32.</li>
+</ul>
+<p>Best Effort (盡最大努力)
+: 經過驗證, 在此平台上 Ruby 1.9.2 大部份都可以正確的執行. 而且我相信我們會在此平台上持續的維護 1.9.2 的版本.</p>
+<ul>
+<li>mswin32, x64-mswin64, mingw32</li>
+<li>MacOS X 10.5 (Intel) and 10.6</li>
+<li>FreeBSD 6 and later (amd64, IA32)</li>
+<li>Solaris 10</li>
+<li>Symbian OS</li>
+</ul>
+<p>Perhaps (可能)
+: 我相信經過一些小小的修改 Ruby 1.9.2 可以正確的在這些平台上執行, 但是尚未經過驗證. 歡迎各方提供 Patch.</p>
+<ul>
+<li>Other Linux distributions</li>
+<li>Other versions of MacOS X.</li>
+<li>cygwin</li>
+<li>AIX 5</li>
+<li>Other POSIX-compatible systems</li>
+<li>BeOS (Haiku)</li>
+</ul>
+<p>Not supported (不支援)
+: 我想在這些平台上 Ruby 1.9.2 並不能正確的執行. 歡迎協助移植.</p>
+<ul>
+<li>其他的系統</li>
+</ul>
+<h3>FAQ</h3>
+<p>為何標準函式庫會安裝在 /usr/local/lib/ruby/1.9.1 ?
+: 此版本為 &quot;函式庫相容性版本&quot;. Ruby 1.9.2 大部份相容於 1.9.1, 所以函式庫被安裝在這個目錄.</p>
+<p>LoadError 的原因 ?
+: 因為 <code>$:</code> 符號不再包含目前目錄. 所以某些 script 必須要修改才能正確的執行. 此外你的 script
+也應該盡量不要跟目前目錄有關.</p>
+<h3>下載</h3>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.bz2&gt;</a>
+SIZE
+: 8495472 bytes</p>
+<p>MD5
+: d8a02cadf57d2571cd4250e248ea7e4b</p>
+<p>SHA256
+: e9710990ed8c2e794123aba509010471915fb13c27dae0118831d2001a9c8d3b</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.gz&gt;</a>
+SIZE
+: 10787899 bytes</p>
+<p>MD5
+: 755aba44607c580fddc25e7c89260460</p>
+<p>SHA256
+: 8c0c4e261a921b5c406bf9e76ac23bf3c915651534e9d1b9e8c5d0bee4a7285c</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.zip&gt;</a>
+SIZE
+: 12159728 bytes</p>
+<p>MD5
+: e57a393ccd62ddece4c63bd549d8cf7f</p>
+<p>SHA256
+: e61521af06da71fde9f0c7c08baaf7415614d00c86ec5a7ab08b60a4f3185b2a</p>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

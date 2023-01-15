@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.4.0 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2016/12/25/ruby-2-4-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.4.0 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 25 Dec 2016</p>
+
+    <p>Ruby 2.4シリーズの最初の安定版である、Ruby 2.4.0がリリースされました。</p>
+<p>Ruby 2.4.0 には以下に示すようなたくさんの新機能が含まれています:</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12142">Introduce hash table improvement (by Vladimir Makarov)</a></h2>
+<p>従来Rubyのハッシュテーブルの内部実装 (st_table) ではに双方向連結リストとチェイン法を用いた実装が使われていましたが、挿入順の配列にオープンアドレス法を用いることによる高速化が行われました。
+この改善に際しては多くの方による議論が行われ、とりわけ Yura Sokolov 氏によって多大な貢献がありました。</p>
+<h2>Binding#irb: Start a REPL session similar to <code>binding.pry</code></h2>
+<p><a href="https://github.com/pry/pry">pry</a> を用いると <code>binding.pry</code> とアプリケーションに書くことで、その場で対話型実行環境を起動することができ、デバッグの際に便利です。
+<a href="https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a">r56624</a> にて <code>binding.irb</code> と書くことで同様なことをirbを用いて行える機能が入りました。</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">Unify Fixnum and Bignum into Integer</a></h2>
+<p>Rubyの標準仕様である <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a> ではIntegerクラスの詳細について定めていませんが、これまでRubyにはFixnumとBignum、2つの整数クラスがありました。
+Ruby 2.4では従来抽象クラスであったIntegerクラスにこの2つを統合しています。
+FixnumクラスやBignumクラスを扱う全てのC拡張ライブラリは修正が必要になります。</p>
+<p>詳細は <a href="https://bugs.ruby-lang.org/issues/12005">Redmineチケット</a> や <a href="http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf">RubyKaigiでの発表</a>を参照ください。</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">String supports Unicode case mappings</a></h2>
+<p><code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code> は従来ASCIIの範囲でのみ大文字小文字を変換していましたが、Ruby 2.4ではUnicodeの仕様にのっとった変換を行うようになります。</p>
+<h2>Performance improvements</h2>
+<p>Ruby 2.4 では以下のような言語レベルでの修正を伴う性能改善が行われています。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p>一定の条件下において、<code>[x, y].max</code> や <code>[x, y].min</code> が一時的な配列を生成しないようになりました。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>バックリファレンスの生成や <code>$~</code> の変更を行わないことで、極力オブジェクト生成を減らした <code>Regexp#match?</code> が追加されました。</p>
+<h3>Other performance improvements</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">speed up instance variable access</a></li>
+</ul>
+<h2>Debugging</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception and Thread.report_on_exception</a></h3>
+<p>Rubyでは、あるスレッドで発生した例外は、別のスレッドに join されない限り無視されます。
+Ruby 2.4 で <code>report_on_exception = true</code> を行うと、あるスレッドが例外で終了した場合、標準エラー出力にその旨が出力されます。</p>
+<p>Ruby 2.5 において <code>report_on_exception</code> のデフォルトの値がどうあるべきか、ある正常終了したスレッドがGCされた場合に通知する機能も必要かなどについてご意見をお持ちの方はお知らせください。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">Thread deadlock detection now shows threads with their backtrace and dependency</a></h3>
+<p>Rubyにはスレッド待ちのデッドロックを検出する機能がありましたが、その際のエラー出力はデバッグのための十分な情報を出していませんでした。Ruby 2.4ではスレッドのバックトレースや依存関係などを出力します。</p>
+<h2>Other notable changes since 2.3</h2>
+<ul>
+<li>Support OpenSSL 1.1.0 (drop support for 0.9.7 or prior)</li>
+<li>ext/tk is now removed from stdlib <a href="https://bugs.ruby-lang.org/issues/8539">Feature #8539</a></li>
+<li>XMLRPC is now removed from stdlib <a href="https://bugs.ruby-lang.org/issues/12160">Feature #12160</a></li>
+</ul>
+<p>See <a href="https://github.com/ruby/ruby/blob/v2_4_0/NEWS">NEWS</a>
+and <a href="https://github.com/ruby/ruby/blob/v2_4_0/doc/ChangeLog-2.4.0">ChangeLog</a>
+for details.</p>
+<p>With those changes,
+<a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0">2523 files changed, 289129 insertions(+), 84670 deletions(-)</a>
+since Ruby 2.3.0!</p>
+<p>メリークリスマス。Ruby とともに良き休日をおすごしください。</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12572424 bytes
+SHA1:   944d2588308391b20a89642472454d1dfe7b2360
+SHA256: 440bbbdc49d08d3650f340dccb35986d9399177ad69a204def56e5d3954600cf
+SHA512: bef7bb53f63fb74073d071cc125fb67b273ed0779ef43c2d2969089b9ca21fff1bd012281c5b748f7a3c24dd26e71730d7248c05a01cb23ab2089eb4d02115fe
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14104044 bytes
+SHA1:   d44a3c50a0e742341ed3033d5db79d865151a4f4
+SHA256: 152fd0bd15a90b4a18213448f485d4b53e9f7662e1508190aa5b702446b29e3d
+SHA512: 21c9f596b42dd9cba7a53963a59fed0c2e0c1eb960a4ac7087ea3eaa991ce9252d32639e1edcb75b1d709bc07c4820a6dc336ab427d0643c6e6498e0eacdbc8b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9906880 bytes
+SHA1:   038804bbd0e77508dd2510b729a9f3b325489b2e
+SHA256: 3a87fef45cba48b9322236be60c455c13fd4220184ce7287600361319bb63690
+SHA512: 975a5388592adc038461e0acebb6c0efee242891b2ea8621476401458efe2bc0fdd317d3bf99beb745b0b3808410efdff33862da29c95c027f457943721e3ab6
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15758757 bytes
+SHA1:   29e1bab11551011718c35a51827edcb55bd656fc
+SHA256: 5c2bbfa26fd6a15a2d70961874b0f3a386206fcc5f698e240dd8b0c9f0f18c5e
+SHA512: 31d932372ce490eeac0a70bc8dcf842909a90435422398d069c05cf01d994936064b8f4e60879e28a8655c1296eb8e180e348cb95e001ed6ca73cda0ff77de23
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.2.0-preview2 發佈</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2014/11/28/ruby-2-2-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.2.0-preview2 發佈</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 發表於 2014-11-28<br>
+                         翻譯： Juanito Fatas</p>
+
+    <p>很高興告訴大家 Ruby 2.2.0-preview2 發佈了。</p>
+<p>Ruby 2.2.0-preview2 是 Ruby 2.2.0 第二個預覽版。針對使用者對 Ruby 的各式各樣的需求做了許多修正並添加了許多新功能與改良。</p>
+<p>譬如，符號 GC 使得符號可以被垃圾回收器回收了。這降低了符號的記憶體使用量，因為在 2.2 版本之前，符號是不可以被 GC 回收的。Rails 5.0 將採用符號 GC 技術。僅支持 Ruby 2.2 以上的版本（參見 <a href="http://weblog.rubyonrails.org/2014/8/20/Rails-4-2-beta1/">Rails 官方文章</a>來了解更多細節）。</p>
+<p>另外新搭載了增量化 GC，降低了 GC 所佔用的時間，對於運行 Rails 應用程式相當有用。</p>
+<p>另一個與記憶體管理有關的新功能是給 configure.in 新增了一個設定，可以啟用 jemalloc，請參考 <a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a>。這是一個實驗性的功能，預設沒有開啟。我們需要蒐集使用場景與效能資料來確定有良好的效果，確定之後這個功能會預設開啟。</p>
+<p>另一個重要的變更是<a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">在 system() 和 spawn() 使用了 vfork(2)</a>。這個變更預期可以大幅提昇 process 執行外部命令的速度。但 vfork(2) 是一個危險的系統呼叫，同樣我們需要蒐集使用場景和效能資料。</p>
+<p>請試試看 Ruby 2.2.0-preview2 並享受與 Ruby 2.2.0-preview2 的編程時光，有任何問題或情報請告訴我們！</p>
+<h2>從 2.1 起重要的變更</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">增量化 GC</a>（<a href="http://magazine.rubyist.net/?0048-YARVManiacs">YARV Maniacs No.12</a>）；</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">符號 GC</a>（<a href="http://www.slideshare.net/authorNari/symbol-gc">presentation at RubyKaigi 2014</a>）；</li>
+<li>configure --with-jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Feature #9113</a>；</li>
+<li>核心函式庫：
+<ul>
+<li>支援 Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a>；</li>
+<li>新增方法：
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>、Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a>；</li>
+<li>Float#next_float、Float#prev_float <a href="https://bugs.ruby-lang.org/issues/9834">#9834</a>；</li>
+<li>File.birthtime、File#birthtime <a href="https://bugs.ruby-lang.org/issues/9647">#9647</a>；</li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系統內建函式庫：
+<ul>
+<li>更新 Psych 至 2.0.6；</li>
+<li>更新 Rake 至 10.4.0（e47d0239）；</li>
+<li>更新 RDoc 至 4.2.0.alpha（21b241a）；</li>
+<li>更新 RubyGems 2.4.4+（2f6e42e）；</li>
+<li>rubygems 2.4.4+ (2f6e42e)；</li>
+<li>更新 test-unit 至 3.0.7（從原碼庫移除，改綁定至 tarball 裡）；</li>
+<li>更新 minitest 至 5.4.3（從原碼庫移除，改綁定至 tarball 裡）；</li>
+<li>棄用 mathn。</li>
+</ul>
+</li>
+<li>C API：
+<ul>
+<li>移除棄用的 API。</li>
+</ul>
+</li>
+</ul>
+<p>到 <a href="https://github.com/ruby/ruby/blob/v2_2_0_preview2/NEWS">NEWS in Ruby repository (WIP)</a> 來了解更多細節。</p>
+<p>以上變更總共有 1239 變更的檔案，程式碼新增 98343 行，移除了 61858 行。</p>
+<h2>下載</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2</a>
+<ul>
+<li>SIZE:   12505279 bytes</li>
+<li>MD5:    d7abace25a8ffe861cb2807bef1c58a6</li>
+<li>SHA256: 9e49583f3fad3888fefc85b719fdb210a88ef54d80f9eac439b7ca4232fa7f0b</li>
+<li>SHA512: c654d4c047f9463a5fb81eaea0fa5ab7bf316962bc7fb0fb356861e6336ce8ce2162c7779d8b27f72d7bc0e9604b5e5af2910abcb0b0a1f197b3138eaddfd4a5</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz</a>
+<ul>
+<li>SIZE:   15505521 bytes</li>
+<li>MD5:    bde388d6f10012a92d5dc36196fd6755</li>
+<li>SHA256: dfcef7b01bd3acb41da6689993ac8dd30e2ecd4fd14bc1a833f46188a9fe2614</li>
+<li>SHA512: e2d316a679c15c021e40b0f9b7810b319c6a5e771a9b869fda35b6745aecac881bbb05d62192893799816a8673e05c8f17713f10ccdec077f546483608ab85c1</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz</a>
+<ul>
+<li>SIZE:   9649216 bytes</li>
+<li>MD5:    0d582e28b92ce9d1456e40fb8d821422</li>
+<li>SHA256: d14d1fa045263fa242a515d7b9e8c485bf8a9ee9d9d3012dc2b6add0f3a370c6</li>
+<li>SHA512: 4a8a75ab21b2bd43db4a22d9c63f189f3c7805d575d662b07a4ddc25aa5b156b0c23053d8c48eecf23d5e22f1ea7131467f1cdc48f9ae0a83214b4cd46b08491</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip</a>
+<ul>
+<li>SIZE:   17239396 bytes</li>
+<li>MD5:    d94160c214016863932c25cc1ac6ff90</li>
+<li>SHA256: 88d6c73ee1a4f5fe1f8ad37fe1f56c1ca50622f1338c20b9d46bbb5c2cd94040</li>
+<li>SHA512: 0a021d31f54c47c5c3901ef6f2ab02a1bfb5cc698f971978c1e16b1aeda78fdadec0c1cdd48af1c8784b8f72ad00d35cf2433d78e20d4447fa0630e02b4e3917</li>
+</ul>
+</li>
+</ul>
+<h2>發佈記</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115">2.2.0 Known issues</a></li>
+</ul>
+<p>同時請參考發佈行程表以及其他資訊：</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22">ReleaseEngineering22</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

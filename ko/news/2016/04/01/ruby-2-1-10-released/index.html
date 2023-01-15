@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 2.1.10 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2016/04/01/ruby-2-1-10-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 2.1.10 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: usa (2016-04-01)<br>
+                         번역자: yous</p>
+
+    <p>루비 2.1.10이 릴리스 되었습니다.
+이 릴리스는 프로덕션 환경에서 사용할 목적이 아니고 두 글자짜리 버전 번호를
+테스트하기 위함입니다.
+일반적인 사용 환경에서 루비 2.1.9 대신 2.1.10을 사용할 필요는 없습니다.</p>
+<p><a href="https://www.ruby-lang.org/ko/news/2016/03/30/ruby-2-1-9-released/">2.1.9 릴리스 글</a>에서
+공지했듯이, 루비 2.1.10은 버전 번호(그리고 그와 관련한 테스트 모음 변경)를
+제외하면 2.1.9에서 변경된 어떠한 사항도 포함하고 있지 않습니다.
+두 글자짜리 버전 번호가 호환되는지 애플리케이션 및 라이브러리를 테스트 해보시기 바랍니다.</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12015299 bytes
+SHA1:   22dcd759d8cbb14c8735988fbc7ee5c35f9d4720
+SHA256: a74675578a9a801ac25eb7152bef3023432d6267f875b198eb9cd6944a5bf4f1
+SHA512: 4b7213695416876e4de3cbce912f61ac89db052c74f0daa8424477991cfc49b07300e960177ff576b634a97ee8afef3c5aded5d5806329dbd01d0ce7b42b9b63
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15165837 bytes
+SHA1:   2a5194b1fd42a3f1f23f1e0844ae78332a9efd5d
+SHA256: fb2e454d7a5e5a39eb54db0ec666f53eeb6edc593d1d2b970ae4d150b831dd20
+SHA512: 5f9c0cc3d10b4e04c63f001b4add782c34b9f260368f48b443b397cea57680d328f7c28cbb2a9be4c2f5acd114bac07dacb100d57018fa4d2a1792fc03083418
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9362868 bytes
+SHA1:   adcc9e10b8f7add0e19f8c70afc134c069a862ca
+SHA256: 5be9f8d5d29d252cd7f969ab7550e31bbb001feb4a83532301c0dd3b5006e148
+SHA512: 72406ac133af7f057d4633d2a300e49e133881f6b36ff4cdf6c72b4ff4325de332fc5a45c96ea407140a8bf09cdc307e13107c539196902e5b67b7d24cd72dc9
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.zip">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16706304 bytes
+SHA1:   402158192b7673cb4e7a67f48f6d93945bc9fd13
+SHA256: 21cf83156ec782d17827fb9c8a945626dfd68cf0d9eb5ca7a78b12eb91c6f1fb
+SHA512: 5490fc4726a1efaea8c7c541ca3102013b00a0af2903d15009307265c93b218bb13aab0007d279823c740a9b173d957ca79f2d8f25932f04763ec1aa18d164e8
+</code></pre></div></div>
+</li>
+</ul>
+<h2>릴리스 코멘트</h2>
+<p>이 릴리스를 만드는 데 도움을 준 모두에게 감사드립니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.5.0-rc1 veröffentlicht</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2017/12/14/ruby-2-5-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.5.0-rc1 veröffentlicht</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von naruse am 14.12.2017<br>
+                         Übersetzt von Marvin Gülker</p>
+
+    <p>Wir freuen uns, die Freigabe von Ruby 2.5.0-rc1 ankündigen zu können.</p>
+<p>Ruby 2.5.0-rc1 ist die erste Vorschau auf Ruby 2.5.0. Sie enthält
+einige neue Features sowie Performanzverbesserungen, beispielsweise:</p>
+<h2>Neue Features</h2>
+<ul>
+<li>
+<p>Das Backtrace und die Fehlermeldung werden in umgekehrter
+Reihenfolge ausgegeben, wenn STDERR nicht verändert wurde und auf
+einen TTY zeigt. [Feature #8661] [experimentell]</p>
+</li>
+<li>
+<p>Die Auflösung von Konstanten über die oberste Ebene wurde entfernt.
+[Feature #11547]</p>
+</li>
+<li>
+<p>rescue/else/ensure sind jetzt in do/end-Blöcken erlaubt. [Feature #12906]</p>
+</li>
+<li>
+<p>yield_self [Feature #6721]</p>
+</li>
+</ul>
+<h2>Performanzverbesserungen</h2>
+<ul>
+<li>
+<p>Die dynamische Verwaltung von TracePoint-Hooks anstelle der Benutzung
+von „trace“ spart Zeit. [Feature #14104]</p>
+</li>
+<li>
+<p>Die Performanz bei der Übergabe von Blockparametern wurde durch die
+Einführung von verzögerter Allozierung der Proc-Instanzen
+<em>(lazy Proc allocation)</em> verbessert. [Feature #14045]</p>
+</li>
+<li>
+<p>Mutex wurde neu geschrieben. Es ist jetzt kleiner und schneller.
+[Feature #13517]</p>
+</li>
+<li>
+<p>SecureRandom bezieht Zufallsdaten jetzt bevorzugt vom Betriebssystem statt
+von OpenSSL. [Bug #9569]</p>
+</li>
+</ul>
+<h2>Sonstige bemerkenswerte Änderungen seit 2.4</h2>
+<ul>
+<li>Onigmo wurde auf 6.1.3 aktualisiert. Dies fügt einen neuen
+<a href="https://github.com/k-takata/Onigmo/issues/87">Abwesenheitsoperator</a>
+hinzu. Beachten Sie, dass Ruby 2.4.1 diese Änderung ebenfalls
+enthält.</li>
+<li>Bundler wurde in die Standardbibliothek aufgenommen.</li>
+<li>RubyGems wurde auf 2.7.0 aktualisiert.</li>
+<li>RDoc wurde auf 6.0.0 aktualisiert.
+<ul>
+<li>Der Lexer basiert nun nicht mehr auf IRB, sondern auf Ripper,
+wodurch die Geschwindigkeit, mit der die Dokumentation generiert wird,
+erheblich zunimmt.
+[https://github.com/ruby/rdoc/pull/512]</li>
+<li>Zahlreiche Korrekturen von Fehlern der letzten dutzend Jahre.</li>
+<li>Unterstützung von neuer Ruby-Syntax aus den letzten Jahren.</li>
+</ul>
+</li>
+<li>Unicode-Unterstützung auf Version 10.0.0 aktualisiert.</li>
+</ul>
+<p>Siehe die
+<a href="https://github.com/ruby/ruby/blob/v2_5_0_rc1/NEWS">NEWS</a> oder
+die Commit-Logs für weitere Informationen.</p>
+<p>Mit diesen Änderungen wurden
+<a href="https://github.com/ruby/ruby/compare/v2_4_0...v2_5_0_rc1">6162 Dateien geändert, 339744 Einfügungen(+), 28699 Löschungen(-)</a>
+seit Ruby 2.4.0!</p>
+<p>Viel Spaß mit 2.5.0-rc1!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   31049529 bytes
+SHA1:   15df7e8ff99f360a14f7747a07a3021447d65594
+SHA256: 46c11b347522de174566503d35d2b46e1529b979d292b1f7f7019cfedcd4b07f
+SHA512: 41cd298e99d7a25fe5f2ec42946ae5dbc4421bb18f39350ba8a1b02e999541ec1b21b5f6ce0489b3a159f47e37d409178ba7c21c00e177b0fdb410ca6e9d6142
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   35579788 bytes
+SHA1:   b7ae42eb733d4a0e3a2d135c9f8d4af043daa728
+SHA256: 9858e39fd2e7bf207cc9f8846197b11ada5f4424f433ff4df149fe3d48be8e36
+SHA512: 86c93791d312fd2175909020e448a44892740feb809a532ed706c6d850cb92722fb7ca02ecbdf7a1fbeb5b4f42f1338ce9a15b7c0a41055937bd1fdfb4be6f11
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   29238901 bytes
+SHA1:   6aad74ed3d30de63c6ff22048cd0fcbcbe123586
+SHA256: 862a8e9e52432ba383660a23d3e87af11dbc18c863a19ef6367eb8259fc47c09
+SHA512: bf0eb114097f9e505ff846f25e7556a2fb393573b4e8b773f94cf5b47998e221f3962a291db15a3cdbdf4ced5a523812937f80d95f4ee3f7b13c4e37f178d7a7
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0-rc1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   26096412 bytes
+SHA1:   05cacd0341b7a23cc68239c2061640643a30da38
+SHA256: a479a1bce69b2cf656821f10104dcb8b426922b56d3d6cbdf48318842fae752c
+SHA512: 9f9040abf69337439a3f31b80d440d97736555b0df6533d9d34c141ce52226bc40c3f4f7e596e74b080c879e933649c17a073c893be1a304d9a883bab02e9494
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

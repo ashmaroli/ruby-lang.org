@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>라이브러리</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>라이브러리</h1>
+
+
+
+  <div id="content">
+    <p>대부분의 프로그래밍 언어와 마찬가지로 Ruby에서도 폭넓은 서드파티 라이브러리가
+제공되고 있습니다.
+{: .summary}</p>
+<p>대부분의 서드파티 라이브러리들은 <strong>gem</strong> 방식으로 배포되고 있습니다. <a href="https://rubygems.org/"><strong>RubyGems</strong></a>는
+Ruby에 특화된 <code>apt-get</code> 비슷한 분산 패키지 시스템으로 라이브러리의 작성이나 공개,
+설치를 도와주는 시스템입니다. Ruby 1.9 이후 버전부터 RubyGems는 Ruby에 동봉되어
+있습니다. 이전 버전의 Ruby에서는 <a href="https://rubygems.org/pages/download/">직접 설치</a>할 필요가 있습니다.</p>
+<p>그 외의 라이브러리는 <strong>소스 코드</strong> 디렉터리를 압축(.zip, .tar.gz)한 형태로 배포됩니다.
+설치 방법은 다양하지만 보통 <code>README</code>나 <code>INSTALL</code>에 방법이 적혀있습니다.</p>
+<p>라이브러리를 찾는 방법과 이를 설치하여 사용하는 것에 대해 알아봅니다.</p>
+<h3>라이브러리 찾기</h3>
+<p>Ruby의 라이브러리는 보동 <a href="https://rubygems.org/"><strong>RubyGems.org</strong></a>에서 gem으로 제공됩니다. 직접
+웹사이트에서 둘러보거나 <code>gem</code> 명령어로 이용할 수 있습니다.</p>
+<p><code>gem search -r</code> 명령어를 사용해 RubyGems의 저장소를 조사할 수 있습니다. 예를 들어
+<code>gem search -r rails</code>는 Rails와 관련된 gem들의 목록을 돌려줍니다.
+<code>--local</code> (<code>-l</code>) 옵션을 사용하면 설치된 gem에 대해 로컬 검색할 수 있습니다. gem을
+설치하려면 <code>gem install [gem]</code>을 사용합니다. 설치된 gem을 보려면 <code>gem list</code>를 사용합니다. 좀 더 정보가 필요하시면 아래 내용을 좀 더 읽으시거나 <a href="http://guides.rubygems.org/">RubyGems의
+문서</a>를 참조하세요.</p>
+<p>다른 라이브러리의 배포처도 있습니다. <a href="https://github.com/"><strong>GitHub</strong></a>는 Ruby 관련 라이브러리의
+주요 배포처입니다. 완전한 gem은 RubyGems.org에 공개되어 있지만, 대부분의 gem의
+소스코드는 GitHub에서 볼 수 있습니다.</p>
+<p><a href="https://www.ruby-toolbox.com/"><strong>The Ruby Toolbox</strong></a>는 오픈소스이며 Ruby 프로젝트를 검색하기 쉽게 하기 위한
+프로젝트입니다. 다양한 종류의 일반적인 개발 작업을 카테고리로 릴리스나 커밋의
+활발함, 라이브러리의 의존관계 등 각 프로젝트의 다양한 정보를 모았습니다. 또 RubyGems.org와
+GitHub의 인기를 바탕으로 프로젝트의 순위를 매깁니다. 검색을 하면 원하는 것을 쉽게 찾으실
+수 있을 것입니다.</p>
+<h3>RubyGems에 대한 보충 설명</h3>
+<p>많이 쓰이는 <code>gem</code> 명령어를 가볍게 보시려면, 이 패키지 관리시스템의 전반에
+대한 <a href="http://guides.rubygems.org/command-reference/">좀 더 자세한 문서</a>도 있습니다.</p>
+<h4>gem 찾기</h4>
+<p>특정 이름으로 gem을 찾기 위해서는 <strong>search</strong> 명령을 사용합니다. 예를 들어 “html”이란 단어를 포함한 gem을 찾고
+싶다면,</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>--remote</code> / <code>-r</code> 플래그는 공식 RubyGems.org 저장소에서 검색하려 한다는
+의미입니다. (기본 동작) <code>--local</code> / <code>-l</code> 플래그로는 설치된 gem에 대해
+검색하게 됩니다.</p>
+<h4>gem 설치하기</h4>
+<p>gem을 설치하려면 <strong>install</strong> 명령을 사용하면 됩니다. 예를 들어 Rails를
+설치하려면 이렇게 하면 됩니다.</p>
+<!-- raw HTML omitted -->
+<p><code>--version</code> / <code>-v</code> 플래그를 이용하면 특정 버전을 지칭해서 설치할 수도 있습니다.</p>
+<!-- raw HTML omitted -->
+<h4>전체 gem 목록</h4>
+<p>현재 설치된 gem의 <strong>목록</strong>을 얻으려면 이렇게 하면 됩니다.</p>
+<!-- raw HTML omitted -->
+<p>매우 길긴 하지만 RubyGems.org에 등록된 전체 gem <strong>목록</strong>을 볼 수도 있습니다.</p>
+<!-- raw HTML omitted -->
+<h4>Help!</h4>
+<p>터미널에서 문서를 열어볼 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>예를 들어 <code>gem help commands</code>는 모든 <code>gem</code>들의 명령어를 볼 수 있어 매우 유용합니다.</p>
+<h4>gem을 직접 만드려면</h4>
+<p>RubyGems.org에는 이 주제에 대한 <a href="http://guides.rubygems.org/">몇 가지 가이드</a>가 있습니다. 덤으로
+<a href="http://bundler.io/">Bundler</a>에 대해서 조사해보는 것도 좋습니다. Bundler는 RubyGems과 같이 일반적으로
+사용되는 애플리케이션의 의존성 관리 툴입니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>시작하기</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby!</a></li>
+
+    
+    <li><a href="/ko/documentation/quickstart/">20분 가이드</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/ruby-from-other-languages/">다른 언어에서 Ruby로</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>탐색하기</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ko/documentation/">문서</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">학술 연구</a></li>
+    
+
+    
+    <li><a href="/ko/libraries/">라이브러리</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/success-stories/">사용 사례</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>커뮤니티에 참여하기</strong></h3>
+  <ul>
+    
+    <li><a href="/ko/community/mailing-lists/">메일링 리스트</a>: 전 세계의 프로그래머와 Ruby와 관련된 대화를 나누기</li>
+    
+
+    
+    <li><a href="/ko/community/user-groups/">유저 그룹</a>: 근처의 루비스트와 연락하기</li>
+    
+
+    
+    <li><a href="/ko/community/weblogs/">웹로그</a>: Ruby 커뮤니티에서 지금 무슨 일이 일어나는지 읽기</li>
+    
+
+    
+    <li><a href="/ko/community/ruby-core/">Ruby 코어</a>: 최신 버전 Ruby의 연마를 돕기</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">이슈 관리</a>: Ruby에 관한 이슈를 제보하거나 해결을 돕기</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

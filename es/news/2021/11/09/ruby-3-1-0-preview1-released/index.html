@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Publicado Ruby 3.1.0 versión previa 1</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/news/2021/11/09/ruby-3-1-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Publicado Ruby 3.1.0 versión previa 1</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Publicado por naruse el 2021-11-09<br>
+                         Traducción de vtamara</p>
+
+    <p>Nos complace anunciar la publicación de Ruby .</p>
+<h2>YJIT: Nuevo compilador experimental JIT en-proceso</h2>
+<p>Ruby 3.1 incorpora YJIT, un nuevo compilador JIT en-proceso desarrollado
+por Shopify.</p>
+<p>Desde que <a href="https://www.ruby-lang.org/es/news/2018/12/25/ruby-2-6-0-released/">Ruby 2.6 introdujo MJIT en 2018</a>,
+su desempeño ha mejorado significativamente, y finalmente
+<a href="https://www.ruby-lang.org/es/news/2020/12/25/ruby-3-0-0-released/">alcanzamos Ruby3x3 el año pasado</a>.
+Pero aún cuando Optcarrot ha demostrado un impresionante aumento de velocidad,
+el JIT no ha beneficiado aplicaciones de negocios del mundo real.</p>
+<p>Recientemente Shopify contribuyó muchas mejoras a Ruby para aumentar la
+velocidad de su aplicación Rails.
+YJIT es una contribución importante y busca mejorar el desempeño de
+aplicaciones rails.</p>
+<p>Mientras MJIT es un compilador JIT basado-en-métodos y usa un
+compilador de C externo, YJIT usa Versiones de Bloques Básicos e
+incluye un compilador JIT.  Con Versiones de Bloques Básicos Perezosa
+(Lazy Basic Block Versioning - LBBV), que primero compilan el comienzo de
+un método e incrementalmente compila el resto a medida que el tipo de
+los argumentos y variables se determina dinámicamente.  Ver una introducción
+detallada en
+<a href="https://dl.acm.org/doi/10.1145/3486606.3486781">YJIT: a basic block versioning JIT compiler for CRuby</a>.</p>
+<p>Con esta tecnología, YJIT alcanza tanto un tiempo de calentamiento rápido como
+mejoras en desempeño en la mayoría de software del mundo-real, hasta
+22% en railsbench, 39% en liquid-render.</p>
+<!-- raw HTML omitted -->
+<p>YJIT es aún una características experimental, y como tal,
+está deshabilitado de manera predeterminada.  Si quiere usarlo,
+especifique la opción <code>--yjit</code> en la línea de ordenes que habilita
+YJIT.  Por ahora está limitado a macOS &amp; Linux sobre plataformas
+x86-64.</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/18229">https://bugs.ruby-lang.org/issues/18229</a></li>
+<li><a href="https://shopify.engineering/yjit-just-in-time-compiler-cruby">https://shopify.engineering/yjit-just-in-time-compiler-cruby</a></li>
+<li><a href="https://www.youtube.com/watch?v=PBVLf3yfMs8">https://www.youtube.com/watch?v=PBVLf3yfMs8</a></li>
+</ul>
+<h2>Gema debug: Un nuevo depurador</h2>
+<p>Se incluye un nuevo depurador <a href="https://github.com/ruby/debug">debug.gem</a>.
+debug.gem es una implementación de un depurador rápido que provee muchas
+características tales como depuración remota, REPL con colores, integración
+con IDE (VSCode) entre otras.
+Remplaza la librería estándar <code>lib/debug.rb</code>.</p>
+<h2>error_highlight: Localización de errores afinada en las trazas</h2>
+<p>Se ha incluido un gema con Ruby, error_highlight. Proporciona
+localización afinada de errores en la traza:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby prueba.rb
+prueba.rb:1:in `&lt;main&gt;': undefined method `time' for 1:Integer (NoMethodError)
+
+1.time {}
+ ^^^^^
+Did you mean?  times
+</code></pre></div></div>
+<p>Esta gema está habilitada de manera predeterminada. Puede deshabilitarla
+desde la línea de ordenes con la opción <code>--disable-error_highlight</code>.
+Ver detalles en <a href="https://github.com/ruby/error_highlight">el repositorio</a>.</p>
+<h2>Mejoras a Irb</h2>
+<p>Se describirán en la siguiente versión previa.</p>
+<h2>Otras características nuevas y notables</h2>
+<h3>Lenguaje</h3>
+<ul>
+<li>
+<p>Pueden omitirse valores en literales de diccionarios y en argumentos de
+palabra reservada [Feature #14579]</p>
+<ul>
+<li><code>{x:, y:}</code> es azúcar sintáctica para <code>{x: x, y: y}</code>.</li>
+<li><code>foo(x:, y:)</code> es azúcar sintáctica para <code>foo(x: x, y: y)</code>.</li>
+</ul>
+</li>
+<li>
+<p>En reconocimiento de patrones el operador pin ahora toma una
+expresión [Feature #17411]</p>
+</li>
+</ul>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Prime</span><span class="p">.</span><span class="nf">each_cons</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">find_all</span><span class="p">{</span><span class="n">_1</span> <span class="k">in</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)]}.</span><span class="nf">take</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nf">to_a</span>
+<span class="c1">#=&gt; [[3, 5], [5, 7], [11, 13]]</span>
+</code></pre></div></div>
+<h3>RBS</h3>
+<p>RBS es un lenguaje para describir la estructura de programas Ruby.
+Ver detalles en <a href="https://github.com/ruby/rbs">el repositorio</a>.</p>
+<p>Actualizaciones desde Ruby 3.0.0:</p>
+<ul>
+<li>se introduce <code>rbs collection</code> para administrar RBSs de gemas.
+<a href="https://github.com/ruby/rbs/blob/master/docs/collection.md">doc</a></li>
+<li>Se han añadido/actualizado muchas características incorporadas y de
+la librería estándar.</li>
+<li>Incluye soluciones a muchas fallas, así como mejoras de desempeño.</li>
+</ul>
+<p>Ver más informaciń en <a href="https://github.com/ruby/rbs/blob/master/CHANGELOG.md">el archivo CHANGELOG.md</a>.</p>
+<h3>TypeProf</h3>
+<p>TypeProf es un analizador de tipos estático para Ruby. Genera un prototipo
+en RBS a partir de código Ruby sin anotaciones de tipos.  Ver detalles en
+<a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">el documento</a>.</p>
+<p>Actualizaciones desde Ruby 3.0.0:</p>
+<ul>
+<li>Se ha implementado <a href="https://github.com/ruby/typeprof/blob/master/doc/ide.md">soporte experimental para IDE</a>.</li>
+<li>Muchas correcciones a fallas y mejoras de desempeño.</li>
+</ul>
+<h2>Mejoras de desempeño</h2>
+<ul>
+<li>MJIT
+<ul>
+<li>Para cargas de trabajo como Rails, se cambia <code>--jit-max-cache</code> de 100
+a 10000.
+El compilador JIT ya no se salta la compilación de métodos con menos de
+1000 instrucciones.</li>
+<li>Para soportar Zeitwerk de Rails, el código compilado con JIT ya no
+se cancela cuando se habilita un TracePoint para eventos de clase.</li>
+</ul>
+</li>
+</ul>
+<h2>Otros cambios notables desde 3.0</h2>
+<ul>
+<li>Reconocimiento de patrones en una línea, e.g., <code>ary =&gt; [x, y, z]</code>, ya no es
+experimental.</li>
+<li>Se ha cambiado levemente el orden de evaluación de asignaciones múltiples.
+[[Bug #4443]]
+<ul>
+<li><code>foo[0], bar[0] = baz, qux</code> era evaluado en el orden <code>baz</code>, <code>qux</code>, <code>foo</code>,
+y después <code>bar</code> en Ruby 3.0. En Ruby 3.1, se evalúa en el orden
+<code>foo</code>, <code>bar</code>, <code>baz</code>, y después <code>qux</code>.</li>
+</ul>
+</li>
+<li>Localización de ancho variable: Cadenas (experimental)
+<a href="https://bugs.ruby-lang.org/issues/18239">[Falla #18239]</a></li>
+</ul>
+<h3>Actualizaciones a la librería estándar</h3>
+<ul>
+<li>Se actualizaron algunas librerías estándar
+<ul>
+<li>RubyGems</li>
+<li>Bundler</li>
+<li>RDoc 6.4.0</li>
+<li>ReLine</li>
+<li>JSON 2.6.0</li>
+<li>Psych 4.0.2</li>
+<li>FileUtils 1.6.0</li>
+<li>Fiddle</li>
+<li>StringIO 3.0.1</li>
+<li>IO::Console 0.5.9</li>
+<li>IO::Wait 0.2.0</li>
+<li>CSV</li>
+<li>Etc 1.3.0</li>
+<li>Date 3.2.0</li>
+<li>Zlib 2.1.1</li>
+<li>StringScanner</li>
+<li>IpAddr</li>
+<li>Logger 1.4.4</li>
+<li>OStruct 0.5.0</li>
+<li>Irb</li>
+<li>Racc 1.6.0</li>
+<li>Delegate 0.2.0</li>
+<li>Benchmark 0.2.0</li>
+<li>CGI 0.3.0</li>
+<li>Readline(C-ext) 0.1.3</li>
+<li>Timeout 0.2.0</li>
+<li>YAML 0.2.0</li>
+<li>URI 0.11.0</li>
+<li>OpenSSL</li>
+<li>DidYouMean</li>
+<li>Weakref 0.1.1</li>
+<li>Tempfile 0.1.2</li>
+<li>TmpDir 0.1.2</li>
+<li>English 0.7.1</li>
+<li>Net::Protocol 0.1.2</li>
+<li>Net::Http 0.2.0</li>
+<li>BigDecimal</li>
+<li>OptionParser 0.2.0</li>
+<li>Set</li>
+<li>Find 0.1.1</li>
+<li>Rinda 0.1.1</li>
+<li>Erb</li>
+<li>NKF 0.1.1</li>
+<li>Base64 0.1.1</li>
+<li>OpenUri 0.2.0</li>
+<li>SecureRandom 0.1.1</li>
+<li>Resolv 0.2.1</li>
+<li>Resolv::Replace 0.1.0</li>
+<li>Time 0.2.0</li>
+<li>PP 0.2.1</li>
+<li>Prettyprint 0.1.1</li>
+<li>Drb 2.1.0</li>
+<li>Pathname 0.2.0</li>
+<li>Digest 3.1.0.pre2</li>
+<li>Un 0.2.0</li>
+</ul>
+</li>
+<li>Se actualizaron las siguientes gemas incluidas en Ruby
+<ul>
+<li>minitest 5.14.4</li>
+<li>power_assert 2.0.1</li>
+<li>rake 13.0.6</li>
+<li>test-unit 3.5.0</li>
+<li>rbs 1.6.2</li>
+<li>typeprof 0.20.0</li>
+</ul>
+</li>
+<li>Las siguientes gemas por omisión ahora son ahora gemas incluidas en Ruby.
+<ul>
+<li>net-ftp</li>
+<li>net-imap</li>
+<li>net-pop</li>
+<li>net-smtp</li>
+<li>matrix</li>
+<li>prime</li>
+</ul>
+</li>
+</ul>
+<p>Ver más detalles en
+<a href="https://github.com/ruby/ruby/blob/v3_1_0_preview1/NEWS.md">NEWS</a>
+o <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0_preview1">en la bitácora de cambios</a>.</p>
+<p>Con esos cambios, <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0_preview1#file_bucket">2963 archivos cambiados, 529321 inserciones(+), 92305 eliminaciones (-)</a>
+desde Ruby 3.0.0!</p>
+<h2>Descargas</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20821221
+SHA1: 40dfd3db076a49fab9a0eee51e89d9b3d16a4e23
+SHA256: 540f49f4c3aceb1a5d7fb0b8522a04dd96bc4a22f9660a6b59629886c8e010d4
+SHA512: 63f528f20905827d03649ed9804e4a4e5c15078f9c6c8efcfb306baa7baafa17a406eb09a2c08b42e151e14af33b1aadbd9fb1cc84f9353d070b54bbf1ff950d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15742844
+SHA1: 22aa861b17031cd1b163b7443f5f2f5897c5895e
+SHA256: 86a836ad42f6a7a469fce71ffec48fd3184af55bf79e488b568a4f64adee551d
+SHA512: bdbd7c624197ca478658280d84123a8c12ae72425bc566dcc75989c5b5ef114dd57e64efc09e2413ed615d9b47621a70ace0f3612e8ca7ba853822ad9e88c0b0
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 25019629
+SHA1: ef5fa22890e55935db4b96b3089a8aea1335bd85
+SHA256: 4e8d118b2365164873148ac545a8fa36c098b846a9b19ebb9037f8ee9adb4414
+SHA512: 917803aac0848e00871614a09740b5c9cca26f200d68580dde61666633f1b7fee506e25ea4ed0c38eb20149417bf9f1ed449a4d2aec5b726de670e7177e5c07a
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Qué es Ruby</h2>
+<p>Ruby fue desarrollado inicialmente pof Matz (Yukihiro Matsumoto) en 1993,
+y ahora es desarrollado como Código Abierto. Corre en múltiples
+plataformas y se usa en todo el mundo especialmente para desarrollo web.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Noticias recientes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/es/news/2022/12/25/ruby-3-2-0-released/">Publicado Ruby 3.2.0</a></li>
+        
+        <li><a href="/es/news/2022/12/06/ruby-3-2-0-rc1-released/">Publicado Ruby 3.2.0 RC 1</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-0-5-released/">Publicado Ruby 3.0.5</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-2-7-7-released/">Publicado Ruby 2.7.7</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

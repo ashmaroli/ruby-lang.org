@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Leitfaden für Patch-Autoren</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/community/ruby-core/writing-patches/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Leitfaden für Patch-Autoren</h1>
+
+
+
+  <div id="content">
+    <p>Hier findest du einige Tips direkt von Matz dazu, wie deine Patches berücksichtigt werden können.
+{: .summary}</p>
+<p>Diese Richtlinien wurden von einem <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/25139">Post von Matz</a>
+auf der Ruby-Core Mailingliste übernommen und angepasst:</p>
+<ul>
+<li>
+<p>Implementiere eine Änderung pro Patch</p>
+<p>Das ist das größte Hindernis für die meisten verzögerten Patches.
+Wenn du einen Patch sendest, der gleichzeitig mehrere Bugs behebt
+(und Features hinzufügt), dann müssen wir sie vor der Übernahme auftrennen.
+Das ist für uns geschäftige Entwickler eine mühsame Aufgabe.
+Daher werden solche Patches oft verzögert. Bitte keine großen Patches.</p>
+</li>
+<li>
+<p>Liefere Beschreibungen</p>
+<p>Manchmal beschreibt ein bloßer Patch das gelöste Problem nicht hinreichend.
+Eine bessere Beschreibung (das behobene Problem, Vorbedigungen, Plattform
+etc.) würde für eine zügige Übernahme helfen.</p>
+</li>
+<li>
+<p>Verwende die aktuellste Revision</p>
+<p>Dein Problem könnte in der aktuellsten Revision bereits gelöst sein.
+Oder der Code ist dort vielleicht bereits völlig anders.
+Vor dem Senden eines Patches solltest du bitte die aktuellste Version laden
+(der <code>trunk</code> Branch für die neueste Entwicklungsversion,
+<code>ruby_2_6</code> für 2.6) aus dem Subversion-Repository.</p>
+</li>
+<li>
+<p>Verwende <code>diff -u</code></p>
+<p>Wir verwenden lieber <code>diff -u</code> Unified-Diff-Patches als <code>diff -c</code> oder
+andere Patchformate. Diese sind viel leichter zu begutachten.
+Sende keine ganzen modifizierten Dateien, denn wir wollen nicht selbst einen
+Diff erstellen.</p>
+</li>
+<li>
+<p>Liefere Test-Cases (optional)</p>
+<p>Ein Patch mit Test-Cases (vorzugsweise ein Patch zu <code>test/*/test_*.rb</code>)
+würde uns helfen, den Patch und deine Absicht besser zu verstehen.</p>
+</li>
+</ul>
+<p>In Zukunft wechseln wir vielleicht auf einen Git-Workflow mit Pull-Requests.
+Aber bis dahin wird das Befolgen dieser Richtlinien Frustration vermeiden.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Der Einstieg</strong> ist einfach!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Teste Ruby! (im Browser)</a></li>
+
+    
+    <li><a href="/de/documentation/quickstart/">Ruby in 20 Minuten</a></li>
+    
+
+    
+    <li><a href="/de/documentation/ruby-from-other-languages/">Ruby für Umsteiger</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Entdecke</strong> eine neue Welt…</h3>
+  <ul class="menu">
+    
+    <li><a href="/de/documentation/">Dokumentation</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/de/libraries/">Bibliotheken</a></li>
+    
+
+    
+    <li><a href="/de/documentation/success-stories/">Erfolgsgeschichten</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Beteilige dich</strong> an einer freundlichen und wachsenden Community.</h3>
+  <ul>
+    
+    <li><a href="/de/community/mailing-lists/">Mailing-Listen</a>: Sprich mit Programmierern auf der ganzen Welt über Ruby.</li>
+    
+
+    
+    <li><a href="/de/community/user-groups/">User-Groups</a>: Treffe Rubyisten in deiner Umgebung.</li>
+    
+
+    
+    <li><a href="/de/community/weblogs/">Weblogs</a>: Lies, was gerade jetzt in der Ruby-Community passiert.</li>
+    
+
+    
+    <li><a href="/de/community/ruby-core/">Ruby-Entwicklung</a>: Hilf mit, die neuesten Ruby-Versionen zu verbessern.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Fehler melden</a>: Melde einen Fehler oder hilf mit, offene Fehler zu beseitigen.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

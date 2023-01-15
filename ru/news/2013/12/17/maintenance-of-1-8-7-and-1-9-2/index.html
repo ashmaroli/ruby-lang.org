@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Расширенная поддержка безопасности для Ruby 1.8.7 и 1.9.2</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/news/2013/12/17/maintenance-of-1-8-7-and-1-9-2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Расширенная поддержка безопасности для Ruby 1.8.7 и 1.9.2</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Опубликовал zzak 17-12-2013<br>
+                         Перевел: Vlad Bokov</p>
+
+    <p>С настоящего момента версии 1.8.7 и 1.9.2 будут поддерживаться патчами для
+безопасности до июня 2014 года.</p>
+<ul>
+<li>Команда разработчиков: Terence Lee (<a href="https://twitter.com/hone02">@hone02</a>)
+и Zachary Scott (<a href="https://twitter.com/_zzak">@_zzak</a>)</li>
+<li>После окончания 6-месячного периода возможно привлечение других разработчиков
+для продления срока подержки еще на 6 месяцев.</li>
+</ul>
+<p>Спасибо <a href="http://heroku.com/">Heroku</a> за поддержку. Подробности можно прочитать в их
+блоге <a href="https://blog.heroku.com/archives/2013/12/5/a_patch_in_time_securing_ruby/">A Patch in Time: Securing Ruby</a>.</p>
+<h3>Сообщения об ошибках</h3>
+<p>Во время периода расширенной поддержки будут накладываться <em>только</em> патчи для
+безопасности на версии <a href="https://bugs.ruby-lang.org/projects/ruby-187/repository">1.8.7</a> и <a href="https://bugs.ruby-lang.org/projects/ruby-192/repository">1.9.2</a>.</p>
+<p>Мы высоко ценим безопасность, и если вы найдете &quot;дыру&quot;, немедленно сообщите о ней
+на адрес security@ruby-lang.org. Это приватная подписка, и сообщения в ней публикуются
+только после исправления уязвимости.</p>
+<p>Дальнейшая информация есть на <a href="https://www.ruby-lang.org/ru/security/">ruby-lang.org/ru/security</a>.</p>
+<h3>Выпуски новых версий</h3>
+<p>Как уже было сказано, будут накладываться только патчи для безопасности,
+увеличивая номер патч-левела.</p>
+<p>Патченные версии 1.8.7 и 1.9.2 не появятся на ruby-lang.org.
+Однако вы можете собрать бинарные пакеты самостоятельно из исходников.</p>
+<p>Причиной этому может служить то, что мы не принимаем новые заявки, а официальный
+релиз будет означать, что ruby-core несет ответственность за них. Команда
+разработчиков и без этого небольшая, и ей хотелось бы двигаться вперед и
+обновляться, а не поддерживать старые версии.</p>
+<h3>Зачем &quot;откапывать&quot; 1.8.7?</h3>
+<p>Около 6 месяцев назад было объявлено <a href="https://www.ruby-lang.org/ru/news/2013/06/30/we-retire-1-8-7/">о закате 1.8.7</a>.</p>
+<p>В то время как команда ruby-core не собирается более поддерживать 1.8.7 и 1.9.2,
+Terence и Zachary будут поддерживать безопасность этих версий в рамках корпоративного
+спонсорства.</p>
+<p>Ранее мы положительно относились к решению компаний о поддержке старых версий. В 2009 году
+поддержкой Ruby 1.8.6 занялся Engine Yard и выпустил версию 1.8.6-p369.</p>
+<h3>Напутствие</h3>
+<p>Сейчас хочется еще раз посоветовать вам обновиться до поддерживаемой версии Ruby.
+Немалое количество разработчиков пожертвовали огромным количеством времени, чтобы
+улучшить производительность и добавить новые возможности в Ruby 2.0+, и вы можете
+это использовать по полной!</p>
+<p>Спасибо за продление поддержки! Давайте вместе сделаем Ruby лучше!</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последние новости</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ru/news/2021/08/03/fukuoka-ruby-award-2022/">Конкурс на соискание премии Fukuoka Ruby 2022 - судить участников будет Matz</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-3-0-2-released/">Вышел Ruby 3.0.2</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-2-7-4-released/">Вышел Ruby 2.7.4</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

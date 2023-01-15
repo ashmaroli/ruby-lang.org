@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 1.9.2 RC2 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2010/07/19/ruby-1-9-2-rc2-release/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 1.9.2 RC2 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: Moru (2010-07-19)</p>
+
+    <p>루비 1.9.2 RC2가 공개되었습니다.</p>
+<p>RC1 공개 후 psych 라이브러리 수정과 몇 가지 버그 수정이 이루어졌습니다. 자세한 사항은 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_rc2/NEWS">뉴스</a> 및
+<a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_rc2/ChangeLog">변경로그</a>를 참고하시기 바랍니다.</p>
+<h3>루비 1.9.2</h3>
+<p>루비 1.9.2는 아래의 몇 가지 항목을 제외하고, 1.9.1과의 호환성을 유지하고 있습니다.</p>
+<ul>
+<li>다수의 추가 메서드</li>
+<li>새로운 socket API(IPv6 지원)</li>
+<li>새로운 인코딩</li>
+<li>난수 생성을 위한 Random 클래스</li>
+<li>새롭게 쓰여진 Time 클래스. 2038년 문제가 해결됨.</li>
+<li>몇 가지 정규식 확장</li>
+<li>$:는 현재 디렉터리를 포함하지 않도록 됨.</li>
+<li>dl은 libffi 상에서 새롭게 쓰여짐.</li>
+<li>libyaml의 wrapper인 psych 라이브러리. syck의 대용으로 사용가능.</li>
+</ul>
+<p>루비 1.9.2는 8월 초 릴리스될 예정입니다. 1.9.2 릴리스 일정은 RubySpec 호환성을 위해 취소된 적이 있으나,
+현재는 RubySpec 99% 이상의 호환성을 보장하고 있습니다.</p>
+<p>사용 중 문제가 발생하였을 때에는 <a href="https://bugs.ruby-lang.org/projects/show/ruby-19/">루비 이슈 트래킹 시스템</a>을 통해 문제점을 알려주시기 바랍니다.</p>
+<h3>다운로드</h3>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-rc2.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-rc2.tar.bz2&gt;</a>
+SIZE
+: 8480974 bytes</p>
+<p>MD5
+: 4e4906d0aab711286b31f5a834860cc3</p>
+<p>SHA256
+: 692ebae991b104482dc9f0d220c1afb6b690a338b3b815aaa4f62954d2fa1b4a</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-rc2.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-rc2.tar.gz&gt;</a>
+SIZE
+: 10781884 bytes</p>
+<p>MD5
+: d12cd39eee4d99bc54b52aba5a0ba4e1</p>
+<p>SHA256
+: 5d523d99f928705ac1de84ade03283c468415c00f8b6755a8dd7a140828869b4</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-rc2.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-rc2.zip&gt;</a>
+SIZE
+: 12161233 bytes</p>
+<p>MD5
+: 05229b43981e4e5ce58b5fb2e98eee52</p>
+<p>SHA256
+: 33f7f4cdd8444c2594728f70ac07477575a7cba5e7756bd3645f23e52605618c</p>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

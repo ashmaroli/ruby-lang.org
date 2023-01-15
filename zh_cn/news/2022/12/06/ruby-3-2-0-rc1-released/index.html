@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.2.0 RC 1 已发布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.2.0 RC 1 已发布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 发表于 2022-12-06<br>
+                         翻译： GAO Jun</p>
+
+    <p>我们很高兴地宣布 Ruby 3.2.0-rc1。Ruby 3.2 增加了很多新功能和性能改进。</p>
+<h2>基于 WASI 的 WebAssembly 支持</h2>
+<p>这是首次基于 WASI 的 WebAssembly 支持。使得 CRuby 二进制内容可用于浏览器、Serverless Edge、以及其他 WebAssembly/WASI 嵌入环境。目前，此功能已通过除 Thread API 之外的 basic 和 bootstrap 测试套件。</p>
+<p><img src="https://i.imgur.com/opCgKy2.png" alt="" /></p>
+<h3>背景</h3>
+<p><a href="https://webassembly.org/">WebAssembly (Wasm)</a> 希望能够在浏览器中提供安全快速的运行程序的方式。但其目标，也就是在不同环境中安全高效的运行程序，不仅是 web 应用长期以来的目标，也是其他一般程序所需要的。</p>
+<p><a href="https://wasi.dev/">WASI (The WebAssembly System Interface)</a> 被设计用于此类应用场景。尽管此类应用需要与操作系统进行通信，WebAssembly 却运行在一个没有系统接口的虚拟机之上。WASI 使之标准化。</p>
+<p>基于这些项目，Ruby 的 WebAssembly/WASI 支持能使 Ruby 开发者可以编写能运行于兼容此类功能的平台上。</p>
+<h3>应用场景</h3>
+<p>此功能使得开发人员可以在 WebAssembly 环境中使用 CRuby。一个此类应用场景的案例是 <a href="https://try.ruby-lang.org/playground/">TryRuby playground</a> 的 CRuby 支持。现在您可以在您的浏览器中尝试原生的 CRuby。</p>
+<h3>技术要点</h3>
+<p>目前，WASI 和 WebAssembly 仍在不断演进，同时基于安全原因，还缺少一些功能来实现纤程、异常和垃圾回收。
+所以，CRuby 使用了一种可以控制用户空间中执行的二进制转换技术 Asyncify 来填补这一鸿沟。</p>
+<p>此外，我们创建了 <a href="https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby">WASI 之上的虚拟文件系统</a>，于是就可以很容易地将 Ruby 应用打包成单个 .wasm 文件，进而简化分发 Ruby 应用的过程。</p>
+<h3>相关链接</h3>
+<ul>
+<li><a href="https://github.com/ruby/ruby/pull/5407">Add WASI based WebAssembly support #5407</a></li>
+<li><a href="https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9">An Update on WebAssembly/WASI Support in Ruby</a></li>
+</ul>
+<h2>Regexp 用于防御 ReDoS 攻击的改进</h2>
+<p>众所周知，正则表达式匹配的耗时可能出乎意料的长。如果您的代码尝试从一个不可信输入中匹配一个低效的正则表达式，攻击者可以借此发起有效的拒绝服务攻击(所谓的正则表达式 DoS，或 ReDoS)。</p>
+<p>我们引入了2个更新，能够显著减轻 ReDoS 的影响</p>
+<h3>改进 Regexp 匹配算法</h3>
+<p>自 Ruby 3.2 开始，Regexp 的匹配算法通过缓存技术得到了显著改进。
+新增正则表达式匹配的超时设置。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 下面的正则匹配在 Ruby 3.1 中耗时10秒，在 Ruby 3.2 中耗时0.003秒
+
+/^a*b?a*$/ =~ "a" * 50000 + "x"
+</code></pre></div></div>
+<p><img src="https://cache.ruby-lang.org/pub/media/ruby320_regex_1.png" alt="" />
+<img src="https://cache.ruby-lang.org/pub/media/ruby320_regex_2.png" alt="" /></p>
+<p>通过改进的匹配算法，使得 Regexp 的匹配（根据我们的实验，约90%）能够在线性时间内完成。</p>
+<p>（致 Preview 用户：此改进可能会消耗与每个匹配的输入长度成比例的内存。我们预计不会出现实际问题，因为这种内存分配通常会延迟，并且正常的 Regexp 匹配最多只会消耗表达式长度10倍的内存。如果您在实际应用中遇到 Regexp 匹配导致的内存不足情况，请报告给我们。）</p>
+<p>最初提议 <a href="https://bugs.ruby-lang.org/issues/19104">https://bugs.ruby-lang.org/issues/19104</a></p>
+<h3>Regexp 超时设置</h3>
+<p>上面的改进不能使用于某些正则表达式，比如使用了某些高级特性（例如：反向引用 back-references，环视 look-around），或者大量使用固定重复次数。作为一种后备措施，Regexp 还引入了超时设置功能。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="sr">/^a*b?a*()\1$/</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span>
+<span class="c1">#=&gt; 1秒后 Regexp::TimeoutError</span>
+</code></pre></div></div>
+<p>请注意，<code>Regexp.timeout</code> 是全局性的配置。如果您希望对于某些特殊的正则表达式使用不同的超时设置，您可以使用 <code>Regexp.new</code> 中的 <code>timeout</code> 关键词。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># 这个 Regexp 没有超时设置</span>
+<span class="n">long_time_re</span> <span class="o">=</span> <span class="no">Regexp</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"^a*b?a*()</span><span class="se">\1</span><span class="s2">$"</span><span class="p">,</span> <span class="ss">timeout: </span><span class="no">Float</span><span class="o">::</span><span class="no">INFINITY</span><span class="p">)</span>
+
+<span class="n">long_time_re</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1"># 不会被中断</span>
+</code></pre></div></div>
+<p>最初提议：<a href="https://bugs.ruby-lang.org/issues/17837">https://bugs.ruby-lang.org/issues/17837</a></p>
+<h2>其他值得注意的新功能</h2>
+<h3>语法建议</h3>
+<ul>
+<li>
+<p><code>syntax_suggest</code>（曾用名 <code>dead_end</code>）的功能已被集成到 Ruby。这可以帮助您找到错误的位置，例如缺失或多余的 <code>end</code>，让您更快地修正错误，例如下面的例子：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unmatched `end', missing keyword (`do', `def`, `if`, etc.) ?
+
+  1  class Dog
+&gt; 2    defbark
+&gt; 4    end
+  5  end
+</code></pre></div></div>
+<p>[<a href="https://bugs.ruby-lang.org/issues/18159">Feature #18159</a>]</p>
+</li>
+</ul>
+<h3>错误提示</h3>
+<ul>
+<li>现在，在 TypeError 和 ArgumentError 中将指出出错的参数</li>
+</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test.rb:2:in `+': nil can't be coerced into Integer (TypeError)
+
+sum = ary[0] + ary[1]
+               ^^^^^^
+</code></pre></div></div>
+<h3>语言</h3>
+<ul>
+<li>
+<p>除了在方法参数中使用，匿名的可变长参数现在可以作为参数进行传递
+[<a href="https://bugs.ruby-lang.org/issues/18351">Feature #18351</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">baz</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+  <span class="n">quux</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>接受一个单独位置参数的 proc 不再会自动解封装。 [<a href="https://bugs.ruby-lang.org/issues/18633">Bug #18633</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">proc</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="o">|</span> <span class="n">a</span><span class="p">}.</span><span class="nf">call</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Ruby 3.1 及之前版本</span>
+<span class="c1"># =&gt; 1</span>
+<span class="c1"># Ruby 3.2 及之后版本</span>
+<span class="c1"># =&gt; [1, 2]</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>对于显示对象的常量赋值求值顺序，将始终使用单属性赋值求值顺序。参考下面的代码:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">foo</span><span class="o">::</span><span class="no">BAR</span> <span class="o">=</span> <span class="n">baz</span>
+</code></pre></div></div>
+<p><code>foo</code> 现在在 <code>baz</code> 之前求值。类似的，对于多重常量的赋值，使用从左到右的求值顺序。参考下面的代码:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="n">foo1</span><span class="o">::</span><span class="no">BAR1</span><span class="p">,</span> <span class="n">foo2</span><span class="o">::</span><span class="no">BAR2</span> <span class="o">=</span> <span class="n">baz1</span><span class="p">,</span> <span class="n">baz2</span>
+</code></pre></div></div>
+<p>现在使用下面的求值顺序:</p>
+<ol>
+<li><code>foo1</code></li>
+<li><code>foo2</code></li>
+<li><code>baz1</code></li>
+<li><code>baz2</code></li>
+</ol>
+<p>[<a href="https://bugs.ruby-lang.org/issues/15928">Bug #15928</a>]</p>
+</li>
+<li>
+<p>查找模式不再是实验性功能。
+[<a href="https://bugs.ruby-lang.org/issues/18585">Feature #18585</a>]</p>
+</li>
+<li>
+<p>使用可变长参数 (例如 <code>*args</code>) 的方法，如果同时希望通过 <code>foo(*args)</code> 使用关键词参数的，那么必须使用 <code>ruby2_keywords</code> 进行标记。也就是说，所有希望通过 <code>*args</code> 来使用关键字参数的方法现在毫无例外地都必须使用
+<code>ruby2_keywords</code> 进行标记。一旦某个库需要 Ruby 3+，这将是一个更容易的过渡升级方式。此前，当接收方法使用 <code>*args</code> 时，<code>ruby2_keywords</code> 标记被保留，但这可能是错误并且是行为不一致的。对于查找潜在缺失的
+<code>ruby2_keywords</code> 的好方法应当是运行测试套件，检查测试失败时调用的最后一个方法，这个方法必须接收关键词参数。通过在错误处使用 <code>puts nil, caller, nil</code>，然后检查在调用链上的每一个使用自动委派关键词的方法/块被标记为
+<code>ruby2_keywords</code>。 [<a href="https://bugs.ruby-lang.org/issues/18625">Bug #18625</a>] [<a href="https://bugs.ruby-lang.org/issues/16466">Bug #16466</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># Ruby 2.7-3.1 可以意外地在没有 ruby2_keywords 的情况下执行，在 3.2 中必需。</span>
+<span class="c1"># 如需去除 ruby2_keywords，需要修改 #foo 和 #bar 的参数为 (*args, **kwargs) 或 (...)。</span>
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="ss">k: </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>性能改进</h2>
+<h3>YJIT</h3>
+<ul>
+<li>YJIT 现在支持 x86-64 和 arm64/aarch64 CPU，以及 Linux，MacOS，BSD 和其他 UNIX 平台。
+<ul>
+<li>此次发布带来了 Mac M1/M2，AWS Graviton 和 Raspberry Pi 4 ARM64 处理器支持。</li>
+</ul>
+</li>
+<li>编译 YJIT 需要 Rust 1.58.1+. [<a href="https://bugs.ruby-lang.org/issues/18481">Feature #18481</a>]
+<ul>
+<li>为确保 CRuby 中包含了 YJIT，请安装 rustc &gt;= 1.58.0 然后在运行 <code>./configure</code> 时使用 <code>--enable-yjit</code> 参数。</li>
+<li>当遇到问题时，您可以联系 YJIT 小组。</li>
+</ul>
+</li>
+<li>JIT 代码的无力内存是延迟分配的。不同于 Ruby 3.1，Ruby 进程的 RSS 被最小化，因为由 <code>--yjit-exec-mem-size</code>
+分配的虚拟内存页在 JIT 代码实际使用之前不会映射到无力内存页。</li>
+<li>引入 Code GC，当 JIT 代码消耗的内存达到 <code>--yjit-exec-mem-size</code> 时，释放所有代码页。
+<ul>
+<li>除了现有的 <code>inline_code_size</code> 和 <code>outlined_code_size</code> 指标外，RubyVM::YJIT.runtime_stats 还返回 Code GC 指标：
+<code>code_gc_count</code>，<code>live_page_count</code>，<code>freed_page_count</code> 和 <code>freed_code_size</code>。</li>
+</ul>
+</li>
+<li>RubyVM::YJIT.runtime_stats 生成的大部分统计数据现在可以在本发布中使用。
+<ul>
+<li>只需要在运行时加上 <code>--yjit-stats</code> 即可计算统计信息（会产生一些运行时开销）。</li>
+</ul>
+</li>
+<li>YJIT 现在进行了优化，可以有效利用对象的形状。[<a href="https://bugs.ruby-lang.org/issues/18776">Feature #18776</a>]</li>
+<li>在定义新常量时，利用更细粒度的常量失效来使更少的代码无效。[<a href="https://bugs.ruby-lang.org/issues/18589">Feature #18589</a>]</li>
+</ul>
+<h3>MJIT</h3>
+<ul>
+<li>MJIT 编译器在 Ruby 中以 <code>mjit</code> 标准库重新实现。</li>
+<li>MJIT 编译器在分叉的(forked) Ruby 进程中执行，不再以 MJIT worker 的本地线程中执行。[[Feature #18968]]
+<ul>
+<li>由此，不再支持 Microsoft Visual Studio (MSWIN)。</li>
+</ul>
+</li>
+<li>不再支持 MinGW。[[Feature #18824]]</li>
+<li><code>--mjit-min-calls</code> 更名为 <code>--mjit-call-threshold</code>。</li>
+<li>将 <code>--mjit-max-cache</code> 的默认值从 10000 修改回 100。</li>
+</ul>
+<h3>PubGrub</h3>
+<ul>
+<li>
+<p>Bundler 2.4 现在使用 <a href="https://github.com/jhawthorn/pub_grub">PubGrub</a> 来替换 <a href="https://github.com/CocoaPods/Molinillo">Molinillo</a> 进行依赖解析。</p>
+<ul>
+<li>PubGrub 是 Dart 语言的 <code>pub</code> 包管理器使用的新一代解析算法。</li>
+<li>在此次变更后，您可能会得到不同的解析结果。请将此类问题报告到 <a href="https://github.com/rubygems/rubygems/issues">RubyGems/Bundler 问题</a>。</li>
+</ul>
+</li>
+<li>
+<p>RubyGems 在 Ruby 3.2 中依旧使用 Molinillo。我们计划在将来用 PubGrub 进行替换。</p>
+</li>
+</ul>
+<h2>自 3.1 以来其他值得注意的变更</h2>
+<ul>
+<li>
+<p>Hash</p>
+<ul>
+<li>当 hash 为空时，Hash#shift 现在总是返回 nil，此前行为是返回默认值或调用默认 proc。 [<a href="https://bugs.ruby-lang.org/issues/16908">Bug #16908</a>]</li>
+</ul>
+</li>
+<li>
+<p>MatchData</p>
+<ul>
+<li>新增 MatchData#byteoffset 。 [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+</ul>
+</li>
+<li>
+<p>Module</p>
+<ul>
+<li>新增 Module.used_refinements 。 [<a href="https://bugs.ruby-lang.org/issues/14332">Feature #14332</a>]</li>
+<li>新增 Module#refinements 。 [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+<li>新增 Module#const_added 。 [<a href="https://bugs.ruby-lang.org/issues/17881">Feature #17881</a>]</li>
+</ul>
+</li>
+<li>
+<p>Proc</p>
+<ul>
+<li>Proc#dup 返回子类的一个实例。 [<a href="https://bugs.ruby-lang.org/issues/17545">Bug #17545</a>]</li>
+<li>Proc#parameters 现在接受 lambda 关键字。 [<a href="https://bugs.ruby-lang.org/issues/15357">Feature #15357</a>]</li>
+</ul>
+</li>
+<li>
+<p>Refinement</p>
+<ul>
+<li>新增 Refinement#refined_class。 [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+</ul>
+</li>
+<li>
+<p>RubyVM::AbstractSyntaxTree</p>
+<ul>
+<li>为<code>parse</code>, <code>parse_file</code> 和 <code>of</code> 增加选项 <code>error_tolerant</code>。 [[Feature #19013]]</li>
+</ul>
+</li>
+<li>
+<p>Set</p>
+<ul>
+<li>Set 现在可以直接使用，不需要调用 <code>require &quot;set&quot;</code>。 [<a href="https://bugs.ruby-lang.org/issues/16989">Feature #16989</a>]
+目前其通过 <code>Set</code> 常量或对 <code>Enumerable#to_set</code> 调用自动载入。</li>
+</ul>
+</li>
+<li>
+<p>String</p>
+<ul>
+<li>新增 String#byteindex 和 String#byterindex 。 [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+<li>更新 Unicode 至 Version 15.0.0，Emoji Version 15.0. [[Feature #18037]] (同样适用于 Regexp)</li>
+<li>新增 String#bytesplice 。  [<a href="https://bugs.ruby-lang.org/issues/18598">Feature #18598</a>]</li>
+</ul>
+</li>
+<li>
+<p>Struct</p>
+<ul>
+<li>即使在 <code>Struct.new</code> 中不设置 <code>keyword_init: true</code>，Struct 类也可以通过关键词参数进行初始化。 [<a href="https://bugs.ruby-lang.org/issues/16806">Feature #16806</a>]</li>
+</ul>
+</li>
+</ul>
+<h2>兼容性问题</h2>
+<p>注意：不包含特性的问题修正</p>
+<h3>被移除的常量</h3>
+<p>下列废弃常量被移除。</p>
+<ul>
+<li><code>Fixnum</code> 与 <code>Bignum</code> [<a href="https://bugs.ruby-lang.org/issues/12005">Feature #12005</a>]</li>
+<li><code>Random::DEFAULT</code> [<a href="https://bugs.ruby-lang.org/issues/17351">Feature #17351</a>]</li>
+<li><code>Struct::Group</code></li>
+<li><code>Struct::Passwd</code></li>
+</ul>
+<h3>被移除的方法</h3>
+<p>下列废弃方法被移除。</p>
+<ul>
+<li><code>Dir.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>File.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>Kernel#=~</code> [<a href="https://bugs.ruby-lang.org/issues/15231">Feature #15231</a>]</li>
+<li><code>Kernel#taint</code>, <code>Kernel#untaint</code>, <code>Kernel#tainted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+<li><code>Kernel#trust</code>, <code>Kernel#untrust</code>, <code>Kernel#untrusted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h2>标准库兼容性问题</h2>
+<h3>不再捆绑第三方源代码</h3>
+<ul>
+<li>
+<p>我们不再捆绑第三方源代码，例如 <code>libyaml</code>， <code>libffi</code>。</p>
+<ul>
+<li>
+<p>psych 中已经移除了 libyaml 的代码。您可能需要在 Ubuntu/Debian 平台中安装 <code>libyaml-dev</code>。软件包的名称可能因平台不同而各异。</p>
+</li>
+<li>
+<p>从 <code>fiddle</code> 中移除捆绑的 libffi 源码</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Psych 和 fiddle 支持指定 libyaml 和 libffi 的版本来静态编译。您可以像这样基于 libyaml-0.2.5 编译 psych：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="bash"><span class="nv">$ </span>./configure <span class="nt">--with-libyaml-source-dir</span><span class="o">=</span>/path/to/libyaml-0.2.5
+</code></pre></div></div>
+<p>同样，您可以像这样基于 libffi-3.4.4 编译 fiddle：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="bash"><span class="nv">$ </span>./configure <span class="nt">--with-libffi-source-dir</span><span class="o">=</span>/path/to/libffi-3.4.4
+</code></pre></div></div>
+<p>[<a href="https://bugs.ruby-lang.org/issues/18571">Feature #18571</a>]</p>
+</li>
+</ul>
+<h2>C API 更新</h2>
+<h3>更新的 C API</h3>
+<p>下列 API 被更新。</p>
+<ul>
+<li>PRNG 更新
+<code>rb_random_interface_t</code> 被更新并设定版本。
+如果扩展库使用旧版本的接口需要更新。
+同样，<code>init_int32</code> 函数需要被定义。</li>
+</ul>
+<h3>被移除的 C API</h3>
+<p>下列废弃的 API 被移除。</p>
+<ul>
+<li>变量 <code>rb_cData</code>。</li>
+<li>&quot;taintedness&quot; 与 &quot;trustedness&quot; 函数。 [<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h3>标准库更新</h3>
+<ul>
+<li>下列默认 gems 被更新。
+<ul>
+<li>RubyGems 3.4.0.dev</li>
+<li>benchmark 0.2.1</li>
+<li>bigdecimal 3.1.3</li>
+<li>bundler 2.4.0.dev</li>
+<li>cgi 0.3.6</li>
+<li>date 3.3.0</li>
+<li>delegate 0.3.0</li>
+<li>did_you_mean 1.6.2</li>
+<li>digest 3.1.1</li>
+<li>drb 2.1.1</li>
+<li>erb 4.0.2</li>
+<li>error_highlight 0.5.1</li>
+<li>etc 1.4.1</li>
+<li>fcntl 1.0.2</li>
+<li>fiddle 1.1.1</li>
+<li>fileutils 1.7.0</li>
+<li>forwardable 1.3.3</li>
+<li>getoptlong 0.2.0</li>
+<li>io-console 0.5.11</li>
+<li>io-nonblock 0.2.0</li>
+<li>io-wait 0.3.0.pre</li>
+<li>ipaddr 1.2.5</li>
+<li>irb 1.5.1</li>
+<li>json 2.6.2</li>
+<li>logger 1.5.2</li>
+<li>mutex_m 0.1.2</li>
+<li>net-http 0.3.1</li>
+<li>net-protocol 0.2.0</li>
+<li>nkf 0.1.2</li>
+<li>open-uri 0.3.0</li>
+<li>openssl 3.1.0.pre</li>
+<li>optparse 0.3.0</li>
+<li>ostruct 0.5.5</li>
+<li>pathname 0.2.1</li>
+<li>pp 0.4.0</li>
+<li>pstore 0.1.2</li>
+<li>psych 5.0.0</li>
+<li>racc 1.6.1</li>
+<li>rdoc 6.5.0</li>
+<li>reline 0.3.1</li>
+<li>resolv 0.2.2</li>
+<li>securerandom 0.2.1</li>
+<li>set 1.0.3</li>
+<li>stringio 3.0.3</li>
+<li>syntax_suggest 1.0.1</li>
+<li>timeout 0.3.1</li>
+<li>tmpdir 0.1.3</li>
+<li>tsort 0.1.1</li>
+<li>un 0.2.1</li>
+<li>uri 0.12.0</li>
+<li>win32ole 1.8.9</li>
+<li>zlib 3.0.0</li>
+</ul>
+</li>
+<li>下列绑定 gems 被更新。
+<ul>
+<li>minitest 5.16.3</li>
+<li>power_assert 2.0.2</li>
+<li>test-unit 3.5.5</li>
+<li>net-ftp 0.2.0</li>
+<li>net-imap 0.3.1</li>
+<li>net-pop 0.1.2</li>
+<li>net-smtp 0.3.3</li>
+<li>rbs 2.8.1</li>
+<li>typeprof 0.21.3</li>
+<li>debug 1.7.0</li>
+</ul>
+</li>
+</ul>
+<p>您可以通过 <a href="https://github.com/ruby/ruby/blob/v3_2_0_rc1/NEWS.md">新闻</a>
+或 <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_rc1">提交日志</a>
+获取更多信息。</p>
+<p>自 Ruby 3.1.0 以来，伴随这些变更， <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_rc1#file_bucket">2846 个文件被更改， 新增 203950 行(+)，删除 127153 行(-)</a>!</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20253652
+SHA1: 9b45af61ef1ae3c21ab88d7c9e30b80060116ac3
+SHA256: 3bb9760c1ac1b66416aaa4899809f6ccd010e57038eaaeca19a383fd56275dac
+SHA512: 798157d785ebae94cb128d3c134fa35e0e90c654972e531cb6562823042f3fb68a270226f7b1cf0c42572ef2b1488a1a3e44f88389ad2a6f9ca4b280a2a8e759
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14934012
+SHA1: 5576e304786d466410f27a345dc1cb66f2c773f6
+SHA256: 0d45b3af14e84337882a2021235a091ae5dcfc0baaf31dccc479b71d96dd07bc
+SHA512: d38fcb1e09eb9984f3b2347e65ae7406129c2578d068a25d33b5b4f021ec3b567a9abe56c2acbec6d07a3c2b4bc7b485dbd330cbfbb3a96350f60a2bb94d016e
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-rc1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 24473024
+SHA1: 8fdc85363ce61e0b8f04da36e709d49028d04a75
+SHA256: 7ff32473be108534548e401aaa9092c37a27f73323ea4091c33901c714c87ee5
+SHA512: 07adf6a9c89fdcf420e7b131f40f2b1f4aca036aa6f28539ade26ca552f84a75e0698f77a8b774d2ea52b8c756c4982ef319bda5afa786c081a31dd9873c5ef7
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby是什么</h2>
+<p>Ruby 最初由 Matz （松本行弘，Yukihiro Matsumoto） 于 1993 年开发，现在以开源软件的形式开发。它可以在多个平台上运行，并在全球得到广泛使用，尤其是Web开发领域。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

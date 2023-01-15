@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.2.0-preview2 Telah Rilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2014/11/28/ruby-2-2-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.2.0-preview2 Telah Rilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2014-11-28<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis Ruby 2.2.0-preview2.</p>
+<p>Ruby 2.2.0-preview2 adalah <em>preview</em> kedua dari Ruby 2.2.0.
+Banyak fitur baru dan penyempurnaan dimasukkan seiring dengan meningkatnya
+tuntunan dan perkembangan Ruby.</p>
+<p>Sebagai contoh, <em>Symbol GC</em> membuat <em>Symbols garbage collectable</em>.
+Hal ini mengurangi penggunaan memori dari simbol; karena GC tidak dapat mengumpulkan simbol sebelum
+Ruby 2.2. Karena Rails 5.0 akan memerlukan <em>Symbol GC</em>, hal tersebut hanya didukung oleg Ruby 2.2
+atau terbaru. (Lihat <a href="http://weblog.rubyonrails.org/2014/8/20/Rails-4-2-beta1/">Rails' blog post</a> untuk lebih detil.)</p>
+<p>Juga, <em>Incremental GC</em> baru mengurangi waktu jeda dari <em>garbage collection</em>, di mana sangat membantu untuk menjalankan aplikasi Rails.</p>
+<p>Fitur lain yang berkaitan dengan manajemen memori adalah penambahan sebuah opsi <em>configure.in</em> untuk menggunakan <em>jemalloc</em>
+<a href="https://bugs.ruby-lang.org/issues/9113">Fitur #9113</a>.
+Ini merupakan fitur percobaan, dan dimatikan secara <em>default</em>.
+Kami butuh untuk mengumpulkan studi kasus dan data performa.
+Ketika kami yakin mendapatkan keberhasilan, fitur ini akan diaktifkan secara <em>default</em>.</p>
+<p>Satu topik lagi <a href="http://www.a-k-r.org/d/2014-09.html#a2014_09_06">menggunakan vfork(2) di system() dan spawn() (Japanese)</a>.
+Hal tersebut di atas diharapkan dapat membawa kecepatan tinggi ketika sebuah proses yang sangat besar mengeksekusi perintah eksternal berulang kali.
+Tetapi <em>vfork(2)</em> adalah sebuah pemanggil sistem yang berisiko.
+Kami ingin tahu berapa keberhasilan yang akan didapatkan melalui pengumpulan studi kasus dan data performa.</p>
+<p>Coba dan nikmati memprogram dengan Ruby 2.2.0-preview2, dan laporkan sejauh mana Anda ke kami!</p>
+<h2>Perubahan Penting sejak 2.1</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/10137">Incremental GC</a> (<a href="http://magazine.rubyist.net/?0048-YARVManiacs">YARV Maniacs No.12</a>)</li>
+<li><a href="https://bugs.ruby-lang.org/issues/9634">Symbol GC</a> (<a href="http://www.slideshare.net/authorNari/symbol-gc"><em>slide</em> presentasi di RubyKaigi 2014</a>)</li>
+<li>configure --with-jemalloc <a href="https://bugs.ruby-lang.org/issues/9113">Fitur #9113</a></li>
+<li><em>core libraries</em>:
+<ul>
+<li>Mendukung Unicode 7.0 <a href="https://bugs.ruby-lang.org/issues/9092">#9092</a></li>
+<li><em>New methods</em>:
+<ul>
+<li>Enumerable#slice_after <a href="https://bugs.ruby-lang.org/issues/9071">#9071</a>, Enumerable#slice_when <a href="https://bugs.ruby-lang.org/issues/9826">#9826</a></li>
+<li>Float#next_float, Float#prev_float <a href="https://bugs.ruby-lang.org/issues/9834">#9834</a></li>
+<li>File.birthtime, File#birthtime <a href="https://bugs.ruby-lang.org/issues/9647">#9647</a></li>
+<li>String#unicode_normalize <a href="https://bugs.ruby-lang.org/issues/10084">#10084</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>bundled libraries</em>:
+<ul>
+<li>Memperbarui Psych 2.0.6</li>
+<li>Memperbarui Rake 10.4.0</li>
+<li>Memperbarui RDoc 4.2.0.alpha (21b241a)</li>
+<li>Memperbarui RubyGems 2.4.4+ (2f6e42e)</li>
+<li>rubygems 2.4.4+ (2f6e42e)</li>
+<li>Memperbarui test-unit 3.0.7 (dihapus dari <em>repository</em> tetapi dibundel
+di dalam <em>tarball</em>)</li>
+<li>Memperbarui minitest 5.4.3 (dihapus dari <em>repository</em> tetapi dibundel di dalam <em>tarball</em>)</li>
+<li><em>Deprecate</em> mathn</li>
+</ul>
+</li>
+<li>C API
+<ul>
+<li>Menghapus <em>APIs</em> yang usang</li>
+</ul>
+</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v2_2_0_preview2/NEWS">NEWS di dalam <em>repository</em> Ruby (WIP)</a> untuk lebih detil.</p>
+<p>Dengan perubahan tersebut, 1239 berkas berubah, 98343 Penambahan(+), 61858 penghapusan(-).</p>
+<h2>Unduh</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2</a>
+<ul>
+<li>SIZE:   12505279 bytes</li>
+<li>MD5:    d7abace25a8ffe861cb2807bef1c58a6</li>
+<li>SHA256: 9e49583f3fad3888fefc85b719fdb210a88ef54d80f9eac439b7ca4232fa7f0b</li>
+<li>SHA512: c654d4c047f9463a5fb81eaea0fa5ab7bf316962bc7fb0fb356861e6336ce8ce2162c7779d8b27f72d7bc0e9604b5e5af2910abcb0b0a1f197b3138eaddfd4a5</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz</a>
+<ul>
+<li>SIZE:   15505521 bytes</li>
+<li>MD5:    bde388d6f10012a92d5dc36196fd6755</li>
+<li>SHA256: dfcef7b01bd3acb41da6689993ac8dd30e2ecd4fd14bc1a833f46188a9fe2614</li>
+<li>SHA512: e2d316a679c15c021e40b0f9b7810b319c6a5e771a9b869fda35b6745aecac881bbb05d62192893799816a8673e05c8f17713f10ccdec077f546483608ab85c1</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz</a>
+<ul>
+<li>SIZE:   9649216 bytes</li>
+<li>MD5:    0d582e28b92ce9d1456e40fb8d821422</li>
+<li>SHA256: d14d1fa045263fa242a515d7b9e8c485bf8a9ee9d9d3012dc2b6add0f3a370c6</li>
+<li>SHA512: 4a8a75ab21b2bd43db4a22d9c63f189f3c7805d575d662b07a4ddc25aa5b156b0c23053d8c48eecf23d5e22f1ea7131467f1cdc48f9ae0a83214b4cd46b08491</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip</a>
+<ul>
+<li>SIZE:   17239396 bytes</li>
+<li>MD5:    d94160c214016863932c25cc1ac6ff90</li>
+<li>SHA256: 88d6c73ee1a4f5fe1f8ad37fe1f56c1ca50622f1338c20b9d46bbb5c2cd94040</li>
+<li>SHA512: 0a021d31f54c47c5c3901ef6f2ab02a1bfb5cc698f971978c1e16b1aeda78fdadec0c1cdd48af1c8784b8f72ad00d35cf2433d78e20d4447fa0630e02b4e3917</li>
+</ul>
+</li>
+</ul>
+<h2>Komentar Rilis</h2>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115">Isu 2.2.0 yang diketahui</a></li>
+</ul>
+<p>Lihat juga jadwal rilis dan informasi lainnya:</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22">ReleaseEngineering22</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

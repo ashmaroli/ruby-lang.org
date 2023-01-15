@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby Core</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/community/ruby-core/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby Core</h1>
+
+
+
+  <div id="content">
+    <p>Сейчас отличное время, чтобы участвовать в разработке Ruby. С повышенным
+вниманием, которое получил Ruby в последние несколько лет, в сообществе
+возрастает потребность в талантах для улучшения Ruby самого по себе и
+его документации. Итак, где вам начать?
+{: .summary}</p>
+<p>Темы, относящиеся к разработке Ruby, находятся здесь:</p>
+<ul>
+<li><a href="#following-ruby">Использование Subversion для прослеживания процесса разработки Ruby</a></li>
+<li><a href="#git-ruby">Как использовать Git для работы с главным репозиторием Ruby</a></li>
+<li><a href="#patching-ruby">Улучшаем Ruby, патч за патчем</a></li>
+<li><a href="#coding-standards">Правила для разработчиков ядра</a></li>
+</ul>
+<h3>Использование Subversion для прослеживания разработки Ruby</h3>
+<p>{: #following-ruby}</p>
+<p>Анонимно получить последние исходники Ruby можно из <a href="http://subversion.apache.org/">Subversion</a>
+репозитория. В командной строке наберите:</p>
+<!-- raw HTML omitted -->
+<p>Папка <code>ruby</code> теперь будет содержать последние исходники
+development-версии Ruby (ruby-trunk). Патчи, применяемые к ruby-trunk
+так же портируются в стабильные
+2.6, 2.5,
+и 2.4 ветки (смотри ниже).</p>
+<p>Если вы хотите следить за патчингом Ruby 2.6, вы можете переключится
+на <code>ruby_2_6</code> ветку:</p>
+<!-- raw HTML omitted -->
+<p>То же самое для Ruby 2.5:</p>
+<!-- raw HTML omitted -->
+<p>Эти команды скачают соответствующее дерево разработки в папку
+<code>ruby_2_6</code> или <code>ruby_2_5</code>.
+Разработчики, работающие над поддерживаемыми ветками,
+ожидают применения их изменений в ruby-trunk, так что зачастую обе ветки
+очень похожи, за исключением изменений, сделанных Matz'ем и Nobu в языке
+в целом.</p>
+<p>Если вы предпочитаете, вы можете открыть <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/">Subversion репозиторий Ruby в
+браузере</a>.</p>
+<p>Для информации по поводу Subversion, пожалуйста смотрите <a href="http://subversion.apache.org/faq.html">the Subversion FAQ</a>
+и книгу <a href="http://svnbook.org">the Subversion book</a>. Еще вы можете найти полезной для начала
+изучения Subversion книгу <a href="http://www.pragmaticprogrammer.com/titles/svn/">Pragmatic Version Control with Subversion</a>.</p>
+<h3>Как использовать Git для работы с главным репозиторием Ruby</h3>
+<p>{: #git-ruby}</p>
+<p>Для тех, кто предпочитает использовать <a href="http://git-scm.com/">Git</a> вместо Subversion,
+инструкции могут найдены в <a href="https://github.com/ruby/ruby">зеркале репозитория на GitHub</a>. Их две,
+одна для <a href="https://github.com/shyouhei/ruby/wiki/committerhowto">тех, кто имеет право коммитить</a> и другая – для <a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">всех
+остальных</a>.</p>
+<h3>Улучшаем Ruby, патч за патчем</h3>
+<p>{: #patching-ruby}</p>
+<p>Разработчики ядра поддерживают <a href="https://bugs.ruby-lang.org/">специальный форум</a> для приема патчей
+и сообщений о багах для Matz'а и команды. Эти сообщения также попадают в
+<a href="/ru/community/mailing-lists/">Ruby-Core mailing list</a> для обсуждения,
+так что вы можете быть уверены, что ваше сообщение не останется без
+внимания. Вы также можете отправлять свои патчи прямиком в почтовую рассылку.
+В любом случае, вам предлагается принять участие в последующей
+дискуссии.</p>
+<p>Пожалуйста, посмотрите <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/25139">Patch Writer's Guide</a>. Вы найдете там
+некоторые подсказки и приемы непосредственно от Matz'а о том, как
+сделать так, чтоб ваши патчи приняли.</p>
+<p>Суммируя шаги создания патча:</p>
+<ol>
+<li>
+<p>Скачайте копию исходного кода Ruby из Subversion. Обычно, патчи
+которые исправляют баги или добавляют новые конструкции, должны быть
+применены к trunk ветке исходного кода Ruby. Даже если вы хотите
+добавить конструкцию к 2.5, это должно быть сначала проверено в
+trunk.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
+</code></pre></div></div>
+<p>Если вы исправляете баг, который специфичен для одной из
+поддерживаемых веток, выберите эту ветку, например, <code>2.5</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
+</code></pre></div></div>
+</li>
+<li>
+<p>Добавьте ваши улучшения в код.</p>
+</li>
+<li>
+<p>Создайте патч.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn diff &gt; ruby-changes.patch
+</code></pre></div></div>
+</li>
+<li>
+<p>Создайте тикет в <a href="https://bugs.ruby-lang.org/">специальном форуме</a> или вышлите свой патч в
+рассылку <a href="/ru/community/mailing-lists/">Ruby-Core mailing list</a>
+с записью в Changelog, описывающую ваши изменения.</p>
+</li>
+<li>
+<p>Если с патчем не возникнет никаких проблем, программисты имеющие
+права на добавление кода в репозитории, добавят ваш патч.</p>
+</li>
+</ol>
+<p><strong>Пожалуйста, обратите внимание:</strong> что патчи должны быть предложены как
+<a href="http://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html">унифицированный дифф</a>. Для большей информации о том как применяют
+патчи, пожалуйста читайте <a href="http://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html#Merging%20with%20patch">the diffutils reference</a>.</p>
+<p>Обсуждение разработки Ruby происходит в почтовой рассылке
+<a href="/ru/community/mailing-lists/">Ruby-Core mailing list</a>. Таким образом, если вы размышляете
+о том, будет ли ваш патч полезен, или вы хотите начать обсуждение о
+будущем Ruby, не медлите начать общение. Учтите также, что обсуждения не
+по теме не приветствуются в данной рассылке. Уровень шума должен быть
+низок, темы должны быть точными, продуманными и хорошо написанными. Так
+как рассылка приходит создателю Ruby, давайте будем вежливы.</p>
+<p>Держите в уме, несмотря на то, что разработчики ядра Ruby большинством
+своим живут в Японии и многие из них владеют английским очень хорошо,
+присутствует значительная разница во времени. Разработчики ядра также
+имеют большое количество обсуждаемых на японском языке вещей, которые
+происходят параллельно с задачами, обсуждаемыми на английском. Будьте
+терпеливы и, если ваша проблема не решена, будьте настойчивы в следующей
+попытке через несколько дней.</p>
+<h3>Правила для разработчиков ядра</h3>
+<p>{: #coding-standards}</p>
+<p>Обычно, разработчики Ruby должны быть знакомы с исходным кодом и стилем
+разработки, используемым командой. Но на всякий случай, следующие
+правила должны уважаться, когда вы что-то изменяете:</p>
+<ul>
+<li>Все добавления должны быть описаны в <code>ChangeLog</code> файле, следуя <a href="http://www.gnu.org/prep/standards/standards.html#Change-Logs">GNU
+конвенции</a>. (Многие разработчики ядра используют режим Emacs'а
+<code>add-log</code>, который может быть включен командой <code>C-x 4 a</code>.)</li>
+<li>Даты изменений должны быть представлены в формате Japan Standard Time
+(UTC+9).</li>
+<li>Буллиты из вашего ChangeLog должны также быть представлены в
+комментарии к вашему коммиту в Subversion. Сообщение будет
+автоматически выслано в рассылку Ruby-CVS после вашего коммита.</li>
+<li>Прототипы функций используются в исходном коде Ruby и его расширениях.</li>
+<li>Пожалуйста, не используйте C++ комментарии (<code>//</code>), разработчики ядра
+предпочитают стиль многострочных комментариев C (<code>/* .. */</code>).</li>
+</ul>
+<p>Также, для большей информации читайте <a href="https://bugs.ruby-lang.org/">Ruby's issue tracker</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Начните сейчас</strong>, это легко!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Попробуйте Ruby! (в своем браузере)</a></li>
+
+    
+    <li><a href="/ru/documentation/quickstart/">Ruby за двадцать минут</a></li>
+    
+
+    
+    <li><a href="/ru/documentation/ruby-from-other-languages/">В Ruby из других языков</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Исследуйте</strong> новый мир…</h3>
+  <ul class="menu">
+    
+    <li><a href="/ru/documentation/">Документация</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Научные публикации</a></li>
+    
+
+    
+    <li><a href="/ru/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/ru/documentation/success-stories/">Истории успеха</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Вступайте</strong> в дружелюбное и развивающееся сообщество.</h3>
+  <ul>
+    
+    <li><a href="/ru/community/mailing-lists/">Почтовые рассылки</a>: Разговоры о Ruby в кругу программистов со всего мира.</li>
+    
+
+    
+    <li><a href="/ru/community/user-groups/">Группы пользователей</a>: Познакомьтесь с рубистами рядом с вами.</li>
+    
+
+    
+    <li><a href="/ru/community/weblogs/">Блоги</a>: Читайте о том, что происходит в сообществе Ruby прямо сейчас.</li>
+    
+
+    
+    <li><a href="/ru/community/ruby-core/">Ядро Ruby</a>: Помощь в полировке последней версии Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Решение проблем</a>: Сообщайте или помогайте решать проблемы в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

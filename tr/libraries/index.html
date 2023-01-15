@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Kütüphaneler</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Kütüphaneler</h1>
+
+
+
+  <div id="content">
+    <p>Çoğu programlama dili gibi Ruby de geniş bir üçüncü parti kütüphane kümesine
+sahiptir.
+{: .summary}</p>
+<p>Bu kütüphanelerin neredeyse tamamı bir <strong>gem</strong> biçiminde yayınlanır. Bunlar,
+<a href="https://rubygems.org/"><strong>RubyGems</strong></a> isimli bir araç ile kurulabilen paketlenmiş kütüphaneler ya
+da uygulamalardır.</p>
+<p>RubyGems, kütüphanelerin oluşturulması, paylaşılması ve kurulumu için
+tasarlanmış bir Ruby paketleme sistemidir (bazı yönlerden <code>apt-get</code> gibi bir
+dağıtım paketleme sistemidir, fakat Ruby yazılımını hedeflemiştir). Ruby,
+1.9 sürümünden itibaren varsayılan olarak RubyGems ile gelmektedir, önceki Ruby
+sürümleri RubyGems'in <a href="https://rubygems.org/pages/download/">elle kurulması</a>nı gerektirir.</p>
+<p>Bazı diğer kütüphaneler <strong>kaynak kodun</strong> arşivlenmiş (.zip ya da .tar.gz)
+dizinleri olarak yayınlanırlar. Kurulum süreci farklılık gösterebilir, genelde
+talimatların yer aldığı bir <code>README</code> ya da <code>INSTALL</code> dosyası vardır.</p>
+<p>Hadi şimdi kütüphaneleri nasıl bulup kuracağımıza bakalım.</p>
+<h3>Kütüphaneleri bulma</h3>
+<p>Kütüphanelerin barındırıldığı ana mekan <a href="https://rubygems.org/"><strong>RubyGems.org</strong></a>'dur. Bu depoda
+gemleri bulup makinenize kurabilirsiniz. RubyGems websitesini kullanarak ya da
+<code>gem</code> komutu ile gemleri tarayabilir ya da arayabilirsiniz.</p>
+<p><code>gem search -r</code> komutu ile RubyGems deposunu arayabilirsiniz. Örneğin
+<code>gem search -r rails</code>, Rails ile ilgili gemlerin bir listesini döndürecektir.
+<code>--local</code> (<code>-l</code>) seçeneği ile kurulu gemleriniz arasında yerel bir arama
+gerçekleştirebilirsiniz. Bir gem kurmak için <code>gem install [gem]</code> komutunu
+kullanın. Kurulu gemleri taramak için <code>gem list</code> komutunu kullanabilirsiniz.
+<code>gem</code> komutu ile ilgili daha fazla bilgi için aşağıya bakın ya da
+<a href="http://guides.rubygems.org/">RubyGems’in belgeleri</a>ne gidin.</p>
+<p>Kütüphanelerin başka kaynakları da vardır. <a href="https://github.com/"><strong>GitHub</strong></a>, Ruby ile ilgili
+içeriğin bulunduğu ana depodur. Sıklıkla bir gem kaynak kodu RubyGems.org'da
+tam teşekküllü bir gem olarak yayınlanırken GitHub'da barındırılır.</p>
+<p><a href="https://www.ruby-toolbox.com/"><strong>The Ruby Toolbox</strong></a>, açık kaynak Ruby projelerini araştırmayı
+kolaylaştıran bir projedir. Çeşitli yaygın geliştirme görevleri için
+kategorilere sahiptir, projeler hakkında yayın ve işleme etkinliği ya da
+bağımlılıklar gibi birçok bilgi toplar ve projeleri RubyGems.org ve GitHub'daki
+gözdeliklerine göre derecelendirir.</p>
+<h3>RubyGems hakkında birkaç söz</h3>
+<p>Burada <code>gem</code> komutunu günlük kullanım için basitçe anlattık. Bu paketleme
+sisteminin tüm yönlerini kapsayan <a href="http://guides.rubygems.org/command-reference/">daha ayrıntılı bir belgelendirme</a> de
+vardır.</p>
+<h4>Mevcut gemler arasında arama yapma</h4>
+<p><strong>search</strong> komutu bir karakter dizisine göre gemleri aramak için
+kullanılabilir. Adları belirtilen karakter dizisi ile başlayan gemler
+döndürülen listede yer alacaktır. Örneğin, &quot;html&quot; ile ilgili gemleri aramak
+için:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>--remote</code> / <code>-r</code> bayrağı, resmi RubyGems.org deposunu yoklamak istediğimizi
+belirtir (varsayılan davranış). <code>--local</code> / <code>-l</code> bayrağı ile kurulu gemleriniz
+arasında yerel bir arama gerçekleştirebilirsiniz.</p>
+<h4>Bir gemi kurma</h4>
+<p>Gözde Ruby on Rails web çatısını <strong>kurmak</strong> istiyorsunuz diyelim, o zaman şu komutu vermelisiniz:</p>
+<!-- raw HTML omitted -->
+<p><code>--version</code> / <code>-v</code> bayrağı ile kütüphanenin belirli bir sürümünü de
+kurabilirsiniz:</p>
+<!-- raw HTML omitted -->
+<h4>Tüm gemleri listeleme</h4>
+<p>Yerel olarak kurulmuş tüm gemlerin bir <strong>listesi</strong> için:</p>
+<!-- raw HTML omitted -->
+<p>RubyGems.org'da bulunan tüm gemlerin (çok uzun) bir listesini almak için:</p>
+<!-- raw HTML omitted -->
+<h4>Yardım!</h4>
+<p>Belgelendirme uçbiriminizin içinde mevcuttur:</p>
+<!-- raw HTML omitted -->
+<p>Örneğin <code>gem help commands</code> çok kullanışlıdır çünkü tüm <code>gem</code> komutlarının
+bir listesini çıktı olarak verir.</p>
+<h4>Kendi geminizi yapma</h4>
+<p>RubyGems.org bu konuda <a href="http://guides.rubygems.org/">birkaç kılavuza</a> sahiptir. Ayrıca <a href="http://bundler.io/">Bundler</a>'ı da
+araştırmak isteyebilirsiniz. Bu, RubyGems ile birlikte kullanılabilen ve
+uygulamaların bağımlılıklarını yönetmenize yardımcı olan genel bir araçtır.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Başlamak</strong>, çok kolay!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Ruby'yi Deneyin! (tarayıcınızda)</a></li>
+
+    
+    <li><a href="/tr/documentation/quickstart/">Yirmi Dakikada Ruby</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/ruby-from-other-languages/">Diğer Dillerden Ruby'ye</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Yeni Bir Dünya</strong> keşfedin…</h3>
+  <ul class="menu">
+    
+    <li><a href="/tr/documentation/">Belgeler</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Akademik Araştırma</a></li>
+    
+
+    
+    <li><a href="/tr/libraries/">Kütüphaneler</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/success-stories/">Başarı Hikayeleri</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Arkadaşça</strong> ve büyüyen bir topluluğa katılın.</h3>
+  <ul>
+    
+    <li><a href="/tr/community/mailing-lists/">Mail Listeleri</a>: Tüm dünyadan Ruby programcılarıyla görüşün.</li>
+    
+
+    
+    <li><a href="/tr/community/user-groups/">Kullanıcı Grupları</a>: Bölgenizdeki Ruby'cilerle temas kurun.</li>
+    
+
+    
+    <li><a href="/tr/community/weblogs/">Web günlükleri</a>: Ruby'de neler olduğunu takip edin.</li>
+    
+
+    
+    <li><a href="/tr/community/ruby-core/">Ruby Core</a>: En son Ruby'nin kaba taraflarının parlatılmasına yardımcı olun.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Sorun Takibi</a>: Ruby sorunlarını rapor edin ya da çözümüne yardım edin.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

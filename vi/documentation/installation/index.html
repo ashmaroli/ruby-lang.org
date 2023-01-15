@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Cài đặt Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/documentation/installation/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Cài đặt Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Bạn có thể cài đặt Ruby bằng nhiều công cụ khác nhau.
+Bài viết này hướng dẫn sử dụng các hệ thống quản lý gói
+và các công cụ của bên thứ 3 để quản lý, cài đặt Ruby
+và cách biên dịch Ruby từ mã nguồn.
+{: .summary}</p>
+<h2>Chọn phương thức cài đặt của bạn</h2>
+<p>Bạn có thể cài đặt Ruby bằng một trong những cách sau:</p>
+<ul>
+<li>Nếu bạn đang dùng hệ điều hành giống UNIX, sử dụng
+<strong>trình quản lý gói</strong> sẵn có là cách dễ nhất.
+Tuy nhiên, phiên bản Ruby được đóng gói thường không phải là bản mới nhất.</li>
+<li><strong>Installer</strong> có thể được sử dụng để cài đặt một hoặc một số
+phiên bản Ruby. Installer cũng có sẵn trên Windows.</li>
+<li><strong>Trình quản lý</strong> giúp bạn chuyển đổi giữa các bản cài đặt Ruby
+trên hệ điều hành của bạn.</li>
+<li>Và cuối cùng, bạn cũng có thể <strong>biên dịch Ruby từ mã nguồn</strong>.</li>
+</ul>
+<p>Tổng quan các phương thức cài đặt có sẵn
+theo nhu cầu và nền tảng khác nhau.</p>
+<ul>
+<li><a href="#package-management-systems">Hệ thống quản lý gói</a>
+<ul>
+<li><a href="#apt">Debian, Ubuntu</a></li>
+<li><a href="#yum">CentOS, Fedora, RHEL</a></li>
+<li><a href="#portage">Gentoo</a></li>
+<li><a href="#pacman">Arch Linux</a></li>
+<li><a href="#homebrew">macOS</a></li>
+<li><a href="#solaris">Solaris, OpenIndiana</a></li>
+<li><a href="#other-systems">Các bản phân phối khác</a></li>
+</ul>
+</li>
+<li><a href="#installers">Installers</a>
+<ul>
+<li><a href="#ruby-build">ruby-build</a></li>
+<li><a href="#ruby-install">ruby-install</a></li>
+<li><a href="#rubyinstaller">RubyInstaller</a> (Windows)</li>
+<li><a href="#railsinstaller">RailsInstaller và Ruby Stack</a></li>
+</ul>
+</li>
+<li><a href="#managers">Trình quản lý</a>
+<ul>
+<li><a href="#chruby">chruby</a></li>
+<li><a href="#rbenv">rbenv</a></li>
+<li><a href="#rvm">RVM</a></li>
+<li><a href="#uru">uru</a></li>
+</ul>
+</li>
+<li><a href="#building-from-source">Biên dịch từ mã nguồn</a></li>
+</ul>
+<h2>Hệ thống quản lý gói</h2>
+<p>{: #package-management-systems}</p>
+<p>Nếu bạn không thể tự biên dịch Ruby và bạn không muốn sử dụng một
+công cụ của bên thứ ba, bạn có thể sử dụng trình quản lý gói
+của hệ điều hành để cài đặt Ruby.</p>
+<p>Một số thành viên trong cộng đồng Ruby khuyên rằng bạn không nên sử dụng
+một trình quản lý gói để cài đặt Ruby mà bạn nên sử dụng các công cụ
+thay thế khác. Trong khi danh sách đầy đủ các ưu, nhược điểm nằm ngoài phạm vi
+của trang này thì lý do cơ bản nhất là hầu hết các trình quản lý gói có chứa các
+phiên bản cũ của Ruby trong repository chính thức. Nếu bạn muốn sử dụng phiên
+bản Ruby mới nhất, hãy chắc chắn rằng bạn sử dụng tên gói đúng,
+hoặc sử dụng các công cụ được mô tả chi tiết ở dưới đây để thay thế.</p>
+<h3>apt (Debian và Ubuntu)</h3>
+<p>{: #apt}</p>
+<p>Debian GNU/Linux và Ubuntu sử dụng trình quản lý gói apt.
+Bạn có thể sử dụng như sau:</p>
+<!-- raw HTML omitted -->
+<p><code>ruby-full</code> ở lệnh trên cung cấp Ruby 2.3.1, một bản phân phối ổn định cũ,
+trên Debian và Ubuntu.</p>
+<h3>yum (CentOS, Fedora, và RHEL)</h3>
+<p>{: #yum}</p>
+<p>CentOS, Fedora, và RHEL sử dụng trình quản lý gói yum.
+Bạn có thể sử dụng như sau:</p>
+<!-- raw HTML omitted -->
+<p>Phiên bản được cài đặt thường là phiên bản mới nhất của Ruby ở thời gian
+phát hành bản phân phối của hệ điều hành đó.</p>
+<h3>portage (Gentoo)</h3>
+<p>{: #portage}</p>
+<p>Gentoo sử dụng trình quản lý gói portage.</p>
+<!-- raw HTML omitted -->
+<p>Mặc định, lệnh trên sẽ cài đặt các phiên bản 1.9 và 2.0,
+nhưng các phiên bản khác cũng có sẵn.
+Để cài đặt một phiên bản nhất định, đặt giá trị cho <code>RUBY_TARGETS</code>
+trong <code>make.conf</code>.
+Xem chi tiết tại <a href="http://www.gentoo.org/proj/en/prog_lang/ruby/">Gentoo Ruby Project website</a></p>
+<h3>pacman (Arch Linux)</h3>
+<p>{: #pacman}</p>
+<p>Arch Linux sử dụng trình quản lý gói pacman.
+Bạn có thể sử dụng như sau:</p>
+<!-- raw HTML omitted -->
+<p>Lệnh trên sẽ cài đặt phiên bản ổn định mới nhất của Ruby.</p>
+<h3>Homebrew (macOS)</h3>
+<p>{: #homebrew}</p>
+<p>Trên Yosemite và Mavericks, Ruby 2.0 có sẵn trong homebrew
+Đối với OS X Mountain Lion, Lion, và Snow Leopard thì là Ruby 1.8.7.</p>
+<p>Nhiều người sử dụng <a href="http://brew.sh/">Homebrew</a> trên macOS như một trình quản lý gói.
+Rất dễ để cài đặt phiên bản mới nhất của Ruby bằng Homebrew:</p>
+<!-- raw HTML omitted -->
+<p>Lệnh trên sẽ cài đặt phiên bản mới nhất của Ruby.</p>
+<h3>Ruby trên Solaris và OpenIndiana</h3>
+<p>{: #solaris}</p>
+<p>Ruby 1.8.7 có sẵn từ Solaris 8 đến Solaris 10 trên
+<a href="http://www.sunfreeware.com">Sunfreeware</a> và Ruby 1.8.7 có sẵn ở
+Blastwave.
+Ruby 1.9.2p0 cũng có sẵn tại <a href="http://www.sunfreeware.com">Sunfreeware</a>,
+nhưng đây là phiên bản đã lỗi thời.</p>
+<p>Để cài đặt Ruby trên <a href="http://openindiana.org/">OpenIndiana</a>, vui lòng sử dụng
+<a href="http://opensolaris.org/os/project/pkg/">Image Packaging System (IPS)</a> client.
+Nó sẽ cài đặt các gói nhị phân mới nhất của Ruby và RubyGems trực tiếp
+từ repository của OpenSolaris cho Ruby 1.9. Thật dễ dàng:</p>
+<!-- raw HTML omitted -->
+<p>Tuy nhiên, các công cụ của bên thứ ba cũng là một cách tốt để có được
+phiên bản mới nhất của Ruby.</p>
+<h3>Các bản phân phối khác</h3>
+<p>{: #other-systems}</p>
+<p>Trên các hệ điều hành khác, bạn có thể tìm các gói bằng trình quản lý có sẵn
+hoặc các công cụ của bên thứ ba.</p>
+<h2>Installers</h2>
+<p>{: #installers}</p>
+<p>Nếu phiên bản của Ruby được cung cấp bởi hệ điều hành hoặc trình quản lý
+bị lỗi thời, bạn có thể sử dụng một installer của bên thứ ba để cài đặt
+phiên bản mới nhất.
+Một số installer cho phép bạn có thể cài đặt nhiều phiên bản Ruby trên cùng
+hệ điều hành; các trình quản lý đi kèm có thể giúp bạn chuyển đổi giữa
+các phiên bản Ruby khác nhau.
+Nếu bạn đang có ý định sử dụng <a href="#rvm">RVM</a> như một trình quản lý phiên bản
+thì bạn không cần thêm installer nữa vì RVM đã có một installer riêng.</p>
+<h3>ruby-build</h3>
+<p>{: #ruby-build}</p>
+<p><a href="https://github.com/rbenv/ruby-build#readme">ruby-build</a> là một plugin cho <a href="#rbenv">rbenv</a>
+cho phép bạn có thể biên dịch và cài đặt các phiên bản khác nhau của Ruby
+trong các thư mục tuỳ ý.
+ruby-build có thể được sử dụng như một chương trình độc lập mà không cần rbenv.
+Có sẵn trên macOS, Linux, và các hệ điều hành giống UNIX khác.</p>
+<h3>ruby-install</h3>
+<p>{: #ruby-install}</p>
+<p><a href="https://github.com/postmodern/ruby-install#readme">ruby-install</a> cho phép bạn biên dịch và cài đặt các
+phiên bản khác nhau của Ruby trong các thư mục tuỳ ý.
+Người anh em của nó là <a href="#chruby">chruby</a>, dùng để chuyển đổi giữa các
+phiên bản Ruby.
+Có sẵn trên macOS, Linux, và các hệ điều hành giống UNIX khác.</p>
+<h3>RubyInstaller</h3>
+<p>{: #rubyinstaller}</p>
+<p>Nếu bạn đang sử dụng Windows, có một dự án tuyệt vời giúp bạn cài đặt Ruby:
+<a href="https://rubyinstaller.org/">RubyInstaller</a>. Nó cung cấp cho bạn mọi thứ cần thiết để cài
+đặt một môi trường phát triển đầy đủ trên Windows.</p>
+<p>Chỉ việc tải xuống và chạy là xong!</p>
+<h3>RailsInstaller và Ruby Stack</h3>
+<p>{: #railsinstaller}</p>
+<p>Nếu bạn đang cài đặt Ruby để sử dụng Ruby on Rails,
+bạn có thể sử dụng các installers sau đây:</p>
+<ul>
+<li><a href="http://railsinstaller.org/">RailsInstaller</a>,
+sử dụng RubyInstaller nhưng cung cấp cho bạn
+thêm nhiều công cụ trợ giúp để phát triển Rails.
+Có sẵn trên OS X và Windows.</li>
+<li><a href="http://bitnami.com/stack/ruby/installer">Bitnami Ruby Stack</a>,
+cung cấp một môi trường phát triển hoàn chỉnh cho Rails.
+Có sẵn trên macOS, Linux, Windows, các máy ảo và các cloud image.</li>
+</ul>
+<h2>Trình quản lý</h2>
+<p>{: #managers}</p>
+<p>Nhiều Rubyist sử dụng các trình quản lý Ruby để quản lý các phiên bản Ruby.
+Mặc dù, chúng có nhiều điểm mạnh nhưng lại không được hỗ trợ chính thức.
+Tuy nhiên, các cộng đồng của họ cũng rất hữu ích.</p>
+<h3>chruby</h3>
+<p>{: #chruby}</p>
+<p><a href="https://github.com/postmodern/chruby#readme">chruby</a> cho phép bạn chuyển đổi giữa các phiên bản Ruby.
+chruby có thể quản lý các phiên bản Ruby được cài đặt bằng
+<a href="#ruby-install">ruby-install</a>
+hoặc thậm chí là các phiên bản được biên dịch từ mã nguồn.</p>
+<h3>rbenv</h3>
+<p>{: #rbenv}</p>
+<p><a href="https://github.com/rbenv/rbenv#readme">rbenv</a> cho phép bạn quản lý nhiều bản cài đặt của Ruby.
+Nó không hỗ trợ cài đặt Ruby, nhưng bạn có thể dùng plugin
+<a href="#ruby-build">ruby-build</a> để cài đặt Ruby.
+Cả hai công cụ trên đều có sẵn trên macOS, Linux,
+và các hệ điều hành giống UNIX khác.</p>
+<h3>RVM (&quot;Ruby Version Manager&quot;)</h3>
+<p>{: #rvm}</p>
+<p><a href="http://rvm.io/">RVM</a> cho phép bạn cài đặt và quản lý nhiều bản cài đặt của Ruby.
+Nó cũng có thể quản lý các gemset khác nhau.
+Có sẵn trên macOS, Linux, và các hệ điều hành giống UNIX khác.</p>
+<h3>uru</h3>
+<p>{: #uru}</p>
+<p><a href="https://bitbucket.org/jonforums/uru">Uru</a> là một công cụ dòng lệnh đa nền tảng, gọn nhẹ giúp bạn
+sử dụng nhiều phiên bản Ruby trên macOS, Linux, hoặc Windows.</p>
+<h2>Biên dịch từ mã nguồn</h2>
+<p>{: #building-from-source}</p>
+<p>Bạn hoàn toàn có thể cài đặt Ruby từ mã nguồn.
+<a href="/vi/downloads/">Tải về</a> và giải nén tarball, sau đó:</p>
+<!-- raw HTML omitted -->
+<p>Mặc định, lệnh trên sẽ cài đặt Ruby vào <code>/usr/local</code>.
+Để thay đổi, thêm lựa chọn <code>--prefix=DIR</code> vào script <code>./configure</code>.</p>
+<p>Sử dụng các công cụ của bên thứ ba hoặc các trình quản lý gói có thể là một
+ý tưởng hay hơn, tuy nhiên, Ruby được cài đặt sẽ không được quản lý bởi
+bất kỳ công cụ nào.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

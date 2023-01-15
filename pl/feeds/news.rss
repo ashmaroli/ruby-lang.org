@@ -1,4 +1,772 @@
----
-layout: news_feed
-lang: pl
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Ruby Lang PL</title>
+    <link>https://www.ruby-lang.org/pl/feeds/news.rss</link>
+    <language>pl</language>
+    <ttl>40</ttl>
+    <description>Najnowsze wiadomości z ruby-lang.org.</description>
+    
+    <item>
+      <title>Wydano Ruby 2.4.0-preview1</title>
+      <description>&lt;p&gt;Jest nam miło ogłosić wydanie Rubiego 2.4.0-preview1.&lt;/p&gt;
+&lt;p&gt;Ruby 2.4.0-preview1 jest pierwszym wydaniem wstępnym Rubiego 2.4.0.
+Wydanie preview1 pojawiło się wcześniej niż zwykle ponieważ zawiera
+dużo usprawnień oraz funkcjonalności.
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;Podziel się&lt;/a&gt;
+z nami swoimi uwagami poniważ Ruby 2.4.0 jest nadal w trakcie rozwoju&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Połączenie Fixnum i Bignum do klasy Integer&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mimo że standard &lt;a href=&quot;http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579&quot;&gt;ISO/IEC 30170:2012&lt;/a&gt;
+nie opisuje szczegółów klasy Integer, CRuby posiada dwie publiczne
+klasy Integer: Fixnum i Bignum. Ruby 2.4 połączy obie klasy w klasę Integer&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10085&quot;&gt;Klasa String wspiera kapitalizację znaków Unicode&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Metody &lt;code&gt;String/Symbol#upcase/downcase/swapcase/capitalize(!)&lt;/code&gt; od teraz
+potrafią zmieniać kapitalizację znaków Unicode.&lt;/p&gt;
+&lt;h2&gt;Poprawki wypływające na wydajność&lt;/h2&gt;
+&lt;p&gt;Ruby 2.4 zawiera poniższe usprawnienia pozytywnie wypływające na wydajność:&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12172&quot;&gt;Array#max, Array#min&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;[x, y].max&lt;/code&gt; i &lt;code&gt;[x, y].min&lt;/code&gt; zostały zoptymalizowane tak,
+aby nie tworzyć tymczasowej tablicy w pewnych przypadkach&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8110&quot;&gt;Regexp#match?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Dodano metodę &lt;code&gt;Regexp#match?&lt;/code&gt; która dopasowuje wyrażenie regularne bez
+tworzenia referencji i modyfikacji &lt;code&gt;$~&lt;/code&gt; redukując ilość
+zaalokowanych obiektów.&lt;/p&gt;
+&lt;h3&gt;Inne poprawki wpływające na wydajność&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12274&quot;&gt;szybszy dostęp do zmiennych instancji&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Debugowanie&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/6647&quot;&gt;Thread#report_on_exception oraz Thread.report_on_exception&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby ignoruje wyjątki w wątkach chyba że inny wątek jawnie wywowła join.
+Ustawiając &lt;code&gt;report_on_exception = true&lt;/code&gt; zostanie wyświetlony komunikat
+jeżeli wątek zakończy pracę w wyniku nieobsłużonego wyjątku.&lt;/p&gt;
+&lt;p&gt;Prosimy o Twoją opinię jaka powinna być domyślna wartość
+&lt;code&gt;report_on_exception&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8214&quot;&gt;Wykrywanie zakleszczenia wątków od teraz pokazuje zrzuty stosu oraz zależności&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby potrafi wykrywać zakleszczenia ale informacje zwracane przez
+interpreter nie zawierają wystarczająco informacji by pozwolić
+na debugowanie. Od Rubiego 2.4 pokazywane będą zrzuty stosu oraz
+zależności oczekujących wątków.&lt;/p&gt;
+&lt;p&gt;Wypróbuj Rubiego 2.4.0-preview1 i
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;podziel się&lt;/a&gt;
+z nami swoimi spostrzeżeniami!&lt;/p&gt;
+&lt;h2&gt;Znaczące zmiany w stosunku do wersji 2.3&lt;/h2&gt;
+&lt;p&gt;Pliki &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_preview1/NEWS&quot;&gt;NEWS&lt;/a&gt;
+oraz &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_preview1/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;
+zawierają listę zmian.&lt;/p&gt;
+&lt;p&gt;Od wydania Rubiego 2.3 zmieniło się
+&lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0_preview1&quot;&gt;1140 plików, dodano 33126 linii kodu(+) a usunięto 50993(-)&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Pobierz&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   14108114 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   7dcc42548d0724d83b6589ab98f34282845d7bcd&lt;/li&gt;
+&lt;li&gt;SHA256: 17570f0b84215ca82252f10c167ee50bc075383c018420c6b2601ae1cade0649&lt;/li&gt;
+&lt;li&gt;SHA512: c9873e8686eb54dbde61d6e23cd5197beebccd6cb31fd12c82763ebe1fde17095d7514d9d93c2c82b238032c98691df5479dc2d666a8a590e0fc54450ec29cb5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   17605452 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   1003a1e57547d81f4bb979c0f40f242afc284cd5&lt;/li&gt;
+&lt;li&gt;SHA256: 80d02f49f40e7ce07b70bee7efda751b0595a349a017306e9fe8caad5da13e64&lt;/li&gt;
+&lt;li&gt;SHA512: 4b603ab4ff9ea7e8bb8053aa4b638839d534241466d7f0e4d5bca3f2ea416694c2ea391790f1ffdc07fa538918d27707621741eb0ddc7bd00eb9d7628622787a&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   11155800 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   bc33085277266f5a09a143bf6817affcb77f8e7f&lt;/li&gt;
+&lt;li&gt;SHA256: 62942c7300727469fe3d2b43e5a5c772d4836cf624a1d644bdece2afaca472c8&lt;/li&gt;
+&lt;li&gt;SHA512: dfc2c6642d49fa95383817a6dc82c416b3218ddfdaf882d6d2e5a7da22d0a5ac142e516a57aa96214070f3c7551d275044233ac052c82d67189b01c39847aad4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   19904781 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   25c16ee91bbcb0224f80e20d938f5c08832973f7&lt;/li&gt;
+&lt;li&gt;SHA256: fd588aea1558b1171f87a3dd342ee207b8995a2c0a8241d7aa15bcfa16036854&lt;/li&gt;
+&lt;li&gt;SHA512: f2fff35ff9157a4b31177b3d6b91bdaad04c22b3c626c3a5e5ec9a31b103f9607b31c909ef27880065cfdbcfa5d6901a6db89d22e0c645666d069c5b6dd1818b&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;p&gt;Inne informacje oraz harmonogram wydań kolejnych wersji dostępny na:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24&quot;&gt;ReleaseEngineering24&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez naruse 2016-06-20&lt;br /&gt;Tłumaczone przez Michał &quot;Quintasan&quot; Zając&lt;/p&gt;</description>
+      <pubDate>Mon, 20 Jun 2016 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2016/06/20/ruby-2-4-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2016/06/20/ruby-2-4-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 2.2.0</title>
+      <description>&lt;p&gt;Jest nam miło ogłosić wydanie Rubiego 2.2.0.&lt;/p&gt;
+&lt;p&gt;Ruby 2.2 zawiera wiele nowych funkcjonalności i udoskonaleń dla coraz bardziej
+zróżnicowanych i poszerzonych wymagań.&lt;/p&gt;
+&lt;p&gt;Dla przykładu, odśmiecacz pamięci w Rubim jest w stanie obsługiwać obiekty typu Symbol.
+Redukuje to zużycie pamięci dla symboli; przed Rubim 2.2 mechanizm odśmiecania pamięci nie
+był w stanie ich obsługiwać.
+Rails 5.0 będzie wymagało Symbol GC, będzie wspierało tylko Rubiego 2.2 lub
+późniejsze. (Zobacz &lt;a href=&quot;http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/&quot;&gt;wpis na blogu Rails&lt;/a&gt;
+po szczegóły.)&lt;/p&gt;
+&lt;p&gt;Także zredukowany czas wstrzymania dzięki nowemu Incremental Garbage Collector
+będzie przydatny dla uruchomionych aplikacji Railsowych. Bieżące osiągnięcia wspomniane we &lt;a href=&quot;http://weblog.rubyonrails.org/&quot;&gt;blogu Rails&lt;/a&gt; sugerują, że Rails 5.0 będą wykorzystywać Incremental GC jak również Symbol GC.&lt;/p&gt;
+&lt;p&gt;Kolejna funkcjonalność związana z zarządzaniem pamięcią to dodana opcja w &lt;code&gt;configure.in&lt;/code&gt;
+by używać jemalloc &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9113&quot;&gt;Funkcjonalność #9113&lt;/a&gt;.
+Jest to eksperymentalna funkcjonalność i domyślnie nieaktywna dopóki nie
+zbierzemy danych odnośnie wydajności więcej przypadków użycia.
+Gdy będziemy przekonani o korzyściach, funkcjonalność będzie domyślnie włączona.&lt;/p&gt;
+&lt;p&gt;Eksperymentalne wsparcie dla używania vfork(2) z system() i spawn() także zostało dodane.
+Więcej szczegółów możesz przeczytać na
+&lt;a href=&quot;http://www.a-k-r.org/d/2014-09.html#a2014_09_06&quot;&gt;blogu tanaka-sana po japońsku&lt;/a&gt;.
+Potencjalnie spowoduje to ogromne przyspieszenie gdy duży proces wykonuje
+zewnętrze komendy wiele razy.
+Ale vfork(2) jest nadal niezbyt zrozumiałym i potencjalnie ryzykownym wywołaniem systemowym.
+Chcemy się przekonać jak wiele zysku to przyniesie poprzez zebranie danych odnośnie
+wydajności i przypadków użycia.&lt;/p&gt;
+&lt;p&gt;Wypróbuj i miłego programowania z Rubim 2.2.0, oraz poinformuj nas o
+swoich spostrzeżeniach!&lt;/p&gt;
+&lt;h2&gt;Znaczące zmiany od 2.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10137&quot;&gt;Incremental GC&lt;/a&gt;
+(&lt;a href=&quot;http://www.atdot.net/~ko1/activities/2014_rubyconf_pub.pdf&quot;&gt;prezentacja na RubyConf 2014: &amp;quot;Incremental GC for Ruby interpreter&amp;quot;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/9634&quot;&gt;Symbol GC&lt;/a&gt;
+(&lt;a href=&quot;http://www.slideshare.net/authorNari/symbol-gc&quot;&gt;prezentacja na RubyKaigi 2014&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;konfiguracja --with-jemalloc
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/9113&quot;&gt;Funkcjonalność #9113&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;wbudowane biblioteki:
+&lt;ul&gt;
+&lt;li&gt;Wsparcie dla Unicode 7.0 &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9092&quot;&gt;#9092&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Nowe metody:
+&lt;ul&gt;
+&lt;li&gt;Enumerable#slice_after &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9071&quot;&gt;#9071&lt;/a&gt;,
+Enumerable#slice_when &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9826&quot;&gt;#9826&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Float#next_float, Float#prev_float
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/9834&quot;&gt;#9834&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;File.birthtime, File#birthtime
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/9647&quot;&gt;#9647&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;String#unicode_normalize &lt;a href=&quot;https://bugs.ruby-lang.org/issues/10084&quot;&gt;#10084&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;dołączone biblioteki:
+&lt;ul&gt;
+&lt;li&gt;Aktualizacja Psych 2.0.8&lt;/li&gt;
+&lt;li&gt;Aktualizacja Rake 10.4.2&lt;/li&gt;
+&lt;li&gt;Aktualizacja RDoc 4.2.0&lt;/li&gt;
+&lt;li&gt;Aktualizacja RubyGems 2.4.5&lt;/li&gt;
+&lt;li&gt;Aktualizacja test-unit 3.0.8 (usunięta z repozytorium ale załączona w tarballu)&lt;/li&gt;
+&lt;li&gt;Aktualizacja minitest 5.4.3 (usunięta z repozytorium ale załączona w tarballu)&lt;/li&gt;
+&lt;li&gt;mathn oznaczone jako przestarzałe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C API
+&lt;ul&gt;
+&lt;li&gt;Usunięcie przestarzałych APIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zobacz &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_2_0/NEWS&quot;&gt;NEWS w repozytorium Rubiego&lt;/a&gt;
+po szczegóły.&lt;/p&gt;
+&lt;p&gt;Z tymi zmianami, 1557 zmienionych plików, 125039 wstawień(+), 74376 usunięć(-)
+od v2.1.0!&lt;/p&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.bz2&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   13304042 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    d03cd4690fec1fff81d096d1c1255fde&lt;/li&gt;
+&lt;li&gt;SHA256: 1c031137999f832f86be366a71155113675b72420830ce432b777a0ff4942955&lt;/li&gt;
+&lt;li&gt;SHA512: 04edc53e8cd1732c3ca61ebeb1d6133614beb10f77f9abb80d8d36352fe8aa205112068e460bf600b2c7e81e0ddcc3b311e7e027c320366f1bd992b3e378a6ad&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   16494584 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    cd03b28fd0b555970f5c4fd481700852&lt;/li&gt;
+&lt;li&gt;SHA256: 7671e394abfb5d262fbcd3b27a71bf78737c7e9347fa21c39e58b0bb9c4840fc&lt;/li&gt;
+&lt;li&gt;SHA512: 1ba0c68e1c8d2b60bbd1e218cf36463edbe34cf9418d7593702b631e68d02297465f752e71395f6cfa4104f4cd70a1eb44381ffb74bc7801758b830931fdcfc6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.xz&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   10304244 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    54b43c6c6c9dd4c4b08ceb03ad0ded7a&lt;/li&gt;
+&lt;li&gt;SHA256: 848714e280fc5fb44dbac3b060b206e56c1947006324ee68a174d68b483ef8ca&lt;/li&gt;
+&lt;li&gt;SHA512: cd7e52faa464df8aca7ccfa23a5f06248e1ad82bc8c9f1829aa1b51ff37b15973b8caaa68e914d837325b8d59427fda4f3cad82c50925e1c84e688324a2a155d&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.zip&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   18441027 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    f8e1d0cee4f2d9535a9529ed23ae3700&lt;/li&gt;
+&lt;li&gt;SHA256: e06c1e2b1248cf881749833084b2bec93f7612676009190ff9bc89b8fd07c29f&lt;/li&gt;
+&lt;li&gt;SHA512: 364dd927b496520d95a1b06c68e1a265015f4cab08bdf3efaa323d385e7bf075eae47f2e1db78a629db0f3c0c1ed24e086603ba21e2da02ac06dd3c8b716766e&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Zamieszczone przez naruse 2014-12-25&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Thu, 25 Dec 2014 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/12/25/ruby-2-2-0-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/12/25/ruby-2-2-0-released/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 2.2.0-rc1</title>
+      <description>&lt;p&gt;Jest nam miło ogłosić wydanie Rubiego 2.2.0-rc1.
+Po RC1, wszystkie zmiany zostaną ograniczone tylko do poprawiania błędów.
+Finalne wydanie Rubiego 2.2.0 jest zaplanowane na 25 grudnia 2014.&lt;/p&gt;
+&lt;p&gt;Ruby 2.2 zawiera wiele nowych funkcjonalności i udoskonaleń dla coraz bardziej
+zróżnicowanych i poszerzonych wymagań.&lt;/p&gt;
+&lt;p&gt;Dla przykładu, odśmiecacz pamięci w Rubim jest w stanie obsługiwać obiekty typu Symbol.
+Redukuje to zużycie pamięci dla symboli; przed Rubim 2.2 mechanizm odśmiecania pamięci nie
+był w stanie ich obsługiwać. Rails 5.0 będzie wymagało Symbol GC, będzie
+wspierało tylko Rubiego 2.2 lub późniejsze.
+(Zobacz &lt;a href=&quot;http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/&quot;&gt;wpis na blogu Rails&lt;/a&gt;
+po szczegóły.)&lt;/p&gt;
+&lt;p&gt;Także zredukowany czas wstrzymania dzięki nowemu Incremental Garbage Collector
+będzie przydatny dla uruchomionych aplikacji Railsowych. Bieżące osiągnięcia wspomniane we &lt;a href=&quot;http://weblog.rubyonrails.org/&quot;&gt;blogu Rails&lt;/a&gt; sugerują, że Rails 5.0 będą wykorzystywać Incremental GC jak również Symbol GC.&lt;/p&gt;
+&lt;p&gt;Kolejna funkcjonalność związana z zarządzaniem pamięcią to dodana opcja w &lt;code&gt;configure.in&lt;/code&gt;
+by używać jemalloc &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9113&quot;&gt;Funkcjonalność #9113&lt;/a&gt;.
+Jest to eksperymentalna funkcjonalność i domyślnie nieaktywna.
+Potrzebujemy zebrać przypadki użycia i dane odnośnie wydajności.
+Gdy będziemy przekonani o korzyściach, funkcjonalność będzie domyślnie włączona.&lt;/p&gt;
+&lt;p&gt;Eksperymentalne wsparcie dla używania vfork(2) z system() i spawn() także zostało dodane.
+Więcej szczegółów możesz przeczytać na &lt;a href=&quot;http://www.a-k-r.org/d/2014-09.html#a2014_09_06&quot;&gt;blogu tanaka-sana po japońsku&lt;/a&gt;.
+Potencjalnie spowoduje to ogromne przyspieszenie gdy duży proces wykonuje
+zewnętrze komendy wiele razy.
+Ale vfork(2) jest nadal niezbyt zrozumiałym i potencjalnie ryzykownym wywołaniem systemowym.
+Chcemy się przekonać jak wiele zysku to przyniesie poprzez zebranie przypadków
+użycia i danych odnośnie wydajności.&lt;/p&gt;
+&lt;p&gt;Wypróbuj i miłego programowania z Rubim 2.2.0-rc1, oraz poinformuj nas o
+swoich spostrzeżeniach!&lt;/p&gt;
+&lt;h2&gt;Znaczące zmiany od 2.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10137&quot;&gt;Incremental GC&lt;/a&gt; (&lt;a href=&quot;http://magazine.rubyist.net/?0048-YARVManiacs&quot;&gt;YARV Maniacs No.12&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/9634&quot;&gt;Symbol GC&lt;/a&gt; (&lt;a href=&quot;http://www.slideshare.net/authorNari/symbol-gc&quot;&gt;prezentacja na RubyKaigi 2014&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;konfiguracja --with-jemalloc &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9113&quot;&gt;Funkcjonalność #9113&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;wbudowane biblioteki:
+&lt;ul&gt;
+&lt;li&gt;Wsparcie dla Unicode 7.0 &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9092&quot;&gt;#9092&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Nowe metody:
+&lt;ul&gt;
+&lt;li&gt;Enumerable#slice_after &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9071&quot;&gt;#9071&lt;/a&gt;, Enumerable#slice_when &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9826&quot;&gt;#9826&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Float#next_float, Float#prev_float &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9834&quot;&gt;#9834&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;File.birthtime, File#birthtime &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9647&quot;&gt;#9647&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;String#unicode_normalize &lt;a href=&quot;https://bugs.ruby-lang.org/issues/10084&quot;&gt;#10084&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;dołączone biblioteki:
+&lt;ul&gt;
+&lt;li&gt;Aktualizacja Psych 2.0.8&lt;/li&gt;
+&lt;li&gt;Aktualizacja Rake 10.4.0&lt;/li&gt;
+&lt;li&gt;Aktualizacja RDoc 4.2.0.alpha (21b241a)&lt;/li&gt;
+&lt;li&gt;Aktualizacja RubyGems 2.4.5&lt;/li&gt;
+&lt;li&gt;Aktualizacja test-unit 3.0.8 (usunięta z repozytorium ale załączona w tarballu)&lt;/li&gt;
+&lt;li&gt;Aktualizacja minitest 5.4.3 (usunięta z repozytorium ale załączona w tarballu)&lt;/li&gt;
+&lt;li&gt;mathn oznaczone jako przestarzałe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C API
+&lt;ul&gt;
+&lt;li&gt;Usunięcie przestarzałych APIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zobacz &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_2_0_rc1/NEWS&quot;&gt;Wiadomości w repozytorium Rubiego (WIP)&lt;/a&gt; po szczegóły.&lt;/p&gt;
+&lt;p&gt;Z tymi zmianami, 1548 zmienionych plików, 123658 wstawień(+), 74306 usunięć(-) od v2.1.0!&lt;/p&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.bz2&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   12475612 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    7144732d30dd4547c0a59862b3345d54&lt;/li&gt;
+&lt;li&gt;SHA256: e6a1f8d45ea749bdc92eb1269b77ec475bc600b66039ff90d77db8f50820a896&lt;/li&gt;
+&lt;li&gt;SHA512: 181201168360bee37dceeef3481a69e8a333a5d329680031fd9d371d30ac64460bbdf4db07546133024f541774e51301f1630cfd988c5e5bf2464834f3abe6bf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.gz&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   15531233 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    51f218fabc3ceb7bf3fe5f4f87ddebd3&lt;/li&gt;
+&lt;li&gt;SHA256: a59c8db71b967015ad7c259ba8ef638c7943ec78580412bb86e97791a9322b6b&lt;/li&gt;
+&lt;li&gt;SHA512: 4a35e78c4c0747f9c79e506e98acc117efb0be72fc103d6f9c13d5eb5efa5c6d6748f491526fc7ebb24397f25238f06d552f841e9e898be30aa7cd6c2df38494&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.tar.xz&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   9675108 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    3f482b88eda45c1bc6bab1921763ce52&lt;/li&gt;
+&lt;li&gt;SHA256: dcfad9bb6e0b513b03f08f86b195da6a6a7045559b558d3493decac0e0abb86c&lt;/li&gt;
+&lt;li&gt;SHA512: 3ec8955d8a269a1e5f28c3e0e6023bd613f244c83914a4a8c96d2761b11914c21ce67cfadb2bcebc480d9c0b9c7b54da6dfa67cdf4b4350db2a85d379265ffed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-rc1.zip&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   17219660 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    49f5aae44c00f4d57be47576c29a53bd&lt;/li&gt;
+&lt;li&gt;SHA256: 1bd3e83d44b4e5879b4ecdc496d19905bc03637a8c88027c2dc98a369f1ebb83&lt;/li&gt;
+&lt;li&gt;SHA512: bf0e39e5add532ca338095ad6eaaafbe4f84cc9df1e8d4bad986c44e17614623430c2670d9751865e8d645cb483007d5473be82536b985ccab40a7dde72c4161&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115&quot;&gt;2.2.0 Znane problemy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zobacz także harmonogram wydań i inne informacje:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22&quot;&gt;Wydania22&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez naruse 2014-12-18&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Thu, 18 Dec 2014 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/12/18/ruby-2-2-0-rc1-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/12/18/ruby-2-2-0-rc1-released/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 2.2.0-preview2</title>
+      <description>&lt;p&gt;Jest nam miło ogłosić wydanie Rubiego 2.2.0-preview2.&lt;/p&gt;
+&lt;p&gt;Ruby 2.2.0-preview2 jest drugim wydaniem Ruby 2.2.0.
+Wiele nowych funkcjonalności i udoskonaleń zostało włączonych do coraz bardziej
+zróżnicowanych i poszerzonych wymagań dla Rubiego.&lt;/p&gt;
+&lt;p&gt;Dla przykładu, Symbol GC sprawia, że symbole podlegają odśmiecaniu. Redukuje to
+zużycie pamięci dla symboli; przed Rubim 2.2 mechanizm odśmiecania pamięci nie
+zwracał uwagi na symbole. Zatem Rails 5.0 będzie wymagało Symbol GC, będzie
+wspierało tylko Rubiego 2.2 lub późniejsze.
+(Zobacz &lt;a href=&quot;http://weblog.rubyonrails.org/2014/8/20/Rails-4-2-beta1/&quot;&gt;wpis na blogu Rails&lt;/a&gt;
+po szczegóły.)&lt;/p&gt;
+&lt;p&gt;Także nowy Incremental GC zmniejszy czas wstrzymania odśmiecania pamięci.
+Jest to pomocne przy aplikacjach Railsowych.&lt;/p&gt;
+&lt;p&gt;Kolejna funkcjonalność związana z zarządzaniem pamięcią to dodana opcja w configure.in
+by używać jemalloc &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9113&quot;&gt;Funkcjonalność #9113&lt;/a&gt;.
+Jest to eksperymentalna funkcjonalność i domyślnie nieaktywna.
+Potrzebujemy zebrać przypadki użycia i dane odnośnie wydajności.
+Gdy będziemy przekonani o korzyściach, funkcjonalność będzie domyślnie włączona.&lt;/p&gt;
+&lt;p&gt;Dodatkowym tematem jest &lt;a href=&quot;http://www.a-k-r.org/d/2014-09.html#a2014_09_06&quot;&gt;używanie vfork(2) w system() i spawn() (japoński)&lt;/a&gt;.
+Jest oczekiwane, że spowoduje to ogromne przyspieszenie gdy duży proces wykonuje
+zewnętrze komendy wiele razy.
+Ale vfork(2) jest ryzykownym wywołaniem systemowym.
+Chcemy się przekonać jak wiele zysku to przyniesie poprzez zebranie przypadków
+użycia i danych odnośnie wydajności.&lt;/p&gt;
+&lt;p&gt;Wypróbuj i miłego programowania z Rubim 2.2.0-preview2, oraz poinformuj nas o
+swoich spostrzeżeniach!&lt;/p&gt;
+&lt;h2&gt;Znaczące zmiany od 2.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10137&quot;&gt;Incremental GC&lt;/a&gt; (&lt;a href=&quot;http://magazine.rubyist.net/?0048-YARVManiacs&quot;&gt;YARV Maniacs No.12&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/9634&quot;&gt;Symbol GC&lt;/a&gt; (&lt;a href=&quot;http://www.slideshare.net/authorNari/symbol-gc&quot;&gt;prezentacja na RubyKaigi 2014&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;konfiguracja --with-jemalloc &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9113&quot;&gt;Funkcjonalność #9113&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;wbudowane biblioteki:
+&lt;ul&gt;
+&lt;li&gt;Wsparcie dla Unicode 7.0 &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9092&quot;&gt;#9092&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Nowe metody:
+&lt;ul&gt;
+&lt;li&gt;Enumerable#slice_after &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9071&quot;&gt;#9071&lt;/a&gt;, Enumerable#slice_when &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9826&quot;&gt;#9826&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Float#next_float, Float#prev_float &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9834&quot;&gt;#9834&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;File.birthtime, File#birthtime &lt;a href=&quot;https://bugs.ruby-lang.org/issues/9647&quot;&gt;#9647&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;String#unicode_normalize &lt;a href=&quot;https://bugs.ruby-lang.org/issues/10084&quot;&gt;#10084&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;dołączone biblioteki:
+&lt;ul&gt;
+&lt;li&gt;Aktualizacja Psych 2.0.6&lt;/li&gt;
+&lt;li&gt;Aktualizacja Rake 10.4.0&lt;/li&gt;
+&lt;li&gt;Aktualizacja RDoc 4.2.0.alpha (21b241a)&lt;/li&gt;
+&lt;li&gt;Aktualizacja RubyGems 2.4.4+ (2f6e42e)&lt;/li&gt;
+&lt;li&gt;rubygems 2.4.4+ (2f6e42e)&lt;/li&gt;
+&lt;li&gt;Aktualizacja test-unit 3.0.7 (usunięta z repozytorium ale załączona w tarballu)&lt;/li&gt;
+&lt;li&gt;Aktualizacja minitest 5.4.3 (usunięta z repozytorium ale załączona w tarballu)&lt;/li&gt;
+&lt;li&gt;mathn oznaczone jako przestarzałe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C API
+&lt;ul&gt;
+&lt;li&gt;Usunięcie przestarzałych APIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zobacz &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_2_0_preview2/NEWS&quot;&gt;Wiadomości w repozytorium Rubiego (WIP)&lt;/a&gt; po szczegóły.&lt;/p&gt;
+&lt;p&gt;Z tymi zmianami, 1239 zmienionych plików, 98343 wstawień(+), 61858 usunięć(-).&lt;/p&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.bz2&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   12505279 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    d7abace25a8ffe861cb2807bef1c58a6&lt;/li&gt;
+&lt;li&gt;SHA256: 9e49583f3fad3888fefc85b719fdb210a88ef54d80f9eac439b7ca4232fa7f0b&lt;/li&gt;
+&lt;li&gt;SHA512: c654d4c047f9463a5fb81eaea0fa5ab7bf316962bc7fb0fb356861e6336ce8ce2162c7779d8b27f72d7bc0e9604b5e5af2910abcb0b0a1f197b3138eaddfd4a5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.gz&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   15505521 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    bde388d6f10012a92d5dc36196fd6755&lt;/li&gt;
+&lt;li&gt;SHA256: dfcef7b01bd3acb41da6689993ac8dd30e2ecd4fd14bc1a833f46188a9fe2614&lt;/li&gt;
+&lt;li&gt;SHA512: e2d316a679c15c021e40b0f9b7810b319c6a5e771a9b869fda35b6745aecac881bbb05d62192893799816a8673e05c8f17713f10ccdec077f546483608ab85c1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.tar.xz&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   9649216 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    0d582e28b92ce9d1456e40fb8d821422&lt;/li&gt;
+&lt;li&gt;SHA256: d14d1fa045263fa242a515d7b9e8c485bf8a9ee9d9d3012dc2b6add0f3a370c6&lt;/li&gt;
+&lt;li&gt;SHA512: 4a8a75ab21b2bd43db4a22d9c63f189f3c7805d575d662b07a4ddc25aa5b156b0c23053d8c48eecf23d5e22f1ea7131467f1cdc48f9ae0a83214b4cd46b08491&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0-preview2.zip&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   17239396 bytes&lt;/li&gt;
+&lt;li&gt;MD5:    d94160c214016863932c25cc1ac6ff90&lt;/li&gt;
+&lt;li&gt;SHA256: 88d6c73ee1a4f5fe1f8ad37fe1f56c1ca50622f1338c20b9d46bbb5c2cd94040&lt;/li&gt;
+&lt;li&gt;SHA512: 0a021d31f54c47c5c3901ef6f2ab02a1bfb5cc698f971978c1e16b1aeda78fdadec0c1cdd48af1c8784b8f72ad00d35cf2433d78e20d4447fa0630e02b4e3917&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-trunk/issues?query_id=115&quot;&gt;2.2.0 Znane problemy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zobacz także harmonogram wydań i inne informacje:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering22&quot;&gt;Wydania22&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez naruse 2014-11-28&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Fri, 28 Nov 2014 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/11/28/ruby-2-2-0-preview2-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/11/28/ruby-2-2-0-preview2-released/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 2.1.5</title>
+      <description>&lt;p&gt;Wydano Ruby 2.1.5.&lt;/p&gt;
+&lt;p&gt;To wydanie zawiera poprawkę bezpieczeństwa dla podatności DoS w REXML.
+Jest to podobne do
+&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/rexml-dos-cve-2014-8080/&quot;&gt;poprawionej podatności&lt;/a&gt;
+w &lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/ruby-2-1-4-released/&quot;&gt;poprzednim wydaniu&lt;/a&gt;,
+ale dotyczy innego przypadku rozrostu encji.
+Proszę zobaczyć poniższy artykuł po więcej szczegółów.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/11/13/rexml-dos-cve-2014-8090/&quot;&gt;CVE-2014-8090: Kolejna odmowa usługi w XML&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dodatkowo załączone zostały poprawki do pewnych błędów.
+Zobacz &lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-21/issues?set_filter=1&amp;amp;status_id=5&quot;&gt;zgłoszenia&lt;/a&gt;
+i &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_1_5/ChangeLog&quot;&gt;log zmian&lt;/a&gt;
+po szczegóły.&lt;/p&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11994454 bytes
+MD5:    a7c3e5fec47eff23091b566e9e1dac1b
+SHA256: 0241b40f1c731cb177994a50b854fb7f18d4ad04dcefc18acc60af73046fb0a9
+SHA512: d4b1e3c2b6a0dc79846cce056043c48a2a2a97599c76e9a07af21a77fd10e04c8a34f3a60b6975181bff17b2c452af874fa073ad029549f3203e59095ab70196
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15127433 bytes
+MD5:    df4c1b23f624a50513c7a78cb51a13dc
+SHA256: 4305cc6ceb094df55210d83548dcbeb5117d74eea25196a9b14fa268d354b100
+SHA512: a7da8dc755e5c013f42269d5e376906947239b41ece189294d4355494a0225590ca73b85261ddd60292934a8c432231c2308ecfa137ed9e347e68a2c1fc866c8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9371780 bytes
+MD5:    8a30ed4b022a24acbb461976c9c70789
+SHA256: 22ba1eb8d475c9ed7e0541418d86044c1ea4c093ab79c300c38fc0f721afe9a3
+SHA512: 8a257da64158d49bc2810695baf4b5849ef83e3dde452bf1e4823e52e8261225427d729fce2fb4e9b53d6d17ca9c96d491f242535c2f963738b74f90944e2a0b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16657694 bytes
+MD5:    810cd05eb03c00f89b0b03b10e9a3606
+SHA256: 69c517a6d3ea65264455a9316719ffdec49cf6a613a24fd89b3f6da7146a8aa7
+SHA512: a55cf5970203904e7bc8cef2b6fbf7b8d5067a160289a1a49d13c4dfef8c95002bcdf697f5d04d420ef663efad5ee80d5a9e4e7445c4db9a02f9cbc9e4b8444e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;p&gt;Przepraszamy za niedogodności z tak częstym wydawaniem.
+Jestem wdzięczny wszystkim, którzy pomogli z tym wydaniem.&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez nagachika 2014-11-13&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Thu, 13 Nov 2014 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/11/13/ruby-2-1-5-is-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/11/13/ruby-2-1-5-is-released/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 2.0.0-p598</title>
+      <description>&lt;p&gt;Jest nam miło ogłosić wydanie Rubiego 2.0.0-p598.&lt;/p&gt;
+&lt;p&gt;To wydanie zawiera poprawkę bezpieczeństwa dla podatności DoS w REXML.
+Jest to podobne do
+&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/rexml-dos-cve-2014-8080/&quot;&gt;poprawionej podatności&lt;/a&gt;
+w &lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/ruby-2-0-0-p594-is-released/&quot;&gt;poprzednim wydaniu&lt;/a&gt;,
+ale dotyczy innego przypadku rozrostu encji.
+Proszę zobaczyć poniższy artykuł po więcej szczegółów.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/11/13/rexml-dos-cve-2014-8090/&quot;&gt;CVE-2014-8090: Kolejna odmowa usługi w XML&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dodatkowo załączone zostały poprawki do pewnych błędów.
+Zobacz &lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-200/issues?set_filter=1&amp;amp;status_id=5&quot;&gt;zgłoszenia&lt;/a&gt;
+i &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_0_0_598/ChangeLog&quot;&gt;log zmian&lt;/a&gt;
+po szczegóły.&lt;/p&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10758882 bytes
+MD5:    a3f3908103a7d209d1d1cf4712e3953c
+SHA256: 67b2a93690f53e12b635ba1bcdbd41e8c5593f13d575fea92fdd8801ca088f0f
+SHA512: 10026a04e01a8ad14ea9c99bbdf4f7d04029b73ee0c01bbf6c2eb2817332d49adacf127b646693b67b5dd7010eaf3b696b23b6335cc0f7ee5a6b56dbba0f6f82
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   13608640 bytes
+MD5:    e043a21ce0d138fd408518a80aa31bba
+SHA256: 4136bf7d764cbcc1c7da2824ed2826c3550f2b62af673c79ddbf9049b12095fd
+SHA512: 0548aba9bf45e380e5f73e73168ea7fea341fc9739e108c7d530d11b677f6a78b2c4e29062d16a73b4286acaa2333ed20cb34e16b65b5b6898da66661f1717da
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   8316092 bytes
+MD5:    2ec36f7018eef05003bf8cf0e0f05def
+SHA256: 9dccf4c30e1bb004b18cb1129d9daac3c0ec510a671f4f4f13a2747897ffab35
+SHA512: bf7b93d9fbaab98a64d1f45c3f3bbcdfebd3e1d0584dfb27696b2716d93c2ba13881e1edaef6d3eccd769ac2e21d6157024c902f3d891951a20b972c1942ef99
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p598.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15126384 bytes
+MD5:    aa6ac22747947e6562d5b0dc9767ecda
+SHA256: d5bdafd7b0fbd4254902ba10385c6e5812beac4ad221805aa4d92a37eff47f97
+SHA512: 6cdaf7f2d27a5f0ead9b94325b9c9fe90cf04c64dedaea8e1d45a8855a73ad61c5c72f1fda835eab73693c25c15a74c7e4e639ed5c18a9433dd79e398600b3ea
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;p&gt;Przepraszamy za niedogodności z tak częstym wydawaniem.
+Jestem wdzięczny wszystkim, którzy pomogli z tym wydaniem.&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez usa 2014-11-13&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Thu, 13 Nov 2014 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/11/13/ruby-2-0-0-p598-is-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/11/13/ruby-2-0-0-p598-is-released/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 1.9.3-p551</title>
+      <description>&lt;p&gt;Jest nam miło ogłosić wydanie Rubiego 1.9.3-p551.&lt;/p&gt;
+&lt;p&gt;To wydanie zawiera poprawkę bezpieczeństwa dla podatności DoS w REXML.
+Jest to podobne do
+&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/rexml-dos-cve-2014-8080/&quot;&gt;poprawionej podatności&lt;/a&gt;
+w &lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/ruby-1-9-3-p550-is-released/&quot;&gt;poprzednim wydaniu&lt;/a&gt;,
+ale dotyczy innego przypadku rozrostu encji.
+Proszę zobaczyć poniższy artykuł po więcej szczegółów.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/11/13/rexml-dos-cve-2014-8090/&quot;&gt;CVE-2014-8090: Kolejna odmowa usługi w XML&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ogłoszenie&lt;/h2&gt;
+&lt;p&gt;Ruby 1.9.3 jest obecnie w fazie utrzymania bezpieczeństwa. Oznacza to, że nie
+poprawiamy błędów innych jak związane z bezpieczeństwem.
+W tym momencie koniec wsparcia dla 1.9.3 został zaplanowany na luty przyszłego roku.
+Zalecamy użytkownikom Rubiego 1.9.3 aktualizację do nowszej wersji tak szybko jak to możliwe.&lt;/p&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10049332 bytes
+MD5:    0d8b272b05c3449dc848bb7570f65bfe
+SHA256: b0c5e37e3431d58613a160504b39542ec687d473de1d4da983dabcf3c5de771e
+SHA512: 5ea40f8c40cf116030ffdedbe436c1fdbf9a50b7bb44bc890845c9c2a885c34da711bc1a9e9694788c2f4710f7e6e0adc4410aec1ab18a25a27168f25ac3d68c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12605119 bytes
+MD5:    0d8212f7bc89bab8ef521b04cd9df278
+SHA256: bb5be55cd1f49c95bb05b6f587701376b53d310eb1bb7c76fbd445a1c75b51e8
+SHA512: be12adf581ee76af70db117b44c6647c1df3d28fffa1b3379c6067e4aa1fb523dae7c9b130a51dcdcff268a8ee21a3d74f6f946135fb3ac6b90664f0a9df4a08
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   7704072 bytes
+MD5:    7367b1dfb2ba1d6abf6fd7db70e765f5
+SHA256: 44228297861f4dfdf23a47372a3e3c4c5116fbf5b0e10883417f2379874b55c6
+SHA512: 2dd4cd7494d0d9b1cc2a5c3710a2c771617a367d1ba6f5099adc2785e37efcb668c6508780562359a4a4c83733e349aa5cb4f8532e1f334f9f96543670d35729
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p551.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   13987275 bytes
+MD5:    14a394b1d7b7031b34d4d1af64ee657e
+SHA256: cf468ccabd5cdef5047b8f02f4f71052fd3a9c87c12aba314f04748a451a63ec
+SHA512: 6ee550c7e435622114e3669393220a90946652eade0a83dab74970fff7088d5c2051bee9c272e2e6eccc36885b4f64928fc2d27c36584c1cc8dac91ce730d3ea
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;p&gt;Przepraszamy za niedogodności z tak częstym wydawaniem.
+Jestem wdzięczny wszystkim, którzy pomogli z tym wydaniem.&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez usa 2014-11-13&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Thu, 13 Nov 2014 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/11/13/ruby-1-9-3-p551-is-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/11/13/ruby-1-9-3-p551-is-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2014-8090: Kolejna odmowa usługi w XML</title>
+      <description>&lt;p&gt;Nieograniczony rozrost encji może prowadzić do podatności na DoS w REXML, jak
+&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2013/02/22/rexml-dos-2013-02-22/&quot;&gt;&amp;quot;Podatność na DoS w REXML przez rozrost encji (bomba XML, CVE-2013-1821)&amp;quot;&lt;/a&gt;
+i &lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/rexml-dos-cve-2014-8080/&quot;&gt;&amp;quot;CVE-2014-8080: Odmowa usługi w XML&amp;quot;&lt;/a&gt;.
+Tej podatności został przypisany identyfikator
+&lt;a href=&quot;http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-8090&quot;&gt;CVE-2014-8090&lt;/a&gt;.
+Zdecydowanie zalecamy aktualizację Rubiego.&lt;/p&gt;
+&lt;h2&gt;Szczegóły&lt;/h2&gt;
+&lt;p&gt;Jest to dodatkowa poprawka do
+&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2013/02/22/rexml-dos-2013-02-22/&quot;&gt;CVE-2013-1821&lt;/a&gt;
+i &lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/rexml-dos-cve-2014-8080/&quot;&gt;CVE-2014-8080&lt;/a&gt;.
+Poprzednie łatki naprawiały rekursywny rozrost w wielu miejscach oraz całkowity rozmiar
+tworzonych Stringów. Jednakże nie uwzględniały dawnego limitu używanego dla rozrostu encji.
+100% zużycie CPU może nastąpić w wyniku rekursywnego rozrostu z pustym Stringiem.
+Podczas czytania węzłów tekstu z dokumentu XML, parser REXML może zostać zmuszony
+do alokowania bardzo dużych napisów, które mogą zająć całą dostępną pamięć maszyny,
+powodując odmowę usługi.&lt;/p&gt;
+&lt;p&gt;Kod może wyglądać następująco:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;xml&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;=&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&amp;lt;&amp;lt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;XML&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;
+&amp;lt;!DOCTYPE root [&lt;/p&gt;
+&lt;h1&gt;ENTITY expansion vector&lt;/h1&gt;
+&lt;p&gt;]&amp;gt;
+&amp;lt;cd&amp;gt;&amp;lt;/cd&amp;gt;
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;XML&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;p&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;REXML&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;::&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Document&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;new&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;(&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;xml&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;)&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Wszyscy użytkownicy używający podatnej wersji powinni natychmiast zaktualizować
+ją lub użyć obejścia problemu.&lt;/p&gt;
+&lt;h2&gt;Podatne wersje&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Dla 1.9 wszystkie wcześniejsze wersje od 1.9.3 patchlevel 551&lt;/li&gt;
+&lt;li&gt;Dla 2.0 wszystkie wcześniejsze wersje od 2.0.0 patchlevel 598&lt;/li&gt;
+&lt;li&gt;Dla 2.1 wszystkie wcześniejsze wersje od 2.1.5&lt;/li&gt;
+&lt;li&gt;Wcześniej niż rewizja trunk 48402&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Obejście&lt;/h2&gt;
+&lt;p&gt;Jeśli nie możesz zaktualizować Rubiego, użyj tej łatki jako obejście problemu:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2&gt;Podziękowania&lt;/h2&gt;
+&lt;p&gt;Podziękowania dla Tomasa Hogera za zgłoszenie tego problemu.&lt;/p&gt;
+&lt;h2&gt;Historia&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Oryginalnie opublikowane 2014-11-13 12:00:00 UTC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Zamieszczone przez usa 2014-11-13&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Thu, 13 Nov 2014 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/11/13/rexml-dos-cve-2014-8090/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/11/13/rexml-dos-cve-2014-8090/</link>
+    </item>
+    
+    <item>
+      <title>Tropical Ruby 2015 CFP jest otwarte</title>
+      <description>&lt;p&gt;&lt;a href=&quot;http://tropicalrb.com&quot;&gt;Tropical Ruby 2015&lt;/a&gt;, plażowa konferencja Rubiego,
+odbędzie się od 5 do 8 marca w Porto de Galinhas,
+rajska plaża znajdująca się w północno-wschodnim wybrzeżu Brazylii.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/avdi&quot;&gt;Avdi Grimm&lt;/a&gt; i
+&lt;a href=&quot;https://twitter.com/apotonick&quot;&gt;Nick Sutterer&lt;/a&gt; są potwierdzonymi mówcami, ale
+&lt;a href=&quot;http://cfp.tropicalrb.com/events/tropicalrb-2015&quot;&gt;CFP jest nadal otwarte&lt;/a&gt;.
+Jeśli chcesz wygłosić mowę lub poprowadzić warsztaty, zgłoś swoją propozycję do
+7 grudnia.&lt;/p&gt;
+&lt;p&gt;Ciesz się niesamowitymi rozmowami, przepięknymi krajobrazami i wspaniałą naturą.
+Przyjdź i porozmawiaj z jednymi z najlepszych użytkowników Rubiego podczas
+tropikalnej konferencji.&lt;/p&gt;
+
+&lt;p&gt;Zamieszczone przez Guilherme Cavalcanti 2014-11-03&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Mon, 03 Nov 2014 15:20:57 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/11/03/tropicalrb-2015-cfp/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/11/03/tropicalrb-2015-cfp/</link>
+    </item>
+    
+    <item>
+      <title>Wydano Ruby 2.1.4</title>
+      <description>&lt;p&gt;Wydano Ruby 2.1.4.&lt;/p&gt;
+&lt;p&gt;To wydanie zawiera poprawki bezpieczeństwa dla następujących podatności:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/rexml-dos-cve-2014-8080/&quot;&gt;CVE-2014-8080: Odmowa usługi w XML&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/pl/news/2014/10/27/changing-default-settings-of-ext-openssl/&quot;&gt;Zmieniono domyślne ustawienia ext/openssl&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Są też poprawki błędów.&lt;/p&gt;
+&lt;p&gt;Zobacz &lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-21/issues?set_filter=1&amp;amp;status_id=5&quot;&gt;zgłoszenia&lt;/a&gt;
+i &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_1_4/ChangeLog&quot;&gt;log zmian&lt;/a&gt;
+po szczegóły.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Aktualizacja:&lt;/strong&gt; Była regresja w 2.1.3, która obecnie jest poprawiona:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2&gt;Pobieranie&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11992171 bytes
+MD5:    f4136e781d261e3cc20748005e1740b7
+SHA256: f37f11a8c75ab9215bb9f61246ef98e0e57e1409f0872e5cf59033edcf5b8d2a
+SHA512: 68db1567751166c5e7d24b6e5015124b8a15568c50556e1f429486395352fa56c4a195a74820ab135697924149d014b445b345a1b9755678aaf824fba79c606b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15127418 bytes
+MD5:    89b2f4a197621346f6724a3c35535b19
+SHA256: bf9952cdeb3a0c6a5a27745c9b4c0e5e264e92b669b2b08efb363f5156549204
+SHA512: 7a6c70ec60db9866d5988e53c75e5c7e7288d68d87ba74ad317a0f74be79b387d05f665d9273d24dc64edc011d396b6396d2c7b1de6fd6a03569103e5acdcc36
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9392500 bytes
+MD5:    99aa2b01240d91edaecc2fc9d8254e44
+SHA256: e1cc5cbbcaa8644e282f04763d96057ddd6f443338a5019200e8726273e84fcf
+SHA512: b0fbecca0ffec8f6a3c5d27f62087628b8a79874b7bdbfd8ce39cfc5b6f5cb4da2f8a3e6031abae9c59273cf629f41cf5987e2a5f4c083b0f3a3b02eeb5d7dca
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16656312 bytes
+MD5:    71c7afca08734f0105a06d2feea11422
+SHA256: bdb26a725e1fd7982f12d5390209064687def61c330b92597322e3898131391e
+SHA512: 7fd8d13810a4336dc498a6eb05e140825d52eca0317d0848152688060b95ce4c79ab6a10cf14ab2499ae559fb4676d86538eacd94fb262c16795067fb4f47614
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentarz do wydania&lt;/h2&gt;
+&lt;p&gt;Wiele osób tworzących kod, developerów i użytkowników zgłaszających raporty o błędach pomogło mi zrobić to wydanie. Podziękowania za ich zaangażowanie i pracę.&lt;/p&gt;
+&lt;h2&gt;Historia&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Aktualizacja opublikowana 2014-10-27 21:00:00 (UTC)&lt;/li&gt;
+&lt;li&gt;Oryginalnie opublikowane 2014-10-27 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Zamieszczone przez nagachika 2014-10-27&lt;br /&gt;Tłumaczone przez crabonature&lt;/p&gt;</description>
+      <pubDate>Mon, 27 Oct 2014 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pl/news/2014/10/27/ruby-2-1-4-released/</guid>
+      <link>https://www.ruby-lang.org/pl/news/2014/10/27/ruby-2-1-4-released/</link>
+    </item>
+    
+  </channel>
+</rss>

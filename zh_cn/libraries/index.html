@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>代码库</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>代码库</h1>
+
+
+
+  <div id="content">
+    <p>与大多数的编程语言一样，Ruby 也受益于海量的第三方代码库。
+{: .summary}</p>
+<p>这些代码库大部分都以 <strong>Gem</strong> 形式发布。 <a href="https://rubygems.org/"><strong>RubyGems</strong></a> 是设计用来帮助创建，分享和安装
+这些代码库的（从某种意义上来讲，RubyGems 是一个类似于 apt-get 的分布式包管理系统，只不过专注于 Ruby 软件）。从 Ruby 1.9 起，Ruby 默认自带 RubyGems，而之前的版本 Ruby 版本需要先<a href="https://rubygems.org/pages/download/">手动安装</a>。</p>
+<p>还有些其他的代码库以将 <strong>源代码</strong> 压缩成归档文件如 .zip 或 .tar.gz 的形式发布。安装方式多有不同，通常附带有
+<code>README</code> 或 <code>INSTALL</code> 文档来指导安装。</p>
+<p>让我们看下如何查找安装你所需的代码库。</p>
+<h3>查找代码库</h3>
+<p><a href="https://rubygems.org/"><strong>RubyGems.org</strong></a> 站点是代码库的主要集散地，它提供 Gem 形式的代码库。你可以直接访问其网站或者使用 <code>gem</code> 命令。</p>
+<p>使用 <code>gem search -r</code>，能查看 RubyGems 的 Repository 。比如要找 Rails，输入 <code>gem search -r rails</code> 会返回与 Rails 相关的 Gem。使用 <code>--local</code> (<code>-l</code>) 选项就会在本地你已安装的 Gem 中搜索与 Rails 相关的 Gem。使用 <code>gem install [gem]</code> 来安装 Gem。可通过 <code>gem list</code> 来浏览已安装的 Gem。更多关于 <code>gem</code> 命令的说明，请继续阅读，或前往 <a href="http://guides.rubygems.org/">RubyGems 的文件</a>。</p>
+<p>除了 RubyGems.org 之外，也有其它的站点可供查找代码库。<a href="http://rubyforge.org/">RubyForge</a> 曾是 Ruby 代码库之家，但近年来 <a href="https://github.com/"><strong>GitHub</strong></a> 作为主要的 Ruby 相关资源的 Repository 而崛起。现在，通常 Gem 的源代码会被放在 GitHub，而 Gem 会被发布到 RubyGems.org。</p>
+<p><a href="https://www.ruby-toolbox.com/"><strong>The Ruby Toolbox</strong></a> 是一个旨在使搜索开源 Ruby 项目更容易的项目。它按照各种常见的开发任务做了分类，并收集了许多与项目相关的信息，诸如版本发布历史、提交活跃度、代码库相依关系、根据它们在 GitHub 和 RubyGems.org 上的流行程度做评估，让你更易找到所需的代码库。</p>
+<h3>更多关于 RubyGems 的说明</h3>
+<p>这里是对 <code>gem</code> 命令的快速回顾。关于 <code>gem</code> 命令更详细的说明，请查阅<a href="http://guides.rubygems.org/command-reference/">更详细的文件</a>。</p>
+<h4>搜索可用的 Gem</h4>
+<p><code>search</code> 命令可根据输入的关键字来查找 Gem。比如输入 <code>html</code> 会返回与 <code>html</code> 相关的 Gem：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>--remote</code> 或 <code>-r</code> 标识表示我们想要查看 RubyGems.org 的官方仓库（默认设置）。使用 <code>--local</code> 或 <code>-l</code> 标识表示你想要搜索本地你已安装的 Gem 包。</p>
+<h4>安装 Gem</h4>
+<p>一旦你知道你所需要安装的 Gem 包，比如说颇受欢迎的 Rails:</p>
+<!-- raw HTML omitted -->
+<p>你甚至可以通过 <code>--version</code> 或 <code>-v</code> 标识来安装特定版本的代码库:</p>
+<!-- raw HTML omitted -->
+<h4>列出所有的 Gem</h4>
+<p>列出本地安装的所有 Gem：</p>
+<!-- raw HTML omitted -->
+<p>列出 RubyGems.org 上所有可用的 Gem：</p>
+<!-- raw HTML omitted -->
+<h4>帮助！</h4>
+<p>可在终端中直接查看文档:</p>
+<!-- raw HTML omitted -->
+<p><code>gem help commands</code> 可查看特定子命令的说明，如 <code>gem help install</code>。</p>
+<h4>打造自己的 Gem</h4>
+<p>RubyGems.org 上有<a href="http://guides.rubygems.org/">系列教程</a>，你可能也想研究 <a href="http://bundler.io/">Bundler</a>，一个用于管理应用依赖关系的通用工具，它可以跟 RubyGems 搭配使用。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>试用</strong>，其实很简单！</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在浏览器中试用 Ruby（英文）</a></li>
+
+    
+    <li><a href="/zh_cn/documentation/quickstart/">20 分钟体验 Ruby</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/ruby-from-other-languages/">从其它语言转到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong>新的世界</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_cn/documentation/">文档</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学术研究</a></li>
+    
+
+    
+    <li><a href="/zh_cn/libraries/">代码库</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong>友善及日益壮大的社区</h3>
+  <ul>
+    
+    <li><a href="/zh_cn/community/mailing-lists/">邮件列表</a>: 联系喜爱 Ruby 的朋友</li>
+    
+
+    
+    <li><a href="/zh_cn/community/user-groups/">用户组</a>: 参与 Ruby 爱好者活动</li>
+    
+
+    
+    <li><a href="/zh_cn/community/weblogs/">博客</a>: 阅读 Ruby 相关的博客</li>
+    
+
+    
+    <li><a href="/zh_cn/community/ruby-core/">Ruby 核心</a>: 帮助开发 Ruby 语言</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">问题跟踪</a>: 报告或帮助解决 Ruby 的问题</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

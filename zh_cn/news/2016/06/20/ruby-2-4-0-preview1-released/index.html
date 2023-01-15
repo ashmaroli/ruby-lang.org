@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.4.0-preview1 发布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2016/06/20/ruby-2-4-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.4.0-preview1 发布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 发表于 2016-06-20<br>
+                         翻译： Alex S</p>
+
+    <p>我们高兴地宣布 Ruby 2.4.0-preview1 发布了。</p>
+<p>Ruby 2.4.0-preview1 是 Ruby 2.4.0 的首个预览版。
+这个预览版的发布比平常早一点，因为它包括了很多新功能和改进。
+敬请给我们<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport">反馈</a>，因为你还可以改变一些功能。</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">统一 Fixnum 和 Bignum 为 Integer</a></h2>
+<p>虽然 <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a>
+没有明确指定 Integer 类的细节，CRuby 有两个显式的 Integer 类：Fixnum 和 Bignum。
+Ruby 2.4 把它们统一为 Integer。</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">字符串支持 Unicode 大小写及其他类型</a></h2>
+<p><code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code> 现在可以做 Unicode 的大小写及其他类型，而不仅仅是 ASCII 类型转换。</p>
+<h2>性能提升</h2>
+<p>Ruby 2.4 还包括以下性能提升，和一些语法改进：</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p><code>[x, y].max</code> and <code>[x, y].min</code> 被优化，不会某些情况下创建临时数组。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>添加 <code>Regexp#match?</code>，它只做正则匹配，而不会创建后向引用对象和改变 <code>$~</code>，可以减少对象的创建。</p>
+<h3>其他性能提升</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">提速实例变量的访问</a></li>
+</ul>
+<h2>调试</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception 和 Thread.report_on_exception</a></h3>
+<p>Ruby 忽视线程中的异常，除非另一个线程显式地执行直至结束。
+通过设置 <code>report_on_exception = true</code>，你会注意到如果一个线程终止了因为未处理的异常。</p>
+<p>请向我们反馈 <code>report_on_exception</code> 的默认值应该是什么和垃圾回收报告。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">线程死锁检查现在会显示线程的栈和依赖</a></h3>
+<p>Ruby 在线程等待地时候会进行死锁检查，但是检查的结果没有足够的信息用来调试。
+Ruby 2.4 死锁检查会显示他们的栈信息和依赖线程。</p>
+<p>尝试并且享受用与 Ruby 2.4.0-preview1 的编码时光，有任何问题，敬请<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport">反馈</a>!</p>
+<h2>自 2.3 起显著的改变</h2>
+<p>请参阅 <a href="https://github.com/ruby/ruby/blob/v2_4_0_preview1/NEWS">NEWS</a> 和
+<a href="https://github.com/ruby/ruby/blob/v2_4_0_preview1/ChangeLog">ChangeLog</a>
+来进一步了解。</p>
+<p>以上变化自 Ruby 2.3.0 以来，计有 <a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0_preview1">1140 个文件变更，新增代码 33126 行，移除了 50993 行</a>！</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2</a></p>
+<ul>
+<li>SIZE:   14108114 bytes</li>
+<li>SHA1:   7dcc42548d0724d83b6589ab98f34282845d7bcd</li>
+<li>SHA256: 17570f0b84215ca82252f10c167ee50bc075383c018420c6b2601ae1cade0649</li>
+<li>SHA512: c9873e8686eb54dbde61d6e23cd5197beebccd6cb31fd12c82763ebe1fde17095d7514d9d93c2c82b238032c98691df5479dc2d666a8a590e0fc54450ec29cb5</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz</a></p>
+<ul>
+<li>SIZE:   17605452 bytes</li>
+<li>SHA1:   1003a1e57547d81f4bb979c0f40f242afc284cd5</li>
+<li>SHA256: 80d02f49f40e7ce07b70bee7efda751b0595a349a017306e9fe8caad5da13e64</li>
+<li>SHA512: 4b603ab4ff9ea7e8bb8053aa4b638839d534241466d7f0e4d5bca3f2ea416694c2ea391790f1ffdc07fa538918d27707621741eb0ddc7bd00eb9d7628622787a</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz</a></p>
+<ul>
+<li>SIZE:   11155800 bytes</li>
+<li>SHA1:   bc33085277266f5a09a143bf6817affcb77f8e7f</li>
+<li>SHA256: 62942c7300727469fe3d2b43e5a5c772d4836cf624a1d644bdece2afaca472c8</li>
+<li>SHA512: dfc2c6642d49fa95383817a6dc82c416b3218ddfdaf882d6d2e5a7da22d0a5ac142e516a57aa96214070f3c7551d275044233ac052c82d67189b01c39847aad4</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip</a></p>
+<ul>
+<li>SIZE:   19904781 bytes</li>
+<li>SHA1:   25c16ee91bbcb0224f80e20d938f5c08832973f7</li>
+<li>SHA256: fd588aea1558b1171f87a3dd342ee207b8995a2c0a8241d7aa15bcfa16036854</li>
+<li>SHA512: f2fff35ff9157a4b31177b3d6b91bdaad04c22b3c626c3a5e5ec9a31b103f9607b31c909ef27880065cfdbcfa5d6901a6db89d22e0c645666d069c5b6dd1818b</li>
+</ul>
+</li>
+</ul>
+<h2>发布记</h2>
+<p>其他资讯请参考发布日程安排：</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24">ReleaseEngineering24</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

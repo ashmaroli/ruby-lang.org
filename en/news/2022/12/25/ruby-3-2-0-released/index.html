@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.2.0 Released</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.2.0 Released</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 25 Dec 2022</p>
+
+    <p>We are pleased to announce the release of Ruby 3.2.0. Ruby 3.2 adds many features and performance improvements.</p>
+<h2>WASI based WebAssembly support</h2>
+<p>This is an initial port of WASI based WebAssembly support. This enables a CRuby binary to be available on a Web browser, a Serverless Edge environment, or other kinds of WebAssembly/WASI embedders. Currently this port passes basic and bootstrap test suites not using the Thread API.</p>
+<p><img src="https://i.imgur.com/opCgKy2.png" alt="" /></p>
+<h3>Background</h3>
+<p><a href="https://webassembly.org/">WebAssembly (Wasm)</a> was originally introduced to run programs safely and fast in web browsers. But its objective - running programs efficiently with security on various environment - is long wanted not only for web but also by general applications.</p>
+<p><a href="https://wasi.dev/">WASI (The WebAssembly System Interface)</a> is designed for such use cases. Though such applications need to communicate with operating systems, WebAssembly runs on a virtual machine which didn't have a system interface. WASI standardizes it.</p>
+<p>WebAssembly/WASI support in Ruby intends to leverage those projects. It enables Ruby developers to write applications which run on such promised platforms.</p>
+<h3>Use case</h3>
+<p>This support encourages developers to utilize CRuby in a WebAssembly environment. An example use case is <a href="https://try.ruby-lang.org/playground/">TryRuby playground</a>'s CRuby support. Now you can try original CRuby in your web browser.</p>
+<h3>Technical points</h3>
+<p>Today’s WASI and WebAssembly itself is missing some features to implement Fiber, exception, and GC because it’s still evolving, and also for security reasons. So CRuby fills the gap by using Asyncify, which is a binary transformation technique to control execution in userland.</p>
+<p>In addition, we built <a href="https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby">a VFS on top of WASI</a> so that we can easily pack Ruby apps into a single .wasm file. This makes distribution of Ruby apps a bit easier.</p>
+<h3>Related links</h3>
+<ul>
+<li><a href="https://github.com/ruby/ruby/pull/5407">Add WASI based WebAssembly support #5407</a></li>
+<li><a href="https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9">An Update on WebAssembly/WASI Support in Ruby</a></li>
+</ul>
+<h2>Production-ready YJIT</h2>
+<p><img src="https://i.imgur.com/X9ulfac.png" alt="" /></p>
+<ul>
+<li>YJIT is no longer experimental
+<ul>
+<li>Has been tested on production workloads for over a year and proven to be quite stable.</li>
+</ul>
+</li>
+<li>YJIT now supports both x86-64 and arm64/aarch64 CPUs on Linux, MacOS, BSD and other UNIX platforms.
+<ul>
+<li>This release brings support for Apple M1/M2, AWS Graviton, Raspberry Pi 4 and more.</li>
+</ul>
+</li>
+<li>Building YJIT now requires Rust 1.58.0+. [<a href="https://bugs.ruby-lang.org/issues/18481">Feature #18481</a>]
+<ul>
+<li>In order to ensure that CRuby is built with YJIT, please install <code>rustc</code> &gt;= 1.58.0
+before running the <code>./configure</code> script.</li>
+<li>Please reach out to the YJIT team should you run into any issues.</li>
+</ul>
+</li>
+<li>The YJIT 3.2 release is faster than 3.1, and has about 1/3 as much memory overhead.
+<ul>
+<li>Overall YJIT is 41% faster (geometric mean) than the Ruby interpreter on <a href="https://github.com/Shopify/yjit-bench">yjit-bench</a>.</li>
+<li>Physical memory for JIT code is lazily allocated. Unlike Ruby 3.1,
+the RSS of a Ruby process is minimized because virtual memory pages
+allocated by <code>--yjit-exec-mem-size</code> will not be mapped to physical
+memory pages until actually utilized by JIT code.</li>
+<li>Introduce Code GC that frees all code pages when the memory consumption
+by JIT code reaches <code>--yjit-exec-mem-size</code>.</li>
+<li><code>RubyVM::YJIT.runtime_stats</code> returns Code GC metrics in addition to
+existing <code>inline_code_size</code> and <code>outlined_code_size</code> keys:
+<code>code_gc_count</code>, <code>live_page_count</code>, <code>freed_page_count</code>, and <code>freed_code_size</code>.</li>
+</ul>
+</li>
+<li>Most of the statistics produced by <code>RubyVM::YJIT.runtime_stats</code> are now available in release builds.
+<ul>
+<li>Simply run ruby with <code>--yjit-stats</code> to compute and dump stats (incurs some run-time overhead).</li>
+</ul>
+</li>
+<li>YJIT is now optimized to take advantage of object shapes. [<a href="https://bugs.ruby-lang.org/issues/18776">Feature #18776</a>]</li>
+<li>Take advantage of finer-grained constant invalidation to invalidate less code when defining new constants. [<a href="https://bugs.ruby-lang.org/issues/18589">Feature #18589</a>]</li>
+<li>The default <code>--yjit-exec-mem-size</code> is changed to 64 (MiB).</li>
+<li>The default <code>--yjit-call-threshold</code> is changed to 30.</li>
+</ul>
+<h2>Regexp improvements against ReDoS</h2>
+<p>It is known that Regexp matching may take unexpectedly long. If your code attempts to match a possibly inefficient Regexp against an untrusted input, an attacker may exploit it for efficient Denial of Service (so-called Regular expression DoS, or ReDoS).</p>
+<p>We have introduced two improvements that significantly mitigate ReDoS.</p>
+<h3>Improved Regexp matching algorithm</h3>
+<p>Since Ruby 3.2, Regexp's matching algorithm has been greatly improved by using a memoization technique.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This match takes 10 sec. in Ruby 3.1, and 0.003 sec. in Ruby 3.2
+
+/^a*b?a*$/ =~ "a" * 50000 + "x"
+</code></pre></div></div>
+<p><img src="https://cache.ruby-lang.org/pub/media/ruby320_regex_1.png" alt="" />
+<img src="https://cache.ruby-lang.org/pub/media/ruby320_regex_2.png" alt="" /></p>
+<p>The improved matching algorithm allows most Regexp matching (about 90% in our experiments) to be completed in linear time.</p>
+<p>This optimization may consume memory proportional to the input length for each match. We expect no practical problems to arise because this memory allocation is usually delayed, and a normal Regexp match should consume at most 10 times as much memory as the input length. If you run out of memory when matching Regexps in a real-world application, please report it.</p>
+<p>The original proposal is <a href="https://bugs.ruby-lang.org/issues/19104">https://bugs.ruby-lang.org/issues/19104</a></p>
+<h3>Regexp timeout</h3>
+<p>The optimization above cannot be applied to some kind of regular expressions, such as those including advanced features (e.g., back-references or look-around), or with a huge fixed number of repetitions. As a fallback measure, a timeout feature for Regexp matches is also introduced.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="sr">/^a*b?a*()\1$/</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span>
+<span class="c1">#=&gt; Regexp::TimeoutError is raised in one second</span>
+</code></pre></div></div>
+<p>Note that <code>Regexp.timeout</code> is a global configuration. If you want to use different timeout settings for some special Regexps, you may want to use the <code>timeout</code> keyword for <code>Regexp.new</code>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># This regexp has no timeout</span>
+<span class="n">long_time_re</span> <span class="o">=</span> <span class="no">Regexp</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'^a*b?a*()\1$'</span><span class="p">,</span> <span class="ss">timeout: </span><span class="no">Float</span><span class="o">::</span><span class="no">INFINITY</span><span class="p">)</span>
+
+<span class="n">long_time_re</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1"># never interrupted</span>
+</code></pre></div></div>
+<p>The original proposal is <a href="https://bugs.ruby-lang.org/issues/17837">https://bugs.ruby-lang.org/issues/17837</a>.</p>
+<h2>Other Notable New Features</h2>
+<h3>SyntaxSuggest</h3>
+<ul>
+<li>
+<p>The feature of <code>syntax_suggest</code> (formerly <code>dead_end</code>) is integrated into Ruby. This helps you find the position of errors such as missing or superfluous <code>end</code>s, to get you back on your way faster, such as in the following example:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unmatched `end', missing keyword (`do', `def`, `if`, etc.) ?
+
+  1  class Dog
+&gt; 2    defbark
+&gt; 3    end
+  4  end
+</code></pre></div></div>
+<p>[<a href="https://bugs.ruby-lang.org/issues/18159">Feature #18159</a>]</p>
+</li>
+</ul>
+<h3>ErrorHighlight</h3>
+<ul>
+<li>Now it points at the relevant argument(s) for TypeError and ArgumentError</li>
+</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test.rb:2:in `+': nil can't be coerced into Integer (TypeError)
+
+sum = ary[0] + ary[1]
+               ^^^^^^
+</code></pre></div></div>
+<h3>Language</h3>
+<ul>
+<li>
+<p>Anonymous rest and keyword rest arguments can now be passed as
+arguments, instead of just used in method parameters.
+[<a href="https://bugs.ruby-lang.org/issues/18351">Feature #18351</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">baz</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+  <span class="n">quux</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>A proc that accepts a single positional argument and keywords will
+no longer autosplat. [<a href="https://bugs.ruby-lang.org/issues/18633">Bug #18633</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">proc</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="o">|</span> <span class="n">a</span><span class="p">}.</span><span class="nf">call</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Ruby 3.1 and before</span>
+<span class="c1"># =&gt; 1</span>
+<span class="c1"># Ruby 3.2 and after</span>
+<span class="c1"># =&gt; [1, 2]</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Constant assignment evaluation order for constants set on explicit
+objects has been made consistent with single attribute assignment
+evaluation order. With this code:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">foo</span><span class="o">::</span><span class="no">BAR</span> <span class="o">=</span> <span class="n">baz</span>
+</code></pre></div></div>
+<p><code>foo</code> is now called before <code>baz</code>. Similarly, for multiple assignments
+to constants, left-to-right evaluation order is used. With this
+code:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="n">foo1</span><span class="o">::</span><span class="no">BAR1</span><span class="p">,</span> <span class="n">foo2</span><span class="o">::</span><span class="no">BAR2</span> <span class="o">=</span> <span class="n">baz1</span><span class="p">,</span> <span class="n">baz2</span>
+</code></pre></div></div>
+<p>The following evaluation order is now used:</p>
+<ol>
+<li><code>foo1</code></li>
+<li><code>foo2</code></li>
+<li><code>baz1</code></li>
+<li><code>baz2</code></li>
+</ol>
+<p>[<a href="https://bugs.ruby-lang.org/issues/15928">Bug #15928</a>]</p>
+</li>
+<li>
+<p>The find pattern is no longer experimental.
+[<a href="https://bugs.ruby-lang.org/issues/18585">Feature #18585</a>]</p>
+</li>
+<li>
+<p>Methods taking a rest parameter (like <code>*args</code>) and wishing to delegate keyword
+arguments through <code>foo(*args)</code> must now be marked with <code>ruby2_keywords</code>
+(if not already the case). In other words, all methods wishing to delegate
+keyword arguments through <code>*args</code> must now be marked with <code>ruby2_keywords</code>,
+with no exception. This will make it easier to transition to other ways of
+delegation once a library can require Ruby 3+. Previously, the <code>ruby2_keywords</code>
+flag was kept if the receiving method took <code>*args</code>, but this was a bug and an
+inconsistency. A good technique to find potentially missing <code>ruby2_keywords</code>
+is to run the test suite, find the last method which must
+receive keyword arguments for each place where the test suite fails, and use <code>puts nil, caller, nil</code> there. Then check that each
+method/block on the call chain which must delegate keywords is correctly marked
+with <code>ruby2_keywords</code>. [<a href="https://bugs.ruby-lang.org/issues/18625">Bug #18625</a>] [<a href="https://bugs.ruby-lang.org/issues/16466">Bug #16466</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># Accidentally worked without ruby2_keywords in Ruby 2.7-3.1, ruby2_keywords</span>
+<span class="c1"># needed in 3.2+. Just like (*args, **kwargs) or (...) would be needed on</span>
+<span class="c1"># both #foo and #bar when migrating away from ruby2_keywords.</span>
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="ss">k: </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Performance improvements</h2>
+<h3>MJIT</h3>
+<ul>
+<li>The MJIT compiler is re-implemented in Ruby as <code>ruby_vm/mjit/compiler</code>.</li>
+<li>MJIT compiler is executed under a forked process instead of
+doing it in a native thread called MJIT worker. [<a href="https://bugs.ruby-lang.org/issues/18968">Feature #18968</a>]
+<ul>
+<li>As a result, Microsoft Visual Studio (MSWIN) is no longer supported.</li>
+</ul>
+</li>
+<li>MinGW is no longer supported. [<a href="https://bugs.ruby-lang.org/issues/18824">Feature #18824</a>]</li>
+<li>Rename <code>--mjit-min-calls</code> to <code>--mjit-call-threshold</code>.</li>
+<li>Change default <code>--mjit-max-cache</code> back from 10000 to 100.</li>
+</ul>
+<h3>PubGrub</h3>
+<ul>
+<li>
+<p>Bundler 2.4 now uses <a href="https://github.com/jhawthorn/pub_grub">PubGrub</a> resolver instead of <a href="https://github.com/CocoaPods/Molinillo">Molinillo</a>.</p>
+<ul>
+<li>PubGrub is the next generation solving algorithm used by <code>pub</code> package manager for the Dart programming language.</li>
+<li>You may get different resolution result after this change. Please report such cases to <a href="https://github.com/rubygems/rubygems/issues">RubyGems/Bundler issues</a></li>
+</ul>
+</li>
+<li>
+<p>RubyGems still uses Molinillo resolver in Ruby 3.2. We plan to replace it with PubGrub in the future.</p>
+</li>
+</ul>
+<h2>Other notable changes since 3.1</h2>
+<ul>
+<li>
+<p>Data</p>
+<ul>
+<li>
+<p>New core class to represent simple immutable value object. The class is
+similar to Struct and partially shares an implementation, but has more
+lean and strict API. [<a href="https://bugs.ruby-lang.org/issues/16122">Feature #16122</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Measure</span> <span class="o">=</span> <span class="no">Data</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:amount</span><span class="p">,</span> <span class="ss">:unit</span><span class="p">)</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="no">Measure</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s1">'km'</span><span class="p">)</span>            <span class="c1">#=&gt; #&lt;data Measure amount=100, unit="km"&gt;</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="no">Measure</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">amount: </span><span class="mi">50</span><span class="p">,</span> <span class="ss">unit: </span><span class="s1">'kg'</span><span class="p">)</span> <span class="c1">#=&gt; #&lt;data Measure amount=50, unit="kg"&gt;</span>
+<span class="n">weight</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">amount: </span><span class="mi">40</span><span class="p">)</span>                      <span class="c1">#=&gt; #&lt;data Measure amount=40, unit="kg"&gt;</span>
+<span class="n">weight</span><span class="p">.</span><span class="nf">amount</span>                                <span class="c1">#=&gt; 50</span>
+<span class="n">weight</span><span class="p">.</span><span class="nf">amount</span> <span class="o">=</span> <span class="mi">40</span>                           <span class="c1">#=&gt; NoMethodError: undefined method `amount='</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Hash</p>
+<ul>
+<li><code>Hash#shift</code> now always returns nil if the hash is
+empty, instead of returning the default value or
+calling the default proc. [<a href="https://bugs.ruby-lang.org/issues/16908">Bug #16908</a>]</li>
+</ul>
+</li>
+<li>
+<p>MatchData</p>
+<ul>
+<li><code>MatchData#byteoffset</code> has been added. [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+</ul>
+</li>
+<li>
+<p>Module</p>
+<ul>
+<li><code>Module.used_refinements</code> has been added. [<a href="https://bugs.ruby-lang.org/issues/14332">Feature #14332</a>]</li>
+<li><code>Module#refinements</code> has been added. [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+<li><code>Module#const_added</code> has been added. [<a href="https://bugs.ruby-lang.org/issues/17881">Feature #17881</a>]</li>
+</ul>
+</li>
+<li>
+<p>Proc</p>
+<ul>
+<li><code>Proc#dup</code> returns an instance of subclass. [<a href="https://bugs.ruby-lang.org/issues/17545">Bug #17545</a>]</li>
+<li><code>Proc#parameters</code> now accepts lambda keyword. [<a href="https://bugs.ruby-lang.org/issues/15357">Feature #15357</a>]</li>
+</ul>
+</li>
+<li>
+<p>Refinement</p>
+<ul>
+<li><code>Refinement#refined_class</code> has been added. [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+</ul>
+</li>
+<li>
+<p>RubyVM::AbstractSyntaxTree</p>
+<ul>
+<li>
+<p>Add <code>error_tolerant</code> option for <code>parse</code>, <code>parse_file</code> and <code>of</code>. [<a href="https://bugs.ruby-lang.org/issues/19013">Feature #19013</a>]
+With this option</p>
+<ol>
+<li>SyntaxError is suppressed</li>
+<li>AST is returned for invalid input</li>
+<li><code>end</code> is complemented when a parser reaches to the end of input but <code>end</code> is insufficient</li>
+<li><code>end</code> is treated as keyword based on indent</li>
+</ol>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># Without error_tolerant option</span>
+<span class="n">root</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">AbstractSyntaxTree</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="o">&lt;&lt;~</span><span class="no">RUBY</span><span class="p">)</span><span class="sh">
+def m
+  a = 10
+  if
+end
+</span><span class="no">RUBY</span>
+<span class="c1"># =&gt; &lt;internal:ast&gt;:33:in `parse': syntax error, unexpected `end' (SyntaxError)</span>
+
+<span class="c1"># With error_tolerant option</span>
+<span class="n">root</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">AbstractSyntaxTree</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="o">&lt;&lt;~</span><span class="no">RUBY</span><span class="p">,</span> <span class="ss">error_tolerant: </span><span class="kp">true</span><span class="p">)</span><span class="sh">
+def m
+  a = 10
+  if
+end
+</span><span class="no">RUBY</span>
+<span class="nb">p</span> <span class="n">root</span> <span class="c1"># =&gt; #&lt;RubyVM::AbstractSyntaxTree::Node:SCOPE@1:0-4:3&gt;</span>
+
+<span class="c1"># `end` is treated as keyword based on indent</span>
+<span class="n">root</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">AbstractSyntaxTree</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="o">&lt;&lt;~</span><span class="no">RUBY</span><span class="p">,</span> <span class="ss">error_tolerant: </span><span class="kp">true</span><span class="p">)</span><span class="sh">
+module Z
+  class Foo
+    foo.
+  end
+
+  def bar
+  end
+end
+</span><span class="no">RUBY</span>
+<span class="nb">p</span> <span class="n">root</span><span class="p">.</span><span class="nf">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">children</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">..-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># =&gt; [#&lt;RubyVM::AbstractSyntaxTree::Node:CLASS@2:2-4:5&gt;, #&lt;RubyVM::AbstractSyntaxTree::Node:DEFN@6:2-7:5&gt;]</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Add <code>keep_tokens</code> option for <code>parse</code>, <code>parse_file</code> and <code>of</code>. [<a href="https://bugs.ruby-lang.org/issues/19070">Feature #19070</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">root</span> <span class="o">=</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">AbstractSyntaxTree</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"x = 1 + 2"</span><span class="p">,</span> <span class="ss">keep_tokens: </span><span class="kp">true</span><span class="p">)</span>
+<span class="n">root</span><span class="p">.</span><span class="nf">tokens</span> <span class="c1"># =&gt; [[0, :tIDENTIFIER, "x", [1, 0, 1, 1]], [1, :tSP, " ", [1, 1, 1, 2]], ...]</span>
+<span class="n">root</span><span class="p">.</span><span class="nf">tokens</span><span class="p">.</span><span class="nf">map</span><span class="p">{</span><span class="n">_1</span><span class="p">[</span><span class="mi">2</span><span class="p">]}.</span><span class="nf">join</span> <span class="c1"># =&gt; "x = 1 + 2"</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Set</p>
+<ul>
+<li>Set is now available as a builtin class without the need for <code>require &quot;set&quot;</code>. [<a href="https://bugs.ruby-lang.org/issues/16989">Feature #16989</a>]
+It is currently autoloaded via the <code>Set</code> constant or a call to <code>Enumerable#to_set</code>.</li>
+</ul>
+</li>
+<li>
+<p>String</p>
+<ul>
+<li><code>String#byteindex</code> and <code>String#byterindex</code> have been added. [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+<li>Update Unicode to Version 15.0.0 and Emoji Version 15.0. [<a href="https://bugs.ruby-lang.org/issues/18639">Feature #18639</a>]
+(also applies to Regexp)</li>
+<li><code>String#bytesplice</code> has been added.  [<a href="https://bugs.ruby-lang.org/issues/18598">Feature #18598</a>]</li>
+</ul>
+</li>
+<li>
+<p>Struct</p>
+<ul>
+<li>
+<p>A Struct class can also be initialized with keyword arguments
+without <code>keyword_init: true</code> on <code>Struct.new</code> [<a href="https://bugs.ruby-lang.org/issues/16806">Feature #16806</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Post</span> <span class="o">=</span> <span class="no">Struct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+<span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"hello"</span><span class="p">)</span> <span class="c1">#=&gt; #&lt;struct Post id=1, name="hello"&gt;</span>
+<span class="c1"># From Ruby 3.2, the following code also works without keyword_init: true.</span>
+<span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"hello"</span><span class="p">)</span> <span class="c1">#=&gt; #&lt;struct Post id=1, name="hello"&gt;</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Compatibility issues</h2>
+<p>Note: Excluding feature bug fixes.</p>
+<h3>Removed constants</h3>
+<p>The following deprecated constants are removed.</p>
+<ul>
+<li><code>Fixnum</code> and <code>Bignum</code> [<a href="https://bugs.ruby-lang.org/issues/12005">Feature #12005</a>]</li>
+<li><code>Random::DEFAULT</code> [<a href="https://bugs.ruby-lang.org/issues/17351">Feature #17351</a>]</li>
+<li><code>Struct::Group</code></li>
+<li><code>Struct::Passwd</code></li>
+</ul>
+<h3>Removed methods</h3>
+<p>The following deprecated methods are removed.</p>
+<ul>
+<li><code>Dir.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>File.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>Kernel#=~</code> [<a href="https://bugs.ruby-lang.org/issues/15231">Feature #15231</a>]</li>
+<li><code>Kernel#taint</code>, <code>Kernel#untaint</code>, <code>Kernel#tainted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+<li><code>Kernel#trust</code>, <code>Kernel#untrust</code>, <code>Kernel#untrusted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h2>Stdlib compatibility issues</h2>
+<h3>No longer bundle 3rd party sources</h3>
+<ul>
+<li>
+<p>We no longer bundle 3rd party sources like <code>libyaml</code>, <code>libffi</code>.</p>
+<ul>
+<li>
+<p>libyaml source has been removed from psych. You may need to install <code>libyaml-dev</code> with Ubuntu/Debian platform. The package name is different for each platform.</p>
+</li>
+<li>
+<p>Bundled libffi source is also removed from <code>fiddle</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Psych and fiddle supported static builds with specific versions of libyaml and libffi sources. You can build psych with libyaml-0.2.5 like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="bash"><span class="nv">$ </span>./configure <span class="nt">--with-libyaml-source-dir</span><span class="o">=</span>/path/to/libyaml-0.2.5
+</code></pre></div></div>
+<p>And you can build fiddle with libffi-3.4.4 like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="bash"><span class="nv">$ </span>./configure <span class="nt">--with-libffi-source-dir</span><span class="o">=</span>/path/to/libffi-3.4.4
+</code></pre></div></div>
+<p>[<a href="https://bugs.ruby-lang.org/issues/18571">Feature #18571</a>]</p>
+</li>
+</ul>
+<h2>C API updates</h2>
+<h3>Updated C APIs</h3>
+<p>The following APIs are updated.</p>
+<ul>
+<li>PRNG update
+<ul>
+<li><code>rb_random_interface_t</code> updated and versioned.
+Extension libraries which use this interface and built for older versions.
+Also <code>init_int32</code> function needs to be defined.</li>
+</ul>
+</li>
+</ul>
+<h3>Removed C APIs</h3>
+<p>The following deprecated APIs are removed.</p>
+<ul>
+<li><code>rb_cData</code> variable.</li>
+<li>&quot;taintedness&quot; and &quot;trustedness&quot; functions. [<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h2>Standard library updates</h2>
+<ul>
+<li>
+<p>Bundler</p>
+<ul>
+<li>Add --ext=rust support to bundle gem for creating simple gems with Rust extensions.
+[<a href="https://github.com/rubygems/rubygems/pull/6149">GH-rubygems-6149</a>]</li>
+<li>Make cloning git repos faster [<a href="https://github.com/rubygems/rubygems/pull/4475">GH-rubygems-4475</a>]</li>
+</ul>
+</li>
+<li>
+<p>RubyGems</p>
+<ul>
+<li>Add mswin support for cargo builder. [<a href="https://github.com/rubygems/rubygems/pull/6167">GH-rubygems-6167</a>]</li>
+</ul>
+</li>
+<li>
+<p>ERB</p>
+<ul>
+<li><code>ERB::Util.html_escape</code> is made faster than <code>CGI.escapeHTML</code>.
+<ul>
+<li>It no longer allocates a String object when no character needs to be escaped.</li>
+<li>It skips calling <code>#to_s</code> method when an argument is already a String.</li>
+<li><code>ERB::Escape.html_escape</code> is added as an alias to <code>ERB::Util.html_escape</code>,
+which has not been monkey-patched by Rails.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>IRB</p>
+<ul>
+<li>debug.gem integration commands have been added: <code>debug</code>, <code>break</code>, <code>catch</code>,
+<code>next</code>, <code>delete</code>, <code>step</code>, <code>continue</code>, <code>finish</code>, <code>backtrace</code>, <code>info</code>
+<ul>
+<li>They work even if you don't have <code>gem &quot;debug&quot;</code> in your Gemfile.</li>
+<li>See also: <a href="https://st0012.dev/whats-new-in-ruby-3-2-irb">What's new in Ruby 3.2's IRB?</a></li>
+</ul>
+</li>
+<li>More Pry-like commands and features have been added.
+<ul>
+<li><code>edit</code> and <code>show_cmds</code> (like Pry's <code>help</code>) are added.</li>
+<li><code>ls</code> takes <code>-g</code> or <code>-G</code> option to filter out outputs.</li>
+<li><code>show_source</code> is aliased from <code>$</code> and accepts unquoted inputs.</li>
+<li><code>whereami</code> is aliased from <code>@</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The following default gems are updated.</p>
+<ul>
+<li>RubyGems 3.4.1</li>
+<li>abbrev 0.1.1</li>
+<li>benchmark 0.2.1</li>
+<li>bigdecimal 3.1.3</li>
+<li>bundler 2.4.1</li>
+<li>cgi 0.3.6</li>
+<li>csv 3.2.6</li>
+<li>date 3.3.3</li>
+<li>delegate 0.3.0</li>
+<li>did_you_mean 1.6.3</li>
+<li>digest 3.1.1</li>
+<li>drb 2.1.1</li>
+<li>english 0.7.2</li>
+<li>erb 4.0.2</li>
+<li>error_highlight 0.5.1</li>
+<li>etc 1.4.2</li>
+<li>fcntl 1.0.2</li>
+<li>fiddle 1.1.1</li>
+<li>fileutils 1.7.0</li>
+<li>forwardable 1.3.3</li>
+<li>getoptlong 0.2.0</li>
+<li>io-console 0.6.0</li>
+<li>io-nonblock 0.2.0</li>
+<li>io-wait 0.3.0</li>
+<li>ipaddr 1.2.5</li>
+<li>irb 1.6.2</li>
+<li>json 2.6.3</li>
+<li>logger 1.5.3</li>
+<li>mutex_m 0.1.2</li>
+<li>net-http 0.3.2</li>
+<li>net-protocol 0.2.1</li>
+<li>nkf 0.1.2</li>
+<li>open-uri 0.3.0</li>
+<li>open3 0.1.2</li>
+<li>openssl 3.1.0</li>
+<li>optparse 0.3.1</li>
+<li>ostruct 0.5.5</li>
+<li>pathname 0.2.1</li>
+<li>pp 0.4.0</li>
+<li>pstore 0.1.2</li>
+<li>psych 5.0.1</li>
+<li>racc 1.6.2</li>
+<li>rdoc 6.5.0</li>
+<li>readline-ext 0.1.5</li>
+<li>reline 0.3.2</li>
+<li>resolv 0.2.2</li>
+<li>resolv-replace 0.1.1</li>
+<li>securerandom 0.2.2</li>
+<li>set 1.0.3</li>
+<li>stringio 3.0.4</li>
+<li>strscan 3.0.5</li>
+<li>syntax_suggest 1.0.2</li>
+<li>syslog 0.1.1</li>
+<li>tempfile 0.1.3</li>
+<li>time 0.2.1</li>
+<li>timeout 0.3.1</li>
+<li>tmpdir 0.1.3</li>
+<li>tsort 0.1.1</li>
+<li>un 0.2.1</li>
+<li>uri 0.12.0</li>
+<li>weakref 0.1.2</li>
+<li>win32ole 1.8.9</li>
+<li>yaml 0.2.1</li>
+<li>zlib 3.0.0</li>
+</ul>
+</li>
+<li>
+<p>The following bundled gems are updated.</p>
+<ul>
+<li>minitest 5.16.3</li>
+<li>power_assert 2.0.3</li>
+<li>test-unit 3.5.7</li>
+<li>net-ftp 0.2.0</li>
+<li>net-imap 0.3.3</li>
+<li>net-pop 0.1.2</li>
+<li>net-smtp 0.3.3</li>
+<li>rbs 2.8.2</li>
+<li>typeprof 0.21.3</li>
+<li>debug 1.7.1</li>
+</ul>
+</li>
+</ul>
+<p>See GitHub releases like <a href="https://github.com/ruby/logger/releases">GitHub Releases of logger</a> or changelog for details of the default gems or bundled gems.</p>
+<p>See <a href="https://github.com/ruby/ruby/blob/v3_2_0/NEWS.md">NEWS</a>
+or <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0">commit logs</a>
+for more details.</p>
+<p>With those changes, <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0#file_bucket">3048 files changed, 218253 insertions(+), 131067 deletions(-)</a>
+since Ruby 3.1.0!</p>
+<p>Merry Christmas, Happy Holidays, and enjoy programming with Ruby 3.2!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20440715
+SHA1: fb4ab2ceba8bf6a5b9bc7bf7cac945cc94f94c2b
+SHA256: daaa78e1360b2783f98deeceb677ad900f3a36c0ffa6e2b6b19090be77abc272
+SHA512: 94203051d20475b95a66660016721a0457d7ea57656a9f16cdd4264d8aa6c4cd8ea2fab659082611bfbd7b00ebbcf0391e883e2ebf384e4fab91869e0a877d35
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15058364
+SHA1: bcdae07183d66fd902cb7bf995545a472d2fefea
+SHA256: d2f4577306e6dd932259693233141e5c3ec13622c95b75996541b8d5b68b28b4
+SHA512: 733ecc6709470ee16916deeece9af1c76220ae95d17b2681116aff7f381d99bc3124b1b11b1c2336b2b29e468e91b90f158d5ae5fca810c6cf32a0b6234ae08e
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.zip">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 24583271
+SHA1: 581ec7b9289c2a85abf4f41c93993ecaa5cf43a5
+SHA256: cca9ddbc958431ff77f61948cb67afa569f01f99c9389d2bbedfa92986c9ef09
+SHA512: b7d2753825cc0667e8bb391fc7ec59a53c3db5fa314e38eee74b6511890b585ac7515baa2ddac09e2c6b6c42b9221c82e040af5b39c73e980fbd3b1bc622c99d
+</code></pre></div></div>
+</li>
+</ul>
+<h2>What is Ruby</h2>
+<p>Ruby was first developed by Matz (Yukihiro Matsumoto) in 1993,
+and is now developed as Open Source. It runs on multiple platforms
+and is used all over the world especially for web development.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Recent News</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/en/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 Released</a></li>
+        
+        <li><a href="/en/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 Released</a></li>
+        
+        <li><a href="/en/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 Released</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

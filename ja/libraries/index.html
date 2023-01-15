@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>ライブラリ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>ライブラリ</h1>
+
+
+
+  <div id="content">
+    <p>多くのプログラミング言語と同様に、Ruby にも幅広いサードパーティのライブラリが提供されています。
+{: .summary}</p>
+<p>それらのほとんどは &quot;gem&quot; という形式で公開されています。<a href="https://rubygems.org/">RubyGems</a> は (Ruby に特化した <code>apt-get</code> と同じようなパッケージングシステムで) ライブラリの作成や公開、インストールを助けるシステムです。Ruby のバージョン 1.9 以降 RubyGems は標準添付となっていますが、それ以前のバージョンの Ruby の場合は<a href="https://rubygems.org/pages/download/">自分でインストール</a>する必要があります。</p>
+<p>他のライブラリは .zip や .tar.gz のようなアーカイブの形式で公開されています。インストール方法は様々で、一般的には <code>README</code> や <code>INSTALL</code> ファイルに方法が書かれています。</p>
+<p>ではライブラリを探してインストールする方法を見てみましょう。</p>
+<h3>ライブラリを探す</h3>
+<p>Ruby のライブラリは主に <a href="https://rubygems.org/">RubyGems.org</a> に gem として置かれています。直接ウェブサイトを閲覧したり、<code>gem</code> コマンドを使用してそれらを探すことができます。</p>
+<p><code>gem search -r</code> を使うと RubyGems のリポジトリを調べることが出来ます。例えば、<code>gem search -r rails</code> は Rails に関係のある gem を返します。
+<code>--local</code> (<code>-l</code>) オプションを使うと、インストール済みの gem に対してローカルで検索をすることが出来ます。gem をインストールするには <code>gem install [gem]</code> を使います。インストール済みの gem を見るには <code>gem list</code> を使います。さらに <code>gem</code> コマンドについて知りたい場合は、先に進むか<a href="http://guides.rubygems.org/">RubyGems' docs</a> を参照してください。</p>
+<p>また、他にもライブラリの配布元があります。
+近年では<a href="https://github.com/">GitHub</a> が ruby 関連のリポジトリとして広く使われています。
+gem としては RubyGems.org に公開されますが、gem のソースコードのほとんどは GitHub 上で見ることが出来ます。</p>
+<p><a href="https://www.ruby-toolbox.com/">The Ruby Toolbox</a> は、オープンソースの Ruby プロジェクトを探索しやすくするプロジェクトです。
+様々な種類の一般的な開発タスクについてのカテゴリを持ち、
+リリースやコミットの活発さ、ライブラリの依存関係といった、各プロジェクトについての様々な情報を集約しています。
+また、RubyGems.org や GitHub での人気にもとづくプロジェクトのレーティングも行なっています。
+検索機能を使えば、あなたが探しているものを簡単に見つけられるでしょう。</p>
+<h3>RubyGems についてもう少し</h3>
+<p>普段使いのために <code>gem</code> コマンドについて軽く見ておきましょう。
+このパッケージ管理システムについて全般的に述べられた<a href="http://guides.rubygems.org/command-reference/">もっと詳しいドキュメント</a>もあります。</p>
+<h4>入手可能な gem を検索する</h4>
+<p>この <strong>search</strong> コマンドを使うと文字列で gem を検索することができます。指定された文字列で始まる名前の gem が返ります。例えば &quot;html&quot; 関連の gem を探したければ以下のようにします。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>--remote</code> / <code>-r</code> フラグは公式の RubyGems.org リポジトリを検索することを表しています。(そしてこれはデフォルトの動作です。)
+<code>--local</code> / <code>-l</code> フラグをつけるとインストール済みの gem に対して検索をかけることができます。</p>
+<h4>gem をインストールする</h4>
+<p>インストールしたい gem が見つかったなら、<strong>install</strong> コマンドでインストールできます。例えば人気のある Rails でしたら以下のようになります。</p>
+<!-- raw HTML omitted -->
+<p><code>--version</code> / <code>-v</code> フラグを使うと、ライブラリの特定のバージョンを指定してインストールすることも出来ます。</p>
+<!-- raw HTML omitted -->
+<h4>全ての gem を一覧にする</h4>
+<p>ローカルにインストール済みの gem の一覧を見たいときは <strong>list</strong> コマンドを使います。</p>
+<!-- raw HTML omitted -->
+<p>(とても長いですが) RubyGems.org で入手可能な全ての gem の一覧を見るには以下のようにします。</p>
+<!-- raw HTML omitted -->
+<h4>Help!</h4>
+<p>ドキュメントをターミナルで参照することが出来ます。</p>
+<!-- raw HTML omitted -->
+<p>たとえば、<code>gem help commands</code> は <code>gem</code> の全てのコマンドを出力するのでとても便利です。</p>
+<h4>自分で gem を作る</h4>
+<p>RubyGems.org に <a href="http://guides.rubygems.org/">いくつかのガイド</a> があります。
+<a href="http://bundler.io/">Bundler</a> について調べてみるのもいいでしょう。Bundler は RubyGems と一緒に使われる、アプリケーションの依存関係を管理するための一般的なツールです。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

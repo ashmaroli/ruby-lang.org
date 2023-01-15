@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.4.0 Rilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2016/12/25/ruby-2-4-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.4.0 Rilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2016-12-25<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 2.4.0.</p>
+<p>Ruby 2.4.0 adalah rilis <em>stable</em> pertama dari rangkaian Ruby 2.4.
+Rilis ini memperkenalkan banyak fitur, sebagai contoh:</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12142">Memperkenalkan penyempurnaan hash table (oleh Vladimir Makarov)</a></h2>
+<p>Menyempurnakan struktur internal dari <em>hash table</em> (st_table) dengan memperkenalkan
+<em>open addressing</em> dan sebuah <em>inclusion order array</em>.
+Penyempurnaan ini telah didiskusikan oleh banyak orang, khususnya Yura Sokolov.</p>
+<h2>Binding#irb: Memulai sebuah sesi REPL mirip dengan <code>binding.pry</code></h2>
+<p>Selama Anda melakukan <em>debugging</em>, Anda mungkin sering menggunakan <code>p</code> untuk
+melihat nilai dari variabel-variabel. Dengan <a href="https://github.com/pry/pry">pry</a>
+Anda dapat menggunakan <code>binding.pry</code> pada aplikasi Anda untuk meluncurkan
+sebuah REPL dan menjalankan kode Ruby apapun.
+<a href="https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a">r56624</a>
+memperkenalkan <code>binding.irb</code> yang memiliki perilaku seperti itu dengan irb.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">Menyatukan Fixnum dan Bignum ke dalam Integer</a></h2>
+<p>Meskipun <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a>
+tidak memerinci detail dari kelas Integer,
+Ruby telah memiliki dua kelas Integer: Fixnum dan Bignum.
+Ruby 2.4 menyatukan mereka ke dalam Integer,
+Semua ekstensi C yang bersentuhan dengan kelas Fixnum atau Bignum perlu untuk
+diperbaiki.</p>
+<p>Lihat juga <a href="https://bugs.ruby-lang.org/issues/12005">tiket</a> dan <a href="http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf">akr's slides</a>.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">String mendukung Unicode case mappings</a></h2>
+<p><code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code> sekarang menangani
+Unicode <em>case mappings</em> selain hanya ASCII <em>case mappings</em>.</p>
+<h2>Perbaikan performa</h2>
+<p>Ruby 2.4 juga mencakup perbaikan performa berikut termasuk perubahan bahasa:</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p><code>[x, y].max</code> dan <code>[x, y].min</code> dioptimalkan untuk tidak membuat sebuah <em>array</em>
+sementara dalam kondisi tertentu.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>Penambahan <code>Regexp#match?</code>, yang mengeksekusi sebuah <em>regexp match</em> tanpa
+membuat sebuah objek referensi kembali dan mengubah <code>$~</code> untuk mengurangi
+alokasi objek.</p>
+<h3>Perbaikan performa lainnya</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">mempercepat akses <em>instance variable</em></a></li>
+</ul>
+<h2>Debugging</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception dan Thread.report_on_exception</a></h3>
+<p>Ruby mengabaikan <em>exception</em> pada <em>thread</em> kecuali jika <em>thread</em> lain secara
+langsung bergabung dengannya. Dengan <code>report_on_exception = true</code>, Anda dapat
+memperhatikan jika sebuah <em>thread</em> telah mati karena <em>unhandled exception</em>.</p>
+<p>Kirimkan umpan balik apa yang seharusnya <em>default</em> untuk <code>report_on_exception</code>
+dan tentang report-on-GC, yang menunjukkan sebuah laporan ketika sebuah
+<em>thread</em> di-<em>garbage collected</em> tanpa <em>join</em>.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">Thread deadlock detection sekarang menampilkan thread dengan backtrace dan dependency-nya</a></h3>
+<p>Ruby memiliki <em>deadlock detection</em> saat menunggu <em>thread-thread</em>, tetapi laporannya
+tidak mengandung cukup informasi untuk <em>debugging</em>.
+<em>Deadlock detection</em> dari Ruby 2.4 menunjukkan <em>thread-thread</em> dengan
+<em>backtrace</em> dan <em>dependency</em>-nya.</p>
+<h2>Perubahan penting lainnya sejak 2.3</h2>
+<ul>
+<li>Mendukung OpenSSL 1.1.0 (memberhentikan dukungan untuk 0.9.7 atau sebelumnya)</li>
+<li>ext/tk sekarang dihapus dari stdlib <a href="https://bugs.ruby-lang.org/issues/8539">Fitur #8539</a></li>
+<li>XMLRPC sekarang dihapus dari stdlib <a href="https://bugs.ruby-lang.org/issues/12160">Fitur #12160</a></li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v2_4_0/NEWS">NEWS</a> atau riwayat
+<em>commit</em> untuk detail.</p>
+<p>Dengan perubahan tersebut, <a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0">2523 berkas berubah, 289129 sisipan(+), 84670
+terhapus (-)</a> sejak Ruby
+2.3.0!</p>
+<p>Selamat Natal, Selamat berlibur, dan nikmati memprogram dengan Ruby 2.4!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12572424 bytes
+SHA1:   944d2588308391b20a89642472454d1dfe7b2360
+SHA256: 440bbbdc49d08d3650f340dccb35986d9399177ad69a204def56e5d3954600cf
+SHA512: bef7bb53f63fb74073d071cc125fb67b273ed0779ef43c2d2969089b9ca21fff1bd012281c5b748f7a3c24dd26e71730d7248c05a01cb23ab2089eb4d02115fe
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14104044 bytes
+SHA1:   d44a3c50a0e742341ed3033d5db79d865151a4f4
+SHA256: 152fd0bd15a90b4a18213448f485d4b53e9f7662e1508190aa5b702446b29e3d
+SHA512: 21c9f596b42dd9cba7a53963a59fed0c2e0c1eb960a4ac7087ea3eaa991ce9252d32639e1edcb75b1d709bc07c4820a6dc336ab427d0643c6e6498e0eacdbc8b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9906880 bytes
+SHA1:   038804bbd0e77508dd2510b729a9f3b325489b2e
+SHA256: 3a87fef45cba48b9322236be60c455c13fd4220184ce7287600361319bb63690
+SHA512: 975a5388592adc038461e0acebb6c0efee242891b2ea8621476401458efe2bc0fdd317d3bf99beb745b0b3808410efdff33862da29c95c027f457943721e3ab6
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15758757 bytes
+SHA1:   29e1bab11551011718c35a51827edcb55bd656fc
+SHA256: 5c2bbfa26fd6a15a2d70961874b0f3a386206fcc5f698e240dd8b0c9f0f18c5e
+SHA512: 31d932372ce490eeac0a70bc8dcf842909a90435422398d069c05cf01d994936064b8f4e60879e28a8655c1296eb8e180e348cb95e001ed6ca73cda0ff77de23
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

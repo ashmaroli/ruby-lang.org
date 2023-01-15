@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Official Ruby FAQ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/faq/9/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p><em>If you wish to report errors or suggest improvements for this FAQ,
+please go to our
+<a href="https://github.com/ruby/www.ruby-lang.org/">GitHub repository</a>
+and open an issue or pull request.</em></p>
+<h2>Built-in libraries</h2>
+<h3>What does <code>instance_methods(false)</code> return?</h3>
+<p>The method <code>instance_methods</code> returns an array containing the names of
+instance methods in the receiving class or module. This will include
+the methods in superclasses and in mixed in modules.</p>
+<p><code>instance_methods(false)</code> or <code>instance_methods(nil)</code> returns the names
+of just those methods which are defined in the receiver.</p>
+<h3>How do random number seeds work?</h3>
+<p>If <code>rand</code> is called without a prior call to <code>srand</code>,
+Ruby's pseudo-random number generator uses a random(ish) seed that
+amongst other things uses an entropy source provided by the OS,
+if available.
+Successive runs of a program that does not use <code>srand</code> will generate
+different sequences of random numbers.</p>
+<p>For testing purposes, you can get a predictable behavior with the same
+series of numbers each time the program is run by calling <code>srand</code>
+with a constant seed.</p>
+<h3>I read a file and changed it, but the file on disk has not changed.</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File.open("example", "r+").readlines.each_with_index do |line, i|
+  line[0,0] = "#{i+1}: "
+end
+</code></pre></div></div>
+<p>This program does <em>not</em> add line numbers to the file <code>example</code>. It does read
+the contents of the file, and for each line read does prepend the line number,
+but the data is never written back. The code below <em>does</em> update the file
+(although somewhat dangerously, as it takes no backup before starting the
+update):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File.open("example", "r+") do |f|
+  lines = f.readlines
+  lines.each_with_index {|line, i| line[0,0] = "#{i+1}: " }
+  f.rewind
+  f.puts lines
+end
+</code></pre></div></div>
+<h3>How can I process a file and update its contents?</h3>
+<p>Using the command-line option <code>-i</code>, or built-in variable <code>$-i</code>, you can read
+a file and replace it.</p>
+<p>The code in the preceding question, which added line numbers to a file,
+is probably best written using this technique:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby -i -ne 'print "#$.: #$_"' example
+</code></pre></div></div>
+<p>If you want to preserve the original file, use <code>-i.bak</code> to create a backup.</p>
+<h3>I wrote a file, copied it, but the end of the copy seems to be lost.</h3>
+<p>This code will not work correctly:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "fileutils"
+
+File.open("file", "w").puts "This is a file."
+FileUtils.cp("file", "newfile")
+</code></pre></div></div>
+<p>Because I/O is buffered, <code>file</code> is being copied before its contents have been
+written to disk. <code>newfile</code> will probably be empty. However, when the program
+terminates, the buffers are flushed, and file has the expected content.</p>
+<p>The problem doesn't arise if you make sure that <code>file</code> is closed before
+copying:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "fileutils"
+
+File.open("file", "w") {|f| f.puts "This is a file." }
+FileUtils.cp("file", "newfile")
+</code></pre></div></div>
+<h3>How can I get the line number in the current input file?</h3>
+<p>As you read from a file, Ruby increments a line number counter in the global
+variable <code>$.</code>. This is also available using the <code>lineno</code> attribute of the
+<code>File</code> object.</p>
+<p>The special constant <code>ARGF</code> is a file-like object that can be used to read
+all the input files specified on the command line (or standard input if there
+are no files). <code>ARGF</code> is used implicitly by code such as:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while gets
+  print $_
+end
+</code></pre></div></div>
+<p>In this case, <code>$.</code> will be the cumulative number of lines read across all
+input files. To get the line number in the current file, use</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ARGF.file.lineno
+</code></pre></div></div>
+<p>You can also get the name of the current file using <code>ARGF.file.path</code>.</p>
+<h3>How can I use <code>less</code> to display my program's output?</h3>
+<p>I tried the following, but nothing came out:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open("|less", "w").puts "abc"
+</code></pre></div></div>
+<p>That's because the program ends immediately, and <code>less</code> never gets a chance
+to see the stuff you've written to it, never mind to display it.
+Make sure that the IO is properly closed and it will wait until <code>less</code> ends.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open("|less", "w") {|f| f.puts "abc" }
+</code></pre></div></div>
+<h3>What happens to a <code>File</code> object which is no longer referenced?</h3>
+<p>A <code>File</code> object which is no longer referenced becomes eligible for garbage
+collection. The file will be closed automatically when the <code>File</code> object is
+garbage collected.</p>
+<h3>I feel uneasy if I don't close a file.</h3>
+<p>There are at least four good ways of ensuring that you do close a file:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># (1)
+f = File.open("file")
+begin
+  f.each {|line| print line }
+ensure
+  f.close
+end
+
+# (2)
+File.open("file") do |f|
+  f.each {|line| print line }
+end
+
+# (3)
+File.foreach("file") {|line| print line }
+
+# (4)
+File.readlines("file").each {|line| print line }
+</code></pre></div></div>
+<h3>How can I sort files by their modification time?</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dir.glob("*").sort {|a, b| File.mtime(b) &lt;=&gt; File.mtime(a) }
+</code></pre></div></div>
+<p>Although this works (returning a list in reverse chronological order) it
+isn't very efficient, as it fetches the files' modification times from the
+operating system on every comparison.</p>
+<p>More efficiency can be bought with some extra complexity:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dir.glob("*").map {|f| [File.mtime(f), f] }.
+  sort {|a, b| b[0] &lt;=&gt; a[0] }.map(&amp;:last)
+</code></pre></div></div>
+<h3>How can I count the frequency of words in a file?</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>freq = Hash.new(0)
+File.read("example").scan(/\w+/) {|word| freq[word] += 1 }
+freq.keys.sort.each {|word| puts "#{word}: #{freq[word]}" }
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>and: 1
+is: 3
+line: 3
+one: 1
+this: 3
+three: 1
+two: 1
+</code></pre></div></div>
+<h3>How can I sort strings in alphabetical order?</h3>
+<p>If you want your strings to sort 'AAA', 'BBB', ..., 'ZZZ', 'aaa', 'bbb',
+then the built-in comparison will work just fine.</p>
+<p>If you want to sort ignoring case distinctions, compare downcased versions of
+the strings in the sort block:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array = %w( z bB Bb bb Aa BB aA AA aa a A )
+array.sort {|a, b| a.downcase &lt;=&gt; b.downcase }
+  # =&gt; ["a", "A", "Aa", "aA", "AA", "aa", "bB", "Bb", "bb", "BB", "z"]
+</code></pre></div></div>
+<p>If you want to sort so that the 'A's and 'a's come together, but 'a' is
+considered greater than 'A' (so 'Aa' comes after 'AA' but before 'AB'), use:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array.sort {|a, b| (a.downcase &lt;=&gt; b.downcase).nonzero? || a &lt;=&gt; b }
+  # =&gt; ["A", "a", "AA", "Aa", "aA", "aa", "BB", "Bb", "bB", "bb", "z"]
+</code></pre></div></div>
+<h3>How can I expand tabs to spaces?</h3>
+<p>{: #tab-expansion}</p>
+<p>If <code>a</code> holds the string to be expanded, you could use one of:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 while a.sub!(/(^[^\t]*)\t(\t*)/){$1+" "*(8-$1.size%8+8*$2.size)}
+# or
+1 while a.sub!(/\t(\t*)/){" "*(8-$~.begin(0)%8+8*$1.size)}
+# or
+a.gsub!(/([^\t]{8})|([^\t]*)\t/n){[$+].pack("A8")}
+</code></pre></div></div>
+<h3>How can I escape a backslash in a regular expression?</h3>
+<p><code>Regexp.quote('\\')</code> escapes a backslash.</p>
+<p>It gets trickier if you are using <code>sub</code> and <code>gsub</code>. Say you write
+<code>gsub(/\\/, '\\\\')</code>, hoping to replace each backslash with two.
+The second argument is converted to <code>'\\'</code> in syntax analysis. When the
+substitution occurs, the regular expression engine converts this to <code>'\'</code>,
+so the net effect is to replace each single backslash with another single
+backslash. You need to write <code>gsub(/\\/, '\\\\\\')</code>!</p>
+<p>However, using the fact that <code>\&amp;</code> contains the matched string, you could also
+write <code>gsub(/\\/, '\&amp;\&amp;')</code>.</p>
+<p>If you use the block form of <code>gsub</code>, i.e. <code>gsub(/\\/) { '\\\\' }</code>, the string
+for substitution is analyzed only once (during the syntax pass) and the
+result is what you intended.</p>
+<h3>What is the difference between <code>sub</code> and <code>sub!</code>?</h3>
+<p>In <code>sub</code>, a copy of the receiver is generated, substituted, and returned.</p>
+<p>In <code>sub!</code>, the receiver is altered and returned if any match was found.
+Otherwise, <code>nil</code> is returned.</p>
+<p>Methods like <code>sub!</code>, which alter the attribute of the receiver,
+are called <a href="../7/#destructive-method">destructive methods</a>.
+Usually, if there are two similar methods and one is destructive,
+the destructive one has a suffix <code>!</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo(str)
+  str.sub(/foo/, "baz")
+end
+
+obj = "foo"
+foo(obj)  # =&gt; "baz"
+obj       # =&gt; "foo"
+
+def foo(str)
+  str.sub!(/foo/, "baz")
+end
+
+foo(obj)  # =&gt; "baz"
+obj       # =&gt; "baz"
+</code></pre></div></div>
+<h3>Where does <code>\Z</code> match?</h3>
+<p><code>\Z</code> matches just before the last <code>\n</code> (newline) if the string ends
+with a <code>\n</code>, otherwise it matches at the end of a string.</p>
+<h3>What is the difference between <code>thread</code> and <code>fork</code>?</h3>
+<!-- raw HTML omitted -->
+<p>Ruby threads are implemented within the interpreter, while <code>fork</code> invokes the
+operating system to create a separately executing subprocess.</p>
+<p>Thread and fork have the following characteristics:</p>
+<ul>
+<li><code>fork</code> is slow, <code>thread</code> is not.</li>
+<li><code>fork</code> does not share the memory space.</li>
+<li><code>thread</code> does not cause thrashing.</li>
+<li><code>thread</code> works on DOS.</li>
+<li>When <code>thread</code> gets in a deadlock, the whole process stops.</li>
+<li><code>fork</code> can take advantage of pauses waiting for I/O to complete,
+<code>thread</code> does not (at least not without some help).</li>
+</ul>
+<p>You probably shouldn't mix <code>fork</code> and <code>thread</code>.</p>
+<h3>How can I use <code>Marshal</code>?</h3>
+<p><code>Marshal</code> is used to store an object in a file or a string, and later
+reconstitute it. Objects may be stored using:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Marshal.dump( obj [, io ] [, lev] )
+</code></pre></div></div>
+<p><code>io</code> is a writable <code>IO</code> object, <code>lev</code> designates the level to which objects
+are dereferred and stored. If <code>lev</code> levels of dereferring are done and object
+references still exist, then <code>dump</code> stores just the reference, not the object
+referenced. This is not good, as these referenced objects cannot be
+subsequently reconstructed.</p>
+<p>If <code>io</code> is omitted, the marshaled objects are returned in a string.</p>
+<p>You can load objects back using:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>obj = Marshal.load(io)
+# or
+obj = Marshal.load(str)
+</code></pre></div></div>
+<p>where <code>io</code> is a readable <code>IO</code> object, <code>str</code> is the dumped string.</p>
+<h3>How can I use <code>trap</code>?</h3>
+<p><code>trap</code> associates code blocks with external events (signals).</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trap("PIPE") { raise "SIGPIPE" }
+</code></pre></div></div>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

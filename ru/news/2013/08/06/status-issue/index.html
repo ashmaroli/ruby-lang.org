@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Проблема на ruby-lang.org</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/news/2013/08/06/status-issue/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Проблема на ruby-lang.org</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Опубликовал hsbt 06-08-2013<br>
+                         Перевел: gazay</p>
+
+    <p>Некоторые из сервисов, предоставленных ruby-lang.org, остановлены,
+потому что сервера ruby-lang.org сейчас не доступны.</p>
+<p>Результаты следующие:</p>
+<ul>
+<li>Все почтовые рассылки, предоставленные ruby-lang.org не работают.</li>
+<li>tar пакеты, находящиеся на ftp.ruby-lang.org недоступны.</li>
+<li>Вам не удастся зайти на www.ruby-lang.org по старому кешу DNS.</li>
+</ul>
+<p>Мы заняты починкой сервисов в данный момент.</p>
+<h2>Обновление (2013-08-06 9:33 UTC)</h2>
+<p>Причиной сегодняшних проблем стала ошибка сервера.
+Мы решили следующие проблемы:</p>
+<ul>
+<li>Все почтовые рассылки работают, но до сих пор с некоторыми
+проблемами. Мы решаем их.</li>
+<li>ftp.ruby-lang.org снова доступен по http и ftp.</li>
+</ul>
+<p>Если вы испытываете другие проблемы, пожалуйста, отправьте нам сообщение
+о них на https://github.com/ruby/www.ruby-lang.org/issues.</p>
+<h2>Обновление (2013-08-06 13:18 UTC)</h2>
+<p>Мы остановили ftp.ruby-lang.org через http и ftp, потому что некоторые
+старые пакеты Ruby сломаны. MD5 не совпадает как ожидается.</p>
+<p>Мы исследуем данную проблему сейчас. Детальная информация в следующем
+топике: https://github.com/ruby/www.ruby-lang.org/issues/259</p>
+<h2>Обновление (2013-08-07 05:08 UTC)</h2>
+<p>Мы подтвердили, что следующие пакеты сломаны. Эти пакеты доступны на http://mirrorservice.org/sites/ftp.ruby-lang.org/pub/ruby/</p>
+<!-- raw HTML omitted -->
+<p>Мы проверили, что MD5 сумма от этих пакетов та же, что и в релизах.
+ftp.ruby-lang.org опять доступен через http и ftp.</p>
+<h2>Обновление (2013-08-09 10:30 UTC)</h2>
+<p>Некоторые из наших сервисов вновь работают. Те, которые были остановлены
+с 6-го августа 2013 из-за проблем с серверами, описанными выше.</p>
+<ul>
+<li>Почтовые рассылки: мы сменили приложение для предоставления данного
+сервиса с FML на Mailman.
+<ul>
+<li>Детали вы можете посмотреть на
+http://lists.ruby-lang.org</li>
+</ul>
+</li>
+<li>Предоставление пакетов: вы можете скачать пакеты, предоставленные
+нами, с ftp.ruby-lang.org через http и ftp.</li>
+<li>Снимки пакетов: мы перезапустили дневные снимки сборок пакетов</li>
+</ul>
+<p>Если вы встретите какую-либо проблему на наших сервисах, пожалуйста,
+отправьте сообщение о ней на https://github.com/ruby/www.ruby-lang.org/issues</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последние новости</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ru/news/2021/08/03/fukuoka-ruby-award-2022/">Конкурс на соискание премии Fukuoka Ruby 2022 - судить участников будет Matz</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-3-0-2-released/">Вышел Ruby 3.0.2</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-2-7-4-released/">Вышел Ruby 2.7.4</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

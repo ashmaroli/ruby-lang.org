@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.1.0 yayınlandı.</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/news/2013/12/25/ruby-2-1-0-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.1.0 yayınlandı.</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">nurse tarafından 25.12.2013 tarihinde gönderildi<br>
+                         Çeviri: sdogruyol</p>
+
+    <p>Ruby 2.1.0 yayınlandı!</p>
+<p>Ruby 2.1 geri uyumluluğu bozmadan bir çok iyileştirme ve hızlandırma ile beraber
+gelmektedir.</p>
+<p>Şimdi Deneyin!</p>
+<h2>İndir</h2>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.bz2</a>
+<ul>
+<li>BOYUT:  12007442 bayt</li>
+<li>MD5:    1546eeb763ac7754365664be763a1e8f</li>
+<li>SHA256: 1d3f4ad5f619ec15229206b6667586dcec7cc986672c8fbb8558161ecf07e277</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz</a>
+<ul>
+<li>BOYUT:  15076389 bayt</li>
+<li>MD5:    9e6386d53f5200a3e7069107405b93f7</li>
+<li>SHA256: 3538ec1f6af96ed9deb04e0965274528162726cc9ba3625dcf23648df872d09d</li>
+</ul>
+</li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.zip">https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.zip</a>
+<ul>
+<li>BOYUT:  16603067 bayt</li>
+<li>MD5:    2fc3a80b56da81b906a9bb6fc7ca8399</li>
+<li>SHA256: d40d7bfb39ca2e462dea61dcbbcf33426b60e6e553335c3afb39b4d827a6891c</li>
+</ul>
+</li>
+</ul>
+<h2>2.0'dan değişiklikler</h2>
+<p>Öne çıkan değişiklikler:</p>
+<ul>
+<li>VM (Metod Önbelleği)</li>
+<li>RGenGC (ko1'in <a href="http://rubykaigi.org/2013/talk/S73">RubyKaigi Sunumu</a> ve <a href="http://www.atdot.net/~ko1/activities/rubyconf2013-ko1_pub.pdf">RubyConf 2013 Sunumu</a>na bakın)</li>
+<li>arıtımlar <a href="https://bugs.ruby-lang.org/issues/8481">#8481</a> <a href="https://bugs.ruby-lang.org/issues/8571">#8571</a></li>
+<li>sözdizimi değişiklikleri
+<ul>
+<li>Rasyonel/Karmaşık Kalıplar <a href="https://bugs.ruby-lang.org/issues/8430">#8430</a></li>
+<li>def'in döndürme değeri <a href="https://bugs.ruby-lang.org/issues/3753">#3753</a></li>
+</ul>
+</li>
+<li>Bignum
+<ul>
+<li>GMP kullan <a href="https://bugs.ruby-lang.org/issues/8796">#8796</a></li>
+</ul>
+</li>
+<li>String#scrub <a href="https://bugs.ruby-lang.org/issues/8414">#8414</a></li>
+<li>Socket.getifaddrs <a href="https://bugs.ruby-lang.org/issues/8368">#8368</a></li>
+<li>RDoc 4.1.0 ve RubyGems 2.2.0</li>
+<li>&quot;literal&quot;.freeze artık optimize edilmiş halde<a href="https://bugs.ruby-lang.org/issues/9042">#9042</a></li>
+<li>Exception#cause eklendi <a href="https://bugs.ruby-lang.org/issues/8257">#8257</a></li>
+<li>BigDecimal, JSON, NKF, Rake, RubyGems, ve RDoc gibi kütüphaneler güncellendi</li>
+<li>curses kaldırıldı <a href="https://bugs.ruby-lang.org/issues/8584">#8584</a></li>
+</ul>
+<p>Değişiklikleri daha detaylı gör: <a href="https://github.com/ruby/ruby/blob/v2_1_0/NEWS">Ruby deposunda NEWS</a>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Son Haberler</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/tr/news/2021/08/03/fukuoka-ruby-award-2022/">2022 Fukuoka Ruby Ödül Yarışması - Girişler Matz tarafından yargılanacak</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Net::FTP'de FTP PASV yanıtlarına güvenme zaafiyeti</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Net::IMAP'te bir StartTLS çıkarma zaafiyeti</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/ruby-3-0-2-released/">Ruby 3.0.2 Yayınlandı</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/ruby-2-7-4-released/">Ruby 2.7.4 Yayınlandı</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

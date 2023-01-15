@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.6.10 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2022/04/12/ruby-2-6-10-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.6.10 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: usa and mame (2022-04-12)<br>
+                         번역자: shia</p>
+
+    <p>Ruby 2.6.10이 릴리스되었습니다.</p>
+<p>이 릴리스는 보안 수정을 포함합니다.
+자세한 사항은 아래 글을 확인해 보세요.</p>
+<ul>
+<li><a href="/ko/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/">CVE-2022-28739: String에서 Float로 변환할 때의 버퍼 오버런</a></li>
+</ul>
+<p>이 릴리스는 매우 오래된 컴파일러로 빌드할 때의 문제 수정과 date 라이브러리의 회귀 버그 수정을 포함합니다.
+자세한 사항은 <a href="https://github.com/ruby/ruby/compare/v2_6_9...v2_6_10">커밋 로그</a>를 확인해 주세요.</p>
+<p>이 릴리스로 Ruby 2.6은 EOL이 됩니다. 다르게 말하면, Ruby 2.6 버전대의 마지막 릴리스가 될 예정입니다.
+보안 취약점이 발견되더라도 2.6.11은 릴리스되지 않을 것입니다. (심각한 회귀 버그가 발생하는 경우는 예외입니다.)
+모든 Ruby 2.6 사용자는 Ruby 3.1, 3.0, 2.7로 즉시 업그레이드하기 바랍니다.</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14136083
+SHA1: ece89ec43e107a80efe35b3b7879dbe07e1a636f
+SHA256: 399e1f13e7fedc3c6ae2ff541bbf26c44dfb63b07b6c186fdd15b4e526e27e9c
+SHA512: 275a0f329641e6c3d3d3c33ffabf585195187eb3baa4fb1dfd35999fa0a80bd5925943fa2711827ac00dffb6c9a1deeadabaf2e9ee401d56926fc167db5ae4a4
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 16200134
+SHA1: e50f3194ac23da8d71882d611056ed06068169ef
+SHA256: 0dc609f263d49c4176d5725deefc337273676395985b5e017789373e8cadf16e
+SHA512: 13249c639da236d48749f5d9f563068f032f02d75372a8a5633626fdd32814150e7f79e81b25b205885ac38964ab20ef7323bd40346a798948f63a2eba5c8daf
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 11582056
+SHA1: e91de95735d0af32238903c7c58d2b660433e0cc
+SHA256: 5fd8ded51321b88fdc9c1b4b0eb1b951d2eddbc293865da0151612c2e814c1f2
+SHA512: 06ebf1442c4bf4be62eb710348cfb714cbc4c4acc5125319a425fe76ef2be7cccfd41e50bf3751bfef3ceb8ac47ad41a027d2c2ad560e25ec694e34fd9f62a8a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.zip">https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 19888325
+SHA1: 1183c8b6a74fa8be798a07d16028138be30bb8d6
+SHA256: 381e62de1cbac80b356c2fa77ee1906a169bb8cde4a9ec64541a41db32db046d
+SHA512: 352efede781c3c3b1aaaaeaa28050d530b8a350ec549218464dfe57a4d39770f5a345978fc9f6c23d5f539db70bd9f53c4fbf807dc4ec4bdf9cae1acbe6c2c99
+</code></pre></div></div>
+</li>
+</ul>
+<h2>릴리스 코멘트</h2>
+<p>많은 커미터, 개발자, 버그를 보고해 준 사용자들이 이 릴리스를 만드는 데 도움을 주었습니다.
+그들의 기여에 감사드립니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

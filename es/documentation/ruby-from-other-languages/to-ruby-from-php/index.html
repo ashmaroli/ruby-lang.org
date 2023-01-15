@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>A Ruby desde PHP</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/documentation/ruby-from-other-languages/to-ruby-from-php/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>A Ruby desde PHP</h1>
+
+
+
+  <div id="content">
+    <p>PHP es muy utilizado para realizar aplicaciones web, pero si quieres
+usar Ruby on Rails o simplemente quieres un lenguaje más orientado al
+uso en general, vale la pena considerar Ruby.</p>
+<h3>Similaridades</h3>
+<p>Como en PHP, en Ruby…</p>
+<ul>
+<li>las variables son dinámicamente tipadas, así que no tienes que
+preocuparte por declararlas.</li>
+<li>hay clases, y puedes controlar el acceso a ellas como en PHP 5
+(<code>public</code>, <code>protected</code> y <code>private</code>).</li>
+<li>algunas variables comienzan con $, pero no todas.</li>
+<li>también está <code>eval</code>.</li>
+<li>puedes usar el interpolado de strings. En vez de hacer <code>&quot;$foo es un $bar&quot;</code>,
+puedes hacer <code>&quot;#{foo} es un #{bar}&quot;</code>—al igual que en PHP,
+esto no aplica para los strings definidos con comillas simples.</li>
+<li>tienes “documentos internos” (“heredocs” en inglés).</li>
+<li>tienes excepciones, como PHP 5.</li>
+<li>hay una biblioteca estándar bastante grande.</li>
+<li>los arrays y hashes funcionan como se espera que lo hagan, si cambias
+<code>array()</code> por <code>{</code> y <code>}</code>: <code>array('a' =&gt; 'b')</code> en Ruby es <code>{'a' =&gt; 'b'}</code>.</li>
+<li><code>true</code> y <code>false</code> se comportan como en PHP, pero <code>null</code> se llama <code>nil</code>.</li>
+</ul>
+<h3>Diferencias</h3>
+<p>A diferencia de PHP, en Ruby…</p>
+<ul>
+<li>hay tipado fuerte. Necesitarás utilizar <code>to_s</code>, <code>to_i</code>, etc. para
+convertir entre strings, integers y así en más, en vez de depender del
+lenguaje para que lo haga.</li>
+<li>los strings, números, arrays, hashes, etc. son objetos. En vez de
+utilizar <code>abs(-1)</code> se usa <code>-1.abs</code>.</li>
+<li>los paréntesis son opcionales en las llamadas a los métodos, excepto
+para clarificar qué parámetros van para qué método, cuando es
+necesario.</li>
+<li>en vez de usar condiciones de nombrado, como guiones bajos
+(underscores), la biblioteca estándar y las extensiones están
+organizadas en módulos y clases.</li>
+<li>la reflexión es una capacidad inherente de los objetos, no necesitas
+usar clases <code>Reflection</code> como con PHP 5.</li>
+<li>las variables son referencias.</li>
+<li>no hay clases <code>abstract</code> o interfaces.</li>
+<li>los hashes y arrays no son intercambiables.</li>
+<li>sólo <code>false</code> y <code>nil</code> son falsos: <code>0</code>, <code>array()</code> y <code>&quot;&quot;</code>, son todos
+verdaderos en las condiciones lógicas.</li>
+<li>casi todo es una llamada a un método, incluso <code>raise</code> (equivalente a
+<code>throw</code> en PHP).</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Iníciate</strong>, ¡es fácil!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">¡Prueba Ruby! (en tu navegador)</a></li>
+
+    
+    <li><a href="/es/documentation/quickstart/">Ruby en 20 Minutos</a></li>
+    
+
+    
+    <li><a href="/es/documentation/ruby-from-other-languages/">Ruby desde otros lenguajes</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explora</strong> un nuevo mundo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/es/documentation/">Documentación</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Investigación académica</a></li>
+    
+
+    
+    <li><a href="/es/libraries/">Bibliotecas</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Casos exitosos (en inglés)</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participa</strong> en una amistosa y creciente comunidad.</h3>
+  <ul>
+    
+    <li><a href="/es/community/mailing-lists/">Listas de correo</a>: Habla sobre Ruby con desarrolladores alrededor del mundo.</li>
+    
+
+    
+    <li><a href="/es/community/user-groups/">Grupos de usuarios</a>: Ponte en contacto con otros Rubyistas en tu localidad.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs (en inglés)</a>: Entérate de lo que está sucediendo en la comunidad.</li>
+    
+
+    
+    <li><a href="/es/community/ruby-core/">Ruby Core</a>: Ayuda a mejorar el futuro de Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Reportes de errores</a>: Reporta o ayuda a resolver problemas en Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

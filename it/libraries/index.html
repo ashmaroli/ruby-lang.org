@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Librerie</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/it/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/it/feeds/news.rss" rel="alternate" title="Ultime Notizie (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/it/">
+          <h1>Ruby</h1>
+          <h2>Il migliore amico dei programmatori</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cerca" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Librerie</h1>
+
+
+
+  <div id="content">
+    <p>Come la maggior parte dei linguaggi, Ruby sfrutta una miriade di librerie
+di terze parti.
+{: .summary}</p>
+<p>La maggior parte di queste sono rilasciate sotto forma di <strong>gem</strong>.
+<a href="https://rubygems.org/"><strong>RubyGems</strong></a> è un sistema di pacchettizzazione Ruby progettato per
+facilitare la creazione, la condivisione e l'installazione di librerie
+(in un certo senso è un sistema di pacchettizzazione delle distribuzioni
+simile ad <code>apt-get</code>, ma specifico per il software Ruby).
+Dalla versione 1.9 Ruby è distribuito di default con RubyGems; nelle
+precedenti versioni di Ruby è necessario <a href="https://rubygems.org/pages/download/">installarlo manualmente</a>.</p>
+<p>Alcune librerie sono rilasciate tramite un archivio (.zip o .tar.gz)
+contenente il <strong>codice sorgente</strong>. Il processo di installazione
+potrebbe in questo caso cambiare, solitamente un file <code>README</code> o
+<code>INSTALL</code> è presente con le istruzioni.</p>
+<p>Diamo un'occhiata a come trovare le librerie ed installarle per farne
+uso.</p>
+<h3>Trovare le librerie</h3>
+<p>Tipicamente il posto più comune dove vengono mantenute le librerie è
+<a href="https://rubygems.org/"><strong>RubyGems.org</strong></a>, dove è possibile ottenere librerie Ruby sotto
+forma di gem. È possibile esplorare il sito direttamente o usare il
+comando <code>gem</code>.</p>
+<p>Usando <code>gem search -r</code> puoi ispezionare il repository RubyGems.
+Ad esempio, <code>gem search -r rails</code> ritornerà una lista di gem correlate
+a Rails. Con l'opzione <code>--local</code> (<code>-l</code>), è possibile effettuare una
+ricerca locale tra le gem installate. Per installare una gem, puoi
+usare <code>gem install [gem]</code>. Per vedere tutte le gem installate puoi
+usare <code>gem list</code>. Per maggiori informazioni sul comando <code>gem</code>, guarda
+a fondo pagina o visita la <a href="http://guides.rubygems.org/">documentazione RubyGems</a>.</p>
+<p>Ci sono anche altre fonti per ottenere delle librerie. <a href="http://rubyforge.org/">RubyForge</a>
+è stato in passato un sistema molto popolare per trovare delle librerie
+Ruby; negli ultimi anni è stato sostituito in popolarità da
+<a href="https://github.com/"><strong>GitHub</strong></a> come fonte per repository contenenti codice Ruby. Molto
+spesso il codice sorgente di una gem è mantenuto su GitHub mentre su
+RubyGems.org viene mantenuta la versione del codice sotto forma di gem.</p>
+<p><a href="https://www.ruby-toolbox.com/"><strong>The Ruby Toolbox</strong></a> è un progetto che permette di esplorare facilmente
+i progetti Ruby open source. Mette a disposizione categorie relative ad
+i più comuni task e problematiche di programmazione; colleziona molte
+informazioni relative ai progetti come le release, l'attività sul codice
+sorgente o le dipendenze ed assegna una valutazione ai progetti
+basandosi sulla popolarità su RubyGems.org e GitHub.
+La ricerca permette spesso di trovare quello che cerchi facilmente.</p>
+<h3>Una rapida introduzione a RubyGems</h3>
+<p>Di seguito viene presentato il comando <code>gem</code> come viene più frequentemente
+utilizzato. È anche disponibile <a href="http://guides.rubygems.org/command-reference/">la documentazione più dettagliata</a>,
+che spiega tutti gli aspetti di questo sistema di pacchettizzazione.</p>
+<h4>Cercare tra le gem disponibili</h4>
+<p>Il comando <strong>search</strong> può essere usato per cercare delle gem con un
+certo nome. Per esempio, per cercare la parola “html” nel nome di una gem:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>L'opzione <code>--remote</code> / <code>-r</code> indica che vogliamo effettuare una
+ricerca sul repository ufficiale RubyGems.org (comportamento
+di default).
+Con l'opzione <code>--local</code> / <code>-l</code> è invece possibile effettuare
+una ricerca tra le gem installate localmente sul sistema.</p>
+<h4>Installare una gem</h4>
+<p>Una volta che conosci il nome della gem che ti serve, ad esempio
+la molto conosciuta Rails:</p>
+<!-- raw HTML omitted -->
+<p>Puoi anche installare solamente una determinata versione della libreria
+specificando l'opzione <code>--version</code> / <code>-v</code>.</p>
+<!-- raw HTML omitted -->
+<h4>Elencare tutte le gem</h4>
+<p>Per una lista completa di tutte le gem presenti localmente, usa il
+comando <strong>list</strong>:</p>
+<!-- raw HTML omitted -->
+<p>Per ottenere una lista (molto lunga) di tutte le gem disponibili
+su RubyGems.org:</p>
+<!-- raw HTML omitted -->
+<h4>Aiuto!</h4>
+<p>La documentazione è a tua disposizione direttamente dal terminale:</p>
+<!-- raw HTML omitted -->
+<p>Per esempio, <code>gem help commands</code> è molto utile per avere una lista
+di tutti i comandi di <code>gem</code>.</p>
+<h4>Creare le tue gem</h4>
+<p>RubyGems.org ha <a href="http://guides.rubygems.org/">diverse guide</a> sull'argomento. Probabilmente potresti
+essere interessato anche a <a href="http://bundler.io/">Bundler</a>, un tool progettato per facilitare
+la gestione delle dipendeze di un'applicazione che può essere usato insieme
+a RubyGems.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Per iniziare</strong>, è facile!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Prova Ruby! (nel tuo browser)</a></li>
+
+    
+    <li><a href="/it/documentation/quickstart/">Ruby in venti minuti</a></li>
+    
+
+    
+    <li><a href="/it/documentation/ruby-from-other-languages/">Ruby a partire da altri linguaggi</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Esplora</strong> un nuovo mondo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/it/documentation/">Documentazione</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/it/libraries/">Librerie</a></li>
+    
+
+    
+    <li><a href="/it/documentation/success-stories/">Esperienze Positive</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Partecipa</strong> ad una comunità amichevole e in crescita.</h3>
+  <ul>
+    
+    <li><a href="/it/community/mailing-lists/">Liste di Discussione</a>: Parla con altri programmatori Ruby da tutto il mondo.</li>
+    
+
+    
+    <li><a href="/it/community/user-groups/">Gruppi di Utenti</a>: Entra in contatto con "Rubysti" nella tua zona.</li>
+    
+
+    
+    <li><a href="/it/community/weblogs/">Blog</a>: Leggi cosa sta succedendo proprio adesso nella comunità di Ruby.</li>
+    
+
+    
+    <li><a href="/it/community/ruby-core/">Ruby Core</a>: Aiutaci a perfezionare l'ultimo Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Segnalaci o aiutaci a risolvere problemi in Ruby</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feed RSS</h3>
+    <p><a href="/it/feeds/news.rss">Ultime Notizie (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Questo sito in altre lingue:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/it/about/website/">Questo sito web</a> è mantenuto con orgoglio dai membri della comunità Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.0'da konumsal argümanların ve anahtar kelime argümanlarının ayrılması</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.0'da konumsal argümanların ve anahtar kelime argümanlarının ayrılması</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">mame tarafından 12.12.2019 tarihinde gönderildi<br>
+                         Çeviri: İsmail Arılık</p>
+
+    <p>Bu makale Ruby 3.0'daki planlanan anahtar kelime argümanlarının uyumsuzluklarını açıklamaktadır.</p>
+<h2>tl;dr</h2>
+<p>Ruby 3.0'da konumsal ve anahtar kelime argümanları ayrılacaktır.
+Ruby 2.7, Ruby 3.0'da değişecek davranışlar konusunda uyarı gösterecektir.
+Eğer aşağıdaki uyarıları görüyorsanız, kodunuzu güncellemelisiniz:</p>
+<ul>
+<li><code>Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call</code>, ya da</li>
+<li><code>Passing the keyword argument as the last hash parameter is deprecated</code>, ya da</li>
+<li><code>Splitting the last argument into positional and keyword parameters is deprecated</code></li>
+</ul>
+<p>Çoğu durumda <em>çift splat</em> operatörü ekleyerek uyumsuzluktan kaçınılabilir.
+Bu operatör harici olarak, bir <code>Hash</code> nesnesi yerine anahtar kelime argümanları geçirildiğini ifade eder.
+Harici olarak, anahtar kelime argümanları yerine bir <code>Hash</code> nesnesi geçirmek içinse süslü parantezler (<code>{}</code>) ekleyebilirsiniz.
+Daha fazla ayrıntı için aşağıdaki &quot;Tipik durumlar&quot; bölümünü okuyun.</p>
+<p>Ruby 3'te, tüm argümanları yetkilendiren bir metod, konumsal argümanlara ilaveten harici olarak anahtar kelime argümanlarını da yetkilendirmelidir.
+Ruby 2.7 ve öncesinde bulunan yetkilendirme davranışını korumak istiyorsanız, <code>ruby2_keywords</code>'ü kullanın.
+Daha fazla ayrıntı için aşağıdaki &quot;Argüman yetkilendirmeyi ele alma&quot; bölümüne bakın.</p>
+<h2>Tipik durumlar</h2>
+<p>{: #typical-cases }</p>
+<p>İşte en tipik durumlar.
+Hash yerine anahtar kelimeleri geçmek için çift splat operatörünü (<code>**</code>) kullanabilirsiniz.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->h<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Bu metod çağrısı konumsal bir Hash argümanı geçirir<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.7'de: Hash otomatik olarak bir anahtar kelime argümanına çevrilir<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 3.0'da: Bu çağrı bir ArgumentError yükseltir<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo.rb:11: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo.rb:2: warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    42<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Ruby 3.0'da bu davranışı korumak istiyorsanız, çift splat kullanın<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 42<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Bir diğer durum.
+Anahtar kelimeler yerine Hash geçirmek için harici olarak süslü parantezleri kullanabilirsiniz.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Bu çağrı sadece bir anahtar kelime argümanı geçirir ve hiç konumsal bir argüman geçirmez<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.7'de: Anahtar kelime konumsal bir Hash argümanına çevrilir<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 3.0'da: Bu çağrı bir ArgumentError yükseltir<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo2.rb:9: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo2.rb:2: warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    {:k=&gt;42}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Ruby 3.0'daki davranışı korumak istiyorsanız, harici olarak bir Hash oluşturmak için süslü parantezleri kullanın<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->})<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; {:k=&gt;42}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Sonu gelen hangisi?</h2>
+<p>{: #what-is-deprecated }</p>
+<p>Ruby 2'de anahtar kelime argümanları son konumsal Hash argümanı olarak düşünülebilir ve son konumsal Hash argümanı anahtar kelime argümanları olarak düşünülebilir.</p>
+<p>Otomatik çevrim son bölümde açıklandığı gibi bazen çok karmaşık ve sıkıntılı olduğu için, Ruby 2.7 ile birlikte sonunun geldiği belirtilecek ve Ruby 3'te kaldırılacaktır.
+Diğer bir deyişle, Ruby 3'te anahtar kelime argümanları, konumsal olanlardan tamamen ayrılacaktır.
+Yani anahtar kelime argümanları geçirmek istediğinizde her zaman <code>foo(k: expr)</code> ya da <code>foo(**expr)</code> kullanmalısınız.
+Eğer anahtar kelime argümanları kabul etmek istiyorsanız, prensipte her zaman <code>def foo(k: default)</code> ya da <code>def foo(k:)</code> ya da <code>def foo(**kwargs)</code> kullanmalısınız.</p>
+<p>Anahtar kelime argümanları ile anahtar kelime argümanları kabul etmeyen bir metod çağrıldığında, Ruby 3.0'ın farklı davranmayacağına dikkat edin.
+Örneğin, aşağıdaki durumun desteği sonlanmayacaktır ve bu durum Ruby 3.0'da çalışmaya devam edecektir.
+Anahtar kelime argümanları hala konumsal bir Hash argümanı olarak değerlendirilir.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Çünkü bu tarz çok sık kullanılmaktadır ve argümanın nasıl değerlendirileceği konusunda bir kafa karışıklığı ihtimali yoktur.
+Bu çevrimi yasaklamak, küçük bir fayda için ek uyumsuzluklara neden olacaktır.</p>
+<p>Fakat bu tarz, yeni kodlarda tavsiye edilmez, tabii sık sık bir Hash'i konumsal bir argüman olarak geçirip ayrıca anahtar kelime argümanlarını kullanmıyorsanız.
+Diğer türlü çift splat kullanın:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Kodum Ruby 2.7'de patlayacak mı?</h2>
+<p>{: #break-on-ruby-2-7 }</p>
+<p>Kısa cevap: &quot;Patlamayabilir.&quot;</p>
+<p>Ruby 2.7'deki değişiklikler, 3.0'a doğru bir göç etme yolu olarak tasarlanmaktadır.
+Prensipte Ruby 2.7, Ruby 3'te değişecek özelliklere karşı sadece uyarsa da, küçük olduğunu düşündüğümüz bazı uyumsuz değişiklikler içermektedir.
+Ayrıntılar için &quot;Diğer küçük değişiklikler&quot; bölümüne bakınız.</p>
+<p>Uyarılar ve küçük değişiklikler dışında Ruby 2.7, Ruby 2.6 ile uyumlu olmaya çalışmaktadır.
+Yani kodunuz muhtemelen Ruby 2.7'de çalışacaktır, tabii uyarılar verebilir.
+Ayrıca kodunuzu Ruby 2.7'de çalıştırarak, onun Ruby 3.0 için hazır olup olmadığını kontrol edebilirsiniz.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2>Argüman yetkilendirmeyi ele alma</h2>
+<p>{: #delegation }</p>
+<h3>Ruby 2.6 ya da öncesi</h3>
+<p>{: #delegation-ruby-2-6-or-prior }</p>
+<p>Ruby 2'de, bir <code>*rest</code> ve <code>&amp;block</code> argümanı kabul ederek ve bu ikisini hedef metoda geçirerek bir yetkilendirme metodu yazabilirsiniz.
+Bu davranışta anahtar kelime argümanları da konumsal argümanlar ve anahtar kelime argümanları arasındaki çevrim ile dahili olarak ele alınırlar.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 3</h3>
+<p>Anahtar kelime argümanlarını harici olarak yetkilendirmeniz gerekir.</p>
+<!-- raw HTML omitted -->
+<p>Alternatif olarak, eğer Ruby 2.6 ya da öncesi ile uyumluluğa ihtiyacınız yoksa ve herhangi bir argümanı değiştirmiyorsanız, Ruby 2.7'de tanıtılan yeni yetkilendirme sözdizimini (<code>...</code>) kullanabilirsiniz.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 2.7</h3>
+<p>{: #delegation-ruby-2-7 }</p>
+<p>Kısaca: <code>Module#ruby2_keywords</code>'ü kullanın ve <code>*args, &amp;block</code>'u yetkilendirin.</p>
+<!-- raw HTML omitted -->
+<p><code>ruby2_keywords</code>, son Hash argümanı olarak anahtar kelime argümanlarını kabul eder, ve diğer metodu çağırırken bunu anahtar kelime argümanları olarak geçirir.</p>
+<p>Aslında Ruby 2.7 birçok durumda yeni tarz yetkilendirmeyi destekler.
+Fakat bilinen bir çıkmaz var.
+Bir sonraki bölüme bakın.</p>
+<h3>Ruby 2.6, 2.7 ve Ruby 3'te çalışan uyumlu bir yetkilendirme</h3>
+<p>{: #a-compatible-delegation }</p>
+<p>Kısaca: Yine, <code>Module#ruby2_keywords</code>'ü kullanın.</p>
+<!-- raw HTML omitted -->
+<p>Maalesef eski tarz yetkilendirmeyi (yani <code>**kwargs</code> olmadan) kullanmalıyız çünkü Ruby 2.6 ya da öncesi yeni yetkilendirme tarzını doğru şekilde ele almaz.
+Bu, anahtar kelime ayrımının nedenlerinden biridir; ayrıntılar son bölümde açıklanmaktadır.
+<code>ruby2_keywords</code>, eski tarzı Ruby 2.7 ve 3.0'da bile çalıştırmanızı sağlar.
+2.6 ya da öncesinde tanımlı bir <code>ruby2_keywords</code> olmadığı için, lütfen <a href="https://rubygems.org/gems/ruby2_keywords">ruby2_keywords gem</a>'ini kullanın ya da bunu kendiniz tanımlayın:</p>
+<!-- raw HTML omitted -->
+<hr />
+<p>Eğer kodunuzun Ruby 2.6 ya da öncesinde çalışması gerekmiyorsa, Ruby 2.7'deki yeni tarzı deneyebilirsiniz.
+Bu neredeyse her durumda çalışır.
+Fakat maalesef aşağıdaki gibi çıkmazlar vardır:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted -->       <!-- raw HTML omitted -->#=&gt; Ruby 2.7: []   ({} düşer)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.7: [{}] (Harici olarak &quot;hayır&quot; anahtar kelimelerini geçirerek {} argümanını geçirebilirsiniz)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Boş bir Hash argümanı otomatik olarak çevrilir ve <code>**kwargs</code>'a çekilir, ve yetkilendirme çağrısı boş anahtar kelime hash'ini kaldırır, yani <code>target</code>'a hiçbir argüman geçirilmez.
+Bildiğimiz kadarıyla bu, tek çıkmaz durum.</p>
+<p>Son satırda belirtildiği üzere, bu çıkmazın çevresinden <code>**{}</code> argümanını kullanarak dolaşabilirsiniz.</p>
+<p>Eğer gerçekten taşınabilirlik konusunda endişeleniyorsanız, <code>ruby2_keywords</code>'ü kullanın.
+(Ruby 2.6 ya da öncesinin de anahtar kelime argümanları konusunda bir sürü çıkmaza sahip olduğunu kabul edin. :-)
+İleride, Ruby 2.6'nın hayatının sonuna gelmesiyle birlikte <code>ruby2_keywords</code> silinebilir.
+Bu noktada, anahtar kelime argümanlarını harici olarak yetkilendirmenizi tavsiye ederiz (yukarıdaki Ruby 3 koduna bakın).</p>
+<h2>Diğer küçük değişiklikler</h2>
+<p>{: #other-minor-changes }</p>
+<p>Anahtar kelime argümanları konusunda Ruby 2.7'de üç küçük değişiklik var.</p>
+<h3>1. Sembol olmayan anahtarlar anahtar kelime argümanlarında kullanılabilir</h3>
+<p>{: #other-minor-changes-non-symbol-keys }</p>
+<p>Ruby 2.6 ve öncesinde anahtar kelime argümanlarında sadece Sembol anahtarlara izin veriliyordu.
+Ruby 2.7'de anahtar kelime argümanları Sembol olmayan anahtarlar kullanabilir.</p>
+<!-- raw HTML omitted -->
+<p>Eğer bir metod hem isteğe bağlı argümanları hem de anahtar kelime argümanlarını kabul ediyorsa, hem Sembol anahtarlara hem de Sembol olmayan anahtarlara sahip bir Hash nesnesi Ruby 2.6'da ikiye ayrılır.
+Ruby 2.7'de ikisi de anahtar kelime olarak kabul edilir çünkü Sembol olmayan anahtarlara izin verilir.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: [1, {&quot;key&quot;=&gt;42, :sym=&gt;43}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Davranışı korumak için süslü parantezleri kullanın<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->},<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 ve 2.7: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ruby 2.7 eğer harici anahtar kelimeler kabul eden fakat anahtar kelime gerisi argümanı (<code>**kwargs</code>) kabul etmeyen bir metoda hem Sembol hem de Sembol olmayan anahtarlar ile bir Hash ya da anahtar kelime argümanları geçirilirse, yine de hash'leri ayırır.
+Bu davranış Ruby 3'te kaldırılacaktır, ve bir <code>ArgumentError</code> yükseltilecektir.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.6 ve 2.7: =&gt; [{&quot;key&quot;=&gt;42}, 43]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.7: warning: Splitting the last argument into positional and keyword parameters is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#           warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 3.0: ArgumentError<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>2. Boş bir hash (<code>**{}</code>) ile çift splat hiçbir argüman geçirmez</h3>
+<p>{: #other-minor-changes-empty-hash }</p>
+<p>Ruby 2.6 ve öncesinde, <code>**empty_hash</code> geçirmek konumsal bir boş Hash argümanı geçirir.
+Ruby 2.7 ve sonrasında ise hiçbir argüman geçirmez.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 ve öncesi: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 ve sonrası: []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo(**{})</code>'nun Ruby 2.6'da da 2.7'de de hiçbir şey geçirmediğine dikkat edin.
+Ruby 2.6 ve öncesinde <code>**{}</code>, ayrıştırıcı tarafından kaldırılır, ve Ruby 2.7'de ve sonrasında bu, <code>**empty_hash</code> olarak düşünülür, ki bu da bir metoda hiçbir anahtar kelime argümanı geçirmemek için kolay bir yol sunar.</p>
+<p>Ruby 2.7'de, bir metod yetersiz konumsal argüman ile çağrıldığında, Ruby 2.6 ile uyumlu olabilmek için <code>foo(**empty_hash)</code> bir uyarı yayınlayarak boş bir hash geçirir.
+Bu davranış 3.0'da kaldırılacaktır.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 ve öncesi: {}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#             warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 3.0: ArgumentError: wrong number of arguments<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>3. Anahtar-kelime-argümanı-yok sözdizimi (<code>**nil</code>) tanıtıldı</h3>
+<p>{: #other-minor-changes-double-splat-nil }</p>
+<p>Bir metodun hiçbir anahtar kelime argümanı kabul etmediğini harici olarak belirtmek için bu metodun tanımında <code>**nil</code> kullanabilirsiniz.
+Bu gibi metodları anahtar kelime argümanları ile çağırmak <code>ArgumentError</code>'a neden olacaktır.
+(Aslında bu yeni bir özelliktir, bir uyumsuzluk değildir.)</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 ve sonrasında: no keywords accepted (ArgumentError)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Bir metodun anahtar kelime argümanlarını kabul etmediğini harici olarak belirtmek kullanışlıdır.
+Diğer türlü, anahtar kelimeler yukarıdaki örnekteki gibi gerisi argümanına çekilir.
+Eğer bir metodu, anahtar kelime argümanları kabul etmek için genişletiyorsanız, bu metod aşağıdaki gibi bir uyumsuzluğa sahip olabilir:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Geçirilen bir anahtar kelime bir Hash nesnesine çevrilir (Ruby 3.0'da bile)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{:k=&gt;1}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Eğer metod, bir anahtar kelime kabul etmesi için genişletildiyse<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->mode: <!-- raw HTML omitted --><!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->args<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Var olan çağrı patlayabilir<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; ArgumentError: unknown keyword k<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Neden otomatik çevrimin sonunu getiriyoruz</h2>
+<p>{: #why-deprecated }</p>
+<p>Otomatik çevrim başta iyi bir fikir gibiydi, ve çoğu durumda iyi çalıştı.
+Fakat çok fazla sivrilikler vardı ve davranış hakkında birçok hata raporu aldık.</p>
+<p>Otomatik çevrim, bir metod isteğe bağlı argümanlar ve anahtar kelime argümanları kabul ettiğinde, iyi çalışmamaktadır.
+Bazı kişiler son Hash nesnesinin konumsal bir argüman olarak değerlendirilmesini, diğerleri ise anahtar kelime argümanlarına çevrilmesini beklemektedir.</p>
+<p>İşte en çok kafa karıştıran durumlardan birisi:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->=<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{}, {}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [1, {}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; beklenen: [{}, {}], asıl: [1, {}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ruby 2'de <code>foo({})</code>, boş bir Hash'i normal bir argüman olarak geçirir (yani <code>{}</code>, <code>x</code>'e geçirilir), fakat <code>bar({})</code> bir anahtar kelime argümanı geçirir (yani <code>{}</code>, <code>kwargs</code>'a atanır).
+Yani <code>any_method({})</code> oldukça kafa karıştırıcıdır.</p>
+<p><code>bar({}, **{})</code>'ı, <code>x</code>'e harici olarak boş bir hash geçiriyormuşuz gibi düşünebilirsiniz.
+Şaşırtıcı biçimde bu, beklediğiniz şekilde çalışmaz; Ruby 2.6'da hala <code>[1, {}]</code> yazdırır.
+Bunun nedeni Ruby 2.6'da ayrıştırıcının <code>**{}</code> argümanını boşvermesi ve ilk sıradaki <code>{}</code> argümanının otomatik olarak anahtar kelimelere (<code>**kwargs</code>) çevrilmesidir.
+Bu durumda <code>bar({}, {})</code>'ı çağırmalısınız, fakat bu fazla garip durmaktadır.</p>
+<p>Aynı durumlar gerisi ve anahtar kelime argümanları kabul eden metodlarda da vardır.
+Bu, anahtar kelime argümanlarının harici yetkilendirmesini çalışmaz hale getirir.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->()<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.6 ve öncesi: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 ve sonrası:  []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo()</code> hiçbir argüman geçirmez, fakat <code>target</code> Ruby 2.6'da boş bir hash argümanı alır.
+Bunun nedeni <code>foo</code> metodunun anahtar kelimeleri (<code>**kwargs</code>) harici olarak yetkilendirmesidir.
+<code>foo()</code> çağrıldığında <code>args</code> boş bir Array, <code>kwargs</code> boş bir Hash, <code>block</code> ise <code>nil</code>'dir.
+Sonrasında <code>target(*args, **kwargs, &amp;block)</code> argüman olarak boş bir Hash geçirir çünkü <code>**kwargs</code> otomatik olarak konumsal bir Hash argümanına çevrilir.</p>
+<p>Otomatik çevrim sadece insanların kafasını karıştırmakla kalmaz ayrıca metodu daha az genişletilebilir yapar.
+Davranıştaki değişikliğin nedenleri ve belirli gerçeklemelerin neden seçildiği ile ilgili daha fazla ayrıntı için <a href="https://bugs.ruby-lang.org/issues/14183">[Özellik #14183]</a>'e bakın.</p>
+<h2>Teşekkür</h2>
+<p>Bu makale Jeremy Evans and Benoit Daloze tarafından nazikçe gözden geçirilmiştir (hatta onlarla birlikte yazılmıştır).</p>
+<h2>Değişiklik Günlüğü</h2>
+<ul>
+<li>23 Aralık 2019: 2.7.0-rc2'de uyarı mesajları biraz değişti, ve uyarıları bastırmak için bir API eklendi.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Son Haberler</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/tr/news/2021/08/03/fukuoka-ruby-award-2022/">2022 Fukuoka Ruby Ödül Yarışması - Girişler Matz tarafından yargılanacak</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Net::FTP'de FTP PASV yanıtlarına güvenme zaafiyeti</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Net::IMAP'te bir StartTLS çıkarma zaafiyeti</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/ruby-3-0-2-released/">Ruby 3.0.2 Yayınlandı</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/ruby-2-7-4-released/">Ruby 2.7.4 Yayınlandı</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

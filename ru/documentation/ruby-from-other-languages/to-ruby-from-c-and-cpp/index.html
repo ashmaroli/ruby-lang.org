@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>В Ruby из C и C++</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>В Ruby из C и C++</h1>
+
+
+
+  <div id="content">
+    <p>Довольно трудно составить список того, как ваш код на С или С++ будет отличаться
+от кода на Ruby - это различие весьма значительно. Первопричина этого - множество
+возможностей runtime в Ruby. Ruby - это выдающийся антагонист принципу &quot;нет ничего
+неявного&quot; в С и это является ключевым моментов, делающим жизнь программиста легче
+за счет переноса основной работы в runtime. Пока вы не занимаетесь оптимизацией
+кода, нет необходимости удовлетворять &quot;прихоти&quot; компилятора.</p>
+<p>Таким образом, с одной стороны, Ruby код выполняется намного медленнее &quot;эквивалентного&quot;
+C или C++ кода. С другой стороны, голова идет кругом от осознания того, насколько
+быстро можно &quot;завести&quot; Ruby программу и насколько мало строк кода для этого требуется.
+Ruby намного проще, чем C++, и &quot;избалует&quot; вас своими возможностями.</p>
+<p>Ruby динамически типизирован, и выполнение кода, насколько это возможно, происходит
+непосредственно в runtime, в отличие от языков со статической типизацией. Например,
+не требуется знать, какой именно модуль будет &quot;слинкован&quot; (загружен и использован) в
+Ruby программе, или какие методы будут вызваны.</p>
+<p>К счастью, Ruby и C код могут уживаться вместе с совместной выгодой. Ruby поддерживает
+модули расширений, которые можно использовать в Ruby коде (и которые со стороны выглядят
+как обычные Ruby модули), но написаны на C. Таким образом можно выделить критические к
+производительности участки кода и переписать их на С.</p>
+<p>Конечно, сам Ruby написан на С.</p>
+<h3>Сходства с С</h3>
+<p>Как и в С, в Ruby...</p>
+<ul>
+<li>можно программировать процедурно, если есть желание (но это все равно будет объектно-ориентировано
+&quot;за кулисами&quot;.</li>
+<li>большинство операторов похожи (в том числе присвоение с вычислением и битовые операторы),
+но в Ruby нет <code>++</code> и <code>--</code>.</li>
+<li>есть <code>__FILE__</code> и <code>__LINE__</code></li>
+<li>можно объявлять константы, хотя и нет специального слова <code>const</code> - константность
+достигается соглашениями о наименовании (константы начинаются с заглавной буквы).</li>
+<li>строки заключаются в кавычки.</li>
+<li>строки мутабельны.</li>
+<li>как и в случае с man-справочниками, можно читать документацию в терминале с помощью
+команды <code>ri</code>.</li>
+<li>есть похожий консольный отладчик.</li>
+</ul>
+<h3>Сходства с С++</h3>
+<p>Как и в С++, в Ruby...</p>
+<ul>
+<li>практически те же самые операторы (даже <code>::</code>), <code>&lt;&lt;</code> часто используется для
+добавления элемента в список, однако, в Ruby не используется <code>-&gt;</code>, а просто <code>.</code>.</li>
+<li><code>public</code>, <code>private</code> и <code>protected</code> выполняют похожие функции.</li>
+<li>для обозначения наследования используется один символ, но не <code>:</code>, а <code>&lt;</code>.</li>
+<li>код можно организовывать в модули по аналогии с <code>namespace</code> в C++.</li>
+<li>похоже работают исключения, однако с другими ключевыми словами.</li>
+</ul>
+<h3>Отличия от С</h3>
+<p>В Ruby в отличие от C...</p>
+<ul>
+<li>объекты строго типизированы (а переменные не имеют собственного типа).</li>
+<li>отсутствуют макросы и препроцессоры, нет привидения типов, нет ни указателей, ни
+арифметики с ними, нет псевдонимов для типов, нет sizeof и перечислений.</li>
+<li>нет файлов заголовков - вы просто пишите функции (называемые &quot;методы&quot;) и классы в
+файлах исходников.</li>
+<li>нет <code>#define</code> - используйте константы.</li>
+<li>начиная с Ruby 1.8 код интерпретируется в runtime, нежели компилируется в некий
+машинный или байт-код.</li>
+<li>все переменные живут в &quot;куче&quot;, нет необходимости освобождать память - сборщик мусора
+сделает это за вас.</li>
+<li>аргументы передаются в функции-методы по значению, где значения всегда ссылки.</li>
+<li>вместо <code>#include &lt;foo&gt;</code> или <code>#include &quot;foo&quot;</code> пишется <code>require 'foo'</code>.</li>
+<li>нельзя писать на ассемблере в коде.</li>
+<li>нет точки с запятой в конце строк.</li>
+<li>не нужны скобки вокруг выражения для <code>if</code> и <code>while</code>.</li>
+<li>не обязательны скобки для обозначения вызова функций.</li>
+<li>многострочные конструкции и циклы (например, <code>while</code>) принято завершат
+ключевым словом <code>end</code>, нежели заключать в фигурные скобки.</li>
+<li>ключевое слово <code>do</code> используется для так называемых &quot;блоков&quot;, нет оператора <code>do</code></li>
+<li>понятие &quot;блок&quot; обозначает кусок кода, ассоциированный с вызовом метода, и внутри
+кода метода можно вызвать этот блок.</li>
+<li>переменные не декларируются, а создаются &quot;на лету&quot; во время присваивания.</li>
+<li>в тестах на истинность только <code>nil</code> и <code>false</code> интерпретируются как ложь, все
+остальное - истина (включая <code>0</code>, <code>0.0</code> и <code>&quot;0&quot;</code>).</li>
+<li>отсутствует символ (&quot;char&quot;) - это просто односимвольная строка.</li>
+<li>строки не оканчиваются нулевым байтом.</li>
+<li>массив заключается в <code>[]</code>, а не <code>{}</code>.</li>
+<li>размер массива увеличивается автоматически при добавлении элемента.</li>
+<li>при сложении массивов получается один большой массив (в &quot;куче&quot;, естественно) - нет
+необходимости заниматься арифметикой указателей.</li>
+<li>практически все - выражение (например <code>while</code> возвращает RValue)</li>
+</ul>
+<h3>Отличия от C++</h3>
+<p>В Ruby в отличие от C++...</p>
+<ul>
+<li>нет явного отличия для указателя - в Ruby любая переменная автоматически разыменовывается
+в объект.</li>
+<li>объекты строго, но <em>динамически</em> типизированы. Работоспособность метода проверяется
+только в runtime.</li>
+<li>Конструктор называется <code>initialize</code>, а не имя класса.</li>
+<li>все методы виртуальные.</li>
+<li>статические переменные (переменные класса) начинаются с <code>@@</code> (например,
+<code>@@total_widgets</code>).</li>
+<li>нет доступа к членам класса - доступ к ним (&quot;атрибуты&quot; в Ruby) возможен только
+через методы.</li>
+<li>вместо <code>this</code> - <code>self</code>.</li>
+<li>имена некоторых методов кончаются на &quot;!&quot; и &quot;?&quot;, и это действительно часть имени.</li>
+<li>нет как такового множественного наследования, однако в Ruby есть &quot;миксины&quot; (&quot;mixins&quot;)
+(т.е. можно &quot;унаследовать&quot; методы от модуля).</li>
+<li>имеются несколько ограничений по наименованию (например, имена классов начинаются с
+заглавной буквы, переменные - со строчной).</li>
+<li>скобки для вызова метода не обязательны.</li>
+<li>можно заново открыть класс и добавить в него методы.</li>
+<li>нет необходимости в шаблонах (&quot;templates&quot;), т.к. можно присвоить переменной любой
+тип объекта, а типы все равно определяются в runtime) - нет и приведения типов.</li>
+<li>итерация происходит несколько иным способом - в Ruby не надо использовать отдельный
+объект итератора (как <code>vector&lt;T&gt;::const_iterator iter</code>), а можно &quot;подмешать&quot; в класс
+модуль <code>Enumerator</code> и просто вызвать метод <code>each</code>.</li>
+<li>есть всего 2 вида контейнеров - <code>Array</code> и <code>Hash</code>.</li>
+<li>нет преобразований типов - в Ruby оно вам скорее всего не понадобится.</li>
+<li>встроенная поддержка многопоточности, но в Ruby 1.8 это т.н. &quot;green threads&quot; (живущие
+только внутри интерпретатора), а не нативные системные треды.</li>
+<li>Ruby поставляется со стандартной библиотекой для тестирования.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Начните сейчас</strong>, это легко!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Попробуйте Ruby! (в своем браузере)</a></li>
+
+    
+    <li><a href="/ru/documentation/quickstart/">Ruby за двадцать минут</a></li>
+    
+
+    
+    <li><a href="/ru/documentation/ruby-from-other-languages/">В Ruby из других языков</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Исследуйте</strong> новый мир…</h3>
+  <ul class="menu">
+    
+    <li><a href="/ru/documentation/">Документация</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Научные публикации</a></li>
+    
+
+    
+    <li><a href="/ru/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/ru/documentation/success-stories/">Истории успеха</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Вступайте</strong> в дружелюбное и развивающееся сообщество.</h3>
+  <ul>
+    
+    <li><a href="/ru/community/mailing-lists/">Почтовые рассылки</a>: Разговоры о Ruby в кругу программистов со всего мира.</li>
+    
+
+    
+    <li><a href="/ru/community/user-groups/">Группы пользователей</a>: Познакомьтесь с рубистами рядом с вами.</li>
+    
+
+    
+    <li><a href="/ru/community/weblogs/">Блоги</a>: Читайте о том, что происходит в сообществе Ruby прямо сейчас.</li>
+    
+
+    
+    <li><a href="/ru/community/ruby-core/">Ядро Ruby</a>: Помощь в полировке последней версии Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Решение проблем</a>: Сообщайте или помогайте решать проблемы в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

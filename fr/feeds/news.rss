@@ -1,4 +1,764 @@
----
-layout: news_feed
-lang: fr
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Actualités de Ruby-lang</title>
+    <link>https://www.ruby-lang.org/fr/feeds/news.rss</link>
+    <language>fr-FR</language>
+    <ttl>40</ttl>
+    <description>Les dernières news sur ruby-lang.org.</description>
+    
+    <item>
+      <title>Ruby 3.1.1 est disponible</title>
+      <description>&lt;p&gt;Ruby 3.1.1 est disponible.&lt;/p&gt;
+&lt;p&gt;C'est la première TEENY version disponible de la branche 3.1.&lt;/p&gt;
+&lt;p&gt;Voir les &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_1_1&quot;&gt;logs de commit&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h2&gt;Téléchargement&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20562492
+SHA1: 289cbb9eae338bdaf99e376ac511236e39be83a3
+SHA256: fe6e4782de97443978ddba8ba4be38d222aa24dc3e3f02a6a8e7701c0eeb619d
+SHA512: a60d69d35d6d4ad8926b324a6092f962510183d9759b096ba4ce9db2e254e0f436030c2a62741352efe72aec5ca2329b45edd85cca8ad3254a9c57e3d8f66319
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15103808
+SHA1: af6afead0e5509c459a580fc260bec2608b46750
+SHA256: 7aefaa6b78b076515d272ec59c4616707a54fc9f2391239737d5f10af7a16caa
+SHA512: 8877fa9a458964a59a11529cd10b3d25b5f6238cd4678b6dcea0bd4b750499cf8ff39d8824053b4ab26c5cd0cfb604a57807ce61580175857fcf00b2cff3e55f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24843623
+SHA1: 9afab3231e99835dbbdad93c96a240ce90a1f2f5
+SHA256: de1cc26c18c6fb838b75f3e700621339cf09d557a15c0b1457720f7c441a1e68
+SHA512: 0eac755cd9883659dbd9ab9b2c2e5608112030d96ad14c22e1f21712d870f97ba7dfbd74cc03b1892faacb37958f100df484e4944c90b4a834e27e4c03b8e895
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Commentaire de version&lt;/h2&gt;
+&lt;p&gt;Merci aux contributeurs, développeurs et utilisateurs qui, en reportant les bugs, nous ont permis de sortir cette version.&lt;/p&gt;
+
+&lt;p&gt;Posté par naruse le 2022-02-18&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Fri, 18 Feb 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2022/02/18/ruby-3-1-1-released/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2022/02/18/ruby-3-1-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.0 est disponible</title>
+      <description>&lt;p&gt;Nous avons le plaisir de vous annoncer la sortie de Ruby 3.1.0. Ruby 3.1 conserve la compatibilité avec Ruby 3.0 et ajoute également de nombreuses fonctionnalités.&lt;/p&gt;
+&lt;h2&gt;YJIT: un nouveau compilateur JIT en cours de développement&lt;/h2&gt;
+&lt;p&gt;Ruby 3.1 fusionne YJIT, un nouveau compilateur JIT développé par Shopify.&lt;/p&gt;
+&lt;p&gt;Depuis que &lt;a href=&quot;https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/&quot;&gt;Ruby 2.6 a introduit MJIT en 2018&lt;/a&gt;, ses performances se sont grandement améliorées et &lt;a href=&quot;https://www.ruby-lang.org/fr/news/2020/12/25/ruby-3-0-0-released/&quot;&gt;nous sommes parvenus à Ruby3x3 l'année dernière&lt;/a&gt;. Même si Optcarrot a montré des accélérations impressionnantes, le JIT n'a pas profité aux applications du monde professionnel.&lt;/p&gt;
+&lt;p&gt;Récemment, Shopify a apporté de nombreuses améliorations à Ruby pour accélérer son application Rails. YJIT est une contribution importante et vise à améliorer les performances des applications Rails.&lt;/p&gt;
+&lt;p&gt;Bien que MJIT soit un compilateur JIT basé sur des méthodes et qu'il utilise un compilateur C externe, YJIT utilise le Basic Block Versioning et inclut le compilateur JIT à l'intérieur. Avec Lazy Basic Block Versioning (LBBV), cela compile d'abord le début d'une méthode et compile progressivement le reste lorsque le type des arguments et des variables est déterminé dynamiquement. Voir &lt;a href=&quot;https://dl.acm.org/doi/10.1145/3486606.3486781&quot;&gt;YJIT: a basic block versioning JIT compiler for CRuby&lt;/a&gt; pour une introduction détaillée.&lt;/p&gt;
+&lt;p&gt;Avec cette technologie, YJIT permet d'avoir à la fois un temps de démarrage rapide et des améliorations de performance sur la plupart des logiciels, jusqu'à 22% sur railsbench et 39% sur le rendu liquid.&lt;/p&gt;
+&lt;p&gt;YJIT est toujours une fonctionnalité expérimentale. En tant que telle, elle est désactivée par défaut. Si vous souhaitez l'utiliser, spécifiez l'option en ligne de commande &lt;code&gt;--yjit&lt;/code&gt; pour activer YJIT. L'utilisation est pour le moment limitée à macOS et Linux sur les plateformes x86-64.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://bugs.ruby-lang.org/issues/18229&lt;/li&gt;
+&lt;li&gt;https://shopify.engineering/yjit-just-in-time-compiler-cruby&lt;/li&gt;
+&lt;li&gt;https://www.youtube.com/watch?v=PBVLf3yfMs8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;debug.gem : un nouveau débogueur&lt;/h2&gt;
+&lt;p&gt;Un débogueur complètement réécrit &lt;a href=&quot;https://github.com/ruby/debug&quot;&gt;debug.gem&lt;/a&gt; est fourni. Debug.gem possède les fonctionnalités suivantes :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Améliorer les performances de débogage (il ne ralentit pas l'application même avec le débogueur)&lt;/li&gt;
+&lt;li&gt;Prise en charge du débogage à distance&lt;/li&gt;
+&lt;li&gt;Prise en charge de l'interface de débogage riche (VSCode et navigateur Chrome sont désormais pris en charge)&lt;/li&gt;
+&lt;li&gt;Prise en charge du débogage multiprocessus/multithread&lt;/li&gt;
+&lt;li&gt;REPL coloré et d'autres fonctionnalités utiles telles que la fonction enregistrer et rejouer , la fonction de traçage, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Ruby avait intégré lib/debug.rb, mais il n'était pas bien maintenu et posait des problèmes de performances et de fonctionnalités. Debug.gem a complètement remplacé lib/debug.rb.&lt;/p&gt;
+&lt;h2&gt;error_highlight: localisation des erreurs plus précise&lt;/h2&gt;
+&lt;p&gt;La gemme error_highlight a été ajoutée. Elle permet d'obtenir la localisation d'une erreur de manière plus précise dans la trace :&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ruby test.rb
+test.rb:1:in `&amp;lt;main&amp;gt;': undefined method `time' for 1:Integer (NoMethodError)
+1.time {}
+ ^^^^^
+Did you mean?  times
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Actuellement, seul &lt;code&gt;NameError&lt;/code&gt; est pris en charge.&lt;/p&gt;
+&lt;p&gt;Cette gemme est activée par défaut. Vous pouvez la désactiver en utilisant l'option en ligne de commande &lt;code&gt;--disable-error_highlight&lt;/code&gt;. Voir &lt;a href=&quot;https://github.com/ruby/error_highlight&quot;&gt;le dépôt&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h2&gt;Auto-complétion dans IRB et affichage de la documentation&lt;/h2&gt;
+&lt;p&gt;IRB dispose désormais d'une fonction de saisie semi-automatique où vous pouvez simplement taper le code et une boîte de dialogue des candidats à la complétion apparaîtra. Vous pouvez utiliser Tab et Shift+Tab pour vous déplacer de haut en bas.&lt;/p&gt;
+&lt;p&gt;Si la documentation est installée lorsque vous sélectionnez une proposition à la complétion, la boîte de dialogue de la documentation apparaîtra à côté de celle-ci, affichant une partie du contenu. Vous pouvez lire la documentation complète en appuyant sur Alt+d.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2&gt;Autres nouvelles fonctionnalités notables&lt;/h2&gt;
+&lt;h3&gt;Language&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Les valeurs dans les littéraux de hachage peuvent être omis. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/14579&quot;&gt;[Feature #14579]&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{x:, y:}&lt;/code&gt; est un sucre syntaxique de &lt;code&gt;{x: x, y: y}&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo(x:, y:)&lt;/code&gt; est un sucre syntaxique de &lt;code&gt;foo(x: x, y: y)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;L'opérateur pin (&lt;code&gt;^&lt;/code&gt;) dans le filtrage par motif prend désormais une expression. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17411&quot;&gt;[Feature #17411]&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each_cons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;lazy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [[3, 5], [5, 7], [11, 13]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Les parenthèses peuvent être omises dans les filtrages par motifs qui ne font qu'une seule ligne. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/16182&quot;&gt;[Feature #16182]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;y: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;y:
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS est un langage pour décrire la structure des programmes Ruby. Voir &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;le dépôt&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Mises à jour depuis Ruby 3.0.0 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Les paramètres de type générique peuvent être bornés. (&lt;a href=&quot;https://github.com/ruby/rbs/pull/844&quot;&gt;PR&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Les alias de type générique sont pris en charge. (&lt;a href=&quot;https://github.com/ruby/rbs/pull/823&quot;&gt;PR&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rbs collection&lt;/code&gt; été introduit pour gérer les RBS des gemmes. (&lt;a href=&quot;https://github.com/ruby/rbs/blob/master/docs/collection.md&quot;&gt;doc&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;De nombreuses signatures pour les bibliothèques intégrées et standard ont été ajoutées/mises à jour.&lt;/li&gt;
+&lt;li&gt;Il inclut également de nombreuses corrections de bogues et améliorations des performances.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir &lt;a href=&quot;https://github.com/ruby/rbs/blob/master/CHANGELOG.md&quot;&gt;le CHANGELOG.md&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;TypeProf est un analyseur de type statique pour Ruby. Il génère un prototype de RBS à partir de code Ruby non annoté de type. Voir &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;la documentation&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Les principales mises à jour depuis Ruby 3.0.0 concernent un support IDE expérimental appelé &amp;quot;TypeProf for IDE&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cache.ruby-lang.org/pub/media/ruby310_typeprof_ide_demo.png&quot; alt=&quot;Demo de TypeProf for IDE&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;L'extension vscode affiche une signature de méthode devinée (ou explicitement écrite dans un fichier RBS) au-dessus de chaque définition de méthode, souligne en rouge le code qui peut provoquer une erreur de nom ou de type et complète les noms de méthode (c'est-à-dire affiche les méthodes candidates). Voir la &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/ide.md&quot;&gt;documentation&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;De plus, la version inclut de nombreuses corrections de bogues et améliorations des performances.&lt;/p&gt;
+&lt;h2&gt;Améliorations de performance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MJIT
+&lt;ul&gt;
+&lt;li&gt;Pour les charges de travail telles que Rails, la valeur par défaut &lt;code&gt;--jit-max-cache&lt;/code&gt; passe de 100 à 10000.
+Le compilateur JIT ne saute plus la compilation des méthodes de plus de 1000 instructions.&lt;/li&gt;
+&lt;li&gt;Pour prendre en charge Zeitwerk de Rails, le code généré par le compilateur JIT n'est plus annulé lorsqu'un TracePoint est activé pour les évènements de classe.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Autres changements notables depuis la version 3.0&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Le filtrage par motif en une ligne, e.g., &lt;code&gt;ary =&amp;gt; [x, y, z]&lt;/code&gt;, n'est plus au stade expérimental.&lt;/li&gt;
+&lt;li&gt;L'ordre d'évaluation des affectations multiples a été légèrement modifié. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/4443&quot;&gt;[Bug #4443]&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;foo[0], bar[0] = baz, qux&lt;/code&gt; était évalué dans l'ordre &lt;code&gt;baz&lt;/code&gt;, &lt;code&gt;qux&lt;/code&gt;, &lt;code&gt;foo&lt;/code&gt; puis &lt;code&gt;bar&lt;/code&gt; dans Ruby 3.0. Dans Ruby 3.1, l'évaluation est dans l'ordre &lt;code&gt;foo&lt;/code&gt;, &lt;code&gt;bar&lt;/code&gt;, &lt;code&gt;baz&lt;/code&gt; puis &lt;code&gt;qux&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Allocation de la taille d'une variable String (expérimental) &lt;a href=&quot;https://bugs.ruby-lang.org/issues/18239&quot;&gt;[Bug #18239]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Psych 4.0 change &lt;code&gt;Psych.load&lt;/code&gt; en &lt;code&gt;safe_load&lt;/code&gt; par défaut. Vous devrez peut-être utiliser Psych 3.3.2 pour migrer vers ce comportement. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17866&quot;&gt;[Bug #17866]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Mise à jour des bibliothèques standards&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Les gemmes par défaut suivantes ont été mises à jour.
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.3.3&lt;/li&gt;
+&lt;li&gt;base64 0.1.1&lt;/li&gt;
+&lt;li&gt;benchmark 0.2.0&lt;/li&gt;
+&lt;li&gt;bigdecimal 3.1.1&lt;/li&gt;
+&lt;li&gt;bundler 2.3.3&lt;/li&gt;
+&lt;li&gt;cgi 0.3.1&lt;/li&gt;
+&lt;li&gt;csv 3.2.2&lt;/li&gt;
+&lt;li&gt;date 3.2.2&lt;/li&gt;
+&lt;li&gt;did_you_mean 1.6.1&lt;/li&gt;
+&lt;li&gt;digest 3.1.0&lt;/li&gt;
+&lt;li&gt;drb 2.1.0&lt;/li&gt;
+&lt;li&gt;erb 2.2.3&lt;/li&gt;
+&lt;li&gt;error_highlight 0.3.0&lt;/li&gt;
+&lt;li&gt;etc 1.3.0&lt;/li&gt;
+&lt;li&gt;fcntl 1.0.1&lt;/li&gt;
+&lt;li&gt;fiddle 1.1.0&lt;/li&gt;
+&lt;li&gt;fileutils 1.6.0&lt;/li&gt;
+&lt;li&gt;find 0.1.1&lt;/li&gt;
+&lt;li&gt;io-console 0.5.10&lt;/li&gt;
+&lt;li&gt;io-wait 0.2.1&lt;/li&gt;
+&lt;li&gt;ipaddr 1.2.3&lt;/li&gt;
+&lt;li&gt;irb 1.4.1&lt;/li&gt;
+&lt;li&gt;json 2.6.1&lt;/li&gt;
+&lt;li&gt;logger 1.5.0&lt;/li&gt;
+&lt;li&gt;net-http 0.2.0&lt;/li&gt;
+&lt;li&gt;net-protocol 0.1.2&lt;/li&gt;
+&lt;li&gt;nkf 0.1.1&lt;/li&gt;
+&lt;li&gt;open-uri 0.2.0&lt;/li&gt;
+&lt;li&gt;openssl 3.0.0&lt;/li&gt;
+&lt;li&gt;optparse 0.2.0&lt;/li&gt;
+&lt;li&gt;ostruct 0.5.2&lt;/li&gt;
+&lt;li&gt;pathname 0.2.0&lt;/li&gt;
+&lt;li&gt;pp 0.3.0&lt;/li&gt;
+&lt;li&gt;prettyprint 0.1.1&lt;/li&gt;
+&lt;li&gt;psych 4.0.3&lt;/li&gt;
+&lt;li&gt;racc 1.6.0&lt;/li&gt;
+&lt;li&gt;rdoc 6.4.0&lt;/li&gt;
+&lt;li&gt;readline 0.0.3&lt;/li&gt;
+&lt;li&gt;readline-ext 0.1.4&lt;/li&gt;
+&lt;li&gt;reline 0.3.0&lt;/li&gt;
+&lt;li&gt;resolv 0.2.1&lt;/li&gt;
+&lt;li&gt;rinda 0.1.1&lt;/li&gt;
+&lt;li&gt;ruby2_keywords 0.0.5&lt;/li&gt;
+&lt;li&gt;securerandom 0.1.1&lt;/li&gt;
+&lt;li&gt;set 1.0.2&lt;/li&gt;
+&lt;li&gt;stringio 3.0.1&lt;/li&gt;
+&lt;li&gt;strscan 3.0.1&lt;/li&gt;
+&lt;li&gt;tempfile 0.1.2&lt;/li&gt;
+&lt;li&gt;time 0.2.0&lt;/li&gt;
+&lt;li&gt;timeout 0.2.0&lt;/li&gt;
+&lt;li&gt;tmpdir 0.1.2&lt;/li&gt;
+&lt;li&gt;un 0.2.0&lt;/li&gt;
+&lt;li&gt;uri 0.11.0&lt;/li&gt;
+&lt;li&gt;yaml 0.2.0&lt;/li&gt;
+&lt;li&gt;zlib 2.1.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Les gemmes groupées suivantes ont été mises à jour.
+&lt;ul&gt;
+&lt;li&gt;minitest 5.15.0&lt;/li&gt;
+&lt;li&gt;power_assert 2.0.1&lt;/li&gt;
+&lt;li&gt;rake 13.0.6&lt;/li&gt;
+&lt;li&gt;test-unit 3.5.3&lt;/li&gt;
+&lt;li&gt;rexml 3.2.5&lt;/li&gt;
+&lt;li&gt;rbs 2.0.0&lt;/li&gt;
+&lt;li&gt;typeprof 0.21.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Les gemmes par défaut suivantes sont désormais des gemmes groupées. Vous devez les ajouter au &lt;code&gt;Gemfile&lt;/code&gt; sous l'environnement bundler.
+&lt;ul&gt;
+&lt;li&gt;net-ftp 0.1.3&lt;/li&gt;
+&lt;li&gt;net-imap 0.2.2&lt;/li&gt;
+&lt;li&gt;net-pop 0.1.1&lt;/li&gt;
+&lt;li&gt;net-smtp 0.3.1&lt;/li&gt;
+&lt;li&gt;matrix 0.4.2&lt;/li&gt;
+&lt;li&gt;prime 0.1.2&lt;/li&gt;
+&lt;li&gt;debug 1.4.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_1_0/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+ou les &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0&quot;&gt;logs de commit&lt;/a&gt;
+pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Avec ces changements, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0#file_bucket&quot;&gt;3124 fichiers changés, 551760 insertions(+), 99167 suppressions(-)&lt;/a&gt;
+depuis Ruby 3.0.0 !&lt;/p&gt;
+&lt;p&gt;Joyeux Noël, joyeuses fêtes et bonne programmation avec Ruby 3.1 !&lt;/p&gt;
+&lt;h2&gt;Téléchargement&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20103517
+SHA1: e4e8c20dd2a1fdef4d3e5bd5a3461000dd17f226
+SHA256: 50a0504c6edcb4d61ce6b8cfdbddaa95707195fab0ecd7b5e92654b2a9412854
+SHA512: 76009d325e961e601d9a287e36490cbc1f3b5dbf4878fa6eab2c4daa5ff2fed78cbc7525cd87b09828f97cbe2beb30f528928bcc5647af745d03dffe7c5baaa9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14709096
+SHA1: 92b603c2a69fb25d66c337a63e94280984edea11
+SHA256: 1a0e0b69b9b062b6299ff1f6c6d77b66aff3995f63d1d8b8771e7a113ec472e2
+SHA512: a2bb6b5e62d5fa06dd9c30cf84ddcb2c27cb87fbaaffd2309a44391a6b110e1dde6b7b0d8c659b56387ee3c9b4264003f3532d5a374123a7c187ebba9293f320
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24388179
+SHA1: e37435956d6f840a0e8758d7374bc7e0e346105f
+SHA256: a3bfcd486d09c065d46421da0ff3d430ce4423fefd80cea63c6595d83ae4af0e
+SHA512: 67db71144e06da2c1c25eaf413d1417c99a4b18738a573f9e3371c11ea242eee9dcbdc3de17336f25ab5060039fe034e57298943d344be9cd9eb33bb56e2e1c6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ruby, c'est quoi ?&lt;/h2&gt;
+&lt;p&gt;Ruby a été initialement développé par Matz (Yukihiro Matsumoto) en 1993 puis est devenu open source. Il fonctionne sur de nombreuses plateformes et est utilisé partout dans le monde, en particulier pour le développement web.&lt;/p&gt;
+
+&lt;p&gt;Posté par naruse le 2021-12-25&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Sat, 25 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/12/25/ruby-3-1-0-released/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/12/25/ruby-3-1-0-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.3 est disponible</title>
+      <description>&lt;p&gt;Ruby 3.0.3 est disponible.&lt;/p&gt;
+&lt;p&gt;Cette version contient des corrections concernant des problèmes de sécurité.
+Merci de regarder les sujets suivants pour plus de détails.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/15/date-parsing-method-regexp-dos-cve-2021-41817/&quot;&gt;CVE-2021-41817: Vulnérabilité de déni de service d'expression régulière (ReDoS) sur les méthodes d'analyse de date&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/24/buffer-overrun-in-cgi-escape_html-cve-2021-41816/&quot;&gt;CVE-2021-41816: Dépassement de la mémoire tampon dans CGI.escape_html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/24/cookie-prefix-spoofing-in-cgi-cookie-parse-cve-2021-41819/&quot;&gt;CVE-2021-41819: Usurpation de préfixes de cookie dans CGI::Cookie.parse&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir les &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_2...v3_0_3&quot;&gt;logs de commit&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h2&gt;Téléchargement&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20242729
+SHA1: 049317b7c6246d6ea86564c3f73a629b766ff634
+SHA256: 3586861cb2df56970287f0fd83f274bd92058872d830d15570b36def7f1a92ac
+SHA512: 39dab51a0d784a38302372b99f96205817d466245202586d22123745761e9cb39db128ec2b984ebc3919b9faf2adf828d19c97d3fb1e56d44be0a81dc5d11b87
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14991880
+SHA1: c1e6dac2b8c08afbbee39e25e325c84e1cab7c17
+SHA256: 88cc7f0f021f15c4cd62b1f922e3a401697f7943551fe45b1fdf4f2417a17a9c
+SHA512: bb9ea426278d5a7ac46595296f03b82d43df8b7db41045cdf85611e05e26c703c53f700494cd7cf5d4c27fa953bdc5c144317d7720812db0a6e3b6f4bc4d2e00
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24627744
+SHA1: 5341ed1602a3289c4857560ead53191895e5c586
+SHA256: 0b8370e404550bf736f46307a14eb9306a7868fb8d54e1418ecdaccbaa8ac06f
+SHA512: 24c2a4f455f90e54f85d9565e392519833b36aefce32dc707e6693994d175c82e84ee6c37ed4a9ddf8840479e7cdfaae714c12bc6923368bb00346d4edd434d8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Commentaire de version&lt;/h2&gt;
+&lt;p&gt;Merci aux contributeurs, développeurs et utilisateurs qui, en reportant les bugs, nous ont permis de sortir cette version.&lt;/p&gt;
+
+&lt;p&gt;Posté par nagachika le 2021-11-24&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Wed, 24 Nov 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/24/ruby-3-0-3-released/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/24/ruby-3-0-3-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.7.5 est disponible</title>
+      <description>&lt;p&gt;Ruby 2.7.5 est disponible.&lt;/p&gt;
+&lt;p&gt;Cette version contient des corrections concernant des problèmes de sécurité.
+Merci de regarder les sujets suivants pour plus de détails.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/15/date-parsing-method-regexp-dos-cve-2021-41817/&quot;&gt;CVE-2021-41817: Vulnérabilité de déni de service d'expression régulière (ReDoS) sur les méthodes d'analyse de date&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/24/buffer-overrun-in-cgi-escape_html-cve-2021-41816/&quot;&gt;CVE-2021-41816: Dépassement de la mémoire tampon dans CGI.escape_html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/24/cookie-prefix-spoofing-in-cgi-cookie-parse-cve-2021-41819/&quot;&gt;CVE-2021-41819: Usurpation de préfixes de cookie dans CGI::Cookie.parse&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir les &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_4...v2_7_5&quot;&gt;logs de commit&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h2&gt;Téléchargement&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14805180
+SHA1: 2a179b601f45172b1cb38e8f157c4e6ce272c22c
+SHA256: d6b444341a5e06fcd6eaf1feb83a1c0c2da4705dbe4f275ee851761b185f4bd1
+SHA512: 0aa2ac44bc22859a39c43d08b7c7f457df05c2dc36b2574fd70ca399143ef1000dc5e496212db9eb055bc4258523d47d26db3c57a1a5a5d63cf1b3de9f81645a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16923709
+SHA1: c2d0f6c793f9e673f9fb22276d32f8c395ec5581
+SHA256: 2755b900a21235b443bb16dadd9032f784d4a88f143d852bc5d154f22b8781f1
+SHA512: 09e029b5cc15b6e4e37bcf15adb28213eaedec3ea22106d63095b37ea6b2a2b68e82e74e6b50746c87dd77e5185795d014e0db118bf0f45ffa0b0a307f5f65da
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12072980
+SHA1: 1d04fbf24150eaa1297a7ef4c7057ec0a9dca527
+SHA256: d216d95190eaacf3bf165303747b02ff13f10b6cfab67a9031b502a49512b516
+SHA512: 21c8a713e3ce115fc4c405113ac691ddcefc3419f528b93ca1ac59e7052c1b6e9e241da0e570e291e567f28f3d840824dbcc5967b216cbe7d6ca7a05580fa311
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20702176
+SHA1: 541b34fa5e7e55b6269a2bfa67e2a06ad0dcb571
+SHA256: 3793d764ec8da68203eba1a7fe338fae9bafa8226cce911c8648c1b7c32ba9c2
+SHA512: fe9a706f8139e59a40ab205dc88cdc613c9c69186cb2daeb5adc80bdf45290a523fa7e3fd0866fa12325039ba413ff1e1f4233073d352da08079dc903063b31a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Commentaire de version&lt;/h2&gt;
+&lt;p&gt;Merci aux contributeurs, développeurs et utilisateurs qui, en reportant les bugs, nous ont permis de sortir cette version.&lt;/p&gt;
+&lt;p&gt;La maintenance de Ruby 2.7, incluant cette version, est basée sur l' &amp;quot;Agreement for the Ruby stable version&amp;quot; de la Ruby Association.&lt;/p&gt;
+
+&lt;p&gt;Posté par usa le 2021-11-24&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Wed, 24 Nov 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/24/ruby-2-7-5-released/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/24/ruby-2-7-5-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.6.9 est disponible</title>
+      <description>&lt;p&gt;Ruby 2.6.9 est disponible.&lt;/p&gt;
+&lt;p&gt;Cette version contient des corrections concernant des problèmes de sécurité.
+Merci de regarder les sujets suivants pour plus de détails.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/15/date-parsing-method-regexp-dos-cve-2021-41817/&quot;&gt;CVE-2021-41817: Vulnérabilité de déni de service d'expression régulière (ReDoS) sur les méthodes d'analyse de date&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/fr/news/2021/11/24/cookie-prefix-spoofing-in-cgi-cookie-parse-cve-2021-41819/&quot;&gt;CVE-2021-41819: Usurpation de préfixes de cookie dans CGI::Cookie.parse&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir les &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_6_8...v2_6_9&quot;&gt;logs de commit&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Ruby 2.6 se trouve dans la phase de maintenance de sécurité jusqu'à la fin mars 2022. Après cette date, la branche 2.6 de Ruby ne sera alors plus officiellement supportée.
+Nous vous recommandons donc de passer sur de nouvelles versions de Ruby comme la 3.0 ou 2.7.&lt;/p&gt;
+&lt;h2&gt;Téléchargement&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14137792
+SHA1: a482c36645e7ff4596c6aca2cf96d15481fcfc5e
+SHA256: a0639060c4519572e51828eb742f09dd40f154c820f6007246de7a2090e3ee45
+SHA512: ff067ebc059094c0a9a0debf54a37aad2c85f7ed47be59299041c9c03a7701529f5063ff32a1b8c56d48ee8585015acba63602ed0176b2797d263d43d67aa241
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16202802
+SHA1: 00e69747e7e2b87155c65b4003470313e4403b0a
+SHA256: eb7bae7aac64bf9eb2153710a4cafae450ccbb62ae6f63d573e1786178b0efbb
+SHA512: 24bd6c8f528907349bcf392ed75a2d767b93a35a9f4c839267873d1dde862d3292d1682e0edc56c078a2690de76a045ef866f54eab8a330a18771f0b234c5993
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 11590064
+SHA1: fc67ca162010aac4af49d73a8c48be5cb2fb5907
+SHA256: 6a041d82ae6e0f02ccb1465e620d94a7196489d8a13d6018a160da42ebc1eece
+SHA512: f60aa89e685cea324185eb0d13e6b44caef4e4f761cbf9ea1386ae70e39faf3866ac01e4bb5354574f2583e74290b8c80eaf63d126040d52368be6c771476451
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19869379
+SHA1: 41a60c783306f4b47b867bd19d16688b546b8e3a
+SHA256: 2480dbdc72d3dc832d8254e938e4861ca54a5337edd6f358e5202fd2a5339eec
+SHA512: 9073e0fc5040434f15158f24c6a551286bc5f1c4c1cb54d6e3debb4ac039187a4f274a217bdb5c8489c72360c65d708f89eb0f2472a1f9232fcfee8e296dec57
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Commentaire de version&lt;/h2&gt;
+&lt;p&gt;Merci aux contributeurs, développeurs et utilisateurs qui, en reportant les bugs, nous ont permis de sortir cette version.&lt;/p&gt;
+
+&lt;p&gt;Posté par usa le 2021-11-24&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Wed, 24 Nov 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/24/ruby-2-6-9-released/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/24/ruby-2-6-9-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-41819: Usurpation de préfixes de cookie dans CGI::Cookie.parse</title>
+      <description>&lt;p&gt;Une vulnérabilité d'usurpation de préfixes de cookie a été découverte dans CGI::Cookie.parse. Cette vulnérabilité a reçu l'identifiant CVE &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-41819&quot;&gt;CVE-2021-41819&lt;/a&gt;.
+Nous vous recommandons fortement de mettre à jour Ruby.&lt;/p&gt;
+&lt;h2&gt;Détails&lt;/h2&gt;
+&lt;p&gt;Les anciennes versions de &lt;code&gt;CGI::Cookie.parse&lt;/code&gt; appliquent le décodage d'URL aux noms de cookies. Un attaquant pourrait exploiter cette vulnérabilité pour usurper les préfixes de sécurité dans les noms de cookies, ce qui pourrait tromper une application vulnérable.&lt;/p&gt;
+&lt;p&gt;Par ce correctif, &lt;code&gt;CGI::Cookie.parse&lt;/code&gt; ne décode plus les noms de cookies. Notez qu'il s'agit d'une incompatibilité si les noms de cookies que vous utilisez incluent des caractères non alphanumériques URL encodés.&lt;/p&gt;
+&lt;p&gt;C'est le même problème que &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2020-8184&quot;&gt;CVE-2020-8184&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Si vous utilisez Ruby 2.7 ou 3.0 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Veuillez mettre à jour la gemme cgi vers la version 0.3.1, 0.2.1, 0.1.1 ou ultérieure. Vous pouvez utiliser &lt;code&gt;gem update cgi&lt;/code&gt; pour la mettre à jour. Si vous utilisez bundler, veuillez ajouter &lt;code&gt;gem &amp;quot;cgi&amp;quot;, &amp;quot;&amp;gt;= 0.3.1&amp;quot;&lt;/code&gt; à votre &lt;code&gt;Gemfile&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Vous pouvez également mettre à jour Ruby vers la version 2.7.5 ou 3.0.3.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si vous utilisez Ruby 2.6 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Veuillez mettre à jour Ruby vers la version 2.6.9. &lt;em&gt;Vous ne pouvez pas utiliser &lt;code&gt;gem update cgi&lt;/code&gt; pour Ruby 2.6 ou antérieur.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Versions concernées&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.6.8 ou antérieure (Vous &lt;em&gt;ne pouvez pas&lt;/em&gt; utiliser &lt;code&gt;gem update cgi&lt;/code&gt; pour cette version.)&lt;/li&gt;
+&lt;li&gt;Gemme cgi 0.1.0 ou antérieure (qui sont des versions inclusent dans la branche Ruby 2.7 avant la version Ruby 2.7.5)&lt;/li&gt;
+&lt;li&gt;Gemme cgi 0.2.0 ou antérieure (qui sont des versions inclusent dans la branche Ruby 3.0 avant la version Ruby 3.0.3)&lt;/li&gt;
+&lt;li&gt;Gemme cgi 0.3.0 ou antérieure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Remerciements&lt;/h2&gt;
+&lt;p&gt;Merci à &lt;a href=&quot;https://hackerone.com/ooooooo_q&quot;&gt;ooooooo_q&lt;/a&gt; pour la découverte de ce problème.&lt;/p&gt;
+&lt;h2&gt;Historique&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Paru initialement le 2021-11-24 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Posté par mame le 2021-11-24&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Wed, 24 Nov 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/24/cookie-prefix-spoofing-in-cgi-cookie-parse-cve-2021-41819/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/24/cookie-prefix-spoofing-in-cgi-cookie-parse-cve-2021-41819/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-41816: Dépassement de la mémoire tampon dans CGI.escape_html</title>
+      <description>&lt;p&gt;Une vulnérabilité de dépassement de mémoire tampon a été découverte dans CGI.escape_html. Cette vulnérabilité a reçu l'identifiant CVE &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-41816&quot;&gt;CVE-2021-41816&lt;/a&gt;.
+Nous vous recommandons fortement de mettre à jour Ruby.&lt;/p&gt;
+&lt;h2&gt;Détails&lt;/h2&gt;
+&lt;p&gt;Cette vulnérabilité de sécurité provoque un débordement de la mémoire tampon lorsque vous transmettez une très grande chaîne de caractères (&amp;gt; 700 Mo) à &lt;code&gt;CGI.escape_html&lt;/code&gt; sur une plate-forme où le type &lt;code&gt;long&lt;/code&gt; prend 4 octets, généralement Windows.&lt;/p&gt;
+&lt;p&gt;Veuillez mettre à jour la gemme cgi vers la version 0.3.1, 0.2.1, 0.1.1 ou ultérieure. Vous pouvez utiliser &lt;code&gt;gem update cgi&lt;/code&gt; pour la mettre à jour. Si vous utilisez bundler, veuillez ajouter &lt;code&gt;gem &amp;quot;cgi&amp;quot;, &amp;quot;&amp;gt;= 0.3.1&amp;quot;&lt;/code&gt; à votre &lt;code&gt;Gemfile&lt;/code&gt;.
+Vous pouvez également mettre à jour Ruby vers la version 2.7.5 ou 3.0.3.&lt;/p&gt;
+&lt;p&gt;Ce problème a été introduit depuis Ruby 2.7, donc la version cgi fournie avec Ruby 2.6 n'est pas vulnérable.&lt;/p&gt;
+&lt;h2&gt;Versions concernées&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Gemme cgi 0.1.0 ou antérieure (qui sont des versions inclusent dans la branche Ruby 2.7 avant la version Ruby 2.7.5)&lt;/li&gt;
+&lt;li&gt;Gemme cgi 0.2.0 ou antérieure (qui sont des versions inclusent dans la branche Ruby 3.0 avant la version Ruby 3.0.3)&lt;/li&gt;
+&lt;li&gt;Gemme cgi 0.3.0 ou antérieure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Remerciements&lt;/h2&gt;
+&lt;p&gt;Merci à &lt;a href=&quot;https://hackerone.com/chamal&quot;&gt;chamal&lt;/a&gt; pour la découverte de ce problème.&lt;/p&gt;
+&lt;h2&gt;Historique&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Paru initialement le 2021-11-24 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Posté par mame le 2021-11-24&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Wed, 24 Nov 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/24/buffer-overrun-in-cgi-escape_html-cve-2021-41816/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/24/buffer-overrun-in-cgi-escape_html-cve-2021-41816/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2021-41817: Vulnérabilité de déni de service d'expression régulière (ReDoS) sur les méthodes d'analyse de date</title>
+      <description>&lt;p&gt;Nous avons publié les versions 3.2.1, 3.1.2, 3.0.2 et 2.0.1 de la gemme date qui incluent un correctif de sécurité pour une vulnérabilité de déni de service d'expression régulière (ReDoS) sur les méthodes d'analyse de date. Un attaquant peut exploiter cette vulnérabilité pour provoquer une attaque DoS efficace. Cette vulnérabilité a reçu l'identifiant CVE &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-41817&quot;&gt;CVE-2021-41817&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Détails&lt;/h2&gt;
+&lt;p&gt;Les méthodes d'analyse de date, y compris &lt;code&gt;Date.parse&lt;/code&gt;, utilisent des expressions régulières en interne, dont certaines sont vulnérables au déni de service d'expression régulière (ReDoS). Les applications et bibliothèques qui utilisent de telles méthodes à des entrées non fiables peuvent être affectées.&lt;/p&gt;
+&lt;p&gt;Le correctif limite la longueur d'entrée jusqu'à 128 octets par défaut au lieu de modifier les expressions régulières. La raison est que la gemme Date utilise de nombreuses expressions régulières donc il existe peut-être des expressions régulières vulnérables non découvertes. Pour des raisons de compatibilité, il est permis de supprimer la limitation en passant explicitement le mots-clé &lt;code&gt;limit&lt;/code&gt; à &lt;code&gt;nil&lt;/code&gt; comme &lt;code&gt;Date.parse(str, limit: nil)&lt;/code&gt;, mais notez que l'analyse peut prendre beaucoup de temps.&lt;/p&gt;
+&lt;p&gt;Veuillez mettre à jour la gemme de date vers la version 3.2.1, 3.1.2, 3.0.2, 2.0.1 ou ultérieure. Vous pouvez utiliser &lt;code&gt;gem update date&lt;/code&gt; pour la mettre à jour. Si vous utilisez bundler, veuillez ajouter &lt;code&gt;gem &amp;quot;date&amp;quot;, &amp;quot;&amp;gt;= 3.2.1&amp;quot;&lt;/code&gt; à votre &lt;code&gt;Gemfile&lt;/code&gt;.
+Vous pouvez également mettre à jour Ruby vers la version 3.0.3, 2.7.5, 2.6.9 ou ultérieure.&lt;/p&gt;
+&lt;h2&gt;Versions concernées&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Gemme date 2.0.0 ou antérieure (qui sont des versions inclusent dans la branche Ruby 2.6 avant la version Ruby 2.6.9)&lt;/li&gt;
+&lt;li&gt;Gemme date 3.0.1 ou antérieure (qui sont des versions inclusent dans la branche Ruby 2.7 avant la version Ruby 2.7.5)&lt;/li&gt;
+&lt;li&gt;Gemme date 3.1.1 ou antérieure (qui sont des versions inclusent dans la branche Ruby 3.0 avant la version Ruby 3.0.3)&lt;/li&gt;
+&lt;li&gt;Gemme date 3.2.0 ou antérieure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Remerciements&lt;/h2&gt;
+&lt;p&gt;Merci à &lt;a href=&quot;https://github.com/SValkanov/&quot;&gt;svalkanov&lt;/a&gt; pour la découverte de ce problème.&lt;/p&gt;
+&lt;h2&gt;Historique&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Paru initialement le 2021-11-15 08:00:00 (UTC)&lt;/li&gt;
+&lt;li&gt;Mention concernant les nouvelles versions de Ruby le 2021-11-24 13:20:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Posté par mame le 2021-11-15&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Mon, 15 Nov 2021 08:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/15/date-parsing-method-regexp-dos-cve-2021-41817/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/15/date-parsing-method-regexp-dos-cve-2021-41817/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.0 Preview 1 est disponible</title>
+      <description>&lt;p&gt;Nous avons le plaisir de vous annoncer la sortie de Ruby 3.1.0-preview1.&lt;/p&gt;
+&lt;h2&gt;YJIT: un nouveau compilateur JIT en cours de développement&lt;/h2&gt;
+&lt;p&gt;Ruby 3.1 fusionne YJIT, un nouveau compilateur JIT développé par Shopify.&lt;/p&gt;
+&lt;p&gt;Depuis que &lt;a href=&quot;https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/&quot;&gt;Ruby 2.6 a introduit MJIT en 2018&lt;/a&gt;, ses performances se sont grandement améliorées et &lt;a href=&quot;https://www.ruby-lang.org/fr/news/2020/12/25/ruby-3-0-0-released/&quot;&gt;nous sommes parvenus à Ruby3x3 l'année dernière&lt;/a&gt;. Même si Optcarrot a montré des accélérations impressionnantes, le JIT n'a pas profité aux applications du monde professionnel.&lt;/p&gt;
+&lt;p&gt;Récemment, Shopify a apporté de nombreuses améliorations à Ruby pour accélérer son application Rails. YJIT est une contribution importante et vise à améliorer les performances des applications Rails.&lt;/p&gt;
+&lt;p&gt;Bien que MJIT soit un compilateur JIT basé sur des méthodes et qu'il utilise un compilateur C externe, YJIT utilise le Basic Block Versioning et inclut le compilateur JIT à l'intérieur. Avec Lazy Basic Block Versioning (LBBV), cela compile d'abord le début d'une méthode et compile progressivement le reste lorsque le type des arguments et des variables est déterminé dynamiquement. Voir &lt;a href=&quot;https://dl.acm.org/doi/10.1145/3486606.3486781&quot;&gt;YJIT: a basic block versioning JIT compiler for CRuby&lt;/a&gt; pour une introduction détaillée.&lt;/p&gt;
+&lt;p&gt;Avec cette technologie, YJIT permet d'avoir à la fois un temps de démarrage rapide et des améliorations de performance sur la plupart des logiciels, jusqu'à 22% sur railsbench et 39% sur le rendu liquid.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;YJIT est toujours une fonctionnalité expérimentale. En tant que telle, elle est désactivée par défaut. Si vous souhaitez l'utiliser, spécifiez l'option en ligne de commande &lt;code&gt;--yjit&lt;/code&gt; pour activer YJIT. L'utilisation est pour le moment limitée à macOS et Linux sur les plateformes x86-64.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://bugs.ruby-lang.org/issues/18229&lt;/li&gt;
+&lt;li&gt;https://shopify.engineering/yjit-just-in-time-compiler-cruby&lt;/li&gt;
+&lt;li&gt;https://www.youtube.com/watch?v=PBVLf3yfMs8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;debug gem: un nouveau débogueur&lt;/h2&gt;
+&lt;p&gt;Un nouveau débogueur &lt;a href=&quot;https://github.com/ruby/debug&quot;&gt;debug.gem&lt;/a&gt; est inclu. debug.gem est une implémentation rapide du débogueur et fournit de nombreuses fonctionnalités telles que le débogage à distance, un REPL coloré, une intégration dans un IDE (VSCode) et bien plus encore. Cela remplace &lt;code&gt;lib/debug.rb&lt;/code&gt; de la bibliothèque standard.&lt;/p&gt;
+&lt;h2&gt;error_highlight: localisation des erreurs plus précise&lt;/h2&gt;
+&lt;p&gt;La gemme error_highlight a été ajoutée. Elle permet d'obtenir la localisation d'une erreur de manière plus précise dans la trace :&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ruby test.rb
+test.rb:1:in `&amp;lt;main&amp;gt;': undefined method `time' for 1:Integer (NoMethodError)
+
+1.time {}
+ ^^^^^
+Did you mean?  times
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Cette gemme est activée par défaut. Vous pouvez la désactiver en utilisant l'option en ligne de commande &lt;code&gt;--disable-error_highlight&lt;/code&gt;. Voir &lt;a href=&quot;https://github.com/ruby/error_highlight&quot;&gt;le dépôt&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h2&gt;Amélioration d'IRB&lt;/h2&gt;
+&lt;p&gt;À décrire dans le prochain aperçu.&lt;/p&gt;
+&lt;h2&gt;Autres nouvelles fonctionnalités notables&lt;/h2&gt;
+&lt;h3&gt;Language&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Les valeurs dans les littéraux de hachage peuvent être omis. [Feature #14579]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{x:, y:}&lt;/code&gt; est un sucre syntaxique de &lt;code&gt;{x: x, y: y}&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo(x:, y:)&lt;/code&gt; est un sucre syntaxique de &lt;code&gt;foo(x: x, y: y)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;L'opérateur pin dans le filtrage par motif prend désormais une expression. [Feature #17411]&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each_cons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;lazy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [[3, 5], [5, 7], [11, 13]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS est un langage pour décrire la structure des programmes Ruby. Voir &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;le dépôt&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Mises à jour depuis Ruby 3.0.0:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rbs collection&lt;/code&gt; a été introduite pour gérer les RBS des gemmes. &lt;a href=&quot;https://github.com/ruby/rbs/blob/master/docs/collection.md&quot;&gt;doc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Plusieurs signatures pour des bibliothèques intégrées et standards ont été ajoutées/mises à jour.&lt;/li&gt;
+&lt;li&gt;Il y a également de nombreuses corrections de bogues et d'améliorations de performance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir &lt;a href=&quot;https://github.com/ruby/rbs/blob/master/CHANGELOG.md&quot;&gt;le CHANGELOG.md&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;TypeProf est un analyseur de type statique pour Ruby. Il génère un prototype de RBS à partir de code Ruby non annoté de type. Voir &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;le document&lt;/a&gt; pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Mises à jour depuis Ruby 3.0.0 :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/ide.md&quot;&gt;Le support expérimental pour IDE&lt;/a&gt; a été implémenté.&lt;/li&gt;
+&lt;li&gt;Il y a également de nombreuses corrections de bogues et d'améliorations de performance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Amélioration de performance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MJIT
+&lt;ul&gt;
+&lt;li&gt;Pour les charges de travail telles que Rails, la valeur par défaut &lt;code&gt;--jit-max-cache&lt;/code&gt; passe de 100 à 10000.
+Le compilateur JIT ne saute plus la compilation des méthodes de plus de 1000 instructions.&lt;/li&gt;
+&lt;li&gt;Pour prendre en charge Zeitwerk de Rails, le code généré par le compilateur JIT n'est plus annulé
+lorsqu'un TracePoint est activé pour les évènements de classe.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Autres changements notables depuis la version 3.0&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Le filtrage par motif en une ligne, e.g., &lt;code&gt;ary =&amp;gt; [x, y, z]&lt;/code&gt;, n'est plus au stade expérimental.&lt;/li&gt;
+&lt;li&gt;L'ordre d'évaluation des affectations multiples a été légèrement modifié. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/4443&quot;&gt;[Bug #4443]&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;foo[0], bar[0] = baz, qux&lt;/code&gt; était évalué dans l'ordre &lt;code&gt;baz&lt;/code&gt;, &lt;code&gt;qux&lt;/code&gt;, &lt;code&gt;foo&lt;/code&gt; puis &lt;code&gt;bar&lt;/code&gt; dans Ruby 3.0. Dans Ruby 3.1, l'évaluation est dans l'ordre &lt;code&gt;foo&lt;/code&gt;, &lt;code&gt;bar&lt;/code&gt;, &lt;code&gt;baz&lt;/code&gt; puis &lt;code&gt;qux&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Allocation de la taille d'une variable: Strings (expérimental) &lt;a href=&quot;https://bugs.ruby-lang.org/issues/18239&quot;&gt;[Bug #18239]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Mises à jour des bibliothèques standards&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Plusieurs bibliothèques standards ont été mises à jour.
+&lt;ul&gt;
+&lt;li&gt;RubyGems&lt;/li&gt;
+&lt;li&gt;Bundler&lt;/li&gt;
+&lt;li&gt;RDoc 6.4.0&lt;/li&gt;
+&lt;li&gt;ReLine&lt;/li&gt;
+&lt;li&gt;JSON 2.6.0&lt;/li&gt;
+&lt;li&gt;Psych 4.0.2&lt;/li&gt;
+&lt;li&gt;FileUtils 1.6.0&lt;/li&gt;
+&lt;li&gt;Fiddle&lt;/li&gt;
+&lt;li&gt;StringIO 3.0.1&lt;/li&gt;
+&lt;li&gt;IO::Console 0.5.9&lt;/li&gt;
+&lt;li&gt;IO::Wait 0.2.0&lt;/li&gt;
+&lt;li&gt;CSV&lt;/li&gt;
+&lt;li&gt;Etc 1.3.0&lt;/li&gt;
+&lt;li&gt;Date 3.2.0&lt;/li&gt;
+&lt;li&gt;Zlib 2.1.1&lt;/li&gt;
+&lt;li&gt;StringScanner&lt;/li&gt;
+&lt;li&gt;IpAddr&lt;/li&gt;
+&lt;li&gt;Logger 1.4.4&lt;/li&gt;
+&lt;li&gt;OStruct 0.5.0&lt;/li&gt;
+&lt;li&gt;Irb&lt;/li&gt;
+&lt;li&gt;Racc 1.6.0&lt;/li&gt;
+&lt;li&gt;Delegate 0.2.0&lt;/li&gt;
+&lt;li&gt;Benchmark 0.2.0&lt;/li&gt;
+&lt;li&gt;CGI 0.3.0&lt;/li&gt;
+&lt;li&gt;Readline(C-ext) 0.1.3&lt;/li&gt;
+&lt;li&gt;Timeout 0.2.0&lt;/li&gt;
+&lt;li&gt;YAML 0.2.0&lt;/li&gt;
+&lt;li&gt;URI 0.11.0&lt;/li&gt;
+&lt;li&gt;OpenSSL&lt;/li&gt;
+&lt;li&gt;DidYouMean&lt;/li&gt;
+&lt;li&gt;Weakref 0.1.1&lt;/li&gt;
+&lt;li&gt;Tempfile 0.1.2&lt;/li&gt;
+&lt;li&gt;TmpDir 0.1.2&lt;/li&gt;
+&lt;li&gt;English 0.7.1&lt;/li&gt;
+&lt;li&gt;Net::Protocol 0.1.2&lt;/li&gt;
+&lt;li&gt;Net::Http 0.2.0&lt;/li&gt;
+&lt;li&gt;BigDecimal&lt;/li&gt;
+&lt;li&gt;OptionParser 0.2.0&lt;/li&gt;
+&lt;li&gt;Set&lt;/li&gt;
+&lt;li&gt;Find 0.1.1&lt;/li&gt;
+&lt;li&gt;Rinda 0.1.1&lt;/li&gt;
+&lt;li&gt;Erb&lt;/li&gt;
+&lt;li&gt;NKF 0.1.1&lt;/li&gt;
+&lt;li&gt;Base64 0.1.1&lt;/li&gt;
+&lt;li&gt;OpenUri 0.2.0&lt;/li&gt;
+&lt;li&gt;SecureRandom 0.1.1&lt;/li&gt;
+&lt;li&gt;Resolv 0.2.1&lt;/li&gt;
+&lt;li&gt;Resolv::Replace 0.1.0&lt;/li&gt;
+&lt;li&gt;Time 0.2.0&lt;/li&gt;
+&lt;li&gt;PP 0.2.1&lt;/li&gt;
+&lt;li&gt;Prettyprint 0.1.1&lt;/li&gt;
+&lt;li&gt;Drb 2.1.0&lt;/li&gt;
+&lt;li&gt;Pathname 0.2.0&lt;/li&gt;
+&lt;li&gt;Digest 3.1.0.pre2&lt;/li&gt;
+&lt;li&gt;Un 0.2.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Les gemmes incluses suivantes ont été mises à jour.
+&lt;ul&gt;
+&lt;li&gt;minitest 5.14.4&lt;/li&gt;
+&lt;li&gt;power_assert 2.0.1&lt;/li&gt;
+&lt;li&gt;rake 13.0.6&lt;/li&gt;
+&lt;li&gt;test-unit 3.5.0&lt;/li&gt;
+&lt;li&gt;rbs 1.6.2&lt;/li&gt;
+&lt;li&gt;typeprof 0.20.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Les gemmes par défaut suivantes sont désormais incluses.
+&lt;ul&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-pop&lt;/li&gt;
+&lt;li&gt;net-smtp&lt;/li&gt;
+&lt;li&gt;matrix&lt;/li&gt;
+&lt;li&gt;prime&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Voir &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_1_0_preview1/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+ou les &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0_preview1&quot;&gt;logs de commit&lt;/a&gt;
+pour de plus amples informations.&lt;/p&gt;
+&lt;p&gt;Avec ces changements, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0_preview1#file_bucket&quot;&gt;2963 fichiers changés, 529321 insertions(+), 92305 suppressions(-)&lt;/a&gt;
+depuis Ruby 3.0.0!&lt;/p&gt;
+&lt;h2&gt;Téléchargement&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20821221
+SHA1: 40dfd3db076a49fab9a0eee51e89d9b3d16a4e23
+SHA256: 540f49f4c3aceb1a5d7fb0b8522a04dd96bc4a22f9660a6b59629886c8e010d4
+SHA512: 63f528f20905827d03649ed9804e4a4e5c15078f9c6c8efcfb306baa7baafa17a406eb09a2c08b42e151e14af33b1aadbd9fb1cc84f9353d070b54bbf1ff950d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15742844
+SHA1: 22aa861b17031cd1b163b7443f5f2f5897c5895e
+SHA256: 86a836ad42f6a7a469fce71ffec48fd3184af55bf79e488b568a4f64adee551d
+SHA512: bdbd7c624197ca478658280d84123a8c12ae72425bc566dcc75989c5b5ef114dd57e64efc09e2413ed615d9b47621a70ace0f3612e8ca7ba853822ad9e88c0b0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25019629
+SHA1: ef5fa22890e55935db4b96b3089a8aea1335bd85
+SHA256: 4e8d118b2365164873148ac545a8fa36c098b846a9b19ebb9037f8ee9adb4414
+SHA512: 917803aac0848e00871614a09740b5c9cca26f200d68580dde61666633f1b7fee506e25ea4ed0c38eb20149417bf9f1ed449a4d2aec5b726de670e7177e5c07a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ruby, c'est quoi ?&lt;/h2&gt;
+&lt;p&gt;Ruby a été initialement développé par Matz (Yukihiro Matsumoto) en 1993 puis est devenu open source. Il fonctionne sur de nombreuses plateformes et est utilisé partout dans le monde, en particulier pour le développement web.&lt;/p&gt;
+
+&lt;p&gt;Posté par naruse le 2021-11-09&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/11/09/ruby-3-1-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/11/09/ruby-3-1-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Concours 2022 Fukuoka Ruby Award - Les candidatures seront jugées par Matz</title>
+      <description>&lt;p&gt;Chers passionnés de Ruby,&lt;/p&gt;
+&lt;p&gt;Le gouvernement de Fukuoka au Japon et « Matz » Matsumoto aimeraient vous inviter à participer au concours Ruby suivant. Si vous avez développé un programme Ruby intéressant, vous êtes encouragés à postuler.&lt;/p&gt;
+&lt;p&gt;Concours 2022 Fukuoka Ruby Award - Grand Prix - 1 Million de Yens !&lt;/p&gt;
+&lt;p&gt;Date limite d'inscription : 3 décembre 2021&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.digitalfukuoka.jp/javascripts/kcfinder/upload/images/fukuokarubyaward2017.png&quot; alt=&quot;Fukuoka Ruby Award&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Matz et un groupe de panélistes sélectionneront les gagnants du concours de Fukuoka. Le grand prix du concours de Fukuoka est de 1 million de yens. Les anciens gagnants du grand prix sont Rhomobile (États-Unis) et APEC Climate Center (Corée).&lt;/p&gt;
+&lt;p&gt;Les programmes inscrits au concours n'ont pas à être entièrement écrits en Ruby, mais doivent tirer parti des caractéristiques uniques de Ruby.&lt;/p&gt;
+&lt;p&gt;Le programme doit avoir été développé ou mis à jour au cours de l'année passée. Veuillez visiter le site Web de Fukuoka suivant pour participer.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.digitalfukuoka.jp/events/242&quot;&gt;http://www.digitalfukuoka.jp/events/242&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Veuillez envoyer le formulaire de candidature à award@f-ruby.com&lt;/p&gt;
+&lt;p&gt;« Matz testera et révisera votre code source de manière approfondie, il est donc très intéressant de postuler ! Le concours est gratuit. »&lt;/p&gt;
+&lt;p&gt;Merci !&lt;/p&gt;
+
+&lt;p&gt;Posté par Fukuoka Ruby le 2021-08-03&lt;br /&gt;Traduit par Kevin Rosaz&lt;/p&gt;</description>
+      <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/fr/news/2021/08/03/fukuoka-ruby-award-2022/</guid>
+      <link>https://www.ruby-lang.org/fr/news/2021/08/03/fukuoka-ruby-award-2022/</link>
+    </item>
+    
+  </channel>
+</rss>

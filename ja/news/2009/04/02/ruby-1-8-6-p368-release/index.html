@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 1.8.6-p368 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2009/04/02/ruby-1-8-6-p368-release/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 1.8.6-p368 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by usa on 2 Apr 2009</p>
+
+    <p>Ruby
+1.8.6-p368がリリースされました。(保守担当の卜部さんによるリリースアナウンス:<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-list/45951">[ruby-list:45951]</a>)</p>
+<p>Ruby 1.8.6-p368は、安定版であるruby 1.8.6の保守リリースです。
+このリリースにはセグメンテーション違反を含む多数のバグの修正が盛り込まれています。
+また、<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-1558">CVE-2007-1558</a>および<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-1447">CVE-2008-1447</a>に対する問題回避修正も含まれています。</p>
+<p>なお、今回は1.8.7系については同時にはリリースされていませんが、近日中に残存する幾つかの問題を修正した上でリリースされる予定です。</p>
+<p>今回のリリースのソースアーカイブは以下のURLから入手できます。</p>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p368.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p368.tar.gz&gt;</a></li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p368.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p368.tar.bz2&gt;</a></li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p368.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p368.zip&gt;</a></li>
+</ul>
+<p>それぞれのチェックサムは以下の通りです。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MD5(ruby-1.8.6-p368.tar.gz)= 508bf1911173ac43e4e6c31d9dc36b8f
+SHA256(ruby-1.8.6-p368.tar.gz)= cc8cad3edd02d8c2de3c63a7d8a5cb85af39766dd47360a9c0f26339b101e2a0
+SIZE(ruby-1.8.6-p368.tar.gz)= 4602095
+
+MD5(ruby-1.8.6-p368.tar.bz2)= 623447c6d8c973193aae565a5538ccfc
+SHA256(ruby-1.8.6-p368.tar.bz2)= 1bd398a125040261f8e9e74289277c82063aae174ada9f300d2bea0a42ccdcc1
+SIZE(ruby-1.8.6-p368.tar.bz2)= 3967709
+
+MD5(ruby-1.8.6-p368.zip)= 3d301a4b1aded1922570585bbece2c29
+SHA256(ruby-1.8.6-p368.zip)= 8ba4bfd14d2914bfe2c18ffa9da084234be978fd0eee654f7a5c732a1beb0246
+SIZE(ruby-1.8.6-p368.zip)= 5619494
+</code></pre></div></div>
+<p>変更点のリストは同梱のChangeLogを参照してください。 以下のURLでも参照することができます。</p>
+<ul>
+<li><a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_8_6_368/ChangeLog">&lt;URL:https://svn.ruby-lang.org/repos/ruby/tags/v1_8_6_368/ChangeLog&gt;</a></li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

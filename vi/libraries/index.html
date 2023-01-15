@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Thư viện</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Thư viện</h1>
+
+
+
+  <div id="content">
+    <p>Như những ngôn ngữ lập trình khác, Ruby có một lượng lớn thư viện không thuộc
+thư viện lõi.
+{: .summary}</p>
+<p>Hầu hết được phát hành dưới dạng <strong>gem</strong>. <a href="https://rubygems.org/"><strong>RubyGems</strong></a> là hệ thống đóng gói
+Ruby giúp tạo, chia sẻ và cài đặt thư viện (ở dưới một góc độ nào đó thì nó là
+hệ thống phân phối gói, giống như <code>apt-get</code>, nhưng tập trung chỉ vào phần mềm Ruby).
+Từ phiên bản 1.9, Ruby có kèm RubyGems vào cùng, trong khi đó những phiên bản thì
+phải <a href="https://rubygems.org/pages/download/">cài đặt riêng</a>.</p>
+<p>Nhiều thư viện khác được phát hành dưới hình thức gói lưu trữ (.zip hay .tar.gz)
+của <strong>mã nguồn</strong>. Phương thức cài đặt có thể khác nhưng hầu hết hướng dẫn cài
+đặt được viết trong <code>README</code> hay <code>INSTALL</code>.</p>
+<p>Nào bây giờ hãy cùng tìm thư viện và cài đặt chúng theo yêu cầu sử dụng của bạn.</p>
+<h3>Tìm thư viện</h3>
+<p>Địa điểm chính nơi thư viện được phát hành là <a href="https://rubygems.org/"><strong>RubyGems.org</strong></a>,
+hệ thống này cung cấp thư viện Ruby dưới dạng gem. Bạn có thể xem trang web trực
+tiếp hoặc thông qua lệnh <code>gem</code>.</p>
+<p>Sử dụng <code>gem search -r</code> để tra cứu repository của RubyGems. Ví dụ,
+<code>gem search -r rails</code> sẽ trả về một danh sách những gem liên quan đến Rails.
+Nếu khai báo lệnh với lựa chọn <code>--local</code> (<code>-l</code>) để tìm kiếm trong những gem đã
+được cài đặt trên máy. Để cài một gem, dùng <code>gem install [gem]</code>. Xem những gem đã cài trên máy với lệnh <code>gem list</code>. Để biết thêm chi tiết
+về lệnh <code>gem</code>, xin hãy tham khảo ở dưới hoặc xem <a href="http://guides.rubygems.org/">Tài liệu RubyGems</a>.</p>
+<p>Có nhiều nguồn thư viện. <a href="http://rubyforge.org/">RubyForge</a> từng là nhà của rất nhiều thư viện phổ
+dụng, nhưng nhũng năm gần đây chứng kiến <a href="https://github.com/"><strong>GitHub</strong></a> lên ngôi như là một
+trung tâm lưu trữ tất cả nội dung liên quan đến Ruby. Hầu hết mã nguồn của gem
+đều được để trên GitHub trong khi gem ở dạng đóng gói thì được phát hành trên
+RubyGems.org.</p>
+<p><a href="http://raa.ruby-lang.org/">Ruby Application Archive</a> (hay RAA) là danh mục tất cả mọi thứ về phần mềm
+Ruby, sắp xếp theo chức năng. Tuy nhưng trang này không còn được sử dụng nữa. Có
+lẽ bạn không bỏ qua trang này.</p>
+<h3>Một vài lời về RubyGems</h3>
+<p>Sau đây là một bài hướng dẫn nhanh về lệnh <code>gem</code> trong sử dụng hàng ngày.
+<a href="http://guides.rubygems.org/command-reference/">Nhiều tài liệu chi tiết hơn</a> chỉ ra những khía cạnh sâu của hệ thống gói này.</p>
+<h4>Tìm kiếm gem</h4>
+<p>Lệnh <strong>search</strong> được dùng để tìm gem, theo một từ khoá.
+Gems mà tên bắt đầu với từ chỉ định sẽ được trả về.
+Ví dụ, tìm những gem liên quan từ khoá “html”:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Cờ <code>--remote</code> / <code>-r</code> chỉ định là chúng ta muốn kiểm tra trên repository
+của RubyGems.org (mặc định).
+Với cờ <code>--local</code> / <code>-l</code> bạn sẽ tìm gem chỉ được cài trên máyc của bạn.</p>
+<h4>Cài đặt gem</h4>
+<p>Khi bạn biết gem nào cần <strong>cài đặt</strong>, ví dụ gem Rails:</p>
+<!-- raw HTML omitted -->
+<p>Bạn có thể cài một phiên bản nhất định của gem, với cờ <code>--version</code> / <code>-v</code>:</p>
+<!-- raw HTML omitted -->
+<h4>Liệt kê tất cả gem</h4>
+<p>Muốn có một <strong>danh sách</strong> gem đã cài trên máy:</p>
+<!-- raw HTML omitted -->
+<p>Để lấy danh sách các gem trên RubyGems.org:</p>
+<!-- raw HTML omitted -->
+<h4>Giúp!</h4>
+<p>Tài liệu có thể được truy cập trong terminal với:</p>
+<!-- raw HTML omitted -->
+<p>Ví dụ, <code>gem help commands</code> sẽ liệt kê ra các lệnh của <code>gem</code>.</p>
+<h4>Tạo ra gem riêng của bạn</h4>
+<p>RubyGems.org có một vài <a href="http://guides.rubygems.org/">hướng dẫn</a> về chủ đề này. Bạn có thể tra khảo về
+<a href="http://bundler.io/">Bundler</a>, một công cụ giúp quản lý các phần mềm yêu cầu và có thể sử dụng
+cùng với RubyGems.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

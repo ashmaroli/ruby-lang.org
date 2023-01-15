@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>他言語からのRuby入門</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/ruby-from-other-languages/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>他言語からのRuby入門</h1>
+
+
+
+  <div id="content">
+    <p>Rubyのコードを目にすると、
+他の言語と似た部分があることに気が付くはずです。
+構文の多くは、(他の言語の中でも特に)PerlやPython、
+Javaプログラマーにとって馴染みのあるものになっています。
+もしあなたがそうした言語に慣れ親しんでいるのなら、
+Rubyを学ぶのはおそらくどうってことないはずです。
+{: .summary}</p>
+<p>このドキュメントは2部構成になっています。
+このページでは、プログラミング言語<em>X</em>からRubyへ移ってくる際に役立つ情報をざっと紹介します。
+個別のページでは、Rubyの主な言語機能を紹介しつつ、
+あなたが慣れ親しんできた言語との比較を行います。</p>
+<h2>求められていること: <em>言語X</em>からRubyへ</h2>
+<ul>
+<li><a href="to-ruby-from-c-and-cpp/">C・C++からRubyへ</a></li>
+<li><a href="to-ruby-from-java/">JavaからRubyへ</a></li>
+<li><a href="to-ruby-from-perl/">PerlからRubyへ</a></li>
+<li><a href="to-ruby-from-php/">PHPからRubyへ</a></li>
+<li><a href="to-ruby-from-python/">PythonからRubyへ</a></li>
+</ul>
+<h2>重要な言語機能と知っておくべきこと</h2>
+<p>ここでは、Rubyを学習する中で出会ういくつかの主要な機能について、
+参照先やヒントを示します。</p>
+<h3>イテレーション</h3>
+<p>Rubyの特徴であるブロックとイテレータは、
+これまでにあまり見たことがない、あるいは使い慣れていないものかもしれません。
+(CやC++、1.5以前のJavaのような)インデックスを使った繰り返し処理や、
+(Perlの<code>for (@a) {...}</code>やPythonの<code>for i in aList: ...</code>のような)
+リストをループする処理の代わりに、
+Rubyでは次のようなコードをよく見ることになるでしょう。</p>
+<!-- raw HTML omitted -->
+<p><code>each</code>(や<code>collect</code>、<code>find</code>、<code>inject</code>、<code>sort</code>など)について詳しくは、
+<code>ri Enumerable</code>を参照してみてください（そして、次に
+<code>ri Enumerable#some_method</code>として具体的なメソッドを参照してみてください)。</p>
+<h3>すべては値</h3>
+<p>式と文に違いはありません。
+すべては値を持ちます。<code>nil</code>であっても例外ではありません。
+Rubyでは次のように書くことが可能です。</p>
+<!-- raw HTML omitted -->
+<h3>シンボルは軽量文字列ではない</h3>
+<p>多くのRuby初学者はシンボルが何であるか、どう使えばよいのかを理解するのに苦戦します。</p>
+<p>シンボルは識別子として記述するのに適しています。
+シンボルは、<strong>どんな物か</strong>ではなく、<strong>何者であるか</strong>がすべてです。
+<code>irb</code>を立ち上げて、次の違いを見てみてください。</p>
+<!-- raw HTML omitted -->
+<p><code>object_id</code>メソッドはオブジェクトのIDを返します。
+もし二つのオブジェクトが同じ<code>object_id</code>を持っていれば、
+それらはメモリ上の同じ実体を指すものであると言えます。</p>
+<p>上記で見たとおり、一度でもシンボルを使ったなら、
+同じ文字からなるシンボルは、いずれもメモリ内の同じオブジェクトを参照します。
+同じ文字で表された2つのシンボルは、同じ<code>object_id</code>を指します。</p>
+<p>次に文字列(&quot;george&quot;)の方を見てみましょう。
+<code>object_id</code>は一致していません。
+これは、二つの文字列が異なる実体を指していることを示しています。
+新しい文字列を使うと、Rubyは毎回その文字列のために新しいメモリ領域を確保します。</p>
+<p>シンボルを使うか文字列を使うかで迷ったなら、
+ハッシュのキーのようにオブジェクトを識別したいのか、
+それとも前述の&quot;george&quot;などのようにコンテンツを表したいのかを、
+選択の指針にしてください。</p>
+<h3>すべてはオブジェクト</h3>
+<p>「すべてはオブジェクト」は誇張ではありません。
+クラスや整数でさえオブジェクトです。
+他のオブジェクトと同じように扱うことができます。</p>
+<!-- raw HTML omitted -->
+<h3>可変な定数</h3>
+<p>定数は厳密な意味での定数ではありません。
+初期化済みの定数を変更したとしても、
+警告はされますが、プログラムは停止しません。
+だからと言って、定数を再定義するべきだということではありません。</p>
+<h3>名前付けの規約</h3>
+<p>Rubyにはいくつか名前付けについての規約があります。
+大文字から始まる識別子は定数です。
+ドルマーク(<code>$</code>)から始まる識別子はグローバル変数、
+<code>@</code>から始まる識別子はインスタンス変数、
+<code>@@</code>から始まる識別子はクラス変数になります。</p>
+<p>メソッド名は大文字から始めることもできます。
+けれど、それは次のような混乱を招くことになるでしょう。</p>
+<!-- raw HTML omitted -->
+<p>こうすると、<code>Constant</code>は10ですが、<code>Constant()</code>は11になります。</p>
+<h3>キーワード引数</h3>
+<p>メソッドはRuby 2.0から、Pythonのように、
+キーワード引数を定義できるようになりました。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from A to B via mail.&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->via: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Pony Express&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->from: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;A&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from B to A via Pony Express.&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>普遍の真理</h3>
+<p>Rubyでは、<code>nil</code>と<code>false</code>を除くすべてのものは真と評価されます。
+CやPythonを始めとする多くの言語では、0あるいはその他の値、空のリストなどは
+偽と評価されます。次に示すPythonコードをみてください
+(他の言語でもだいたい同じようなコードになるでしょう)。</p>
+<!-- raw HTML omitted -->
+<p>このコードを実行すると「0 is false」と出力されます。
+同じコードをRubyで書くと以下のようになります。</p>
+<!-- raw HTML omitted -->
+<p>このコードを実行すると、
+「0 is true」が出力されることになります。</p>
+<h3>アクセス修飾子はスコープの最後まで適用される</h3>
+<p>次のRubyコードを見てください。</p>
+<!-- raw HTML omitted -->
+<p><code>another_method</code>がpublicメソッドになることを期待するかもしれませんが、
+結果はそうなりません。
+<code>private</code>アクセス修飾子はスコープの終わりか、他のアクセス修飾子が
+あらわれるまで継続されます。
+デフォルトでは、メソッドはpublicになります。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># another_methodはprivateです<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->another_method<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>public</code>、<code>private</code>、<code>protected</code>は実際にはメソッドになるので、
+引数を受けることができます。これらにシンボルを渡した場合には、
+そのメソッドの可視性が変更されます。</p>
+<h3>アクセス制御</h3>
+<p>Javaでは、<code>public</code>は誰でもアクセスできることを意味しています。
+そして、<code>protected</code>はクラスおよび継承関係にあるクラスのインスタンス、
+クラスと同じパッケージにあるクラスのインスタンスからアクセスできること、
+<code>private</code>はクラスのインスタンスからのみアクセスできることを、
+ぞれぞれ意味します。</p>
+<p>Rubyでは扱いが若干異なります。
+<code>public</code>はそのままの意味になります。
+<code>private</code>は、レシーバなしで呼び出すことができる場合に、
+そのメソッドへアクセス可能となります。
+つまり、<code>self</code>のみがprivateメソッドを呼び出す際のレシーバとなります。</p>
+<p><code>protected</code>は気をつけて扱う必要があります。
+protectedメソッドはクラスか継承関係にあるクラスのインスタンスからのみ
+呼び出すことができます。しかしまた、
+レシーバとしてインスタンスを指定しても呼び出すことができてしまいます。
+以下に例を示します(<a href="http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html">The Ruby Language FAQ</a>から引用)。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->identifier<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x34ab50&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t2<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x342784&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->       <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># ここで<code>identifier'をprotectedにする。&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# protected はレシーバとして</code>other'を許容するため、これは動作する。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->protected<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># ここで`identifier'をprivateにする。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->private<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># NoMethodError: private method `identifier' called for #&lt;Test:0x342784&gt;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>クラスは開いている</h3>
+<p>Rubyのクラスは開いています。
+いつでもクラスを開いて、定義を足したり、変更することができます。
+<code>Integer</code>や、すべてのオブジェクトの祖先である<code>Object</code>のようなクラスであっても、
+自由に再定義することが可能です。Ruby on Railsは、次のような
+<code>Integer</code>に時間を扱うメソッド群を定義しています。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 1月1日の0時0分から14時間後<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Time<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->mktime<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->2006<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->+<!-- raw HTML omitted --> <!-- raw HTML omitted -->14<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->hours<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Sun Jan 01 14:00:00<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>不思議なメソッド名</h3>
+<p>Rubyでは、メソッド名の最後に疑問符(?)や感嘆符(!)が使われることがあります。
+慣習的に、問い合わせ系のメソッドの最後には疑問符が使われます
+(例: レシーバが空の場合に<code>true</code>を返す<code>Array#empty?</code>)。
+また、使用に危険を伴うメソッドの最後には感嘆符が使われます
+(例: <code>self</code>あるいは引数の内容を書き換えるようなメソッド。<code>exit!</code>など)。
+けれど、危険なメソッドすべてがこの慣習に従っているわけでも
+ないことに注意してください。
+<code>Array#replace</code>は、与えられた配列の内容で配列の内容を置き換えます。
+この操作は、自身を<strong>変更しない</strong>ようなメソッド名とは意に反する振る舞いをします。</p>
+<h3>特異メソッド</h3>
+<p>特異メソッドはオブジェクト単位のメソッドです。
+特異メソッドは、定義したオブジェクトからだけ利用できるメソッドになります。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Expensive car&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Expensive car<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 他のオブジェクトには影響しない<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>「存在しなかった」メソッド</h3>
+<p>Rubyはメッセージに対応するメソッドを見つけられなかったとしても諦めません。
+その場合は、見つけられなかったメソッド名と引数と共に、
+<code>method_missing</code>メソッドを呼び出します。
+<code>method_missing</code>メソッドはデフォルトではNameError例外を投げますが、
+アプリケーションに合うように再定義することもできます。
+実際、多くのライブラリがそのようにしています。
+以下がその例です。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->__<!-- raw HTML omitted --> <!-- raw HTML omitted -->:a<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:b<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->10<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; Method __ was called, but not found. It has these<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># arguments: a, b, 10<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>このコードは単に呼び出されたメソッドの詳細を出力しているだけですが、
+ここには何を書いても良いので、メッセージを受け取って適切な処理を行えます。</p>
+<h3>関数呼び出しではなくメッセージ送信</h3>
+<p>メソッド呼び出しは実際には他のオブジェクトへの<strong>メッセージ送信</strong>です。</p>
+<!-- raw HTML omitted -->
+<h3>ブロックは作りかけのオブジェクト</h3>
+<p>ブロック(実際にはクロージャ)は標準ライブラリでもすごく使われています。
+ブロックを呼び出すには、<code>yield</code>を使うか、引数リストに特別な引数を追加して
+それを<code>Proc</code>オブジェクトにします。以下がその例です。</p>
+<!-- raw HTML omitted -->
+<p><code>Proc.new</code>にブロックを渡すか、<code>lambda</code>メソッドを呼び出すことで、
+メソッド呼び出しの外側でブロックを作成することもできます。</p>
+<p>同様に、メソッドもまた作りかけのオブジェクトです。</p>
+<!-- raw HTML omitted -->
+<h3>演算子は糖衣構文(シンタックスシュガー)</h3>
+<p>Rubyにおけるほとんどの演算子は糖衣構文です。
+いくつかの優先順位規則にもとづいて、メソッド呼び出しを単に書き換えているだけです。
+たとえば、Integerクラスの<code>+</code>メソッドを次のようにオーバーライドすることもできます。</p>
+<!-- raw HTML omitted -->
+<p>C++の<code>operator+</code>などは必要ありません。</p>
+<p><code>[]</code>や<code>[]=</code>といったメソッドを定義すれば、配列のようなスタイルでアクセスすることもできます。
+(+1や-2みたいな)単項の+や-を定義するには、<code>+@</code>か<code>-@</code>といったメソッドを定義する必要があります。
+けれど、以下の演算子は糖衣構文では<strong>ありません</strong>。
+これらはメソッドではないので、再定義できません。</p>
+<!-- raw HTML omitted -->
+<p>加えて<code>+=</code>、<code>*=</code>などは<code>var = var + other_var</code>、<code>var = var * other_var</code>
+などの処理の略記法になり、これらも再定義できません。</p>
+<h2>もっと知りたい</h2>
+<p>Rubyについてもっと知りたくなったのなら、
+<a href="/ja/documentation/">ドキュメント</a>の
+その他のコンテンツを見てみてください。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

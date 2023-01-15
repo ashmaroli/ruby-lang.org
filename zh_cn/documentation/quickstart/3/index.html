@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>20分钟体验 Ruby，第3页 - Ruby 官方网站</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/documentation/quickstart/3/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>我们来建立一个 greeter 对象然后使用它：</p>
+<!-- raw HTML omitted -->
+<p>当 <code>g</code> 对象被建立后，它就记住了名字属性的值 Pat。Hmm… 如果我们想直接读取名字的值呢？</p>
+<!-- raw HTML omitted -->
+<p>晕，做不到。</p>
+<h2>揭开对象的面纱</h2>
+<p>实例变量是被隐藏起来的，但他们并不是被完全的隐藏起来。
+当您检查一个对象的时候还是可以看到他们的。Ruby采用了面向对象的思想，将内部属性保护了起来。</p>
+<p>到底 Greeter 有哪些函数呢？</p>
+<!-- raw HTML omitted -->
+<p>哇。。。有这么多！可我们只定义了两个啊，怎么回事？这里列出的其实是 Greeter 对象包含的 <strong>所有</strong>
+的函数，当然也就包括了它所继承的类的函数了。如果我们只希望列出 Greeter 自己的函数，可以提供一个 <code>false</code> 参数给
+<code>instance_methods</code>，表示我们不希望列出祖先类的函数。</p>
+<!-- raw HTML omitted -->
+<p>看起来好多了。我们来看看 greeter 会对哪些函数作出回应：</p>
+<!-- raw HTML omitted -->
+<p>它知道 <code>say_hi</code> 和 <code>to_s</code>（意思是把什么东西转换成字符串，这是每个对象都有的功能）， 但是它不知道 <code>name</code>。</p>
+<h2>改变类吧，永远都不晚</h2>
+<p>假如您想获取甚至改变名字属性呢？Ruby 提供了一个简单的方法来访问属性。</p>
+<!-- raw HTML omitted -->
+<p>在 Ruby 里，您可以把一个类打开然后改变它。这些改变会对以后生成的甚至是已经生成的对象产生即时效果。 下面我们来建一个新的 Greeter
+对象，然后看一看它的 <code>@name</code> 属性。</p>
+<!-- raw HTML omitted -->
+<p><code>attr_accessor</code> 会自动为我们定义两个新的函数， <code>name</code> 用来读取变量的值， <code>name=</code> 用来给变量赋值。</p>
+<h2>见面熟的 MegaGreeter！</h2>
+<p>已经建立好的这个 greeter 不是那么有新意，它一次只能向一个人问好。如果我们有一个 MegaGreeter
+可以同时向世界，一个人，甚至向一群人问好，那该多好啊？</p>
+<p>我们不再使用互动 Ruby 的解析器 IRB 了，而是把代码写到一个文件里。</p>
+<p>输入 “exit” 或者按下 Control-D 退出 IRB。</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->MegaGreeter<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->attr_accessor<!-- raw HTML omitted --> <!-- raw HTML omitted -->:names<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Create the object<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->initialize<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;World&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->names<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Say hi to everybody<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;each&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># @names is a list of some kind, iterate!<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->each<!-- raw HTML omitted --> <!-- raw HTML omitted -->do<!-- raw HTML omitted --> <!-- raw HTML omitted -->|<!-- raw HTML omitted --><!-- raw HTML omitted -->name<!-- raw HTML omitted --><!-- raw HTML omitted -->|<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Hello <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->name<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Hello <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Say bye to everybody<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->say_bye<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;join&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Join the list elements with commas<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Goodbye <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->join<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;, &quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->.  Come back soon!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Goodbye <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->.  Come back soon!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted --><strong>FILE</strong><!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->$0<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->MegaGreeter<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Change name to be &quot;Zeke&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Zeke&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Change the name to an array of names<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Albert&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Brenda&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Charles&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Dave&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Engelbert&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Change to nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>把这个文件储存到 “ri20min.rb”， 然后在命令行输入 “ruby ri20min.rb” 来运行它。 您应该可以看到：:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World!
+Goodbye World.  Come back soon!
+Hello Zeke!
+Goodbye Zeke.  Come back soon!
+Hello Albert!
+Hello Brenda!
+Hello Charles!
+Hello Dave!
+Hello Engelbert!
+Goodbye Albert, Brenda, Charles, Dave, Engelbert.  Come
+back soon!
+...
+...
+</code></pre></div></div>
+<p>{: .code}</p>
+<p>这个例子里有很多新鲜的代码，我们还是来<a href="../4/">仔细的瞧瞧</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>试用</strong>，其实很简单！</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在浏览器中试用 Ruby（英文）</a></li>
+
+    
+    <li><a href="/zh_cn/documentation/quickstart/">20 分钟体验 Ruby</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/ruby-from-other-languages/">从其它语言转到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong>新的世界</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_cn/documentation/">文档</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学术研究</a></li>
+    
+
+    
+    <li><a href="/zh_cn/libraries/">代码库</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong>友善及日益壮大的社区</h3>
+  <ul>
+    
+    <li><a href="/zh_cn/community/mailing-lists/">邮件列表</a>: 联系喜爱 Ruby 的朋友</li>
+    
+
+    
+    <li><a href="/zh_cn/community/user-groups/">用户组</a>: 参与 Ruby 爱好者活动</li>
+    
+
+    
+    <li><a href="/zh_cn/community/weblogs/">博客</a>: 阅读 Ruby 相关的博客</li>
+    
+
+    
+    <li><a href="/zh_cn/community/ruby-core/">Ruby 核心</a>: 帮助开发 Ruby 语言</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">问题跟踪</a>: 报告或帮助解决 Ruby 的问题</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

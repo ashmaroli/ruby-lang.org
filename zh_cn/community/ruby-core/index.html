@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 核心</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/community/ruby-core/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby 核心</h1>
+
+
+
+  <div id="content">
+    <p>当下是进行 Ruby 开发的绝佳时机。随着过去几年 Ruby 的倍受关注，对帮助扩展 Ruby 功能和相关文档的优秀开发者需求巨大。那么，应该从何入手呢？
+{: .summary}</p>
+<p>这里所讨论的都是 Ruby 开发相关的话题:</p>
+<ul>
+<li><a href="#following-ruby">使用 Subversion 跟踪 Ruby 开发</a></li>
+<li><a href="#git-ruby">如何对主 Ruby 仓库使用 Git</a></li>
+<li><a href="#patching-ruby">改进 Ruby, Patch by Patch</a></li>
+<li><a href="#coding-standards">核心开发者规则</a></li>
+</ul>
+<h3>使用 Subversion 跟踪 Ruby 开发</h3>
+<p>{: #following-ruby}</p>
+<p>从 <a href="http://subversion.apache.org/">Subversion</a> 仓库匿名检出是获取最新 Ruby 源码的关键。在命令行:</p>
+<!-- raw HTML omitted -->
+<p><code>ruby</code> 目录包含了最近的 Ruby 开发版本（ruby-trunk）的源码。目前，应用于 trunk 的补丁被向后移植到稳定版 2.6，2.5 和 2.4 分支（如下所示）。</p>
+<p>如果你想要 Ruby 2.6 的补丁，检出的时候应当使用 <code>ruby_2_6</code></p>
+<!-- raw HTML omitted -->
+<p>类似地，对于 Ruby 2.5:</p>
+<!-- raw HTML omitted -->
+<p>它会检出各自的开发树到 <code>ruby_2_6</code> 或 <code>ruby_2_5</code> 目录。
+工作在维护分支的开发者期望将他们的更改迁移到 Ruby 的主分支上，所以这些分支常常都很相似，除了由 Matz 和 Nobu 对语言本身的改进。</p>
+<p>如果你愿意，可以浏览 <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/">通过网页访问 Ruby 的 Subversion 仓库</a>。</p>
+<p>关于 Subversion 的信息，请查看 <a href="http://subversion.apache.org/faq.html">Subversion FAQ</a> 和 <a href="http://svnbook.org">Subversion book</a>。另外，你会发现
+<a href="http://www.pragmaticprogrammer.com/titles/svn/">Subversion版本控制之道</a> 是非常有用的入门书籍。</p>
+<h3>如何对主 Ruby 仓库使用 Git</h3>
+<p>{: #git-ruby}</p>
+<p>对于更愿意使用 <a href="http://git-scm.com/">Git</a> 而不是 Subversion 的人来说，可以从 <a href="https://github.com/ruby/ruby">mirror on GitHub</a>、
+<a href="https://github.com/shyouhei/ruby/wiki/committerhowto">those with commit access</a> 和 <a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">everybody else</a> 找到使用说明。</p>
+<h3>改进 Ruby，Patch by Patch</h3>
+<p>{: #patching-ruby}</p>
+<p>核心团队维护着 <a href="https://bugs.ruby-lang.org/">问题跟踪器</a>，它用于提交补丁和报告缺陷到 Matz 和他的团队，这些报告还会提交给 <a href="/en/community/mailing-lists/">Ruby 核心邮件列表</a> 用于讨论，所以你要确定你的请求不会被忽视，你也可以直接发送补丁到邮件列表。总之，我们鼓励你参与接下来的讨论。</p>
+<p>请查看 Matz 撰写的 <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/25139">补丁作家指南</a> 中的一些技巧，他会教你如何让你的补丁被考虑。</p>
+<p>简要来说，创建补丁的步骤如下：</p>
+<ol>
+<li>
+<p>从 Subversion 检出 Ruby 源码。通常情况下，针对缺陷修复的补丁或新特性应当被提交到 Ruby 源码的主干上。即使你希望添加一个特性到 Ruby 2.5，它也必须先被主干所接受。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
+</code></pre></div></div>
+<p>如果修复的缺陷是针对特定的某一个维护分支，请检出相应分支的代码，例如<code>ruby_2_5</code>。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
+</code></pre></div></div>
+</li>
+<li>
+<p>添加你的改进代码。</p>
+</li>
+<li>
+<p>创建补丁。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn diff &gt; ruby-changes.patch
+</code></pre></div></div>
+</li>
+<li>
+<p>在 <a href="https://bugs.ruby-lang.org/">问题跟踪器</a> 创建一个 ticket，或者用描述该补丁的更新日志条目将补丁发送到 <a href="/en/community/mailing-lists/">Ruby 核心邮件列表</a>。</p>
+</li>
+<li>
+<p>如果补丁没有问题，提交者们将会被批准使用。</p>
+</li>
+</ol>
+<p><strong>请注意：</strong> 补丁应该被作为一个 <a href="http://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html">unified diff</a> 被提交。对于补丁如何被合并的更多信息，请查看 <a href="http://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html#Merging%20with%20patch">the diffutils reference</a>。</p>
+<p>Ruby 开发的讨论集中在 <a href="/en/community/mailing-lists/">Ruby 核心邮件列表</a>。如果你好奇你的补丁是否有价值，或者你想讨论 Ruby 的未来，请毫无犹豫的加入吧。脱离主题的讨论是不会被容忍的，良好的主题应该是主旨明确，构思严谨且精心编写的。既然我们追随 Ruby 的创始者，请怀有敬畏之心。</p>
+<p>请记住，Ruby 的核心开发者都生活在日本，虽然其中许多人的英语很好，但时差明显。他们也有对应英文版的日语开发目录。耐心一点，如果你的请求没有被解决，请坚持在几天之后再提一次。</p>
+<h3>核心开发者规则</h3>
+<p>{: #coding-standards}</p>
+<p>通常，Ruby 开发者应该熟悉 Ruby 源码和 Ruby 团队的开发风格。为了更加清楚起见，向 Subversion 检入代码的时候，应该尊重以下几点准则：</p>
+<ul>
+<li>遵循 <a href="http://www.gnu.org/prep/standards/standards.html#Change-Logs">GNU 约定</a>，所有的检入应该描述在 <code>ChangeLog</code> 中。（许多 Ruby 核心
+开发者使用 Emacs 的 <code>add-log</code> 模式，该模式可以通过命令 <code>C-x 4 a</code> 实现。）</li>
+<li>检入的日期应该是日本标准时间（UTC+9）。</li>
+<li>变更日志中的项目符号点也应该被放到 Subversion 的提交信息当中。在你提交之后，提交信息会通过邮件自动的发送到 Ruby-CVS 列表。</li>
+<li>函数原型在整个 Ruby 源码和扩展库中都会被用到。</li>
+<li>请不要使用 C++ 风格的注释（<code>//</code>），Ruby 的维护者更倾向于使用标准 C 的多重注释（<code>/* .. */</code>）。</li>
+</ul>
+<p>也可以在 <a href="https://bugs.ruby-lang.org/">Ruby问题跟踪器</a> 中查看相关信息。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>试用</strong>，其实很简单！</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在浏览器中试用 Ruby（英文）</a></li>
+
+    
+    <li><a href="/zh_cn/documentation/quickstart/">20 分钟体验 Ruby</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/ruby-from-other-languages/">从其它语言转到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong>新的世界</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_cn/documentation/">文档</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学术研究</a></li>
+    
+
+    
+    <li><a href="/zh_cn/libraries/">代码库</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong>友善及日益壮大的社区</h3>
+  <ul>
+    
+    <li><a href="/zh_cn/community/mailing-lists/">邮件列表</a>: 联系喜爱 Ruby 的朋友</li>
+    
+
+    
+    <li><a href="/zh_cn/community/user-groups/">用户组</a>: 参与 Ruby 爱好者活动</li>
+    
+
+    
+    <li><a href="/zh_cn/community/weblogs/">博客</a>: 阅读 Ruby 相关的博客</li>
+    
+
+    
+    <li><a href="/zh_cn/community/ruby-core/">Ruby 核心</a>: 帮助开发 Ruby 语言</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">问题跟踪</a>: 报告或帮助解决 Ruby 的问题</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

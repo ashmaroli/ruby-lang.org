@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 20분 가이드</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/documentation/quickstart/3/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>“greeter” 객체를 만들어서 사용해봅시다.</p>
+<!-- raw HTML omitted -->
+<p><code>g</code> 객체가 만들어진 이후에는 “Pat”이란 이름을 기억합니다. 직접 이름을 접근할 수 있냐구요?</p>
+<!-- raw HTML omitted -->
+<p>보다시피 가능하지 않습니다.</p>
+<h2>객체 들여다보기</h2>
+<p>객체 변수는 객체 안에 숨겨져 있습니다. 사실 객체 변수가 그렇게 꽁꽁 숨겨져 있는 것은 아니지만, Ruby는 기본적으로 데이터를
+숨겨두는 객체지향 방식을 따르고 있습니다. “Greeter”의 객체들에는 어떤 메서드가 들어있을까요?</p>
+<!-- raw HTML omitted -->
+<p>메서드가 상당히 많은 것을 알 수 있습니다. 우리가 정의한 메서드는 2개에 불과한데
+어떻게 된 것일까요? 위의 목록은 “Greeter” 객체들의 메서드뿐만 아니라 <strong>모든</strong>
+상속된 메서드도 포함하고 있기 때문입니다. <code>false</code>를 인자로 넘기면 부모 클래스에
+정의된 메서드를 제외한 목록을 볼 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>우리의 “greeter” 객체가 어떤 메서드에 응답하는지를 개별적으로 확인하는 것도 가능합니다.</p>
+<!-- raw HTML omitted -->
+<p>즉, <code>say_hi</code>라는 이름의 메서드를 가지고 있고 <code>to_s</code>(어떤 객체를 문자열로 변환하는
+메서드로 모든 객체가 가지고 있습니다.)라는 이름의 메서드도 가지고 있지만,
+<code>name</code>이란 이름의 메서드에 응답하지는 않습니다.</p>
+<h2>클래스 정의 변경하기-늦었다고 생각할 때가 가장 빠른 때죠</h2>
+<p>만약 &quot;name&quot;의 내용을 확인하고 또 변경하고 싶다면 어떻게 해야 할까요?
+Ruby는 객체 변수를 접근하게 해주는 편리한 방법을 제공하고 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>Ruby에서는 클래스를 언제나 열어서 정의를 변경할 수 있습니다.
+이 변경사항은 이미 존재하고 있는 객체에도 영향을 줄 수 있습니다.
+새로운 객체를 만들어서 <code>@name</code>에 접근해봅시다.</p>
+<!-- raw HTML omitted -->
+<p><code>attr_accessor</code>은 두 개의 메서드를 새로 정의해줍니다. <code>name</code>은 인스턴스 변수의
+값에 접근하기 위한 것이고 <code>name=</code>은 객체변수의 값을 변경하기 위한 것입니다.</p>
+<h2>Mega Greeter</h2>
+<p>greeter는 시시하게도 한 번에 한 명밖에 처리하지 못합니다. 이번에는 온세상, 한 사람,
+혹은 여러 명의 사람에게 인사를 할 수 있는 “MegaGreeter”를 한번 만들어 보면 어떨까요?</p>
+<p>이번에는 IRB Ruby 인터랙티브 해석기를 사용하는 대신에 파일에 코드를 작성해봅시다.</p>
+<p>IRB에서 빠져나오기 위해서는 “quit” 또는 “exit”이라고 입력하거나 Control-D를 누르면 됩니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->MegaGreeter<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->attr_accessor<!-- raw HTML omitted --> <!-- raw HTML omitted -->:names<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Create the object<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->initialize<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;World&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->names<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Say hi to everybody<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;each&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># @names is a list of some kind, iterate!<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->each<!-- raw HTML omitted --> <!-- raw HTML omitted -->do<!-- raw HTML omitted --> <!-- raw HTML omitted -->|<!-- raw HTML omitted --><!-- raw HTML omitted -->name<!-- raw HTML omitted --><!-- raw HTML omitted -->|<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Hello <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->name<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Hello <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Say bye to everybody<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->say_bye<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;join&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Join the list elements with commas<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Goodbye <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->join<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;, &quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->.  Come back soon!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Goodbye <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@names<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->.  Come back soon!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted --><strong>FILE</strong><!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->$0<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->MegaGreeter<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Change name to be &quot;Zeke&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Zeke&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Change the name to an array of names<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Albert&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Brenda&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Charles&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Dave&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Engelbert&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Change to nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->names<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_hi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->say_bye<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>위의 파일을 “ri20min.rb”로 저장을 하고, “ruby ri20min.rb”라고 입력해서 실행을 시키면,
+다음과 같은 결과가 나올 것입니다.</p>
+<!-- raw HTML omitted -->
+<p>마지막 예제에는 새로운 내용들이 많으므로 <a href="../4/">다음에서 좀 더 자세히 살펴보도록 합시다.</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>시작하기</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby!</a></li>
+
+    
+    <li><a href="/ko/documentation/quickstart/">20분 가이드</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/ruby-from-other-languages/">다른 언어에서 Ruby로</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>탐색하기</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ko/documentation/">문서</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">학술 연구</a></li>
+    
+
+    
+    <li><a href="/ko/libraries/">라이브러리</a></li>
+    
+
+    
+    <li><a href="/ko/documentation/success-stories/">사용 사례</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>커뮤니티에 참여하기</strong></h3>
+  <ul>
+    
+    <li><a href="/ko/community/mailing-lists/">메일링 리스트</a>: 전 세계의 프로그래머와 Ruby와 관련된 대화를 나누기</li>
+    
+
+    
+    <li><a href="/ko/community/user-groups/">유저 그룹</a>: 근처의 루비스트와 연락하기</li>
+    
+
+    
+    <li><a href="/ko/community/weblogs/">웹로그</a>: Ruby 커뮤니티에서 지금 무슨 일이 일어나는지 읽기</li>
+    
+
+    
+    <li><a href="/ko/community/ruby-core/">Ruby 코어</a>: 최신 버전 Ruby의 연마를 돕기</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">이슈 관리</a>: Ruby에 관한 이슈를 제보하거나 해결을 돕기</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.4.0 發佈</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2016/12/25/ruby-2-4-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.4.0 發佈</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 發表於 2016-12-25<br>
+                         翻譯： Juanito Fatas</p>
+
+    <p>我們很高興宣佈 Ruby 2.4.0 發佈了。</p>
+<p>Ruby 2.4.0 是 Ruby 2.4 系列的第一個穩定版本。
+包含了許多新功能，譬如：</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12142">Vladimir Makarov 改良了哈希表</a></h2>
+<p>透過引入 Open addressing 及包含順序的陣列來改善哈希表（st_table）的內部結構。這個改良經過多方論證，特別感謝 Yura Sokolov。</p>
+<h2>Binding#irb：在 irb 像 <code>binding.pry</code> 一樣啟動一個 REPL</h2>
+<p>當您在除錯時，您可能常常使用 <code>p</code> 來查看變數的數值。有了 <a href="https://github.com/pry/pry">pry</a> 以後，只要在應用裡面寫 <code>binding.pry</code>，就可以啟動一個 REPL 來執行任何 Ruby 程式進行除錯。<a href="https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a">r56624</a> 補丁給 irb 引入了類似的功能： <code>binding.irb</code>。</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">Unify Fixnum and Bignum into Integer</a></h2>
+<p>雖然 <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a> 沒有明確指定 Integer 類別的細節，但 CRuby 有兩個 Integer 類別：Fixnum 和 Bignum。 Ruby 2.4 統整為 Integer。所有有關 Fixnum 與 Bignum 的 C 語言擴充需要做出修正。</p>
+<p>也請參考<a href="https://bugs.ruby-lang.org/issues/12005">這個議題</a>和 <a href="http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf">akr 的簡報</a>。</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">字串支持 Unicode 的大小寫轉換</a></h2>
+<p><code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code> 除 ASCII 之外，現在也可以做 Unicode 的大小寫轉換了。</p>
+<h2>效能優化</h2>
+<p>Ruby 2.4 還包括以下效能優化及語法變更：</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p>優化了 <code>[x, y].max</code> 和 <code>[x, y].min</code>，某些情況下不會產生暫時性陣列。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>新增 <code>Regexp#match?</code> 方法，只做正則匹配，而不會產生參照物件及修改 <code>$~</code>，減少物件的分配。</p>
+<h3>其他效能改善</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">提昇實體變量的訪問速度</a></li>
+</ul>
+<h2>除錯</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception 和 Thread.report_on_exception</a></h3>
+<p>除非有另外的線程，明確地與執行中的線程進行 join，否則 Ruby 會忽略執行中線程的異常。啟用 <code>report_on_exception = true</code> 來觀察線程是否有未處理的異常而終止執行。</p>
+<p>敬請給我們關於 <code>report_on_exception</code> 預設值以及 report-on-GC（會在線程尚未 join 前被 GC 時給出報告）的建議。</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">線程死鎖檢查現在會顯示線程的錯誤和相依線程</a></h3>
+<p>Ruby 在等待線程執行時會進行死鎖檢查，但檢查結果沒有足夠的資訊來除錯。
+Ruby 2.4 的死鎖檢查會顯示錯誤資訊及相依的線程。</p>
+<h2>自 2.3 起重要的變化</h2>
+<ul>
+<li>支援 OpenSSL 1.1.0 版本</li>
+<li>ext/tk 從標準函式庫移除 <a href="https://bugs.ruby-lang.org/issues/8539">Feature #8539</a></li>
+<li>XMLRPC 從標準函式庫移除 <a href="https://bugs.ruby-lang.org/issues/12160">Feature #12160</a></li>
+</ul>
+<p>請參閱 <a href="https://github.com/ruby/ruby/blob/v2_4_0/NEWS">NEWS</a> 或 Commit Logs 來進一步了解。</p>
+<p>以上變化自 Ruby 2.3.0 以來，計有 <a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0">2523 檔案變更，程式碼新增 289129 行，移除 84670 行</a>！</p>
+<p>聖誕快樂、佳節愉快，享受與 Ruby 2.4 編程的時光！</p>
+<h2>下載</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12572424 bytes
+SHA1:   944d2588308391b20a89642472454d1dfe7b2360
+SHA256: 440bbbdc49d08d3650f340dccb35986d9399177ad69a204def56e5d3954600cf
+SHA512: bef7bb53f63fb74073d071cc125fb67b273ed0779ef43c2d2969089b9ca21fff1bd012281c5b748f7a3c24dd26e71730d7248c05a01cb23ab2089eb4d02115fe
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14104044 bytes
+SHA1:   d44a3c50a0e742341ed3033d5db79d865151a4f4
+SHA256: 152fd0bd15a90b4a18213448f485d4b53e9f7662e1508190aa5b702446b29e3d
+SHA512: 21c9f596b42dd9cba7a53963a59fed0c2e0c1eb960a4ac7087ea3eaa991ce9252d32639e1edcb75b1d709bc07c4820a6dc336ab427d0643c6e6498e0eacdbc8b
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9906880 bytes
+SHA1:   038804bbd0e77508dd2510b729a9f3b325489b2e
+SHA256: 3a87fef45cba48b9322236be60c455c13fd4220184ce7287600361319bb63690
+SHA512: 975a5388592adc038461e0acebb6c0efee242891b2ea8621476401458efe2bc0fdd317d3bf99beb745b0b3808410efdff33862da29c95c027f457943721e3ab6
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15758757 bytes
+SHA1:   29e1bab11551011718c35a51827edcb55bd656fc
+SHA256: 5c2bbfa26fd6a15a2d70961874b0f3a386206fcc5f698e240dd8b0c9f0f18c5e
+SHA512: 31d932372ce490eeac0a70bc8dcf842909a90435422398d069c05cf01d994936064b8f4e60879e28a8655c1296eb8e180e348cb95e001ed6ca73cda0ff77de23
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

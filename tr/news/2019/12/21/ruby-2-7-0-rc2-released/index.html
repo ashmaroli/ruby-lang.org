@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.7.0-rc2 Yayınlandı</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/news/2019/12/21/ruby-2-7-0-rc2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.7.0-rc2 Yayınlandı</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">naruse tarafından 21.12.2019 tarihinde gönderildi<br>
+                         Çeviri: İsmail Arılık</p>
+
+    <p>Ruby 2.7.0-rc2'nin yayınlandığını duyurmaktan memnuniyet duyuyoruz.</p>
+<p>Bu önizleme sürümü, 25 Aralık'ta yayınlanması planlanan son sürüm için geri bildirim toplamak için yayınlanmıştır.</p>
+<p>Bu sürüm birkaç yeni özellik ve performans iyileştirmesi içermektedir, bunların en önemlileri:</p>
+<ul>
+<li>Desen Eşleştirme</li>
+<li>REPL iyileştirmesi</li>
+<li>Sıkıştırma GC</li>
+<li>Konumsal argümanların ve anahtar kelime argümanlarının ayrılması</li>
+</ul>
+<h2>Desen Eşleştirme [Deneysel]</h2>
+<p>Desen eşleştirme deneysel bir özellik olarak eklenmiştir, bu özellik fonksiyonel programlama dillerinde sıklıkla kullanılır.
+<a href="https://bugs.ruby-lang.org/issues/14912">Özellik #14912</a></p>
+<p>Bu özellik, verilen bir nesne üzerinde yürüyebilir ve eğer bu nesne bir desenle eşleşirse, bu nesnenin değerini atayabilir.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">json</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">END</span><span class="sh">
+{
+  "name": "Alice",
+  "age": 30,
+  "children": [{ "name": "Bob", "age": 2 }]
+}
+</span><span class="no">END</span>
+
+<span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span> <span class="c1">#=&gt; 2</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Daha fazla ayrıntı için lütfen <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Desen eşleştirme - Ruby 2.7'de yeni bir özellik</a>'e bakın.</p>
+<h2>REPL iyileştirmesi</h2>
+<p>Ruby ile gelen etkileşimli ortam (REPL; Read-Eval-Print-Loop) olan <code>irb</code> şimdi çoklu satır değiştirmeyi destekliyor.
+Bu özellik saf Ruby'de gerçeklenen ve <code>readline</code>'a uyumlu bir kütüphane olan <code>reline</code> tarafından güçlendirilmiştir.
+Ayrıca bu, rdoc bütünleşimi de sağlamaktadır.
+<code>irb</code>'de ayrıca verilen bir sınıf, modül ya da metodun başvurusunu da görüntüleyebilirsiniz.
+<a href="https://bugs.ruby-lang.org/issues/14683">Özellik #14683</a>, <a href="https://bugs.ruby-lang.org/issues/14787">Özellik #14787</a>, <a href="https://bugs.ruby-lang.org/issues/14918">Özellik #14918</a></p>
+<p>ÜStelik şimdi <code>Binding#irb</code> tarafından gösterilen kaynak satırları ve temel sınıf nesnelerinin gözlem sonuçları renklendiriliyor.</p>
+<!-- raw HTML omitted -->
+<h2>Sıkıştırma GC</h2>
+<p>Bu sürüm, parçalanmış hafıza alanını birleştirebilen Sıkıştırma GC'yi tanıtmaktadır.</p>
+<p>Bazı çok thread'li Ruby programları hafıza parçalanmasına neden olabilir, bu da yüksek hafıza kullanımı ve hız düşüşüne neden olur.</p>
+<p><code>GC.compact</code> metodu, heap'i sıkıştırmak için eklenmiştir.
+Bu fonksiyon heap'teki canlı nesneleri sıkıştırır, böylece daha az sayfa kullanılabilir ve heap daha CoW canlısı olabilir.
+<a href="https://bugs.ruby-lang.org/issues/15626">Özellik #15626</a></p>
+<h2>Konumsal argümanların ve anahtar kelime argümanlarının ayrılması</h2>
+<p>Anahtar kelime argümanlarının ve konumsal argümanların otomatik dönüştürülmesi ileride kaldırılacak olarak işaretlendi ve Ruby 3'te kaldırılacak.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Özellik #14183]</a></p>
+<ul>
+<li>
+<p>Eğer bir metod çağrısı son argümanı olarak bir Hash geçirirse, ve hiç anahtar kelime geçirmezse, ve çağrılan metod anahtar kelimeler kabul ediyorsa, bir uyarı yayınlanır.
+Hash'in anahtar kelime olarak anlaşılmasını sağlamak, uyarıdan kaçınmak ve Ruby 3'te doğru davranıştan emin olmak için çift yıldız operatörü ekleyin.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># uyarı yayınlanır</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># uyarı yayınlanır</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># İyi</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># İyi</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Eğer bir metod çağrısı, anahtar kelimeler kabul eden bir metoda anahtar kelimeler geçirirse fakat yeterli sayıda zorunlu konumsal argüman geçirmezse, anahtar kelimeler gerekli son konumsal argüman olarak düşünülür ve bir uyarı yayınlanır.
+Uyarıdan kaçınmak ve Ruby 3'te doğru davranıştan emin olmak için argümanı anahtar kelimeler olarak değil de, hash olarak geçirin.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># uyarı yayınlanır</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># uyarı yayınlanır</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># İyi</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># İyi</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Bir metod belirli anahtar kelimeler bekliyor fakat yıldızlı anahtar kelime beklemiyorsa, ve metoda bir hash ya da hem Symbol hem de Symbol olmayan anahtarları içeren yıldızlı anahtar kelimeler geçirildiyse, hash ayrılmaya devam eder, ve bir uyarı yayınlanır.
+Ruby 3'te doğru davranıştan emin olmak için çağıran kodu ayrı hash'ler geçirecek şekilde güncellemeniz gerekiyor.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># uyarı yayınlanır</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># uyarı yayınlanır</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># İyi</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Eğer bir metod anahtar kelime kabul etmiyor ve anahtar kelimeler ile çağrıldıysa, anahtar kelimeler yine konumsal hash olarak düşünülür, herhangi bir uyarı yayınlanmaz.
+Bu davranış Ruby 3'te çalışmaya devam edecek.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># İyi</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Eğer metod keyfi anahtar kelimeler kabul ediyorsa, anahtar kelime argüman anahtarları olarak sembol olmayanlara izin verilir.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Özellik #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Harici olarak metodun anahtar kelime almadığını belirtmek için metod tanımlarında <code>**nil</code> kullanılabilir.
+Böyle bir metodu anahtar kelimeler ile çağırmak ArgumentError ile sonuçlanır.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Özellik #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># İyi</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># İyi</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Anahtar kelime almayan bir metoda boş bir anahtar kelime yıldızı geçirmek artık boş bir hash geçirmiyor.
+Ancak gerekli bir parametre için boş bir hash gerekliyse, bir uyarı yayınlanır.
+Konumsal bir hash geçirmeye devam etmek için çift yıldızı kaldırın.
+<a href="https://bugs.ruby-lang.org/issues/14183">[Özellik #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span> <span class="c1"># []</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># {} ve uyarı</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>   <span class="c1"># [{}]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>    <span class="c1"># {}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<p>NOTE: Anahtar kelime argümanı uyumsuzluğu hakkında çok fazla ileride kaldırılma uyarısı fazla gereksiz görüldü.
+Şu anda iki muhtemel çözüm tartışılıyor; ileride kaldırılma uyarılarını varsayılan olarak devre dışı bırakmak (<a href="https://bugs.ruby-lang.org/issues/16345">#16345</a>) ya da tekrarlanmış uyarıları bastırmak (<a href="https://bugs.ruby-lang.org/issues/16289">#16289</a>).
+Son karar verilmedi fakat bu sorun resmi yayında düzeltilecek.</p>
+<h2>Dikkate Değer Diğer Yeni Özellikler</h2>
+<ul>
+<li>
+<p>Bir metod referans operatörü (<code>.:</code>), daha önceki bir önizleme sürümünde deneysel bir özellik olarak eklendi fakat geri alındı.
+<a href="https://bugs.ruby-lang.org/issues/12125">[Özellik #12125]</a>, <a href="https://bugs.ruby-lang.org/issues/13581">[Özellik #13581]</a>, <a href="https://bugs.ruby-lang.org/issues/16275">[Özellik #16275]</a></p>
+</li>
+<li>
+<p>Varsayılan blok parametreleri olarak numaralanmış parametreler, deneysel bir özellik olarak eklendi.
+<a href="https://bugs.ruby-lang.org/issues/4475">[Özellik #4475]</a></p>
+</li>
+<li>
+<p>Başlangıçsız aralık deneysel olarak eklendi.
+Bu, sonsuz aralık kadar kullanışlı olmayabilir, fakat DSL kullanımları için iyi olacaktır.
+<a href="https://bugs.ruby-lang.org/issues/14799">[Özellik #14799]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">ary</span><span class="p">[</span><span class="o">..</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># ary[0..3] ile aynı</span>
+<span class="n">rel</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">sales: </span><span class="o">..</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#tally</code> eklendi.
+Bu metod, her öğenin kaç kere geçtiğini sayar.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">].</span><span class="nf">tally</span>
+<span class="c1">#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Alıcı olarak bir <code>self</code> kalıbı ile özel bir metodu çağırmaya artık izin verilmiyor.
+<a href="https://bugs.ruby-lang.org/issues/11297">[Özellik #11297]</a>, <a href="https://bugs.ruby-lang.org/issues/16123">[Özellik #16123]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+<span class="k">end</span>
+<span class="kp">private</span> <span class="ss">:foo</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">foo</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerator::Lazy#eager</code> eklendi.
+Bu, tembel bir numaralandırıcıdan tembel olmayan bir numaralandırıcı oluşturur.
+<a href="https://bugs.ruby-lang.org/issues/15901">[Özellik #15901]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">a</span> <span class="o">=</span> <span class="sx">%w(foo bar baz)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="p">}.</span><span class="nf">eager</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">class</span>               <span class="c1">#=&gt; Enumerator</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"?"</span> <span class="p">}</span>  <span class="c1">#=&gt; ["FOO!?", "BAR!?", "BAZ!?"]</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Performans iyileştirmeleri</h2>
+<ul>
+<li>
+<p>JIT [Deneysel]</p>
+<ul>
+<li>
+<p>JIT edilmiş kod, bir eniyileştirme varsayımı geçersiz kılındığında, daha az eniyileştirilmiş koda yeniden derlenir.</p>
+</li>
+<li>
+<p>Bir metodun saf olduğu düşünülürse, metod satıriçi yapma uygulanır.
+Bu eniyileme hala deneyseldir ve birçok metod henüz saf olarak düşünülmemektedir.</p>
+</li>
+<li>
+<p><code>--jit-min-calls</code>'ın varsayılan değeri 5'ten 10.000'e değiştirildi.</p>
+</li>
+<li>
+<p><code>--jit-max-cache</code>'in varsayılan değeri 1.000'den 100'e değiştirildi.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Module#name</code>, <code>true.to_s</code>, <code>false.to_s</code>, ve <code>nil.to_s</code> şimdi her zaman dondurulmuş String döndürüyor.
+Döndürülen String belirli bir nesne için her zaman aynıdır.
+[Deneysel]
+<a href="https://bugs.ruby-lang.org/issues/16150">[Özellik #16150]</a></p>
+</li>
+<li>
+<p><code>CGI.escapeHTML</code>'in performansı iyileştirildi.
+<a href="https://github.com/ruby/ruby/pull/2226">GH-2226</a></p>
+</li>
+<li>
+<p>Monitor ve MonitorMixin'in performansı iyileştirildi.
+<a href="https://bugs.ruby-lang.org/issues/16255">[Özellik #16255]</a></p>
+</li>
+</ul>
+<h2>2.6'dan bu yana dikkate değer diğer değişiklikler</h2>
+<ul>
+<li>
+<p>Bazı standart kütüphaneler güncellendi.</p>
+<ul>
+<li>Bundler 2.1.0.pre.3
+(<a href="https://github.com/bundler/bundler/blob/2-1-stable/CHANGELOG.md#210pre3-november-8-2019">Geçmiş</a>)</li>
+<li>RubyGems 3.1.0.pre.3
+(<a href="https://github.com/rubygems/rubygems/blob/3.1/History.txt">Geçmiş</a>)</li>
+<li>CSV 3.1.2
+(<a href="https://github.com/ruby/csv/blob/v3.1.2/NEWS.md">NEWS</a>)</li>
+<li>Racc 1.4.15</li>
+<li>REXML 3.2.3
+(<a href="https://github.com/ruby/rexml/blob/v3.2.3/NEWS.md">NEWS</a>)</li>
+<li>RSS 0.2.8
+(<a href="https://github.com/ruby/rss/blob/v0.2.8/NEWS.md">NEWS</a>)</li>
+<li>StringScanner 1.0.3</li>
+<li>Orijinal sürümü olmayan bazı diğer kütüphaneler de güncellendi.</li>
+</ul>
+</li>
+<li>
+<p>Standart kütüphane varsayılan gemlerle desteklendi</p>
+<ul>
+<li>Aşağıdaki varsayılan gemler rubygems.org'da yayınlandı
+<ul>
+<li>benchmark</li>
+<li>cgi</li>
+<li>delegate</li>
+<li>getoptlong</li>
+<li>net-pop</li>
+<li>net-smtp</li>
+<li>open3</li>
+<li>pstore</li>
+<li>singleton</li>
+</ul>
+</li>
+<li>Aşağıdaki varsayılan gemler sadece ruby-core'u destekledi, henüz rubygems.org'da yayınlanmadı.
+<ul>
+<li>monitor</li>
+<li>observer</li>
+<li>timeout</li>
+<li>tracer</li>
+<li>uri</li>
+<li>yaml</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Bir blokla çağrılmış bir metodda bloksuz olarak yer alan <code>Proc.new</code> ve <code>proc</code> şimdi bir uyarıdır.</p>
+</li>
+<li>
+<p>Bir blokla çağrılmış bir metodda bloksuz olarak yer alan <code>lambda</code> şimdi bir hata yükseltir.</p>
+</li>
+<li>
+<p>Unicode ve Emoji sürümleri 11.0.0'dan 12.0.0'a güncellendi.
+<a href="https://bugs.ruby-lang.org/issues/15321">[Özellik #15321]</a></p>
+</li>
+<li>
+<p>Unicode sürümü 12.1.0'a güncellendi, bu sürüm U+32FF SQUARE ERA NAME REIWA için destek eklemektedir.
+<a href="https://bugs.ruby-lang.org/issues/15195">[Özellik #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>, <code>Date#jisx0301</code>, ve <code>Date.parse</code> yeni Japon dönemini desteklemektedir.
+<a href="https://bugs.ruby-lang.org/issues/15742">[Özellik #15742]</a></p>
+</li>
+<li>
+<p>Derleyicilerin C99'u desteklemesi zorunlu tutuldu.
+<a href="https://bugs.ruby-lang.org/issues/15347">[Diğer #15347]</a></p>
+<ul>
+<li>Lehçemizin ayrıntıları: <a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+</ul>
+<p>Daha fazla ayrıntı için <a href="https://github.com/ruby/ruby/blob/v2_7_0_rc2/NEWS">NEWS</a>'e ya da <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_rc2">işleme günlükleri</a>ne bakın.</p>
+<p>Bu değişiklikler ile birlikte Ruby 2.6.0'dan bu yana <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_rc2">4184 dosya değişti, 226864 ekleme(+), 99937 silme(-)</a> yapıldı!
+Ruby 2.7 ile programlamanın tadını çıkarın!</p>
+<h2>İndirin</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14686646
+SHA1: e04680f57d8b7576637eb75b8b56aceeb1806992
+SHA256: 8f94ea7ba79b6e95225fb4a7870e882081182c3d12d58c4cad2a7d2e7865cf8e
+SHA512: 9010f72bb3f33b6cd3f515531e6e05198f295bb2a8a788e3a46cdfd776a9f6176b6ba8612f07f0236a11359302d2b77fdecca1dc6be33581edbb028069397a0a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 16775053
+SHA1: 787a86023f0abe6ca9c0b31e95328725e8bb7814
+SHA256: b16cd92479e5648cc53425602e9dc6d76b18dd2cc180add2fd4c9f254646779d
+SHA512: d59910a140ea1b7ca7a64073dbbe4cbe8f11cd6fc68ea7874ca160e1a23549bd159f49f4d199002f9806e77d4426bff3aa81b62707d539e0710ece7b7ff83438
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 11965624
+SHA1: 1f9f30eaf1829250931c4c465ee1c15e07452e7d
+SHA256: c90d29fba655b2dd577ff755f084e4d1fe0673cfcd888af7ff5d0b2d2f449bb7
+SHA512: dba23aada4921c98eb90d216db656833d1759c4f611d5087e2a0123d932ab1c6704dfedc0d671d2d51b4b3949ff95b6aec012481141c6fce3988a3d0bc5d18b8
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc2.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20642713
+SHA1: e0b6f91398d55436b776d7a5eae0faaf810b1578
+SHA256: ac87c1666cc840cad26083a067bae1975d1fdb41ca1f1569903c05bca1b61174
+SHA512: 4e84b1f59b574a59b5346d30a0770e06ad81a4838813cc8789157f4e1a3fcbe7ca75bf83663c20736024760f1b0675ca288f1cee7f8a28f8918c4e43b0d09982
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby nedir</h2>
+<p>Ruby ilk olarak Matz (Yukihiro Matsumoto) tarafından 1993'te geliştirilmiştir ve şimdi Açık Kaynak olarak geliştirilmektedir.
+Birçok platformda çalışır ve dünyanın her yerinde kullanılır, özellikle web geliştirmesi için.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Son Haberler</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/tr/news/2021/08/03/fukuoka-ruby-award-2022/">2022 Fukuoka Ruby Ödül Yarışması - Girişler Matz tarafından yargılanacak</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Net::FTP'de FTP PASV yanıtlarına güvenme zaafiyeti</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Net::IMAP'te bir StartTLS çıkarma zaafiyeti</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/ruby-3-0-2-released/">Ruby 3.0.2 Yayınlandı</a></li>
+        
+        <li><a href="/tr/news/2021/07/07/ruby-2-7-4-released/">Ruby 2.7.4 Yayınlandı</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

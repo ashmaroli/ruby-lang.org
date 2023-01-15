@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Tìm hiểu Ruby trong 25 phút</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/documentation/quickstart/3/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>Bây giờ, chúng ta hãy tạo một đối tượng ChàoMừng và sử dụng nó:</p>
+<!-- raw HTML omitted -->
+<p>Khi đối tượng <code>g</code> được tạo, nó nhớ rằng cái tên là Pat. Vậy nếu chúng ta muốn
+lấy một cái tên trực tiếp thì sao?</p>
+<!-- raw HTML omitted -->
+<p>Ồ, không thể làm được.</p>
+<h2>Bên trong của đối tượng</h2>
+<p>Các biến đối tượng thường ẩn trong trong đối tượng. Chúng không ẩn hoàn toàn,
+bạn sẽ thấy chúng mỗi khi khởi tạo một đối tượng và có nhiều cách để gọi chúng,
+nhưng Ruby sử dụng phương pháp tiếp cận hướng đối tượng tốt trong việc giữ dữ
+liệu ẩn đi phần nào.</p>
+<p>Vậy những phương thức nào tồn tại cho đối tượng ChàoMừng?</p>
+<!-- raw HTML omitted -->
+<p>Quá tuyệt! Có rất nhiều method hay phương thức. Chúng ta chỉ định nghĩa 2 phương
+thức, vậy cái gì đây? Đó là <strong>tất cả</strong> các phương thức cho đối tượng Người chào
+đón, một danh sách hoàn chỉnh bao gồm cả những phương thức được kế thừa. Nếu
+chúng ta muốn một danh sách chỉ có các phương thức định nghĩa cho ChàoMừng,
+chúng ta có thể loại bỏ các phương thức được kế thừa bằng cách thêm tham số
+<code>false</code>, nghĩa là chúng ta không muốn bất kỳ phương thức được kế thừa nào.</p>
+<!-- raw HTML omitted -->
+<p>A, được hơn rồi đó. Bây giờ chúng ta hãy xem phương thức nào được đối tượng
+ChàoMừng phản hồi:</p>
+<!-- raw HTML omitted -->
+<p>Nó hiểu được <code>xin_chào</code> và <code>to_s</code> (to string - chuyển sang chuỗi kí tự, một
+phương thức mặc định cho mọi đối tượng), nhưng không biết <code>tên</code>.</p>
+<h2>Thay thế các lớp - Không bao giờ là quá muộn</h2>
+<p>Nếu bạn muốn có thể xem hoặc thay đổi tên? Ruby cung cấp một cách dễ dàng để
+truy xuất dữ liệu tới các biến của một đối tượng.</p>
+<!-- raw HTML omitted -->
+<p>Trong Ruby, bạn có thể mở một lớp ở phía trên và sửa nó. Sự thay đổi sẽ xuất
+hiện trong các đối tượng mới mà bạn tạo và cả những đối tượng đã tồn tại của
+lớp này. Vậy thì chúng ta hãy tạo một đối tượng mới và thử với thuộc tính
+<code>@tên</code> của nó.</p>
+<!-- raw HTML omitted -->
+<p>Sử dụng <code>attr_accessor</code> định nghĩa 2 phương thức mới cho chúng ta: <code>tên</code> để
+lấy giá trị và <code>tên=</code> để gán giá trị.</p>
+<h2>MegaChàoMừng chào mừng tất cả mọi thứ</h2>
+<p>Trình chào mừng này không thú vị gì nếu nó chỉ chào được một người trong cùng
+một thời điểm. Sẽ thế nào nếu chúng ta có thể vài kiểu MegaChàoMừng có thể đồng
+thời chào Thế giới, chào một người nào đó hay một danh sách cá nhân?</p>
+<p>Chúng ta sẽ viết trong một tập tin thay vì gõ trực tiếp trên IRB.</p>
+<p>Để thoát IRB, gõ &quot;quit&quot;, &quot;exit&quot; hoặc tổ hợp phím Control-D.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->MegaCh<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->oM<!-- raw HTML omitted --><!-- raw HTML omitted -->ừ<!-- raw HTML omitted --><!-- raw HTML omitted -->ng<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->attr_accessor<!-- raw HTML omitted --> <!-- raw HTML omitted -->:danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Create the object<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->initialize<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Thế giới&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Nói xin chào tới mọi người<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->xin_ch<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->o<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;each&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># @danh_sách_tên là danh sách tên, lặp đi lặp lại!<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->each<!-- raw HTML omitted --> <!-- raw HTML omitted -->do<!-- raw HTML omitted --> <!-- raw HTML omitted -->|<!-- raw HTML omitted --><!-- raw HTML omitted -->name<!-- raw HTML omitted --><!-- raw HTML omitted -->|<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Xin chào <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->name<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Xin chào <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Tạm biệt mọi người<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->t<!-- raw HTML omitted --><!-- raw HTML omitted -->ạ<!-- raw HTML omitted --><!-- raw HTML omitted -->m_bi<!-- raw HTML omitted --><!-- raw HTML omitted -->ệ<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;join&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Gộp các thành phần của danh sách bằng dấu phẩy<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Tạm biệt <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->join<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;, &quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->.  Hẹn gặp lại!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Tạm biệt <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->.  Hẹn gặp lại!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted --><strong>FILE</strong><!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->$0<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->MegaCh<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->oM<!-- raw HTML omitted --><!-- raw HTML omitted -->ừ<!-- raw HTML omitted --><!-- raw HTML omitted -->ng<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->xin_ch<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->o<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --><!-- raw HTML omitted -->ạ<!-- raw HTML omitted --><!-- raw HTML omitted -->m_bi<!-- raw HTML omitted --><!-- raw HTML omitted -->ệ<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Đổi tên thành &quot;Zeke&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Zeke&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->xin_ch<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->o<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --><!-- raw HTML omitted -->ạ<!-- raw HTML omitted --><!-- raw HTML omitted -->m_bi<!-- raw HTML omitted --><!-- raw HTML omitted -->ệ<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Đổi tên thành danh sách tên<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Albert&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Brenda&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Charles&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Dave&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Engelbert&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->xin_ch<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->o<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --><!-- raw HTML omitted -->ạ<!-- raw HTML omitted --><!-- raw HTML omitted -->m_bi<!-- raw HTML omitted --><!-- raw HTML omitted -->ệ<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Đổi thành rỗng<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->danh_s<!-- raw HTML omitted --><!-- raw HTML omitted -->á<!-- raw HTML omitted --><!-- raw HTML omitted -->ch_t<!-- raw HTML omitted --><!-- raw HTML omitted -->ê<!-- raw HTML omitted --><!-- raw HTML omitted -->n<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->xin_ch<!-- raw HTML omitted --><!-- raw HTML omitted -->à<!-- raw HTML omitted --><!-- raw HTML omitted -->o<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->mg<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted --><!-- raw HTML omitted -->ạ<!-- raw HTML omitted --><!-- raw HTML omitted -->m_bi<!-- raw HTML omitted --><!-- raw HTML omitted -->ệ<!-- raw HTML omitted --><!-- raw HTML omitted -->t<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Lưu tập tin này với tên “ri20min.rb”, và chạy nó “ruby ri20min.rb”. Màn hình sẽ
+hiện như này:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Xin chào Thế giới!
+Tạm biệt Thế giới.  Hẹn gặp lại!
+Xin chào Zeke!
+Tạm biệt Zeke.  Hẹn gặp lại!
+Xin chào Albert!
+Xin chào Brenda!
+Xin chào Charles!
+Xin chào Dave!
+Xin chào Engelbert!
+Tạm biệt Albert, Brenda, Charles, Dave, Engelbert.  Come
+back soon!
+...
+...
+</code></pre></div></div>
+<p>{: .code}</p>
+<p>Có rất nhiều thứ mới trong ví dụ cuối cùng này và chúng ta
+<a href="../4/">có thể có cái nhìn sâu hơn tại.</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Nhập môn</strong>, quá dễ!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Thử Ruby! (trong trình duyệt)</a></li>
+
+    
+    <li><a href="/vi/documentation/quickstart/">Ruby trong 20 phút</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/ruby-from-other-languages/">Ruby từ những ngôn ngữ khác</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Khám phá</strong> một thề giới mới…</h3>
+  <ul class="menu">
+    
+    <li><a href="/vi/documentation/">Tài liệu</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/vi/libraries/">Thư viện</a></li>
+    
+
+    
+    <li><a href="/vi/documentation/success-stories/">Những câu chuyện thành công</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Tham gia</strong> vào một cộng đồng lớn mạnh và thân thiện.</h3>
+  <ul>
+    
+    <li><a href="/vi/community/mailing-lists/">Mailing Lists</a>: Trao đổi về Ruby với các lập trình viên trên thế giới</li>
+    
+
+    
+    <li><a href="/vi/community/user-groups/">Nhóm người dùng</a>: Làm quen với những Rubyist trong khu vực của bạn.</li>
+    
+
+    
+    <li><a href="/vi/community/weblogs/">Weblogs</a>: Đọc về những gì đang xảy ra với cộng đồng Ruby.</li>
+    
+
+    
+    <li><a href="/vi/community/ruby-core/">Lõi Ruby</a>: Giúp hoàn thiện Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Thông báo lỗi</a>: Báo hoặc giúp xử lý các lỗi trong Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

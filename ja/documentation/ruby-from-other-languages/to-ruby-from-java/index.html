@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>JavaからRubyへ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/ruby-from-other-languages/to-ruby-from-java/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>JavaからRubyへ</h1>
+
+
+
+  <div id="content">
+    <p>Javaは成熟しており、よくテストされています。
+アンチJavaな人々が訴えるのに反して、Javaは高速です。ですが、とても冗長です。
+JavaからRubyへ移行すると、コードの量を大幅に削減できます。
+プロトタイピングを少ない時間で済ませられるようになるでしょう。</p>
+<h3>Javaとの類似</h3>
+<p>Javaと同様に、Rubyは...</p>
+<ul>
+<li>メモリはGCによって管理されます。</li>
+<li>オブジェクトは強い型付けがされます。</li>
+<li>メソッドにはpublic、private、protectedを指定できます。</li>
+<li>埋め込み型のドキュメントツールがあります(Ruby用のツールはRDocと呼ばれます)。
+rdocで生成されたドキュメントはjavadocで生成したドキュメントにとてもよく似ています。</li>
+</ul>
+<h3>Javaとの違い</h3>
+<p>Javaと違って、Rubyは...</p>
+<ul>
+<li>コードをコンパイルする必要はありません。単に実行するだけです。</li>
+<li>異なったサードパーティ製のGUIツールキットがいくつか存在します。
+Rubyのユーザーは、たとえば<a href="https://github.com/eumario/wxruby">WxRuby</a>、<a href="https://github.com/larskanis/fxruby">FXRuby</a>、<a href="https://ruby-gnome2.osdn.jp/">Ruby-GNOME2</a>、<a href="https://github.com/ryanmelt/qtbindings/">Qt</a>、
+あるいはRubyに同梱されているRuby Tkなどを利用します。</li>
+<li>クラスなどの定義の最後には<code>end</code>キーワードを使います。コードのまとまりを波括弧で括ることはしません。</li>
+<li><code>import</code>の代わりに<code>require</code>を使います。</li>
+<li>すべてのメンバ変数はプライベート変数です。オブジェクトの外側からはメソッドを介してそれらにアクセスします。</li>
+<li>メソッド呼び出しの括弧は基本的にオプションで、しばしば省略されます。</li>
+<li>2や3.14159といった数値も含めて、すべてのものはオブジェクトです。</li>
+<li>静的型チェックはありません。</li>
+<li>変数名はただのラベルです。変数名は関連付けられた型を持ちません。</li>
+<li>型宣言はありません。必要に応じて新しい変数名を割りあてれば、それらを利用できます
+(<code>int[] a = {1,2,3};</code>ではなく<code>a = [1,2,3]</code>というように)。</li>
+<li>キャストはありません。メソッドを呼び出すだけです。
+例外を確認するつもりなら、コードを実行する前にユニットテストで示しましょう。</li>
+<li><code>Foo foo = new Foo(&quot;hi&quot;)</code>は<code>foo = Foo.new(&quot;hi&quot;)</code>と書きます。</li>
+<li>コンストラクタは常に”initialize”という名前になります。クラス名ではありません。</li>
+<li>インターフェイスの代わりにMix-inを使います。</li>
+<li>XMLよりもYAMLが好まれます。</li>
+<li><code>null</code>は<code>nil</code>です。</li>
+<li><code>==</code>と<code>equals()</code>の扱いが異なります。等価かどうかを評価したい時(Javaで<code>equals()</code>を使うケース)は<code>==</code>を使います。
+二つのオブジェクトが同一かどうかを確認したい時(Javaで<code>==</code>を使うケース)は<code>equal?()</code>を使います。</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

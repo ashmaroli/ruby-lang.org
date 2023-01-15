@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>手工订阅邮件列表方法</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/community/mailing-lists/manual-instructions/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>手工订阅邮件列表方法</h1>
+
+
+
+  <div id="content">
+    <p>注意: 如果无法订阅，请参考
+<a href="https://ml.ruby-lang.org/mailman3/postorius/lists/">https://ml.ruby-lang.org/mailman3/postorius/lists/</a>.</p>
+<p>订阅邮件列表，请发送一个带有以下邮件主体（不是标题）的纯文本邮件到自动的 “控制器” 地址。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>subscribe
+</code></pre></div></div>
+<p>{: .code}</p>
+<p>Ruby-Talk
+: For the Ruby-Talk list, the controller address is
+<a href="mailto:ruby-talk-request@ruby-lang.org">ruby-talk-request@ruby-lang.org</a>, the
+posting address is
+<a href="mailto:ruby-talk@ruby-lang.org">ruby-talk@ruby-lang.org</a>, and the
+human administrator address is
+<a href="mailto:ruby-talk-owner@ruby-lang.org">ruby-talk-owner@ruby-lang.org</a>.</p>
+<p>Ruby-Core
+: For the Ruby-Core list, the controller address is
+<a href="mailto:ruby-core-request@ruby-lang.org">ruby-core-request@ruby-lang.org</a>, the
+posting address is
+<a href="mailto:ruby-core@ruby-lang.org">ruby-core@ruby-lang.org</a>, and the
+“human” administrator address is
+<a href="mailto:ruby-core-owner@ruby-lang.org">ruby-core-owner@ruby-lang.org</a>.</p>
+<p>Ruby-Doc
+: For the Ruby-Doc list, the controller address is
+<a href="mailto:ruby-doc-request@ruby-lang.org">ruby-doc-request@ruby-lang.org</a>, the
+posting address is
+<a href="mailto:ruby-doc@ruby-lang.org">ruby-doc@ruby-lang.org</a>, and the
+“human” administrator address is
+<a href="mailto:ruby-doc-owner@ruby-lang.org">ruby-doc-owner@ruby-lang.org</a>.</p>
+<p>Ruby-CVS
+: For the Ruby-CVS list, the controller address is
+<a href="mailto:ruby-cvs-request@ruby-lang.org">ruby-cvs-request@ruby-lang.org</a>, the
+posting address is
+<a href="mailto:ruby-cvs@ruby-lang.org">ruby-cvs@ruby-lang.org</a>, and the
+“human” administrator address is
+<a href="mailto:ruby-cvs-owner@ruby-lang.org">ruby-cvs-owner@ruby-lang.org</a>.</p>
+<h3>取消订阅</h3>
+<p>从列表中退订，请发送一个主体是 “unsubscribe” 的邮件到 <strong>控制器地址</strong>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsubscribe
+</code></pre></div></div>
+<p>{: .code}</p>
+<p>确保发送的是纯文本邮件，HTML 邮件可能不起作用。</p>
+<h3>获取帮助</h3>
+<p>查看命令列表，发送主体是 “help” 的邮件到控制器地址。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>试用</strong>，其实很简单！</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在浏览器中试用 Ruby（英文）</a></li>
+
+    
+    <li><a href="/zh_cn/documentation/quickstart/">20 分钟体验 Ruby</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/ruby-from-other-languages/">从其它语言转到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong>新的世界</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_cn/documentation/">文档</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学术研究</a></li>
+    
+
+    
+    <li><a href="/zh_cn/libraries/">代码库</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong>友善及日益壮大的社区</h3>
+  <ul>
+    
+    <li><a href="/zh_cn/community/mailing-lists/">邮件列表</a>: 联系喜爱 Ruby 的朋友</li>
+    
+
+    
+    <li><a href="/zh_cn/community/user-groups/">用户组</a>: 参与 Ruby 爱好者活动</li>
+    
+
+    
+    <li><a href="/zh_cn/community/weblogs/">博客</a>: 阅读 Ruby 相关的博客</li>
+    
+
+    
+    <li><a href="/zh_cn/community/ruby-core/">Ruby 核心</a>: 帮助开发 Ruby 语言</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">问题跟踪</a>: 报告或帮助解决 Ruby 的问题</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

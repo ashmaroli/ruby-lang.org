@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 1.8.7 tire sa révérence</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/news/2013/06/30/we-retire-1-8-7/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 1.8.7 tire sa révérence</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posté par shyouhei le 2013-06-30<br>
+                         Traduit par Bruno Michel</p>
+
+    <p>J'aurais souhaité pouvoir l'annoncer de façon un peu plus dramatique, mais
+malheureusement, mes capacités en anglais étant très limitées, je dirai
+simplement sans plus de formes : voici venue la fin de Ruby 1.8.7…
+<a href="https://www.ruby-lang.org/fr/news/2011/10/06/les-plans-pour-ruby-1-8-7/">comme annoncé précédement</a>.</p>
+<h2>À propos de  Ruby 1.8.7</h2>
+<p>Il est vrai qu'une très large majorité d'entre vous utilise Ruby 1.9.x ou
+2.0.0 (<strong>SINON, VEUILLEZ LE FAIRE</strong>). Pourtant, par le passé, il y a bien eu
+d'autres versions… les 1.4.x, 1.6.x et autres 1.8.x. Elles étaient les
+descendantes directes du Ruby 1.0 originel, le fameux « MRI. » Quand Matz a
+sorti la version 1.8.0, elle représentait vraiment l'état de l'art de son
+époque en terme d'implémentation, 1.8.7 étant le dernier avatar de cette
+lignée.</p>
+<p>Techniquement parlant, une bonne décennie s'est écoulée depuis que nous
+avons publié la 1.8.0, et la sortie de la 1.8.7 remonte à cinq ans. À cette
+époque, Ruby était surtout utilisé pour écrire des scripts CGI. Puis, la
+situation a changé du tout au tout avec l'arrivée de Rails. Une pléthore
+d'utilisateurs s'est mise à utiliser Ruby. En interne, le nouveau moteur
+développé par ko1 (alors nommé YARV) a été incorporé à ce moment-là. Ce
+moteur est devenu le Ruby canonique que vous utilisez aujourd'hui !</p>
+<p>Ainsi, 10 ans après tout cela, je suis vraiment ravi de pouvoir vous dire que
+Ruby 1.8.7 est devenu tout autant un héritage qu'un objet du passé. Il a
+littéralement changé nos vies, et aujourd'hui, nous continuons à avancer.
+Ruby 2.0.0 est une super release, et pour préparer la future version 2.1,
+qui sera encore plus incroyable, je m'apprête à retirer 1.8.7 de la
+circulation et à me concentrer sur notre trunk de Ruby, de façon à rester
+toujours à la pointe du progrès.</p>
+<p>Merci 1.8.7, tu as eu une sacré vie pour un « simple » programme.</p>
+<h2>À propos de VOTRE Ruby 1.8.7</h2>
+<p>Peut être que vous avez toujours un exécutable de Ruby 1.8.7 qui traîne sur
+votre système. Selon la manière dont vous l'avez installé, votre Ruby 1.8.7
+peut être ou ne pas être pris en chargé par quelqu'un d'autre, parce qu'il
+existe des tierces parties qui continuent de prendre en charge 1.8.7. La
+seule chose que je peux dire avec certitude est que <em>nous</em> ne le prenons
+plus en charge. Aussi, si vous utilisez une version que nous avons publié sur
+le site officiel de ruby, il est temps de passer à autre chose et de trouver
+une solution qui convienne à votre situation pour faire la mise à jour.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Actualité récente</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/fr/news/2022/02/18/ruby-3-1-1-released/">Ruby 3.1.1 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/12/25/ruby-3-1-0-released/">Ruby 3.1.0 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-7-5-released/">Ruby 2.7.5 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-6-9-released/">Ruby 2.6.9 est disponible</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

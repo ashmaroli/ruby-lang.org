@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.2.10 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2018/03/28/ruby-2-2-10-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.2.10 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by usa on 28 Mar 2018</p>
+
+    <p>Ruby 2.2.10 がリリースされました。
+今回のリリースでは、以下のセキュリティ上の問題への対応が行われています。</p>
+<ul>
+<li><a href="/ja/news/2018/03/28/http-response-splitting-in-webrick-cve-2017-17742/">CVE-2017-17742: WEBrick における HTTP レスポンス偽装の脆弱性について</a>への対応</li>
+<li><a href="/ja/news/2018/03/28/large-request-dos-in-webrick-cve-2018-8777/">CVE-2018-8777: WEBrick における巨大リクエストにともなう DoS 脆弱性について</a>への対応</li>
+<li><a href="/ja/news/2018/03/28/unintentional-file-and-directory-creation-with-directory-traversal-cve-2018-6914/">CVE-2018-6914: Tempfile および Tmpdir でのディレクトリトラバーサルを伴う意図しないファイルまたはディレクトリ作成の脆弱性について</a>への対応</li>
+<li><a href="/ja/news/2018/03/28/buffer-under-read-unpack-cve-2018-8778/">CVE-2018-8778: String#unpack における範囲外読み込みの脆弱性について</a>への対応</li>
+<li><a href="/ja/news/2018/03/28/poisoned-nul-byte-unixsocket-cve-2018-8779/">CVE-2018-8779: UNIX ドメインソケットにおいて NUL 文字挿入により意図しないソケットにアクセスされうる脆弱性について</a>への対応</li>
+<li><a href="/ja/news/2018/03/28/poisoned-nul-byte-dir-cve-2018-8780/">CVE-2018-8780: Dir において NUL 文字挿入により意図しないディレクトリにアクセスされうる脆弱性について</a>への対応</li>
+<li><a href="/ja/news/2018/02/17/multiple-vulnerabilities-in-rubygems/">RubyGems の複数の脆弱性について</a>への対応</li>
+</ul>
+<p>Ruby 2.2 系列は、セキュリティメンテナンスフェーズにあり、重大なセキュリティ上の問題への対応のみが行われています。
+かねてからの予告通り、今月末をもって、2.2 系列のセキュリティメンテナンスならびに公式サポートは終了する予定です。
+従って、今回のリリースで致命的な新規バグが混入していない限り、以後、2.2 系列からの新たな公式リリースは行われません。
+現在、2.2 系列を利用しているユーザーの皆さんは、なるべく早く、2.5 系列等のより新しいバージョン系列の Ruby への移行を行ってください。</p>
+<h2>ダウンロード</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13365461 bytes
+SHA1:   72ee1dcfd96199d2c3092b77db7a7f439c0abd08
+SHA256: a54204d2728283c9eff0cf81d654f245fa5b3447d0824f1a6bc3b2c5c827381e
+SHA512: f8ec96c2a5f4ecf22052ee0b1029989ded52d7bf5d41be24fef67e732e76f72119302240bca08f0547510a9cd29e941a32e263cad9c8a2bf80023d6bc97b2373
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16694179 bytes
+SHA1:   b0207c861f3fa41cbe4909ecb89bd2fcac81fe7c
+SHA256: cd51019eb9d9c786d6cb178c37f6812d8a41d6914a1edaf0050c051c75d7c358
+SHA512: 051124922240d2e20e74903b9c629fa897279072d2aa9b0a4e3a02331b843fa9c97c16e7073d6faec1b9f2024c3a7e36346014c30eee256f0715c5de226b5db8
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10508612 bytes
+SHA1:   c46737f81df819c3d7423df5c644431b3fcb8fee
+SHA256: bf77bcb7e6666ccae8d0882ea12b05f382f963f0a9a5285a328760c06a9ab650
+SHA512: 1f35458f2b1c334e64aecf42cd1df3b223fef119b6ad23394285d9f2e72da26b3ba5418950694c4a8c0b4afc43672f78459f2f7281a595cff0967eb239662ae4
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.zip">https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.10.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   18540424 bytes
+SHA1:   0f4b9c6695d000cb456fe8b89f8bf6d42fb95069
+SHA256: 6933eb989afb1b916c438d8eeecff1cfb0a6569c07e7190beca56b10b822207a
+SHA512: dfaa9a76170b0eed9cb2bf41178f2193dd3428492413b1616aaabd67ec35b9b7705b422b0fdfe38b18a1800bbce3ba161b53d229d307ea7f5c0269ef3d031980
+</code></pre></div></div>
+</li>
+</ul>
+<h2>リリースコメント</h2>
+<p>脆弱性を報告してくれた皆様、パッチを作成してくれた皆様、そしてリリースに協力してくれた皆様に感謝します。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

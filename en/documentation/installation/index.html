@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Installing Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/installation/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Installing Ruby</h1>
+
+
+
+  <div id="content">
+    <p>With package managers or third-party tools, you have plenty of options
+to install and manage Ruby.
+{: .summary}</p>
+<p>You may already have Ruby installed on your computer. You can check
+inside a <a href="https://en.wikipedia.org/wiki/List_of_terminal_emulators">terminal emulator</a> by typing:</p>
+<!-- raw HTML omitted -->
+<p>This should output some information on the installed Ruby version.</p>
+<h2>Choose Your Installation Method</h2>
+<p>There are several ways to install Ruby:</p>
+<ul>
+<li>On a UNIX-like operating system, using your system's
+<strong>package manager</strong> is easiest.
+However, the packaged Ruby version may not be the newest one.</li>
+<li><strong>Installers</strong> can be used to install a specific or multiple
+Ruby versions. There is also an installer for Windows.</li>
+<li><strong>Managers</strong> help you to switch between multiple Ruby versions
+on your system.</li>
+<li>Finally, you can also <strong>build Ruby from source</strong>.</li>
+</ul>
+<p>On Windows 10, you can also use the <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a>
+to install one of the supported Linux distributions and use any of the
+installation methods available on that system.</p>
+<p>Here are available installation methods:</p>
+<ul>
+<li><a href="#package-management-systems">Package Management Systems</a>
+<ul>
+<li><a href="#apt">Debian, Ubuntu</a></li>
+<li><a href="#yum">CentOS, Fedora, RHEL</a></li>
+<li><a href="#snap">Snap</a></li>
+<li><a href="#portage">Gentoo</a></li>
+<li><a href="#pacman">Arch Linux</a></li>
+<li><a href="#homebrew">macOS</a></li>
+<li><a href="#freebsd">FreeBSD</a></li>
+<li><a href="#openbsd">OpenBSD</a></li>
+<li><a href="#openindiana">OpenIndiana</a></li>
+<li><a href="#winget">Windows Package Manager</a></li>
+<li><a href="#chocolatey">Chocolatey package manager for Windows</a></li>
+<li><a href="#other-systems">Other Distributions</a></li>
+</ul>
+</li>
+<li><a href="#installers">Installers</a>
+<ul>
+<li><a href="#ruby-build">ruby-build</a></li>
+<li><a href="#ruby-install">ruby-install</a></li>
+<li><a href="#rubyinstaller">RubyInstaller</a> (Windows)</li>
+<li><a href="#rubystack">Ruby Stack</a></li>
+</ul>
+</li>
+<li><a href="#managers">Managers</a>
+<ul>
+<li><a href="#asdf-vm">asdf-vm</a></li>
+<li><a href="#chruby">chruby</a></li>
+<li><a href="#rbenv">rbenv</a></li>
+<li><a href="#rvm">RVM</a></li>
+<li><a href="#uru">uru</a></li>
+</ul>
+</li>
+<li><a href="#building-from-source">Building from source</a></li>
+</ul>
+<h2>Package Management Systems</h2>
+<p>{: #package-management-systems}</p>
+<p>If you cannot compile your own Ruby, and you do not want to use a
+third-party tool, you can use your system's package manager to install Ruby.</p>
+<p>Some members of the Ruby community feel that you should avoid package
+managers to install Ruby and that you should use dedicated tools instead.</p>
+<p>It is possible that major package managers will install older Ruby
+versions instead of the latest release. To use the latest Ruby release,
+check that the package name matches its version number. Or use a
+dedicated <a href="/en/documentation/installation/#installers">installer</a>.</p>
+<h3>apt (Debian or Ubuntu)</h3>
+<p>{: #apt}</p>
+<p>Debian GNU/Linux and Ubuntu use the apt package manager. You can use it
+like this:</p>
+<!-- raw HTML omitted -->
+<h3>yum (CentOS, Fedora, or RHEL)</h3>
+<p>{: #yum}</p>
+<p>CentOS, Fedora, and RHEL use the yum package manager.
+You can use it like this:</p>
+<!-- raw HTML omitted -->
+<p>The installed version is typically the latest version of Ruby available
+at the release time of the specific distribution version.</p>
+<h3>snap (Ubuntu or other Linux distributions)</h3>
+<p>{: #snap}</p>
+<p>Snap is a package manager developed by Canonical.
+It is available out-of-the-box on Ubuntu, but snap also works
+on many other Linux distributions.
+You can use it like this:</p>
+<!-- raw HTML omitted -->
+<p>We have several channels per Ruby minor series.
+For instance, the following commands switch to Ruby 2.3:</p>
+<!-- raw HTML omitted -->
+<h3>portage (Gentoo)</h3>
+<p>{: #portage}</p>
+<p>Gentoo uses the portage package manager.</p>
+<!-- raw HTML omitted -->
+<p>To install a specific version, set <code>RUBY_TARGETS</code> in your <code>make.conf</code>.
+See the <a href="http://www.gentoo.org/proj/en/prog_lang/ruby/">Gentoo Ruby Project website</a> for details.</p>
+<h3>pacman (Arch Linux)</h3>
+<p>{: #pacman}</p>
+<p>Arch Linux uses a package manager named pacman.
+To get Ruby, just do this:</p>
+<!-- raw HTML omitted -->
+<p>This should install the latest stable Ruby version.</p>
+<h3>Homebrew (macOS)</h3>
+<p>{: #homebrew}</p>
+<p>Ruby versions 2.0 and above are included by default in macOS releases
+since at least El Capitan (10.11).</p>
+<p><a href="http://brew.sh/">Homebrew</a> is a commonly used package manager on macOS.
+Installing Ruby using Homebrew is easy:</p>
+<!-- raw HTML omitted -->
+<p>This should install the latest Ruby version.</p>
+<h3>FreeBSD</h3>
+<p>{: #freebsd}</p>
+<p>FreeBSD offers both pre-packaged and source-based methods to install Ruby.
+Prebuilt packages can be installed via the pkg tool:</p>
+<!-- raw HTML omitted -->
+<p>A source-based method can be used to install Ruby using the
+<a href="https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/ports-using.html">Ports Collection</a>. This is useful if you want
+to customize the build configuration options.</p>
+<p>More information about Ruby and its surrounding ecosystem on FreeBSD
+can be found on the <a href="https://wiki.freebsd.org/Ruby">FreeBSD Ruby Project website</a>.</p>
+<h3>OpenBSD</h3>
+<p>{: #openbsd}</p>
+<p>OpenBSD as well as its distribution adJ has packages for the three
+major versions of Ruby. The following command allows you to see the
+available versions and to install one:</p>
+<!-- raw HTML omitted -->
+<p>You can install multiple major versions side by side, because their
+binaries have different names (e.g. <code>ruby27</code>, <code>ruby26</code>).</p>
+<p>The <code>HEAD</code> branch of the OpenBSD ports collection might have the
+most recent version of Ruby for this platform some days after it
+is released, see
+<a href="https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/lang/ruby/?only_with_tag=HEAD">directory lang/ruby in the most recent ports collection</a>.</p>
+<h3>Ruby on OpenIndiana</h3>
+<p>{: #openindiana}</p>
+<p>To install Ruby on <a href="http://openindiana.org/">OpenIndiana</a>, please use the
+Image Packaging System (IPS) client.
+This will install the Ruby binaries and RubyGems directly
+from the OpenIndiana repositories. It’s easy:</p>
+<!-- raw HTML omitted -->
+<p>However, the third-party tools might be a good way to obtain the
+latest version of Ruby.</p>
+<h3>Windows Package Manager</h3>
+<p>{: #winget}</p>
+<p>On Windows, you can use the <a href="https://github.com/microsoft/winget-cli">Windows Package Manager CLI</a>
+to install Ruby:</p>
+<!-- raw HTML omitted -->
+<h3>Chocolatey package manager for Windows</h3>
+<p>{: #chocolatey}</p>
+<p>Also on Windows, you can use the <a href="https://chocolatey.org/install">Chocolatey Package Manager</a>
+to install Ruby:</p>
+<!-- raw HTML omitted -->
+<p>It will reuse existing <code>msys2</code>, or install own for complete Ruby development environment</p>
+<h3>Other Distributions</h3>
+<p>{: #other-systems}</p>
+<p>On other systems, you can search the package repository of your Linux
+distribution's manager for Ruby. Alternatively, you can use a
+<a href="/en/documentation/installation/#installers">third-party installer</a>.</p>
+<h2>Installers</h2>
+<p>{: #installers}</p>
+<p>If the version of Ruby provided by your system or package manager is out
+of date, a newer one can be installed using a third-party installer.</p>
+<p>Some installers allow you to install multiple versions on the same
+system; associated managers can help to switch between the different
+Rubies.</p>
+<p>If you are planning to use <a href="#rvm">RVM</a> as a version manager you don't
+need a separate installer, it comes with its own.</p>
+<h3>ruby-build</h3>
+<p>{: #ruby-build}</p>
+<p><a href="https://github.com/rbenv/ruby-build#readme">ruby-build</a> is a plugin for <a href="#rbenv">rbenv</a> that allows you
+to compile and install different versions of Ruby. ruby-build can also
+be used as a standalone program without rbenv. It is available for macOS,
+Linux, and other UNIX-like operating systems.</p>
+<h3>ruby-install</h3>
+<p>{: #ruby-install}</p>
+<p><a href="https://github.com/postmodern/ruby-install#readme">ruby-install</a> allows you to compile and install different
+versions of Ruby into arbitrary directories. <a href="#chruby">chruby</a> is a
+complimentary tool used to switch between Ruby versions. It is available
+for macOS, Linux, and other UNIX-like operating systems.</p>
+<h3>RubyInstaller</h3>
+<p>{: #rubyinstaller}</p>
+<p>On Windows, <a href="https://rubyinstaller.org/">RubyInstaller</a> gives you everything you need
+to set up a full Ruby development environment.</p>
+<p>Just download it, run it, and you are done!</p>
+<h3>Ruby Stack</h3>
+<p>{: #rubystack}</p>
+<p>If you are installing Ruby in order to use Ruby on Rails,
+you can use the following installer:</p>
+<ul>
+<li><a href="http://bitnami.com/stack/ruby/installer">Bitnami Ruby Stack</a> provides a complete development
+environment for Rails. It supports macOS, Linux, Windows, virtual
+machines, and cloud images.</li>
+</ul>
+<h2>Managers</h2>
+<p>{: #managers}</p>
+<p>Many Rubyists use Ruby managers to manage multiple Rubies. They allow
+easy or even automatic switching between Ruby versions depending on the
+project and other advantages but are not officially supported. You can
+however find support within their respective communities.</p>
+<h3>asdf-vm</h3>
+<p>{: #asdf-vm}</p>
+<p><a href="https://asdf-vm.com/">asdf-vm</a> is an extendable version manager that can manage multiple
+language runtime versions on a per-project basis. You will need the
+<a href="https://github.com/asdf-vm/asdf-ruby">asdf-ruby</a> plugin (which in turn uses <a href="#ruby-build">ruby-build</a>)
+to install Ruby.</p>
+<h3>chruby</h3>
+<p>{: #chruby}</p>
+<p><a href="https://github.com/postmodern/chruby#readme">chruby</a> allows you to switch between multiple Rubies. It can
+manage Rubies installed by <a href="#ruby-install">ruby-install</a> or even built
+from source.</p>
+<h3>rbenv</h3>
+<p>{: #rbenv}</p>
+<p><a href="https://github.com/rbenv/rbenv#readme">rbenv</a> allows you to manage multiple installations of Ruby.
+While it can't install Ruby by default, its <a href="#ruby-build">ruby-build</a>
+plugin can. Both tools are available for macOS, Linux, or other
+UNIX-like operating systems.</p>
+<h3>rbenv for Windows</h3>
+<p>{: #rbenv-for-windows}</p>
+<p><a href="https://github.com/ccmywish/rbenv-for-windows#readme">rbenv for Windows</a> allows you to install and
+manage multiple installations of Ruby on Windows. It's written in
+PowerShell thus providing a native way to use Ruby for Windows users.
+Besides, the command line interface is compatible with <a href="https://github.com/rbenv/rbenv#readme">rbenv</a>
+on UNIX-like systems.</p>
+<h3>RVM (&quot;Ruby Version Manager&quot;)</h3>
+<p>{: #rvm}</p>
+<p><a href="http://rvm.io/">RVM</a> allows you to install and manage multiple installations of
+Ruby on your system. It can also manage different gemsets. It is
+available for macOS, Linux, or other UNIX-like operating systems.</p>
+<h3>uru</h3>
+<p>{: #uru}</p>
+<p><a href="https://bitbucket.org/jonforums/uru">Uru</a> is a lightweight, multi-platform command line tool that helps you
+to use multiple Rubies on macOS, Linux, or Windows systems.</p>
+<h2>Building from Source</h2>
+<p>{: #building-from-source}</p>
+<p>Of course, you can install Ruby from source.
+<a href="/en/downloads/">Download</a> and unpack a tarball, then just do this:</p>
+<!-- raw HTML omitted -->
+<p>By default, this will install Ruby into <code>/usr/local</code>.
+To change, pass the <code>--prefix=DIR</code> option to the <code>./configure</code> script.</p>
+<p>You can find more information about building from source in the
+<a href="https://github.com/ruby/ruby/blob/master/doc/contributing/building_ruby.md">Building Ruby instructions</a>.</p>
+<p>Using the third-party tools or package managers might be a better idea,
+though, because the installed Ruby won't be managed by any tools.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

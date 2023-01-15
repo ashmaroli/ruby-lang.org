@@ -1,4 +1,1215 @@
----
-layout: news_feed
-lang: id
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Berita Ruby</title>
+    <link>https://www.ruby-lang.org/id/feeds/news.rss</link>
+    <language>id</language>
+    <ttl>40</ttl>
+    <description>Berita terhangat dari ruby-lang.org.</description>
+    
+    <item>
+      <title>Ruby 3.2.0 Preview 2 Dirilis</title>
+      <description>&lt;p&gt;Kami dengan senang hati mengumumkan rilis dari Ruby 3.2.0-preview2.
+Ruby 3.2 menambahkan banyak fitur dan memperbaiki performa.&lt;/p&gt;
+&lt;h2&gt;Dukungan WebAssembly berbasis WASI&lt;/h2&gt;
+&lt;p&gt;Ini adalah sebuah &lt;em&gt;port&lt;/em&gt; awal dari dukungan &lt;em&gt;WebAssembly&lt;/em&gt; berbasis &lt;em&gt;WASI&lt;/em&gt;.
+&lt;em&gt;Port&lt;/em&gt; ini memperbolehkan sebuah &lt;em&gt;CRuby binary&lt;/em&gt; untuk tersedia pada &lt;em&gt;web browser&lt;/em&gt;,
+&lt;em&gt;Serverless Edge environment&lt;/em&gt;, dan &lt;em&gt;WebAssembly/WASI embedder&lt;/em&gt; lainnya.
+Saat ini, &lt;em&gt;port&lt;/em&gt; melewatkan rangkaian tes dasar dan &lt;em&gt;bootstrap&lt;/em&gt; dengan
+tidak menggunakan &lt;em&gt;Thread&lt;/em&gt; API.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/opCgKy2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Latar Belakang&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://webassembly.org/&quot;&gt;WebAssembly (Wasm)&lt;/a&gt; semula diperkenalkan untuk
+menjalankan program dengan aman dan cepat pada &lt;em&gt;web browser&lt;/em&gt;. Tetapi sasarannya&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;menjalankan program secara efisien dengan keamanan pada berbagai macam
+&lt;em&gt;environment&lt;/em&gt; - diinginkan sejak lama tidak hanya oleh &lt;em&gt;web&lt;/em&gt;, akan tetapi oleh
+aplikasi umum.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://wasi.dev/&quot;&gt;WASI (The WebAssembly System Interface)&lt;/a&gt; didesain untuk
+berbagai macam kasus penggunaan. Walaupun aplikasi perlu berkomunikasi dengan
+sistem operasi, &lt;em&gt;WebAssembly&lt;/em&gt; berjalan pada sebuah &lt;em&gt;virtual machine&lt;/em&gt; yang mana
+tidak memiliki sebuah &lt;em&gt;system interface&lt;/em&gt;. &lt;em&gt;WASI&lt;/em&gt; menstandarkannya.&lt;/p&gt;
+&lt;p&gt;Dukungan &lt;em&gt;WebAssembly/WASI&lt;/em&gt; pada Ruby bermaksud untuk memanfaatkan proyek-proyek
+tersebut. Ini memperbolehkan pengembang Ruby untuk memprogram aplikasi yang
+berjalan pada &lt;em&gt;platform&lt;/em&gt; yang menjanjikan.&lt;/p&gt;
+&lt;h3&gt;Kasus penggunaan&lt;/h3&gt;
+&lt;p&gt;Dukungan ini mendorong pengembang untuk memanfaatkan &lt;em&gt;CRuby&lt;/em&gt; pada
+&lt;em&gt;WebAssembly environment&lt;/em&gt;. Sebuah contoh kasus penggunaan adalah dukungan
+&lt;em&gt;CRuby&lt;/em&gt; pada &lt;a href=&quot;https://try.ruby-lang.org/playground/&quot;&gt;TryRuby playground&lt;/a&gt;.
+Sekarang Anda bisa mencoba &lt;em&gt;CRuby&lt;/em&gt; pada &lt;em&gt;web browser&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;Poin teknis&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;WASI&lt;/em&gt; dan &lt;em&gt;WebAssembly&lt;/em&gt; saat ini memiliki beberapa fitur yang tidak didukung,
+seperti mengimplementasikan &lt;em&gt;Fiber&lt;/em&gt;, &lt;em&gt;exception&lt;/em&gt;, dan &lt;em&gt;GC&lt;/em&gt; karena ini masih
+terus berkembang dan juga untuk alasan keamanan. Oleh sebab itu, &lt;em&gt;CRuby&lt;/em&gt; mengisi
+gap tersebut dengan menggunakan &lt;em&gt;Asyncify&lt;/em&gt;, yang mana adalah sebuah teknik
+transformasi &lt;em&gt;binary&lt;/em&gt; untuk mengendalikan eksekusi pada lingkungan pengguna.&lt;/p&gt;
+&lt;p&gt;Sebagai tambahan, kami membangun sebuah
+&lt;a href=&quot;https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby&quot;&gt;VFS di atas WASI&lt;/a&gt;
+sehingga kami dapat mengemas aplikasi Ruby ke dalam sebuah berkas .wasm dengan
+mudah. Ini membuat distribusi aplikasi Ruby sedikit lebih mudah.&lt;/p&gt;
+&lt;h3&gt;Tautan terkait&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5407&quot;&gt;Add WASI based WebAssembly support #5407&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9&quot;&gt;An Update on WebAssembly/WASI Support in Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Regexp timeout&lt;/h2&gt;
+&lt;p&gt;Sebuah fitur &lt;em&gt;timeout&lt;/em&gt; pada &lt;em&gt;Regexp matching&lt;/em&gt; diperkenalkan.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;/^a*b?a*$/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; Regexp::TimeoutError is raised in one second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Diketahui bahwa &lt;em&gt;Regexp matching&lt;/em&gt; mungkin membutuhkan waktu yang lama. Jika
+kode Anda mencoba untuk mencocokkan sebuah &lt;em&gt;Regexp&lt;/em&gt; yang tidak efisien dengan
+sebuah masukan yang tidak terpercaya, seorang penyerang bisa mengeksploitasi
+ini untuk &lt;em&gt;Denial of Service&lt;/em&gt; (disebut &lt;em&gt;Regular expression DoS&lt;/em&gt; atau &lt;em&gt;ReDoS&lt;/em&gt;)
+yang efisien.&lt;/p&gt;
+&lt;p&gt;Risiko dari &lt;em&gt;DoS&lt;/em&gt; dapat dicegah atau dikurangi secara signifikan dengan mengatur
+&lt;code&gt;Regexp.timeout&lt;/code&gt; berdasarkan kebutuhan dari aplikasi Ruby Anda. Mohon coba fitur
+ini pada aplikasi Anda. Kami menerima umpan balik Anda.&lt;/p&gt;
+&lt;p&gt;Catat bahwa &lt;code&gt;Regexp.timeout&lt;/code&gt; adalah sebuah pengaturan global. Jika Anda ingin
+menggunakan pengaturan yang berbeda untuk &lt;em&gt;Regexp&lt;/em&gt; tertentu, Anda bisa
+menggunakan kata kunci &lt;code&gt;timeout&lt;/code&gt; pada &lt;code&gt;Regexp.new&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This regexp has no timeout&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^a*b?a*$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;timeout: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# never interrupted&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Proposal asli https://bugs.ruby-lang.org/issues/17837&lt;/p&gt;
+&lt;h2&gt;Fitur penting lainnya&lt;/h2&gt;
+&lt;h3&gt;Tidak lagi membundel sumber pihak ketiga&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kami tidak lagi membundel sumber pihak ketiga, seperti &lt;code&gt;libyaml&lt;/code&gt;, &lt;code&gt;libffi&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;libyaml telah dihapus dari &lt;em&gt;psych&lt;/em&gt;. Anda mungkin butuh untuk memasang
+&lt;code&gt;libyaml-dev&lt;/code&gt; pada &lt;em&gt;platform Ubuntu/Debian&lt;/em&gt;. Nama &lt;em&gt;package&lt;/em&gt; bisa berbeda pada
+&lt;em&gt;platform&lt;/em&gt; lain.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;libffi akan dihapus dari &lt;code&gt;fiddle&lt;/code&gt; pada preview2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Bahasa&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Argumen dari &lt;em&gt;anonymous rest&lt;/em&gt; dan &lt;em&gt;keyword rest&lt;/em&gt; sekarang dapat dilewatkan
+sebagai argumen daripada sekadar digunakan pada parameter &lt;em&gt;method&lt;/em&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18351&quot;&gt;Feature #18351&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;quux&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sebuah &lt;em&gt;proc&lt;/em&gt; yang menerima sebuah &lt;em&gt;positional argument&lt;/em&gt; dan &lt;em&gt;keyword&lt;/em&gt;
+tidak akan lagi &lt;em&gt;autosplat&lt;/em&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18633&quot;&gt;Bug #18633&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.1 and before&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Ruby 3.2 and after&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [1, 2]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Urutan evaluasi dari &lt;em&gt;constant assignment&lt;/em&gt; pada objek eksplisit telah dibuat
+konsisten dengan urutan evaluasi tunggal. Pada kode berikut:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;foo&lt;/code&gt; sekarang dipanggil sebelum &lt;code&gt;baz&lt;/code&gt;. Demikian pula, untuk &lt;em&gt;multiple assignment&lt;/em&gt;
+pada &lt;em&gt;constant&lt;/em&gt;, urutan evaluasi &lt;em&gt;left-to-right&lt;/em&gt; digunakan. Pada kode berikut:&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;n&quot;&gt;foo1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BAR2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;baz2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Urutan evaluasi berikut sekarang digunakan:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;foo1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baz2&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15928&quot;&gt;Bug #15928&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pencarian &lt;em&gt;pattern&lt;/em&gt; tidak lagi eksperimental.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18585&quot;&gt;Feature #18585&lt;/a&gt;]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Method&lt;/em&gt; mengambil sebuah parameter lain (seperti &lt;code&gt;*args&lt;/code&gt;) dan mengharapkan
+untuk mendelegasikan &lt;em&gt;keyword argument&lt;/em&gt; melalui &lt;code&gt;foo(*args)&lt;/code&gt; sekarang harus
+ditandai dengan &lt;code&gt;ruby2_keywords&lt;/code&gt; (jika belum terjadi). Dengan kata lain, semua
+&lt;em&gt;method&lt;/em&gt; mengharapkan untuk mendelegasikan &lt;em&gt;keyword argument&lt;/em&gt; melalui &lt;code&gt;*args&lt;/code&gt;
+sekarang harus ditandai dengan &lt;code&gt;ruby2_keywords&lt;/code&gt;, tanpa kecuali. Ini akan membuat
+transisi lebih mudah ke bentuk delegasi lain saat sebuah pustaka memerlukan
+Ruby 3+. Sebelumnya, penanda &lt;code&gt;ruby2_keywords&lt;/code&gt; dijaga jika &lt;em&gt;method&lt;/em&gt; penerima
+mengambil &lt;code&gt;*args&lt;/code&gt;, tetapi ini adalah sebuah bug dan ketidakkonsistenan.
+Sebuah teknik yang bagus untuk menemukan potensi hilang dari &lt;code&gt;ruby2_keywords&lt;/code&gt;
+adalah menjalankan rangkaian tes, menggunakan &lt;code&gt;puts nil, caller, nil&lt;/code&gt;, dan
+mengecek setiap &lt;em&gt;method/block&lt;/em&gt; pada rantai pemanggilan yang harus mendelegasikan
+&lt;em&gt;keyword&lt;/em&gt; ditandai dengan benar sebagai &lt;code&gt;ruby2_keywords&lt;/code&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18625&quot;&gt;Bug #18625&lt;/a&gt;] [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16466&quot;&gt;Bug #16466&lt;/a&gt;]&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Accidentally worked without ruby2_keywords in Ruby 2.7-3.1, ruby2_keywords&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# needed in 3.2+. Just like (*args, **kwargs) or (...) would be needed on&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# both #foo and #bar when migrating away from ruby2_keywords.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ruby2_keywords&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;k: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Perbaikan performa&lt;/h2&gt;
+&lt;h3&gt;YJIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Dukungan arm64 / aarch64 pada &lt;em&gt;platform UNIX&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Membangun YJIT memerlukan Rust 1.58.1+. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18481&quot;&gt;Feature #18481&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Perubahan penting lainnya sejak 3.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash#shift sekarang selalu mengembalikan &lt;em&gt;nil&lt;/em&gt; jika &lt;em&gt;hash&lt;/em&gt; kosong dibandingkan
+mengembalikan nilai &lt;em&gt;default&lt;/em&gt; atau memanggil &lt;em&gt;default proc&lt;/em&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16908&quot;&gt;Bug #16908&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MatchData&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MatchData#byteoffset telah ditambakan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Feature #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Module&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Module.used_refinements telah ditambakan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/14332&quot;&gt;Feature #14332&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Module#refinements telah ditambakan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Feature #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Module#const_added telah ditambakan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17881&quot;&gt;Feature #17881&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Proc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Proc#dup mengembalikan sebuah &lt;em&gt;instance&lt;/em&gt; dari &lt;em&gt;subclass&lt;/em&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17545&quot;&gt;Bug #17545&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Proc#parameters sekarang menerima kata kunci &lt;em&gt;lambda&lt;/em&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15357&quot;&gt;Feature #15357&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Refinement&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Refinement#refined_class telah ditambakan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12737&quot;&gt;Feature #12737&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set sekarang tersedia sebagai sebuah &lt;em&gt;builtin class&lt;/em&gt; tanpa membutuhkan &lt;code&gt;require &amp;quot;set&amp;quot;&lt;/code&gt;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16989&quot;&gt;Feature #16989&lt;/a&gt;]
+Ini dimuatkan secara otomatis melalui &lt;em&gt;constant&lt;/em&gt; &lt;code&gt;Set&lt;/code&gt; atau sebuah pemanggilan &lt;code&gt;Enumerable#to_set&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;String&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;String#byteindex dan String#byterindex telah ditambakan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/13110&quot;&gt;Feature #13110&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;Memperbarui versi &lt;em&gt;Unicode&lt;/em&gt; ke 14.0.0 dan &lt;em&gt;Emoji&lt;/em&gt; ke 14.0. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18037&quot;&gt;Feature #18037&lt;/a&gt;]
+(juga diterapkan pada &lt;em&gt;Regexp&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;String#bytesplice telah ditambahkan. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18598&quot;&gt;Feature #18598&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Struct&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sebuah &lt;em&gt;class&lt;/em&gt; Struct juga dapat diinisialisasi dengan argumen &lt;em&gt;keyword&lt;/em&gt;
+tanpa &lt;code&gt;keyword_init: true&lt;/code&gt; pada &lt;code&gt;Struct.new&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16806&quot;&gt;Feature #16806&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Isu kompatibilitas&lt;/h2&gt;
+&lt;p&gt;Catatan: tidak termasuk perbaikan &lt;em&gt;bug&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;Removed constant&lt;/h3&gt;
+&lt;p&gt;Berikut ini adalah &lt;em&gt;constant&lt;/em&gt; yang telah dihapus.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fixnum&lt;/code&gt; dan &lt;code&gt;Bignum&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Feature #12005&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Random::DEFAULT&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17351&quot;&gt;Feature #17351&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Group&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Struct::Passwd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Removed method&lt;/h3&gt;
+&lt;p&gt;Berikut ini adalah &lt;em&gt;method&lt;/em&gt; yang telah dihapus.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Dir.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Feature #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;File.exists?&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17391&quot;&gt;Feature #17391&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#=~&lt;/code&gt; [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/15231&quot;&gt;Feature #15231&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#taint&lt;/code&gt;, &lt;code&gt;Kernel#untaint&lt;/code&gt;, &lt;code&gt;Kernel#tainted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Feature #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#trust&lt;/code&gt;, &lt;code&gt;Kernel#untrust&lt;/code&gt;, &lt;code&gt;Kernel#untrusted?&lt;/code&gt;
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Feature #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Isu kompatibilitas Stdlib&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Psych&lt;/code&gt; tidak lagi membundel libyaml.
+Pengguna perlu memasang pustakan libyaml sendiri melalui &lt;em&gt;package system&lt;/em&gt;.
+[&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18571&quot;&gt;Feature #18571&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Pembaruan C API&lt;/h2&gt;
+&lt;h3&gt;Removed C APIs&lt;/h3&gt;
+&lt;p&gt;Berikut ini adalah API yang telah dihapus.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Variabel &lt;code&gt;rb_cData&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Function&lt;/em&gt; &amp;quot;taintedness&amp;quot; dan &amp;quot;trustedness&amp;quot;. [&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16131&quot;&gt;Feature #16131&lt;/a&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pembaruan pustaka standar&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Berikut ini adalah &lt;em&gt;default gem&lt;/em&gt; yang telah diperbarui.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Berikut ini adalah &lt;em&gt;bundled gem&lt;/em&gt; yang telah diperbarui.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Berikut ini adalah &lt;em&gt;default gem&lt;/em&gt; yang sekarang menjadi &lt;em&gt;bundled gem&lt;/em&gt;.
+Anda perlu menambahkan pustaka berikut ke &lt;code&gt;Gemfile&lt;/code&gt; pada &lt;em&gt;bundler environment&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_2_0_preview2/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+atau &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview2&quot;&gt;commit logs&lt;/a&gt;
+untuk lebih detail.&lt;/p&gt;
+&lt;p&gt;Dengan perubahan tersebut, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview2#file_bucket&quot;&gt;2393 berkas berubah, 168931 sisipan(+), 113411 terhapus(-)&lt;/a&gt;
+sejak Ruby 3.1.0!&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19816780
+SHA1: 2106c77fc1600daf41ae137ecc4cf7937e27f67f
+SHA256: 8a78fd7a221b86032f96f25c1d852954c94d193b9d21388a9b434e160b7ed891
+SHA512: 5e9ddcb1a43cff449b0062cc716bfb80a9ebbb14a1b063f34005e2998c2c5033badb44e882232db9b2fceda9376f6615986e983511fda2575d60894752b605cc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14578112
+SHA1: 538b3ea4dc0d99f60f8bd6f71e65a56ceeb41c18
+SHA256: 01fac0929dccdabc0686c1109da6c187897a401da9ff8851242befa92f7fd430
+SHA512: 0f4cc919284fdfa1a42b6381760d1b3a4660da4b0fcdd2adf01ea04a425548b3c5ac090866915675db73964a1055090e54dd97cf4628cbb69403e541c71c28ff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24150109
+SHA1: 69ffffc52cad626166f73f21f25c29c9d73fe0e8
+SHA256: 67f9ad3110be1975b3ce547c0a6e2c910dfc1945fd6e9bb1bd340568897c6554
+SHA512: 1447e099e7a8da0ff206fda6f4e466640d6e86e9da8148315ab0154684b1fd22c02c0022b5a2f4d3fc00103b4e8cef8e35a770174921fd8c6abeca9ad41c1818
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Apa itu Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada 1993
+dan sekarang dikembangkan sebagai &lt;em&gt;Open Source&lt;/em&gt;. Ruby berjalan di berbagai
+&lt;em&gt;platform&lt;/em&gt; dan digunakan di seluruh dunia, khususnya untuk pengembangan &lt;em&gt;web&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh naruse tanggal 2022-09-09&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Fri, 09 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/09/09/ruby-3-2-0-preview2-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/09/09/ruby-3-2-0-preview2-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.2 Dirilis</title>
+      <description>&lt;p&gt;Ruby 3.1.2 telah dirilis.&lt;/p&gt;
+&lt;p&gt;Rilis ini mencakup perbaikan keamanan.
+Mohon cek topik-topik di bawah ini untuk detail.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/id/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/&quot;&gt;CVE-2022-28738: Double free pada Regexp compilation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/id/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: Buffer overrun pada konversi String-to-Float&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_1...v3_1_2&quot;&gt;commit logs&lt;/a&gt;
+untuk lebih detail.&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20553628
+SHA1: b0d86c60457fdfbcb532cb681877a2f790f66b25
+SHA256: 61843112389f02b735428b53bb64cf988ad9fb81858b8248e22e57336f24a83e
+SHA512: 9155d1150398eaea7c9954af61ecf8dfdb885cfcf63a67bbcf6c92e282cd3ccac0ff9234d039286a9623297b65197441438c37f707e31d270ce2fe11e8f38a44
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15101588
+SHA1: 4c47f1dfeeb23fc55d65bcae50cf70c23bc28aa3
+SHA256: ca10d017f8a1b6d247556622c841fc56b90c03b1803f87198da1e4fd3ec3bf2a
+SHA512: 4a74e9efc6ea4b3eff4fec7534eb1fff4794d021531defc2e9937e53c6668db8ecdc0fff2bc23d5e6602d0df344a2caa85b31c5414309541e3d5313ec82b6e21
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24837444
+SHA1: 2e04f25dc73d7236fd4f4a170329793cd5e7dc38
+SHA256: f2bb80de50bcc17c29c1995d87d657d461ede6a73e71db44c0cf77f65f32e9b6
+SHA512: fa3ba25a051bd1e0ea1ee9fadfeef674f2f3217b1468ccb24975c4a19493115cdeb0015a78d391d08870947de95a8c7409f1c00fed51dc49d40cc3e6cda25bb7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentar Rilis&lt;/h2&gt;
+&lt;p&gt;Banyak &lt;em&gt;committer&lt;/em&gt;, pengembang, dan pengguna yang telah menyediakan laporan
+&lt;em&gt;bug&lt;/em&gt; membantu kami untuk membuat rilis ini. Terima kasih atas kontribusinya.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh naruse dan mame tanggal 2022-04-12&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/12/ruby-3-1-2-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/12/ruby-3-1-2-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.4 Dirilis</title>
+      <description>&lt;p&gt;Ruby 3.0.4 telah dirilis.&lt;/p&gt;
+&lt;p&gt;Rilis ini mencakup perbaikan keamanan.
+Mohon cek topik-topik di bawah ini untuk lebih detail.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/id/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/&quot;&gt;CVE-2022-28738: Double free pada Regexp compilation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/id/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: Buffer overrun pada konversi String-to-Float&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_3...v3_0_4&quot;&gt;commit logs&lt;/a&gt; untuk
+detail.&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 21139486
+SHA1: 9c995a7a5cc3300ea1adb734017545e19d0af3ca
+SHA256: 70b47c207af04bce9acea262308fb42893d3e244f39a4abc586920a1c723722b
+SHA512: 0dfded6826063c1b39bf625a6e13b46c109cb160c8648b78f0965f70e7c7a1a65f1c117fc8f2cf8bdb34d7cbf79fecf1f45d169d2323406d66ab27b18bde1d22
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15830368
+SHA1: 14461adca874d42a06a11851029dec877d9d28de
+SHA256: 8e22fc7304520435522253210ed0aa9a50545f8f13c959fe01a05aea06bef2f0
+SHA512: 53bf7dd403b0c68af9691882ad8ed7422c8d1f496627428fb4c3caf0b0313715524b744c5f453aced2d49e16e55f3f45b46b9a77aa3097dbfcae7caa0208194b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25517085
+SHA1: 6700ef07e3f7c4582d1b8004bfcce6cb4075b951
+SHA256: d4ce9fd565a81ce138ea26382c8880f0456883b2539e18510e1d845293a095cb
+SHA512: 2d97099161bcd17c5fdf1c70da6e062ae410186e7c1235e3b1df5bad6085e370bed3cf1ebd89ed9b5918cd386ae47d1f986a3c96c32f0c8a0b9375e56b66a1d9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentar Rilis&lt;/h2&gt;
+&lt;p&gt;Banyak &lt;em&gt;committer&lt;/em&gt;, pengembang, dan pengguna yang telah menyediakan laporan
+&lt;em&gt;bug&lt;/em&gt; membantu kami membuat rilis ini. Terima kasih atas kontribusinya.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh nagachika dan mame tanggal 2022-04-12&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/12/ruby-3-0-4-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/12/ruby-3-0-4-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.7.6 Dirilis</title>
+      <description>&lt;p&gt;Ruby 2.7.6 telah dirilis.&lt;/p&gt;
+&lt;p&gt;Rilis ini mencakup sebuah perbaikan keamanan.
+Mohon cek topik di bawah ini untuk lebih detail.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/id/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: Buffer overrun pada konversi String-to-Float&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rilis ini juga mencakup beberapa perbaikan &lt;em&gt;bug&lt;/em&gt;.
+Lihat &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_5...v2_7_6&quot;&gt;commit logs&lt;/a&gt;
+untuk detail.&lt;/p&gt;
+&lt;p&gt;Setelah rilis ini, kami akan mengakhiri fase perawatan dari Ruby 2.7 dan
+Ruby 2.7 akan memasuki fase perawatan keamanan.
+Hal ini berarti kami tidak akan melakukan &lt;em&gt;backport&lt;/em&gt; perbaikan &lt;em&gt;bug&lt;/em&gt; apapun ke
+Ruby 2.7, kecuali perbaikan keamanan.&lt;/p&gt;
+&lt;p&gt;Masa perawatan keamanan dijadwalkan selama satu tahun.
+Ruby 2.7 mencapai &lt;em&gt;EOL&lt;/em&gt; dan dukungan resminya berakhir dengan berakhirnya fase
+perawatan keamanan.
+Oleh sebab itu, kami merekomendasikan Anda untuk merencanakan pembaruan ke
+Ruby 3.0 atau 3.1.&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14805659
+SHA1: 0eb555e5169af2cfcedd2394137f129ddc842cc1
+SHA256: 6de239d74cf6da09d0c17a116378a866743f5f0a52c9355da26b5d312ca6eed3
+SHA512: 4f7f3624afc43da25ebf0f01d5a2f92f72f94bab7423587cfd3920e089b479bf559b159adf2891b996f7e6a98c008a4f73a4a2170e2f8619417660ac1ab24bdc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16919639
+SHA1: 645f85941b4f69fc5bfb8aa3ba85f0e43dfb520c
+SHA256: e7203b0cc09442ed2c08936d483f8ac140ec1c72e37bb5c401646b7866cb5d10
+SHA512: 94810bb204cec55b5bbec8d51a5f5cc696613d1812b152399441a5cc7e4eddd2b376bc85e16d8da0b12f1938d19bf0d056b49a028809c036fb5a446a65bffbee
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12084408
+SHA1: 068e3e11799250781ba4a68eb4f015bab35966e3
+SHA256: 54dcd3044726c4ab75a9d4604720501442b229a3aed6a55fe909567da8807f24
+SHA512: e86410b59d5917786fe43b00fd75dedd0e7f84611286b9274c542d2e562088fcee6bcc6c2596c30ccf793280d2bac6bfbb2619ef0513b3ca31f10f88684c7b1f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20701880
+SHA1: 59517436c536a817f52fe77b7cbed32d5d3764c3
+SHA256: 2ead329cfb9a5975348d2fdcfa0cb60bb3ba47a6693e93afd52db7a0ba01ac4c
+SHA512: d7210aa211333cc1afa080b999bf1a50db1708bb8e2c608892bb42fe450f4567aa4d974532071e0eba3d96bee63ed1f2d51f123d443edc46668c4eca3fe1f791
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentar Rilis&lt;/h2&gt;
+&lt;p&gt;Banyak &lt;em&gt;committer&lt;/em&gt;, pengembang, dan pengguna yang telah menyediakan laporan
+&lt;em&gt;bug&lt;/em&gt; membantu kami membuat rilis ini. Terima kasih atas kontribusinya.&lt;/p&gt;
+&lt;p&gt;Perawatan Ruby 2.7, termasuk rilis ini, didasarkan pada &amp;quot;Agreement for the
+Ruby stable version&amp;quot; dari Ruby Association.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh usa dan mame tanggal 2022-04-12&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/12/ruby-2-7-6-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/12/ruby-2-7-6-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.6.10 Dirilis</title>
+      <description>&lt;p&gt;Ruby 2.6.10 telah dirilis.&lt;/p&gt;
+&lt;p&gt;Rilis ini mencakup perbaikan keamanan.
+Mohon cek topik di bawah ini untuk lebih detail.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/id/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: Buffer overrun pada konversi String-to-Float&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rilis ini juga mencakup perbaikan &lt;em&gt;build&lt;/em&gt; dari &lt;em&gt;compiler&lt;/em&gt; lama dan perbaikan
+regresi pustaka &lt;em&gt;date&lt;/em&gt;.
+Lihat &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_6_9...v2_6_10&quot;&gt;commit logs&lt;/a&gt;
+untuk detail.&lt;/p&gt;
+&lt;p&gt;Setelah rilis ini, Ruby 2.6 akan &lt;em&gt;EOL&lt;/em&gt;. Dengan kata lain, ini adalah rilis
+terakhir dari rangkaian Ruby 2.6.
+Kami tidak akan merilis Ruby 2.6.11 meskipun ada sebuah kerentanan keamanan
+ditemukan (kami bisa saja merilis jika sebuah regresi yang signifikan ditemukan).
+Kami merekomendasikan semua pengguna Ruby 2.6 untuk memulai migrasi ke Ruby 3.1,
+3.0, atau 2.7 segera.&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14136083
+SHA1: ece89ec43e107a80efe35b3b7879dbe07e1a636f
+SHA256: 399e1f13e7fedc3c6ae2ff541bbf26c44dfb63b07b6c186fdd15b4e526e27e9c
+SHA512: 275a0f329641e6c3d3d3c33ffabf585195187eb3baa4fb1dfd35999fa0a80bd5925943fa2711827ac00dffb6c9a1deeadabaf2e9ee401d56926fc167db5ae4a4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16200134
+SHA1: e50f3194ac23da8d71882d611056ed06068169ef
+SHA256: 0dc609f263d49c4176d5725deefc337273676395985b5e017789373e8cadf16e
+SHA512: 13249c639da236d48749f5d9f563068f032f02d75372a8a5633626fdd32814150e7f79e81b25b205885ac38964ab20ef7323bd40346a798948f63a2eba5c8daf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 11582056
+SHA1: e91de95735d0af32238903c7c58d2b660433e0cc
+SHA256: 5fd8ded51321b88fdc9c1b4b0eb1b951d2eddbc293865da0151612c2e814c1f2
+SHA512: 06ebf1442c4bf4be62eb710348cfb714cbc4c4acc5125319a425fe76ef2be7cccfd41e50bf3751bfef3ceb8ac47ad41a027d2c2ad560e25ec694e34fd9f62a8a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19888325
+SHA1: 1183c8b6a74fa8be798a07d16028138be30bb8d6
+SHA256: 381e62de1cbac80b356c2fa77ee1906a169bb8cde4a9ec64541a41db32db046d
+SHA512: 352efede781c3c3b1aaaaeaa28050d530b8a350ec549218464dfe57a4d39770f5a345978fc9f6c23d5f539db70bd9f53c4fbf807dc4ec4bdf9cae1acbe6c2c99
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentar Rilis&lt;/h2&gt;
+&lt;p&gt;Banyak &lt;em&gt;committer&lt;/em&gt;, pengembang, dan pengguna yang telah menyediakan laporan
+&lt;em&gt;bug&lt;/em&gt; membantu kami untuk membuat rilis ini. Terima kasih atas kontribusinya.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh usa dan mame tanggal 2022-04-12&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/12/ruby-2-6-10-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/12/ruby-2-6-10-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2022-28738: Double free pada Regexp compilation</title>
+      <description>&lt;p&gt;Sebuah kerentanan &lt;em&gt;double-free&lt;/em&gt; ditemukan pada &lt;em&gt;Regexp compilation&lt;/em&gt;.
+Kerentanan ini telah ditetapkan dengan penanda CVE
+&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2022-28738&quot;&gt;CVE-2022-28738&lt;/a&gt;.
+Kami sangat merekomendasikan Anda untuk memperbarui Ruby.&lt;/p&gt;
+&lt;h2&gt;Detail&lt;/h2&gt;
+&lt;p&gt;Disebabkan oleh sebuah &lt;em&gt;bug&lt;/em&gt; pada &lt;em&gt;Regexp compilation&lt;/em&gt;, pembuatan sebuah objek
+&lt;em&gt;Regexp&lt;/em&gt; dengan suatu &lt;em&gt;string&lt;/em&gt; yang dikemas sedemikian rupa sehingga menyebabkan
+memori yang sama dibebaskan dua kali. Ini dikenal dengan kerentanan &amp;quot;double free&amp;quot;.
+Perhatikan bahwa, secara umum, praktik untuk membuat dan menggunakan sebuah
+objek &lt;em&gt;Regexp&lt;/em&gt; dari masukan yang tidak bisa dipercaya dianggap tidak aman.
+Namun, pada kasus ini, dengan mengikuti sebuah penilaian yang komprehensif, kami
+memperlakukan kasus ini sebagai sebuah kerentanan.&lt;/p&gt;
+&lt;p&gt;Mohon perbarui Ruby ke 3.0.4 atau 3.1.2.&lt;/p&gt;
+&lt;h2&gt;Versi terimbas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ruby 3.0.3 atau sebelumnya&lt;/li&gt;
+&lt;li&gt;ruby 3.1.1 atau sebelumnya&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Perhatikan bahwa rangkaian ruby 2.6 dan 2.7 tidak terimbas.&lt;/p&gt;
+&lt;h2&gt;Rujukan&lt;/h2&gt;
+&lt;p&gt;Terima kasih kepada &lt;a href=&quot;https://hackerone.com/piao?type=user&quot;&gt;piao&lt;/a&gt; yang telah
+menemukan kerentanan ini.&lt;/p&gt;
+&lt;h2&gt;Riwayat&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Semula dipublikasikan pada 2022-04-12 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ditulis oleh mame tanggal 2022-04-12&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2022-28739: Buffer overrun pada konversi String-to-Float</title>
+      <description>&lt;p&gt;Sebuah kerentanan &lt;em&gt;buffer-overrun&lt;/em&gt; telah ditemukan pada algoritma konversi dari
+sebuah &lt;em&gt;String&lt;/em&gt; ke &lt;em&gt;Float&lt;/em&gt;. Kerentanan ini telah ditetapkan dengan penanda CVE
+&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2022-28739&quot;&gt;CVE-2022-28739&lt;/a&gt;.
+Kami sangat merekomendasikan untuk memperbarui Ruby.&lt;/p&gt;
+&lt;h2&gt;Detail&lt;/h2&gt;
+&lt;p&gt;Disebabkan oleh sebuah &lt;em&gt;bug&lt;/em&gt; pada fungsi internal yang mengonversi sebuah &lt;em&gt;String&lt;/em&gt;
+ke &lt;em&gt;Float&lt;/em&gt;, beberapa metode konversi, seperti &lt;code&gt;Kernel#Float&lt;/code&gt; dan &lt;code&gt;String#to_f&lt;/code&gt;,
+bisa menyebabkan &lt;em&gt;buffer over-read&lt;/em&gt;. Konsekuensi khas dari kerentanan ini
+adalah berhentinya sebuah proses karena &lt;em&gt;segmentation fault&lt;/em&gt;. Tetapi, dalam
+keadaan terbatas, kerentanan ini bisa dieksploitasi menjadi &lt;em&gt;illegal memory read&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Mohon perbarui Ruby ke 2.6.10, 2.7.6, 3.0.4, atau 3.1.2.&lt;/p&gt;
+&lt;h2&gt;Versi terimbas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ruby 2.6.9 atau sebelumnya&lt;/li&gt;
+&lt;li&gt;ruby 2.7.5 atau sebelumnya&lt;/li&gt;
+&lt;li&gt;ruby 3.0.3 atau sebelumnya&lt;/li&gt;
+&lt;li&gt;ruby 3.1.1 atau sebelumnya&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Rujukan&lt;/h2&gt;
+&lt;p&gt;Terima kasih kepada &lt;a href=&quot;https://hackerone.com/piao?type=user&quot;&gt;piao&lt;/a&gt; yang telah
+menemukan kerentanan ini.&lt;/p&gt;
+&lt;h2&gt;Riwayat&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Semula dipublikasikan pada 2022-04-12 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ditulis oleh mame tanggal 2022-04-12&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.2.0 Preview 1 Dirilis</title>
+      <description>&lt;p&gt;Kami dengan senang hati mengumumkan rilis dari Ruby 3.2.0-preview1.
+Ruby 3.2 menambahkan banyak fitur dan perbaikan performa.&lt;/p&gt;
+&lt;h2&gt;Dukungan WebAssembly berbasis WASI&lt;/h2&gt;
+&lt;p&gt;Ini adalah sebuah &lt;em&gt;port&lt;/em&gt; awal dari dukungan &lt;em&gt;WebAssembly&lt;/em&gt; berbasis &lt;em&gt;WASI&lt;/em&gt;.
+&lt;em&gt;Port&lt;/em&gt; ini memperbolehkan sebuah &lt;em&gt;CRuby binary&lt;/em&gt; untuk tersedia pada &lt;em&gt;web browser&lt;/em&gt;,
+&lt;em&gt;Serverless Edge environment&lt;/em&gt;, dan &lt;em&gt;WebAssembly/WASI embedder&lt;/em&gt; lainnya.
+Saat ini, &lt;em&gt;port&lt;/em&gt; melewatkan rangkaian tes dasar dan &lt;em&gt;bootstrap&lt;/em&gt; dengan
+tidak menggunakan &lt;em&gt;Thread&lt;/em&gt; API.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/opCgKy2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Latar belakang&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://webassembly.org/&quot;&gt;WebAssembly (Wasm)&lt;/a&gt; semula diperkenalkan untuk
+menjalankan program dengan aman dan cepat pada &lt;em&gt;web browser&lt;/em&gt;. Tetapi sasarannya&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;menjalankan program secara efisien dengan keamanan pada berbagai macam
+&lt;em&gt;environment&lt;/em&gt; - diinginkan sejak lama tidak hanya oleh &lt;em&gt;web&lt;/em&gt;, akan tetapi oleh
+aplikasi umum.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://wasi.dev/&quot;&gt;WASI (The WebAssembly System Interface)&lt;/a&gt; didesain untuk
+berbagai macam kasus penggunaan. Walaupun aplikasi perlu berkomunikasi dengan
+sistem operasi, &lt;em&gt;WebAssembly&lt;/em&gt; berjalan pada sebuah &lt;em&gt;virtual machine&lt;/em&gt; yang mana
+tidak memiliki sebuah &lt;em&gt;system interface&lt;/em&gt;. &lt;em&gt;WASI&lt;/em&gt; menstandarkan.&lt;/p&gt;
+&lt;p&gt;Dukungan &lt;em&gt;WebAssembly/WASI&lt;/em&gt; pada Ruby bermaksud untuk memanfaatkan proyek-proyek
+tersebut. Ini memperbolehkan pengembang Ruby untuk memprogram aplikasi yang
+berjalan pada &lt;em&gt;platform&lt;/em&gt; yang menjanjikan.&lt;/p&gt;
+&lt;h3&gt;Kasus penggunaan&lt;/h3&gt;
+&lt;p&gt;Dukungan ini memperbolehkan pengembang untuk memanfaatkan &lt;em&gt;CRuby&lt;/em&gt; pada sebuah
+&lt;em&gt;WebAssembly environment&lt;/em&gt;. Sebuah contoh kasus penggunaan adalah dukungan
+&lt;em&gt;CRuby&lt;/em&gt; pada &lt;a href=&quot;https://try.ruby-lang.org/playground/&quot;&gt;TryRuby playground&lt;/a&gt;.
+Sekarang Anda bisa mencoba &lt;em&gt;CRuby&lt;/em&gt; pada &lt;em&gt;web browser&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;Poin teknis&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;WASI&lt;/em&gt; dan &lt;em&gt;WebAssembly&lt;/em&gt; saat ini memiliki beberapa fitur yang tidak didukung,
+seperti mengimplementasikan &lt;em&gt;Fiber&lt;/em&gt;, &lt;em&gt;exception&lt;/em&gt;, dan &lt;em&gt;GC&lt;/em&gt; karena ini masih
+berkembang dan juga untuk alasan keamanan. Oleh sebab itu, &lt;em&gt;CRuby&lt;/em&gt; mengisi gap
+tersebut dengan menggunakan &lt;em&gt;Asyncify&lt;/em&gt;, yang mana adalah sebuah teknik
+transformasi &lt;em&gt;binary&lt;/em&gt; untuk mengendalikan eksekusi pada lingkungan pengguna.&lt;/p&gt;
+&lt;p&gt;Sebagai tambahan, kami membangun sebuah
+&lt;a href=&quot;https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby&quot;&gt;VFS di atas WASI&lt;/a&gt;
+sehingga kami dapat membungkus aplikasi Ruby dengan mudah ke dalam satu berkas
+.wasm. Teknik ini membuat distribusi aplikasi Ruby sedikit lebih mudah.&lt;/p&gt;
+&lt;h3&gt;Tautan terkait&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5407&quot;&gt;Add WASI based WebAssembly support #5407&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9&quot;&gt;An Update on WebAssembly/WASI Support in Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Regexp timeout&lt;/h2&gt;
+&lt;p&gt;Sebuah fitur &lt;em&gt;timeout&lt;/em&gt; pada &lt;em&gt;Regexp matching&lt;/em&gt; diperkenalkan.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;/^a*b?a*$/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; Regexp::TimeoutError is raised in one second&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Diketahui bahwa &lt;em&gt;Regexp matching&lt;/em&gt; mungkin membutuhkan waktu yang lama. Jika
+kode Anda mencoba untuk mencocokkan sebuah &lt;em&gt;Regexp&lt;/em&gt; yang tidak efisien dengan
+sebuah masukan yang tidak terpercaya, seorang penyerang bisa mengeksploitasi
+ini untuk &lt;em&gt;Denial of Service&lt;/em&gt; (disebut &lt;em&gt;Regular expression DoS&lt;/em&gt; atau &lt;em&gt;ReDoS&lt;/em&gt;)
+yang efisien.&lt;/p&gt;
+&lt;p&gt;Risiko dari &lt;em&gt;DoS&lt;/em&gt; dapat dicegah atau dikurangi secara signifikan dengan mengatur
+&lt;code&gt;Regexp.timeout&lt;/code&gt; berdasarkan kebutuhan dari aplikasi Ruby Anda. Mohon coba fitur
+ini pada aplikasi Anda. Kami menerima umpan balik Anda.&lt;/p&gt;
+&lt;p&gt;Catat bahwa &lt;code&gt;Regexp.timeout&lt;/code&gt; adalah sebuah pengaturan global. Jika Anda ingin
+menggunakan pengaturan yang berbeda untuk &lt;em&gt;Regexp&lt;/em&gt; tertentu, Anda bisa
+menggunakan kata kunci &lt;code&gt;timeout&lt;/code&gt; pada &lt;code&gt;Regexp.new&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# This regexp has no timeout&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Regexp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^a*b?a*$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;timeout: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;long_time_re&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;x&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# never interrupted&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Proposal asli https://bugs.ruby-lang.org/issues/17837&lt;/p&gt;
+&lt;h2&gt;Fitur penting lainnya&lt;/h2&gt;
+&lt;h3&gt;Tidak lagi membundel sumber pihak ketiga&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kami tidak lagi membundel sumber pihak ketiga, seperti &lt;code&gt;libyaml&lt;/code&gt;, &lt;code&gt;libffi&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;libyaml telah dihapus dari &lt;em&gt;psych&lt;/em&gt;. Anda mungkin butuh untuk memasang
+&lt;code&gt;libyaml-dev&lt;/code&gt; pada &lt;em&gt;platform Ubuntu/Debian&lt;/em&gt;. Nama &lt;em&gt;package&lt;/em&gt; bisa berbeda pada
+&lt;em&gt;platform&lt;/em&gt; lain.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;libffi akan dihapus dari &lt;code&gt;fiddle&lt;/code&gt; pada preview2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Bahasa&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Pencarian &lt;em&gt;pattern&lt;/em&gt; tidak lagi eksperimental.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Perbaikan performa&lt;/h3&gt;
+&lt;h2&gt;Perubahan penting lainnya sejak 3.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash#shift sekarang selalu mengembalikan &lt;em&gt;nil&lt;/em&gt; jika &lt;em&gt;hash&lt;/em&gt; kosong dibandingkan
+mengembalikan nilai &lt;em&gt;default&lt;/em&gt; atau memanggil &lt;em&gt;default proc&lt;/em&gt;. [[Bug #16908]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MatchData&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MatchData#byteoffset telah ditambakan. [[Feature #13110]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Module&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Module.used_refinements telah ditambakan. [[Feature #14332]]&lt;/li&gt;
+&lt;li&gt;Module#refinements telah ditambakan. [[Feature #12737]]&lt;/li&gt;
+&lt;li&gt;Module#const_added telah ditambakan. [[Feature #17881]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Proc&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Proc#dup mengembalikan sebuah &lt;em&gt;instance&lt;/em&gt; dari &lt;em&gt;subclass&lt;/em&gt;. [[Bug #17545]]&lt;/li&gt;
+&lt;li&gt;Proc#parameters sekarang menerima kata kunci &lt;em&gt;lambda&lt;/em&gt;. [[Feature #15357]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Refinement&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Refinement#refined_class telah ditambakan. [[Feature #12737]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set sekarang tersedia sebagai sebuah &lt;em&gt;builtin class&lt;/em&gt; tanpa membutuhkan &lt;code&gt;require &amp;quot;set&amp;quot;&lt;/code&gt;. [[Feature #16989]]
+Ini dimuatkan secara otomatis melalui &lt;em&gt;constant&lt;/em&gt; &lt;code&gt;Set&lt;/code&gt; atau sebuah pemanggilan &lt;code&gt;Enumerable#to_set&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;String&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;String#byteindex dan String#byterindex telah ditambakan. [[Feature #13110]]&lt;/li&gt;
+&lt;li&gt;Memperbarui versi &lt;em&gt;Unicode&lt;/em&gt; ke 14.0.0 dan &lt;em&gt;Emoji&lt;/em&gt; ke 14.0. [[Feature #18037]]
+(juga diterapkan pada &lt;em&gt;Regexp&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;String#bytesplice telah ditambahkan. [[Feature #18598]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Struct&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sebuah &lt;em&gt;class&lt;/em&gt; Struct juga dapat diinisialisasi dengan argumen kata kunci
+tanpa &lt;code&gt;keyword_init: true&lt;/code&gt; pada &lt;code&gt;Struct.new&lt;/code&gt; [[Feature #16806]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pembaruan pustaka standar&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Berikut adalah &lt;em&gt;default gem&lt;/em&gt; yang diperbarui.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Berikut adalah &lt;em&gt;bundled gem&lt;/em&gt; yang diperbarui.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Berikut adalah &lt;em&gt;default gem&lt;/em&gt; yang sekarang &lt;em&gt;bundled gem&lt;/em&gt;. Anda perlu untuk menambahkan pustaka ini pada &lt;code&gt;Gemfile&lt;/code&gt; dalam &lt;em&gt;bundler environment&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TBD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_2_0_preview1/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+atau &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview1&quot;&gt;commit logs&lt;/a&gt;
+untuk lebih detail.&lt;/p&gt;
+&lt;p&gt;Dengan perubahan tersebut, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview1#file_bucket&quot;&gt;1058 berkas berubah, 34946 sisipan(+), 29962 terhapus(-)&lt;/a&gt;
+sejak Ruby 3.1.0!&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20728782
+SHA1: 7c4197e67f230b0c5d011f4efb9b9158743a61c8
+SHA256: 6946b966c561d5dfc2a662b88e8211be30bfffc7bb2f37ce3cc62d6c46a0b818
+SHA512: d24e77161996c2085f613a86d1ed5ef5c5bf0e18eb459f6a93a0014a5d2ce41079283b4283d24cb96448a0986c8c6c52a04584abd4e73911ea59cefeb786836e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15011400
+SHA1: 6bcc30ac670ab391997e0d68ba97b451db078934
+SHA256: 6d28477f7fa626b63bf139afd37bcfeb28fce6847b203fa10f37cb3615d0c35d
+SHA512: 0eca2c346b995d265df2659b4215ff96e515c29926c2a6256caad99db9c4c51fec1a2d899ca63a00010d4111060dc0fdd4f591be84c0a2c43b6303879de3c5de
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25370458
+SHA1: 3c93c2e775366eec6e93cf670fc8677934cb4e48
+SHA256: 24f8ae73d56366453defb0654de624bd1c063921a1d7ac780e4da56bb8fbf7e4
+SHA512: 9754f11aa167df167d1b336e5c660aab1bd9e12421c093e0fe96e9a2da4ffb9859b7ea5263473bbc7b57ac8b5568cf7ac3116c0abdc647e1ff97a8d060ff7eae
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Apa itu Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada 1993 dan
+sekarang dikembangkan sebagai &lt;em&gt;Open Source&lt;/em&gt;. Ruby berjalan di berbagai &lt;em&gt;platform&lt;/em&gt;
+dan digunakan di seluruh dunia, khususnya untuk pengembangan &lt;em&gt;web&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh naruse tanggal 2022-04-03&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/04/03/ruby-3-2-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/04/03/ruby-3-2-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.1 Dirilis</title>
+      <description>&lt;p&gt;Ruby 3.1.1 telah dirilis.&lt;/p&gt;
+&lt;p&gt;Ini adalah versi rilis TEENY pertama dari rangkaian Ruby 3.1 &lt;em&gt;stable&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18434&quot;&gt;error_highlight does not work for -e option&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18453&quot;&gt;Fix YJIT passing method arguments in the wrong order when keyword argument and default arguments are mixed. Breaks Rails collection caching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18458&quot;&gt;Segmentation fault when missing Warning#warn method&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18436&quot;&gt;Fix Pathname dot directory globbing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18469&quot;&gt;Fix default --jit-max-cache in ruby --help&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18292&quot;&gt;3.1.0-dev &lt;code&gt;include&lt;/code&gt; cause Module to be marked as initialized&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18468&quot;&gt;Tutorial Link for Optionparser is broken&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18475&quot;&gt;Yielding an element for Enumerator in another thread dumps core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18489&quot;&gt;Segmentation fault with ruby 3.1.0 in &lt;code&gt;active_decorator&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18497&quot;&gt;Segfault on use of Process.daemon in a Fiber&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18517&quot;&gt;0 &amp;lt;&amp;lt; (2**40) is NoMemoryError but 0 &amp;lt;&amp;lt; (2**80) is 0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18443&quot;&gt;IO read/write/wait hook bug fixes.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18516&quot;&gt;Memory leak on aliasing method to itself&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18556&quot;&gt;error: use of undeclared identifier 'MAP_ANONYMOUS'&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18501&quot;&gt;[BUG] try to mark T_NONE object in RubyVM::InstructionSequence. load_from_binary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18562&quot;&gt;throw_data passed to rescue through require&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18570&quot;&gt;Fix &lt;code&gt;IpAddr#to_range&lt;/code&gt; on frozen &lt;code&gt;IpAddr&lt;/code&gt; instances.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5533&quot;&gt;Fixed path for ipaddr.rb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5543&quot;&gt;Merge RubyGems-3.3.7 and Bundler-2.3.7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18578&quot;&gt;Hang when repeating Hash#shift against a empty Hash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_1_1&quot;&gt;commit logs&lt;/a&gt;
+untuk lebih detail.&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20562492
+SHA1: 289cbb9eae338bdaf99e376ac511236e39be83a3
+SHA256: fe6e4782de97443978ddba8ba4be38d222aa24dc3e3f02a6a8e7701c0eeb619d
+SHA512: a60d69d35d6d4ad8926b324a6092f962510183d9759b096ba4ce9db2e254e0f436030c2a62741352efe72aec5ca2329b45edd85cca8ad3254a9c57e3d8f66319
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15103808
+SHA1: af6afead0e5509c459a580fc260bec2608b46750
+SHA256: 7aefaa6b78b076515d272ec59c4616707a54fc9f2391239737d5f10af7a16caa
+SHA512: 8877fa9a458964a59a11529cd10b3d25b5f6238cd4678b6dcea0bd4b750499cf8ff39d8824053b4ab26c5cd0cfb604a57807ce61580175857fcf00b2cff3e55f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24843623
+SHA1: 9afab3231e99835dbbdad93c96a240ce90a1f2f5
+SHA256: de1cc26c18c6fb838b75f3e700621339cf09d557a15c0b1457720f7c441a1e68
+SHA512: 0eac755cd9883659dbd9ab9b2c2e5608112030d96ad14c22e1f21712d870f97ba7dfbd74cc03b1892faacb37958f100df484e4944c90b4a834e27e4c03b8e895
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Komentar Rilis&lt;/h2&gt;
+&lt;p&gt;Banyak &lt;em&gt;committer&lt;/em&gt;, pengembang, dan pengguna yang telah menyediakan laporan
+&lt;em&gt;bug&lt;/em&gt; membantu kami membuat rilis ini. Terima kasih atas kontribusinya.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh naruse tanggal 2022-02-18&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Fri, 18 Feb 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2022/02/18/ruby-3-1-1-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2022/02/18/ruby-3-1-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.0 Dirilis</title>
+      <description>&lt;p&gt;Kami dengan senang hati mengumumkan rilis dari Ruby 3.1.0.
+Ruby 3.1 menjaga kompatibilitas dengan Ruby 3.0 dan menambahkan banyak fitur.&lt;/p&gt;
+&lt;h2&gt;YJIT: Compiler JIT eksperimental baru&lt;/h2&gt;
+&lt;p&gt;Ruby 3.1 menggabungkan YJIT, sebuah &lt;em&gt;compiler&lt;/em&gt; JIT baru yang dikembangkan oleh
+Shopify.&lt;/p&gt;
+&lt;p&gt;Sejak &lt;a href=&quot;https://www.ruby-lang.org/id/news/2018/12/25/ruby-2-6-0-released/&quot;&gt;Ruby 2.6 mengenalkan MJIT pada 2018&lt;/a&gt;,
+kinerjanya sangat meningkat dan akhirnya
+&lt;a href=&quot;https://www.ruby-lang.org/id/news/2020/12/25/ruby-3-0-0-released/&quot;&gt;kami mecapai Ruby3x3 tahun lalu&lt;/a&gt;.
+Meskipun &lt;em&gt;Optcarrot&lt;/em&gt; telah menunjukkan peningkatan luar biasa, JIT belum
+memberikan manfaat untuk aplikasi dunia nyata.&lt;/p&gt;
+&lt;p&gt;Baru-baru ini Shopify berkontribusi banyak memperbaiki Ruby dengan meningkatkan
+kinerja aplikasi &lt;em&gt;Rails&lt;/em&gt; mereka. YJIT adalah sebuah kontribusi penting
+dan bertujuan untuk memperbaiki kinerja dari aplikasi &lt;em&gt;Rails&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Walaupun MJIT adalah sebuah &lt;em&gt;method-based compiler&lt;/em&gt; JIT dan menggunakan sebuah
+&lt;em&gt;compiler&lt;/em&gt; C eksternal, YJIT menggunakan &lt;em&gt;Basic Block Versioning&lt;/em&gt; dan memasukkan
+&lt;em&gt;compiler&lt;/em&gt; JIT ke dalamnya. Dengan &lt;em&gt;Lazy Basic Block Versioning&lt;/em&gt; (LBBV),
+pertama ini akan meng-&lt;em&gt;compile&lt;/em&gt; awal dari sebuah &lt;em&gt;method&lt;/em&gt; dan secara bertahap
+meng-&lt;em&gt;compile&lt;/em&gt; sisanya ketika &lt;em&gt;argument types&lt;/em&gt; dan variabel ditentukan secara
+dinamis. Lihat
+&lt;a href=&quot;https://dl.acm.org/doi/10.1145/3486606.3486781&quot;&gt;YJIT: a basic block versioning JIT compiler for CRuby&lt;/a&gt;
+untuk pengenalan.&lt;/p&gt;
+&lt;p&gt;Dengan teknologi ini, YJIT meraih waktu &lt;em&gt;warmup&lt;/em&gt; cepat dan peningkatan kinerja
+pada kebanyakan aplikasi dunia nyata hingga 22% pada &lt;em&gt;railsbench&lt;/em&gt;
+dan 39% pada &lt;em&gt;liquid-render&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;YJIT merupakan sebuah fitur yang masih eksperimental dan dinonaktifkan secara
+&lt;em&gt;default&lt;/em&gt;. Jika Anda ingin menggunakannya, tetapkan &lt;code&gt;--yjit&lt;/code&gt; pada
+opsi &lt;em&gt;command-line&lt;/em&gt;. Fitur ini terbatas pada &lt;em&gt;Unix-like platform&lt;/em&gt; dengan
+arsitektur x86-64 saat ini.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18229&quot;&gt;https://bugs.ruby-lang.org/issues/18229&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://shopify.engineering/yjit-just-in-time-compiler-cruby&quot;&gt;https://shopify.engineering/yjit-just-in-time-compiler-cruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=PBVLf3yfMs8&quot;&gt;https://www.youtube.com/watch?v=PBVLf3yfMs8&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;debug gem: Sebuah debugger baru&lt;/h2&gt;
+&lt;p&gt;Sebuah &lt;em&gt;debugger&lt;/em&gt; yang telah ditulis ulang dengan lengkap
+&lt;a href=&quot;https://github.com/ruby/debug&quot;&gt;debug.gem&lt;/a&gt; di-&lt;em&gt;bundle&lt;/em&gt; dengan Ruby. &lt;em&gt;debug.gem&lt;/em&gt;
+memiliki fitur-fitur berikut:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Meningkatkan kinerja &lt;em&gt;debugging&lt;/em&gt; (ini tidak memperlambat aplikasi meskipun dengan &lt;em&gt;debugger&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;Mendukung &lt;em&gt;remote debugging&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Mendukung &lt;em&gt;rich debugging frontend&lt;/em&gt; (&lt;em&gt;VS Code&lt;/em&gt; dan &lt;em&gt;Chrome browser&lt;/em&gt; yang didukung saat ini).&lt;/li&gt;
+&lt;li&gt;Mendukung &lt;em&gt;multi-process/multi-thread debugging&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Colorful&lt;/em&gt; REPL.&lt;/li&gt;
+&lt;li&gt;dan fitur bermanfaat lainnya, seperti &lt;em&gt;record&lt;/em&gt; &amp;amp; &lt;em&gt;replay&lt;/em&gt;, &lt;em&gt;tracing&lt;/em&gt;, dan sebagainya.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Ruby telah mem-&lt;em&gt;bundle&lt;/em&gt; &lt;em&gt;lib/debug.rb&lt;/em&gt;, tetapi pustaka ini tidak dipelihara dengan
+baik karena memiliki masalah kinerja dan fitur. &lt;em&gt;debug.gem&lt;/em&gt; menggantikan
+&lt;em&gt;lib/debug.rb&lt;/em&gt; secara keseluruhan.&lt;/p&gt;
+&lt;h2&gt;error_highlight: Lokasi fine-grained error pada backtrace&lt;/h2&gt;
+&lt;p&gt;Sebuah &lt;em&gt;built-in gem&lt;/em&gt;, &lt;em&gt;error_highlight&lt;/em&gt;, diperkenalkan. &lt;em&gt;Gem&lt;/em&gt; ini memberikan
+lokasi &lt;em&gt;fine-grained error&lt;/em&gt; pada &lt;em&gt;backtrace&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ruby test.rb
+test.rb:1:in `&amp;lt;main&amp;gt;': undefined method `time' for 1:Integer (NoMethodError)
+
+1.time {}
+ ^^^^^
+Did you mean?  times
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Saat ini, hanya &lt;code&gt;NameError&lt;/code&gt; yang didukung.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Gem&lt;/em&gt; ini diaktifkan secara &lt;em&gt;default&lt;/em&gt;. Anda dapat menonaktikannya dengan
+menggunakan opsi &lt;em&gt;command-line&lt;/em&gt; &lt;code&gt;--disable-error_highlight&lt;/code&gt;.
+Lihat &lt;a href=&quot;https://github.com/ruby/error_highlight&quot;&gt;repositori&lt;/a&gt; untuk detail.&lt;/p&gt;
+&lt;h2&gt;IRB Autocomplete dan Documentation Display&lt;/h2&gt;
+&lt;p&gt;IRB sekarang memiliki sebuah fitur &lt;em&gt;autocomplete&lt;/em&gt; di mana Anda dapat mengetik
+kode dan dialog kandidat &lt;em&gt;autocomplete&lt;/em&gt; akan muncul. Anda bisa menggunakan
+&lt;em&gt;Tab&lt;/em&gt; dan &lt;em&gt;Shift+Tab&lt;/em&gt; untuk memilih kandidat ke atas dan ke bawah.&lt;/p&gt;
+&lt;p&gt;Jika dokumentasi terpasang ketika Anda memilih sebuah kandidat &lt;em&gt;autocomplete&lt;/em&gt;,
+sebuah dialog akan muncul disamping dialog kandidat &lt;em&gt;autocomplete&lt;/em&gt;, menampilkan
+bagian dari dokumentasi. Anda dapat membaca dokumentasi sepenuhnya dengan
+menekan &lt;em&gt;Alt+d&lt;/em&gt;.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2&gt;Fitur penting lainnya&lt;/h2&gt;
+&lt;h3&gt;Bahasa&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nilai pada literal &lt;em&gt;Hash&lt;/em&gt; dan &lt;em&gt;keyword argument&lt;/em&gt; dapat diabaikan. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/14579&quot;&gt;[Feature #14579]&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{x:, y:}&lt;/code&gt; adalah sebuah &lt;em&gt;syntax sugar&lt;/em&gt; dari &lt;code&gt;{x: x, y: y}&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;foo(x:, y:)&lt;/code&gt; adalah sebuah &lt;em&gt;syntax sugar&lt;/em&gt; dari &lt;code&gt;foo(x: x, y: y)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Pin operator&lt;/em&gt; (&lt;code&gt;^&lt;/code&gt;) pada &lt;em&gt;pattern matching&lt;/em&gt; sekarang mengambil sebuah &lt;em&gt;expression&lt;/em&gt;. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/17411&quot;&gt;[Feature #17411]&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each_cons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;lazy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [[3, 5], [5, 7], [11, 13]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tanda kurung dapat diabaikan pada &lt;em&gt;one-line pattern matching&lt;/em&gt;. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/16182&quot;&gt;[Feature #16182]&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;y: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;y:
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS adalah sebuah bahasa untuk mendeskripsikan struktur dari program Ruby.
+Lihat &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;repositori&lt;/a&gt; untuk detail.&lt;/p&gt;
+&lt;p&gt;Perubahan sejak Ruby 3.0.0:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Parameter &lt;em&gt;generic type&lt;/em&gt; dapat dibatasi. (&lt;a href=&quot;https://github.com/ruby/rbs/pull/844&quot;&gt;PR&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Alias pada &lt;em&gt;generic type&lt;/em&gt; telah didukung. (&lt;a href=&quot;https://github.com/ruby/rbs/pull/823&quot;&gt;PR&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rbs collection&lt;/code&gt; diperkenalkan untuk mengatur &lt;em&gt;gem&lt;/em&gt; dari RBS. (&lt;a href=&quot;https://github.com/ruby/rbs/blob/master/docs/collection.md&quot;&gt;doc&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Banyak &lt;em&gt;signature&lt;/em&gt; pada pustaka &lt;em&gt;built-in&lt;/em&gt; dan standar ditambahkan/diperbarui.&lt;/li&gt;
+&lt;li&gt;Selain itu, memuat banyak perbaikan &lt;em&gt;bug&lt;/em&gt; dan peningkatan kinerja.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/rbs/blob/master/CHANGELOG.md&quot;&gt;RBS changelog&lt;/a&gt;
+untuk lebih detail.&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;TypeProf&lt;/em&gt; adalah sebuah &lt;em&gt;static type analyzer&lt;/em&gt; untuk Ruby.
+&lt;em&gt;TypeProf&lt;/em&gt; menghasilkan sebuah prototipe RBS dari kode Ruby yang
+&lt;em&gt;non-type-annotated&lt;/em&gt;.
+Lihat &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;dokumentasi&lt;/a&gt;
+untuk detail.&lt;/p&gt;
+&lt;p&gt;Perubahan utama sejak Ruby 3.0.0 adalah sebuah dukungan IDE eksperimental yang
+dikenal dengan &amp;quot;TypeProf for IDE&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cache.ruby-lang.org/pub/media/ruby310_typeprof_ide_demo.png&quot; alt=&quot;Demo of TypeProf for IDE&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;VS Code extension&lt;/em&gt; menampilkan sebuah perkiraan (atau secara langsung tertulis
+pada sebuah berkas RBS) &lt;em&gt;method signature&lt;/em&gt; di atas setiap definisi &lt;em&gt;method&lt;/em&gt;,
+menggarisbawahi kode yang mungkin menyebabkan &lt;em&gt;name error&lt;/em&gt; atau &lt;em&gt;type error&lt;/em&gt;
+dengan garis merah, dan melengkapi nama &lt;em&gt;method&lt;/em&gt; (seperti menampilkan kandidat
+&lt;em&gt;method&lt;/em&gt;).
+Lihat &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/ide.md&quot;&gt;dokumentasi&lt;/a&gt;
+untuk detail.&lt;/p&gt;
+&lt;p&gt;Rilis ini juga berisi banyak perbaikan &lt;em&gt;bug&lt;/em&gt; dan peningkatan kinerja.&lt;/p&gt;
+&lt;h2&gt;Peningkatan kinerja&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MJIT
+&lt;ul&gt;
+&lt;li&gt;Untuk beban kerja seperti &lt;em&gt;Rails&lt;/em&gt;, &lt;em&gt;default&lt;/em&gt; &lt;code&gt;--jit-max-cache&lt;/code&gt; diubah dari
+100 menjadi 10000. &lt;em&gt;Compiler&lt;/em&gt; JIT tidak lagi mengabaikan &lt;em&gt;compilation&lt;/em&gt;
+dari &lt;em&gt;method&lt;/em&gt; yang memiliki panjang lebih dari 1000 instruksi.&lt;/li&gt;
+&lt;li&gt;Untuk mendukung &lt;em&gt;Zeitwerk&lt;/em&gt; dari &lt;em&gt;Rails&lt;/em&gt;, &lt;em&gt;JIT-ed code&lt;/em&gt; tidak lagi dibatalkan
+ketika sebuah &lt;em&gt;TracePoint&lt;/em&gt; untuk &lt;em&gt;class event&lt;/em&gt; diaktifkan.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Perubahan penting lainnya sejak 3.0&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;One-line pattern matching&lt;/em&gt;, seperti &lt;code&gt;ary =&amp;gt; [x, y, z]&lt;/code&gt; tidak lagi eksperimental.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Multiple assignment evaluation order&lt;/em&gt; telah diubah sedikit. &lt;a href=&quot;https://bugs.ruby-lang.org/issues/4443&quot;&gt;[Bug #4443]&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;foo[0], bar[0] = baz, qux&lt;/code&gt; sebelumnya diproses dengan urutan &lt;code&gt;baz&lt;/code&gt;, &lt;code&gt;qux&lt;/code&gt;,
+&lt;code&gt;foo&lt;/code&gt;, dan kemudian &lt;code&gt;bar&lt;/code&gt; pada Ruby 3.0. Pada Ruby 3.1, ini diproses dengan
+urutan &lt;code&gt;foo&lt;/code&gt;, &lt;code&gt;bar&lt;/code&gt;, &lt;code&gt;baz&lt;/code&gt;, dan kemudian &lt;code&gt;qux&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Variable Width Allocation: Strings&lt;/em&gt; (eksperimental) &lt;a href=&quot;https://bugs.ruby-lang.org/issues/18239&quot;&gt;[Bug #18239]&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Psych&lt;/em&gt; 4.0 mengubah &lt;code&gt;Psych.load&lt;/code&gt; untuk menggunakan &lt;code&gt;safe_load&lt;/code&gt; secara &lt;em&gt;default&lt;/em&gt;.
+Anda mungkin perlu menggunakan &lt;em&gt;Psynch&lt;/em&gt; 3.3.2 untuk menggunakan fitur ini.
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17866&quot;&gt;[Bug #17866]&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pembaruan pustaka standar&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Default gem&lt;/em&gt; berikut telah diperbarui.
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.3.3&lt;/li&gt;
+&lt;li&gt;base64 0.1.1&lt;/li&gt;
+&lt;li&gt;benchmark 0.2.0&lt;/li&gt;
+&lt;li&gt;bigdecimal 3.1.1&lt;/li&gt;
+&lt;li&gt;bundler 2.3.3&lt;/li&gt;
+&lt;li&gt;cgi 0.3.1&lt;/li&gt;
+&lt;li&gt;csv 3.2.2&lt;/li&gt;
+&lt;li&gt;date 3.2.2&lt;/li&gt;
+&lt;li&gt;did_you_mean 1.6.1&lt;/li&gt;
+&lt;li&gt;digest 3.1.0&lt;/li&gt;
+&lt;li&gt;drb 2.1.0&lt;/li&gt;
+&lt;li&gt;erb 2.2.3&lt;/li&gt;
+&lt;li&gt;error_highlight 0.3.0&lt;/li&gt;
+&lt;li&gt;etc 1.3.0&lt;/li&gt;
+&lt;li&gt;fcntl 1.0.1&lt;/li&gt;
+&lt;li&gt;fiddle 1.1.0&lt;/li&gt;
+&lt;li&gt;fileutils 1.6.0&lt;/li&gt;
+&lt;li&gt;find 0.1.1&lt;/li&gt;
+&lt;li&gt;io-console 0.5.10&lt;/li&gt;
+&lt;li&gt;io-wait 0.2.1&lt;/li&gt;
+&lt;li&gt;ipaddr 1.2.3&lt;/li&gt;
+&lt;li&gt;irb 1.4.1&lt;/li&gt;
+&lt;li&gt;json 2.6.1&lt;/li&gt;
+&lt;li&gt;logger 1.5.0&lt;/li&gt;
+&lt;li&gt;net-http 0.2.0&lt;/li&gt;
+&lt;li&gt;net-protocol 0.1.2&lt;/li&gt;
+&lt;li&gt;nkf 0.1.1&lt;/li&gt;
+&lt;li&gt;open-uri 0.2.0&lt;/li&gt;
+&lt;li&gt;openssl 3.0.0&lt;/li&gt;
+&lt;li&gt;optparse 0.2.0&lt;/li&gt;
+&lt;li&gt;ostruct 0.5.2&lt;/li&gt;
+&lt;li&gt;pathname 0.2.0&lt;/li&gt;
+&lt;li&gt;pp 0.3.0&lt;/li&gt;
+&lt;li&gt;prettyprint 0.1.1&lt;/li&gt;
+&lt;li&gt;psych 4.0.3&lt;/li&gt;
+&lt;li&gt;racc 1.6.0&lt;/li&gt;
+&lt;li&gt;rdoc 6.4.0&lt;/li&gt;
+&lt;li&gt;readline 0.0.3&lt;/li&gt;
+&lt;li&gt;readline-ext 0.1.4&lt;/li&gt;
+&lt;li&gt;reline 0.3.0&lt;/li&gt;
+&lt;li&gt;resolv 0.2.1&lt;/li&gt;
+&lt;li&gt;rinda 0.1.1&lt;/li&gt;
+&lt;li&gt;ruby2_keywords 0.0.5&lt;/li&gt;
+&lt;li&gt;securerandom 0.1.1&lt;/li&gt;
+&lt;li&gt;set 1.0.2&lt;/li&gt;
+&lt;li&gt;stringio 3.0.1&lt;/li&gt;
+&lt;li&gt;strscan 3.0.1&lt;/li&gt;
+&lt;li&gt;tempfile 0.1.2&lt;/li&gt;
+&lt;li&gt;time 0.2.0&lt;/li&gt;
+&lt;li&gt;timeout 0.2.0&lt;/li&gt;
+&lt;li&gt;tmpdir 0.1.2&lt;/li&gt;
+&lt;li&gt;un 0.2.0&lt;/li&gt;
+&lt;li&gt;uri 0.11.0&lt;/li&gt;
+&lt;li&gt;yaml 0.2.0&lt;/li&gt;
+&lt;li&gt;zlib 2.1.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Bundled gem&lt;/em&gt; berikut telah diperbarui.
+&lt;ul&gt;
+&lt;li&gt;minitest 5.15.0&lt;/li&gt;
+&lt;li&gt;power_assert 2.0.1&lt;/li&gt;
+&lt;li&gt;rake 13.0.6&lt;/li&gt;
+&lt;li&gt;test-unit 3.5.3&lt;/li&gt;
+&lt;li&gt;rexml 3.2.5&lt;/li&gt;
+&lt;li&gt;rbs 2.0.0&lt;/li&gt;
+&lt;li&gt;typeprof 0.21.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Default gem&lt;/em&gt; berikut sekarang adalah &lt;em&gt;bundled gem&lt;/em&gt;. Anda perlu menambahkan
+pustaka berikut pada &lt;code&gt;Gemfile&lt;/code&gt; yang terdapat pada &lt;em&gt;bundler environment&lt;/em&gt;.
+&lt;ul&gt;
+&lt;li&gt;net-ftp 0.1.3&lt;/li&gt;
+&lt;li&gt;net-imap 0.2.2&lt;/li&gt;
+&lt;li&gt;net-pop 0.1.1&lt;/li&gt;
+&lt;li&gt;net-smtp 0.3.1&lt;/li&gt;
+&lt;li&gt;matrix 0.4.2&lt;/li&gt;
+&lt;li&gt;prime 0.1.2&lt;/li&gt;
+&lt;li&gt;debug 1.4.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lihat &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_1_0/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+atau &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0&quot;&gt;commit logs&lt;/a&gt;
+untuk lebih detail.&lt;/p&gt;
+&lt;p&gt;Dengan perubahan tersebut, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0#file_bucket&quot;&gt;3124 berkas berubah, 551760 sisipan(+), 99167 terhapus(-)&lt;/a&gt;
+sejak Ruby 3.0.0!&lt;/p&gt;
+&lt;p&gt;Selamat natal, selamat berlibur, dan nikmati memprogram dengan Ruby 3.1!&lt;/p&gt;
+&lt;h2&gt;Unduh&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20103517
+SHA1: e4e8c20dd2a1fdef4d3e5bd5a3461000dd17f226
+SHA256: 50a0504c6edcb4d61ce6b8cfdbddaa95707195fab0ecd7b5e92654b2a9412854
+SHA512: 76009d325e961e601d9a287e36490cbc1f3b5dbf4878fa6eab2c4daa5ff2fed78cbc7525cd87b09828f97cbe2beb30f528928bcc5647af745d03dffe7c5baaa9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14709096
+SHA1: 92b603c2a69fb25d66c337a63e94280984edea11
+SHA256: 1a0e0b69b9b062b6299ff1f6c6d77b66aff3995f63d1d8b8771e7a113ec472e2
+SHA512: a2bb6b5e62d5fa06dd9c30cf84ddcb2c27cb87fbaaffd2309a44391a6b110e1dde6b7b0d8c659b56387ee3c9b4264003f3532d5a374123a7c187ebba9293f320
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24388179
+SHA1: e37435956d6f840a0e8758d7374bc7e0e346105f
+SHA256: a3bfcd486d09c065d46421da0ff3d430ce4423fefd80cea63c6595d83ae4af0e
+SHA512: 67db71144e06da2c1c25eaf413d1417c99a4b18738a573f9e3371c11ea242eee9dcbdc3de17336f25ab5060039fe034e57298943d344be9cd9eb33bb56e2e1c6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Apa itu Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada tahun 1993
+dan sekarang dikembangkan sebagai &lt;em&gt;Open Source&lt;/em&gt;. Ruby berjalan di berbagai
+&lt;em&gt;platform&lt;/em&gt; dan digunakan di seluruh dunia, khususnya pengembangan &lt;em&gt;web&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ditulis oleh naruse tanggal 2021-12-25&lt;br /&gt;Diterjemahkan oleh meisyal&lt;/p&gt;</description>
+      <pubDate>Sat, 25 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/id/news/2021/12/25/ruby-3-1-0-released/</guid>
+      <link>https://www.ruby-lang.org/id/news/2021/12/25/ruby-3-1-0-released/</link>
+    </item>
+    
+  </channel>
+</rss>

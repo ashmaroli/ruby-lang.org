@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby in Venti Minuti</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/it/documentation/quickstart/3/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/it/feeds/news.rss" rel="alternate" title="Ultime Notizie (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/it/">
+          <h1>Ruby</h1>
+          <h2>Il migliore amico dei programmatori</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cerca" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>Bene, creiamo il nostro oggetto PersonaCordiale e usiamolo:</p>
+<!-- raw HTML omitted -->
+<p>Una volta che l’oggetto <code>p</code> è stato creato, ricorda che il nome è Mario.
+Ma cosa succede se vogliamo accedere direttamente al nome?</p>
+<!-- raw HTML omitted -->
+<p>Nulla, non si può.</p>
+<h2>Ispezionare i contenuti di un oggetto</h2>
+<p>Le variabili di istanza sono nascoste dentro l’oggetto. Ma non sono così
+nascoste: puoi vederle ogni volta che ispezioni l’oggetto e ci sono
+altri modi per raggiungerle, ma Ruby ha un approccio molto orientati
+agli oggetti per accedere ai dati nascosti.</p>
+<p>Quindi quanti metodi esistono per il l’oggetto PersonaCordiale?</p>
+<!-- raw HTML omitted -->
+<p>Ci sono moltissimi metodi! Eppure ne avevamo definiti solo due: cosa sta
+succedendo? Questi sono tutti i metodi per il nostro oggetto
+PersonaCordiale, una lista <strong>completa</strong> che include anche quelli della
+superclasse. Ma se volessimo vedere solo quelli che abbiamo creato noi?
+Dobbiamo dirgli di non elencare il metodi della sua classe genitore
+(super classe) passandogli come parametro <code>false</code>.</p>
+<!-- raw HTML omitted -->
+<p>Ah, ora va meglio! Vediamo a quali metodi risponde la nostra classe:</p>
+<!-- raw HTML omitted -->
+<p>Bene, la nostra classe conosce <code>saluta</code> e <code>to_s</code> (che significa
+convertire “qualcosa” in una stringa, un metodo definito di default per
+ogni oggetto), ma non conosce <code>name</code>.</p>
+<h2>Alterare una classe: non è mai troppo tardi!</h2>
+<p>E se volessimo vedere o cambiare il nome? Ruby fornisce un modo semplice
+per permetterci di accedere alle variabili di un oggetto.</p>
+<!-- raw HTML omitted -->
+<p>In Ruby, puoi aprire una classe e modificarla. I cambiamenti vengono
+aggiunti a tutti gli oggetti che crei e sempre disponibili per gli
+oggetti esistenti della classe. Quindi creiamo un nuovo oggetto e
+“giochiamo” con la sua proprietà <code>nome</code>.</p>
+<!-- raw HTML omitted -->
+<p>Usando <code>attr_accessor</code> definiamo due nuovi metodi, <code>nome</code> per ricevere
+il valore e <code>nome=</code> per settarlo.</p>
+<h2>Salutare tutti e tutto, L’AmicoDiTutti non trascura nessuno!</h2>
+<p>Questa PersonaCordiale può salutare solo una persona alla volta. Cosa
+succederebbe se avessimo un amico di tutti che può salutare il mondo,
+una persona o un intero elenco di persone?</p>
+<p>Scriviamo questa volta in un file piuttosto che nell’inteprete
+interattivo di Ruby IRB.</p>
+<p>Per chiudere IRB, scrivi “quit”, “exit” o semplicemnte premi Control-D.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->AmicoDiTutti<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->attr_accessor<!-- raw HTML omitted --> <!-- raw HTML omitted -->:nomi<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Crea l'oggetto<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->initialize<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->nomi<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Mondo&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->nomi<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Saluta tutti<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->saluta<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;each&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># @nomi è una lista di qualche tipo, allora iteriamo!<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->each<!-- raw HTML omitted --> <!-- raw HTML omitted -->do<!-- raw HTML omitted --> <!-- raw HTML omitted -->|<!-- raw HTML omitted --><!-- raw HTML omitted -->nome<!-- raw HTML omitted --><!-- raw HTML omitted -->|<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Ciao <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->nome<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Ciao <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Congeda tutti<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->congeda<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nil?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;...&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->elsif<!-- raw HTML omitted --> <!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->respond_to?<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;join&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Unisci gli elementi della lista con delle virgole<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Arrivederci <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->join<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;, &quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->. A presto!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->else<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Arrivederci <!-- raw HTML omitted --><!-- raw HTML omitted -->#{<!-- raw HTML omitted --><!-- raw HTML omitted -->@nomi<!-- raw HTML omitted --><!-- raw HTML omitted -->}<!-- raw HTML omitted --><!-- raw HTML omitted -->. A presto!&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->if<!-- raw HTML omitted --> <!-- raw HTML omitted --><strong>FILE</strong><!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->$0<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->AmicoDiTutti<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->saluta<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->congeda<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Cambia @nomi in &quot;Paolo&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nomi<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Paolo&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->saluta<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->congeda<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Cambia @nomi in una lista di nome<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nomi<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Fabio&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Davide&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Raul&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Giorgia&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;Federica&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->saluta<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->congeda<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Cambia @nomi in nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->nomi<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->nil<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->saluta<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->adt<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->congeda<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Salva questo file come “ri20min.rb” ed eseguilo così “ruby ri20min.rb”
+Verrà mostrato qualcosa di simile:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ciao Mondo!
+Arrivederci Mondo. A presto!
+Ciao Paolo!
+Arrivederci Paolo. A presto!
+Ciao Fabio!
+Ciao Davide!
+Ciao Raul!
+Ciao Giorgia!
+Ciao Federica!
+Arrivederci Fabio, Davide, Raul, Giorgia, Federica. A presto!
+...
+...
+</code></pre></div></div>
+<p>{: .code}</p>
+<p>Ci sono moltissime cose nuove in questo esempio che <a href="../4/">possono assumere un
+significato più profondo</a>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Per iniziare</strong>, è facile!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Prova Ruby! (nel tuo browser)</a></li>
+
+    
+    <li><a href="/it/documentation/quickstart/">Ruby in venti minuti</a></li>
+    
+
+    
+    <li><a href="/it/documentation/ruby-from-other-languages/">Ruby a partire da altri linguaggi</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Esplora</strong> un nuovo mondo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/it/documentation/">Documentazione</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/it/libraries/">Librerie</a></li>
+    
+
+    
+    <li><a href="/it/documentation/success-stories/">Esperienze Positive</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Partecipa</strong> ad una comunità amichevole e in crescita.</h3>
+  <ul>
+    
+    <li><a href="/it/community/mailing-lists/">Liste di Discussione</a>: Parla con altri programmatori Ruby da tutto il mondo.</li>
+    
+
+    
+    <li><a href="/it/community/user-groups/">Gruppi di Utenti</a>: Entra in contatto con "Rubysti" nella tua zona.</li>
+    
+
+    
+    <li><a href="/it/community/weblogs/">Blog</a>: Leggi cosa sta succedendo proprio adesso nella comunità di Ruby.</li>
+    
+
+    
+    <li><a href="/it/community/ruby-core/">Ruby Core</a>: Aiutaci a perfezionare l'ultimo Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Segnalaci o aiutaci a risolvere problemi in Ruby</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feed RSS</h3>
+    <p><a href="/it/feeds/news.rss">Ultime Notizie (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Questo sito in altre lingue:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/it/about/website/">Questo sito web</a> è mantenuto con orgoglio dai membri della comunità Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

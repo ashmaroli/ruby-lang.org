@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.0.0 RC1 릴리스</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2020/12/20/ruby-3-0-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.0.0 RC1 릴리스</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: naruse (2020-12-20)<br>
+                         번역자: yous</p>
+
+    <p>Ruby 3.0.0-rc1 릴리스를 알리게 되어 기쁩니다.</p>
+<p>이번 버전은 많은 새 기능과 성능 향상을 포함하고 있습니다.</p>
+<h2>정적 분석</h2>
+<h3>RBS</h3>
+<p>RBS는 Ruby 프로그램의 타입을 기술하기 위한 언어입니다.</p>
+<p>TypeProf와 다른 도구들을 포함해서, RBS를 지원하는 타입 검사기는 RBS 정의를 통해 Ruby 프로그램을 더 잘 이해합니다.</p>
+<p>클래스나 모듈에 정의된 메서드, 인스턴스 변수와 타입, 상속이나 믹스인 관계에 대한 정의를 작성할 수 있습니다.</p>
+<p>RBS의 목표는 Ruby 프로그램에서 흔히 보이는 패턴을 지원하는 것과 유니언 타입, 메서드 오버로딩, 제네릭을 포함하는 고급 타입을 지원하는 것입니다. 또한 _인터페이스 타입_을 이용해 덕타이핑을 지원합니다.</p>
+<p>Ruby 3.0은 RBS로 작성된 타입 정의를 해석하고 처리하는 <code>rbs</code> gem을 포함합니다.
+다음은 클래스, 모듈, 상수 정의를 포함하는 RBS의 작은 예시입니다.</p>
+<div class="language-rbs highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="rbs">module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|`는 유니언 타입을 의미합니다. 여기에서는 `User` 또는 `Bot`이라는 의미입니다.
+    def initialize: (String) -&gt; void
+    def post: (String, from: User | Bot) -&gt; Message   # 메서드 오버로딩을 지원합니다.
+            | (File, from: User | Bot) -&gt; Message
+  end
+end
+</code></pre></div></div>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/rbs">rbs gem의 README</a>를 확인하세요.</p>
+<h3>TypeProf</h3>
+<p>TypeProf는 Ruby 패키지에 포함된 타입 분석 도구입니다.</p>
+<p>지금의 TypeProf는 타입 추론 도구 역할을 합니다.</p>
+<p>TypeProf는 타입 어노테이션이 없는 일반적인 Ruby 코드를 읽어서, 어떤 메서드가 정의되어 있고 어떻게 사용되는지 분석하고, RBS 형식으로 타입 시그니처의 프로토타입을 생성합니다.</p>
+<p>다음은 TypeProf의 간단한 데모입니다.</p>
+<p>예제 입력입니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># test.rb</span>
+<span class="k">class</span> <span class="nc">User</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">:,</span> <span class="n">age</span><span class="p">:)</span>
+    <span class="vi">@name</span><span class="p">,</span> <span class="vi">@age</span> <span class="o">=</span> <span class="nb">name</span><span class="p">,</span> <span class="n">age</span>
+  <span class="k">end</span>
+  <span class="nb">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span>
+<span class="k">end</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"John"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+<p>예제 출력입니다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&gt; [String, Integer]
+end
+</code></pre></div></div>
+<p>입력을 &quot;test.rb&quot;에 저장하고 &quot;typeprof test.rb&quot; 커맨드를 통해 TypeProf를 실행할 수 있습니다.</p>
+<p><a href="https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;rbs=">TypeProf를 온라인에서 사용</a>해볼 수도 있습니다. (TypeProf를 서버 쪽에서 실행하는 거라서, 잠시 동작하지 않을 수도 있습니다!)</p>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">문서</a>와 <a href="https://github.com/ruby/typeprof/blob/master/doc/demo.md">데모</a>를 확인하세요.</p>
+<p>TypeProf는 실험적이고 아직 완성되지 않았습니다. Ruby 언어의 일부만 지원되고, 타입 오류 감지 기능은 제한적입니다. 하지만 언어 기능의 지원 범위, 분석 성능, 사용성이 빠르게 개선되고 있는 중입니다. 어떤 종류의 피드백이든 환영합니다.</p>
+<h2>Ractor (실험적)</h2>
+<p>Ractor는 스레드 안전에 대한 걱정이 없는 병렬 실행을 제공하기 위해 설계된 액터 모델과 비슷한 동시 실행 추상화 모델입니다.</p>
+<p>여러 개의 Ractor를 만들고 병렬로 실행할 수 있습니다. Ractor는 일반 객체를 공유할 수 없기 때문에 스레드 안전한 병렬 프로그램을 만들 수 있습니다. Ractor 간의 통신은 메시지 넘기기를 통해서 지원됩니다.</p>
+<p>객체 공유를 제한하기 위해, Ractor는 Ruby 문법에 여러 제한을 추가했습니다(여러 개의 Ractor를 사용하지 않는다면 제한은 없습니다).</p>
+<p>명세와 구현은 아직 완성되지 않았으므로 앞으로 변경될 수 있습니다. 그러므로 이 기능은 실험적으로 제공되며 처음 <code>Ractor.new</code>를 실행하면 &quot;실험적 기능&quot;이라는 경고를 표시합니다.</p>
+<p>다음은 2개의 Ractor를 통해 <code>n.prime?</code>(<code>n</code>은 상대적으로 큰 정수)을 계산하는 작은 프로그램입니다. 병렬 컴퓨터에서 순차적으로 실행하는 프로그램보다 약 2배 빠르다는 걸 확인할 수 있습니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'prime'</span>
+<span class="c1"># r1, r2에 보낸 정수들로 n.prime?을 병렬 실행</span>
+<span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">2</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span>
+  <span class="no">Ractor</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="no">Ractor</span><span class="p">.</span><span class="nf">receive</span>
+    <span class="n">n</span><span class="p">.</span><span class="nf">prime?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="c1"># 파라미터를 송신</span>
+<span class="n">r1</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">r2</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">+</span> <span class="mi">15</span>
+<span class="c1"># expr1, expr2의 실행 결과 대기</span>
+<span class="nb">p</span> <span class="n">r1</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+<span class="nb">p</span> <span class="n">r2</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+</code></pre></div></div>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/master/doc/ractor.md">doc/ractor.md</a>를 확인하세요.</p>
+<h2>Fiber 스케줄러</h2>
+<p>블로킹 작업에 끼어들 수 있는 <code>Fiber#scheduler</code>가 도입됩니다. 이는 기존에 존재하는 코드를 변경하지 않고 가벼운 동시성을 지원할 수 있게 합니다. 어떻게 동작하는지 궁금하다면 <a href="https://www.youtube.com/watch?v=Y29SSOS4UOc">&quot;Don't Wait For Me, Scalable Concurrency for Ruby 3&quot;</a>을 보세요.</p>
+<p>현재 지원되는 클래스와 메서드는 다음과 같습니다.</p>
+<ul>
+<li><code>Mutex#lock</code>, <code>Mutex#unlock</code>, <code>Mutex#sleep</code></li>
+<li><code>ConditionVariable#wait</code></li>
+<li><code>Queue#pop</code>, <code>SizedQueue#push</code></li>
+<li><code>Thread#join</code></li>
+<li><code>Kernel#sleep</code></li>
+<li><code>Process.wait</code></li>
+<li><code>IO#wait</code>, <code>IO#read</code>, <code>IO#write</code>와 관련 메서드(예: <code>#wait_readable</code>, <code>#gets</code>, <code>#puts</code> 등).</li>
+<li><code>IO#select</code>는 <em>지원되지 않습니다</em>.</li>
+</ul>
+<p>(Async gem에 대해 링크와 함께 설명하기). 이 예제는 몇 가지 HTTP 요청을 동시에 수행합니다.</p>
+<p>(다음을 설명하기:)</p>
+<ol>
+<li>async는 외부 gem이다.</li>
+<li>async는 다음 새 기능을 사용한다.</li>
+</ol>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'async'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+<span class="no">Async</span> <span class="k">do</span>
+  <span class="p">[</span><span class="s2">"ruby"</span><span class="p">,</span> <span class="s2">"python"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">topic</span><span class="o">|</span>
+    <span class="no">Async</span> <span class="k">do</span>
+      <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="no">URI</span> <span class="s2">"https://www.google.com/search?q=</span><span class="si">#{</span><span class="n">topic</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<h2>그 이외의 주목할 만한 기능</h2>
+<ul>
+<li>
+<p>한 줄 패턴 매칭을 재설계했습니다. (실험적)</p>
+<ul>
+<li>
+<p><code>=&gt;</code>가 추가됩니다. 오른 방향 대입처럼 사용할 수 있습니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">a</span>
+<span class="nb">p</span> <span class="n">a</span> <span class="c1">#=&gt; 0</span>
+
+<span class="p">{</span><span class="ss">b: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">1</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="n">b</span><span class="p">:}</span>
+<span class="nb">p</span> <span class="n">b</span> <span class="c1">#=&gt; 0</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>in</code>이 <code>true</code> 또는 <code>false</code>를 반환하도록 변경됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># 버전 3.0</span>
+<span class="mi">0</span> <span class="k">in</span> <span class="mi">1</span> <span class="c1">#=&gt; false</span>
+
+<span class="c1"># 버전 2.7</span>
+<span class="mi">0</span> <span class="k">in</span> <span class="mi">1</span> <span class="c1">#=&gt; raise NoMatchingPatternError</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>검색 패턴이 추가됩니다. (실험적)</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">in</span> <span class="p">[</span><span class="o">*</span><span class="n">pre</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">post</span><span class="p">]</span>
+  <span class="nb">p</span> <span class="n">pre</span>  <span class="c1">#=&gt; ["a", 1]</span>
+  <span class="nb">p</span> <span class="n">x</span>    <span class="c1">#=&gt; "b"</span>
+  <span class="nb">p</span> <span class="n">y</span>    <span class="c1">#=&gt; "c"</span>
+  <span class="nb">p</span> <span class="n">post</span> <span class="c1">#=&gt; [2, "d", "e", "f", 3]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>end 없는 메서드 정의가 추가됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Hash#except</code>가 내장됩니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">3</span> <span class="p">}</span>
+<span class="nb">p</span> <span class="n">h</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="ss">:a</span><span class="p">)</span> <span class="c1">#=&gt; {:b=&gt;2, :c=&gt;3}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>메모리 뷰가 실험적인 기능으로 추가됩니다.</p>
+<ul>
+<li>이는 숫자 배열이나 비트맵 이미지와 같은 메모리 공간을 확장 라이브러리 간에 교환하기 위한 새로운 C-API 집합입니다. 확장 라이브러리는 모양, 요소의 형식 등으로 구성된 메모리 공간의 메타데이터를 공유할 수 있습니다. 이러한 메타데이터를 사용하여 확장 라이브러리는 다차원 배열을 적절하게 공유할 수 있습니다. 이 기능은 Python의 버퍼 프로토콜을 참고하여 설계되었습니다.</li>
+</ul>
+</li>
+</ul>
+<h2>성능 향상</h2>
+<ul>
+<li>MJIT에 많은 개선이 추가되었습니다. 자세한 내용은 NEWS를 확인하세요.</li>
+<li>IRB에 긴 코드를 붙여 넣는 속도가 Ruby 2.7.0에 포함된 버전보다 53배 빨라졌습니다. 예를 들어, <a href="https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b">이 샘플 코드</a>를 붙여 넣는 데 드는 시간이 11.7초에서 0.22초로 줄어들었습니다.</li>
+</ul>
+<h2>그 이외의 2.7 이후로 주목할 만한 변경</h2>
+<ul>
+<li>
+<p>키워드 인자가 다른 인자들로부터 분리됩니다.</p>
+<ul>
+<li>
+<p>원칙적으로 Ruby 2.7에서 경고를 출력하는 코드는 동작하지 않습니다. 자세한 내용은 <a href="https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">문서</a>를 확인하세요.</p>
+</li>
+<li>
+<p>한편, 인자를 전달할 때 앞쪽 인자를 사용할 수 있습니다.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+  <span class="nb">send</span><span class="p">(</span><span class="ss">:"do_</span><span class="si">#{</span> <span class="n">meth</span> <span class="si">}</span><span class="ss">"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>패턴 매칭(<code>case</code>/<code>in</code>)은 이제 실험적이지 않습니다.</p>
+</li>
+<li>
+<p><code>$SAFE</code> 기능이 완전히 제거됩니다. 이 값은 이제 일반 전역 변수입니다.</p>
+</li>
+<li>
+<p>Ruby 2.5에서 백트레이스의 순서가 역순이 되었습니다만, 이를 취소합니다. 이제 백트레이스는 Ruby 2.4처럼 동작합니다. 예외가 발생한 곳의 오류 메시지와 줄 번호가 가장 먼저 출력되며, 이를 호출한 곳의 정보가 그 뒤에 출력됩니다.</p>
+</li>
+<li>
+<p>표준 라이브러리를 업데이트했습니다.</p>
+<ul>
+<li>RubyGems 3.2.2</li>
+<li>Bundler 2.2.2</li>
+<li>IRB 1.2.6</li>
+<li>Reline 0.1.5</li>
+<li>Psych 3.2.1</li>
+<li>JSON 2.4.1</li>
+<li>BigDecimal 3.0.0</li>
+<li>CSV 3.1.9</li>
+<li>Digest 3.0.0</li>
+<li>Fiddle 1.0.4</li>
+<li>StringIO 3.0.0</li>
+<li>StringScanner 3.0.0</li>
+</ul>
+</li>
+<li>
+<p>다음 라이브러리는 이제 기본으로 포함되지 않습니다.
+각 기능이 필요한 경우에는 해당하는 gem을 설치해주세요.</p>
+<ul>
+<li>net-telnet</li>
+<li>xmlrpc</li>
+</ul>
+</li>
+<li>
+<p>다음 기본 gem은 이제 내장 gem이 됩니다.</p>
+<ul>
+<li>rexml</li>
+<li>rss</li>
+</ul>
+</li>
+<li>
+<p>다음 표준 라이브러리가 기본 gem이 되고, rubygems.org에 배포됩니다.</p>
+<ul>
+<li>English</li>
+<li>abbrev</li>
+<li>base64</li>
+<li>drb</li>
+<li>debug</li>
+<li>erb</li>
+<li>find</li>
+<li>net-ftp</li>
+<li>net-http</li>
+<li>net-imap</li>
+<li>net-protocol</li>
+<li>open-uri</li>
+<li>optparse</li>
+<li>pp</li>
+<li>prettyprint</li>
+<li>resolv-replace</li>
+<li>resolv</li>
+<li>rinda</li>
+<li>set</li>
+<li>securerandom</li>
+<li>shellwords</li>
+<li>tempfile</li>
+<li>tmpdir</li>
+<li>time</li>
+<li>tsort</li>
+<li>un</li>
+<li>weakref</li>
+<li>digest</li>
+<li>io-nonblock</li>
+<li>io-wait</li>
+<li>nkf</li>
+<li>pathname</li>
+<li>syslog</li>
+<li>win32ole</li>
+</ul>
+</li>
+</ul>
+<p>더 자세한 내용은 <a href="https://github.com/ruby/ruby/blob/v3_0_0_rc1/NEWS.md">NEWS</a>나
+<a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_rc1">커밋 로그</a>를
+확인해주세요.</p>
+<p>이러한 변경사항에 따라, Ruby 2.7.0 이후로 <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0">파일 3889개 수정, 195560줄 추가(+), 152740줄 삭제(-)</a>가
+이루어졌습니다!</p>
+<p>Ruby 3.0.0-rc1을 사용해보시고, 피드백을 보내주세요!</p>
+<h2>다운로드</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 19488885
+SHA1: 34ede2128a90ef3217d9cab9efcdf20fc444f67c
+SHA256: e1270f38b969ce7b124f0a4c217e33eda643f75c7cb20debc62c17535406e37f
+SHA512: 798926db82d27366b39be97556ac5cb322986b96df913c398449bd3ece533e484a3047fe35e7a6241dfbd0f7da803438f5b04b805b33f95c73e3e41d0bb51183
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14341128
+SHA1: deff34cf67373dca166e9961051b6c4723aaaec6
+SHA256: f1adda082f9291e394d25ed32975abbef90962dc4c8b11130586a0151558e79a
+SHA512: f4f13dbfa1c96088eb3dbfba0cb1fe99f4e17197ee2d4b78fbe16496780797a10daa3f2ff9c38d2d7b316974101eccf45184708ad05491fb49898b3a7cc6d673
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-rc1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 23902334
+SHA1: e3e20b4d0ec895e579ae416f2b7552c6be3596f7
+SHA256: 25ced95fa544af6a64d348dc5eace008edfda22f55ed1f6ad9f932b344e6196d
+SHA512: c81b3bf7ce582bf39fd7bc1e691d0777ed4cf38ca6b4d54bc9edaef076ae8bcecb6a86ebfd773591f7d8533e772517033c762d35fdc8b05cb4db4488c2bacec2
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby는</h2>
+<p>Ruby는 1993년에 Matz(마츠모토 유키히로) 씨가 처음 개발했고,
+현재는 오픈 소스로서 개발되고 있습니다. 여러 플랫폼에서 동작하며,
+특히 웹 개발에서 전 세계적으로 이용되고 있습니다.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

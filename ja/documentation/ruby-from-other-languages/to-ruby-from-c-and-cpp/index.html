@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>C・C++からRubyへ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/ruby-from-other-languages/to-ruby-from-c-and-cpp/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>C・C++からRubyへ</h1>
+
+
+
+  <div id="content">
+    <p>C・C++とRubyとで、あなたのコードがどう変わるのかを示すのは容易ではありません。
+ものすごく大きな違いがあるからです。
+一つには、Rubyの実行環境が本当にたくさんのことを行うという違いがあります。
+RubyはC言語の「機構側は何も隠蔽しない」という原則からはかけ離れた言語のように見えます。
+Rubyの本質は、人間の仕事を簡単にするために、できるだけ多くの作業を実行環境が肩代わりすることにあります。
+最適化するためにコードをプロファイリングするようになるまでは、Rubyを使う際にコンパイラ側の都合を気にする必要はありません。</p>
+<p>とはいうものの、C・C++で書かれたコードの実行時間と比べて、Rubyコードの実行時間はずっと遅いと言われています。
+そのため、どうしたら最小のコードでやりたいことを実現できるかを考えると同時に、
+それを高速化する方法についても、あなたは頭をフル回転させることになるかもしれません。
+RubyはC++よりもずっとずっとシンプルな言語です。Rubyはきっとあなたのことを甘やかすことでしょう。</p>
+<p>Rubyは動的型付けです。静的型付けではありません。
+Rubyの実行環境は、なるべく多くのことをプログラム実行時に行おうとします。
+たとえば、どのモジュールをRubyプログラムにリンクする(ロードして使えるようにする)かや、どのメソッドを呼び出すかを、
+あなたはあらかじめ知る必要はありません。</p>
+<p>幸いなことに、RubyとCは堅実に共生関係を持つことができます。
+Rubyはいわゆる「拡張ライブラリ」という仕組みをサポートしています。
+拡張ライブラリは、Rubyプログラムから使用することができるものですが、Cで書かれます
+(外側から見ると、それはRubyで書かれたライブラリと同様に振る舞います)。
+この仕組みを使うと、Rubyプログラムの中でパフォーマンスが重要となる部分を、純粋なCで書き直すことができます。</p>
+<p>そしてもちろん、Ruby自体もCで書かれています。</p>
+<h3>Cとの類似</h3>
+<p>Cと同様に、Rubyは...</p>
+<ul>
+<li>書きたいと思えば、手続き的にプログラムを書くことができます(けれど、その裏側はオブジェクト指向のままです)。</li>
+<li>使用できる演算子は、複合代入子やビット演算子も含めて、だいたい同じです。ですが、Rubyには<code>++</code>と<code>--</code>はありません。</li>
+<li><code>__FILE__</code>と<code>__LINE__</code>を使えます。</li>
+<li>定数もあります。けれど、<code>const</code>のような特別なキーワードはありません。
+定数化は名前付けによって行われます。変数名の最初が大文字のものは定数として扱われます。</li>
+<li>文字列は二重引用符(<code>&quot;</code>)で括ります。</li>
+<li>文字列は可変です。</li>
+<li>manページのように、ターミナルからほとんどのマニュアルを読むことができます。ただ、その際に使うコマンドは<code>ri</code>です。</li>
+<li>これまでと同じコマンドラインデバッガを使うことができます。</li>
+</ul>
+<h3>C++との類似</h3>
+<p>C++と同様に、Rubyは...</p>
+<ul>
+<li>使用できる演算子はだいたい同じです(<code>::</code>もあります)。<code>&lt;&lt;</code>はリストに要素を追加するためによく使われます。
+Rubyではメンバ関数の呼び出しに<code>-&gt;</code>は使いません。常に<code>.</code>を使うので、この点には気をつけてください。</li>
+<li><code>public</code>や<code>private</code>、<code>protected</code>などを使います。</li>
+<li>継承を一文字で表現できます。ですが、使うのは<code>:</code>ではなく<code>&lt;</code>になります。</li>
+<li>コードをモジュール化することになりますが、これはC++で<code>namespace</code>を使うことと変わりません。</li>
+<li>例外を扱うための作法は一緒です。ですが、そのために使われるキーワード名などには違いがあります。</li>
+</ul>
+<h3>Cとの違い</h3>
+<p>Cと違って、Rubyは...</p>
+<ul>
+<li>コードをコンパイルする必要はありません。単に実行するだけです。</li>
+<li>オブジェクトは強く型付けされています(そして、変数名自身はまったく型を持ちません)。</li>
+<li>マクロやプリプロセッサはありません。キャストもポインタ(とポインタ演算)もありません。
+typedef や sizeof、列挙型もありません。</li>
+<li>ヘッダファイルはありません。ただ関数(「メソッド」と呼ばれます)とクラスをソース内に記述するだけです。</li>
+<li><code>#define</code>はありません。そのかわりに定数を使います。</li>
+<li>すべての変数はヒープ上に配置されます。あなたがそれを解放する必要はありません。代わりにGCがその世話をしてくれます。</li>
+<li>メソッド(関数)の引数は値渡しされます。参照渡しはされません。</li>
+<li><code>#include &lt;foo&gt;</code>や<code>#include &quot;foo&quot;</code>の代わりに、<code>require 'foo'</code>と書きます。</li>
+<li>アセンブリコードに変換はできません。</li>
+<li>行の終わりにセミコロンは不要です。</li>
+<li><code>if</code>や<code>while</code>などの条件式は、括弧を付けなくても動きます。</li>
+<li>メソッド(関数)呼び出しの括弧は基本的にオプションです。</li>
+<li>波括弧はあまり使いません。複数行に渡る処理片の終わりには、一般的に<code>end</code>キーワードが使われます。</li>
+<li><code>do</code>キーワードは「ブロック」と呼ばれる機能のためにあります。Cにおける「do命令」ではありません。</li>
+<li>「ブロック」はC言語にあるブロックとは別ものです。
+Rubyのブロックは、メソッド呼び出しに関連付けるコード片を意味します。
+ブロックは、メソッドの本体から実行時に呼び出されます。</li>
+<li>変数宣言はありません。変数が必要になったら、新しい変数名に紐付けるだけです。</li>
+<li>真偽値をテストする際、<code>false</code>と<code>nil</code>だけが偽と評価されます。他(<code>0</code>、<code>0.0</code>、<code>&quot;0&quot;</code>なども)はすべて真となります。</li>
+<li><code>char</code>はありません。単なる一文字だけの文字列になります。</li>
+<li>文字列の終端はヌル文字ではありません。</li>
+<li>配列リテラルは角括弧です。波括弧ではありません。</li>
+<li>要素を追加すると、配列の大きさは自動的に拡張されます。</li>
+<li>二つの配列を足し合わせると、新しい大きい配列が返されます(もちろん、ヒープ上に割り当てられます)。ポインタ演算は行われません。</li>
+<li>だいたいの場合は、すべてが式です(<code>while</code>命令が実際に右辺値を評価しているなど)</li>
+</ul>
+<h3>C++との違い</h3>
+<p>C++と違って、Rubyは...</p>
+<ul>
+<li>明示的に参照を扱うことはありません。
+Rubyでは、すべての変数はあるオブジェクトへの間接参照として扱われます。</li>
+<li>オブジェクトは強い型付けがされますが、それは<em>動的</em>に行われます。
+環境は<em>実行時</em>、メソッド呼び出しが実際に行われたタイミングで型を決定します。</li>
+<li>コンストラクタは、クラス名ではなく、<code>initialize</code>メソッドとなります。</li>
+<li>メソッドはすべて仮想関数です。</li>
+<li>クラス変数(静的メンバ変数)名は、常に<code>@@</code>からはじまります(例えば<code>@@total_widgets</code>というように)。</li>
+<li>外部からメンバ変数に直接アクセスすることはありません。
+publicなメンバ変数(Rubyでは属性と呼ばれます)へのアクセスはメソッド経由で行います。</li>
+<li><code>this</code>の代わりに<code>self</code>を使います。</li>
+<li>最後が?や!で終わるメソッドがあります。これらは実際にメソッド名の一部です。</li>
+<li>多重継承はありません。Rubyでは代わりにMix-inを使います。
+Mix-inを用いることで、モジュールが持つすべてのインスタンスメソッドを「継承」できます。</li>
+<li>大文字表記、小文字表記が強制されるケースがあります。たとえば、
+クラス名は大文字から開始し、変数名は小文字から開始する必要があります。</li>
+<li>メソッド呼び出しの括弧は基本的にオプションです。</li>
+<li>いつでもクラスをオープンしてメソッドを追加できます。</li>
+<li>どんな種類のオブジェクトでも変数に設定でき、型は実行時に評価されるので、
+C++テンプレートは必要ありません。キャストもありません。</li>
+<li>イテレーションはわずかな違いがあります。
+Rubyでは、<code>vector&lt;T&gt;::const_iterator iter</code>のような独立したイテレータオブジェクトは使いません。
+代わりに、コンテナオブジェクトが持つ<code>each</code>などのイテレータメソッドを使います。
+イテレータメソッドはコード片を受け取り、それを各要素へと順に渡していきます。</li>
+<li>コンテナクラスは<code>Array</code>と<code>Hash</code>の2種類だけです。</li>
+<li>型変換はありません。Rubyを使い始めれば、必要ない理由がわかるはずです。</li>
+<li>マルチスレッド機能は組み込まれています。
+ただし、Ruby1.8 以前のマルチスレッド機構は、ネイティブスレッドに対してグリーンスレッドと呼ばれ、
+処理系だけで実装されたスレッド機能になっています。</li>
+<li>ユニットテストのライブラリはRubyに標準添付されています。</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

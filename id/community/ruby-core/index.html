@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby Core</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/community/ruby-core/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby Core</h1>
+
+
+
+  <div id="content">
+    <p>Sekarang saatnya untuk mengikuti pengembangan Ruby. Dengan bertambahnya
+perhatian yang diterima oleh Ruby dalam beberapa tahun terakhir, maka
+dibutuhkan bakat yang baik untuk meningkatkan Ruby dan mendokumentasikannya.
+Sehingga, dari mana Anda memulai?
+{: .summary}</p>
+<p>Topik seputar pengembangan Ruby yang dibahas disini adalah:</p>
+<ul>
+<li><a href="#following-ruby">Menggunakan Git untuk Memonitor Pengembangan Ruby</a></li>
+<li><a href="#patching-ruby">Menyempurnakan Ruby, Patch by Patch</a></li>
+<li><a href="#branches-ruby">Catatan terkait branches</a></li>
+</ul>
+<h3>Menggunakan Git untuk Memonitor Pengembangan Ruby</h3>
+<p>{: #following-ruby}</p>
+<p>Repositori utama saat ini dari kode sumber Ruby terbaru adalah
+<a href="https://git.ruby-lang.org/ruby.git">git.ruby-lang.org/ruby.git</a>.
+Ada juga sebuah <a href="https://github.com/ruby/ruby">mirror pada GitHub</a>. Biasanya, mohon gunakan <em>mirror</em> ini.</p>
+<p>Anda dapat mendapatkan kode sumber Ruby terbaru dengan menggunakan Git.
+Dari <em>command line</em> Anda:</p>
+<!-- raw HTML omitted -->
+<p>Direktori <code>ruby</code> saat ini akan berisi kode sumber terbaru dari versi
+<em>development</em> Ruby (ruby-trunk).</p>
+<p>Lihat juga <a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">Non-committer’s HOWTO to join our development</a>.</p>
+<p>Jika Anda memiliki akses <em>commit</em>, dan jika Anda ingin <em>push</em> sesuatu,
+Anda seharusnya menggunakan repositori utama.</p>
+<!-- raw HTML omitted -->
+<h3>Menyempurnakan Ruby, dengan Patch</h3>
+<p>{: #patching-ruby}</p>
+<p>Tim Ruby Core merawat <a href="https://bugs.ruby-lang.org/">issue tracker</a> untuk memasukkan <em>patch</em> dan laporan
+<em>bug</em> ke Matz dan rekan-rekannya. Laporan-laporan ini juga dimasukkan ke
+<a href="/en/community/mailing-lists/">milis Ruby-Core</a> untuk didiskusikan, jadi Anda bisa
+mengkonfirmasi terlebih dahulu apakah permintaan Anda akan diperhatikan atau
+tidak. Anda juga bisa mengirim <em>patch</em> langsung ke milis. Anda diharapkan
+untuk berpartisipasi aktif dalam diskusi tersebut.</p>
+<p>Mohon lihat <a href="/en/community/ruby-core/writing-patches/">Patch Writer's Guide</a> untuk beberapa tips,
+langsung dari Matz, bagaimana <em>patch</em> Anda dipertimbangkan.</p>
+<p>Sebagai ringkasan, langkah-langkah mengirimkan <em>patch</em> adalah sebagai
+berikut:</p>
+<ol>
+<li>
+<p><em>Check out</em> salinan kode sumber Ruby dari GitHub.
+Biasanya <em>patch</em> untuk <em>bugfix</em> atau fitur baru dimasukkan
+untuk <em>trunk</em> dari kode sumber Ruby.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ git clone https://github.com/ruby/ruby.git
+</code></pre></div></div>
+<p>Jika Anda sedang memperbaiki sebuah <em>bug</em> yang khusus pada satu <em>branch
+maintenance</em>, <em>check out</em> salinan dari masing-masing <em>branch</em>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ git checkout ruby_X_X
+</code></pre></div></div>
+</li>
+<li>
+<p>Tambahkan perbaikan Anda ke kode.</p>
+</li>
+<li>
+<p>Buat sebuah <em>patch</em>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git diff &gt; ruby-changes.patch
+</code></pre></div></div>
+</li>
+<li>
+<p>Buat sebuah tiket di <a href="https://bugs.ruby-lang.org/">issue tracker</a> atau kirim <em>patch</em> melalui e-mail
+ke <a href="/en/community/mailing-lists/">Ruby-Core mailing list</a> dengan entri ChangeLog yang
+menjelaskan patch.</p>
+</li>
+<li>
+<p>Jika tidak ada masalah dengan <em>patch</em> tersebut, maka para <em>committer</em> akan
+memberikan persetujuan untuk menggunakannya.</p>
+</li>
+</ol>
+<p><strong>Perhatian:</strong> <em>patch</em> harus dikirimkan dalam format <a href="http://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html">unified diff</a>.
+Untuk mengetahui lebih lanjut tentang bagaimana <em>patch</em> digabungkan
+(<em>merge</em>), lihat <a href="http://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html#Merging%20with%20patch">the diffutils reference</a>.</p>
+<p>Diskusi tentang pengembangan Ruby dibicarakan di
+<a href="/en/community/mailing-lists/">milis Ruby-Core</a>. Jadi kalau Anda penasaran
+apakah patch Anda berguna atau tidak atau bila Anda ingin
+memulai diskusi tentang masa depan Ruby, jangan sungkan untuk datang
+kemari. Jangan mengirimkan hal-hal di luar topik (OOT) karena milis ini
+adalah milis serius. Mari kita menjaga sopan santun karena kita
+berkorespondensi dengan pembuat Ruby.</p>
+<p>Ingatlah banyak tim Ruby Core tinggal di Jepang dan walau banyak yang
+bisa berbicara bahasa Inggris dengan baik tetap ada perbedaan zona waktu
+yang jauh. Mereka juga punya milis pengembangan yang menggunakan bahasa
+Jepang selain dengan milis berbahasa Inggris. Jadi sabarlah, jika tidak
+ada yang membalas kiriman Anda; jangan menyerah dan coba lagi beberapa
+hari kemudian.</p>
+<h3>Catatan terkait branches</h3>
+<p>{: #branches-ruby}</p>
+<p>Kode sumber Ruby telah dikelola menggunakan repositori Subversion hingga
+22 April 2019.
+Sehingga, beberapa <em>branch</em> mungkin masih dikelola dengan Subversion.
+Anda dapat melihat repositori SVN.</p>
+<ul>
+<li><a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?root=ruby">&lt;URL:https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?root=ruby&gt;</a></li>
+</ul>
+<p>Namun demikian, Anda tidak harus peduli tentang itu (kecuali Anda adalah
+seorang <em>branch maintainer</em>).
+Anda dapat <em>check out branch</em> pada salinan kerja Git Anda.
+Sebagai contoh, jalankan perintah berikut.</p>
+<!-- raw HTML omitted -->
+<p>X_X seharusnya diganti dengan sebuah versi yang Anda ingin <em>check out</em>.</p>
+<p>Jika Anda ingin memodifikasi <em>branch</em>, mohon buka sebuah isu pada <a href="https://bugs.ruby-lang.org/">issue tracker</a> kami.
+Lihat juga bagian berikut.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Coba Sekarang</strong>, sangat mudah!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (langsung di browser Anda)</a></li>
+
+    
+    <li><a href="/id/documentation/quickstart/">Menguasai Ruby dalam 20 Menit</a></li>
+    
+
+    
+    <li><a href="/id/documentation/ruby-from-other-languages/">Dari Bahasa Pemrograman Lain ke Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Jelajahi</strong> sebuah dunia baru…</h3>
+  <ul class="menu">
+    
+    <li><a href="/id/documentation/">Dokumentasi</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Penelitian Akademis</a></li>
+    
+
+    
+    <li><a href="/id/libraries/">Pustaka</a></li>
+    
+
+    
+    <li><a href="/id/documentation/success-stories/">Kisah Sukses</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Bergabunglah</strong> dalam komunitas yang ramah dan makin berkembang.</h3>
+  <ul>
+    
+    <li><a href="/id/community/mailing-lists/">Mailing List</a>: Berdiskusi dengan programmer Ruby dari Indonesia dan seluruh dunia.</li>
+    
+
+    
+    <li><a href="/id/community/user-groups/">Komunitas Pengguna</a>: Berpartisipasilah dengan Rubyist di lokasi Anda.</li>
+    
+
+    
+    <li><a href="/id/community/weblogs/">Blog</a>: Ulasan terbaru dari komunitas Ruby.</li>
+    
+
+    
+    <li><a href="/id/community/ruby-core/">Ruby Core</a>: Silakan berkontribusi untuk versi Ruby terbaru.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Laporkan Masalah</a>: Lapor atau bantu memecahkan masalah yang ada di Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

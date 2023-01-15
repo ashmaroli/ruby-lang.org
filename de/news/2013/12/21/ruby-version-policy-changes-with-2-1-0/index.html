@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Änderungen an der Ruby-Versionierung ab 2.1.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2013/12/21/ruby-version-policy-changes-with-2-1-0/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Änderungen an der Ruby-Versionierung ab 2.1.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von zzak am 21.12.2013<br>
+                         Übersetzt von Quintus</p>
+
+    <p>Wir haben uns entschieden, ab Ruby 2.1.0 zu einer eher <a href="http://semver.org/">semantischen
+Versionierung</a> zu wechseln.</p>
+<p>Um ein besser organisiertes und ordentlich nutzbares
+Versionierungsschema für Ruby zur Verfügung zu stellen, haben wir uns
+dafür entschieden, die folgenden Richtlinien umzusetzen.</p>
+<h2>Richtlinienänderungen</h2>
+<p>Die Richtlinie basiert auf einem Vorschlag des Administrators von
+ruby-lang.org, Hiroshi Shibata (<a href="https://twitter.com/hsbt">@hsbt</a>).</p>
+<h3>Versionierungsschema</h3>
+<ul>
+<li><code>MAJOR</code>: Wird erhöht, wenn es inkompatible Änderungen gibt, die
+nicht per MINOR veröffentlicht werden können.
+<ul>
+<li>Für besondere Ereignisse reserviert.</li>
+</ul>
+</li>
+<li><code>MINOR</code>: Wird jedes Jahr an Weihnachten erhöht, kann API-kompatibel sein.</li>
+<li><code>TEENY</code>: Sicherheits- oder Bugfix, der API-Kompatibilität
+gewährleistet.
+<ul>
+<li>Kann größer als 10 werden (z.B. <code>2.1.11</code>) und wird etwa alle 2-3
+Monate erhöht.</li>
+</ul>
+</li>
+<li><code>PATCH</code>: Anzahl der Commits seit dem letzten <code>MINOR</code>-Release (wird
+auf 0 zurückgesetzt, wenn <code>MINOR</code> erhöht wird).</li>
+</ul>
+<h3>Branching-Schema</h3>
+<p>Wir werden weiterhin die folgenden Zweige unterstützen:</p>
+<ul>
+<li>trunk</li>
+<li><code>ruby_{MAJOR}_{MINOR}_{TEENY}</code></li>
+</ul>
+<h3>API-Kompatibilität</h3>
+<p>Die folgenden Dinge können als inkompatible Änderung markiert werden
+und somit eine Erhöhung der <code>MINOR</code>-Version erforderlich machen:</p>
+<ul>
+<li>Entfernen von API-Features auf C-Ebene</li>
+<li>Nicht rückwärtskompatible Änderungen und Erweiterungen</li>
+</ul>
+<h3>ABI-Kompatibilität</h3>
+<p>Das ABI wird dem folgenden Schema folgen: <code>{MAJOR}.{MINOR}.0</code></p>
+<p>Wir bemühen und so gut wie möglich (<em>best effort</em>), die
+ABI-Kompatibilität innerhalb derselben <code>MINOR</code>-Veröffentlichungsreihe
+aufrecht zu erhalten, daher wird <code>TEENY</code> auf 0 festgehalten.</p>
+<h2>Referenzen</h2>
+<p>Sie können die folgenden Beiträge lesen, um mehr über diesen Vorschlag
+zu erfahren:</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/8835">Einführung eines semantischen Versionierungsschemas und einer Branching-Richtlinie</a></li>
+<li><a href="https://gist.github.com/sorah/7803201">Akzeptierter Vorschlag auf Englisch</a></li>
+<li><a href="https://gist.github.com/hsbt/7719305">Akzeptierter Vorschlag auf Japanisch</a></li>
+</ul>
+<h2>Vielen Dank!</h2>
+<p>Ich möchte mich an dieser Stelle persönlich bei jedem bedanken, der zu
+dieser Diskussion beigetragen hat. Jeder Schritt, den wir unternehmen,
+ist einer hin zu einem stabileren und effektiveren Ruby.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

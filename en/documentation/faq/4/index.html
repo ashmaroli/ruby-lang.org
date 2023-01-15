@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Official Ruby FAQ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/faq/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p><em>If you wish to report errors or suggest improvements for this FAQ,
+please go to our
+<a href="https://github.com/ruby/www.ruby-lang.org/">GitHub repository</a>
+and open an issue or pull request.</em></p>
+<h2>Variables, constants, and arguments</h2>
+<h3>Does assignment generate a new copy of an object?</h3>
+<p>{: #assignment}</p>
+<p>All variables and constants reference (point at) some object. (With the
+exception of uninitialized local variables, which reference nothing.
+These raise a <code>NameError</code> exception if used). When you assign to a variable,
+or initialize a constant, you set the object that the variable or constant
+references.</p>
+<p>Assignment on its own therefore never creates a new copy of an object.</p>
+<p>There's a slightly deeper explanation in certain special cases. Instances of
+<code>Fixnum</code>, <code>NilClass</code>, <code>TrueClass</code>, and <code>FalseClass</code> are contained directly in
+variables or constants---there is no reference involved. A variable holding
+the number <code>42</code> or the constant <code>true</code> actually holds the value, and not a
+reference to it. Assignment therefore physically produces a copy of objects
+of these types. We discuss this more in
+<a href="../6/#immediate">Immediate and Reference Objects</a>.</p>
+<h3>What is the scope of a local variable?</h3>
+<p>A new scope for a local variable is introduced in (1) the toplevel (main),
+(2) a class (or module) definition, or (3) a method definition.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var = 1         # (1)
+class Demo
+  var = 2       # (2)
+  def method
+    var = 3     # (3)
+    puts "in method: var = #{var}"
+  end
+  puts "in class: var = #{var}"
+end
+puts "at top level: var = #{var}"
+Demo.new.method
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>in class: var = 2
+at top level: var = 1
+in method: var = 3
+</code></pre></div></div>
+<p>(Note that the class definition is executable code: the trace message it
+contains is written as the class is defined).</p>
+<p>A block (<code>{ ... }</code> or <code>do ... end</code>) almost introduces a new scope ;-)
+Local variables created within a block are not accessible outside the block.
+However, if a local variable within the block has the same name as an existing
+local variable in the caller's scope, then no new local variable is created,
+and you can subsequently access that variable outside the block.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = 0
+1.upto(3) do |i|
+  a += i
+  b = i*i
+end
+a  # =&gt; 6
+# b is not defined here
+</code></pre></div></div>
+<p>This becomes significant when you use threading---each thread receives its
+own copy of the variables local to the thread's block:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>threads = []
+
+["one", "two"].each do |name|
+  threads &lt;&lt; Thread.new do
+    local_name = name
+    a = 0
+    3.times do |i|
+      Thread.pass
+      a += i
+      puts "#{local_name}: #{a}"
+    end
+  end
+end
+
+threads.each {|t| t.join }
+</code></pre></div></div>
+<p>Might produce (in case the scheduler switches threads as hinted
+by <code>Thread.pass</code>; this depends on OS and processor):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>one: 0
+two: 0
+one: 1
+two: 1
+one: 3
+two: 3
+</code></pre></div></div>
+<p><code>while</code>, <code>until</code>, and <code>for</code> are control structures, not blocks, so local
+variables within them will be accessible in the enclosing environment.
+<code>loop</code>, however, is a method and the associated block introduces a new scope.</p>
+<h3>When does a local variable become accessible?</h3>
+<p>Actually, the question may be better asked as: “at what point does Ruby work
+out that something is a variable?” The problem arises because the simple
+expression <code>a</code> could be either a variable or a call to a method with no
+parameters. To decide which is the case, Ruby looks for assignment statements.
+If at some point in the source prior to the use of <code>a</code> it sees it being
+assigned to, it decides to parse <code>a</code> as a variable, otherwise it treats it
+as a method. As a somewhat pathological case of this, consider this code
+fragment, originally submitted by Clemens Hintze:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def a
+  puts "method `a' called"
+
+  99
+end
+
+[1, 2].each do |i|
+  if i == 2
+    puts "a = #{a}"
+  else
+    a = 1
+    puts "a = #{a}"
+  end
+end
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = 1
+method `a' called
+a = 99
+</code></pre></div></div>
+<p>During the parse, Ruby sees the use of <code>a</code> in the first <code>puts</code> statement
+and, as it hasn't yet seen any assignment to <code>a</code>, assumes that it is a method
+call. By the time it gets to the second <code>puts</code> statement, though, it has seen
+an assignment, and so treats <code>a</code> as a variable.</p>
+<p>Note that the assignment does not have to be executed---Ruby just has to have
+seen it. This program does not raise an error:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = 1 if false; a  # =&gt; nil
+</code></pre></div></div>
+<p>This issue with variables is not normally a problem. If you do bump into it,
+try putting an assignment such as <code>a = nil</code> before the first access to the
+variable. This has the additional benefit of speeding up the access time to
+local variables that subsequently appear in loops.</p>
+<h3>What is the scope of a constant?</h3>
+<p>A constant defined in a class or module definition can be accessed directly
+within that class's or module's definition.</p>
+<p>You can directly access the constants in outer classes and modules from
+within nested classes and modules.</p>
+<p>You can also directly access constants in superclasses and included modules.</p>
+<p>Apart from these cases, you can access class and module constants using
+the <code>::</code> operator, <code>ModuleName::CONST1</code> or <code>ClassName::CONST2</code>.</p>
+<h3>How are arguments passed?</h3>
+<p>The actual argument is assigned to the formal argument when the method is
+invoked.
+(See <a href="#assignment">assignment</a> for more on the semantics of assignment.)</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def add_one(number)
+  number += 1
+end
+
+a = 1
+add_one(a)  # =&gt; 2
+a           # =&gt; 1
+</code></pre></div></div>
+<p>As you are passing object references, it is possible that a method may modify
+the contents of a mutable object passed into it.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def downer(string)
+  string.downcase!
+end
+
+a = "HELLO"  # =&gt; "HELLO"
+downer(a)    # =&gt; "hello"
+a            # =&gt; "hello"
+</code></pre></div></div>
+<p>There is no equivalent of other language's pass-by-reference semantics.</p>
+<h3>Does assignment to a formal argument influence the actual argument?</h3>
+<p>A formal argument is a local variable. Within a method, assigning to a formal
+argument simply changes the argument to reference another object.</p>
+<h3>What happens when I invoke a method via a formal argument?</h3>
+<p>All Ruby variables (including method arguments) act as references to objects.
+You can invoke methods in these objects to get or change the object's state
+and to make the object do something. You can do this with objects passed to
+methods. You need to be careful when doing this, as these kinds of side
+effects can make programs hard to follow.</p>
+<h3>What does <code>*</code> prepended to an argument mean?</h3>
+<p>When used as part of a formal parameter list, the asterisk allows arbitrary
+numbers of arguments to be passed to a method by collecting them into an
+array, and assigning that array to the starred parameter.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo(prefix, *all)
+  all.each do |element|
+    puts "#{prefix}#{element}"
+  end
+end
+
+foo("val = ", 1, 2, 3)
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val = 1
+val = 2
+val = 3
+</code></pre></div></div>
+<p>When used in a method call, <code>*</code> expands an array, passing its individual
+elements as arguments.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = [1, 2, 3]
+foo(*a)
+</code></pre></div></div>
+<p>You can prepend <code>*</code> to the last argument of</p>
+<ol>
+<li>Left hand side of a multiple assignment.</li>
+<li>Right hand side of a multiple assignment.</li>
+<li>Definition of method formal arguments.</li>
+<li>Actual arguments in a method call.</li>
+<li>In <code>when</code> clause of <code>case</code> structure.</li>
+</ol>
+<p>For example:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x, *y = [7, 8, 9]
+x                  # =&gt; 7
+y                  # =&gt; [8, 9]
+x,    = [7, 8, 9]
+x                  # =&gt; 7
+x     = [7, 8, 9]
+x                  # =&gt; [7, 8, 9]
+</code></pre></div></div>
+<h3>What does <code>&amp;</code> prepended to an argument mean?</h3>
+<p>If the last formal argument of a method is preceded with an ampersand (<code>&amp;</code>),
+a block following the method call will be converted into a <code>Proc</code> object
+and assigned to the formal parameter.</p>
+<p>If the last actual argument in a method invocation is a <code>Proc</code> object,
+you can precede its name with an ampersand to convert it into a block.
+The method may then use <code>yield</code> to call it.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def meth1(&amp;b)
+  puts b.call(9)
+end
+
+meth1 {|i| i + i }
+
+def meth2
+  puts yield(8)
+end
+
+square = proc {|i| i * i }
+
+meth2 {|i| i + i }
+meth2 &amp;square
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>18
+16
+64
+</code></pre></div></div>
+<h3>How can I specify a default value for a formal argument?</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def greet(p1="hello", p2="world")
+  puts "#{p1} #{p2}"
+end
+
+greet
+greet("hi")
+greet("morning", "mom")
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello world
+hi world
+morning mom
+</code></pre></div></div>
+<p>The default value (which can be an arbitrary expression) is evaluated when
+the method is invoked. It is evaluated using the scope of the method.</p>
+<h3>How do I pass arguments to a block?</h3>
+<p>The formal parameters of a block appear between vertical bars at the start
+of the block:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proc {|a, b| a &lt;=&gt; b }
+</code></pre></div></div>
+<p>These parameters are actually local variables. If an existing local variable
+of the same name exists when the block executes, that variable will be
+modified by the call to the block. This may or may not be a good thing.</p>
+<p>Typically, arguments are passed to a block using <code>yield</code> (or an iterator that
+calls <code>yield</code>), or by using the <code>Proc.call</code> method.</p>
+<h3>Why did my object change unexpectedly?</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A = a = b = "abc"
+b.concat("d")  # =&gt; "abcd"
+a              # =&gt; "abcd"
+A              # =&gt; "abcd"
+</code></pre></div></div>
+<p>Variables hold references to objects. The assignment <code>A = a = b = &quot;abc&quot;</code> puts
+a reference to the string <code>&quot;abc&quot;</code> into <code>A</code>, <code>a</code>, and <code>b</code>.</p>
+<p>When you call <code>b.concat(&quot;d&quot;)</code>, you invoke the concat method on that object,
+changing it from <code>&quot;abc&quot;</code> to <code>&quot;abcd&quot;</code>. Because <code>a</code> and <code>A</code> also reference that
+same object, their apparent values change too.</p>
+<p>This is less of a problem in practice than it might appear.</p>
+<p>In addition, all objects may be frozen, protecting them from change.</p>
+<h3>Does the value of a constant ever change?</h3>
+<p>A constant is a variable whose name starts with an upper case letter.
+Constants may not be reassigned from within instance methods,
+but can otherwise be changed at will.
+When a constant is assigned a new value, a warning is issued.</p>
+<h3>Why can't I load variables from a separate file?</h3>
+<p>Say <code>file1.rb</code> contains:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var1 = 99
+</code></pre></div></div>
+<p>and some other file loads it in:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require_relative "file1"
+puts var1
+</code></pre></div></div>
+<p>Produces:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prog.rb:2:in `&lt;main&gt;': undefined local variable or method `var1' for main:Object (NameError)
+</code></pre></div></div>
+<p>You get an error because <code>load</code> and <code>require</code> arrange for local variables to
+be stored into a separate, anonymous namespace, effectively discarding them.
+This is designed to protect your code from being polluted.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

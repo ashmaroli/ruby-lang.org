@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Библиотеки</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Библиотеки</h1>
+
+
+
+  <div id="content">
+    <p>Както повечето популярни езици за програмиране, и за Ruby съществуват
+множество разнообразни библиотеки.
+{: .summary}</p>
+<p>Повечето от тях са във формата на <strong>gem</strong> пакети. <a href="https://rubygems.org/"><strong>RubyGems</strong></a> е пакетният
+мениджър на Ruby, помагащ при създаването, разпространението и инсталирането на
+библиотеки (подобно на <code>apt-get</code>, но за Ruby софтуер). RubyGems е включен в
+Ruby от версия 1.9, а при предишни версии е нужно да се <a href="https://rubygems.org/pages/download/">инсталира ръчно</a>.</p>
+<p>Други библиотеки се разпространяват като архивирани (.zip или .tar.gz)
+директории с <strong>изходен код</strong>. Инсталирането на такива пакети е различно и
+обикновено е описано в <code>README</code> или <code>INSTALL</code> файл.</p>
+<p>Нека погледнем как се намират и инсталират библиотеки.</p>
+<h3>Намиране на библиотеки</h3>
+<p>Основното място, където се хостват библиотеки, е <a href="https://rubygems.org/"><strong>RubyGems.org</strong></a>.
+Може да разгледате сайта или да използвате <code>gem</code> командата.</p>
+<p>С помощта на командата <code>gem search -r</code> може да бъде изследвано хранилището на
+RubyGems. Например, <code>gem search -r rails</code> ще върне списък с всички gem-ове,
+свързани с Rails. С опцията <code>--local</code> (<code>-l</code>) се търси само измежду вече
+инсталираните gem-ове. За инсталиране на gem се използва командата <code>gem install [gem]</code>. Разглеждането на инсталираните gem-oве става с командата <code>gem list</code>.
+За повече информация относно <code>gem</code> командата, вижте по-долу или отидете на
+<a href="http://guides.rubygems.org/">RubyGems документация</a>.</p>
+<p>Има и други начини за снабдяване с библиотеки. <a href="http://rubyforge.org/">RubyForge</a> беше популярно
+място за Ruby софтуер, но в последните години за хостване на Ruby код се
+използва предимно <a href="https://github.com/"><strong>GitHub</strong></a>, а пакетираните gem-ове се публикуват на
+RubyGems.org.</p>
+<p><a href="https://www.ruby-toolbox.com/"><strong>The Ruby Toolbox</strong></a> е сайт, който улеснява търсенето на Ruby проекти с
+отворен код. Gem-oвете са разделени на категории и страниците им съдържат
+информация като честотата на актуализации, история и пoпулярност. Има и
+търсене, което улеснява намирането на това, което ви е нужно.</p>
+<h3>Още няколко думи относно RubyGems</h3>
+<p>Следва бърз преглед на <code>gem</code> командата за всекидневна употреба. Съществува и
+<a href="http://guides.rubygems.org/command-reference/">по-детайлна документация</a>, покриваща всички аспекти на пакетният мениджър.</p>
+<h4>Търсене измежду наличните gem-ове</h4>
+<p>Командата <strong>search</strong> се използва за търсене на gem-oве.
+Тя връща списък с gem-oве, чийто имена започват с даденият низ. Например, при
+търсене на gem-oве, свързани с &quot;html&quot;:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Флагът <code>--remote</code> / <code>-r</code> задава да бъде използвано официалното
+хранилище на RubyGems.org (включен е по подразбиране).
+Търсене в списъкът с инсталирани локално gem-oве става с подаването на
+<code>--local</code> / <code>-l</code>.</p>
+<h4>Инсталиране на gem</h4>
+<p>След като решите кой gem желаете да инсталирате, например Rails:</p>
+<!-- raw HTML omitted -->
+<p>За инсталирането на специфична версия се използва флагът <code>--version</code> / <code>-v</code>:</p>
+<!-- raw HTML omitted -->
+<h4>Показване на списък с всички gem-oве</h4>
+<p>За <strong>списък</strong> с всички инсталирани gem-ове:</p>
+<!-- raw HTML omitted -->
+<p>За списък с всички gem-oве, налични на RubyGems.org:</p>
+<!-- raw HTML omitted -->
+<h4>Помощ!</h4>
+<p>Документацията е налична във вашият терминал:</p>
+<!-- raw HTML omitted -->
+<p>Например командата <code>gem help commands</code> e много полезна, защото извежда списък с
+всички <code>gem</code> команди.</p>
+<h4>Създаване на gem-oве</h4>
+<p>На RubyGems.org има <a href="http://guides.rubygems.org/">няколко ръководства</a> по тази тема. Може също така да
+разгледате и <a href="http://bundler.io/">Bundler</a>, инструмент, който помага с управлението на
+зависимостите на даден проект. Може да бъде използван заедно с
+RubyGems.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Започнете</strong> лесно е!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Пробвайте Ruby! (в браузъра)</a></li>
+
+    
+    <li><a href="/bg/documentation/quickstart/">Ruby в 20 минути</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/ruby-from-other-languages/">Ruby от други езици</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Изследвайте</strong> нов свят…</h3>
+  <ul class="menu">
+    
+    <li><a href="/bg/documentation/">Документация</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/bg/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/success-stories/">Успешни истории</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Участвайте</strong> в приятелски настроено общество.</h3>
+  <ul>
+    
+    <li><a href="/bg/community/mailing-lists/">Пощенски списъци</a>: Дискусии относно Ruby с програмисти от цял свят.</li>
+    
+
+    
+    <li><a href="/bg/community/user-groups/">Потребителски групи</a>: Свържете се с рубисти в твоя район.</li>
+    
+
+    
+    <li><a href="/bg/community/weblogs/">Блогове</a>: Прочетете какво се случва в Ruby обществото.</li>
+    
+
+    
+    <li><a href="/bg/community/ruby-core/">Ruby ядро</a>: Помогнете за разработката на Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Следене на бъгове</a>: Докладвайте или помогнете за решаването на проблеми в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

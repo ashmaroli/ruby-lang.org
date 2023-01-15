@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.0.0-p594 发布了</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2014/10/27/ruby-2-0-0-p594-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.0.0-p594 发布了</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 usa 发表于 2014-10-27<br>
+                         翻译： debbbbie</p>
+
+    <p>很高兴告诉大家 Ruby 2.0.0-p594 发布了。</p>
+<p>本次发布包含了 REXML DoS 风险的安全性修正。</p>
+<ul>
+<li><a href="https://www.ruby-lang.org/zh_cn/news/2014/10/27/rexml-dos-cve-2014-8080/">CVE-2014-8080：XML 扩张的阻断攻击</a></li>
+</ul>
+<p>本次发布也修改了 ext/openssl 的默认选项。危险的 SSL/TLS 默认选项被关闭了。</p>
+<ul>
+<li><a href="https://www.ruby-lang.org/zh_cn/news/2014/10/27/changing-default-settings-of-ext-openssl/">Changed default settings of ext/openssl</a></li>
+</ul>
+<p>同时包含了许多错误修正。</p>
+<p>参见 <a href="https://bugs.ruby-lang.org/projects/ruby-200/issues?set_filter=1&amp;status_id=5">tickets</a>
+以及 <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_0_0_594/ChangeLog">ChangeLog</a> 来了解更多细节。</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10756895 bytes
+MD5:    58469c0daf5f3a892a70cc674ea59c7f
+SHA256: e5aee3cf36898315f87771a5e657c81befb88b6afa585b70aaa57c47cc0e99a4
+SHA512: 8301a51c73fb63a8cfeb14af47d0c18b5bc3c45e3d62fc2ed56a673a1cd6b0015c41f275e70eb14a9e40036b1530977199321e05285e107a6adf58514bef1b3d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13606970 bytes
+MD5:    a9caa406da5d72f190e28344e747ee74
+SHA256: ee515dd7b17cdbc106396cd432f5662bb0b5afc05044469175914aab65f3c6e7
+SHA512: a6544f68a87aa3d00a59cee8c090386cf1fa6d6bfe5730af909d614e90bff9ee64c2cf9f542f7a43f8352b86e3945693504ffed6cefc57f736c6e26670ddb9ca
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   8316772 bytes
+MD5:    fc64932b4d4af0f91c03d7966fbbc9b2
+SHA256: 561465447428a5bc52ed3cca98c6067948b2c81811e1445a196b1c24913b3e72
+SHA512: d5ba88dd5eb3569203cbe91e75bf21bea6897338885479e34a839569de15ca2f09e4eff655636923892e9234a0f0b6a2c058442ebc1b13a3d2ddced25bd88fa8
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.zip">https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p594.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15125232 bytes
+MD5:    d5801bbe794a07236c3bcf4a28ad3509
+SHA256: 38a8db127d5b241ac2090ef75e9f7941a34851d4c6b61135b88019129f9c04a3
+SHA512: 1f7d94029e5af480a0ae0ebd21129a01b0066fecd15278b272754e6e80b6a6fb1ded53fd1288e7375a17021d482a59b40414270923c2ecfb06999ea66a91fc54
+</code></pre></div></div>
+</li>
+</ul>
+<h2>发布记</h2>
+<p>感谢所有支持 Ruby 的朋友。</p>
+<p>感谢你们。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

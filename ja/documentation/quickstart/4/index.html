@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>20分ではじめるRuby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/documentation/quickstart/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>この新しいプログラムを調べようとすると、最初の行がハッシュマーク(#)で
+始まっていることに気づきます。Rubyでは、ハッシュマークで始まる行の内容は
+コメントになり、インタプリタからは無視されます。このファイルの最初の行は
+特別な行で、Unix系のOSではファイルをどう実行するかをシェルに知らせてくれます。
+その他のコメントは処理内容の説明になっています。</p>
+<p>この<code>say_hi</code>メソッドはちょっと複雑になっています。</p>
+<!-- raw HTML omitted -->
+<p>インスタンス変数の<code>@names</code>によって判断が行われているように見えます。
+もしこれがnilなら、ドットを3つ表示するだけです。誰もいなければ誰にも挨拶しない、
+ということでよいですね？</p>
+<h2>サイクルとループ - 別名: イテレーション</h2>
+<p><code>@names</code>オブジェクトが<code>each</code>メソッドを持っている場合、
+イテレーションできる何かであるということで、それぞれの人に対して
+挨拶をするイテレーションを行います。最後に、
+<code>@names</code>がそれ以外であれば、自動的に文字列へ変換させてデフォルトの挨拶を行います。</p>
+<p>このイテレーションを詳しく見てみましょう。</p>
+<!-- raw HTML omitted -->
+<p><code>each</code>はコードブロックをとるメソッドで、リストにある要素それぞれに対して
+ブロック内のコードを実行します。<code>do</code> と <code>end</code>で囲われている部分がそのブロックです。
+ブロックは無名関数や<code>lambda</code>に似ています。
+パイプ文字の挟まれた変数がこのブロックのパラメタになります。</p>
+<p>ここでは、リスト内のすべての要素の値について、1つずつnameという変数に代入され、
+そして<code>puts &quot;Hello #{name}!&quot;</code>という表現がそのnameの値を使って実行されます。</p>
+<p>他の多くのプログラミング言語では<code>for</code>ループを使ってリストを扱います。
+たとえばCでは以下のようになります。</p>
+<!-- raw HTML omitted -->
+<p>これは動作しますが、あまりエレガントではありません。
+<code>i</code>のような使い捨ての変数が必要ですし、そのリストがどのくらいの長さになるか
+計算する必要がありますし、どのようにリストを走査するか説明する必要があります。
+Rubyのやり方はもっとエレガントです。
+細かな扱い方は<code>each</code>メソッドの中に隠されていて、それを使う側は
+それぞれの要素をどう扱うかだけ書くだけで済みます。
+内部では、<code>each</code>は基本的に
+<code>yield &quot;Albert&quot;</code>を実行し、続いて<code>yield &quot;Brenda&quot;</code>、<code>yield &quot;Charles&quot;</code>などと
+実行していきます。</p>
+<h2>ブロック、まばゆく輝くRubyの極み</h2>
+<p>ブロックが真の力を発揮するのはリストよりももっと複雑なものを扱うときです。
+簡単な処理だけではなく、準備、後始末、あるいはエラーといったものごとを、
+ユーザが気にしなくて済むように、見えないところで処理してくれます。</p>
+<!-- raw HTML omitted -->
+<p><code>say_bye</code>メソッドは<code>each</code>を使いません。その代わり、<code>@names</code>が<code>join</code>メソッドを
+処理できるかをチェックしています。もし処理できることがわかれば、それを使います。
+そうでなければ、変数の値を文字列として出力します。
+このメソッドは実際の変数の<em>型</em>を意識せず、サポートしているメソッドに頼っています。
+これは“Duck Typing”という名前で知られている、「もしアヒルのように歩き、
+アヒルのように鳴くものは……」というものです。この方法の良いところは、
+対応する変数の型に不要な制約を課さずにすむことです。
+もし誰かが新たな種類のリストクラスを持ち出してくれば、
+<code>join</code>メソッドが他のリストと同様の意味を持っている限り、
+すべては期待した通り動きます。</p>
+<h2>スクリプトの実行</h2>
+<p>以上がMegaGreeterクラスになります。
+ファイルの残りの部分はこのクラスをメソッドを呼び出すものです。
+最後のトリックは以下の行になります。</p>
+<!-- raw HTML omitted -->
+<p><code>__FILE__</code> は現在のファイル名を返す特別な変数です。
+<code>$0</code>はプログラムを実行するときに使われるファイル名です。
+このチェックは、「もしこれがメインファイルとして実行されているならば……」
+という意味になります。
+これは、ライブラリとして使われる場合には実行されないけれど、
+実行ファイルとして使われる場合には実行されるコードを書くために
+使われます。</p>
+<h2>もっと知るために</h2>
+<p>以上、駆け足でRubyを紹介してきました。
+Rubyにはこの他にもたくさんの異なる制御構造や、ブロックと<code>yield</code>の使い方、
+モジュールとmixin、その他の興味深いしくみがあります。
+この短いRubyの紹介をお読みになったことで、
+もっと知りたい気持ちを持っていただければうれしいです。</p>
+<p>もしも興味があれば、<a href="/ja/documentation/">ドキュメント</a>ページから、
+ネットで提供されているマニュアルやチュートリアルなどへのリンクを
+辿ってみてください。</p>
+<p>あるいは、書籍で探してみたいのであれば、
+ネット書店やリアル書店で購入できる書籍の<a href="http://magazine.rubyist.net/?0053-ForeWord">ブックガイド</a>を
+（訳注: これは2016年4月現在の関連書籍紹介ページに置き換えています）
+チェックしてみてください。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>はじめよう!</strong></h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">試してみる! (ブラウザから)</a></li>
+
+    
+    <li><a href="/ja/documentation/quickstart/">20分ではじめるRuby</a></li>
+    
+
+    
+    <li><a href="/ja/documentation/ruby-from-other-languages/">他言語からのRuby入門</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探求しよう</strong></h3>
+  <ul class="menu">
+    
+    <li><a href="/ja/documentation/">ドキュメント</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学術研究(英語)</a></li>
+    
+
+    
+    <li><a href="/ja/libraries/">ライブラリ</a></li>
+    
+
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>コミュニティに参加しよう</strong></h3>
+  <ul>
+    
+    <li><a href="/ja/community/mailing-lists/">メーリングリスト</a>: 世界中のプログラマとRubyについて話しましょう。</li>
+    
+
+    
+    <li><a href="http://ruby-no-kai.org/">日本Rubyの会</a>: Rubyの利用者/開発者の支援を目的としたグループです。</li>
+    
+
+    
+
+    
+
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

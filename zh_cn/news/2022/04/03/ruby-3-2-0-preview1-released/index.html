@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.2.0 Preview 1 已发布</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/news/2022/04/03/ruby-3-2-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.2.0 Preview 1 已发布</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">由 naruse 发表于 2022-04-03<br>
+                         翻译： GAO Jun</p>
+
+    <p>我们很高兴地宣布 Ruby 3.2.0-preview1 已发布。Ruby 3.2 增加了很多新功能和性能改进。</p>
+<h2>基于 WASI 的 WebAssembly 支持</h2>
+<p>这是首次基于 WASI 的 WebAssembly 支持。使得 CRuby 二进制内容可用于浏览器、Serverless Edge、以及其他 WebAssebly/WASI 嵌入环境。目前，此功能已通过除 Thread API 之外的 basic 和 bootstrap 测试套件。</p>
+<p><img src="https://i.imgur.com/opCgKy2.png" alt="" /></p>
+<h3>背景</h3>
+<p><a href="https://webassembly.org/">WebAssembly (Wasm)</a> 希望能够在浏览器中提供安全快速的运行程序的方式。但其目标，也就是在不同环境中安全高效的运行程序，不仅是 web 应用长期以来的目标，也是其他一般程序所需要的。</p>
+<p><a href="https://wasi.dev/">WASI (The WebAssembly System Interface)</a> 被设计用于此类应用场景。尽管此类应用需要与操作系统进行通信，WebAssembly 却运行在一个没有系统接口的虚拟机之上。WASI 使之标准化。</p>
+<p>Ruby 的 WebAssembly/WASI 支持，希望利用这些项目，使 Ruby 开发者可以编写能运行于兼容此类功能的平台上。</p>
+<h3>应用场景</h3>
+<p>这种支持鼓励开发人员可以在 WebAssembly 环境中使用 CRuby。一个此类应用场景的案例是 <a href="https://try.ruby-lang.org/playground/">TryRuby playground</a> 的 CRuby 支持。现在您可以在您的浏览器中尝试原生的 CRuby。</p>
+<h3>技术要点</h3>
+<p>目前，WASI 和 WebAssembly 仍在不断演进，同时基于安全原因，还缺少一些功能来实现纤程、异常和垃圾回收。
+所以，CRuby 使用了一种可以控制用户空间中执行的二进制转换技术 Asyncify 来填补这一鸿沟。</p>
+<p>此外，我们创建了 <a href="https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby">WASI 之上的虚拟文件系统</a>，于是就可以很容易地将 Ruby 应用打包成单个 .wasm 文件，进而简化分发 Ruby 应用的过程。</p>
+<h3>相关链接</h3>
+<ul>
+<li><a href="https://github.com/ruby/ruby/pull/5407">Add WASI based WebAssembly support #5407</a></li>
+<li><a href="https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9">An Update on WebAssembly/WASI Support in Ruby</a></li>
+</ul>
+<h2>Regexp 超时设置</h2>
+<p>新增正则表达式匹配的超时设置。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="sr">/^a*b?a*$/</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1">#=&gt; 1秒后 Regexp::TimeoutError</span>
+</code></pre></div></div>
+<p>众所周知，正则表达式匹配的耗时长度可能出乎意料之外。如果您的代码尝试从一个不可信输入中匹配一个低效的正则表达式，攻击者可以借此发起有效的拒绝服务攻击(所谓的正则表达式 DoS，或 ReDoS)。</p>
+<p>根据您的 Ruby 程序的需要，可以通过设置 <code>Regexp.timeout</code> 来避免或减轻这种 DoS 风险。请在您的程序中进行尝试，我们欢迎您的反馈。</p>
+<p>请注意，<code>Regexp.timeout</code> 是全局性的配置。如果您希望对于某些特殊的正则表达式使用不同的超时设置，您可以使用 <code>Regexp.new</code> 中的 <code>timeout</code> 关键词。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># 这个 Regexp 没有超时设置</span>
+<span class="n">long_time_re</span> <span class="o">=</span> <span class="no">Regexp</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"^a*b?a*$"</span><span class="p">,</span> <span class="ss">timeout: </span><span class="kp">nil</span><span class="p">)</span>
+
+<span class="n">long_time_re</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1"># 不会被中断</span>
+</code></pre></div></div>
+<p>最初提议： https://bugs.ruby-lang.org/issues/17837</p>
+<h2>其他值得注意的新功能</h2>
+<h3>不再捆绑第三方源代码</h3>
+<ul>
+<li>
+<p>我们不再捆绑第三方源代码，例如 <code>libyaml</code>， <code>libffi</code>。</p>
+<ul>
+<li>
+<p>psych 中已经移除了 libyaml 的代码。您可能需要在 Ubuntu/Debian 平台中安装 <code>libyaml-dev</code>。软件包的名称可能因平台不同而各异。</p>
+</li>
+<li>
+<p>在 preview2 中，<code>fiddle</code> 将移除 libffi。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>语言</h3>
+<ul>
+<li>查找模式不再是实验性功能。</li>
+</ul>
+<h2>性能改进</h2>
+<h2>自 3.1 以来其他值得注意的变更</h2>
+<ul>
+<li>
+<p>Hash</p>
+<ul>
+<li>当 hash 为空时，Hash#shift 现在总是返回 nil，此前行为是返回默认值或调用默认 proc。 [[Bug #16908]]</li>
+</ul>
+</li>
+<li>
+<p>MatchData</p>
+<ul>
+<li>新增 MatchData#byteoffset 。 [[Feature #13110]]</li>
+</ul>
+</li>
+<li>
+<p>Module</p>
+<ul>
+<li>新增 Module.used_refinements 。 [[Feature #14332]]</li>
+<li>新增 Module#refinements 。 [[Feature #12737]]</li>
+<li>新增 Module#const_added 。 [[Feature #17881]]</li>
+</ul>
+</li>
+<li>
+<p>Proc</p>
+<ul>
+<li>Proc#dup 返回子类的一个实例。 [[Bug #17545]]</li>
+<li>Proc#parameters 现在接受 lambda 关键字。 [[Feature #15357]]</li>
+</ul>
+</li>
+<li>
+<p>Refinement</p>
+<ul>
+<li>新增 Refinement#refined_class 。 [[Feature #12737]]</li>
+</ul>
+</li>
+<li>
+<p>Set</p>
+<ul>
+<li>Set 现在可以直接使用，不需要调用 <code>require &quot;set&quot;</code>。 [[Feature #16989]]
+目前其通过 <code>Set</code> 常量或对 <code>Enumerable#to_set</code> 调用自动载入。</li>
+</ul>
+</li>
+<li>
+<p>String</p>
+<ul>
+<li>新增 String#byteindex 和 String#byterindex 。 [[Feature #13110]]</li>
+<li>更新 Unicode 至 Version 14.0.0，Emoji Version 14.0. [[Feature #18037]] (同样适用于 Regexp)</li>
+<li>新增 String#bytesplice 。  [[Feature #18598]]</li>
+</ul>
+</li>
+<li>
+<p>Struct</p>
+<ul>
+<li>即使在 <code>Struct.new</code> 中不设置 <code>keyword_init: true</code>，Struct 类也可以通过关键词参数进行初始化。 [[Feature #16806]]</li>
+</ul>
+</li>
+</ul>
+<h3>标准库更新</h3>
+<ul>
+<li>
+<p>下列默认 gems 被更新。</p>
+<ul>
+<li>待定</li>
+</ul>
+</li>
+<li>
+<p>下列 bundled gems 被更新。</p>
+<ul>
+<li>待定</li>
+</ul>
+</li>
+<li>
+<p>下列默认 gems 现在是 bundled gems。您需要在 bundler 环境中，将其加入 <code>Gemfile</code> 文件。</p>
+<ul>
+<li>待定</li>
+</ul>
+</li>
+</ul>
+<p>您可以通过 <a href="https://github.com/ruby/ruby/blob/v3_2_0_preview1/NEWS.md">新闻</a>
+或 <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview1">提交日志</a>
+获取更多信息。</p>
+<p>自 Ruby 3.1.0 以来，伴随这些变更， <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview1#file_bucket">1058 个文件被更改， 新增 34946 行(+)，删除 29962 行(-)</a>!</p>
+<h2>下载</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20728782
+SHA1: 7c4197e67f230b0c5d011f4efb9b9158743a61c8
+SHA256: 6946b966c561d5dfc2a662b88e8211be30bfffc7bb2f37ce3cc62d6c46a0b818
+SHA512: d24e77161996c2085f613a86d1ed5ef5c5bf0e18eb459f6a93a0014a5d2ce41079283b4283d24cb96448a0986c8c6c52a04584abd4e73911ea59cefeb786836e
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15011400
+SHA1: 6bcc30ac670ab391997e0d68ba97b451db078934
+SHA256: 6d28477f7fa626b63bf139afd37bcfeb28fce6847b203fa10f37cb3615d0c35d
+SHA512: 0eca2c346b995d265df2659b4215ff96e515c29926c2a6256caad99db9c4c51fec1a2d899ca63a00010d4111060dc0fdd4f591be84c0a2c43b6303879de3c5de
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 25370458
+SHA1: 3c93c2e775366eec6e93cf670fc8677934cb4e48
+SHA256: 24f8ae73d56366453defb0654de624bd1c063921a1d7ac780e4da56bb8fbf7e4
+SHA512: 9754f11aa167df167d1b336e5c660aab1bd9e12421c093e0fe96e9a2da4ffb9859b7ea5263473bbc7b57ac8b5568cf7ac3116c0abdc647e1ff97a8d060ff7eae
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby是什么</h2>
+<p>Ruby 最初由 Matz （松本行弘，Yukihiro Matsumoto） 于 1993 年开发，现在以开源软件的形式开发。它可以在多个平台上运行，并在全球得到广泛使用，尤其是Web开发领域。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最新消息</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/zh_cn/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 已发布</a></li>
+        
+        <li><a href="/zh_cn/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 已发布</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

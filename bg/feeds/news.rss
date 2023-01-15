@@ -1,4 +1,599 @@
----
-layout: news_feed
-lang: bg
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Ruby новини</title>
+    <link>https://www.ruby-lang.org/bg/feeds/news.rss</link>
+    <language>bg</language>
+    <ttl>40</ttl>
+    <description>Последните новини от ruby-lang.org.</description>
+    
+    <item>
+      <title>Излезе Ruby 2.4.0-preview1</title>
+      <description>&lt;p&gt;Радваме се да обявим излизането на Ruby 2.4.0-preview1.&lt;/p&gt;
+&lt;p&gt;Това е първият предварителен преглед на Ruby 2.4.0.
+Излиза по-рано от обикновено, защото включва много новости и подобрения.
+Не се колебайте да
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;изпращате обратна връзка&lt;/a&gt;,
+тъй като все още имате възможност да повлияете на промените.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Обединяване на Fixnum и Bignum в Integer&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Въпреки, че &lt;a href=&quot;http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579&quot;&gt;ISO/IEC 30170:2012&lt;/a&gt;
+не уточнява детайли относно &lt;code&gt;Integer&lt;/code&gt;, CRuby има два &lt;code&gt;Integer&lt;/code&gt; класа - &lt;code&gt;Fixnum&lt;/code&gt; и &lt;code&gt;Bignum&lt;/code&gt;.
+Ruby 2.4. ги обединява в &lt;code&gt;Integer&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10085&quot;&gt;String поддръжка за Unicode case mappings&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;String/Symbol#upcase/downcase/swapcase/capitalize(!)&lt;/code&gt; сега поддържат Unicode
+mappings вместо само ASCII такива.&lt;/p&gt;
+&lt;h2&gt;Подобрения на производителността&lt;/h2&gt;
+&lt;p&gt;Ruby 2.4 съдържа следните промени, подобряващи производителността:&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12172&quot;&gt;Array#max, Array#min&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;[x, y].max&lt;/code&gt; и &lt;code&gt;[x, y].min&lt;/code&gt; са оптимизирани да не създават временен масив
+при определени условия.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8110&quot;&gt;Regexp#match?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Добавен е метода &lt;code&gt;Regexp#match?&lt;/code&gt;, който изпълнява regexp match без
+да създава back reference object и да сменя &lt;code&gt;$~&lt;/code&gt;, за да се редуцира
+броят на алокираните обекти.&lt;/p&gt;
+&lt;h3&gt;Други подобрения на производителността&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12274&quot;&gt;по-бърз достъп до instance променливи&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Дебъгване&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/6647&quot;&gt;Thread#report_on_exception и Thread.report_on_exception&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby игнорира exception-и в нишки освен ако не се join-не друга нишка.
+Чрез &lt;code&gt;report_on_exception = true&lt;/code&gt; може да се следи ако нишка умре поради
+необработен exception.&lt;/p&gt;
+&lt;p&gt;Споделете с нас каква според вас трябва да бъде стойността по подразбиране на
+&lt;code&gt;report_on_exception&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8214&quot;&gt;Показване на backtrace и зависимости при deadlock на нишки&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby засича deadlock-ове при чакащи нишки, но не показва достатъчно
+информация за дебъгване.
+Ruby 2.4 показва нишките заедно с техният backtrace, както и кои други нишки
+зависят от тях.&lt;/p&gt;
+&lt;p&gt;Приятно ползване на Ruby 2.4.0-preview1!
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;Свържете се с нас&lt;/a&gt;
+с вашите коментари и преложения.&lt;/p&gt;
+&lt;h2&gt;Важни промени от 2.3&lt;/h2&gt;
+&lt;p&gt;Вижте &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_preview1/NEWS&quot;&gt;Новини&lt;/a&gt;
+и &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_preview1/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt;
+за повече информация.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   14108114 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   7dcc42548d0724d83b6589ab98f34282845d7bcd&lt;/li&gt;
+&lt;li&gt;SHA256: 17570f0b84215ca82252f10c167ee50bc075383c018420c6b2601ae1cade0649&lt;/li&gt;
+&lt;li&gt;SHA512: c9873e8686eb54dbde61d6e23cd5197beebccd6cb31fd12c82763ebe1fde17095d7514d9d93c2c82b238032c98691df5479dc2d666a8a590e0fc54450ec29cb5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   17605452 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   1003a1e57547d81f4bb979c0f40f242afc284cd5&lt;/li&gt;
+&lt;li&gt;SHA256: 80d02f49f40e7ce07b70bee7efda751b0595a349a017306e9fe8caad5da13e64&lt;/li&gt;
+&lt;li&gt;SHA512: 4b603ab4ff9ea7e8bb8053aa4b638839d534241466d7f0e4d5bca3f2ea416694c2ea391790f1ffdc07fa538918d27707621741eb0ddc7bd00eb9d7628622787a&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   11155800 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   bc33085277266f5a09a143bf6817affcb77f8e7f&lt;/li&gt;
+&lt;li&gt;SHA256: 62942c7300727469fe3d2b43e5a5c772d4836cf624a1d644bdece2afaca472c8&lt;/li&gt;
+&lt;li&gt;SHA512: dfc2c6642d49fa95383817a6dc82c416b3218ddfdaf882d6d2e5a7da22d0a5ac142e516a57aa96214070f3c7551d275044233ac052c82d67189b01c39847aad4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   19904781 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   25c16ee91bbcb0224f80e20d938f5c08832973f7&lt;/li&gt;
+&lt;li&gt;SHA256: fd588aea1558b1171f87a3dd342ee207b8995a2c0a8241d7aa15bcfa16036854&lt;/li&gt;
+&lt;li&gt;SHA512: f2fff35ff9157a4b31177b3d6b91bdaad04c22b3c626c3a5e5ec9a31b103f9607b31c909ef27880065cfdbcfa5d6901a6db89d22e0c645666d069c5b6dd1818b&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;За повече информация и план за следващи версии:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24&quot;&gt;ReleaseEngineering24&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Публикувана от naruse на 2016-06-20&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Mon, 20 Jun 2016 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2016/06/20/ruby-2-4-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2016/06/20/ruby-2-4-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.3.1</title>
+      <description>&lt;p&gt;Излезе Ruby 2.3.1.&lt;/p&gt;
+&lt;p&gt;Това е първата TEENY версия от стабилната 2.3 серия.&lt;/p&gt;
+&lt;p&gt;Включени са много бъгфиксове. Вижте
+&lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_3_1/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt;
+за повече информация.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14432088 bytes
+SHA1:   4ee76c7c1b12d5c5b0245fc71595c5635d2217c9
+SHA256: 4a7c5f52f205203ea0328ca8e1963a7a88cf1f7f0e246f857d595b209eac0a4d
+SHA512: a8659b96a3a481a3dbdbb6997eb18ff1f8cd926a9707a90d071e937315c21d372c89252f0d44732ae5007d2678fda8c8fbceafa4e4b4ff500d236fb796284d8d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17797997 bytes
+SHA1:   c39b4001f7acb4e334cb60a0f4df72d434bef711
+SHA256: b87c738cb2032bf4920fef8e3864dc5cf8eae9d89d8d523ce0236945c5797dcd
+SHA512: 7399d59b54764e02760ed6cac525a43c5e7212aebbbff8a04234dc45adbc0cd9fe1ff9a9328eefd38f02d3b6c5b2e3ca843808784755ff4e66ded624f55c150a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11407048 bytes
+SHA1:   83499c14c674cf2d88e495031434a94c06330879
+SHA256: 6725b5534d5a3a21ec4f14d6d7b9921a0d00d08acb88fd04cd50b47b70496338
+SHA512: e9d89aeefb1b1e72cee9d3d414b27c793cf09ff3ed5e0ea5277a2b6ae1cae9fdbf6b404a84b42c0c6835754eb04674fc4f1470fbfedabeee3f57e518f13db633
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   19842037 bytes
+SHA1:   ab9dec602b11ee4cfc295d6aa87ebe712372d123
+SHA256: 4c8ae431b33f78d64cabb31911e0890e9a3ac380b4f22b11738f9baeeda51763
+SHA512: a26d3ab5983c6f3ea454e3e75554137305525479e4c15c0ae424689e870e2c5a9f0fe194975cf362cc5528ce601e31a0a15b87c7af200fd0d1da17459435b953
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;Благодарим на всички, помогнали при подготвянето на тази версия.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от nagachika на 2016-04-26&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Tue, 26 Apr 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2016/04/26/ruby-2-3-1-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2016/04/26/ruby-2-3-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.2.5</title>
+      <description>&lt;p&gt;Излезе Ruby 2.2.5.&lt;/p&gt;
+&lt;p&gt;Рилийзът съдържа много бъгфиксове. Виж
+&lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_2_5/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt;
+за повече информация.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   13350551 bytes
+SHA1:   f78473fe60a632b778599374ae64612592c2c9c1
+SHA256: 22f0c6f34c0024e0bcaaa8e6831b7c0041e1ef6120c781618b833bde29626700
+SHA512: d3224814361c297bc36646c2e40f63c461ccf5a77fea5a3acdcb2c7ad1705bb229ac6abbd7ad1ae61cbe0fefd7a008c6102568d11366ad3107179302cd3e734e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16654395 bytes
+SHA1:   457707459827bd527347a5cee7b4dc509b486713
+SHA256: 30c4b31697a4ca4ea0c8db8ad30cf45e6690a0f09687e5d483c933c03ca335e3
+SHA512: 3dd8688c64b8b143bdd6b0f123b7c2ecdd1b93c7c9ee51b2774a3b0b864897789932c7ad406293a6ab12c9eb9db9cfb2940fc14e2afc4f79718994f7668cbd5f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10457620 bytes
+SHA1:   58484284dd613e139e8f7023b1168e9034a8766d
+SHA256: f86feaa0a578e8da0924ced3ec68b25b50d69fc9a72cc8d919bc3c73f85f87d7
+SHA512: 6da4bdb0a43d56c7a8e4dddbcacf237e998ebb54706c8f835b53713dbdf924e40d5f89f63017515e1d66904ca01f28058cf296567104e06540c57f036dcdd0fe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   18493821 bytes
+SHA1:   e4f497e5b79768ae93dd73ac26da4ff5dd722bfe
+SHA256: d5094d7cc50266772a8352c68b7fcd865889fd174c09e2f11bb003696cd04bb3
+SHA512: b3789063252e361aa4598ecd9170fc360f0d5685497975ce09442fe5815c438b67b95fc67e56b99ab4044a49715ed1a8b1fb089f757c7c0d1a777536e06de8cf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;Благодарим на всички, помогнали при подготвянето на този рилийз.&lt;/p&gt;
+&lt;p&gt;От този рилийз maintainer-ът на Ruby 2.2 става usa, който ще замести
+nagichka-san.  Около две трети от промените в тази версия са направени от nagichka-san.
+Благодарим му за неговият огромен принос към проекта.&lt;/p&gt;
+&lt;p&gt;Поддръжката на Ruby 2.2, включително този рилийз, е базирана на
+&amp;quot;Agreement for the Ruby stable version&amp;quot; от &lt;a href=&quot;http://www.ruby.or.jp/&quot;&gt;Ruby Association&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от usa на 2016-04-26&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Tue, 26 Apr 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2016/04/26/ruby-2-2-5-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2016/04/26/ruby-2-2-5-released/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.1.10</title>
+      <description>&lt;p&gt;Излезе Ruby 2.1.10. Този рилийз не е предназначен за употреба в продукция, а за
+да се тества съвместимостта на версия с двуцифрено число.&lt;/p&gt;
+&lt;p&gt;Както бе обявено при &lt;a href=&quot;https://www.ruby-lang.org/bg/news/2016/03/30/ruby-2-1-9-released/&quot;&gt;излизането на Ruby 2.1.9&lt;/a&gt;,
+Ruby 2.1.10 не включва никакви промени от 2.1.9 освен смяната на номера (и
+малка промяна в тестовете). Моля тествайте приложенията и библиотеките си за
+съвместимост с двуцифрена версия.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12015299 bytes
+SHA1:   22dcd759d8cbb14c8735988fbc7ee5c35f9d4720
+SHA256: a74675578a9a801ac25eb7152bef3023432d6267f875b198eb9cd6944a5bf4f1
+SHA512: 4b7213695416876e4de3cbce912f61ac89db052c74f0daa8424477991cfc49b07300e960177ff576b634a97ee8afef3c5aded5d5806329dbd01d0ce7b42b9b63
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15165837 bytes
+SHA1:   2a5194b1fd42a3f1f23f1e0844ae78332a9efd5d
+SHA256: fb2e454d7a5e5a39eb54db0ec666f53eeb6edc593d1d2b970ae4d150b831dd20
+SHA512: 5f9c0cc3d10b4e04c63f001b4add782c34b9f260368f48b443b397cea57680d328f7c28cbb2a9be4c2f5acd114bac07dacb100d57018fa4d2a1792fc03083418
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9362868 bytes
+SHA1:   adcc9e10b8f7add0e19f8c70afc134c069a862ca
+SHA256: 5be9f8d5d29d252cd7f969ab7550e31bbb001feb4a83532301c0dd3b5006e148
+SHA512: 72406ac133af7f057d4633d2a300e49e133881f6b36ff4cdf6c72b4ff4325de332fc5a45c96ea407140a8bf09cdc307e13107c539196902e5b67b7d24cd72dc9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16706304 bytes
+SHA1:   402158192b7673cb4e7a67f48f6d93945bc9fd13
+SHA256: 21cf83156ec782d17827fb9c8a945626dfd68cf0d9eb5ca7a78b12eb91c6f1fb
+SHA512: 5490fc4726a1efaea8c7c541ca3102013b00a0af2903d15009307265c93b218bb13aab0007d279823c740a9b173d957ca79f2d8f25932f04763ec1aa18d164e8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;Благодарим на всички, помогнали при подготвянето на тази версия.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от usa на 2016-04-01&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Fri, 01 Apr 2016 02:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2016/04/01/ruby-2-1-10-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2016/04/01/ruby-2-1-10-released/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.1.9</title>
+      <description>&lt;p&gt;Излезе Ruby 2.1.9.&lt;/p&gt;
+&lt;p&gt;Рилийзът съдържа много бъгфиксове. Вижте
+&lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_1_9/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt;
+за повече информация.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ruby-lang.org/bg/news/2016/02/24/support-plan-of-ruby-2-0-0-and-2-1/&quot;&gt;Както бе обявено по-рано&lt;/a&gt;,
+това ще бъде последният нормален рилийз от серията 2.1 и
+след него ще бъдат backport-вани единствено поправки по сигурността.
+Препоръчваме да планирате ъпгрейд към Ruby 2.3 или 2.2.&lt;/p&gt;
+&lt;p&gt;След няколко дни ще излезе Ruby 2.1.10, който няма да включва никакви промени
+от 2.1.9. Това е удобна възможност да се тества версия с двуцифрен номер.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12016421 bytes
+SHA1:   39524185b580a3390a3b5019819c8b28d3249766
+SHA256: 4f21376aa11e09b499c3254bbd839e68e053c0d18e28d61c428a32347269036e
+SHA512: a86422132e4c64007a84a91696f4557bdcbc8716fbfe1962f1eef3754ee7f994f4de0b5b7e7231c25057515767040d5c4af33339750b6db15744662e9bd24f38
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15166126 bytes
+SHA1:   dd68afc652fe542f83a9a709a74f4da2662054bf
+SHA256: 034cb9c50676d2c09b3b6cf5c8003585acea05008d9a29fa737c54d52c1eb70c
+SHA512: 1e03aa720e932f019c4651c355e8ef35b87fdf69b054c9d39a319467d2a8e5bfe4995cbacd9add36b832c77761a47c9d1040f00e856ad5888d69ec7221455e35
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9395648 bytes
+SHA1:   5e89efa5189c3def8ee8de18ce750a7e4a20ac32
+SHA256: 39f203f7498aed2456fb500147fada5adcbf102d89d4f6aca773ebcadd8ea82a
+SHA512: 1f331a8910fd7a9ab9c41bf56aef12041dd413ad49c696f6df2c9a7ec3a3d5cdf383f2a3d30949ea37b8ecb39f50355e526412b36ed4e07b60733d9db4d2bd14
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16696728 bytes
+SHA1:   4aa288b65fbf12692ac53577adc561c9a0f6a6ca
+SHA256: 8610fdb1836d493c19600cfed4828083f85197096c0aea3f73fa1ed532cbb5a7
+SHA512: a212b6a58637f6bf4f456d7ecc7bbd8ceaa0c3f16cb844b872eb62eaf261b5874fdb79705241d05a356fcdc1d3fdd8a94fcd8e6ca62190e9f544c8f45a9f41af
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;Благодарим на всички, помогнали при подготвянето на тази версия.&lt;/p&gt;
+&lt;p&gt;Поддръжката на Ruby 2.1, включително този рилийз, е базирана на
+&amp;quot;Agreement for the Ruby stable version&amp;quot; от &lt;a href=&quot;http://www.ruby.or.jp/&quot;&gt;Ruby Association&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от usa на 2016-03-30&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Wed, 30 Mar 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2016/03/30/ruby-2-1-9-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2016/03/30/ruby-2-1-9-released/</link>
+    </item>
+    
+    <item>
+      <title>Планове за поддръжка на Ruby 2.0.0 и Ruby 2.1</title>
+      <description>&lt;p&gt;Тук може да намерите плановете за поддръжка на Ruby 2.0.0 и Ruby 2.1&lt;/p&gt;
+&lt;h2&gt;Ruby 2.0.0&lt;/h2&gt;
+&lt;p&gt;Както бе обявено преди, поддръжката на Ruby 2.0.0 се прекратява днес. Бъгове
+и фиксове по сигурността няма да бъдат backport-вани към 2.0.0, както няма
+да бъдат издавани и повече пачове.&lt;/p&gt;
+&lt;p&gt;Препоръчваме да преминете към Ruby 2.3 или 2.2 възможно най-скоро.&lt;/p&gt;
+&lt;p&gt;Моля свържете се с нас чрез ruby-core ML ако желаете да поддържате 2.0.0
+branch-a, в случай, че поради някаква причина не можете да преминете към
+нова версия.&lt;/p&gt;
+&lt;h2&gt;Ruby 2.1&lt;/h2&gt;
+&lt;p&gt;Планирано е Ruby 2.1.9 да излезе към краят на Март. След това ще приключи
+фазата за поддръжка на 2.1 и ще излизат единствено поправки по сигурността.
+Това означава, че след излизането на 2.1.9 няма да бъде backport-вано нищо
+освен security фиксове.&lt;/p&gt;
+&lt;p&gt;Препоръчваме да започнете с планирането на ъпгрейд към Ruby 2.3 или 2.2.&lt;/p&gt;
+&lt;p&gt;След Ruby 2.1.9 ще излезе и 2.1.10, който няма да включва никакви новости.
+Единствената му цел е да се тества версия, която има двуцифрен patch-level.&lt;/p&gt;
+&lt;p&gt;Ruby 2.1.10 няма да включва промени от 2.1.9 освен номера на версията. Не е
+нужно да го ползвате в продукция, но е добре да го тествате преди да излезе
+версия 2.1.11, която вероятно ще включва поправки по сигурността.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от usa на 2016-02-24&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Wed, 24 Feb 2016 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2016/02/24/support-plan-of-ruby-2-0-0-and-2-1/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2016/02/24/support-plan-of-ruby-2-0-0-and-2-1/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.3.0</title>
+      <description>&lt;p&gt;Радваме се да обявим излизането на Ruby 2.3.0.&lt;/p&gt;
+&lt;p&gt;Това е първият стабилен рилийз от Ruby 2.3 серията. Включени са много нови
+функционалности, например:&lt;/p&gt;
+&lt;p&gt;Добавянето на &lt;a href=&quot;https://bugs.ruby-lang.org/issues/11473&quot;&gt;Frozen String Literal&lt;/a&gt;. В Ruby 2.1 &lt;code&gt;&amp;quot;str&amp;quot;.freeze&lt;/code&gt;
+е оптимизирано да намали броят на алокациите. Ruby 2.3 въвежда
+нов 'магически' коментар и опция, чрез които може да се обявят всички
+'string literals' във входните файлове. При дебъгване може да се подава
+опцията &lt;code&gt;--debug=frozen-string-literal&lt;/code&gt;, която ще помогне при намирането
+на стрингове при получаване на &lt;code&gt;&amp;quot;can't modify frozen String&amp;quot;&lt;/code&gt; грешки.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11537&quot;&gt;Safe Navigation Operator&lt;/a&gt;,
+който позволява
+&lt;code&gt;obj &amp;amp;&amp;amp; obj.foo&lt;/code&gt; да бъде заместено от &lt;code&gt;obj&amp;amp;.foo&lt;/code&gt;. Подобни оператори
+вече съществуват в C#, Groovy и Swift. Добавени са също &lt;code&gt;Array#dig&lt;/code&gt;
+и &lt;code&gt;Hash#dig&lt;/code&gt;. Забележете, че &lt;code&gt;&amp;amp;.&lt;/code&gt; се държи като
+&lt;a href=&quot;http://api.rubyonrails.org/v4.2.5/classes/Object.html#method-i-try-21&quot;&gt;try! от Active Support&lt;/a&gt;,
+който специфично обработва само &lt;code&gt;nil&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11252&quot;&gt;did_you_mean gem&lt;/a&gt; e добавен
+към ruby-core. Библиотеката показва потенциални кандидати при &lt;code&gt;NameError&lt;/code&gt;
+и &lt;code&gt;NoMethodError&lt;/code&gt; за по-лесно дебъгване.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11788&quot;&gt;RubyVM::InstructionSequence#to_binary и .load_from_binary&lt;/a&gt;
+са добавени като експерименталнa функционалност. С тяхна помощ
+може да се създаде платформено-зависимо binary,
+което да използва по-малко памет и да зарежда по-бързо.&lt;/p&gt;
+&lt;p&gt;Ruby 2.3 включва много подобрения по производителността. Например,
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11569&quot;&gt;оптимизиран Proc#call&lt;/a&gt;,
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11278&quot;&gt;улеснено търсене на super-класове&lt;/a&gt;,
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11420&quot;&gt;добавяне на &lt;code&gt;st_table&lt;/code&gt; в
+интерпретатора&lt;/a&gt;,
+&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11170&quot;&gt;по-умна структура от данни за instance променливи&lt;/a&gt;,
+оптимизиране на алокирането на обекти и извикване на методи, както и много
+други.&lt;/p&gt;
+&lt;p&gt;За пълен списък с промени, моля вижте
+&lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_3_0/NEWS&quot;&gt;Новини&lt;/a&gt; и
+&lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_3_0/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Весели празници и приятно ползване на Ruby 2.3!&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14185617 bytes
+SHA1:   6c8a832d49d22755ea8c45b6d53faf2ccc6d6ac9
+SHA256: ec7579eaba2e4c402a089dbc86c98e5f1f62507880fd800b9b34ca30166bfa5e
+SHA512: 77b707359e754c3616699d21697752741497c719dc3d6fdfb55ed639e76d52560d293ae54cbe5c63be78dc73fbe60f1b8615d704d017bdfe1994aa9747d26a6c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17648682 bytes
+SHA1:   2dfcf7f33bda4078efca30ae28cb89cd0e36ddc4
+SHA256: ba5ba60e5f1aa21b4ef8e9bf35b9ddb57286cb546aac4b5a28c71f459467e507
+SHA512: 914d0201ecefaeb67aca0531146d2e89900833d8d2a597ec8a19be94529ab6b4be367f9b0cee2868b407288896cc14b64d96150223cac0aef8aafc46fc3dd7cc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11294412 bytes
+SHA1:   96e620e38af351c8da63e40cfe217ec79f912ba1
+SHA256: 70125af0cfd7048e813a5eecab3676249582bfb65cfd57b868c3595f966e4097
+SHA512: d893c5e6db5a0533e0da48d899c619964388852ef90e7d1b92a4363d5f189cd2dba32a009581f62b9f42a8e6027975fc3c18b64faf356f5e3ac43a8d69ec5327
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   19840511 bytes
+SHA1:   3f88617568d9a4f491e8b32dca532363f73eaa71
+SHA256: 8270bdcbc6b62a18fdf1b75bd28d5d6fc0fc26b9bd778d422393a1b98006020a
+SHA512: a3f397bb3c9c19d9b797552c5d60bb01c82db884cfa966df84881125bea35713cffd99f88fb86b271bae72d9cfb09ad9b33838cffcf6365c091459479914fdef
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Публикувана от naruse на 2015-12-25&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Fri, 25 Dec 2015 17:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2015/12/25/ruby-2-3-0-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2015/12/25/ruby-2-3-0-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2015-7551: Уязвимост във Fiddle и DL</title>
+      <description>&lt;p&gt;Същестува проблем с опасни стрингове във Fiddle и DL. На уязвимостта е назначен
+CVE идентификатор &lt;a href=&quot;http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-7551&quot;&gt;CVE-2015-7551&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Детайли&lt;/h2&gt;
+&lt;p&gt;Същестува уязвимост във Fiddle и DL, първоначално докладвана
+и поправена с &lt;a href=&quot;http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-5147&quot;&gt;CVE-2009-5147&lt;/a&gt;
+в DL, но появила се отново след като DL е реимплментиран чрез Fiddle и libffi.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-5147&quot;&gt;CVE-2009-5147&lt;/a&gt;
+е поправен в Ruby 1.9.1, но не и в другите branch-ове и затова всички версии
+на Ruby с вграден DL са уязвими.&lt;/p&gt;
+&lt;p&gt;Пример за уязвим код;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Или:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Всички потребители на уязвените версии трябва веднага да ъпдейтнат или да
+ползват workardound.&lt;/p&gt;
+&lt;h2&gt;Уязвими версии&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Всички рилийзи на Ruby 1.9.2 и Ruby 1.9.3 (DL и Fiddle).&lt;/li&gt;
+&lt;li&gt;Всички пачнати рилийзи на Ruby 2.0.0 преди 2.0.0-p648 (DL и Fiddle).&lt;/li&gt;
+&lt;li&gt;Всички версии на Ruby 2.1 преди 2.1.8 (DL и Fiddle).&lt;/li&gt;
+&lt;li&gt;Всички версии на Ruby 2.2 преди Ruby 2.2.4 (Fiddle).&lt;/li&gt;
+&lt;li&gt;Ruby 2.3.0 preview 1 и preview 2 (Fiddle).&lt;/li&gt;
+&lt;li&gt;преди trunk revision 53153 (Fiddle).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Workaround-и&lt;/h2&gt;
+&lt;p&gt;Ако не можете да ъпгрейднете Ruby, използвайте следният monkey patch:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;def&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;initialize&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;,&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;em&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;args&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;raise&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;SecurityError&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;if&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;tainted?&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&amp;amp;&amp;amp;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;$SAFE&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&amp;gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;0&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;old_initialize&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;file&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;,&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;args&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;end&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;alias&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;:sym&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;:[]&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;alias&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;:old_call&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;:[]&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;def&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;[]&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;fun&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;raise&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;SecurityError&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;if&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;fun&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;tainted?&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&amp;amp;&amp;amp;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;$SAFE&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;&amp;gt;&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;0&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;old_call&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt;fun&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;end&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;end&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Ако използвате DL, започнете да използвате Fiddle вместо него.&lt;/p&gt;
+&lt;h2&gt;Благодарности&lt;/h2&gt;
+&lt;p&gt;Благодарим на Christian Hofstaedtler &lt;a href=&quot;mailto:zeha@debian.org&quot;&gt;zeha@debian.org&lt;/a&gt; за докладване на
+проблема!&lt;/p&gt;
+&lt;h2&gt;История&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Първоначално публикувано на 2015-12-16 12:00:00 UTC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Публикувана от usa на 2015-12-16&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Wed, 16 Dec 2015 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.2.4</title>
+      <description>&lt;p&gt;Излезе Ruby 2.2.4.&lt;/p&gt;
+&lt;p&gt;Този рилийз включва поправка по сигурността за Fiddle.
+Посетете страницата по-долу за повече информация.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/bg/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/&quot;&gt;CVE-2015-7551: Уязвимост във Fiddle и DL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Включени са и много бъгфиксове.
+Вижте &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_2_4/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt; за повече информация.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   13336518 bytes
+SHA1:   6132840a859dbf2ac1498ba313021f299a870038
+SHA256: 31203696adbfdda6f2874a2de31f7c5a1f3bcb6628f4d1a241de21b158cd5c76
+SHA512: d27ca2f19c214ce87f906b57edd41f2f8af35b2871c191470facded9cfda15ba46e5c3bc7d5540225a38da6bd65050fcc8aaa4ffbadbb6bf7dc891c1821da0df
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16638151 bytes
+SHA1:   818e5e157f76d4912ba3a7c7b4fc5156105e83c3
+SHA256: b6eff568b48e0fda76e5a36333175df049b204e91217aa32a65153cc0cdcb761
+SHA512: 5f5d4a5b6bb55643a2c2e4df9ec81062f62d97b2aa0de5faf5b4251f7e585b65a0ff07b4edf23c0969525e36916a132362f8349b6ab441ced8a86d0337532832
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10464500 bytes
+SHA1:   9216cf34df7fd5ce8059a6403951d6d47964442a
+SHA256: d28bff4641e382681c58072ddc244d025ac47ff71dd9426a92fcfc3830d1773c
+SHA512: 755257eea0cb79f28f1d2dc6e2a5ee4b1954280f51153e5fe90605a875b1d52077660b87e4e04d11552591a1f60a1241e4c70056f073a217b3bad896f64780da
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   18472352 bytes
+SHA1:   b6de8559d6e56ad09a3f4b57ef2c01e8c0754d5a
+SHA256: 9b7f9e96ef84eef97f44bd5ab1fa70ece1668a52585a88ba6a3487579f12e6f4
+SHA512: 7a6678d3f9bc81eb7bb60de342820ed1bf44e834ee3e5ed6c713c8fa0a80c758c5a5260f17aa5ceae32e1f180187c9cb4e278e9fc6a7b8ad4386f9261426ad5b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;Благодарим на всички, помогнали при подготвянето на тази версия.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от nagachika на 2015-12-16&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Wed, 16 Dec 2015 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2015/12/16/ruby-2-2-4-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2015/12/16/ruby-2-2-4-released/</link>
+    </item>
+    
+    <item>
+      <title>Излезе Ruby 2.1.8</title>
+      <description>&lt;p&gt;Излезе Ruby 2.1.8.&lt;/p&gt;
+&lt;p&gt;Този рилийз включва поправка по сигурността за Fiddle и DL.
+Посетете страницата по-долу за повече информация.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ruby-lang.org/bg/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/&quot;&gt;CVE-2015-7551: Уязвимост във Fiddle и DL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Включени са и много бъгфиксове.
+Вижте &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_1_8/ChangeLog&quot;&gt;Списък с промени&lt;/a&gt;
+за повече информация.&lt;/p&gt;
+&lt;h2&gt;Сваляне&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12014426 bytes
+SHA1:   0284eaf42ac76a641abd5cd4b6bd933abeb9934e
+SHA256: 250d0b589cba97caddc86a28849365ad0d475539448cf76bbae93190985b3387
+SHA512: 7129c012bca7f0e7cfa51c73ba0898697f7a9f31abd5ae57d38be5b6b646fd80ab33be9b262cd3e2486c66f65aaf4ec6e881ae6e5a82ec9df62f00fa072510fc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15154017 bytes
+SHA1:   c7e50159357afd87b13dc5eaf4ac486a70011149
+SHA256: afd832b8d5ecb2e3e1477ec6a9408fdf9898ee73e4c5df17a2b2cb36bd1c355d
+SHA512: 155121ed00a1a56e40a74bafd93dcc34a0ea65c56589cf36daa8318368acc12cc88cb73aba548ef204c8d2ad917b0feccf90b5608a86d1aca1203feca2263386
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9382672 bytes
+SHA1:   e1f4e043006a762604c042e6aac7540854a92d8c
+SHA256: 94eeae3b3e3ac93cfd205e1aaef4c5325227b7656cbb2fc1ee217618145dd19d
+SHA512: c712ee69cb1d41ad8420177b9564e451ab795e4903f1edc20c14aa189b8e38c54c5119d913204d13a5f8fa424f2ec43bfad04c77b313ea4533e23a9b1d161392
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.8.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16686848 bytes
+SHA1:   b554328fb3d9f2a527adc5830de221b00e3ce2b9
+SHA256: 6e0491e029a6f4c40bc091033c5bc91f65438f3f9153f93f1b86889521e79cee
+SHA512: 2f9409460c8729fff96522baf5c4a74e1a648db1749a471ee3b6523d8c01e1faaf5f17afdffcaf355654f23e8c2ac392830109dd68dfc4e5a694d95155c593b6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Коментар&lt;/h2&gt;
+&lt;p&gt;Благодарим на всички, помогнали при подготвянето на тази версия.&lt;/p&gt;
+&lt;p&gt;Поддръжката на Ruby 2.1, включително и тази версия, е базиранa на
+'Споразумение за стабилни версии на Ruby' от &lt;a href=&quot;http://www.ruby.or.jp/&quot;&gt;Ruby асоциацията&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Публикувана от usa на 2015-12-16&lt;br /&gt;Превод от Georgi Mitrev&lt;/p&gt;</description>
+      <pubDate>Wed, 16 Dec 2015 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/bg/news/2015/12/16/ruby-2-1-8-released/</guid>
+      <link>https://www.ruby-lang.org/bg/news/2015/12/16/ruby-2-1-8-released/</link>
+    </item>
+    
+  </channel>
+</rss>

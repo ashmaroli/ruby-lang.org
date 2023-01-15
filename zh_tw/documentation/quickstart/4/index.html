@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>二十分鐘 Ruby 體驗</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/documentation/quickstart/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>我們來深入看看這個新程式。注意到由井號(#)開頭的第一行，在 Ruby
+裡，任何在井號之後的內容都是註解，會被直譯器忽略。除了檔案的第一行是個例外，在 Unix-like 作業系統下這告訴 Shell
+如何執行這個檔案。其餘的註解則用來說明程式。</p>
+<p>我們的 <code>say_hi</code> 方法也改變了：</p>
+<!-- raw HTML omitted -->
+<p>它現在會根據 <code>@names</code> 參數的不同而有不同的行為。如果是 nil，它會輸出三個點。沒必要對空氣打招呼，對吧?</p>
+<h2>循環、迴圈，迭代 (Iteration)</h2>
+<p>如果 <code>@names</code> 物件可以回應 <code>each</code> 方法，那表示你可以迭代它，好讓我們輪流對其中的元素打招呼。如果 <code>@names</code>
+什麼都不是，我們透過字串內嵌把它轉化成字串，用預設的打招呼方式。</p>
+<p>下面來看一看這是怎麼迭代的：</p>
+<!-- raw HTML omitted -->
+<p><code>each</code> 是一個可以接受程式區塊(a block of code)的方法，它會對 <code>@names</code> 裡的每個元素執行這個程式區塊，也就是從
+<code>do</code> 到 <code>end</code> 的程式碼。一個程式區塊就像是一個匿名方法，也像是 <code>lambda</code>。而在直線 <code>|</code> 符號之間的是這個程式區塊的參數。</p>
+<p>具體來說就是，程式區塊裡的 <code>name</code> 參數會被輪流指定為容器裡的每個元素，然後執行 <code>puts &quot;Hello #{name}!&quot;</code> 。</p>
+<p>大多數的程式語言會用 <code>for</code> 迴圈來做這件事情，例如在 C 裡面：</p>
+<!-- raw HTML omitted -->
+<p>這樣也行，只是沒這麼漂亮。你需要一個用過即丟的 <code>i</code> 變數、需要計算容器的長度、檢查離開迴圈的條件。而 Ruby
+的方式漂亮多了，所有的工作都被包裝在 <code>each</code> 方法裡。在 <code>each</code> 內部會去輪流呼叫 <code>yield &quot;Albert&quot;</code>、<code>yield &quot;Brenda&quot;</code>、<code>yield &quot;Charles&quot;</code> 等等。(譯註：yield 的意思是”轉交”，也就是跳去執行程式區塊)</p>
+<h2>讓 Ruby 發光發亮的程式區塊(Blocks)</h2>
+<p>程式區塊真正厲害的地方是，它可以處理比迭代更複雜的任務。你可以用來設定(setup)、卸載(teardown)和錯誤處理，這些都可以隱藏起來讓方法使用者無需擔心。</p>
+<!-- raw HTML omitted -->
+<p><code>say_bye</code> 方法沒有用到 <code>each</code>，而是檢查 <code>@names</code>@ 是不是可以回應 <code>join</code>
+方法。如果可以，就呼叫它。不然它就把它當做字串輸出。這個方法並不在乎變數真正的
+<em>型別(type)</em>，而只關心變數是不是可以回應支援某個方法，這種風格叫做 “鴨子型別(Duck Typing)”，意義就是
+“如果它走起來像鴨子，叫起來也像鴨子，那就當它是鴨子”。這種思維的好處是它不會被變數的型別所限制。如果有人寫了新的容器類別，並且也實作了
+<code>join</code> 這個方法，那麼我們就可以在這裡使用它。</p>
+<h2>讓腳本跑起來</h2>
+<p>這就是 MegaGreeter 類別了。剩下的部份是就是使用這個類別而已。唯一要注意的技巧是以下這行：</p>
+<!-- raw HTML omitted -->
+<p><code>__FILE__</code> 是一個預先定義好的變數，內容是目前這個檔案的名稱。而 <code>$0</code> 是執行這隻程式的執行檔名稱。這個檢查是說
+“如果這個檔案就是執行程式的檔案....”。這可以允許將這個檔案當做方法庫使用。也就是說，這個檔案如果當做方法庫使用時，不會執行這段程式。如果當做執行檔執行，就會執行這段程式。</p>
+<h2>就這樣啦</h2>
+<p>這就是二十分鐘的 Ruby 入門體驗了。還有許多值得探索的地方，例如不同的控制結構、如何使用程式區塊及
+<code>yield</code>、模組(modules)的第二個用途 mixin 等等。希望這份體驗教學讓你有興趣繼續學習。</p>
+<p>如果你希望進一步了解，歡迎前往我們的 <a href="/zh_tw/documentation/">文件</a>，那裡提供了一些免費的線上文件和導覽。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>上手入門</strong>，一點都不難!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在瀏覽器中試用 Ruby!</a></li>
+
+    
+    <li><a href="/zh_tw/documentation/quickstart/">20 分鐘 Ruby 體驗</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/ruby-from-other-languages/">從其他語言到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong> 新世界…</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_tw/documentation/">文件</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">學術研究</a></li>
+    
+
+    
+    <li><a href="/zh_tw/libraries/">函式庫</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong> 友善且持續成長的社群</h3>
+  <ul>
+    
+    <li><a href="/zh_tw/community/mailing-lists/">郵件論壇</a>: 與世界各地的程式設計師一同聊聊</li>
+    
+
+    
+    <li><a href="/zh_tw/community/user-groups/">使用者群組</a>: 與身旁的 Ruby 使用者接觸</li>
+    
+
+    
+    <li><a href="/zh_tw/community/weblogs/">部落格</a>: 了解 Ruby 社群中的最新消息</li>
+    
+
+    
+    <li><a href="/zh_tw/community/ruby-core/">Ruby 核心</a>: 幫助開發最新的 Ruby</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">問題追蹤</a>: 回報或解決 Ruby 問題</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

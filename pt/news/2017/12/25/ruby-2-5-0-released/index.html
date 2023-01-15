@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Lançado Ruby 2.5.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pt/news/2017/12/25/ruby-2-5-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pt/feeds/news.rss" rel="alternate" title="Em português" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pt/">
+          <h1>Ruby</h1>
+          <h2>O melhor amigo do programador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Procurar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Lançado Ruby 2.5.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Escrito por naruse em 25/12/2017<br>
+                         Traduzido por jcserracampos</p>
+
+    <p>Temos o prazer de anunciar o lançamento de Ruby 2.5.0.</p>
+<p>Ruby 2.5.0 é a primeira versão estável da série Ruby 2.5.
+Esta versão introduz muitas novas funcionalidades e melhorias de performance.
+As mudanças notáveis são as seguintes:</p>
+<h2>Novas funcionalidades</h2>
+<ul>
+<li><code>rescue</code>/<code>else</code>/<code>ensure</code> passam a ser permitidos diretamente em
+blocos <code>do</code>/<code>end</code>.
+<a href="https://bugs.ruby-lang.org/issues/12906">[Funcionalidade #12906]</a></li>
+<li>Adiciona <code>yield_self</code> em um bloco yield no seu contexto.
+Ao contrário de <code>tap</code>, retorna o resultado do bloco.
+<a href="https://bugs.ruby-lang.org/issues/6721">[Funcionalidade #6721]</a></li>
+<li>Adiciona suporte a mensuração de cobertura de ramificação e cobertura de método.
+A cobertura de ramificação indica quais ramificações (<em>branches</em>) são executadas e quais não.
+A cobertura de método indica quais métodos são invocados e quais não.
+Ao executar uma suíte de testes com essas novas funcionalidades, você saberá quais
+ramificações e métodos são executados e mensurará a cobertura total da suíte de
+testes mais estritamente.
+<a href="https://bugs.ruby-lang.org/issues/13901">[Funcionalidade #13901]</a></li>
+<li>Hash#slice <a href="https://bugs.ruby-lang.org/issues/8499">[Funcionalidade #8499]</a>
+e Hash#transform_keys <a href="https://bugs.ruby-lang.org/issues/13583">[Funcionalidade #13583]</a></li>
+<li>Struct.new pode criar classes que aceitam <em>keywords</em> como argumento.
+<a href="https://bugs.ruby-lang.org/issues/11925">[Funcionalidade #11925]</a></li>
+<li>Enumerable#any?, all?, none? e one? passam a aceitar um <em>pattern</em> como argumento.
+<a href="https://bugs.ruby-lang.org/issues/11286">[Funcionalidade #11286]</a></li>
+<li>Pesquisa de constante de alto nível foi removida.
+<a href="https://bugs.ruby-lang.org/issues/11547">[Funcionalidade #11547]</a></li>
+<li>Uma das mais amadas bibliotecas, pp.rb, agora é automaticamente carregada.
+Você não precisa mais escrever <code>require &quot;pp&quot;</code>.
+<a href="https://bugs.ruby-lang.org/issues/14123">[Funcionalidade #14123]</a></li>
+<li>Imprime <em>backtrace</em> e mensagens de erro em ordem reversa (primeiro as chamadas mais antigas,
+chamadas mais recentes por último). Quando um <em>backtrace</em> grande aparece no seu terminal (TTY),
+você pode facilmente achar a linha causadora no final do seu <em>backtrace</em>.
+Perceba que a ordem só é reversa quando o <em>backtrace</em> é imprimido
+diretamente no terminal.
+<a href="https://bugs.ruby-lang.org/issues/8661">[Funcionalidade #8661]</a> [experimental]</li>
+</ul>
+<h2>Melhorias de performance</h2>
+<ul>
+<li>Cerca de 5-10% de melhoria de performance ao remover todas as instruções <code>trace</code>
+do <em>bytecode</em> geral (sequências de instrução).
+A instrução <code>trace</code> foi adicionada para suportar o <code>TracePoint</code>.
+Entretanto, na maioria dos casos, <code>TracePoint</code> não é utilizado e instruções <code>trace</code>
+são  sobrecargas puras. Ao invés, nós usamos uma técnica de instrumentação dinâmica.
+Veja <a href="https://bugs.ruby-lang.org/issues/14104">[Funcionalidade #14104]</a> para mais detalhes.</li>
+<li>Passagem de bloco por um parâmetro de bloco (por exemplo <code>def foo(&amp;b); bar(&amp;b); end</code>)
+está cerca de 3 vezes mais rápida do que no Ruby 2.4 por causa da técnica &quot;<em>Lazy Proc allocation</em>&quot;.
+<a href="https://bugs.ruby-lang.org/issues/14045">[Funcionalidade #14045]</a></li>
+<li>Mutex está reescrito para ser menor e mais rápido.
+<a href="https://bugs.ruby-lang.org/issues/13517">[Funcionalidade #13517]</a></li>
+<li>ERB agora gera código a partir de um template duas vezes mais rápido do que no Ruby 2.4.</li>
+<li>Melhora a performance de alguns métodos internos como <code>Array#concat</code>,
+<code>Enumerable#sort_by</code>, <code>String#concat</code>, <code>String#index</code>, <code>Time#+</code> e mais.</li>
+<li>IO.copy_stream usa copy_file_range(2) para copiar usando offloading.
+<a href="https://bugs.ruby-lang.org/issues/13867">[Funcionalidade #13867]</a></li>
+</ul>
+<h2>Outras mudanças notáveis desde 2.4</h2>
+<ul>
+<li>SecureRandom agora prefere fontes fornecidas pelo sistema operacional ao invés de OpenSSL.
+<a href="https://bugs.ruby-lang.org/issues/9569">[Bug #9569]</a></li>
+<li>Promove cmath, csv, date, dbm, etc, fcntl, fiddle, fileutils, gdbm, ipaddr,
+scanf, sdbm, stringio, strscan, webrick, zlib de bibliotecas padrões
+para gems padrões.</li>
+<li>Atualiza para <a href="https://github.com/k-takata/Onigmo/">Onigmo</a> 6.1.3.
+<ul>
+<li>Adiciona <a href="https://github.com/k-takata/Onigmo/issues/87">operador ausente</a>.</li>
+<li>Note que <a href="https://www.ruby-lang.org/en/news/2017/03/22/ruby-2-4-1-released/">Ruby 2.4.1</a> também inclui esta mudança.</li>
+</ul>
+</li>
+<li>Atualiza para Psych 3.0.2.</li>
+<li>Atualiza para RubyGems 2.7.3.</li>
+<li>Atualiza para RDoc 6.0.1.
+<ul>
+<li><a href="https://github.com/ruby/rdoc/pull/512">Altera o <em>lexer</em> de um baseado em IRB para Ripper</a>.
+Isto melhora consideravelmente a velocidade de geração de documentação.</li>
+<li>Corrige uma quantidade significativa de bugs que existiam há 10 anos.</li>
+<li>Adiciona suporte para a nova sintaxe de Ruby desde as últimas mudanças.</li>
+</ul>
+</li>
+<li>Atualiza a versão suportads de Unicode para 10.0.0.</li>
+<li><code>Thread.report_on_exception</code> agora é definido como <code>true</code> por padrão.
+Esta alteração ajuda a debugar programas multithreads.
+<a href="https://bugs.ruby-lang.org/issues/14143">[Funcionalidade #14143]</a></li>
+<li>IO#write agora recebe múltiplos argumentos.
+<a href="https://bugs.ruby-lang.org/issues/9323">[Funcionalidade #9323]</a></li>
+</ul>
+<p>Veja as <a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">novidades</a>
+ou <a href="https://github.com/ruby/ruby/compare/v2_4_0...v2_5_0">histórico de commits</a>
+para detalhes.</p>
+<p>Com essas mudanças,
+<a href="https://github.com/ruby/ruby/compare/v2_4_0...v2_5_0">6158 arquivos alterados, 348484 inserções(+), 82747 remoções(-)</a>
+desde Ruby 2.4.0!</p>
+<p>Feliz natal, feliz ano novo e divirta-se programando com Ruby 2.5!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15834941 bytes
+SHA1:   58f77301c891c1c4a08f301861c26b1ea46509f6
+SHA256: 46e6f3630f1888eb653b15fa811d77b5b1df6fd7a3af436b343cfe4f4503f2ab
+SHA512: 0712fe68611f5d0cd6dd54b814f825478e64b6a62bdf67bce431f4dca2dc00b1a33f77bebfbcd0a151118a1152554ab457decde435b424aa1f004bc0aa40580d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.zip">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19495617 bytes
+SHA1:   700b6f55d689a5c8051c8c292b9e77a1b50bf96e
+SHA256: 94559ea6e3c619423da604e503ce1dc1c465d6e0747a07fbdc5f294acaf14c24
+SHA512: e4324064cee8c65b80192e3eff287e915d2d40464d300744c36fb326ae4b1846911400a99d4332192d8a217009d3a5209b43eb5e8bc0b739035bef89cc493e84
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13955820 bytes
+SHA1:   827b9a3bcffa86d1fc9ed96d403cb9dc37731688
+SHA256: d87eb3021f71d4f62e5a5329628ac9a6665902173296e551667edd94362325cc
+SHA512: 8f6fdf6708e7470f55bc009db2567cd8d4e633ad0678d83a015441ecf5b5d88bd7da8fb8533a42157ff83b74d00b6dc617d39bbb17fc2c6c12287a1d8eaa0f2c
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11292472 bytes
+SHA1:   9c7babcf9e299be3f197d9091024ae458f1a1273
+SHA256: 1da0afed833a0dab94075221a615c14487b05d0c407f991c8080d576d985b49b
+SHA512: 55714a33d7661fe8b432f73c34fd67b49699f8b79df1cbd680a74899124d31111ab0f444677672aac1ba725820182940d485efb2db0bf2bc96737c5d40c54578
+</code></pre></div></div>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Notícias Recentes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/pt/news/2020/10/02/ruby-2-7-2-released/">Lançado Ruby 2.7.2</a></li>
+        
+        <li><a href="/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Potencial Vulnerabilidade de Smuggling de Requisições HTTP no WEBrick</a></li>
+        
+        <li><a href="/pt/news/2020/09/25/ruby-3-0-0-preview1-released/">Lançado Ruby 3.0.0 Preview 1</a></li>
+        
+        <li><a href="/pt/news/2019/10/16/fukuoka-ruby-award-2020/">Competição 2020 Fukuoka Ruby Award - Submissões serão julgadas por Matz</a></li>
+        
+        <li><a href="/pt/news/2019/10/02/ruby-2-4-9-released/">Lançado Ruby 2.4.9</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de notícias (RSS)</h3>
+    <p><a href="/pt/feeds/news.rss">Em português</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Este site em outros idiomas:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pt/about/website/">Este website</a> é mantido com orgulho por membros da comunidade Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

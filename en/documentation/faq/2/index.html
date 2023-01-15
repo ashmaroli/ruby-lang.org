@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Official Ruby FAQ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/faq/2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p><em>If you wish to report errors or suggest improvements for this FAQ,
+please go to our
+<a href="https://github.com/ruby/www.ruby-lang.org/">GitHub repository</a>
+and open an issue or pull request.</em></p>
+<h2>How does Ruby stack up against...?</h2>
+<h3>How does Ruby compare with Python?</h3>
+<p>Python and Ruby are both object oriented languages that provide a smooth
+transition from procedural to OO programming styles. Smalltalk, by contrast,
+is object only---you can't do anything until you understand objects,
+inheritance and the sizable Smalltalk class hierarchy. By providing procedural
+training wheels, Python and Ruby “fix” one of the features that may have
+kept Smalltalk out of the mainstream. The two languages differ by approaching
+this solution from opposite directions.</p>
+<p>Python is a hybrid language. It has functions for procedural programming and
+objects for OO programming. Python bridges the two worlds by allowing
+functions and methods to interconvert using the explicit <code>self</code> parameter
+of every method def. When a function is inserted into an object, the first
+argument automagically becomes a reference to the receiver.</p>
+<p>Ruby is a pure OO language that can masquerade as a procedural one. It has no
+functions, only method calls. In a Ruby method the receiver, also called
+<code>self</code>, is a hidden argument like <code>this</code> in C++. A <code>def</code> statement outside of
+a class definition, which is a function in Python, is actually a method call
+in Ruby. These ersatz functions become private methods of class Object, the
+root of the Ruby class hierarchy. Procedural programming is neatly solved from
+the other direction---everything is an object. If the user doesn't grok
+objects yet, they can just pretend that <code>def</code> is a function definition and
+still get useful work done.</p>
+<p>Ruby's OO purity provides a number of features that Python lacks or is still
+working toward: a unified type/class hierarchy, metaclasses, the ability to
+subclass everything, and uniform method invocation (none of this <code>len()</code> is a
+function but <code>items()</code> is a method rubbish). Ruby, like Smalltalk, only
+supports single inheritance, but it does have a very powerful mixin concept:
+a class definition may include a module, which inserts that module's methods,
+constants, etc. into the class.</p>
+<p>Ruby, again like Smalltalk, provides closures and code blocks and uses them
+to the same good effect. The Ruby collection classes and iterators are
+outstanding, much more powerful and elegant than the ad hoc solutions that
+Python is sprouting (lambdas and list comprehensions).</p>
+<p>Ruby's syntax and design philosophy are heavily influenced by Perl. It has a
+lot of syntactic variability. Statement modifiers (<code>if</code>, <code>unless</code>, <code>while</code>,
+<code>until</code>, etc.) may appear at the end of any statement. Some key words are
+optional (the <code>then</code> in an <code>if</code> statement for example). Parentheses may
+sometimes be elided in method calls. The receiver of a method may usually be
+elided.
+Many, many things are lifted directly from Perl.
+Built in regular expressions, <code>$_</code> and friends, here documents, the
+single-quoted / double-quoted string distinction, <code>$</code> and <code>@</code> prefixes to
+distinguish different kinds of names and so forth.</p>
+<p>If you like Perl, you will like Ruby and be right at home with its syntax.
+If you like Smalltalk, you will like Ruby and be right at home with its
+semantics. If you like Python, you may or may not be put off by the huge
+difference in design philosophy between Python and Ruby/Perl.</p>
+<p>Ruby is much more complex than Python but its features, for the most part,
+hang together well. Ruby is well designed and full of neat ideas that might be
+mined for P3K. I'm not sure how many Python programmers will be attracted to
+it though---it hasn't won me over (yet). But it is worthy of serious study and
+could be a real threat to Perl.</p>
+<p>Posted by <a href="mailto:jbd@alum.mit.edu">John Dell'Aquila</a> in comp.lang.python,
+11/17/2000. Reproduced with permission.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

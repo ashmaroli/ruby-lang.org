@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 1.9.3 p0 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2011/10/31/ruby-1-9-3-p0-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 1.9.3 p0 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by Shota Fukumori on 31 Oct 2011</p>
+
+    <p>Ruby 1.9.3 の最初の正式版である ruby-1.9.3-p0 がリリースされました。これはRuby 1.9系統の最新版です。</p>
+<h2>所在</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.bz2&gt;</a></p>
+<ul>
+<li>SIZE: 9554576 bytes</li>
+<li>MD5: 65401fb3194cdccd6c1175ab29b8fdb8</li>
+<li>SHA256: ca8ba4e564fc5f98b210a5784e43dfffef9471222849e46f8e848b37e9f38acf</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.tar.gz&gt;</a></p>
+<ul>
+<li>SIZE: 12223217 bytes</li>
+<li>MD5: 8e2fef56185cfbaf29d0c8329fc77c05</li>
+<li>SHA256: 3b910042e3561f4296fd95d96bf30322e53eecf083992e5042a7680698cfa34e</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p0.zip&gt;</a></p>
+<ul>
+<li>SIZE: 13691314 bytes</li>
+<li>MD5: 437ac529a7872c8dcc956eab8e7e6f76</li>
+<li>SHA256: 1be16d0172e9cf9e5078a7bee2465a9f3af431920e1e3d9417a4fc2ee074bca4</li>
+</ul>
+</li>
+</ul>
+<h2>1.9.2からの変更点</h2>
+<h3>ライセンス</h3>
+<p>ライセンスが変更されました。</p>
+<ul>
+<li>RubyはGPLv2と&quot;Ruby's&quot;ライセンスでリリースされてきました。Ruby 1.9.3は<a href="http://en.wikipedia.org/wiki/BSD_licenses#2-clause_license_.28.22Simplified_BSD_License.22_or_.22FreeBSD_License.22.29">2-clause
+BSDL</a>と<a href="https://www.ruby-lang.org/en/about/license.txt">Ruby'sライセンス</a>でリリースされます。</li>
+</ul>
+<h3>エンコーディング</h3>
+<ul>
+<li>Ruby 1.9.[0-2]ではSJISはShift_JISのaliasでしたが、Windows-31Jのaliasになりました。</li>
+<li>UTF-16、UTF-32、CP950、CP951という新しいエンコーディングが追加されました。</li>
+<li>RegexpsはUnicode 6.0の新しい文字とスクリプトをサポートするようになりました。</li>
+</ul>
+<h3>組み込みクラス</h3>
+<ul>
+<li>ARGFにARGF.printやARGF.read_nonblockなどの新しいメソッドが追加されました。</li>
+<li>Array#pack、String#unpackにエンディアンを明示的に指定する修飾子が追加されました。</li>
+<li>Bignumで、大きな桁（内部表現で150桁以上）の整数の掛け算がToom-3アルゴリズムを使うようになり、高速化しました。</li>
+<li>File::NULLとFile::DIRECTという定数が追加されました。</li>
+<li>IO#putcがマルチバイト文字に対応しました。</li>
+<li>IO#advise、IO.write、IO.binwriteメソッドが追加されました。</li>
+<li>#__id__はBasicObjectのメソッドになりました。</li>
+<li>Kernel#randの引数としてRangeオブジェクトがサポートされました。</li>
+<li>Module#private_constant、Module#public_constantメソッドが追加されました。</li>
+<li>Random.randの引数に範囲を指定できるようになりました。</li>
+<li>String#prepend、String#bytesliceが追加されました。</li>
+<li>Time#strftimeが%:zと%::z.をサポートしました。</li>
+<li>Process#maxgroups と Process#maxgroups=
+は、補助グループを採用していない環境ではNotImplementedErrorがあがるようになりました。</li>
+</ul>
+<h3>標準添付ライブラリ</h3>
+<ul>
+<li>io/console: 新しいライブラリです。</li>
+<li>openssl: 活発なメンテナを得たお陰で特段に改善してきています。</li>
+<li>test/unit: テストの並列実行をサポートします。</li>
+</ul>
+<h3>実装</h3>
+<ul>
+<li>pathnameライブラリとdateライブラリはCで再実装されました。これによりパフォーマンスが向上します。</li>
+<li>VMのロック戦略が変わりました。</li>
+</ul>
+<h3>バグ修正以外の互換性の問題</h3>
+<ul>
+<li>Rational#to_dの挙動が変わりました。精度として0または負の数を与えるとエラーになるようになりました。</li>
+</ul>
+<p>詳しくは<a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_3_0/NEWS">NEWS</a>や<a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_3_0/ChangeLog">ChangeLog</a>をご覧ください。</p>
+<p>また、日本語で書かれた紹介資料としては、<a href="http://www.slideshare.net/mrkn/ruby-193">&lt;URL:http://www.slideshare.net/mrkn/ruby-193&gt;</a>などもどうぞ。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.2.0 Preview 1 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2022/04/03/ruby-3-2-0-preview1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.2.0 Preview 1 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 3 Apr 2022</p>
+
+    <p>Ruby 3.2系最初のプレビューリリースである、Ruby 3.2.0 Preview 1 が公開されました。Ruby 3.2では多くの機能を追加しています。</p>
+<h2>WASIベースのWebAssemblyサポート</h2>
+<p>WASIベースのWebAssemblyへのコンパイルがサポートされました。これにより、ブラウザやサーバーレスエッジ環境、その他のWebAssembly/WASI環境でCRubyのバイナリが利用できるようになります。現在この移植版はThread API以外のbasic testとbootstrap testをパスしています。</p>
+<p><img src="https://i.imgur.com/opCgKy2.png" alt="" /></p>
+<h3>Background</h3>
+<p>もともと<a href="https://webassembly.org/">WebAssembly (Wasm)</a>が導入されたのは、プログラムをブラウザの上で安全かつ高速に実行するためでした。しかし、様々な環境で安全かつ効率的にプログラムを実行するという目的は、Webだけでなく一般的なアプリケーションで長らく求められていたものです</p>
+<p><a href="https://wasi.dev/">WASI (The WebAssembly System Interface)</a>はそのようなユースケースのために設計されました。そのようなアプリケーションはOSと通信する必要がありますが、WebAssembly自体はシステムインターフェイスを持たないVMの上で実行されます。WASIはこのシステムインターフェイスを規格化します。</p>
+<p>RubyのWebAssembly/WASIサポートは、このようなプロジェクトを活用することを狙っています。これにより、Ruby開発者がそのような有望なプラットフォームで動くアプリケーションを書けるようになります。</p>
+<h3>ユースケース</h3>
+<p>このサポートは、開発者がCRubyをWebAssembly環境で利用することを促進します。たとえば、<a href="https://try.ruby-lang.org/playground/">TryRuby playground</a>のCRubyサポートです。CRubyをウェブブラウザの上で試すことができるようになりました。</p>
+<h3>技術的な話</h3>
+<p>現時点のWASIとWebAssemblyには、Fiberや例外やGCを実装するための機能に一部足りないものがあります。CRubyではこのギャップを埋めるために、ユーザランドで実行を制御できるAsyncifyというバイナリ変換技術を使っています。</p>
+<p>さらに、<a href="https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby">WASIの上にVFS</a>を実装しました。これにより、Rubyアプリを単一の.wasmファイルに容易にパッケージ化できます。Rubyアプリの配布が少しかんたんになります。</p>
+<h3>参考文献</h3>
+<ul>
+<li><a href="https://github.com/ruby/ruby/pull/5407">Add WASI based WebAssembly support #5407</a></li>
+<li><a href="https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9">An Update on WebAssembly/WASI Support in Ruby</a></li>
+</ul>
+<h2>Regexp timeout</h2>
+<p>正規表現マッチングにタイムアウトを指定できるようになりました。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="sr">/^a*b?a*$/</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1">#=&gt; 1秒後にRegexp::TimeoutError</span>
+</code></pre></div></div>
+<p>正規表現マッチングは予想外に時間がかかることがあることが知られています。もし信頼できない入力に対して非効率な可能性のある正規表現をマッチしていると、Denial of Service攻撃を効率的にできてしまう可能性があります（正規表現DoS、ReDoSなどと言われます）。</p>
+<p>あなたのRubyアプリケーションの要件に基づいて適切に<code>Regexp.timeout</code>を設定することで、DoSのリスクを防止、または大幅に緩和できます。ぜひあなたのアプリケーションで試してみてください。フィードバックを歓迎します。</p>
+<p>なお、Regexp.timeoutはグローバルな設定です。もし一部の特別な正規表現にだけ異なるタイムアウトを設定したい場合は、<code>Regexp.new</code>の<code>timeout</code>キーワードを指定してください。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="n">long_time_re</span> <span class="o">=</span> <span class="no">Regexp</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"^a*b?a*$"</span><span class="p">,</span> <span class="ss">timeout: </span><span class="kp">nil</span><span class="p">)</span> <span class="c1"># タイムアウトなし</span>
+
+<span class="n">long_time_re</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1"># 割り込まれない</span>
+</code></pre></div></div>
+<p>機能提案のチケット：https://bugs.ruby-lang.org/issues/17837</p>
+<h2>その他の主要な新機能</h2>
+<h3>言語機能</h3>
+<ul>
+<li>Find patternが実験的機能ではなくなりました。</li>
+</ul>
+<h3>非互換な変更</h3>
+<ul>
+<li>
+<p><code>libyaml</code> や <code>libffi</code> のような 3rd パーティのライブラリのソースコードの同梱を廃止しました</p>
+<ul>
+<li>
+<p>Psych に同梱していた <code>libyaml</code> のソースコードは削除されました。ユーザーは自身で Ubuntu や Debian プラットフォームなら <code>libyaml-dev</code> パッケージをインストールする必要があります。このパッケージ名称はプラットフォームごとに異なります。</p>
+</li>
+<li>
+<p>Fiddle に同梱していた <code>libffi</code> のソースコードは preview2 で削除する予定です。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>パフォーマンスの改善</h2>
+<h2>その他の注目すべき 3.1 からの変更点</h2>
+<h2>標準添付ライブラリのアップデート</h2>
+<ul>
+<li>
+<p>以下の default gems のバージョンがアップデートされました。</p>
+<ul>
+<li>TBD</li>
+</ul>
+</li>
+<li>
+<p>以下の bundled gems のバージョンがアップデートされました。</p>
+<ul>
+<li>TBD</li>
+</ul>
+</li>
+<li>
+<p>以下のライブラリが新たに bundled gems になりました。Bundler から利用する場合は Gemfile に明示的に指定してください。</p>
+<ul>
+<li>TBD</li>
+</ul>
+</li>
+</ul>
+<p>その他詳細については、<a href="https://github.com/ruby/ruby/blob/v3_2_0_preview1/NEWS.md">NEWS</a> ファイルまたは<a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview1">コミットログ</a>を参照してください。</p>
+<p>なお、こうした変更により、Ruby 3.1.0 以降では <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview1#file_bucket">1058 個のファイルに変更が加えられ、34946 行の追加と 29962 行の削除が行われました</a> !</p>
+<h2>ダウンロード</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20728782
+SHA1: 7c4197e67f230b0c5d011f4efb9b9158743a61c8
+SHA256: 6946b966c561d5dfc2a662b88e8211be30bfffc7bb2f37ce3cc62d6c46a0b818
+SHA512: d24e77161996c2085f613a86d1ed5ef5c5bf0e18eb459f6a93a0014a5d2ce41079283b4283d24cb96448a0986c8c6c52a04584abd4e73911ea59cefeb786836e
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 15011400
+SHA1: 6bcc30ac670ab391997e0d68ba97b451db078934
+SHA256: 6d28477f7fa626b63bf139afd37bcfeb28fce6847b203fa10f37cb3615d0c35d
+SHA512: 0eca2c346b995d265df2659b4215ff96e515c29926c2a6256caad99db9c4c51fec1a2d899ca63a00010d4111060dc0fdd4f591be84c0a2c43b6303879de3c5de
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.zip">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 25370458
+SHA1: 3c93c2e775366eec6e93cf670fc8677934cb4e48
+SHA256: 24f8ae73d56366453defb0654de624bd1c063921a1d7ac780e4da56bb8fbf7e4
+SHA512: 9754f11aa167df167d1b336e5c660aab1bd9e12421c093e0fe96e9a2da4ffb9859b7ea5263473bbc7b57ac8b5568cf7ac3116c0abdc647e1ff97a8d060ff7eae
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby とは</h2>
+<p>Rubyはまつもとゆきひろ (Matz) によって1993年に開発が始められ、今もオープンソースソフトウェアとして開発が続けられています。Rubyは様々なプラットフォームで動き、世界中で、特にWebアプリケーション開発のために使われています。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Rilasciato Ruby 1.9.2</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/it/news/2010/11/14/ruby-1-9-2-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/it/feeds/news.rss" rel="alternate" title="Ultime Notizie (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/it/">
+          <h1>Ruby</h1>
+          <h2>Il migliore amico dei programmatori</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/it/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cerca" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Rilasciato Ruby 1.9.2</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Inserito da Fabio Cevasco il 2010-11-14</p>
+
+    <p>Ruby 1.9.2 è stato rilasciato. Questa è la versione più nuova di Ruby per
+la serie 1.9.</p>
+<h3>Informazione Ruby 1.9.2</h3>
+<p>Ruby 1.9.2 sarà prevalentemente compatibile con la versione 1.9.1,
+eccetto per i cambiamenti seguenti:</p>
+<ul>
+<li>molti nuovi metodi</li>
+<li>una nuova API per i socket (con supporto IPv6)</li>
+<li>nuovi encoding</li>
+<li>una classe `Random` che supporta vari generatori di numeri casuali</li>
+<li>la classe `Time` è stata reimplementata. Non è più presente alcun
+problema con l'anno 2038.</li>
+<li>alcuni miglioramenti riguardanti le espressioni regolari</li>
+<li>`$:` non include più la cartella corrente</li>
+<li>`dl` è stata reimplementata sulla base di `libffi`</li>
+<li>una nuova libreria `psych` che wrappa `libyaml`.
+È possibile usare questa libreria invece di `syck`.</li>
+</ul>
+<p>Vedere i file
+<a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_rc1/NEWS">NEWS</a> e
+<a href="https://svn.ruby-lang.org/repos/ruby/tags/v1_9_2_rc1/ChangeLog">ChangeLog</a>
+per ulteriori dettagli.</p>
+<p>Ruby 1.9.2 passa più del 99% della <a href="https://github.com/ruby/spec">RubySpec</a>.</p>
+<h3>Piattaforme Supportate</h3>
+<p>Ruby 1.9 ha quattro livelli di supporto.</p>
+<p>Supportato
+: Abbiamo verificato che Ruby 1.9.2 funziona perfettamente su queste
+piattaforme. Per questa ragione continuiamo a mantenere la versione
+1.9.2 per questi sistemi.</p>
+<ul>
+<li>Debian GNU/Linux 5.0 on IA32.</li>
+</ul>
+<p>Con i migliori sforzi
+: Abbiamo verificato che Ruby 1.9.2 funziona bene, per la maggior parte,
+su queste piattaforme. Per questa ragione continuiamo a mantenere la
+versione 1.9.2 per questi sistemi.</p>
+<ul>
+<li>mswin32, x64-mswin64, mingw32</li>
+<li>MacOS X 10.5 (Intel) e 10.6</li>
+<li>FreeBSD 6 e successivo (amd64, IA32)</li>
+<li>Solaris 10</li>
+<li>Symbian OS</li>
+</ul>
+<p>Forse
+: Pensiamo che Ruby 1.9.2 possa funzionare bene su queste piattaforme,
+con qualche piccola modifica. Ciononostante, non è stato verificato e
+patch sono ben accette.</p>
+<ul>
+<li>Altre distribuzioni di Linux</li>
+<li>Altre versioni di MacOS X.</li>
+<li>cygwin</li>
+<li>AIX 5</li>
+<li>Altri sistemi POSIX-compatibili</li>
+<li>BeOS (Haiku)</li>
+</ul>
+<p>Non Supportato
+: Non pensiamo che Ruby 1.9.2 funzioni su queste piattaforme. Porting
+ben accetto.</p>
+<ul>
+<li>Qualsiasi altro sistema</li>
+</ul>
+<h3>Domande Frequenti</h3>
+<p>la standard library è installata in /usr/local/lib/ruby/1.9.1
+: Il secondo numero numero di versione è la &quot;versione per la
+compatibilità con le librerie&quot;. Ruby 1.9.2 è per la maggior parte
+compatibile con 1.9.1, per questo la sua libreria è installata in
+questa cartella.</p>
+<p>Causa un LoadError
+: <code>$:</code> non include più la directory corrente. Alcuni script hanno
+bisogno di essere modificati per funzionare correttamente. In ogni
+caso, uno script non dovrebbe dipendere dalla cartella corrente, nei
+limiti del possibile.</p>
+<h3>Scarica</h3>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.bz2&gt;</a>
+SIZE
+: 8495472 bytes</p>
+<p>MD5
+: d8a02cadf57d2571cd4250e248ea7e4b</p>
+<p>SHA256
+: e9710990ed8c2e794123aba509010471915fb13c27dae0118831d2001a9c8d3b</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.tar.gz&gt;</a>
+SIZE
+: 10787899 bytes</p>
+<p>MD5
+: 755aba44607c580fddc25e7c89260460</p>
+<p>SHA256
+: 8c0c4e261a921b5c406bf9e76ac23bf3c915651534e9d1b9e8c5d0bee4a7285c</p>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p0.zip&gt;</a>
+SIZE
+: 12159728 bytes</p>
+<p>MD5
+: e57a393ccd62ddece4c63bd549d8cf7f</p>
+<p>SHA256
+: e61521af06da71fde9f0c7c08baaf7415614d00c86ec5a7ab08b60a4f3185b2a</p>
+</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Notizie Recenti</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/it/news/2017/09/14/ruby-2-4-2-released/">Rilasciato Ruby 2.4.2</a></li>
+        
+        <li><a href="/it/news/2016/09/08/ruby-2-4-0-preview2-released/">Rilasciato Ruby 2.4.0-preview2</a></li>
+        
+        <li><a href="/it/news/2016/04/26/ruby-2-3-1-released/">Rilasciato Ruby 2.3.1</a></li>
+        
+        <li><a href="/it/news/2016/04/26/ruby-2-2-5-released/">Rilasciato Ruby 2.2.5</a></li>
+        
+        <li><a href="/it/news/2016/04/01/ruby-2-1-10-released/">Rilasciato Ruby 2.1.10</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feed RSS</h3>
+    <p><a href="/it/feeds/news.rss">Ultime Notizie (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/it/" class="home">Home</a>
+
+  <a href="/it/downloads/">Scarica</a>
+
+  <a href="/it/documentation/">Documentazione</a>
+
+  <a href="/it/libraries/">Librerie</a>
+
+  <a href="/it/community/">Comunità</a>
+
+  <a href="/it/news/">Notizie</a>
+
+  <a href="/it/security/">Sicurezza</a>
+
+  <a href="/it/about/">A proposito di Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Questo sito in altre lingue:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/it/about/website/">Questo sito web</a> è mantenuto con orgoglio dai membri della comunità Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

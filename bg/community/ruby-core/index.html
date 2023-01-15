@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby ядро</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/community/ruby-core/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby ядро</h1>
+
+
+
+  <div id="content">
+    <p>Сега е моментът да започнете да следите развитието на Ruby. С огромното
+внимание, което езикът получава през последните години, се увеличава и
+търсенето на талантливи разработчици, които да подпомагат развитието на езика и
+документацията. От къде да започнем?
+{: .summary}</p>
+<p>Темите, свързани с разработването на Ruby, описани тук са:</p>
+<ul>
+<li><a href="#following-ruby">Използване на Subversion за следене на процеса на разработка</a></li>
+<li><a href="#git-ruby">Използването на git с основното хранилище</a></li>
+<li><a href="#patching-ruby">Усъвършенстване на Ruby, кръпка по кръпка</a></li>
+<li><a href="#coding-standards">Правила за Core разработчиците</a></li>
+</ul>
+<h3>Използване на Subversion за следене на процеса на разработка</h3>
+<p>{: #following-ruby}</p>
+<p>Изтегляне на последната версия на изходният код е въпрос на влизане в
+<a href="http://subversion.apache.org/">Subversion</a> с анонимен акаунт. От командния ред:</p>
+<!-- raw HTML omitted -->
+<p>Директорията <code>ruby</code> съдържа актуалният изходен код на Ruby (ruby-trunk).
+Пачовете, които се прилагат върху trunk се backport-ват към стабилните
+2.6, 2.5
+и 2.4 branch-ове (виж по-долу).</p>
+<p>Ако желаете да следите пачването на Ruby 2.6,
+трябва да използвате <code>ruby_2_6</code> branch-a:</p>
+<!-- raw HTML omitted -->
+<p>Подобно за 2.5:</p>
+<!-- raw HTML omitted -->
+<p>Това ще свали желанaта версия в директорията <code>ruby_2_6</code> или
+<code>ruby_2_5</code>. Често branch-овете са много близки с
+изключението на подобренията, направени от Matz и Nobu към самият език.</p>
+<p>Ако желаeте, може да прегледате <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/">Subversion хранилището на Ruby</a>.</p>
+<p>За повече информация относно Subversion, можете да посетите <a href="http://subversion.apache.org/faq.html">Често задавани
+въпроси за Subversion</a> и <a href="http://svnbook.org">книгата за Subversion</a>. Друг вариaнт
+е книгата <a href="http://www.pragmaticprogrammer.com/titles/svn/">Pragmatic Version Control with Subversion</a>.</p>
+<h3>Използване на git с основното хранилище</h3>
+<p>{: #git-ruby}</p>
+<p>Ако предпочитате <a href="http://git-scm.com/">Git</a> пред Subversion, можете да откриете инструкции
+на <a href="https://github.com/ruby/ruby">GitHub хранилището</a>, както за <a href="https://github.com/shyouhei/ruby/wiki/committerhowto">хора с commit достъп</a>, така и за
+<a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">всички останали</a>.</p>
+<h3>Усъвършенстване, кръпка по кръпка</h3>
+<p>{: #patching-ruby}</p>
+<p>Основния екип поддържа <a href="https://bugs.ruby-lang.org/">issue tracker</a> за приемането на кръпки и
+репорти за бъгове. Тези репорти се публикуват също така и в пощенския
+списък <a href="/bg/community/mailing-lists/">Ruby-Core mailing list</a> за дискусия.</p>
+<p>Моля прегледайте <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/25139">Инструкции за писане на кръпки</a> за съвети от Matz
+как кръпката ви да бъде разгледана.</p>
+<p>На кратко стъпките за изготвянето на кръпка:</p>
+<ol>
+<li>
+<p>Издърпайте копие на изходният код на Ruby от Subversion. Обикновено
+кръпките и фиксовете на бъгове трябва да бъдат качени в trunk. Дори
+ако желаете да добавите нещо към Ruby 2.5,
+трябва първо то да мине през trunk.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
+</code></pre></div></div>
+<p>Ако желаете да оправите проблем по специфична версия, дръпнете само нея,
+например <code>ruby_2_5</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
+</code></pre></div></div>
+</li>
+<li>
+<p>Добавете подобренията на кода.</p>
+</li>
+<li>
+<p>Създайте кръпка.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ svn diff &gt; ruby-changes.patch
+</code></pre></div></div>
+</li>
+<li>
+<p>Създайте ticket в <a href="https://bugs.ruby-lang.org/">issue tracker-а</a> или изпратете email с кръпката
+на <a href="/bg/community/mailing-lists/">Ruby-Core пощенският списък</a> със списък и описание
+на промените.</p>
+</li>
+<li>
+<p>Ако няма проблеми с кръпката, тя ще бъде предадена за одобрение.</p>
+</li>
+</ol>
+<p><strong>Забележка:</strong> кръпките трябва да бъдат изпратени като <a href="http://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html">unified diff</a>.
+За повече информация вижте <a href="http://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html#Merging%20with%20patch">the diffutils reference</a>.</p>
+<p>Дискусията ще бъде пренесена на пощенския списък
+<a href="/bg/community/mailing-lists/">Ruby-Core mailing list</a>.</p>
+<p>Помнете, че екипа, който разработва Ruby, живее в Япония и въпреки, че
+повечето владеят английски, има съществена часова разлика. Бъдете
+търпеливи и ако имате проблем – бъдете настойчиви, опитайте пак след
+няколко дни.</p>
+<h3>Правила за Core разработчиците</h3>
+<p>{: #coding-standards}</p>
+<p>Разработчиците на Ruby трябва да са запознати в общи линии с изходния код
+и стила на писане, използван от основния екип разработчици. За по-голяма
+яснота, моля спазвайте следните правила:</p>
+<ul>
+<li>Всички промени трябва да са описани в <code>ChangeLog</code>, спазващи
+<a href="http://www.gnu.org/prep/standards/standards.html#Change-Logs">GNU конвенциите</a>. (Много рубисти ползват Emacs <code>add-log</code> mode,
+който е достъпен с командата <code>C-x 4 a</code>.)</li>
+<li>Промените трябва да са в японско стандартно време (UTC+9).</li>
+<li>Означените точки във вашия ChangeLog трябва да присъстват в Subversion
+commit съобщение, което ще бъде пратено автоматично като електронна
+поща до Ruby-CVS списъка.</li>
+<li>Стила на писане използва ANSI декларации на функциите в изходния код
+на Ruby и неговите разширения.</li>
+<li>Моля, не ползвайте C++ стил на коментарите (<code>//</code>), а. (<code>/* .. */</code>).</li>
+</ul>
+<p>Повече информация може да намерите в <a href="https://bugs.ruby-lang.org/">Ruby’s issue tracker</a>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Започнете</strong> лесно е!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Пробвайте Ruby! (в браузъра)</a></li>
+
+    
+    <li><a href="/bg/documentation/quickstart/">Ruby в 20 минути</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/ruby-from-other-languages/">Ruby от други езици</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Изследвайте</strong> нов свят…</h3>
+  <ul class="menu">
+    
+    <li><a href="/bg/documentation/">Документация</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/bg/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/success-stories/">Успешни истории</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Участвайте</strong> в приятелски настроено общество.</h3>
+  <ul>
+    
+    <li><a href="/bg/community/mailing-lists/">Пощенски списъци</a>: Дискусии относно Ruby с програмисти от цял свят.</li>
+    
+
+    
+    <li><a href="/bg/community/user-groups/">Потребителски групи</a>: Свържете се с рубисти в твоя район.</li>
+    
+
+    
+    <li><a href="/bg/community/weblogs/">Блогове</a>: Прочетете какво се случва в Ruby обществото.</li>
+    
+
+    
+    <li><a href="/bg/community/ruby-core/">Ruby ядро</a>: Помогнете за разработката на Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Следене на бъгове</a>: Докладвайте или помогнете за решаването на проблеми в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

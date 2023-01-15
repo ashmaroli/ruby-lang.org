@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.0.0-rc2 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2013/02/08/ruby-2-0-0-rc2-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.0.0-rc2 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by Yusuke Endoh on 8 Feb 2013</p>
+
+    <p>Ruby 2.0.0-rc2 がリリースされました。Ruby 2.0.0 の最後の Release Candidate 版の予定です。</p>
+<p>どうぞお試しください。もし何か問題があればお知らせ下さい。</p>
+<h2>所在</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10822239 bytes
+MD5:    e92420131bd7994513e0bf09a3e2a19b
+SHA256: d55f897bb04283c5fa80223d96d990fe8ecb598508dd59443b356cbba1f66145
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13616756 bytes
+MD5:    9d5e6f26db7c8c3ddefc81fdb19bd41a
+SHA256: 87072ab3e6d393d47f7402682364e4f24efe1c518969795cc01fcdeeb0e646f3
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15118480 bytes
+MD5:    1a2d33f1c50e32ca1532f8dea4790d53
+SHA256: c28e9baf3aa00b41b8823c16df436ae143e8a63e43e7a53302f23119e13d0ebf
+</code></pre></div></div>
+</li>
+</ul>
+<h2>2.0.0 の新機能</h2>
+<ul>
+<li>キーワード引数</li>
+<li>Enumerable#lazy</li>
+<li>Module#prepend</li>
+<li>#to_h: Hash への変換メソッド</li>
+<li>%i: シンボルの配列のリテラル</li>
+<li>正規表現エンジンを Onigmo に変更（鬼雲: 鬼車の派生版）</li>
+<li>Enumerator#size が導入された</li>
+<li>DTrace サポート</li>
+<li>TracePoint</li>
+<li>require 速度の向上(特に Windows において)</li>
+<li>NativeClient サポート</li>
+<li>ドキュメントの改善</li>
+<li>非同期割り込み制御機能の改良</li>
+<li>起動時のスタックサイズ設定機能</li>
+<li>Refinements [実験的機能]</li>
+</ul>
+<p>その他改善多数。詳しくは <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_0_0_rc2/NEWS">NEWS</a> をご覧あれ。 サードパーティによる紹介記事があります。</p>
+<ul>
+<li><a href="https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails">&lt;URL:https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails&gt;</a></li>
+<li><a href="http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/">&lt;URL:http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/&gt;</a></li>
+<li><a href="http://www.infoq.com/news/2012/11/ruby-20-preview1">&lt;URL:http://www.infoq.com/news/2012/11/ruby-20-preview1&gt;</a></li>
+<li><a href="http://timelessrepo.com/refinements-in-ruby">&lt;URL:http://timelessrepo.com/refinements-in-ruby&gt;</a>
+(Refinements)</li>
+<li><a href="http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html">&lt;URL:http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html&gt;</a>
+(in Japanese)</li>
+<li><a href="https://speakerdeck.com/nagachika/rubyist-enumeratorlazy">&lt;URL:https://speakerdeck.com/nagachika/rubyist-enumeratorlazy&gt;</a>
+(Enumerator::Lazy, in Japanese)</li>
+</ul>
+<p>(他にも記事を書いて頂けると、今後のリリースアナウンスで引用や参照をさせて頂くかも)</p>
+<h2>注意点</h2>
+<h3>非互換について</h3>
+<p>特筆すべき非互換を 3 つ把握しています。</p>
+<ul>
+<li>デフォルトのスクリプトエンコーディングが UTF-8 になりました <a href="https://bugs.ruby-lang.org/issues/6679">[#6679]</a>
+。これは既存のプログラムに影響を与えることが報告されています。例えば、ベンチマークプログラムが非常に遅くなるなど
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/46547">[ruby-dev:46547]</a> 。公式リリースまでに仕様が変化するかもしれません。</li>
+<li>iconv が削除されました。元々 M17N が導入された 1.9 の時点で非推奨のものでした。String#encode
+などを使って書き換えてください。</li>
+<li>ABI 互換性がなくなっています <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/48984">[ruby-core:48984]</a>
+。通常のユーザは、拡張ライブラリを再インストールするだけでよいはすです。「1.9 の .so, .bundle
+ファイルをコピーするな」とだけ気をつけてください。</li>
+</ul>
+<p>他にも比較的小さな非互換があります <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/49119">[ruby-core:49119]</a> 。 さらに非互換に気づいたらぜひ報告してください。</p>
+<p>ご参考: 以下にアップグレードガイドを作成中ですが、すでに一部内容が古いです。</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft">&lt;URL:https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft&gt;</a></li>
+</ul>
+<h3>refinements の扱い</h3>
+<p>2.0.0 では refinement を「実験的機能」として提供します。仕様の詳細について合意に至らなかったためです。 挙動が Ruby
+の将来のバージョンで変化する可能性があることに注意してください。</p>
+<h2>special thanks</h2>
+<p>preview と rc1 を試してくれた皆さんに感謝します。 相変わらずたくさんのバグを直してくれているコントリビュータの皆さんに感謝します。
+このリリースを支えてくれた皆さんに本当に感謝します。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

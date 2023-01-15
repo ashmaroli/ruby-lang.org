@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>20分钟体验 Ruby，第2页 - Ruby 官方网站</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/documentation/quickstart/2/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>如果您想说很多次”Hello”，却不想把手指累酸的话，是定义一个函数的时候啦！</p>
+<!-- raw HTML omitted -->
+<p><code>def h</code> 定义一个函数。它告诉 Ruby 我们的函数名字是 <code>h</code>。下一行是函数的内容， 正是我们前面看到过的那行代码：<code>puts &quot;Hello World!&quot;</code>。最后的一行 <code>end</code> 告诉 Ruby 函数的定义完成了。</p>
+<h2>函数的周期简短而又频繁</h2>
+<p>我们来试着把这个函数调用几次：</p>
+<!-- raw HTML omitted -->
+<p>很方便吧。在 Ruby 里调用函数就像提起 Ruby 的名字一样简单。如果函数不需要接受参数，
+您只要提到它就够了。您可以加一对括号，但不是必需的。</p>
+<p>如果您想对一个人而不是全世界说您好呢？只要让 <code>h</code> 函数接受一个参数就可以了。</p>
+<!-- raw HTML omitted -->
+<p>和期待的一样。让我们再仔细看看究竟发生了什么。</p>
+<h2>在字符串中预留位置</h2>
+<p>啥是 <code>#{name}</code> 啊？这是 Ruby 用来往字符串中插入信息的方法。大括号里面的代码会被替换为评估后的字符串
+（如果他们还不是字符串的话）然后插入到包含大括号的原始字符串中去。 您可以用这个方法将人名大写：</p>
+<!-- raw HTML omitted -->
+<p>这里还有几个小窍门。第一是我们又一次省略了函数的括号。如果我们的命令看起来意图很明显的话， 函数的括号是可以省略的。另一个是函数缺省的参数值是
+<code>World</code>。意思就是说 “如果 name 参数没有给出的话， name 的缺省值就设置为 <code>“World&quot;</code>。</p>
+<h2>如何更有礼貌</h2>
+<p>让我们更有礼貌一些，不光记住您的名字，还在您到来的时候欢迎您，并且始终彬彬有礼。 您可以开始使用对象了。我们先建立 ”Greeter”
+(有礼貌的人) 类。</p>
+<!-- raw HTML omitted -->
+<p>新的关键字 <code>class</code>！ 这个关键字定义了一个新的类 Greeter 和它的一些函数。 特别留意一下
+<code>@name</code>，这是一个实例变量。类里面的任何函数都可以使用实例变量。 您可以看到 <code>say_hi</code> 和 <code>say_bye</code> 函数都使用了它。</p>
+<p>下面我们要带着 Greeter 类出来活动活动了。<a href="../3/">建立对象</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>试用</strong>，其实很简单！</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在浏览器中试用 Ruby（英文）</a></li>
+
+    
+    <li><a href="/zh_cn/documentation/quickstart/">20 分钟体验 Ruby</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/ruby-from-other-languages/">从其它语言转到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong>新的世界</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_cn/documentation/">文档</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学术研究</a></li>
+    
+
+    
+    <li><a href="/zh_cn/libraries/">代码库</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong>友善及日益壮大的社区</h3>
+  <ul>
+    
+    <li><a href="/zh_cn/community/mailing-lists/">邮件列表</a>: 联系喜爱 Ruby 的朋友</li>
+    
+
+    
+    <li><a href="/zh_cn/community/user-groups/">用户组</a>: 参与 Ruby 爱好者活动</li>
+    
+
+    
+    <li><a href="/zh_cn/community/weblogs/">博客</a>: 阅读 Ruby 相关的博客</li>
+    
+
+    
+    <li><a href="/zh_cn/community/ruby-core/">Ruby 核心</a>: 帮助开发 Ruby 语言</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">问题跟踪</a>: 报告或帮助解决 Ruby 的问题</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

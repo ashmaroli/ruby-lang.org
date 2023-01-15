@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Bibliotecas</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/pt/libraries/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/pt/feeds/news.rss" rel="alternate" title="Em português" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/pt/">
+          <h1>Ruby</h1>
+          <h2>O melhor amigo do programador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/pt/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Procurar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Bibliotecas</h1>
+
+
+
+  <div id="content">
+    <p>Como na maioria das linguagens de programação, Ruby utiliza um grande
+conjunto de bibliotecas de terceiros.
+{: .summary}</p>
+<p>A maioria delas são disponibilizadas na forma de uma <strong>gem</strong>.
+<a href="https://rubygems.org/"><strong>RubyGems</strong></a> é um sistema de pacotes Ruby que facilita a
+criação, compartilhamento e instalação de bibliotecas (pode-se dizer
+que é um sistema de distribuição de pacotes similar, por exemplo,
+ao <code>apt-get</code>, porém voltado a software em Ruby). A partir da versão
+1.9, o Ruby vem com o RubyGems instalado por padrão, enquanto nas
+versões anteriores é necessário <a href="https://rubygems.org/pages/download/">instalá-lo manualmente</a>.</p>
+<p>Algumas outras bibliotecas são disponibilizadas como diretórios compactados
+de <strong>código fonte</strong> (.zip ou .tar.gz). O processo de instalação pode variar,
+geralmente há um arquivo <code>README</code> ou <code>INSTALL</code> com instruções sobre isso.</p>
+<p>Vamos dar uma olhada em como você pode encontrar e instalar bibliotecas.</p>
+<h3>Encontrando Bibliotecas</h3>
+<p>O principal lugar onde as bibliotecas estão hospedadas é o
+<a href="https://rubygems.org/"><strong>RubyGems.org</strong></a>, disponibilizando bibliotecas Ruby como gems.
+Você pode acessar o website diretamente ou usar o comando <code>gem</code>.</p>
+<p>Através do comando <code>gem search -r</code>, você pode inspecionar o repositório
+do RubyGems. Por exemplo, <code>gem search -r rails</code> retornará uma lista de
+gems relacionadas ao Rails. Com a opção <code>--local</code> (<code>-l</code>), você
+executa uma busca local através das gems já instaladas. Para instalar
+uma gem, use <code>gem install [gem]</code>. Para navegar através das gems
+instaladas, use o comando <code>gem list</code>. Para mais informações sobre
+o comando <code>gem</code>, leia abaixo ou acesse <a href="http://guides.rubygems.org/">a documentação do RubyGems</a>.</p>
+<p>No entanto, eixstem outras fontes de bibliotecas. O <a href="http://rubyforge.org/">RubyForge</a>
+costumava ser um local popular para biblitoecas Ruby, mas nos últimos
+anos vimos a ascenção do <a href="https://github.com/"><strong>GitHub</strong></a> como um dos principais
+repositórios de conteúdo relacionado a Ruby. Na maior parte dos casos,
+o código-fonte de uma gem será hospedado no GitHub enquanto é publicado
+como uma gem completa no RubyGems.org.</p>
+<p>O <a href="https://www.ruby-toolbox.com/"><strong>The Ruby Toolbox</strong></a> é um projeto que facilita descobrir projetos Ruby
+open source. Possui categorias para várias tarefas comuns do desenvolvimento,
+reúne várias informações sobre os projetos tais como a data de lançamento
+e a atividade de commits ou dependências, e dá uma nota para os projetos
+baseada em sua popularidade no RubyGems.org e no GitHub. A busca torna
+fácil descobrir o que você está procurando.</p>
+<h3>Mais algumas palavras sobre RubyGems</h3>
+<p>Segue aqui um review rápido do comando <code>gem</code> para uso diário. Está disponível
+uma <a href="http://guides.rubygems.org/command-reference/">documentação mais detalhada</a>, cobrindo todos os aspectos deste
+sistema de pacotes.</p>
+<h4>Procurando por Gems</h4>
+<p>O comando de <strong>search</strong> pode ser usado para encontrar gems, baseado em uma
+string. As gems cujo nome começa com a string especificada serão listadas.
+Por exemplo, para pesquisar por gems relacionadas a “html”:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><em><strong><!-- raw HTML omitted --> REMOTE GEMS <!-- raw HTML omitted --></strong></em><!-- raw HTML omitted --></p>
+<p>html-sample <!-- raw HTML omitted -->(<!-- raw HTML omitted -->1.0, 1.1<!-- raw HTML omitted -->)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>A flag <code>--remote</code> / <code>-r</code> indica que queremos pesquisar no repositório
+oficial do RubyGems.org (comportamento padrão). Com a flag <code>--local</code> / <code>-l</code>
+você pode pesquisar localmente nas gems instaladas.</p>
+<h4>Instalando uma Gem</h4>
+<p>Uma vez encontrada a gem que você deseja <strong>instalar</strong>, por exemplo o Rails:</p>
+<!-- raw HTML omitted -->
+<p>Poderá também instalar uma determinada versão da biblioteca utilizando a
+flag <code>--version</code> / <code>-v</code>.</p>
+<!-- raw HTML omitted -->
+<h4>Listando Todas as Gems</h4>
+<p>Para obter uma <strong>lista</strong> de todas as gems instaladas:</p>
+<!-- raw HTML omitted -->
+<p>Para obter uma lista (muito longa) de todas as gems disponíveis
+no RubyGems.org:</p>
+<!-- raw HTML omitted -->
+<h4>Ajuda!</h4>
+<p>A documentação está disponível diretamente no seu terminal:</p>
+<!-- raw HTML omitted -->
+<p>Por exemplo, <code>gem help commands</code> é útil para listar todos os comandos
+de <code>gem</code>.</p>
+<h4>Criando suas próprias gems</h4>
+<p>O RubyGems.org tem <a href="http://guides.rubygems.org/">vários guias</a> sobre esse assunto. Você também pode
+querer investigar o <a href="http://bundler.io/">Bundler</a>, uma ferramenta genérica que ajuda a
+gerenciar as dependências de uma aplicação e que pode ser utilizada
+junto com o RubyGems.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Primeiros passos</strong>, é fácil!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/pt/documentation/quickstart/">Ruby em Vinte Minutos</a></li>
+    
+
+    
+    <li><a href="/pt/documentation/ruby-from-other-languages/">Ruby a partir de outras linguagens</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> um novo mundo…</h3>
+  <ul class="menu">
+    
+    <li><a href="/pt/documentation/">Documentação</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/pt/libraries/">Bibliotecas</a></li>
+    
+
+    
+    <li><a href="/pt/documentation/success-stories/">Histórias de sucesso</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participe</strong> de uma comunidade simpática e em crescimento.</h3>
+  <ul>
+    
+    <li><a href="/pt/community/mailing-lists/">Listas de E-mail</a>: Fale sobre Ruby com programadores de todo o mundo.</li>
+    
+
+    
+    <li><a href="/pt/community/user-groups/">Grupos de Usuários</a>: Entre em contato com colegas da sua área.</li>
+    
+
+    
+    <li><a href="/pt/community/weblogs/">Weblogs</a>: Leia sobre o que está acontecendo agora na comunidade Ruby.</li>
+    
+
+    
+    <li><a href="/pt/community/ruby-core/">Ruby Core</a>: Ajude a polir as arestas da última versão do Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Informe ou ajude a resolver problemas do Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Feeds de notícias (RSS)</h3>
+    <p><a href="/pt/feeds/news.rss">Em português</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/pt/" class="home">Home</a>
+
+  <a href="/pt/downloads/">Downloads</a>
+
+  <a href="/pt/documentation/">Documentação</a>
+
+  <a href="/pt/libraries/">Módulos</a>
+
+  <a href="/pt/community/">Comunidade</a>
+
+  <a href="/pt/news/">Notícias</a>
+
+  <a href="/pt/security/">Segurança</a>
+
+  <a href="/pt/about/">Sobre Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Este site em outros idiomas:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/pt/about/website/">Este website</a> é mantido com orgulho por membros da comunidade Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

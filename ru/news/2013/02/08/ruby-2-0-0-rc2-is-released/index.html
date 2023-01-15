@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Вышел Ruby 2.0.0-rc2</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/news/2013/02/08/ruby-2-0-0-rc2-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Вышел Ruby 2.0.0-rc2</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Опубликовал Yusuke Endoh 08-02-2013</p>
+
+    <p>Вышел Ruby 2.0.0-rc2. Это будет последний релиз-кандидат
+Ruby 2.0.0.</p>
+<p>Пожалуйста, попробуйте его и сообщите о любой ошибке, какую заметите.</p>
+<h2>Скачать</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10822239 bytes
+MD5:    e92420131bd7994513e0bf09a3e2a19b
+SHA256: d55f897bb04283c5fa80223d96d990fe8ecb598508dd59443b356cbba1f66145
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13616756 bytes
+MD5:    9d5e6f26db7c8c3ddefc81fdb19bd41a
+SHA256: 87072ab3e6d393d47f7402682364e4f24efe1c518969795cc01fcdeeb0e646f3
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15118480 bytes
+MD5:    1a2d33f1c50e32ca1532f8dea4790d53
+SHA256: c28e9baf3aa00b41b8823c16df436ae143e8a63e43e7a53302f23119e13d0ebf
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Новые фичи в 2.0.0</h2>
+<ul>
+<li>Keyword arguments</li>
+<li>Enumerable#lazy</li>
+<li>Module#prepend</li>
+<li>#to_h: конвенция для перевода в Hash</li>
+<li>%i: литер для символьного массива</li>
+<li>Обновленный движок регулярных выражений: Onigmo (форк Oniguruma)</li>
+<li>Enumerator#size и Range#size</li>
+<li>Поддержка DTrace</li>
+<li>TracePoint</li>
+<li>Оптимизирована производительность require (особенно, на Windows)</li>
+<li>Поддержка NativeClient</li>
+<li>Улучшена документация</li>
+<li>Расширенный асинхронный обработчик прерываний</li>
+<li>Refinements [эксперимент]</li>
+</ul>
+<p>... И многие другие улучшения. Читайте НОВОСТИ, чтобы быть в курсе.</p>
+<p>Ниже несколько вступительных статей от сторонних разработчиков:</p>
+<ul>
+<li><a href="https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails">&lt;URL:https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails&gt;</a></li>
+<li><a href="http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/">&lt;URL:http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/&gt;</a></li>
+<li><a href="http://www.infoq.com/news/2012/11/ruby-20-preview1">&lt;URL:http://www.infoq.com/news/2012/11/ruby-20-preview1&gt;</a></li>
+<li><a href="http://timelessrepo.com/refinements-in-ruby">&lt;URL:http://timelessrepo.com/refinements-in-ruby&gt;</a>
+(Refinements)</li>
+<li><a href="http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html">&lt;URL:http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html&gt;</a>
+(на японском)</li>
+<li><a href="https://speakerdeck.com/nagachika/rubyist-enumeratorlazy">&lt;URL:https://speakerdeck.com/nagachika/rubyist-enumeratorlazy&gt;</a>
+(Enumerator::Lazy, на японском)</li>
+</ul>
+<p>(Если вы хотите предоставить дополнительные статьи, мы можем добавить их
+в следующей новости о релизе)</p>
+<h2>Заметки</h2>
+<h3>Incompatibility</h3>
+<p>Существует три заметных несовместимости, о которых мы знаем:</p>
+<ul>
+<li>Кодировка по-умолчанию для скриптов ruby теперь UTF-8 [#6679].
+Некоторые люди присылают сообщения, что это затрагивает существующие
+программы. Например некоторые программы бенчмаркинга стали слишком
+медленными [ruby-dev:46547]. Спецификация может измениться к
+официальному релизу.</li>
+<li>Iconv был убран. Он был уже отмечен как устаревший, когда M17N был
+представлен в ruby 1.9. Используйте String#encode и другие методы
+вместо Iconv.</li>
+<li>Был сбой ABI [ruby-core:48984]. Мы думаем, что обычные пользователи
+могут/должны просто переустановить библиотеки расширений. Вы должны
+быть осторожны: НЕ КОПИРУЙТЕ .so ИЛИ .bundle ФАЙЛЫ ИЗ 1.9.</li>
+</ul>
+<p>Также есть несколько сравнительно небольших несовместимостей:
+[ruby-core:49119]
+Пожалуйста, сообщайте о любых несовместимостях, которые вы замечаете.</p>
+<p>FYI: Мы добавляем записи с обновлениями, но часть их уже устарела</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft">&lt;URL:https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft&gt;</a></li>
+</ul>
+<h3>Статус Refinements</h3>
+<p>2.0.0 будет включать новую фичу refinements как &quot;эксперементальную
+фичу&quot;, потому что мы не можем прийти к согласию в ее спецификации.
+Заметьте, что поведение может измениться в следующих версиях Ruby.</p>
+<h3>Благодарности</h3>
+<p>Я очень ценю помощь всех, кто пробовал preview и rc1 релиз! Я очень
+благодарен всем участникам за их тяжелую работу по исправлению кучи
+багов. Я говорю спасибо всем тем людям, кто помог мне сделать этот
+релиз.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Последние новости</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ru/news/2021/08/03/fukuoka-ruby-award-2022/">Конкурс на соискание премии Fukuoka Ruby 2022 - судить участников будет Matz</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/trusting-pasv-responses-in-net-ftp/">CVE-2021-31810: Уязвимость доверия к PASV-ответам FTP в Net::FTP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/starttls-stripping-in-net-imap/">CVE-2021-32066: Уязвимость StartTLS stripping в Net::IMAP</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-3-0-2-released/">Вышел Ruby 3.0.2</a></li>
+        
+        <li><a href="/ru/news/2021/07/07/ruby-2-7-4-released/">Вышел Ruby 2.7.4</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.3.6 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2017/12/14/ruby-2-3-6-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.3.6 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by usa on 14 Dec 2017</p>
+
+    <p>Ruby 2.3.6 がリリースされました。
+これは安定版 2.3 系列の TEENY リリースです。</p>
+<p>今回のリリースでは、前回リリースから 10 件弱のバグ修正が行われ、安定性のさらなる向上が図られています。
+また、以下のセキュリティ上の問題に対する対応が含まれています。</p>
+<ul>
+<li><a href="/ja/news/2017/12/14/net-ftp-command-injection-cve-2017-17405/">CVE-2017-17405: Net::FTP におけるコマンドインジェクション</a>への対応</li>
+<li><a href="http://blog.rubygems.org/2017/10/09/unsafe-object-deserialization-vulnerability.html">RubyGems における安全でないオブジェクトの逆シリアル化の脆弱性</a>への対応</li>
+</ul>
+<p>詳しくは、対応する <a href="https://svn.ruby-lang.org/repos/ruby/tags/v2_3_6/ChangeLog">ChangeLog</a> を参照してください。</p>
+<h2>ダウンロード</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14429114 bytes
+SHA1:   07c3b66d544dd22c22fbae3f16cfb3eeb88b7b1e
+SHA256: 07aa3ed3bffbfb97b6fc5296a86621e6bb5349c6f8e549bd0db7f61e3e210fd0
+SHA512: bc3c7a115745a38e44bd91eb5637b1e412011c471d9749db7960185ef75737b944dd0e524f22432809649952ca7d93f46d458990e9cd2b0db5ca8abf4bc8ea99
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   17840901 bytes
+SHA1:   4e6a0f828819e15d274ae58485585fc8b7caace0
+SHA256: 8322513279f9edfa612d445bc111a87894fac1128eaa539301cebfc0dd51571e
+SHA512: 104553d888f7d49d1b8df0cff0a3e8aee3086183d75e1a88289730e34c2da669874d7abe83e84bf1b3be9a3337a34f19ea9f9dcfbf1f7fc1136bb8f922776ea4
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11445628 bytes
+SHA1:   55e97913180a313f161d2e4e541dd904a477c31d
+SHA256: e0d969ac22d4a403c1204868bb9c0d068aa35045bb3934cf50b17b7f66059f56
+SHA512: a09c8715097d16190ee17ee39e7a74438cefc9013add350217b7e3fb4d60aa9dcb30595adf832b0d67a5c45b1fe9d4effb767c995af2759420859f8d763c693a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.zip">https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.6.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   19892406 bytes
+SHA1:   0d631f32e7b360dcbfb9f8f46dfff2445f0a6a51
+SHA256: 6fee49a2099d49a1b98bf0637fe974fd87af3ae64978392c802ba4d10ac70fb5
+SHA512: c6dc2ee01a4ef84850b0ca4d1e60841f07fbff263ebbbc44c8bd0f72ced3172c2e0b9c883496bfc4f5a42f4827a061f8f479d05bda5f693a274c451914e0b03e
+</code></pre></div></div>
+</li>
+</ul>
+<h2>リリースコメント</h2>
+<p>リリースに協力してくれた皆様に感謝します。</p>
+<p>このリリースを含む Ruby 2.3 系列の保守は、<a href="http://www.ruby.or.jp/">一般財団法人 Ruby アソシエーション</a>の Ruby 安定版保守委託事業に基いています。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

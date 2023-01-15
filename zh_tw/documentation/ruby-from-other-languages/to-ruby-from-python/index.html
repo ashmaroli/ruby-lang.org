@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>從 Python 到 Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_tw/documentation/ruby-from-other-languages/to-ruby-from-python/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_tw/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_tw/">
+          <h1>Ruby</h1>
+          <h2>程式設計師的摯友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_tw/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜尋" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>從 Python 到 Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Python 是另一種很棒的多功能用途程式語言。從 Python 轉換到 Ruby，你會發現需要比學 Python 時多記一些語法。</p>
+<h3>相似點</h3>
+<p>Ruby 與 Python 類似的地方...</p>
+<ul>
+<li>同樣有互動的提示操作環境（叫做 <code>irb</code>）。</li>
+<li>你同樣可以使用指令來讀取文件（Python 使用 <code>pydoc</code> 指令，而 Ruby 使用 <code>ri</code> 指令）。</li>
+<li>每行程式碼同樣不需要特別的結尾符號（除了一般的換行）。</li>
+<li>字串可以像 Python 的三引號字串一樣的跨越多行。</li>
+<li>中括號用來表示串列，大括號用來表示字典結構（在 Ruby 稱為 “hashes”）。</li>
+<li>陣列操作起來差不多（陣列相加會產生一個更長的陣列，但像
+<code>a3 = [ a1, a2 ]</code> 這樣的操作會回傳一個二維陣列）。</li>
+<li>物件是強型別而且也都是動態型別（dynamically typed）。</li>
+<li>所有東西都是物件，變數只是指向某個物件的參考指標。</li>
+<li>有些關鍵字雖然看起來不太一樣，但在例外處理方面的操作是差不多的。</li>
+<li>同樣也有嵌入式的文件工具（在 Ruby 中叫做 rdoc）。</li>
+</ul>
+<h3>相異點</h3>
+<p>Ruby 與 Python 不同的地方...</p>
+<ul>
+<li>字串是可變動的。</li>
+<li>你可以建立常數（不想要再改變值的變數）。</li>
+<li>有些大小寫的使用慣例（例如類別名稱是以大寫字母開頭，一般變數則是使用小寫字母開頭）。</li>
+<li>只有一種串列容器(陣列)，而且它是可變動的。</li>
+<li>Ruby 的雙引號字串允許使用跳脫字元（例如 <code>\t</code>）以及特別的“運算式插值”
+（expression substitution）語法（可以讓你直接在字串裡直接插入 Ruby
+運算後的結果，而不用像 <code>&quot;add &quot; + &quot;strings &quot; + &quot;together&quot;</code>
+的字串組合）。單引號字串則跟 Python 的 <code>r&quot;raw strings&quot;</code> 是一樣的。</li>
+<li>沒有什麼”新式”或”舊式”的類別寫法，Ruby 的類別就只有一種寫法。</li>
+<li>你不能直接存取物件的屬性。在 Ruby 裡指能透過方法呼叫。</li>
+<li>方法呼叫時的小括號通常是可以省略。</li>
+<li>有 <code>public</code>、<code>private</code>、以及 <code>protected</code>。
+三種方式來設定存取層級，不像 Python 裡是用變數名稱前後加底線的方式表示。</li>
+<li>“混入（mixing）”功能用來取代多重繼承。</li>
+<li>你可以新增或修改內建的類別。兩種程式語言都可以讓你在任何時機做這樣的修改，
+但是 Python 會阻止你修改內建的類別 — Ruby 則沒有這個限制。</li>
+<li>使用 <code>true</code> 以及 <code>false</code> 而不是 <code>True</code> 跟 <code>False</code>（Python 裡的 <code>None</code> 在 Ruby 則是
+<code>nil</code>）。</li>
+<li>在測試布林值的真假時，只有 <code>false</code> 跟 <code>nil</code> 會得到假的值，所有其它的值都為真。
+（包括 <code>0</code>、<code>0.0</code>、<code>&quot;&quot;</code> 以及 <code>[]</code>）。</li>
+<li>Ruby 使用 <code>elsif</code> 而不是 <code>elif</code>。</li>
+<li>Ruby 使用 <code>require</code> 而不是 <code>import</code>，但使用上跟 Python 是一樣的。</li>
+<li>用來產生文件的註解通常寫在內容的<strong>上面</strong>（而不像 docstrings 是寫在下面）。</li>
+<li>Ruby 有許多的捷徑可以使用，雖然有比較多要記，但你可以很快學會。這些捷徑會讓 Ruby
+變得更有趣而且更有生產力。</li>
+<li>變量設置後無法取消（類似 Python 的 <code>del</code> 聲明）。你可以將其重置爲 <code>nil</code> 讓 GC 回收舊的內容，但它仍然存在于符號表中。</li>
+<li><code>yield</code> 關鍵字作用是不一樣的。在 Python 中，它會記住上一次返回時在函數體中調用的位置。外部代碼有責任繼續執行函數。而在 Ruby 中，<code>yield</code> 會執行作爲方法最後一個參數傳入的方法，然後立即執行。</li>
+<li>Python 支持一種匿名函數，<code>lambdas</code>。而 Ruby 支持 <code>blocks</code>，<code>Procs</code> 和 <code>lambdas</code>。</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>上手入門</strong>，一點都不難!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在瀏覽器中試用 Ruby!</a></li>
+
+    
+    <li><a href="/zh_tw/documentation/quickstart/">20 分鐘 Ruby 體驗</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/ruby-from-other-languages/">從其他語言到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong> 新世界…</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_tw/documentation/">文件</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">學術研究</a></li>
+    
+
+    
+    <li><a href="/zh_tw/libraries/">函式庫</a></li>
+    
+
+    
+    <li><a href="/zh_tw/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong> 友善且持續成長的社群</h3>
+  <ul>
+    
+    <li><a href="/zh_tw/community/mailing-lists/">郵件論壇</a>: 與世界各地的程式設計師一同聊聊</li>
+    
+
+    
+    <li><a href="/zh_tw/community/user-groups/">使用者群組</a>: 與身旁的 Ruby 使用者接觸</li>
+    
+
+    
+    <li><a href="/zh_tw/community/weblogs/">部落格</a>: 了解 Ruby 社群中的最新消息</li>
+    
+
+    
+    <li><a href="/zh_tw/community/ruby-core/">Ruby 核心</a>: 幫助開發最新的 Ruby</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">問題追蹤</a>: 回報或解決 Ruby 問題</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>訂閱</h3>
+    <p><a href="/zh_tw/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_tw/" class="home">首頁</a>
+
+  <a href="/zh_tw/downloads/">下載安裝</a>
+
+  <a href="/zh_tw/documentation/">文件</a>
+
+  <a href="/zh_tw/libraries/">函式庫</a>
+
+  <a href="/zh_tw/community/">社群</a>
+
+  <a href="/zh_tw/news/">新聞</a>
+
+  <a href="/zh_tw/security/">安全</a>
+
+  <a href="/zh_tw/about/">關於 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_tw/about/website/">本站</a>由 Ruby 社群成員共同維護。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

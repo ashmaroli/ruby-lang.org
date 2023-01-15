@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.7.0-rc1 veröffentlicht</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2019/12/17/ruby-2-7-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.7.0-rc1 veröffentlicht</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von naruse am 17.12.2019<br>
+                         Übersetzt von Marvin Gülker</p>
+
+    <p>Wir freuen uns, die Veröffentlichung von Ruby 2.7.0-rc1 bekannt geben
+zu können.</p>
+<p>Ein Veröffentlichungskandidat wird veröffentlicht, um bis zur
+geplanten finalen Freigabe im Dezember Erfahrungsberichte sammeln zu
+können. Dieser RC1 dient hauptsächlich der Feststellung der
+Kompatibilität von Schlüsselwortargumenten.</p>
+<p>Daneben enthält sie eine Anzahl neuer Funktionalitäten und
+Performanzverbesserungen, namentlich:</p>
+<ul>
+<li>Defragmentierung für den GC <em>(Campaction GC)</em></li>
+<li>Musterabgleiche</li>
+<li>Verbesserungen der interaktiven Kommandozeile <em>(REPL)</em></li>
+<li>Trennung der Positions- und der Schlüsselwortargumente</li>
+</ul>
+<h2>Defragmentierender GC</h2>
+<p>Die neue Version wird einen defragmentierenden GC <em>(Compaction GC)</em>
+einführen, der fragmentierten Arbeitsspeicherplatz defragmentieren
+kann.</p>
+<p>Einige Ruby-Programme, die mit mehreren Threads arbeiten, leiden
+derzeit unter Speicherfragmentierung. Dies verursacht einen hohen
+Speicherverbrauch und eine reduzierte Ausführungsgeschwindigkeit.</p>
+<p>Zur Behebung des Problems wird die neue Methode <code>GC.compact</code>
+eingeführt. Sie defragmentiert den Freispeicher <em>(Heap)</em>, indem sie
+noch aktive Objekte näher zusammenrückt, sodass weniger Speicherseiten
+benötigt werden und der Freispeicher insgesamt besser für
+Copy-on-Write geeignet ist. <a href="https://bugs.ruby-lang.org/issues/15626">#15626</a></p>
+<h2>Musterabgleiche [Experimentell]</h2>
+<p>Musterabgleiche sind eine häufig genutzte Funktion funktionaler
+Programmiersprachen. Mit 2.7.0 werden sie als experimentell in die
+Programmiersprache Ruby eingeführt. <a href="https://bugs.ruby-lang.org/issues/14912">#14912</a></p>
+<p>Ein Musterabgleich untersucht das übergebene Objekt und weist seinen
+Wert dann zu, wenn er auf ein bestimmtes Muster passt.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">json</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">END</span><span class="sh">
+{
+  "name": "Alice",
+  "age": 30,
+  "children": [{ "name": "Bob", "age": 2 }]
+}
+</span><span class="no">END</span>
+
+<span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span> <span class="c1">#=&gt; 2</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Weitere Details können Sie der Präsentation <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Musterabgleiche - Neue Funktion in Ruby 2.7</a>
+entnehmen.</p>
+<h2>Verbesserung der interaktiven Kommandozeile</h2>
+<p>Die mitgelieferte interaktive Kommandozeile <code>irb</code> <em>(REPL: Read-Eval-Print-Loop)</em>
+wird mehrzeiliges Editieren unterstützen. Dies wird mithilfe von
+<code>reline</code>, einer <code>readline</code>-kompatiblen reinen Ruby-Bibliothek,
+umgesetzt. Darüber hinaus wird <code>irb</code> besser mit RDoc integriert: es
+wird möglich, die Referenzdokumentation für eine bestimmte Klasse,
+ein bestimmtes Modul oder auch eine bestimmte Methode nachzuschlagen.
+<a href="https://bugs.ruby-lang.org/issues/14683">[Feature #14683]</a>,
+<a href="https://bugs.ruby-lang.org/issues/14787">[Feature #14787]</a>,
+<a href="https://bugs.ruby-lang.org/issues/14918">[Feature #14918]</a></p>
+<p>Schließlich werden von <code>binding.irb</code> angezeigte Quellcode-Zeilen und
+Ergebnisse von <code>inspect</code> farblich hevorgehoben werden.</p>
+<!-- raw HTML omitted -->
+<h2>Trennung von Positions- und Schlüsselwortargumenten</h2>
+<p>Die automatische Konvertierung zwischen Schlüsselwort- und
+Positionsargumenten gilt nun als veraltet und wird mit Ruby 3 entfernt
+werden. <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<ul>
+<li>
+<p>Wenn bei einem Methodenaufruf ein Hash als letztes Argument
+übergeben wird, wenn sonstige Argumente fehlen und wenn die
+aufgerufene Methode Schlüsselwortargumente annimmt, dann gibt Ruby
+eine Warnung aus. Um das Hash weiterhin als Schlüsselwortargument zu
+verwenden, ist es notwendig, den doppelten Auflösungsoperator
+<em>(double splat operator)</em> zu benutzen. Nur so kann die Warnung
+vermieden und das korrekte Verhalten in Ruby 3 sichergestellt
+werden.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># Warnung</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># Warnung</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Wenn bei einem Methodenaufruf Schlüsselwortargumente an eine
+Methode, die auch Schlüsselwortargumente akzeptiert, übergeben
+werden, jedoch nicht genügend Schlüsselwortargumente bereitgestellt
+werden, dann werden die übergebenen Schlüsselwortargumente als
+finales erforderliches Positionsargument gewertet und eine Warnung
+wird ausgegeben. Übergeben Sie das Argument als Hash statt als
+Schlüsselwortargumentliste, um die Warnung zu vermeiden und
+korrektes Verhalten in Ruby 3 sicherzustellen.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># Warnung</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># Warnung</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Wenn eine Methode bestimmte Schlüsselwortargumente, nicht aber den
+doppelten Auflösungsoperator verwendet, und ein Hash oder eine
+Schlüsselwortargumenteliste mit einer Mischung aus Strings und
+Symbolen übergeben wird, dann wird das Hash weiterhin aufgespalten.
+Zudem wird eine Warnung ausgegeben. Sie müssen für das korrekte
+Verhalten in Ruby 3 den aufrufenden Code so ändern, dass zwei
+einzelne Hashes übergeben werden.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># Warnung</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># Warnung</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Wenn eine Methode keine Schlüsselwortargumente akzeptiert, aber mit
+solchen aufgerufen wird, werden solche Schlüsselwortargumente
+weiterhin ohne Warnung als Hash für ein Positionsargument
+interpretiert. Dieses Verhalten wird auch in Ruby 3 weiterhin
+beibehalten.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Schlüsselwortargumente mit anderen Schlüsseln als Symbolen sind
+zulässig, wenn die Methode beliebige Schlüsselwortargumente
+akzeptiert. <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>**nil</code> kann genutzt werden, um in einer
+Methodendefinition ausdrücklich festzulegen, dass die Methode keine
+Schlüsselwörter akzeptiert. Der Aufruf einer solchen Methode mit
+Schlüsselwortargumenten erzeugt einen ArgumentError. <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Die Übergabe einess leeren doppelten Auflösungsoperators an eine
+Methode, die keine Schlüsselwortargumente akzeptiert, führt nicht
+länger zur impliziten Übergabe eines leeren Hashes, es sei denn, das
+Hash ist wegen eines erforderlichen Parameters notwendig.
+In diesem Fall wird eine Warnung ausgegeben. Entfernen Sie den
+doppelten Auflösungsoperator, um ein Hash als Positionsargument zu
+übergeben. <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span> <span class="c1"># []</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># {} und Warnung</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>   <span class="c1"># [{}]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>    <span class="c1"># {}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<p>HINWEIS: Es ist darauf hingewiesen worden, dass die vielen Warnungen über
+die Inkompatibilität von Schlüsselwortargumenten störend sind. Derzeit
+werden zwei mögliche Lösungen diskutiert: die standardmäßige
+Abschaltung von Veraltungs-Warnungen (<a href="https://bugs.ruby-lang.org/issues/16345">#16345</a>)
+und das Unterdrücken doppelter Warnungen
+(<a href="https://bugs.ruby-lang.org/issues/16289">#16289</a>).
+Hierüber ist noch nicht abschließend entschieden worden. Dies wird
+jedoch bis zur offiziellen Veröffentlichung nachgeholt.</p>
+<h2>Sonstige bemerkenswerte neue Funktionen</h2>
+<ul>
+<li>
+<p>Ein Methoden-Referenz-Operator, <code>.:</code>, war als experimentelles
+Feature in früheren Vorschauen eingeführt worden, wurde aber wieder
+entfernt.
+<a href="https://bugs.ruby-lang.org/issues/12125">[Feature #12125]</a>,
+<a href="https://bugs.ruby-lang.org/issues/13581">[Feature #13581]</a>,
+<a href="https://bugs.ruby-lang.org/issues/16275">[Feature #16275]</a></p>
+</li>
+<li>
+<p>Blockparameter werden für abgekürzten Zugriff automatisch nummeriert (experimentell).
+<a href="https://bugs.ruby-lang.org/issues/4475">#4475</a></p>
+</li>
+<li>
+<p>Es werden anfangslose Range-Objekte eingeführt. Diese sind vielleicht nicht so
+nützlich wie endlose Range-Objekte, könnten aber für
+domänenspezifische Sprachen praktisch sein.
+<a href="https://bugs.ruby-lang.org/issues/14799">#14799</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">ary</span><span class="p">[</span><span class="o">..</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># identical to ary[0..3]</span>
+<span class="n">rel</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">sales: </span><span class="o">..</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#tally</code> wird hinzugefügt. Die Methode zählt das Vorkommen
+jedes Elements.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">].</span><span class="nf">tally</span>
+<span class="c1">#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Es ist jetzt zulässig, eine private Methode auf <code>self</code> aufzurufen.
+<a href="https://bugs.ruby-lang.org/issues/11297">[Feature #11297]</a>
+<a href="https://bugs.ruby-lang.org/issues/16123">[Feature #16123]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+<span class="k">end</span>
+<span class="kp">private</span> <span class="ss">:foo</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">foo</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerator::Lazy#eager</code> wird hinzugefügt. Diese Methode generiert
+einen nicht verzögertern Enumerator (<em>non-lazy enumerator</em>) aus
+einem verzögerten Enumerator (<em>lazy enumerator</em>). <a href="https://bugs.ruby-lang.org/issues/15901">[Feature #15901]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">a</span> <span class="o">=</span> <span class="sx">%w(foo bar baz)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="p">}.</span><span class="nf">eager</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">class</span>               <span class="c1">#=&gt; Enumerator</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"?"</span> <span class="p">}</span>  <span class="c1">#=&gt; ["FOO!?", "BAR!?", "BAZ!?"]</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Performanzverbesserungen</h2>
+<ul>
+<li>
+<p>JIT [Experimentell]</p>
+<ul>
+<li>
+<p>JIT-kompilierter Code wird neu zu weniger optimiertem Code
+kompiliert, wenn eine Optimierungsannahme sich als falsch
+herausstellt.</p>
+</li>
+<li>
+<p>Method-Inlining wird durchgeführt, wenn eine Methode als rein
+<em>(pure)</em> gilt. Diese Optimierung ist noch experimentell und
+zahlreiche Methoden gelten noch nicht als rein.</p>
+</li>
+<li>
+<p>Der Standardwert von <code>--jit-min-calls</code> wird von 5 auf 10.000
+geändert.</p>
+</li>
+<li>
+<p>Der Standardwert von <code>--jit-max-cache</code> wird von 1.000 auf 100
+geändert.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>~~<code>Symbol#to_s</code>,~~ <code>Module#name</code>, <code>true.to_s</code>, <code>false.to_s</code>,
+und <code>nil.to_s</code> geben jetzt immer einen eingefrorenen String zurück. Der
+zurückgegebene String ist für das jeweilige Objekt immer derselbe.
+[Experimenell] <a href="https://bugs.ruby-lang.org/issues/16150">[Feature #16150]</a></p>
+</li>
+<li>
+<p>Die Performanz von <code>CGI.escapeHTML</code> wurde verbessert. <a href="https://github.com/ruby/ruby/pull/2226">GH-2226</a></p>
+</li>
+<li>
+<p>Die Performanz von Monitor und MonitorMixin wurde verbessert.
+<a href="https://bugs.ruby-lang.org/issues/16255">[Feature #16255]</a></p>
+</li>
+</ul>
+<h2>Sonstige bemerkenswerte Änderungen seit 2.6</h2>
+<ul>
+<li>
+<p>Einige Standardbibliotheken werden aktualisiert.</p>
+<ul>
+<li>Bundler 2.1.0.pre.3
+(<a href="https://github.com/bundler/bundler/blob/2-1-stable/CHANGELOG.md#210pre3-november-8-2019">Änderungen</a>)</li>
+<li>RubyGems 3.1.0.pre.3
+(<a href="https://github.com/rubygems/rubygems/blob/3.1/History.txt">Änderungen</a>)</li>
+<li>CSV 3.1.2
+(<a href="https://github.com/ruby/csv/blob/v3.1.2/NEWS.md">Neuigkeiten</a>)</li>
+<li>Racc 1.4.15</li>
+<li>REXML 3.2.3
+(<a href="https://github.com/ruby/rexml/blob/v3.2.3/NEWS.md">Neuigkeiten</a>)</li>
+<li>RSS 0.2.8
+(<a href="https://github.com/ruby/rss/blob/v0.2.8/NEWS.md">Neuigkeiten</a>)</li>
+<li>StringScanner 1.0.3</li>
+<li>Es werden auch einige Bibliotheken aktualisiert, die nicht über
+eine eigenständige Versionsnummer verfügen.</li>
+</ul>
+</li>
+<li>
+<p>Änderung von stdlib-Bibliotheken in Standard-Gems:</p>
+<ul>
+<li>Die folgenden Standard-Gems wurden auf rubygems.org veröffentlicht:
+<ul>
+<li>benchmark</li>
+<li>cgi</li>
+<li>delegate</li>
+<li>getoptlong</li>
+<li>net-pop</li>
+<li>net-smtp</li>
+<li>open3</li>
+<li>pstore</li>
+<li>singleton</li>
+</ul>
+</li>
+<li>Die folgenden Standard-Gems werden nur mit Rubys Kern, aber noch
+nicht auf rubygems.org veröffentlicht:
+<ul>
+<li>monitor</li>
+<li>observer</li>
+<li>timeout</li>
+<li>tracer</li>
+<li>uri</li>
+<li>yaml</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Die Nutzung von <code>Proc.new</code> und <code>proc</code> ohne Block in einer Methode,
+die einen Block erwartet, führt nun zu einer Warnung.</p>
+</li>
+<li>
+<p>Die Nutzung von <code>lambda</code> ohne block in einer Methode, die einen
+Block erwartet, erzeugt einen Fehler.</p>
+</li>
+<li>
+<p>Die Unicode- und Emoji-Version werden von 11.0.0 auf 12.0.0 angehoben.
+<a href="https://bugs.ruby-lang.org/issues/15321">[Feature #15321]</a></p>
+</li>
+<li>
+<p>Die Unicode-Version wird auf 12.1.0 angehoben, um Unterstützung für
+U+32FF SQUARE ERA NAME REIWA zu erhalten.  <a href="https://bugs.ruby-lang.org/issues/15195">[Feature #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>, <code>Date#jisx0301</code>, and <code>Date.parse</code> unterstützen die
+neue japanische Ära.
+<a href="https://bugs.ruby-lang.org/issues/15742">[Feature #15742]</a></p>
+</li>
+<li>
+<p>Compiler müssen jetzt C99 unterstützen
+<a href="https://bugs.ruby-lang.org/issues/15347">[Misc #15347]</a></p>
+<ul>
+<li>Details zum genutzten Dialekt:
+<a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+<li>
+<p>~~<code>Regexp#match{?}</code> mit <code>nil</code> als String oder Symbol wirft einen TypeError
+<a href="https://bugs.ruby-lang.org/issues/13083">[Feature #13083]</a>~~ rückgängig gemacht</p>
+</li>
+</ul>
+<p>Siehe die <a href="https://github.com/ruby/ruby/blob/v2_7_0_rc1/NEWS">NEWS</a>
+oder die <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_rc1">Commit-Logs</a>
+für weitere Details.</p>
+<p>Mit diesen Änderungen wurden <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_rc1">4163
+Dateien geändert, 226280 Einfügungen(+), 99449 Löschungen(-)</a>
+seit Ruby 2.6.0!
+Viel Spaß bei der Programmierung mit Ruby 2.7!</p>
+<h2>Download</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14691356
+SHA1: f501841276c4a922104b4afb19ff385a6de6b2e0
+SHA256: 1c5a02b63fa9fca37c41681bbbf20c55818a32315958c0a6c8f505943bfcb2d2
+SHA512: b5f96227775f8bdf19f944a555d0a83d7e84b37bd31fe4b8ac008a3272b1a28a4d94abbb1b5570ee32ec0690ba9d476b837a020a5194bee14bebf6f0e768bc79
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 16772802
+SHA1: c45cb603ed845d1e0d458d3fdc1afc910b6945b4
+SHA256: 59bd97b82e167453b5c76bc0fbb50ebda15ccee56b9ef1e94d5530b095b8a392
+SHA512: 6710266d221e9fd0ac9d6c40d48ce502badbc8b87ef500bb428b63e1744497903be267860dbc93a78235ef959ae3326f7e3c597b5567df87648fccb216d56f7d
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 11987512
+SHA1: 7d57c78a1c05e4d03d9f6726512f2c31d74413d8
+SHA256: 7528db87df7a8cbfdcbd053073839f5a00b2a38f807771e3e45000e72fc86732
+SHA512: 202b1a5bf01e6c398b8745cf968027db507ef39df521b3b24e06c6894d507ffcef9e904fa0d3a47f8be98fe750ca15a9829eb75627dacb4679538a61dabbe368
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-rc1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20645360
+SHA1: 3f0c415b8c2c674c9d4a86cce48347b15f822de8
+SHA256: f0c73add73c84a0390dca858c8c24e0cab107ada7dea7193e1ae207f78b79193
+SHA512: 23db300274f8a60aa89b3ab4a1685fba527b62c66b6944f03fdb4c32418e65aae3adc909c7c7c8dae743def230dadbf19ec3be6de50a9e955a0049b5c26e4020
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Was ist Ruby</h2>
+<p>Die Programmiersprache Ruby wurde 1993 von Yukihiro „Matz“ Matsumoto
+erfunden und wird heute als quelloffene Software entwickelt. Sie läuft
+auf verschiedenen Plattformen und wird überall auf der Welt namentlich
+für die Webentwicklung genutzt.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

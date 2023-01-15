@@ -1,4 +1,798 @@
----
-layout: news_feed
-lang: zh_tw
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Ruby 新聞</title>
+    <link>https://www.ruby-lang.org/zh_tw/feeds/news.rss</link>
+    <language>zh-TW</language>
+    <ttl>40</ttl>
+    <description>來自 ruby-lang.org 的新聞快報。</description>
+    
+    <item>
+      <title>Ruby 3.1.2 發布</title>
+      <description>&lt;p&gt;Ruby 3.1.2 已經發布了。&lt;/p&gt;
+&lt;p&gt;本次發布版本包含安全性修正。
+細節請參考下列內容。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/&quot;&gt;CVE-2022-28738: Regexp 編譯時雙重釋放風險&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/zh_tw/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: String 轉換 Float 時緩衝區溢位&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;詳細的變動請參閱&lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_1...v3_1_2&quot;&gt;提交紀錄&lt;/a&gt;。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20553628
+SHA1: b0d86c60457fdfbcb532cb681877a2f790f66b25
+SHA256: 61843112389f02b735428b53bb64cf988ad9fb81858b8248e22e57336f24a83e
+SHA512: 9155d1150398eaea7c9954af61ecf8dfdb885cfcf63a67bbcf6c92e282cd3ccac0ff9234d039286a9623297b65197441438c37f707e31d270ce2fe11e8f38a44
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15101588
+SHA1: 4c47f1dfeeb23fc55d65bcae50cf70c23bc28aa3
+SHA256: ca10d017f8a1b6d247556622c841fc56b90c03b1803f87198da1e4fd3ec3bf2a
+SHA512: 4a74e9efc6ea4b3eff4fec7534eb1fff4794d021531defc2e9937e53c6668db8ecdc0fff2bc23d5e6602d0df344a2caa85b31c5414309541e3d5313ec82b6e21
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24837444
+SHA1: 2e04f25dc73d7236fd4f4a170329793cd5e7dc38
+SHA256: f2bb80de50bcc17c29c1995d87d657d461ede6a73e71db44c0cf77f65f32e9b6
+SHA512: fa3ba25a051bd1e0ea1ee9fadfeef674f2f3217b1468ccb24975c4a19493115cdeb0015a78d391d08870947de95a8c7409f1c00fed51dc49d40cc3e6cda25bb7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;發布紀錄&lt;/h2&gt;
+&lt;p&gt;許多提交者、開發者和漏洞回報者幫助了此版本的發佈，在此感謝所有人的貢獻。&lt;/p&gt;
+
+&lt;p&gt;由 naruse and mame 發表於 2022-04-12&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-3-1-2-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-3-1-2-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.4 發布</title>
+      <description>&lt;p&gt;Ruby 3.0.4 已經發布了。&lt;/p&gt;
+&lt;p&gt;本次發布版本包含安全性修正。
+細節請參考下列內容。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/&quot;&gt;CVE-2022-28738: Regexp 編譯時雙重釋放風險&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/zh_tw/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: String 轉換 Float 時緩衝區溢位&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;詳細的變動請參閱&lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_0_3...v3_0_4&quot;&gt;提交紀錄&lt;/a&gt;。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 21139486
+SHA1: 9c995a7a5cc3300ea1adb734017545e19d0af3ca
+SHA256: 70b47c207af04bce9acea262308fb42893d3e244f39a4abc586920a1c723722b
+SHA512: 0dfded6826063c1b39bf625a6e13b46c109cb160c8648b78f0965f70e7c7a1a65f1c117fc8f2cf8bdb34d7cbf79fecf1f45d169d2323406d66ab27b18bde1d22
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15830368
+SHA1: 14461adca874d42a06a11851029dec877d9d28de
+SHA256: 8e22fc7304520435522253210ed0aa9a50545f8f13c959fe01a05aea06bef2f0
+SHA512: 53bf7dd403b0c68af9691882ad8ed7422c8d1f496627428fb4c3caf0b0313715524b744c5f453aced2d49e16e55f3f45b46b9a77aa3097dbfcae7caa0208194b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 25517085
+SHA1: 6700ef07e3f7c4582d1b8004bfcce6cb4075b951
+SHA256: d4ce9fd565a81ce138ea26382c8880f0456883b2539e18510e1d845293a095cb
+SHA512: 2d97099161bcd17c5fdf1c70da6e062ae410186e7c1235e3b1df5bad6085e370bed3cf1ebd89ed9b5918cd386ae47d1f986a3c96c32f0c8a0b9375e56b66a1d9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;發布紀錄&lt;/h2&gt;
+&lt;p&gt;許多提交者、開發者和漏洞回報者幫助了此版本的發佈，在此感謝所有人的貢獻。&lt;/p&gt;
+
+&lt;p&gt;由 nagachika and mame 發表於 2022-04-12&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-3-0-4-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-3-0-4-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.7.6 發布</title>
+      <description>&lt;p&gt;Ruby 2.7.6 已經發布了。&lt;/p&gt;
+&lt;p&gt;本發行版包含安全性修正。
+細節請參考下列內容。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/zh_tw/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: String 轉換 Float 時緩衝區溢位&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此次發布也包含了數個錯誤修復。
+詳細的變動請參閱&lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_5...v2_7_6&quot;&gt;提交紀錄&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;本次發布後，我們將結束 Ruby 2.7 的正常維護週期，進入安全性維護週期。
+這代表接下來除了安全性修正外，我們將不會移植任何錯誤修正回去 2.7 系列。&lt;/p&gt;
+&lt;p&gt;在預計為期一年的安全性維護週期後，Ruby 2.7 將會停止官方支援，並進入最終階段。
+因此，我們建議您著手更新至新版本如 Ruby 3.0 或 3.1。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14805659
+SHA1: 0eb555e5169af2cfcedd2394137f129ddc842cc1
+SHA256: 6de239d74cf6da09d0c17a116378a866743f5f0a52c9355da26b5d312ca6eed3
+SHA512: 4f7f3624afc43da25ebf0f01d5a2f92f72f94bab7423587cfd3920e089b479bf559b159adf2891b996f7e6a98c008a4f73a4a2170e2f8619417660ac1ab24bdc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16919639
+SHA1: 645f85941b4f69fc5bfb8aa3ba85f0e43dfb520c
+SHA256: e7203b0cc09442ed2c08936d483f8ac140ec1c72e37bb5c401646b7866cb5d10
+SHA512: 94810bb204cec55b5bbec8d51a5f5cc696613d1812b152399441a5cc7e4eddd2b376bc85e16d8da0b12f1938d19bf0d056b49a028809c036fb5a446a65bffbee
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12084408
+SHA1: 068e3e11799250781ba4a68eb4f015bab35966e3
+SHA256: 54dcd3044726c4ab75a9d4604720501442b229a3aed6a55fe909567da8807f24
+SHA512: e86410b59d5917786fe43b00fd75dedd0e7f84611286b9274c542d2e562088fcee6bcc6c2596c30ccf793280d2bac6bfbb2619ef0513b3ca31f10f88684c7b1f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.6.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20701880
+SHA1: 59517436c536a817f52fe77b7cbed32d5d3764c3
+SHA256: 2ead329cfb9a5975348d2fdcfa0cb60bb3ba47a6693e93afd52db7a0ba01ac4c
+SHA512: d7210aa211333cc1afa080b999bf1a50db1708bb8e2c608892bb42fe450f4567aa4d974532071e0eba3d96bee63ed1f2d51f123d443edc46668c4eca3fe1f791
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;發布紀錄&lt;/h2&gt;
+&lt;p&gt;許多提交者、開發者和漏洞回報者幫助了此版本的發佈，在此感謝所有人的貢獻。&lt;/p&gt;
+&lt;p&gt;Ruby 2.7 的維護（包含本版本）是基於 Ruby 協會的「穩定版本協議」。&lt;/p&gt;
+
+&lt;p&gt;由 usa and mame 發表於 2022-04-12&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-2-7-6-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-2-7-6-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.6.10 發布</title>
+      <description>&lt;p&gt;Ruby 2.6.10 已經發布了。&lt;/p&gt;
+&lt;p&gt;本發行版包含安全性修正。
+細節請參考下列內容。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/zh_tw/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/&quot;&gt;CVE-2022-28739: String 轉換 Float 時緩衝區溢位&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此次發布也修復了一個在老舊編譯器上的編譯問題，和修復一個在 date 函式庫內的回歸問題。
+詳細的變動請參閱&lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_6_9...v2_6_10&quot;&gt;提交紀錄&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;在此次發布之後，Ruby 2.6 將結束維護，換句話說，這將會是 Ruby 2.6 系列的最後一個發行版本。
+即使有安全性風險，我們也不會發布 Ruby 2.6.11（假如發現許多嚴重的問題，才有可能會發布）。
+我們建議所有 Ruby 2.6 的使用者立刻開始遷移到 Ruby 3.1、3.0 或 2.7。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14136083
+SHA1: ece89ec43e107a80efe35b3b7879dbe07e1a636f
+SHA256: 399e1f13e7fedc3c6ae2ff541bbf26c44dfb63b07b6c186fdd15b4e526e27e9c
+SHA512: 275a0f329641e6c3d3d3c33ffabf585195187eb3baa4fb1dfd35999fa0a80bd5925943fa2711827ac00dffb6c9a1deeadabaf2e9ee401d56926fc167db5ae4a4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16200134
+SHA1: e50f3194ac23da8d71882d611056ed06068169ef
+SHA256: 0dc609f263d49c4176d5725deefc337273676395985b5e017789373e8cadf16e
+SHA512: 13249c639da236d48749f5d9f563068f032f02d75372a8a5633626fdd32814150e7f79e81b25b205885ac38964ab20ef7323bd40346a798948f63a2eba5c8daf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 11582056
+SHA1: e91de95735d0af32238903c7c58d2b660433e0cc
+SHA256: 5fd8ded51321b88fdc9c1b4b0eb1b951d2eddbc293865da0151612c2e814c1f2
+SHA512: 06ebf1442c4bf4be62eb710348cfb714cbc4c4acc5125319a425fe76ef2be7cccfd41e50bf3751bfef3ceb8ac47ad41a027d2c2ad560e25ec694e34fd9f62a8a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.10.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19888325
+SHA1: 1183c8b6a74fa8be798a07d16028138be30bb8d6
+SHA256: 381e62de1cbac80b356c2fa77ee1906a169bb8cde4a9ec64541a41db32db046d
+SHA512: 352efede781c3c3b1aaaaeaa28050d530b8a350ec549218464dfe57a4d39770f5a345978fc9f6c23d5f539db70bd9f53c4fbf807dc4ec4bdf9cae1acbe6c2c99
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;發布紀錄&lt;/h2&gt;
+&lt;p&gt;許多提交者、開發者和漏洞回報者幫助了此版本的發佈，在此感謝所有人的貢獻。&lt;/p&gt;
+
+&lt;p&gt;由 usa and mame 發表於 2022-04-12&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-2-6-10-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/04/12/ruby-2-6-10-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2022-28738: Regexp 編譯時雙重釋放風險</title>
+      <description>&lt;p&gt;在 Regexp 編譯時發現一個雙重釋放（Double free）的風險。
+此風險的 CVE 識別號為 &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2022-28738&quot;&gt;CVE-2022-28738&lt;/a&gt;。
+我們強烈建議您升級 Ruby。&lt;/p&gt;
+&lt;h2&gt;風險細節&lt;/h2&gt;
+&lt;p&gt;由於 Regexp 編譯過程中的一個錯誤，使用特定字串所生成的 Regexp 的物件，可能會造成同一個記憶體被釋放兩次，這就是所謂的「雙重釋放」漏洞。
+請注意，一般來說，建立及使用不受信任的輸入所生成的 Regexp 物件是不安全的。然而，在此次請況下，經過全面的評估，我們將其視為一個風險。&lt;/p&gt;
+&lt;p&gt;請升級 Ruby 至 3.0.4 或 3.1.2。&lt;/p&gt;
+&lt;h2&gt;受影響版本&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ruby 3.0.3 及更早版本&lt;/li&gt;
+&lt;li&gt;ruby 3.1.1 及更早版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;請注意，ruby 2.6 系列以及 2.7 系列並未受到影響。&lt;/p&gt;
+&lt;h2&gt;致謝&lt;/h2&gt;
+&lt;p&gt;感謝 &lt;a href=&quot;https://hackerone.com/piao?type=user&quot;&gt;piao&lt;/a&gt; 回報此問題。&lt;/p&gt;
+&lt;h2&gt;歷史&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;最初發佈於 2022-04-12 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由 mame 發表於 2022-04-12&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/04/12/double-free-in-regexp-compilation-cve-2022-28738/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2022-28739: String 轉換 Float 時緩衝區溢位</title>
+      <description>&lt;p&gt;在 String 轉換 Float 的演算法中發現了一個緩衝區溢位漏洞。
+此風險的 CVE 識別號為 &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2022-28739&quot;&gt;CVE-2022-28739&lt;/a&gt;。
+我們強烈建議您升級 Ruby。&lt;/p&gt;
+&lt;h2&gt;風險細節&lt;/h2&gt;
+&lt;p&gt;由於 String 轉換 Float 所使用的內部函式有錯誤，一些轉換方法如 &lt;code&gt;Kernel#Float&lt;/code&gt; 以及 &lt;code&gt;String#to_f&lt;/code&gt; 會造成緩衝區過度讀取。
+典型的情況是程式會發生記憶體區段錯誤（Segmentation fault）而停止，但在少數的情況下，可能會造成非法讀取記憶體。&lt;/p&gt;
+&lt;p&gt;請升級 Ruby 至 2.6.10、2.7.6、3.0.4 或 3.1.2。&lt;/p&gt;
+&lt;h2&gt;受影響版本&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ruby 2.6.9 及更早版本&lt;/li&gt;
+&lt;li&gt;ruby 2.7.5 及更早版本&lt;/li&gt;
+&lt;li&gt;ruby 3.0.3 及更早版本&lt;/li&gt;
+&lt;li&gt;ruby 3.1.1 及更早版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;致謝&lt;/h2&gt;
+&lt;p&gt;感謝 &lt;a href=&quot;https://hackerone.com/piao?type=user&quot;&gt;piao&lt;/a&gt; 回報此問題。&lt;/p&gt;
+&lt;h2&gt;歷史&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;最初發佈於 2022-04-12 12:00:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由 mame 發表於 2022-04-12&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.1.1 發布</title>
+      <description>&lt;p&gt;Ruby 3.1.1 已經發布了。&lt;/p&gt;
+&lt;p&gt;這是 3.1 系列穩定版本第一個小版本更新。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18434&quot;&gt;error_highlight does not work for -e option&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18453&quot;&gt;Fix YJIT passing method arguments in the wrong order when keyword argument and default arguments are mixed. Breaks Rails collection caching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18458&quot;&gt;Segmentation fault when missing Warning#warn method&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18436&quot;&gt;Fix Pathname dot directory globbing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18469&quot;&gt;Fix default --jit-max-cache in ruby --help&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18292&quot;&gt;3.1.0-dev &lt;code&gt;include&lt;/code&gt; cause Module to be marked as initialized&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18468&quot;&gt;Tutorial Link for Optionparser is broken&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18475&quot;&gt;Yielding an element for Enumerator in another thread dumps core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18489&quot;&gt;Segmentation fault with ruby 3.1.0 in &lt;code&gt;active_decorator&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18497&quot;&gt;Segfault on use of Process.daemon in a Fiber&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18517&quot;&gt;0 &amp;lt;&amp;lt; (2**40) is NoMemoryError but 0 &amp;lt;&amp;lt; (2**80) is 0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18443&quot;&gt;IO read/write/wait hook bug fixes.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18516&quot;&gt;Memory leak on aliasing method to itself&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18556&quot;&gt;error: use of undeclared identifier 'MAP_ANONYMOUS'&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18501&quot;&gt;[BUG] try to mark T_NONE object in RubyVM::InstructionSequence. load_from_binary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18562&quot;&gt;throw_data passed to rescue through require&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18570&quot;&gt;Fix &lt;code&gt;IpAddr#to_range&lt;/code&gt; on frozen &lt;code&gt;IpAddr&lt;/code&gt; instances.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5533&quot;&gt;Fixed path for ipaddr.rb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ruby/ruby/pull/5543&quot;&gt;Merge RubyGems-3.3.7 and Bundler-2.3.7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/18578&quot;&gt;Hang when repeating Hash#shift against a empty Hash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;詳細的變動請參閱&lt;a href=&quot;https://github.com/ruby/ruby/compare/v3_1_0...v3_1_1&quot;&gt;提交紀錄&lt;/a&gt;。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20562492
+SHA1: 289cbb9eae338bdaf99e376ac511236e39be83a3
+SHA256: fe6e4782de97443978ddba8ba4be38d222aa24dc3e3f02a6a8e7701c0eeb619d
+SHA512: a60d69d35d6d4ad8926b324a6092f962510183d9759b096ba4ce9db2e254e0f436030c2a62741352efe72aec5ca2329b45edd85cca8ad3254a9c57e3d8f66319
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15103808
+SHA1: af6afead0e5509c459a580fc260bec2608b46750
+SHA256: 7aefaa6b78b076515d272ec59c4616707a54fc9f2391239737d5f10af7a16caa
+SHA512: 8877fa9a458964a59a11529cd10b3d25b5f6238cd4678b6dcea0bd4b750499cf8ff39d8824053b4ab26c5cd0cfb604a57807ce61580175857fcf00b2cff3e55f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 24843623
+SHA1: 9afab3231e99835dbbdad93c96a240ce90a1f2f5
+SHA256: de1cc26c18c6fb838b75f3e700621339cf09d557a15c0b1457720f7c441a1e68
+SHA512: 0eac755cd9883659dbd9ab9b2c2e5608112030d96ad14c22e1f21712d870f97ba7dfbd74cc03b1892faacb37958f100df484e4944c90b4a834e27e4c03b8e895
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;發布紀錄&lt;/h2&gt;
+&lt;p&gt;許多提交者、開發者和漏洞回報者幫助了此版本的發佈，在此感謝所有人的貢獻。&lt;/p&gt;
+
+&lt;p&gt;由 naruse 發表於 2022-02-18&lt;br /&gt;翻譯： Vincent Lin&lt;/p&gt;</description>
+      <pubDate>Fri, 18 Feb 2022 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2022/02/18/ruby-3-1-1-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2022/02/18/ruby-3-1-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.5.9 發佈</title>
+      <description>&lt;p&gt;Ruby 2.5.9 發佈了。&lt;/p&gt;
+&lt;p&gt;這個版本包含以下的脆弱性修正。
+請參照以下的詳細記事。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/en/news/2020/09/29/http-request-smuggling-cve-2020-25613/&quot;&gt;CVE-2020-25613: Potential HTTP Request Smuggling Vulnerability in WEBrick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/en/news/2021/04/05/xml-round-trip-vulnerability-in-rexml-cve-2021-28965/&quot;&gt;CVE-2021-28965: XML round-trip vulnerability in REXML&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;另外、配合Ruby的特性，包含了若干変更。
+変更的詳細請參照 &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_5_8...v2_5_9&quot;&gt;commit logs&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;隨著這個版本的發佈，Ruby 2.5 系列進入了終了階段(EOL)。
+這意味著，Ruby 2.5.9 將成為 Ruby 2.5 系列的最後版本。
+以後，即使新脆弱性被發現，Ruby 2.5.10 之類的版本也不會被發佈。
+我們鼓勵各用戶盡快遷移到更新的版本，例如 3.0、2.7 和 2.6。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 13805484
+SHA1: 6ac21486996aa38a71f858d28d01ada5593d0b45
+SHA256: bebbe3fe7899acd3ca2f213de38158709555e88a13f85ba5dc95239654bcfeeb
+SHA512: 12f58e14cfa6337065b0e82941e39b167813920eb54cbdb4ac4a680dd0cb75d2684d341059e7b4d0da1292bfc4e53041443bd14891a66f50991858b440a835c8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15687501
+SHA1: 5408671f2ba4f3124ab99ea6edb6d62887d7e5a0
+SHA256: f5894e05f532b748c3347894a5efa42066fd11cc8d261d4d9788ff71da00be68
+SHA512: 5c9a6703b4c8d6e365856d7815e202f24659078d4c8e7a5059443453032b73b28e7ab2b8a6fa995c92c8e7f4838ffa6f9eec31593854e2fc3fc35532cb2db788
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 11314448
+SHA1: 7be8dc2e6e534eb36bfdf9f017af512996ec99a6
+SHA256: a87f2fa901408cc77652c1a55ff976695bbe54830ff240e370039eca14b358f0
+SHA512: 239f73eb4049ae2654b648ab927b1f74643d38a5f29572e4bd4e6aa3c53c1df29e0a995fd90d4ab9d4b2ff073fd809b12df820ccb1ddf395684bba6be1855b7a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.9.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19064704
+SHA1: 5f39cfb7a73c7321b65706617275c3c7452281a9
+SHA256: 14db683c6ba6a863ef126718269758de537571b675231ec43f03b987739e3ce1
+SHA512: c4a34678d280a99fde28cc33ba12d164be8a484f43b09495f9c22c48d2b963424c38470020c057cf346f8cc050ab4289a90a8d516b2a79245dea4e6de79cb75f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;版本發佈的註記&lt;/h2&gt;
+&lt;p&gt;我們要感謝所有對此版本提供協力的人，尤其對於報告漏洞的人致上特別感謝之意。&lt;/p&gt;
+
+&lt;p&gt;由 usa 發表於 2021-04-05&lt;br /&gt;翻譯： twlixin&lt;/p&gt;</description>
+      <pubDate>Mon, 05 Apr 2021 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2021/04/05/ruby-2-5-9-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2021/04/05/ruby-2-5-9-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 3.0.0 發布</title>
+      <description>&lt;p&gt;我們很高興宣布 Ruby 3.0.0 發布了。從 2015 年開始開發，目標是提高效能、支援並行性並提供型態檢查。Matz 表示「Ruby 3 將會比 Ruby 2 快 3 倍」，即 &lt;a href=&quot;https://blog.heroku.com/ruby-3-by-3&quot;&gt;Ruby 3x3&lt;/a&gt;。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;從 &lt;a href=&quot;https://github.com/mame/optcarrot&quot;&gt;Optcarrot 指標&lt;/a&gt;（量測了單線程在 NES 遊戲模擬器的效能）來看，我們得到了比 Ruby 2.0 高三倍的效能！&lt;!-- raw HTML omitted --&gt;在這裡 &lt;a href=&quot;https://benchmark-driver.github.io/hardware.html&quot;&gt;benchmark-driver.github.io/hardware.html&lt;/a&gt; 所記載的硬體環境下實測。Ruby 3.0 測的是這個 &lt;a href=&quot;https://github.com/ruby/ruby/commit/8c510e4095&quot;&gt;Commit 8c510e4095&lt;/a&gt;。但在你的機器上跑起來可能沒有三倍快。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Ruby 3.0.0 達成各項目標的功能&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;效能
+&lt;ul&gt;
+&lt;li&gt;MJIT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;並行
+&lt;ul&gt;
+&lt;li&gt;Ractor&lt;/li&gt;
+&lt;li&gt;Fiber Scheduler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;靜態型態（靜態分析）
+&lt;ul&gt;
+&lt;li&gt;RBS&lt;/li&gt;
+&lt;li&gt;TypeProf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通過上述的效能提升，Ruby 3.0 也加入了許多新功能。&lt;/p&gt;
+&lt;h2&gt;效能&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;當我第一次在大會上放話 &amp;quot;Ruby3x3&amp;quot; 時，許多核心成員認為 &amp;quot;Matz 在說大話&amp;quot;。實際上我自己也是這麼認為的。但我們做到了。能看到核心成員在某些測試實現了 Ruby 3.0 比 Ruby 2.0 快三倍的目標，真是我的榮幸。— Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;MJIT&lt;/h3&gt;
+&lt;p&gt;許多的效能改進來自 MJIT。參考 &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0/NEWS.md&quot;&gt;NEWS&lt;/a&gt; 了解更多。&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 開啟 JIT 之後，某些場合應該能感覺到效能提升了，比如遊戲領域（&lt;a href=&quot;https://benchmark-driver.github.io/benchmarks/optcarrot/commits.html#chart-1&quot;&gt;Optcarrot&lt;/a&gt;)、AI (&lt;a href=&quot;https://benchmark-driver.github.io/benchmarks/rubykon/commits.html&quot;&gt;Rubykon&lt;/a&gt;），或是任何需要大量呼叫某些特定方法的應用程式。&lt;/p&gt;
+&lt;p&gt;雖然 Ruby 3.0 &lt;a href=&quot;https://twitter.com/k0kubun/status/1256142302608650244&quot;&gt;大幅減少了 JIT 產生的程式碼大小&lt;/a&gt;，但還不能應用在像是 Rails 這種呼叫大量不同方法的上（因為 CPU 指令 cache 命中率很低），Ruby 3.1 將會改善這一塊，敬請期待。&lt;/p&gt;
+&lt;h2&gt;Concurrency / Parallel&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;現在是多核心的時代了。並行性至關重要。有了 Ractor 和 Async Fiber 後，Ruby 將會成為一門真正的並行語言。— Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Ractor（實驗性）&lt;/h3&gt;
+&lt;p&gt;Ractor 是基於 Actor 模型的並行抽象層，可以並行執行程式而無須擔心線程安全性問題。&lt;/p&gt;
+&lt;p&gt;可以一次創好幾個 Ractor，也可以同時執行它們。Ractor 之間不共享物件，所以能確保線程的安全性。Ractor 透過交換訊息來互相溝通。&lt;/p&gt;
+&lt;p&gt;為了要限制共享物件，Ractor 引入了許多 Ruby 語法的限制（若沒有使用多個 Ractor 則沒有限制）。&lt;/p&gt;
+&lt;p&gt;規範與實作尚未成熟，在未來還有可能會改變，所以 Ractor 還是個實驗性功能，在第一次執行 &lt;code&gt;Ractor.new&lt;/code&gt; 時會輸出警告訊息。&lt;/p&gt;
+&lt;p&gt;以下的小程式量測有名的 &lt;a href=&quot;https://en.wikipedia.org/wiki/Tak_(function)&quot;&gt;tak 函數&lt;/a&gt;，分別紀錄了序行執行四次跟用 Ractor 並行執行四次的執行時間。&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'benchmark'&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Benchmark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;bm&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# sequential version&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'seq'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# parallel version&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'par'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tarai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:take&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;測試結果：
+          user     system      total        real
+seq  64.560736   0.001101  64.561837 ( 64.562194)
+par  66.422010   0.015999  66.438009 ( 16.685797)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;測試在 Ubuntu 20.04、Intel(R) Core(TM) i7-6700 (4 核心、8 硬體線程）下量測。並行的版本比序行的版本快 3.87 倍。&lt;/p&gt;
+&lt;p&gt;參見 &lt;a href=&quot;https://docs.ruby-lang.org/en/3.0/ractor_md.html&quot;&gt;doc/ractor.md&lt;/a&gt; 來了解更多。&lt;/p&gt;
+&lt;h3&gt;Fiber Scheduler&lt;/h3&gt;
+&lt;p&gt;引進了 &lt;code&gt;Fiber#scheduler&lt;/code&gt; 來攔截阻塞式操作。可以不改原來的程式碼來獲得少量的並行性。詳見 &lt;a href=&quot;https://www.youtube.com/watch?v=Y29SSOS4UOc&quot;&gt;&amp;quot;Don't Wait For Me, Scalable Concurrency for Ruby 3&amp;quot;&lt;/a&gt; 演講來了解大概的工作原理。&lt;/p&gt;
+&lt;p&gt;目前支援的類別和方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Mutex#lock&lt;/code&gt;、&lt;code&gt;Mutex#unlock&lt;/code&gt;、&lt;code&gt;Mutex#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConditionVariable#wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Queue#pop&lt;/code&gt;、&lt;code&gt;SizedQueue#push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Thread#join&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Process.wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#wait&lt;/code&gt;、&lt;code&gt;IO#read&lt;/code&gt;、&lt;code&gt;IO#write&lt;/code&gt;和相關方法（比如 &lt;code&gt;#wait_readable&lt;/code&gt;、&lt;code&gt;#gets&lt;/code&gt;、&lt;code&gt;#puts&lt;/code&gt;等）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不支援&lt;/strong&gt; &lt;code&gt;IO#select&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面的例子會同時執行多個 HTTP 請求：&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'async'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'net/http'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'uri'&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ruby&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rails&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;async&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Async&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://www.google.com/search?q=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topic&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;這裡用了 &lt;a href=&quot;https://github.com/socketry/async&quot;&gt;async&lt;/a&gt; 提供的事件循環。事件循環用了 &lt;code&gt;Fiber#scheduler&lt;/code&gt; 的鉤子（hooks）把 &lt;code&gt;Net::HTTP&lt;/code&gt; 變成了非阻塞操作。別的 Gem 也可以用這個介面來實作非阻塞操作，如此一來只要其他的 Ruby（JRuby、TruffleRuby）也實作了非阻塞的鉤子，也就可以達到同樣的效果。&lt;/p&gt;
+&lt;h2&gt;靜態分析&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2010 是靜態型態語言的時代。Ruby 透過無需定義型態的抽象解釋層，跟上時代的腳步也實作了靜態型態。RBS 和 TypeProf 只是未來的一小步，之後還有更多發展。— Matz&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;RBS&lt;/h3&gt;
+&lt;p&gt;RBS 是描述 Ruby 程式型態的語言。&lt;/p&gt;
+&lt;p&gt;型態檢查工具，TypeProf 和其他工具可以透過 RBS 定義來更好地理解 Ruby 程式。&lt;/p&gt;
+&lt;p&gt;你可以寫下類別和模組的定義：定義了什麼方法、實體變數和型態，繼承和 mix-in 關係。&lt;/p&gt;
+&lt;p&gt;RBS 的目標是支援各種常見的 Ruby 程式模式，進而描述更高階的型態如 union、方法重載和泛型。&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 搭載了 &lt;code&gt;rbs&lt;/code&gt; Gem，可以直接解析和處理用 RBS 定義的型態宣告。以下是一個用 RBS 描述類別、模組和常數定義的例子。&lt;/p&gt;
+&lt;div class=&quot;language-rbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;rbs&quot;&gt;module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` means union types, `User` or `Bot`.
+    def initialize: (String) -&amp;gt; void
+    def post: (String, from: User | Bot) -&amp;gt; Message   # Method overloading is supported.
+            | (File, from: User | Bot) -&amp;gt; Message
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;參見 &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;RBS Gem 的 README&lt;/a&gt; 來了解更多。&lt;/p&gt;
+&lt;h3&gt;TypeProf&lt;/h3&gt;
+&lt;p&gt;TypeProf 是一個 Ruby 內建的型態分析工具。&lt;/p&gt;
+&lt;p&gt;目前 TypeProf 是一種型態推測器。&lt;/p&gt;
+&lt;p&gt;讀入 Ruby 程式碼，分析方法的定義，在那被使用，怎麼被使用，最後產生用 RBS 定義的型態簽名。&lt;/p&gt;
+&lt;p&gt;以下是 TypeProf 的示範。&lt;/p&gt;
+&lt;p&gt;範例程式：&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# test.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:age&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;John&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;age: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;範例輸出：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&amp;gt; [String, Integer]
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;可以直接把檔名 &lt;code&gt;test.rb&lt;/code&gt; 丟給 &lt;code&gt;TypeProf&lt;/code&gt;： &lt;code&gt;typeprof test.rb&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;也可以在&lt;a href=&quot;https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;amp;rbs=&quot;&gt;線上試用 TypeProf&lt;/a&gt;（在我們自己的伺服器上跑 TypeProf，要是壞了在這裡先說聲抱歉）。&lt;/p&gt;
+&lt;p&gt;參見 &lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/doc.md&quot;&gt;TypeProf 文件&lt;/a&gt;和&lt;a href=&quot;https://github.com/ruby/typeprof/blob/master/doc/demo.md&quot;&gt;演示&lt;/a&gt;來了解更多。&lt;/p&gt;
+&lt;p&gt;TypeProf 仍是實驗性質功能尚未成熟，只支援 Ruby 的部分語法，能找出的型態錯誤有限。但目前正在快速開發中來支援更多的 Ruby 特性，更快的分析速度，更高的使用性。有任何回饋歡迎告訴我們。&lt;/p&gt;
+&lt;h2&gt;其它值得一提的新功能&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;重新設計了單行模式匹配（實驗性質）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;新增 &lt;code&gt;=&amp;gt;&lt;/code&gt;。用來向右賦值。&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 0&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;in&lt;/code&gt; 現在會回傳 &lt;code&gt;true&lt;/code&gt; 或 &lt;code&gt;false&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# version 3.0&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; false&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# version 2.7&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; raise NoMatchingPatternError&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;新增「模式查詢」（實驗性質）&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;a&quot;, 1]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;b&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;c&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [2, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, 3]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;新增了無 &lt;code&gt;end&lt;/code&gt; 的方法定義&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Hash#except&lt;/code&gt; 現已內建&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {:b=&amp;gt;2, :c=&amp;gt;3}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;新增了實驗性質的記憶體監視圖&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;這是一組新的 C-API，用來交換記憶體空間的，比如擴展函式庫（extension）之間可以交換 array 跟 bitmap。擴展函式庫之間也可以共享記憶體空間的 metadata，比如那裡的記憶體已經被用了、佔用空間所存放的格式等。利用這些 metadata，擴展函式庫甚至可以恰當的共享多維度的 array。這個功能參考了 Python 的 buffer protocol。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;效能改善&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;貼一段很長的程式碼到 IRB 跟 Ruby 2.7.0 相比快了 53 倍。舉例來說，貼上&lt;a href=&quot;https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b&quot;&gt;這段程式碼&lt;/a&gt;從 11.7 秒降到了 0.22 秒。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IRB 新增了 &lt;code&gt;measure&lt;/code&gt; 指令。可以量一些簡單的執行時間。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb(main):001:0&amp;gt; 3
+=&amp;gt; 3
+irb(main):002:0&amp;gt; measure
+TIME is added.
+=&amp;gt; nil
+irb(main):003:0&amp;gt; 3
+processing time: 0.000058s
+=&amp;gt; 3
+irb(main):004:0&amp;gt; measure :off
+=&amp;gt; nil
+irb(main):005:0&amp;gt; 3
+=&amp;gt; 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;其他自 2.7 以來的變更&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Keyword arguments 從其它的參數分離出去了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;原則上來說，在 Ruby 2.7 有警告的程式碼，在 3.0 不會動。參見&lt;a href=&quot;https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/&quot;&gt;這份文件&lt;/a&gt;來了解更多。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;除此之外，參數現在可以轉發到下一層。&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:&quot;do_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模式匹配（&lt;code&gt;case&lt;/code&gt;/&lt;code&gt;in&lt;/code&gt;）不再是實驗性質。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;參見&lt;a href=&quot;https://docs.ruby-lang.org/en/3.0/syntax/pattern_matching_rdoc.html&quot;&gt;模式匹配文件&lt;/a&gt;來了解更多。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;完全移除了 &lt;code&gt;$SAFE&lt;/code&gt; 功能，現在只是個單純的全域變數。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;錯誤訊息的順序在 Ruby 2.5 被顛倒了，現在又改回來了。現在錯誤訊息和 Ruby 2.4 一樣：先顯示錯誤訊息行號，再來才是所有的呼叫者。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新了某些標準函式庫&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.2.3&lt;/li&gt;
+&lt;li&gt;Bundler 2.2.3&lt;/li&gt;
+&lt;li&gt;IRB 1.3.0&lt;/li&gt;
+&lt;li&gt;Reline 0.2.0&lt;/li&gt;
+&lt;li&gt;Psych 3.3.0&lt;/li&gt;
+&lt;li&gt;JSON 2.5.1&lt;/li&gt;
+&lt;li&gt;BigDecimal 3.0.0&lt;/li&gt;
+&lt;li&gt;CSV 3.1.9&lt;/li&gt;
+&lt;li&gt;Date 3.1.0&lt;/li&gt;
+&lt;li&gt;Digest 3.0.0&lt;/li&gt;
+&lt;li&gt;Fiddle 1.0.6&lt;/li&gt;
+&lt;li&gt;StringIO 3.0.0&lt;/li&gt;
+&lt;li&gt;StringScanner 3.0.0&lt;/li&gt;
+&lt;li&gt;等等；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以下函式庫從標準函式庫移除。如果用到了以下函式庫的功能，請安裝對應的 Gem 再使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sdbm&lt;/li&gt;
+&lt;li&gt;webrick&lt;/li&gt;
+&lt;li&gt;net-telnet&lt;/li&gt;
+&lt;li&gt;xmlrpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以下函式庫納入標準函式庫&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rexml&lt;/li&gt;
+&lt;li&gt;rss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以下的函式庫納入標準函式庫並發佈在 rubygems.org&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;abbrev&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;li&gt;drb&lt;/li&gt;
+&lt;li&gt;debug&lt;/li&gt;
+&lt;li&gt;erb&lt;/li&gt;
+&lt;li&gt;find&lt;/li&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-http&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-protocol&lt;/li&gt;
+&lt;li&gt;open-uri&lt;/li&gt;
+&lt;li&gt;optparse&lt;/li&gt;
+&lt;li&gt;pp&lt;/li&gt;
+&lt;li&gt;prettyprint&lt;/li&gt;
+&lt;li&gt;resolv-replace&lt;/li&gt;
+&lt;li&gt;resolv&lt;/li&gt;
+&lt;li&gt;rinda&lt;/li&gt;
+&lt;li&gt;set&lt;/li&gt;
+&lt;li&gt;securerandom&lt;/li&gt;
+&lt;li&gt;shellwords&lt;/li&gt;
+&lt;li&gt;tempfile&lt;/li&gt;
+&lt;li&gt;tmpdir&lt;/li&gt;
+&lt;li&gt;time&lt;/li&gt;
+&lt;li&gt;tsort&lt;/li&gt;
+&lt;li&gt;un&lt;/li&gt;
+&lt;li&gt;weakref&lt;/li&gt;
+&lt;li&gt;digest&lt;/li&gt;
+&lt;li&gt;io-nonblock&lt;/li&gt;
+&lt;li&gt;io-wait&lt;/li&gt;
+&lt;li&gt;nkf&lt;/li&gt;
+&lt;li&gt;pathname&lt;/li&gt;
+&lt;li&gt;syslog&lt;/li&gt;
+&lt;li&gt;win32ole&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;參見 &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+和 &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0&quot;&gt;commit logs&lt;/a&gt; 來了解更多。&lt;/p&gt;
+&lt;p&gt;自 2.7.0 以來，計 &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0#file_bucket&quot;&gt;4028 檔案變更，200058 行新增（+），154063 行刪減（-）&lt;/a&gt;！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ruby 3.0 是一個里程碑。語言進化了仍向下相容。這不是終點而是起點。Ruby 會繼續演進變得更好。敬請期待！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;聖誕快樂、佳節愉快，享受用 Ruby 3.0 寫程式的時光。&lt;/p&gt;
+&lt;h2&gt;下載&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 19539509
+SHA1: 233873708c1ce9fdc295e0ef1c25e64f9b98b062
+SHA256: a13ed141a1c18eb967aac1e33f4d6ad5f21be1ac543c344e0d6feeee54af8e28
+SHA512: e62f4f63dc12cff424e8a09adc06477e1fa1ee2a9b2b6e28ca22fd52a211e8b8891c0045d47935014a83f2df2d6fc7c8a4fd87f01e63c585afc5ef753e1dd1c1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14374176
+SHA1: c142899d70a1326c5a71311b17168f98c15e5d89
+SHA256: 68bfaeef027b6ccd0032504a68ae69721a70e97d921ff328c0c8836c798f6cb1
+SHA512: 2a23c2894e62e24bb20cec6b2a016b66d7df05083668726b6f70af8338211cfec417aa3624290d1f5ccd130f65ee7b52b5db7d428abc4a9460459c9a5dd1a450
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 23862057
+SHA1: 2a9629102d71c7fe7f31a8c91f64e570a40d093c
+SHA256: a5e4fa7dc5434a7259e9a29527eeea2c99eeb5e82708f66bb07731233bc860f4
+SHA512: e5bf742309d79f05ec1bd1861106f4b103e4819ca2b92a826423ff451465b49573a917cb893d43a98852435966323e2820a4b9f9377f36cf771b8c658f80fa5b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ruby 是什麼&lt;/h2&gt;
+&lt;p&gt;Ruby 最初由 Matz（Yukihiro Matsumoto）於 1993 年開發的開源軟體。可以在許多平台上執行。使用者來自世界各地，特別活躍於網路開發領域。&lt;/p&gt;
+
+&lt;p&gt;由 naruse 發表於 2020-12-25&lt;br /&gt;翻譯： Juanito Fatas&lt;/p&gt;</description>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2020/12/25/ruby-3-0-0-released/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2020/12/25/ruby-3-0-0-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby 2.4 官方支持終了</title>
+      <description>&lt;p&gt;Ruby 2.4 系列的官方支持終了期間之宣布。&lt;/p&gt;
+&lt;p&gt;昨年 4 月以來的 1 年間、Ruby 2.4系列處於安全維護期。正如先前所宣布的，官方支持將於2020年3月31日結束。
+之後，有簡單的錯誤修復或者即使發現安全問題，也不會針對Ruby 2.4系列發布新版本。&lt;/p&gt;
+&lt;p&gt;2020年3月31日，Ruby 2.4系列的最終版本2.4.10發布，這只是為了讓使用者更有時間轉移到較新的版本系列。
+如果您當前正在使用Ruby 2.4系列，請盡快轉換到較新的版本系列。&lt;/p&gt;
+&lt;h2&gt;關於當前支持的版本系列&lt;/h2&gt;
+&lt;h3&gt;Ruby 2.7系列&lt;/h3&gt;
+&lt;p&gt;目前處於正常維護階段。
+随時會更新版本，包括發現到的錯誤之修復。
+此外，如果發現嚴重的安全問題，將進行相對應的緊急版本更新。&lt;/p&gt;
+&lt;h3&gt;Ruby 2.6 系列&lt;/h3&gt;
+&lt;p&gt;目前處於正常維護階段。
+随時會更新版本，包括發現到的錯誤之修復。
+此外，如果發現嚴重的安全問題，將進行相對應的緊急版本更新。&lt;/p&gt;
+&lt;h3&gt;Ruby 2.5 系列&lt;/h3&gt;
+&lt;p&gt;目前處於安全維護期。
+不會針對一般的錯誤作修復。
+如果發現嚴重的安全問題，將進行相應的緊急版本更新。
+預定將於2021年3月結束官方的支持。&lt;/p&gt;
+
+&lt;p&gt;由 usa 發表於 2020-04-05&lt;br /&gt;翻譯： twlixin&lt;/p&gt;</description>
+      <pubDate>Sun, 05 Apr 2020 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/zh_tw/news/2020/04/05/support-of-ruby-2-4-has-ended/</guid>
+      <link>https://www.ruby-lang.org/zh_tw/news/2020/04/05/support-of-ruby-2-4-has-ended/</link>
+    </item>
+    
+  </channel>
+</rss>

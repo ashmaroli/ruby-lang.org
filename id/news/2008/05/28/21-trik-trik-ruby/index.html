@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>21 Trik-Trik Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2008/05/28/21-trik-trik-ruby/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>21 Trik-Trik Ruby</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh Arie Kusuma Atmaja tanggal 2008-05-28</p>
+
+    <p>Sewaktu mengurus Ruby Inside pengurusnya sering melihat banyak sekali
+code Ruby. Kebanyakan sih sangat bagus, tetapi kadang-kadang kita lupa
+kalau sebetulnya ada jalan pintas beserta trik-trik Ruby yang bisa
+digunakan daripada reinvent the wheel (maksudnya: menemukan sesuatu yang
+sudah ada). Berikut adalah 21 trik-trik Ruby yang beraneka-ragam, mulai
+dari yang biasa digunakan sehari-hari oleh Ruby Developer berpengalaman
+maupun juga yang belum banyak ditemukan. Sebelum menulis posting ini
+sebenarnya Penulis RubyInside bahkan belum dapat ide buat trik yang
+nomor 2! Pokoknya apapun level Ruby Anda, semoga dengan penyegaran dan
+pencerahan posting ini di kemudian hari dapat bermanfaat buat Anda di
+kemudian hari bila menemukan kasus serupa.</p>
+<p><strong>1 – Cara Cepat Mengekstraksi hasil match regexp</strong></p>
+<p>Cara yang biasa digunakan untuk mengekstrak data dari teks pakai regexp
+adalah dengan menggunakan metode match. Nah sebetulnya ada shortcut yang
+bisa dipakai agar proses hidup lebih sejahtera.</p>
+<!-- raw HTML omitted -->
+<p><strong>2 – Shortcut buat Array#join</strong></p>
+<p>Sudah mafhum bagi kebanyakan kita Rubyist bila menggunakan Array#*
+dengan angka, untuk memproses kali dari besarnya array banyak elemen,
+tetapi jarang diketahui kalau sebenarnya kita bisa menggunakan Array#*
+buat string ketimbang memakai Array#join!</p>
+<!-- raw HTML omitted -->
+<p><strong>3 – Cara Cepat Memformat Angka Desimal</strong></p>
+<p>Memformat angka float ke bentuk yang biasa digunakan untuk harga bisa
+dicapai dengan sprintf atau bisa juga dengan cara alternatif, yaitu
+dengan formatting interpolation:</p>
+<!-- raw HTML omitted -->
+<p><strong>4 – Cara Cepat Mengapit Teks</strong></p>
+<p>Teknik formatting interpolation dari nomor ketiga keluar lagi, kali ini
+adalah bagaimana menyisipkan suatu string ke string yang lain:</p>
+<!-- raw HTML omitted -->
+<p>Anda juga bisa menggunakan elemen-elemen dari array untuk mengganti
+penempatan string tersebut:</p>
+<!-- raw HTML omitted -->
+<p><strong>5 – Menghapus direktori beserta seluruh isinya</strong></p>
+<p>Jangan sortir ulang dengan menggunakan shell. Ruby punya library file
+utilities yang nyaman dipakai untuk operasi file seperti menghapus
+direktori berikut seluruh isinya:</p>
+<!-- raw HTML omitted -->
+<p>Hati-hati kalau Anda menggunakan cara ini!</p>
+<p><strong>6 – Menyatukan dan Memisahkan enumerable</strong></p>
+<p>Tanda bintang juga bisa digunakan untuk menyatukan dan memisahkan
+enumerable (berfungsi untuk array maupun hash) daripada menggunakan
+metode flatten. Kita akan langsung lihat dari contoh berikut bicara ini
+saja biar jelas:</p>
+<p>Contah dengan Array:</p>
+<!-- raw HTML omitted -->
+<p>Contoh dengan Hash:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->a<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; [{:name=&gt;&quot;ArieKeren&quot;, :age=&gt;27}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->a<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; [[:name, &quot;ArieKeren&quot;], [:age, 27]]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Contoh dengan tangkapan parameter paralel:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->b<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->0<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->5<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->6<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; [0, 5, 6]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->a<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->values_at<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->b<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; [&quot;a&quot;, &quot;f&quot;, &quot;g&quot;]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><strong>7 – Persingkat definisi variabel lokal</strong></p>
+<p>Daripada mendefinisikan variabel lokal dengan beragam konten awal
+(sering hanya berupa hash kosong ataupun array kosong), Anda sebenarnya
+bisa langsung mendefinisikan variabel lokal “sekaligus” ketika operasi
+sedang berlangsung:</p>
+<!-- raw HTML omitted -->
+<p><strong>8 – Penggunaan yang-bukan-string maupun yang-bukan-simbol sebagai hash
+key</strong></p>
+<p>Sangat jarang kita lihat seseorang menggunakan yang-bukan-string maupun
+yang-bukan-simbol sebagai hash key. Padahal itu semua bisa dilakukan,
+dan kadang-kadang berguna (dan, tidak, contoh berikut bukan contoh yang
+dahsyat):</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->is<!-- raw HTML omitted --><!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->10<!-- raw HTML omitted --> <!-- raw HTML omitted -->&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->5<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; “Yes”<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><strong>9 – Gunakan ‘and’ dan ‘or’ untuk mengelompokkan operasi satu baris</strong></p>
+<p>Trik ini adalah trik yang biasa dipakai oleh Ruby Developer dengan penuh
+percaya diri untuk memperpadat, mempersingkat, dan menghilangkan terlalu
+banyaknya baris-baris kode yang sebetulnya berisikan statement-statement
+yang pendek-pendek:</p>
+<!-- raw HTML omitted -->
+<p><strong>10 – Menentukan eksekusi kode</strong></p>
+<p>Trik berikut merupakan pattern yang biasa digunakan Ruby Developer
+berpengalaman. Kalau Anda menulis Ruby script yang dapat digunakan
+sebagai library maupun langsung dari command line, Anda bisa menggunakan
+trik ini untuk menentukan apakah Anda sedang menjalankan script langsung
+atau tidak:</p>
+<!-- raw HTML omitted -->
+<p><strong>11 – Mempercepat assignment sekaligus (mass assignment)</strong></p>
+<p>Mass assignment merupakan trik yang Ruby Developer pelajari dari
+awal-awal ya, tetapi adalah sesuatu yang amazing dan menyenangkan betapa
+jarang trik ini digunakan:</p>
+<!-- raw HTML omitted -->
+<p>Trik ini bisa dipakai di banyak kasus seperti menangkap parameter
+argumen suatu metode yang berupa array dengan tanda * (bintang) :</p>
+<!-- raw HTML omitted -->
+<p><strong>12 – Gunakan range daripada perbandingan rumit untuk angka</strong></p>
+<p>Tidak ada lagi kode omong kosong seperti if x &gt; 1000 &amp;&amp; x
+&lt; 2000.</p>
+<!-- raw HTML omitted -->
+<p><strong>13 – Gunakan Enumeration untuk menghindari kode-kode berulang</strong></p>
+<!-- raw HTML omitted -->
+<p><strong>14 – Operator Ternary</strong></p>
+<p>Trik lain yang biasa dipelajari di awal-awal oleh Ruby Developer tetapi
+sesuatu yang sebenarnya jarang kelihatan digunakan oleh Ruby Developer
+berpengalaman adalah operator ternary. Operator ternary bukan hammer,
+tetapi terkadang bisa membuat banyak hal menjadi singkat dan padat.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Atau.. bisa juga digunakan untuk assignment yang bersandar pada hasil operator ternary<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->LOG<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->sev_threshold<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->ENVIRONMENT<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->:development<!-- raw HTML omitted --> <!-- raw HTML omitted -->?<!-- raw HTML omitted --> <!-- raw HTML omitted -->Logger<!-- raw HTML omitted --><!-- raw HTML omitted -->::<!-- raw HTML omitted --><!-- raw HTML omitted -->DEBUG<!-- raw HTML omitted --> <!-- raw HTML omitted -->:<!-- raw HTML omitted --> <!-- raw HTML omitted -->Logger<!-- raw HTML omitted --><!-- raw HTML omitted -->::<!-- raw HTML omitted --><!-- raw HTML omitted -->INFO<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><strong>15 – Operator Ternary Bersarang (Nested Ternary Operators)</strong></p>
+<p>Trik ini bisa jadi membuat kode menjadi rumit dibaca. Tetapi sebenarnya
+hanya urusan return obyek saja sama seperti banyak obyek lain di Ruby.</p>
+<!-- raw HTML omitted -->
+<p><strong>16 – Maksimalkan penggunaan fitur bawaan logis di Ruby</strong></p>
+<p>Ada sering banyak metode yang menggunakan pattern kurang lebih sebagai
+berikut:</p>
+<!-- raw HTML omitted -->
+<p>Mungkin kita bisa saja menggunakan operator ternary untuk improve?</p>
+<!-- raw HTML omitted -->
+<p>Ya, kode barusan tadi memang lebih pendek, dan saya sering melihat
+pattern seperti itu, padahal sebenarnya Anda seharusnya bisa selangkah
+lebih maju dan menyandarkan diri pada hasil respon dari operator
+comparison Ruby yang berupa true maupun false langsung!</p>
+<!-- raw HTML omitted -->
+<p><strong>17 – Perhatikan seluruh exception backtrace</strong></p>
+<!-- raw HTML omitted -->
+<p><strong>18 – Manfaatkan obyek tunggal DAN array agar dapat dienumerasikan</strong></p>
+<!-- raw HTML omitted -->
+<p><strong>19 – Rescue yang berada dalam blok tidak perlu diapit ‘begin’</strong></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>20 – Komentar format blok</strong></p>
+<p>Di Ruby kita bisa dengan bebas sesuai selera untuk berkomentas di kode
+dengan pagar ataupun menggunakan blok begin dan end:</p>
+<!-- raw HTML omitted -->
+<p>puts &quot;y&quot;
+=end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->puts<!-- raw HTML omitted --> <!-- raw HTML omitted -->&quot;z&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><strong>21 – Rescue satu baris</strong></p>
+<!-- raw HTML omitted -->
+<p>Jika Anda ingin mem-posting daftar trik-trik Ruby di blog Anda, kirimkan
+trackback kesini atau berkomentarlah lewat media milis ID Ruby maupun
+blog Anda, nanti kami akan melink semua posting. Alternatif lain,
+seperti yang sudah sering didengung-dengungkan di komunitas Ruby
+Indonesia, Anda dapat menghubungi kami bila Anda mempunyai artikel,
+tulisan tentang Ruby, maupun trik-trik Ruby untuk kami pasang disini,
+semua hal seperti komentar, maupun kritik dan hal-hal lain demi kebaikan
+dan kemajuan kita bersama. Terima kasih.</p>
+<p>Sumber tulisan dari <a href="http://www.rubyinside.com/21-ruby-tricks-902.html">RubyInside – 21 Ruby Tricks You Should Be Using In
+Your Own Code</a> dengan penyesuaian seperlunya oleh <a href="http://ariekusumaatmaja.wordpress.com">ArieKeren</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

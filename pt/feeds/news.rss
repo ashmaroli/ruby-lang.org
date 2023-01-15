@@ -1,4 +1,656 @@
----
-layout: news_feed
-lang: pt
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Notícias sobre Ruby</title>
+    <link>https://www.ruby-lang.org/pt/feeds/news.rss</link>
+    <language>pt-PT</language>
+    <ttl>40</ttl>
+    <description>As notícias mais recentes do ruby-lang.org em português.</description>
+    
+    <item>
+      <title>Lançado Ruby 2.7.2</title>
+      <description>&lt;p&gt;Ruby 2.7.2 foi lançado.&lt;/p&gt;
+&lt;p&gt;Esta versão contém incompatibilidade intencional. Alertas de depreciação estão desativadas por padrão no 2.7.2 em diante.
+Você pode ativar esses alertas de depreciação especificando as opções -w ou -W:deprecated na linha de comando.
+Por favor, veja os tópicos abaixo para detalhes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/17000&quot;&gt;Feature #17000 2.7.2 turns off deprecation warnings by default&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/16345&quot;&gt;Feature #16345 Don't emit deprecation warnings by default.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Esta versão contém a nova versão de webrick com uma correção de seguração descrita neste artigo.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/&quot;&gt;CVE-2020-25613: Potencial Vulnerabilidade de Smuggling de Requisições HTTP no WEBrick&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Veja &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_1...v2_7_2&quot;&gt;commit logs&lt;/a&gt; para outras alterações.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14708724
+SHA1: 7e30ca324464eab2f4c2a56d8ab4a37174998062
+SHA256: 65a590313d244d48dc2ef9a9ad015dd8bc6faf821621bbb269aa7462829c75ed
+SHA512: f07592cce4de3532c0fa1c84d53a134527d28ba95e310cd3487ac321c49ee680faeace285de544ee6db432a90aa7538a1d49ff10c72b235968ca362ef9be621d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 16836767
+SHA1: cb9731a17487e0ad84037490a6baf8bfa31a09e8
+SHA256: 6e5706d0d4ee4e1e2f883db9d768586b4d06567debea353c796ec45e8321c3d4
+SHA512: e80dc16b60149d0d6fedf0ba7b556ae460ff328ee63e9d9e41f5021f67addcc98159cb27bddccaebd6e4b1cddf29266f1c01c32d9ec8bb665aed63c0a2295f2f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12037052
+SHA1: 82a1fe683460caa8edb6199707f2905634e5ffcc
+SHA256: 1b95ab193cc8f5b5e59d2686cb3d5dcf1ddf2a86cb6950e0b4bdaae5040ec0d6
+SHA512: 7972278b096aa768c7adf2befd26003e18781a29ca317640317d30d93d6e963ded197724c8e2f1dfe1e838c5647176d414a74732a62e931fb50d6f2e0f777349
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 20618242
+SHA1: 9acee3d4e9399c3a2ddc2dd078dd2ee26327cc8f
+SHA256: c6b8597e5414f2b01a7cb25095319f2b0e780c95a98fee1ccf1ef022acf93dcc
+SHA512: 5f3a8d78bbd3d9700e5f0434d0cec2072816c02f5d5b55f24d4f9f0621c0c89f796e9ada32ed65f052a321845dd29709a1b76170c7dd0250bea6f8c18953a366
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentário de Versão&lt;/h2&gt;
+&lt;p&gt;Obrigado às várias pessoas que fizeram commits, pessoas desenvolvedoras e usuárias que informaram bugs e contribuíram para que esta versão fosse possível.&lt;/p&gt;
+
+&lt;p&gt;Escrito por nagachika em 02/10/2020&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Fri, 02 Oct 2020 11:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2020/10/02/ruby-2-7-2-released/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2020/10/02/ruby-2-7-2-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2020-25613: Potencial Vulnerabilidade de Smuggling de Requisições HTTP no WEBrick</title>
+      <description>&lt;p&gt;Uma potencial vulnerabilidade de &lt;strong&gt;smuggling&lt;/strong&gt; de requisições HTTP no WEBrick foi reportada. Essa vulnerabilidade recebeu o identificador CVE &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-25613&quot;&gt;CVE-2020-25613&lt;/a&gt;. Nós recomendamos fortemente que atualize a gem webrick.&lt;/p&gt;
+&lt;h2&gt;Detalhes&lt;/h2&gt;
+&lt;p&gt;WEBrick era muito tolerante contra um cabeçalho &lt;strong&gt;Transfer-Encoding&lt;/strong&gt; inválido. Isso pode levar interpretações inconsistentes entre WEBrick e alguns servidores de proxy HTTP, o que pode poermite que uma pessoa atacante &amp;quot;contrabandeie&amp;quot; uma requisição. Veja &lt;a href=&quot;https://cwe.mitre.org/data/definitions/444.html&quot;&gt;CWE-444&lt;/a&gt; em detalhes.&lt;/p&gt;
+&lt;p&gt;Por favor, atualiaze a gem webrick para a versão 1.6.1 ou superior. Você pode usar &lt;code&gt;gem update webrick&lt;/code&gt; para atualizá-la. Se você está usando bundle, por favor, adicione gem &lt;code&gt;&amp;quot;webrick&amp;quot;, &amp;quot;&amp;gt;= 1.6.1&amp;quot;&lt;/code&gt; ao seu &lt;code&gt;Gemfile&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Versões afetadas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;webrick gem 1.6.0 ou inferior&lt;/li&gt;
+&lt;li&gt;versões empacotadas de webrick no ruby 2.7.1 ou inferior&lt;/li&gt;
+&lt;li&gt;versões empacotadas de webrick no ruby 2.6.6 ou inferior&lt;/li&gt;
+&lt;li&gt;versões empacotadas de webrick no ruby 2.5.8 ou inferior&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Créditos&lt;/h2&gt;
+&lt;p&gt;Agradecimentos a &lt;a href=&quot;https://hackerone.com/piao&quot;&gt;piao&lt;/a&gt; por ter descoberto este problema.&lt;/p&gt;
+&lt;h2&gt;Histórico&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Originalmente publicado em 2020-09-29 06:30:00 (UTC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Escrito por mame em 29/09/2020&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Tue, 29 Sep 2020 06:30:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2020/09/29/http-request-smuggling-cve-2020-25613/</link>
+    </item>
+    
+    <item>
+      <title>Lançado Ruby 3.0.0 Preview 1</title>
+      <description>&lt;p&gt;Temos o prazer de anunciar o lançamento do Ruby 3.0.0-preview1.&lt;/p&gt;
+&lt;p&gt;Ele apresenta uma série de novos recursos e melhorias de desempenho.&lt;/p&gt;
+&lt;h2&gt;RBS&lt;/h2&gt;
+&lt;p&gt;RBS é uma linguagem para descrever os tipos de programas Ruby.
+Os verificadores de tipo, incluindo criador de perfil de tipos e outras ferramentas de suporte ao RBS, compreenderão os programas Ruby muito melhor com as definições do RBS.&lt;/p&gt;
+&lt;p&gt;Você pode escrever a definição de classes e módulos: métodos definidos na classe, variáveis de instância e seus tipos e relações de herança / mix-in.
+O objetivo do RBS é oferecer suporte a padrões comumente vistos em programas Ruby e permite escrever tipos avançados, incluindo tipos de união, sobrecarga de método e genéricos. Ele também oferece suporte à &lt;em&gt;duck typing&lt;/em&gt; com &lt;em&gt;tipos de interface&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Ruby 3.0 vem com gem &lt;code&gt;rbs&lt;/code&gt;, que permite analisar e processar definições de tipo escritas em RBS.&lt;/p&gt;
+&lt;p&gt;A seguir está um pequeno exemplo de RBS.&lt;/p&gt;
+&lt;div class=&quot;language-rbs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;rbs&quot;&gt;module ChatApp
+  VERSION: String
+
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` significa união de tipos, `User` ou `Bot`.
+
+    def initialize: (String) -&amp;gt; void
+
+    def post: (String, from: User | Bot) -&amp;gt; Message   # Sobrecarga de método é suportada.
+            | (File, from: User | Bot) -&amp;gt; Message
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Veja &lt;a href=&quot;https://github.com/ruby/rbs&quot;&gt;README da gem rbs&lt;/a&gt; para mais detalhes.&lt;/p&gt;
+&lt;h2&gt;Ractor (experimental)&lt;/h2&gt;
+&lt;p&gt;Ractor é uma abstração concorrente semelhante a um modelo de ator, projetada para fornecer um recurso de execução paralela sem preocupações com a segurança do thread.&lt;/p&gt;
+&lt;p&gt;Você pode fazer vários ractores e executá-los em paralelo. Ractor permite fazer programas paralelos thread-safe porque ractors não podem compartilhar objetos normais. A comunicação entre os ractores é apoiada pela troca de mensagens.&lt;/p&gt;
+&lt;p&gt;Para limitar o compartilhamento de objetos, o Ractor apresenta várias restrições à sintaxe do Ruby (sem vários Ractors, não há mudanças).&lt;/p&gt;
+&lt;p&gt;A especificação e implementação não estão amadurecidas e serão alteradas no futuro, portanto, esse recurso é marcado como experimental e mostra o aviso de recurso experimental se um Ractor for criado.&lt;/p&gt;
+&lt;p&gt;O pequeno programa a seguir calcula &lt;code&gt;prime?&lt;/code&gt; em paralelo com dois ractores e cerca de x2 vezes mais rápido com dois ou mais núcleos do que o programa sequencial.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prime'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# n.prime? com inteiros r1 e r2 enviados rodando em parelelo&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Ractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recv&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prime?&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# envio de parâmetros&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# aguardando os resultados de expr1, expr2&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;take&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Veja &lt;a href=&quot;https://github.com/ruby/ruby/blob/master/doc/ractor.md&quot;&gt;doc/ractor.md&lt;/a&gt; para mais detalhes.&lt;/p&gt;
+&lt;h2&gt;Scheduler (Experimental)&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Thread#scheduler&lt;/code&gt; é introduzido para interceptar operações bloqueantes. Isso permite concorrência leve sem alterar o código existente.&lt;/p&gt;
+&lt;p&gt;Classes/métodos atualmente suportados:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Mutex#lock&lt;/code&gt;, &lt;code&gt;Mutex#unlock&lt;/code&gt;e &lt;code&gt;Mutex#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConditionVariable#wait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Queue#pop&lt;/code&gt; e &lt;code&gt;SizedQueue#push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Thread#join&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Kernel#sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#wait&lt;/code&gt;, &lt;code&gt;IO#read&lt;/code&gt;, &lt;code&gt;IO#write&lt;/code&gt; e métodos correlatos (ex.: &lt;code&gt;#wait_readable&lt;/code&gt;, &lt;code&gt;#gets&lt;/code&gt;, &lt;code&gt;#puts&lt;/code&gt; etc.).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IO#select&lt;/code&gt; &lt;em&gt;não é suportado&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;O ponto de entrada atual para concorrência é &lt;code&gt;Fiber.schedule {...}&lt;/code&gt; no entanto, está sujeito a alterações no momento em que o Ruby 3 for lançado.&lt;/p&gt;
+&lt;p&gt;Atualmente, existe um agendador de teste disponível em &lt;a href=&quot;https://github.com/socketry/async/pull/56&quot;&gt;&lt;code&gt;Async::Scheduler&lt;/code&gt;&lt;/a&gt;. Veja &lt;a href=&quot;https://github.com/ruby/ruby/blob/master/doc/scheduler.md&quot;&gt;&lt;code&gt;doc/scheduler.md&lt;/code&gt;&lt;/a&gt; para mais detalhes. [Feature #16786]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cuidado&lt;/strong&gt;: Este recurso é fortemente experimental. O nome e o recurso serão alterados na próxima versão de prévia.&lt;/p&gt;
+&lt;h2&gt;Outros novos recursos notáveis&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A instrução de atribuição para a direita foi adicionada.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; 55&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A definição de método sem a keyword &lt;em&gt;end&lt;/em&gt; foi adicionada.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find pattern foi adicionada.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [&quot;a&quot;, 1]&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;b&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; &quot;c&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; [2, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, 3]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Hash#except&lt;/code&gt; agora é nativo.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;a: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;b: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;c: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; {:b=&amp;gt;2, :c=&amp;gt;3}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A visualização da memória é adicionada como um recurso experimental&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Este é um novo conjunto C-API para trocar uma área de memória bruta, como uma matriz numérica e uma imagem de bitmap, entre bibliotecas de extensão. As bibliotecas de extensão também podem compartilhar os metadados da área de memória que consiste na forma, no formato do elemento e assim por diante. Usando esses tipos de metadados, as bibliotecas de extensão podem compartilhar até mesmo uma matriz multidimensional de forma adequada. Este recurso é projetado com referência ao protocolo de buffer do Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Melhorias de desempenho&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Muitas melhorias foram implementadas no MJIT. Veja NEWS em detalhes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Outras mudanças notáveis desde 2.7&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Os argumentos de palavra-chave são separados de outros argumentos.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Em princípio, códigos que imprimem um aviso no Ruby 2.7 não funciona. Veja o &lt;a href=&quot;https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/&quot;&gt;documento&lt;/a&gt; em detalhe.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A propósito, o encaminhamento de argumentos agora suporta argumentos principais.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:&quot;do_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meth&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;O recurso de &lt;code&gt;$SAFE&lt;/code&gt; foi completamente removido; agora é uma variável global normal.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A ordem de backtrace foi revertida em Ruby 2.5, mas foi cancelada. Agora ele se comporta como Ruby 2.4; uma mensagem de erro e o número da linha onde ocorre a exceção são impressos primeiro e seus chamadores são impressos posteriormente.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Algumas bibliotecas padrão são atualizadas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RubyGems 3.2.0.rc.1&lt;/li&gt;
+&lt;li&gt;Bundler 2.2.0.rc.1&lt;/li&gt;
+&lt;li&gt;IRB 1.2.6&lt;/li&gt;
+&lt;li&gt;Reline 0.1.5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;As seguintes bibliotecas não são mais gem padrão.
+Instale as gems correspondentes para usar esses recursos.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;net-telnet&lt;/li&gt;
+&lt;li&gt;xmlrpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Promove gems padrão para gems nativas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rexml&lt;/li&gt;
+&lt;li&gt;rss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Promova stdlib para gem padrão. As seguintes gems padrão foram publicadas em rubygems.org&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;abbrev&lt;/li&gt;
+&lt;li&gt;base64&lt;/li&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;erb&lt;/li&gt;
+&lt;li&gt;find&lt;/li&gt;
+&lt;li&gt;io-nonblock&lt;/li&gt;
+&lt;li&gt;io-wait&lt;/li&gt;
+&lt;li&gt;net-ftp&lt;/li&gt;
+&lt;li&gt;net-http&lt;/li&gt;
+&lt;li&gt;net-imap&lt;/li&gt;
+&lt;li&gt;net-protocol&lt;/li&gt;
+&lt;li&gt;nkf&lt;/li&gt;
+&lt;li&gt;open-uri&lt;/li&gt;
+&lt;li&gt;optparse&lt;/li&gt;
+&lt;li&gt;resolv&lt;/li&gt;
+&lt;li&gt;resolv-replace&lt;/li&gt;
+&lt;li&gt;rinda&lt;/li&gt;
+&lt;li&gt;securerandom&lt;/li&gt;
+&lt;li&gt;set&lt;/li&gt;
+&lt;li&gt;shellwords&lt;/li&gt;
+&lt;li&gt;tempfile&lt;/li&gt;
+&lt;li&gt;time&lt;/li&gt;
+&lt;li&gt;tmpdir&lt;/li&gt;
+&lt;li&gt;tsort&lt;/li&gt;
+&lt;li&gt;weakref&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Veja &lt;a href=&quot;https://github.com/ruby/ruby/blob/v3_0_0_preview1/NEWS.md&quot;&gt;NEWS&lt;/a&gt;
+ou &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1&quot;&gt;commit logs&lt;/a&gt;
+para mais detalhes.&lt;/p&gt;
+&lt;p&gt;Com essas mudanças, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview1&quot;&gt;3385 arquivos alterados, 150159 inserções(+), 124949 deleções(-)&lt;/a&gt;
+desde Ruby 2.7.0!&lt;/p&gt;
+&lt;p&gt;Por favor, experimente Ruby 3.0.0-preview1 e nos dê qualquer feedback!&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15538340
+SHA1: 032697f3ace0a697cd72f68bac0032c31a8328d4
+SHA256: 013bdc6e859d76d67a6fcd990d401ed57e6e25896bab96d1d0648a877f556dbb
+SHA512: 3a6a6458d9c5f06555ab8705160f6b071f4dbe9d2a91cd7848852633657b495c480d74e4b2ff2cebddda556118d26bbb271160c989bc970bb1b5cb234e868d2f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 17747808
+SHA1: 2842d2af2568d74c8d4071f5f536889a6b149202
+SHA256: ce8bd7534e7ec2a870b24d2145ea20e9bbe5b2d76b7dfa1102dbee5785253105
+SHA512: b94892951f842a1538f4b99022606ac2c0b5031f1ede7eef3833a8caa9ed63e9b22868509173bfefb406f263c65211db75597b152b61f49e5ba2a875fce63a27
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12703060
+SHA1: 91d9fbe87504924148deeec90199d6ff4d7dcf56
+SHA256: aa7cce0c99f4ea2145fef9b78d74a44857754396790cd23bad75d759811e7a2a
+SHA512: dca5dcc965c434371947c100864090e29e649e19ae24b8bb2e88a534ebd8220c5a086035a999b1e8b1cd5ec154a6985a8d8dfea56095d712d62aeea7a2054f7d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 22002645
+SHA1: 4b5b61066373daf0a947d3fafe2645788504a164
+SHA256: a39a48ed9a8ca2c83d65d225a1bb3db331c6587a77ba156c20e630c1b4bfc23b
+SHA512: 10f6f28715a52093d7d9da82d1678147091b45e2f279e463626adea8efbf181485daa42565e5086057ffb45a097ffb8ff395c572b247b6b5da27d85933cf58a8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Trailer de 3.0.0-preview2&lt;/h2&gt;
+&lt;p&gt;Planejamos incluir &lt;a href=&quot;https://github.com/mame/ruby-type-profiler&quot;&gt;&amp;quot;type-profiler&amp;quot;&lt;/a&gt; que é um recurso de análise de tipo estático. Fique ligado!&lt;/p&gt;
+&lt;h2&gt;O que é Ruby&lt;/h2&gt;
+&lt;p&gt;Ruby foi desenvolvido pela primeira vez por Matz (Yukihiro Matsumoto) em 1993,
+e agora é desenvolvido como Open Source. Ele roda em várias plataformas
+e é usado em todo o mundo, especialmente para desenvolvimento web.&lt;/p&gt;
+
+&lt;p&gt;Escrito por naruse em 25/09/2020&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2020/09/25/ruby-3-0-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2020/09/25/ruby-3-0-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Competição 2020 Fukuoka Ruby Award - Submissões serão julgadas por Matz</title>
+      <description>&lt;p&gt;Entusiastas de Ruby,&lt;/p&gt;
+&lt;p&gt;O governo de Fukuoka, Japão, juntamente com &amp;quot;Matz&amp;quot; Matsumoto gostariam de lhe convidar a entrar na seguinte competição de Ruby. Se você desenvolveu algum programa interessante em Ruby, sinta-se, por favor, encorajado(a) a aplicar.&lt;/p&gt;
+&lt;p&gt;2020 Fukuoka Ruby Award Competition - Grande Prêmio - 1 milhão de ienes!&lt;/p&gt;
+&lt;p&gt;Prazo para inscrição: 11 de dezembro de 2019&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.digitalfukuoka.jp/javascripts/kcfinder/upload/images/fukuokarubyaward2017.png&quot; alt=&quot;Fukuoka Ruby Award&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Matz e um grupo de painelistas selecionarão os(as) vencedores(as) da Fukuoka Competition. O grande prêmio da Fukuoka Competition será 1 milhão de ienes. Ganhedores anteriores incluem Rhomobile (USA) e APEC Climate Center (Korea).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://myfukuoka.com/category/news/ruby-news/&quot;&gt;http://myfukuoka.com/category/news/ruby-news/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Programas inscritos na competição não precisam ser escritos inteiramente em Ruby, mas deve se aproveitar das características únicas de Ruby.&lt;/p&gt;
+&lt;p&gt;Projetos devem ter sido desenvolvidos ou completados nos últimos 12 meses para serem elegíveis. Por favor, visite o seguinte site de Fukuoka para detalhes adicionais e se inscrever:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.digitalfukuoka.jp/events/215&quot;&gt;http://www.digitalfukuoka.jp/events/215&lt;/a&gt; ou
+&lt;a href=&quot;http://www.digitalfukuoka.jp/uploads/event_detail/file/536/RubyAward_ApplicationForm_2020.doc&quot;&gt;http://www.digitalfukuoka.jp/uploads/event_detail/file/536/RubyAward_ApplicationForm_2020.doc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Por favor, envie sua aplicação por e-mail para award@f-ruby.com&lt;/p&gt;
+&lt;p&gt;&amp;quot;Matz testará e revisará seu código fonte, então é muito importante se inscrever. A competição é gratuíta.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Obrigado!&lt;/p&gt;
+
+&lt;p&gt;Escrito por Fukuoka Ruby em 16/10/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Wed, 16 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/10/16/fukuoka-ruby-award-2020/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/10/16/fukuoka-ruby-award-2020/</link>
+    </item>
+    
+    <item>
+      <title>Lançado Ruby 2.4.9</title>
+      <description>&lt;p&gt;Ruby 2.4.9 foi lançado.&lt;/p&gt;
+&lt;p&gt;Esta versão é um reenpacotamento da 2.4.8 porque o tarball da versão
+Ruby 2.4.8 anterior não instalava.
+(Veja &lt;a href=&quot;https://bugs.ruby-lang.org/issues/16197&quot;&gt;[Bug #16197]&lt;/a&gt; em detalhes.)
+Essencialmente, não existem mudanças exceto pelo número de versão entre 2.4.8 e 2.4.9.&lt;/p&gt;
+&lt;p&gt;Ruby 2.4 está sob o estado de fase de manutenção de segurança, até
+o fim de março de 2020. Depois dessa data, manutenção de Ruby 2.4
+será finalizada. Recomendamos que comece a planejar a migração para novas
+versões de Ruby, como a 2.6 ou 2.5.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 12509600
+SHA1: e47fcae4862b3fa441df2ca7f2f64ad7b37db489
+SHA256: f72bdef50246ef047ba3ce9c59d2081b949feb16f9a04e008108e98f1a995e99
+SHA512: d485444dcd025a261a16bd740dae63c0aa23e4138a095584e7a83aec47af34415c7d9cbc1313e92da2ec416b11bfddf20bb1a7b60c80f12906d11ef27409b3e8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 14133507
+SHA1: da07b802cf7598547f98b7b2d8fc8ff5f03dbef4
+SHA256: f99b6b5e3aa53d579a49eb719dd0d3834d59124159a6d4351d1e039156b1c6ae
+SHA512: 94aba73f48870b5fdb34f7c9eb0419c0a3b962884df6462ef27e69db306829cad0cfc0ac6b9ba445bcb4282b070b75fcbdb3142af2a744252f25ef0052edf04d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 10078316
+SHA1: ae41ac14f98073ba9e6e8ba732580a846286261c
+SHA256: 0c4e000253ef7187feeb940a01a1c7594f28d63aa16f978e892a0e2864f58614
+SHA512: 9046575315c29c789427c2d00c832f0c0970e47fd158bbe8e4f2df5cff2ea9c06c65c3493adb4656e5b32ebfdc546092911f98a8ad7f698bc001c290db5888c7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.9.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE: 15765536
+SHA1: 5fa8a25fda7fb938bbbd45cf2c585a35875118ff
+SHA256: 4ad1c32554319661f2872bb978ff2cd520bc4593681a6476b4c5e7f330172d8b
+SHA512: e87aa613738563572a69ba179f3028994d86bcdc2e990b538aadde87d07aab67ebb7e35a019028cd51187a171368b277b7c79b6cb2e6b3497f0bb9abbe25cfdc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentário de Versão&lt;/h2&gt;
+&lt;p&gt;Obrigado a todas as pessoas que ajudaram com esta versão.&lt;/p&gt;
+
+&lt;p&gt;Escrito por usa em 02/10/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Wed, 02 Oct 2019 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/10/02/ruby-2-4-9-released/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/10/02/ruby-2-4-9-released/</link>
+    </item>
+    
+    <item>
+      <title>CVE-2019-16201: Regular Expression Denial of Service vulnerability of WEBrick's Digest access authentication</title>
+      <description>&lt;p&gt;Foi encontrada uma vulnerabilidade de negação de serviço de expressão regular no módulo de autenticação do WEBrick. Uma pessoa atacante pode explorar essa vulnerabilidade para causar uma negação de serviço efetiva contra um serviço WEBrick.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16201&quot;&gt;CVE-2019-16201&lt;/a&gt; foi designado para essa vulnerabilidade.&lt;/p&gt;
+&lt;p&gt;Todas as pessoas usuárias de qualquer versão afetada devem atualizar assim que possível.&lt;/p&gt;
+&lt;h2&gt;Versões Afetadas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Todas as versões Ruby 2.3 ou anteriores&lt;/li&gt;
+&lt;li&gt;Ruby 2.4 series: Ruby 2.4.7 ou anteriores&lt;/li&gt;
+&lt;li&gt;Ruby 2.5 series: Ruby 2.5.6 ou anteriores&lt;/li&gt;
+&lt;li&gt;Ruby 2.6 series: Ruby 2.6.4 ou anteriores&lt;/li&gt;
+&lt;li&gt;Ruby 2.7.0-preview1&lt;/li&gt;
+&lt;li&gt;antes do commit 36e057e26ef2104bc2349799d6c52d22bb1c7d03&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reconhecimento&lt;/h2&gt;
+&lt;p&gt;Obrigado a &lt;a href=&quot;https://hackerone.com/358&quot;&gt;358&lt;/a&gt; por descobrir este problema.&lt;/p&gt;
+&lt;h2&gt;Histórico&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Originalmente publicado em 2019-10-01 11:00:00 (UTC)&lt;/li&gt;
+&lt;li&gt;Traduzido para o português em 2019-10-21 11:00:00 (GMT-0300)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Escrito por mame em 01/10/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Tue, 01 Oct 2019 11:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/</link>
+    </item>
+    
+    <item>
+      <title>Lançado Ruby 2.6.4</title>
+      <description>&lt;p&gt;Ruby 2.6.4 foi lançado.&lt;/p&gt;
+&lt;p&gt;Esta versão inclui uma correção de segurança para RDoc.
+Por favor, verifique os tópicos abaixo para detalhes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/pt/news/2019/08/28/multiple-jquery-vulnerabilities-in-rdoc/&quot;&gt;Múltiplas vulnerabilidades de jQuery em RDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Veja os &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_6_3...v2_6_4&quot;&gt;commit logs&lt;/a&gt; para as mudanças em detalhes.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14426299 bytes
+SHA1:   fa1c7b7f91edb92de449cb1ae665901ba51a8b81
+SHA256: fa1ecc67b99fa13201499002669412eae7cfbe2c30c4f1f4526e8491edfc5fa7
+SHA512: a9fa2f51fb5f86cd8dcaa0925fe6f13d4f19f110b5d4c5fd251f199d16aaf920db39ad3bb50460eb94ab8d471ab2ac8bb54daea4a3bb080eaf45250aac3437fe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16503137 bytes
+SHA1:   2eaddc428cb5d210cfc256a7e6947196ed24355b
+SHA256: 4fc1d8ba75505b3797020a6ffc85a8bcff6adc4dabae343b6572bf281ee17937
+SHA512: 3dad0d98695e10ece015933e96114ffd9a10d3c59d1ead8a9ab041df113aabee3f4100aa7ffe7ef5c43b62ac3c7506c3f3ceeb8828b2a800b6d0f4119d5bf926
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11727940 bytes
+SHA1:   6ef7d60b8aaa5efb04de2eb4b682f91bc0ab3910
+SHA256: df593cd4c017de19adf5d0154b8391bb057cef1b72ecdd4a8ee30d3235c65f09
+SHA512: 930a4162fdb008d2446247908c14269fd13db4dc80bd2bb201a65a69c03f5933f97b4c5079ccd2a12db4934ff97b2debaa10a6c6f5c3060e55873f4397747eaa
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   19922060 bytes
+SHA1:   3e1d98afc7804a291abe42f0b8e2e98219e41ca3
+SHA256: 8446eaaa633a8d55146df0874154b8eb1e5ea5a000d803503d83fd67d9e9372c
+SHA512: 5696f2921b8488bde42536dd23d933c8a5ab9ce33632760d217d79567324c4a20f8007d4815f33e56c0a764d1ca372b40c41a5937f9938bb1d63ea078d10d657
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentários de versão&lt;/h2&gt;
+&lt;p&gt;Vários committers, desenvolvedores e usuários que providenciaram relatórios de bug nos ajudaram a fazer esta versão.
+Obrigado por suas contribuições.&lt;/p&gt;
+
+&lt;p&gt;Escrito por nagachika em 28/08/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Wed, 28 Aug 2019 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/08/28/ruby-2-6-4-released/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/08/28/ruby-2-6-4-released/</link>
+    </item>
+    
+    <item>
+      <title>Lançado Ruby 2.5.6</title>
+      <description>&lt;p&gt;Ruby 2.5.6 foi lançado.&lt;/p&gt;
+&lt;p&gt;Esta versão inclui cerca de 40 correções de bug após a versão anterior e também inclui uma correção de segurança.
+Por favor, verifique os tópicos abaixo para detalhes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/pt/news/2019/08/28/multiple-jquery-vulnerabilities-in-rdoc/&quot;&gt;Múltiplas vulnerabilidades de jQuery em RDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Veja o &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_5_5...v2_5_6&quot;&gt;commit log&lt;/a&gt; para detalhes.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14073430 bytes
+SHA1:   a1b497237770d2a0d1386408fc264ad16f3efccf
+SHA256: 24fc2a417e71150cd2229ec204afc8f467ebb15a8e295aab5d4bceebfb05e18d
+SHA512: e4511d42d19a7bb39ea79f66bb4eca54b63c2a9d27addc035d6d670c1e59ee48a0c6e9c6bc7d082d1f1114b0668831dce3b7422034517f3c4a06ced0e47a7914
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17684288 bytes
+SHA1:   d2dd34da5f3b63a0075e50133f60eb35d71b7543
+SHA256: 1d7ed06c673020cd12a737ed686470552e8e99d72b82cd3c26daa3115c36bea7
+SHA512: dc34243129a40b4b16fe171d70bcbdac255819868c608f3ca9f2866124fd6cfde0f3990d5e08a42752427d9066981ca14a634679b9bed5bca9f349a8526d0f35
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11323612 bytes
+SHA1:   5008b35d386c4b663b7956a0790b6aa7ae5dc9a9
+SHA256: 7601e4b83f4f17bc1affe091502dd465282ffba0761dea57c071ead21b132cee
+SHA512: 4fe5f8bad5d320f8f17b02ce15afee341e7b0074efcfd98d8944e0cb7c448e0660c4553dd5c0328ee3b49fea3247642f85c60bdce431ed57f58b6326dfd48ee1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.6.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   21263348 bytes
+SHA1:   4a3859319dd9f1f4d43e2a2bf874ca8233d39b15
+SHA256: c86b0a9bfe47df5639cf134eabd3ebc2711794226ccb02e22094e46aa3e887f4
+SHA512: 8aa96c4e6692ed8c9f8fe4ceb2a91829bb5fa98ef53a4bc85f3a3d0cd66d60bb80985359bd9f7020de7d1cc39c7223559aa20dfdcc01d890624b71b935c6f8da
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentários de versão&lt;/h2&gt;
+&lt;p&gt;Obrigado a todas as pessoas que ajudaram com esta versão.&lt;/p&gt;
+&lt;p&gt;A manutenção de Ruby 2.5, incluindo esta versão, é baseada no “Agreement for the Ruby stable version” da Ruby Association.&lt;/p&gt;
+
+&lt;p&gt;Escrito por usa em 28/08/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Wed, 28 Aug 2019 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/08/28/ruby-2-5-6-released/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/08/28/ruby-2-5-6-released/</link>
+    </item>
+    
+    <item>
+      <title>Lançado Ruby 2.4.7</title>
+      <description>&lt;p&gt;Ruby 2.4.7 foi lançado.&lt;/p&gt;
+&lt;p&gt;Esta versão inclui uma correção de segurança.
+Por favor, verifique os tópicos abaixo para detalhes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/pt/news/2019/08/28/multiple-jquery-vulnerabilities-in-rdoc/&quot;&gt;Múltiplas vulnerabilidades de jQuery em RDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ruby 2.4 agora está no estado de fase de manutenção de segurança até
+o fim de março de 2020. Depois desta data, manutenção de Ruby 2.4
+se encerrará. Nós recomendamos você começar a planejar a migração para versões
+novas de Ruby, como a 2.6 ou 2.5.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12826941 bytes
+SHA1:   9eac11cd50a2c11ff310e88087f25a0ceb5d0994
+SHA256: c10d6ba6c890aacdf27b733e96ec3859c3ff33bfebb9b6dc8e96879636be7bf5
+SHA512: 2665bca5f55d4b37f100eec0e2e632d41158139b85fcb8d5806c6dc1699e64194f17b9fe757b5afd6aa2c6e7ccabba8710a9aa8182a2d697add11f2b76cf6958
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16036496 bytes
+SHA1:   607384450348bd87028cd8d1ebf09f21103d0cd2
+SHA256: cd6efc720ca6a622745e2bac79f45e6cd63ab0f5a53ad7eb881545f58ff38b89
+SHA512: 2fbada1cf92dc3b1cbdaf05186ff2e5d8e0ce4ac9dc736148116e365bec6d557a2115838404c982b527adbb27677340acfbbb7c873004f0cb4be8a07857e6473
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10118948 bytes
+SHA1:   6ed0e943bfcbf181384b48e7873361f1acaf106d
+SHA256: a249193c7e79b891a4783f951cad8160fa5fe985c385b4628db8e9913bff1f98
+SHA512: df637c5803ddd83f759e9c24b0e7ca1f6cae7c7b353409583d92dbffece0d9d02b48905d6552327a1522a4a37d4e2d22c6c11bd991383835be35e2f31739d649
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.7.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17659539 bytes
+SHA1:   3f991d6b5296e9d0df405033e336bb973d418354
+SHA256: 1016797925e55c78d9c15633da8ddbd19daed2993a99d35377d2a16c3175cfe5
+SHA512: 1bddd5616edb1a671224bc1c22cc3ac6f70e96e41cb2937efb437e8920fe09ce2ef0f29c591499d3682ac547e1d3eb7474f89ff86a3834d25724329e4927ed76
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Comentário de versão&lt;/h2&gt;
+&lt;p&gt;Obrigado a todas as pessoas que ajudaram com esta versão, principalmente, as que reportaram a vulnerabilidade.&lt;/p&gt;
+
+&lt;p&gt;Escrito por usa em 28/08/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Wed, 28 Aug 2019 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/08/28/ruby-2-4-7-released/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/08/28/ruby-2-4-7-released/</link>
+    </item>
+    
+    <item>
+      <title>Múltiplas vulnerabilidades de jQuery em RDoc</title>
+      <description>&lt;p&gt;Existem múltiplas vulnerabilidades de Cross-Site Scripting (XSS) no jQuery inserido no RDoc que é embutido em Ruby.
+Todas as pessoas usuárias de Ruby são orientadas a atualizar Ruby para a última versão que inclui a versão corrigida de RDoc.&lt;/p&gt;
+&lt;h2&gt;Detalhes&lt;/h2&gt;
+&lt;p&gt;As seguintes vulnerabilidades foram reportadas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2012-6708&quot;&gt;CVE-2012-6708&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2015-9251&quot;&gt;CVE-2015-9251&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;É fortemente recomendado para todas as pessoas usuárias de Ruby que atualizem sua instalação de Ruby ou tome uma das seguintes soluções alternativas assim que possível.
+Você também deve regerar toda documentação existente de RDoc para mitigar completamente as vulnerabilidades.&lt;/p&gt;
+&lt;h2&gt;Versões afetadas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby 2.3 series: todas&lt;/li&gt;
+&lt;li&gt;Ruby 2.4 series: 2.4.6 e mais recentes&lt;/li&gt;
+&lt;li&gt;Ruby 2.5 series: 2.5.5 e mais recentes&lt;/li&gt;
+&lt;li&gt;Ruby 2.6 series: 2.6.3 e mais recentes&lt;/li&gt;
+&lt;li&gt;anterior a master commit f308ab2131ee675000926540cbb8c13c91dc3be5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ações requeridas&lt;/h2&gt;
+&lt;p&gt;RDoc é uma ferramenta de geração de documentação estática.
+Atualizando a ferramenta em si é insuficiente para mitigar essas vulnerabilidades.&lt;/p&gt;
+&lt;p&gt;Então, Documentações RDoc geradas com versões anteriores devem ser regeradas com RDoc mais novo.&lt;/p&gt;
+&lt;h2&gt;Soluções alternativas&lt;/h2&gt;
+&lt;p&gt;Em princípio, você deve atualizar sua versão de Ruby para a última versão.
+RDoc 6.1.2 e superiores incluem a correção para essas vulnerabilidade, então atualize RDoc para a última versão se você não pode atualizar o Ruby em si.&lt;/p&gt;
+&lt;p&gt;Note que conforme mencionado anteriormente, você deve regerar documentação RDoc existente.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install rdoc -f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Atualização:&lt;/em&gt; A versão inicial desta notícia mencionava rdoc-6.1.1.gem, a qual ainda é vulnerável. Por favor, tenha certeza que você instalou rdoc-6.1.2 ou superior.&lt;/p&gt;
+&lt;p&gt;Sobre a versão de desenvolvimento, atualize para a última HEAD da branch master.&lt;/p&gt;
+&lt;h2&gt;Créditos&lt;/h2&gt;
+&lt;p&gt;Obrigado a &lt;a href=&quot;https://hackerone.com/chrisseaton&quot;&gt;Chris Seaton&lt;/a&gt; por reportar este erro.&lt;/p&gt;
+&lt;h2&gt;Histórico&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Originalmente publicado em 2019-08-28 09:00:00 UTC&lt;/li&gt;
+&lt;li&gt;Versão de RDoc corrigida em 2019-08-28 11:50:00 UTC&lt;/li&gt;
+&lt;li&gt;Pequenas correções em 2019-08-28 12:30:00 UTC&lt;/li&gt;
+&lt;li&gt;Tradução para Português em 2019-09-03 12:00:00 UTC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Escrito por aycabta em 28/08/2019&lt;br /&gt;Traduzido por jcserracampos&lt;/p&gt;</description>
+      <pubDate>Wed, 28 Aug 2019 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/pt/news/2019/08/28/multiple-jquery-vulnerabilities-in-rdoc/</guid>
+      <link>https://www.ruby-lang.org/pt/news/2019/08/28/multiple-jquery-vulnerabilities-in-rdoc/</link>
+    </item>
+    
+  </channel>
+</rss>

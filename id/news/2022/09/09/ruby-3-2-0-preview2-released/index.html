@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.2.0 Preview 2 Dirilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2022/09/09/ruby-3-2-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.2.0 Preview 2 Dirilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2022-09-09<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 3.2.0-preview2.
+Ruby 3.2 menambahkan banyak fitur dan memperbaiki performa.</p>
+<h2>Dukungan WebAssembly berbasis WASI</h2>
+<p>Ini adalah sebuah <em>port</em> awal dari dukungan <em>WebAssembly</em> berbasis <em>WASI</em>.
+<em>Port</em> ini memperbolehkan sebuah <em>CRuby binary</em> untuk tersedia pada <em>web browser</em>,
+<em>Serverless Edge environment</em>, dan <em>WebAssembly/WASI embedder</em> lainnya.
+Saat ini, <em>port</em> melewatkan rangkaian tes dasar dan <em>bootstrap</em> dengan
+tidak menggunakan <em>Thread</em> API.</p>
+<p><img src="https://i.imgur.com/opCgKy2.png" alt="" /></p>
+<h3>Latar Belakang</h3>
+<p><a href="https://webassembly.org/">WebAssembly (Wasm)</a> semula diperkenalkan untuk
+menjalankan program dengan aman dan cepat pada <em>web browser</em>. Tetapi sasarannya</p>
+<ul>
+<li>menjalankan program secara efisien dengan keamanan pada berbagai macam
+<em>environment</em> - diinginkan sejak lama tidak hanya oleh <em>web</em>, akan tetapi oleh
+aplikasi umum.</li>
+</ul>
+<p><a href="https://wasi.dev/">WASI (The WebAssembly System Interface)</a> didesain untuk
+berbagai macam kasus penggunaan. Walaupun aplikasi perlu berkomunikasi dengan
+sistem operasi, <em>WebAssembly</em> berjalan pada sebuah <em>virtual machine</em> yang mana
+tidak memiliki sebuah <em>system interface</em>. <em>WASI</em> menstandarkannya.</p>
+<p>Dukungan <em>WebAssembly/WASI</em> pada Ruby bermaksud untuk memanfaatkan proyek-proyek
+tersebut. Ini memperbolehkan pengembang Ruby untuk memprogram aplikasi yang
+berjalan pada <em>platform</em> yang menjanjikan.</p>
+<h3>Kasus penggunaan</h3>
+<p>Dukungan ini mendorong pengembang untuk memanfaatkan <em>CRuby</em> pada
+<em>WebAssembly environment</em>. Sebuah contoh kasus penggunaan adalah dukungan
+<em>CRuby</em> pada <a href="https://try.ruby-lang.org/playground/">TryRuby playground</a>.
+Sekarang Anda bisa mencoba <em>CRuby</em> pada <em>web browser</em>.</p>
+<h3>Poin teknis</h3>
+<p><em>WASI</em> dan <em>WebAssembly</em> saat ini memiliki beberapa fitur yang tidak didukung,
+seperti mengimplementasikan <em>Fiber</em>, <em>exception</em>, dan <em>GC</em> karena ini masih
+terus berkembang dan juga untuk alasan keamanan. Oleh sebab itu, <em>CRuby</em> mengisi
+gap tersebut dengan menggunakan <em>Asyncify</em>, yang mana adalah sebuah teknik
+transformasi <em>binary</em> untuk mengendalikan eksekusi pada lingkungan pengguna.</p>
+<p>Sebagai tambahan, kami membangun sebuah
+<a href="https://github.com/kateinoigakukun/wasi-vfs/wiki/Getting-Started-with-CRuby">VFS di atas WASI</a>
+sehingga kami dapat mengemas aplikasi Ruby ke dalam sebuah berkas .wasm dengan
+mudah. Ini membuat distribusi aplikasi Ruby sedikit lebih mudah.</p>
+<h3>Tautan terkait</h3>
+<ul>
+<li><a href="https://github.com/ruby/ruby/pull/5407">Add WASI based WebAssembly support #5407</a></li>
+<li><a href="https://itnext.io/final-report-webassembly-wasi-support-in-ruby-4aface7d90c9">An Update on WebAssembly/WASI Support in Ruby</a></li>
+</ul>
+<h2>Regexp timeout</h2>
+<p>Sebuah fitur <em>timeout</em> pada <em>Regexp matching</em> diperkenalkan.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="sr">/^a*b?a*$/</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span>
+<span class="c1">#=&gt; Regexp::TimeoutError is raised in one second</span>
+</code></pre></div></div>
+<p>Diketahui bahwa <em>Regexp matching</em> mungkin membutuhkan waktu yang lama. Jika
+kode Anda mencoba untuk mencocokkan sebuah <em>Regexp</em> yang tidak efisien dengan
+sebuah masukan yang tidak terpercaya, seorang penyerang bisa mengeksploitasi
+ini untuk <em>Denial of Service</em> (disebut <em>Regular expression DoS</em> atau <em>ReDoS</em>)
+yang efisien.</p>
+<p>Risiko dari <em>DoS</em> dapat dicegah atau dikurangi secara signifikan dengan mengatur
+<code>Regexp.timeout</code> berdasarkan kebutuhan dari aplikasi Ruby Anda. Mohon coba fitur
+ini pada aplikasi Anda. Kami menerima umpan balik Anda.</p>
+<p>Catat bahwa <code>Regexp.timeout</code> adalah sebuah pengaturan global. Jika Anda ingin
+menggunakan pengaturan yang berbeda untuk <em>Regexp</em> tertentu, Anda bisa
+menggunakan kata kunci <code>timeout</code> pada <code>Regexp.new</code>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Regexp</span><span class="p">.</span><span class="nf">timeout</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># This regexp has no timeout</span>
+<span class="n">long_time_re</span> <span class="o">=</span> <span class="no">Regexp</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"^a*b?a*$"</span><span class="p">,</span> <span class="ss">timeout: </span><span class="kp">nil</span><span class="p">)</span>
+
+<span class="n">long_time_re</span> <span class="o">=~</span> <span class="s2">"a"</span> <span class="o">*</span> <span class="mi">50000</span> <span class="o">+</span> <span class="s2">"x"</span> <span class="c1"># never interrupted</span>
+</code></pre></div></div>
+<p>Proposal asli https://bugs.ruby-lang.org/issues/17837</p>
+<h2>Fitur penting lainnya</h2>
+<h3>Tidak lagi membundel sumber pihak ketiga</h3>
+<ul>
+<li>
+<p>Kami tidak lagi membundel sumber pihak ketiga, seperti <code>libyaml</code>, <code>libffi</code>.</p>
+<ul>
+<li>
+<p>libyaml telah dihapus dari <em>psych</em>. Anda mungkin butuh untuk memasang
+<code>libyaml-dev</code> pada <em>platform Ubuntu/Debian</em>. Nama <em>package</em> bisa berbeda pada
+<em>platform</em> lain.</p>
+</li>
+<li>
+<p>libffi akan dihapus dari <code>fiddle</code> pada preview2</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Bahasa</h3>
+<ul>
+<li>
+<p>Argumen dari <em>anonymous rest</em> dan <em>keyword rest</em> sekarang dapat dilewatkan
+sebagai argumen daripada sekadar digunakan pada parameter <em>method</em>.
+[<a href="https://bugs.ruby-lang.org/issues/18351">Feature #18351</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="k">def</span> <span class="nf">baz</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+  <span class="n">quux</span><span class="p">(</span><span class="o">**</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Sebuah <em>proc</em> yang menerima sebuah <em>positional argument</em> dan <em>keyword</em>
+tidak akan lagi <em>autosplat</em>. [<a href="https://bugs.ruby-lang.org/issues/18633">Bug #18633</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">proc</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="o">|</span> <span class="n">a</span><span class="p">}.</span><span class="nf">call</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Ruby 3.1 and before</span>
+<span class="c1"># =&gt; 1</span>
+<span class="c1"># Ruby 3.2 and after</span>
+<span class="c1"># =&gt; [1, 2]</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Urutan evaluasi dari <em>constant assignment</em> pada objek eksplisit telah dibuat
+konsisten dengan urutan evaluasi tunggal. Pada kode berikut:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">foo</span><span class="o">::</span><span class="no">BAR</span> <span class="o">=</span> <span class="n">baz</span>
+</code></pre></div></div>
+<p><code>foo</code> sekarang dipanggil sebelum <code>baz</code>. Demikian pula, untuk <em>multiple assignment</em>
+pada <em>constant</em>, urutan evaluasi <em>left-to-right</em> digunakan. Pada kode berikut:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="n">foo1</span><span class="o">::</span><span class="no">BAR1</span><span class="p">,</span> <span class="n">foo2</span><span class="o">::</span><span class="no">BAR2</span> <span class="o">=</span> <span class="n">baz1</span><span class="p">,</span> <span class="n">baz2</span>
+</code></pre></div></div>
+<p>Urutan evaluasi berikut sekarang digunakan:</p>
+<ol>
+<li><code>foo1</code></li>
+<li><code>foo2</code></li>
+<li><code>baz1</code></li>
+<li><code>baz2</code></li>
+</ol>
+<p>[<a href="https://bugs.ruby-lang.org/issues/15928">Bug #15928</a>]</p>
+</li>
+<li>
+<p>Pencarian <em>pattern</em> tidak lagi eksperimental.
+[<a href="https://bugs.ruby-lang.org/issues/18585">Feature #18585</a>]</p>
+</li>
+<li>
+<p><em>Method</em> mengambil sebuah parameter lain (seperti <code>*args</code>) dan mengharapkan
+untuk mendelegasikan <em>keyword argument</em> melalui <code>foo(*args)</code> sekarang harus
+ditandai dengan <code>ruby2_keywords</code> (jika belum terjadi). Dengan kata lain, semua
+<em>method</em> mengharapkan untuk mendelegasikan <em>keyword argument</em> melalui <code>*args</code>
+sekarang harus ditandai dengan <code>ruby2_keywords</code>, tanpa kecuali. Ini akan membuat
+transisi lebih mudah ke bentuk delegasi lain saat sebuah pustaka memerlukan
+Ruby 3+. Sebelumnya, penanda <code>ruby2_keywords</code> dijaga jika <em>method</em> penerima
+mengambil <code>*args</code>, tetapi ini adalah sebuah bug dan ketidakkonsistenan.
+Sebuah teknik yang bagus untuk menemukan potensi hilang dari <code>ruby2_keywords</code>
+adalah menjalankan rangkaian tes, menggunakan <code>puts nil, caller, nil</code>, dan
+mengecek setiap <em>method/block</em> pada rantai pemanggilan yang harus mendelegasikan
+<em>keyword</em> ditandai dengan benar sebagai <code>ruby2_keywords</code>.
+[<a href="https://bugs.ruby-lang.org/issues/18625">Bug #18625</a>] [<a href="https://bugs.ruby-lang.org/issues/16466">Bug #16466</a>]</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># Accidentally worked without ruby2_keywords in Ruby 2.7-3.1, ruby2_keywords</span>
+<span class="c1"># needed in 3.2+. Just like (*args, **kwargs) or (...) would be needed on</span>
+<span class="c1"># both #foo and #bar when migrating away from ruby2_keywords.</span>
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">target</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">ruby2_keywords</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+  <span class="n">bar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="ss">k: </span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Perbaikan performa</h2>
+<h3>YJIT</h3>
+<ul>
+<li>Dukungan arm64 / aarch64 pada <em>platform UNIX</em>.</li>
+<li>Membangun YJIT memerlukan Rust 1.58.1+. [<a href="https://bugs.ruby-lang.org/issues/18481">Feature #18481</a>]</li>
+</ul>
+<h2>Perubahan penting lainnya sejak 3.1</h2>
+<ul>
+<li>
+<p>Hash</p>
+<ul>
+<li>Hash#shift sekarang selalu mengembalikan <em>nil</em> jika <em>hash</em> kosong dibandingkan
+mengembalikan nilai <em>default</em> atau memanggil <em>default proc</em>. [<a href="https://bugs.ruby-lang.org/issues/16908">Bug #16908</a>]</li>
+</ul>
+</li>
+<li>
+<p>MatchData</p>
+<ul>
+<li>MatchData#byteoffset telah ditambakan. [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+</ul>
+</li>
+<li>
+<p>Module</p>
+<ul>
+<li>Module.used_refinements telah ditambakan. [<a href="https://bugs.ruby-lang.org/issues/14332">Feature #14332</a>]</li>
+<li>Module#refinements telah ditambakan. [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+<li>Module#const_added telah ditambakan. [<a href="https://bugs.ruby-lang.org/issues/17881">Feature #17881</a>]</li>
+</ul>
+</li>
+<li>
+<p>Proc</p>
+<ul>
+<li>Proc#dup mengembalikan sebuah <em>instance</em> dari <em>subclass</em>. [<a href="https://bugs.ruby-lang.org/issues/17545">Bug #17545</a>]</li>
+<li>Proc#parameters sekarang menerima kata kunci <em>lambda</em>. [<a href="https://bugs.ruby-lang.org/issues/15357">Feature #15357</a>]</li>
+</ul>
+</li>
+<li>
+<p>Refinement</p>
+<ul>
+<li>Refinement#refined_class telah ditambakan. [<a href="https://bugs.ruby-lang.org/issues/12737">Feature #12737</a>]</li>
+</ul>
+</li>
+<li>
+<p>Set</p>
+<ul>
+<li>Set sekarang tersedia sebagai sebuah <em>builtin class</em> tanpa membutuhkan <code>require &quot;set&quot;</code>. [<a href="https://bugs.ruby-lang.org/issues/16989">Feature #16989</a>]
+Ini dimuatkan secara otomatis melalui <em>constant</em> <code>Set</code> atau sebuah pemanggilan <code>Enumerable#to_set</code>.</li>
+</ul>
+</li>
+<li>
+<p>String</p>
+<ul>
+<li>String#byteindex dan String#byterindex telah ditambakan. [<a href="https://bugs.ruby-lang.org/issues/13110">Feature #13110</a>]</li>
+<li>Memperbarui versi <em>Unicode</em> ke 14.0.0 dan <em>Emoji</em> ke 14.0. [<a href="https://bugs.ruby-lang.org/issues/18037">Feature #18037</a>]
+(juga diterapkan pada <em>Regexp</em>)</li>
+<li>String#bytesplice telah ditambahkan. [<a href="https://bugs.ruby-lang.org/issues/18598">Feature #18598</a>]</li>
+</ul>
+</li>
+<li>
+<p>Struct</p>
+<ul>
+<li>Sebuah <em>class</em> Struct juga dapat diinisialisasi dengan argumen <em>keyword</em>
+tanpa <code>keyword_init: true</code> pada <code>Struct.new</code> [<a href="https://bugs.ruby-lang.org/issues/16806">Feature #16806</a>]</li>
+</ul>
+</li>
+</ul>
+<h2>Isu kompatibilitas</h2>
+<p>Catatan: tidak termasuk perbaikan <em>bug</em>.</p>
+<h3>Removed constant</h3>
+<p>Berikut ini adalah <em>constant</em> yang telah dihapus.</p>
+<ul>
+<li><code>Fixnum</code> dan <code>Bignum</code> [<a href="https://bugs.ruby-lang.org/issues/12005">Feature #12005</a>]</li>
+<li><code>Random::DEFAULT</code> [<a href="https://bugs.ruby-lang.org/issues/17351">Feature #17351</a>]</li>
+<li><code>Struct::Group</code></li>
+<li><code>Struct::Passwd</code></li>
+</ul>
+<h3>Removed method</h3>
+<p>Berikut ini adalah <em>method</em> yang telah dihapus.</p>
+<ul>
+<li><code>Dir.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>File.exists?</code> [<a href="https://bugs.ruby-lang.org/issues/17391">Feature #17391</a>]</li>
+<li><code>Kernel#=~</code> [<a href="https://bugs.ruby-lang.org/issues/15231">Feature #15231</a>]</li>
+<li><code>Kernel#taint</code>, <code>Kernel#untaint</code>, <code>Kernel#tainted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+<li><code>Kernel#trust</code>, <code>Kernel#untrust</code>, <code>Kernel#untrusted?</code>
+[<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h2>Isu kompatibilitas Stdlib</h2>
+<ul>
+<li><code>Psych</code> tidak lagi membundel libyaml.
+Pengguna perlu memasang pustakan libyaml sendiri melalui <em>package system</em>.
+[<a href="https://bugs.ruby-lang.org/issues/18571">Feature #18571</a>]</li>
+</ul>
+<h2>Pembaruan C API</h2>
+<h3>Removed C APIs</h3>
+<p>Berikut ini adalah API yang telah dihapus.</p>
+<ul>
+<li>Variabel <code>rb_cData</code>.</li>
+<li><em>Function</em> &quot;taintedness&quot; dan &quot;trustedness&quot;. [<a href="https://bugs.ruby-lang.org/issues/16131">Feature #16131</a>]</li>
+</ul>
+<h3>Pembaruan pustaka standar</h3>
+<ul>
+<li>
+<p>Berikut ini adalah <em>default gem</em> yang telah diperbarui.</p>
+<ul>
+<li>TBD</li>
+</ul>
+</li>
+<li>
+<p>Berikut ini adalah <em>bundled gem</em> yang telah diperbarui.</p>
+<ul>
+<li>TBD</li>
+</ul>
+</li>
+<li>
+<p>Berikut ini adalah <em>default gem</em> yang sekarang menjadi <em>bundled gem</em>.
+Anda perlu menambahkan pustaka berikut ke <code>Gemfile</code> pada <em>bundler environment</em>.</p>
+<ul>
+<li>TBD</li>
+</ul>
+</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v3_2_0_preview2/NEWS.md">NEWS</a>
+atau <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview2">commit logs</a>
+untuk lebih detail.</p>
+<p>Dengan perubahan tersebut, <a href="https://github.com/ruby/ruby/compare/v3_1_0...v3_2_0_preview2#file_bucket">2393 berkas berubah, 168931 sisipan(+), 113411 terhapus(-)</a>
+sejak Ruby 3.1.0!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 19816780
+SHA1: 2106c77fc1600daf41ae137ecc4cf7937e27f67f
+SHA256: 8a78fd7a221b86032f96f25c1d852954c94d193b9d21388a9b434e160b7ed891
+SHA512: 5e9ddcb1a43cff449b0062cc716bfb80a9ebbb14a1b063f34005e2998c2c5033badb44e882232db9b2fceda9376f6615986e983511fda2575d60894752b605cc
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14578112
+SHA1: 538b3ea4dc0d99f60f8bd6f71e65a56ceeb41c18
+SHA256: 01fac0929dccdabc0686c1109da6c187897a401da9ff8851242befa92f7fd430
+SHA512: 0f4cc919284fdfa1a42b6381760d1b3a4660da4b0fcdd2adf01ea04a425548b3c5ac090866915675db73964a1055090e54dd97cf4628cbb69403e541c71c28ff
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0-preview2.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 24150109
+SHA1: 69ffffc52cad626166f73f21f25c29c9d73fe0e8
+SHA256: 67f9ad3110be1975b3ce547c0a6e2c910dfc1945fd6e9bb1bd340568897c6554
+SHA512: 1447e099e7a8da0ff206fda6f4e466640d6e86e9da8148315ab0154684b1fd22c02c0022b5a2f4d3fc00103b4e8cef8e35a770174921fd8c6abeca9ad41c1818
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Apa itu Ruby</h2>
+<p>Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada 1993
+dan sekarang dikembangkan sebagai <em>Open Source</em>. Ruby berjalan di berbagai
+<em>platform</em> dan digunakan di seluruh dunia, khususnya untuk pengembangan <em>web</em>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby за двадцать минут</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ru/documentation/quickstart/4/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ru/feeds/news.rss" rel="alternate" title="Последние новости (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ru/">
+          <h1>Ruby</h1>
+          <h2>лучший друг программиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ru/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Поиск" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p>Итак, приглядимся повнимательнее к нашей новой программе. Обратите
+внимание на первые строки, начинающиеся с хэш символа (#). В Ruby все,
+что в одной строке идет после хэш символа является комментарием и
+игнорируется интерпретатором. Первая строка файла – особый случай, и под
+Unix-подобными операционными системами говорит шеллу (shell) как
+запускать данный файл. Остальные комментарии служат лишь для пояснений
+кода.</p>
+<p>Наш <code>say_hi</code> метод стал немного более сложным:</p>
+<!-- raw HTML omitted -->
+<p>Теперь он смотрит на переменную <code>@names</code>, чтобы принять решение. Если
+ее значение nil, он просто печатает три точки. Нет смысла приветствовать
+несуществующее, верно?</p>
+<h2>Циклы и повторы – так же известные как итерации</h2>
+<p>Если объект, записанный в переменной <code>@names</code> откликается на метод
+<code>each</code>, значит он является объектом на котором вы можете итерировать. И
+итерируя по нему вы можете приветствовать каждого человека за раз. И
+наконец, если <code>@names</code> является чем-то совсем другим, просто превратим
+ее в строку автоматически и поприветствуем.</p>
+<p>Давайте взглянем на итератор повнимательнее:</p>
+<!-- raw HTML omitted -->
+<p><code>each</code> – это метод, который принимает блок кода и запускает этот блок
+кода для каждого элемента в списке. И в примере выше, код между <code>do</code> и
+<code>end</code>, это просто некий блок. Блок это что-то вроде анонимной функции
+или <code>лямбды</code>. Переменная между знаками (|) – это параметр для данного
+блока, как раз тот самый элемент списка, на которым будет производится
+действие в блоке кода.</p>
+<p>Что происходит здесь, это то, что каждая запись в списке, <code>name</code>,
+привязана к элементу в списке, и таким образом выражение <code>puts &quot;Hello #{name}!&quot;</code> будет выполнено с этим элементом.</p>
+<p>Большинство других языков программирования поддерживают прохождение по
+списку при помощи цикла <code>for</code>, который в C выглядит примерно так:</p>
+<!-- raw HTML omitted -->
+<p>Это работает, но это не так элегантно. Вам нужно заводить переменную типа
+<code>i</code>, понимать, сколько элементов в списке, и объяснять языку, как он
+должен проходить по списку. Путь Ruby намного элегантней, все детали
+исполнения скрыты внутри <code>each</code> метода, и все что вам нужно сделать –
+это сказать, что нужно сделать с элементами списка. Внутри метод <code>each</code>
+вызывает <code>yield &quot;Albert'&quot;, затем </code>yield &quot;Brenda&quot;` и так далее с
+остальными именами.</p>
+<h2>Блоки, прекрасные блестки на грани Ruby</h2>
+<p>Реальная сила блоков видна, когда вы работаете с более сложными
+сущностями, чем списки. За выполнением простых деталей внутри метода, вы
+также можете осуществлять там некую настройку, декомпозицию, отлавливать
+ошибки – все может быть скрыто от пользователя.</p>
+<!-- raw HTML omitted -->
+<p>Метод <code>say_bye</code> не использует <code>each</code>, вместо этого он проверяет, что
+<code>@names</code> откликается на метод <code>join</code>, и если так, использует его. В
+другом случае, он просто печатает переменную в виде строки. Этот метод
+не волнует настоящий <em>тип</em> переменной, просто действует в зависимости
+от методов, которые тот поддерживает. Это так же известно под названием
+&quot;Duck Typing&quot; (Утиная типизация), как в известной фразе – &quot;если оно
+ходит как утка, если оно крякает как утка – это утка&quot;. Выигрыш от этого
+в том, что вам не обязательно ограничивать типы переменных, которые
+поддерживаются. Если кто-то захочет использовать ваш метод с неким новым
+классом списка, пока тот поддерживает вызов метода <code>join</code> с аналогичной
+другим спискам семантикой – все будет работать как запланировано.</p>
+<h2>Запускаем скрипт</h2>
+<p>Итак, это был MegaGreeter класс, остальное в файле, это лишь вызовы
+метода на этом классе. Последний трюк, на который стоит обратить
+внимание, это следующая строка:</p>
+<!-- raw HTML omitted -->
+<p><code>__FILE__</code> – это магическая переменная, которая содержит имя текущего
+файла. <code>$0</code> – это имя файла, которое было использовано при запуске
+программы. Данная проверка говорит: &quot;Если это тот самый файл, который
+был запущен изначально…&quot;. Это позволяет файлу быть использованным как
+библиотека, и не выполнять код в данном контексте. Но если файл
+используется как выполняемый – тогда выполняем этот код.</p>
+<h2>Считайте, что вы в теме</h2>
+<p>Итак, это конец краткого тура по Ruby. Там еще столько для изучения,
+различные структуры, которые предлагает Ruby; использование блоков и
+<code>yield</code>; модули и примеси; и многое-многое другое. Я надеюсь, что эти
+небольшие примеры оставят в вас приятное послевкусие от Ruby и вы
+захотите узнать его еще лучше!</p>
+<p>Если так, пожалуйста просмотрите нашу
+<a href="/ru/documentation/">Документацию</a>, которая содержит в себе ссылки на
+руководства и введения, все они бесплатно доступны онлайн.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Начните сейчас</strong>, это легко!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Попробуйте Ruby! (в своем браузере)</a></li>
+
+    
+    <li><a href="/ru/documentation/quickstart/">Ruby за двадцать минут</a></li>
+    
+
+    
+    <li><a href="/ru/documentation/ruby-from-other-languages/">В Ruby из других языков</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Исследуйте</strong> новый мир…</h3>
+  <ul class="menu">
+    
+    <li><a href="/ru/documentation/">Документация</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Научные публикации</a></li>
+    
+
+    
+    <li><a href="/ru/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/ru/documentation/success-stories/">Истории успеха</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Вступайте</strong> в дружелюбное и развивающееся сообщество.</h3>
+  <ul>
+    
+    <li><a href="/ru/community/mailing-lists/">Почтовые рассылки</a>: Разговоры о Ruby в кругу программистов со всего мира.</li>
+    
+
+    
+    <li><a href="/ru/community/user-groups/">Группы пользователей</a>: Познакомьтесь с рубистами рядом с вами.</li>
+    
+
+    
+    <li><a href="/ru/community/weblogs/">Блоги</a>: Читайте о том, что происходит в сообществе Ruby прямо сейчас.</li>
+    
+
+    
+    <li><a href="/ru/community/ruby-core/">Ядро Ruby</a>: Помощь в полировке последней версии Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Решение проблем</a>: Сообщайте или помогайте решать проблемы в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Подписаться</h3>
+    <p><a href="/ru/feeds/news.rss">Последние новости (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ru/" class="home">Главная</a>
+
+  <a href="/ru/downloads/">Скачать</a>
+
+  <a href="/ru/documentation/">Документация</a>
+
+  <a href="/ru/libraries/">Библиотеки</a>
+
+  <a href="/ru/community/">Сообщество</a>
+
+  <a href="/ru/news/">Новости</a>
+
+  <a href="/ru/security/">Безопасность</a>
+
+  <a href="/ru/about/">О Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Этот сайт на других языках:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ru/about/website/">Этот сайт</a> с гордостью поддерживается членами сообщества Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.0.0-preview2 リリース</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ja/news/2020/12/08/ruby-3-0-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ja/feeds/news.rss" rel="alternate" title="最近のニュース (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ja/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ja/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008288045305770251182:fvruzsaknew" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="検索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.0.0-preview2 リリース</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posted by naruse on 8 Dec 2020</p>
+
+    <p>Ruby 3.0に向けてフィードバックを得るためのリリースである、Ruby 3.0.0-preview2が公開されました。</p>
+<p>Ruby 3.0には、多くの新しい機能やパフォーマンスの改善が含まれます。 その一部を以下に紹介します。</p>
+<h2>静的解析</h2>
+<h3>RBS</h3>
+<p>RBSはRubyプログラムの型を記述するための言語です。</p>
+<p>TypeProfなどの型検査ツールを初めとする静的解析を行うツールは、RBSを利用することでRubyプログラムをより精度良く解析することができます。</p>
+<p>RBSでは、Rubyプログラムのクラスやモジュールの型を定義します。メソッドやインスタンス変数、定数とその型、継承やmixinなどの関係などが記述できます。</p>
+<p>RBSはRubyプログラムに頻出するパターンをサポートするように設計されており、ユニオン型、メソッドオーバーロード、ジェネリクスなどの機能を提供します。さらに「インタフェース型」によってダックタイピングをサポートします。</p>
+<p>Ruby 3.0には、このRBS言語で書かれた型定義を処理するためのライブラリである <code>rbs</code> gemが同梱されています。</p>
+<p>クラスやモジュール、定数を定義する、簡単なRBSの例を示します。</p>
+<div class="language-rbs highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="rbs">module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` は `User` か `Bot` のインスタンスを表現する「ユニオン型」です
+    def initialize: (String) -&gt; void
+    def post: (String, from: User | Bot) -&gt; Message   # メソッドオーバーロードを記述することもできます
+            | (File, from: User | Bot) -&gt; Message
+  end
+end
+</code></pre></div></div>
+<p>詳細については、<a href="https://github.com/ruby/rbs">rbs gemのREADME</a>を参照してください。</p>
+<h3>TypeProf</h3>
+<p>TypeProf は Ruby パッケージに同梱された型解析ツールです。</p>
+<p>TypeProf の現在の主な用途は一種の型推論です。</p>
+<p>型注釈の無い普通の Ruby コードを入力し、どんなメソッドが定義されどのように使われているかを解析し、型シグネチャのプロトタイプを RBS フォーマットで生成します。</p>
+<p>次は TypeProf の簡単なデモです。</p>
+<p>サンプル入力</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># test.rb</span>
+<span class="k">class</span> <span class="nc">User</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">:,</span> <span class="n">age</span><span class="p">:)</span>
+    <span class="vi">@name</span><span class="p">,</span> <span class="vi">@age</span> <span class="o">=</span> <span class="nb">name</span><span class="p">,</span> <span class="n">age</span>
+  <span class="k">end</span>
+  <span class="nb">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span>
+<span class="k">end</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"John"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+<p>サンプル出力</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&gt; [String, Integer]
+end
+</code></pre></div></div>
+<p>サンプル入力を&quot;test.rb&quot;という名前で保存し、<code>typeprof test.rb</code>というコマンドで TypeProf の解析ができます。</p>
+<p><a href="https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;rbs=">TypeProf をオンラインで試す</a>こともできます（サーバサイドで TypeProf を動かしているので、サーバが落ちたらごめんなさい）。</p>
+<p>詳しくは<a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">ドキュメント</a>や<a href="https://github.com/ruby/typeprof/blob/master/doc/demo.md">デモ</a>を見てください。</p>
+<p>残念ながら TypeProf はまだ実験的で、あまり完成度は高くありません。Ruby 言語のサブセットだけがサポートされていて、型エラー検出の機能は限定的です。ですがいま急速に改良中であり、言語機能のカバレッジ増強、解析効率の向上、利便性の向上などを行っています。フィードバックを歓迎します。</p>
+<h2>Ractor (experimental)</h2>
+<p>Ractor はアクターモデル風の並行・並列制御機構であり、スレッド安全に関する懸念をなく、Rubyで並列処理を行うための機能として設計されています。</p>
+<p>複数のRactorを作成すると、それらは並列計算機上で並列に実行されます。Ractor間では、ほとんどのオブジェクトが共有できないように設計されているため、スレッド安全なプログラムにすることができます。メッセージの送受信により、Ractor間のコミュニケーションを行うことが可能です。</p>
+<p>Ractor間でのオブジェクトの共有を制限するために、複数Ractorでの実行時には、いくつかのRubyの機能に制限が入ります（ただし、複数のRactorを用いない場合には、これまでのRubyと何も変わりません）。</p>
+<p>Ractorの仕様と実装は、まだ発展途上であるため、実験的機能として提供されます。初回のRactorの生成時には実験的機能であることが警告で表示されます。</p>
+<p>次の小さなプログラムでは、二つのRactorを用いて<code>n.prime?</code>（<code>n</code>は比較的大きな値）の計算を並列に実行します。動かしてみると、逐次実行にくらべて、2コア以上の計算機で計算時間が半分程度になることが確認できます。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'prime'</span>
+<span class="c1"># n.prime? with sent integers in r1, r2 run in parallel</span>
+<span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">2</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span>
+  <span class="no">Ractor</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="no">Ractor</span><span class="p">.</span><span class="nf">receive</span>
+    <span class="n">n</span><span class="p">.</span><span class="nf">prime?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="c1"># send parameters</span>
+<span class="n">r1</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">r2</span><span class="p">.</span><span class="nf">send</span> <span class="mi">2</span><span class="o">**</span><span class="mi">61</span> <span class="o">+</span> <span class="mi">15</span>
+<span class="c1"># wait for the results of expr1, expr2</span>
+<span class="nb">p</span> <span class="n">r1</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+<span class="nb">p</span> <span class="n">r2</span><span class="p">.</span><span class="nf">take</span> <span class="c1">#=&gt; true</span>
+</code></pre></div></div>
+<p>より詳細は、<a href="https://github.com/ruby/ruby/blob/master/doc/ractor.md">doc/ractor.md</a> をご覧ください。</p>
+<h2>Scheduler (experimental)</h2>
+<p><code>Thread#scheduler</code> is introduced for intercepting blocking operations. This allows for light-weight concurrency without changing existing code. Watch <a href="https://www.youtube.com/watch?v=Y29SSOS4UOc">&quot;Don't Wait For Me, Scalable Concurrency for Ruby 3&quot;</a> for an overview of how it works.
+Currently supported classes/methods:</p>
+<ul>
+<li><code>Mutex#lock</code>, <code>Mutex#unlock</code>, <code>Mutex#sleep</code></li>
+<li><code>ConditionVariable#wait</code></li>
+<li><code>Queue#pop</code>, <code>SizedQueue#push</code></li>
+<li><code>Thread#join</code></li>
+<li><code>Kernel#sleep</code></li>
+<li><code>IO#wait</code>, <code>IO#read</code>, <code>IO#write</code> and related methods (e.g. <code>#wait_readable</code>, <code>#gets</code>, <code>#puts</code> and so on).</li>
+<li><code>IO#select</code> is <em>not supported</em>.</li>
+</ul>
+<p>The current entry point for concurrency is <code>Fiber.schedule{...}</code> however this is subject to change by the time Ruby 3 is released.</p>
+<p>Currently, there is a test scheduler available in <a href="https://github.com/socketry/async/pull/56"><code>Async::Scheduler</code></a>. See <a href="https://github.com/ruby/ruby/blob/master/doc/scheduler.md"><code>doc/scheduler.md</code></a> for more details.</p>
+<h2>その他の主要な新機能</h2>
+<ul>
+<li>1行パターンマッチが <code>in</code> の代わりに <code>=&gt;</code> を使うようになりました。
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">    <span class="c1"># version 3.0</span>
+    <span class="p">{</span><span class="ss">a: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">1</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="n">a</span><span class="p">:}</span>
+    <span class="nb">p</span> <span class="n">a</span> <span class="c1"># =&gt; 0</span>
+    <span class="c1"># version 2.7</span>
+    <span class="p">{</span><span class="ss">a: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">1</span><span class="p">}</span> <span class="k">in</span> <span class="p">{</span><span class="n">a</span><span class="p">:}</span>
+    <span class="nb">p</span> <span class="n">a</span> <span class="c1"># =&gt; 0</span>
+</code></pre></div></div>
+</li>
+<li>一行メソッド定義が書けるようになりました。
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+</li>
+<li>findパターンが書けるようになりました。
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="k">case</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+  <span class="k">in</span> <span class="p">[</span><span class="o">*</span><span class="n">pre</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">post</span><span class="p">]</span>
+    <span class="nb">p</span> <span class="n">pre</span>  <span class="c1">#=&gt; ["a", 1]</span>
+    <span class="nb">p</span> <span class="n">x</span>    <span class="c1">#=&gt; "b"</span>
+    <span class="nb">p</span> <span class="n">y</span>    <span class="c1">#=&gt; "c"</span>
+    <span class="nb">p</span> <span class="n">post</span> <span class="c1">#=&gt; [2, "d", "e", "f", 3]</span>
+  <span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li><code>Hash#except</code> が組み込みになりました。
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">  <span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">3</span> <span class="p">}</span>
+  <span class="nb">p</span> <span class="n">h</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="ss">:a</span><span class="p">)</span> <span class="c1">#=&gt; {:b=&gt;2, :c=&gt;3}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>パフォーマンスの改善</h2>
+<ul>
+<li>MJITに多数の改善が行われています。詳細はNEWSを参照してください。</li>
+<li>IRB への長いコードの貼り付けは、Ruby 2.7.0 にバンドルされているものと比較して 53 倍の速さになります。例えば、<a href="https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b">このサンプルコード</a>の貼り付けに要する時間は、11.7 秒から 0.22 秒になります。</li>
+</ul>
+<h2>その他の注目すべき 2.7 からの変更点</h2>
+<ul>
+<li>キーワード引数が通常の引数から分離されました。
+<ul>
+<li>原則として、2.7 で警告の出ていたコードは動かなくなります。詳細は<a href="https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">別ドキュメント</a>を参照してください。</li>
+<li>関連して、引数のフォワーディングの記法で先頭に引数を書けるようになりました。
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby">    <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+      <span class="nb">send</span><span class="p">(</span><span class="ss">:"do_</span><span class="si">#{</span> <span class="n">meth</span> <span class="si">}</span><span class="ss">"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+    <span class="k">end</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li><code>$SAFE</code> の機能が完全に削除され、ただのグローバル変数となりました。</li>
+<li>バックトレースの順序は2.5で逆転しましたが、3.0ではこれを取りやめることになりました。例外が起きた行が先に表示され、呼び出し元が後に表示されるように戻ります。</li>
+<li>いくつかの標準ライブラリがアップデートされました。
+<ul>
+<li>RubyGems 3.2.0.rc.1</li>
+<li>Bundler 2.2.0.rc.1</li>
+<li>IRB 1.2.6</li>
+<li>Reline 0.1.5</li>
+</ul>
+</li>
+<li>以下のライブラリは標準添付ライブラリから削除されました。3.0 以降で使いたい場合は rubygems から利用してください。
+<ul>
+<li>net-telnet</li>
+<li>xmlrpc</li>
+</ul>
+</li>
+<li>以下のライブラリが新たに bundled gems になりました。Bundler から利用する場合は Gemfile に明示的に指定してください。
+<ul>
+<li>rexml</li>
+<li>rss</li>
+</ul>
+</li>
+<li>以下のライブラリが新たに default gems になりました。rubygems.org からアップデート可能です。
+<ul>
+<li>abbrev</li>
+<li>base64</li>
+<li>English</li>
+<li>erb</li>
+<li>find</li>
+<li>io-nonblock</li>
+<li>io-wait</li>
+<li>net-ftp</li>
+<li>net-http</li>
+<li>net-imap</li>
+<li>net-protocol</li>
+<li>nkf</li>
+<li>open-uri</li>
+<li>optparse</li>
+<li>resolv</li>
+<li>resolv-replace</li>
+<li>rinda</li>
+<li>securerandom</li>
+<li>set</li>
+<li>shellwords</li>
+<li>tempfile</li>
+<li>time</li>
+<li>tmpdir</li>
+<li>tsort</li>
+<li>weakref</li>
+</ul>
+</li>
+</ul>
+<p>その他詳細については、<a href="https://github.com/ruby/ruby/blob/v3_0_0_preview2/NEWS.md">NEWS</a> ファイルまたは<a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0_preview2">コミットログ</a>を参照してください。</p>
+<p>なお、こうした変更により、Ruby 2.7.0 以降では <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0">3776 個のファイルに変更が加えられ、181573 行の追加と 145096 行の削除が行われました</a> !</p>
+<p>ぜひ Ruby 3.0.0-preview2 を試して、フィードバックをお願いします！</p>
+<h2>ダウンロード</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 19378626
+SHA1: 25363b20225850224e7835e99906c52f2ff57792
+SHA256: 9de8661565c2b1007d91a580e9a7e02d23f1e8fc8df371feb15a2727aa05fd9a
+SHA512: 6fa4191425ae71e41894b60bd9c31d483a562ee8216886360ce18238ab48115b95be0367708612c45f634e7584fba8940a524ba0113ce0f36ce4df78a112d0b7
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14244252
+SHA1: 54e4d3892ce480106382bd2d36dd7395e01b0f2a
+SHA256: 03078e82d4fb55c13837c69e56565fc49c451d11b1ca5e1b075d990d0957f181
+SHA512: 8b0e6e3ba7e5f95586b4438d965e7b09187ad599f4ac22dec3db7b176358514fe0c0890dde8912fef1ef92ffcde3f6f1228178eabadcf3a05601e5b6f05881ae
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0-preview2.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 23907144
+SHA1: 064ee265c94b3df87e737622ba84437ea0d6aeaf
+SHA256: 19e295ae50934ddac2b366f0c7c8de9bd710d596b76eba02152f3641e5ce2b23
+SHA512: 598def50ef9e8ae1f44e05ff2c4e35acf252437286f08644ba5e301ebff2db399140bafa72868877100d6ffa736a4474cb7b99ecea8bdf835ed113ab250bb3d9
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby とは</h2>
+<p>Rubyはまつもとゆきひろ (Matz) によって1993年に開発が始められ、今もオープンソースソフトウェアとして開発が続けられています。Rubyは様々なプラットフォームで動き、世界中で、特にWebアプリケーション開発のために使われています。</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>最近のニュース</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ja/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 リリース</a></li>
+        
+        <li><a href="/ja/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 リリース</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/ja/feeds/news.rss">最近のニュース (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ja/" class="home">Home</a>
+
+  <a href="/ja/downloads/">ダウンロード</a>
+
+  <a href="/ja/documentation/">ドキュメント</a>
+
+  <a href="/ja/libraries/">ライブラリ</a>
+
+  <a href="/ja/community/">コミュニティ</a>
+
+  <a href="/ja/dev/">コア開発</a>
+
+  <a href="/ja/news/">ニュース</a>
+
+  <a href="/ja/security/">セキュリティ</a>
+
+  <a href="/ja/about/">Rubyとは</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ja/about/website/">このウェブサイト</a>は Ruby コミュニティのメンバーによって運営されています。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

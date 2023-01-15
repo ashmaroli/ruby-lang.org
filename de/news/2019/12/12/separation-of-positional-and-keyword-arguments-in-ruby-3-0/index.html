@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Trennung von Positions- und Schlüsselwortargumenten in Ruby 3.0</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/de/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/de/feeds/news.rss" rel="alternate" title="Aktuelle Neuigkeiten (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/de/">
+          <h1>Ruby</h1>
+          <h2>Der beste Freund eines Programmierers</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/de/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="008918821236166936739:xplclbf3sh0" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Suche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Trennung von Positions- und Schlüsselwortargumenten in Ruby 3.0</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Geschrieben von mame am 12.12.2019<br>
+                         Übersetzt von Marvin Gülker</p>
+
+    <p>Diese Artikel erklärt den geplanten Kompatibilitätsbruch bei
+Schlüsselwortargumenten in Ruby 3.0.</p>
+<h2>Kurzfassung</h2>
+<p>Ab Ruby 3.0 werden Positions- und Schlüsselwortargumente getrennt.
+Ruby 2.7 warnt bei Verhalten, das für Ruby 3.0 geändert werden muss.
+Wenn Sie eine der folgenden Warnungen sehen, dann müssen Sie Ihren
+Code ändern:</p>
+<ul>
+<li><code>Using the last argument as keyword parameters is deprecated</code>, oder</li>
+<li><code>Passing the keyword argument as the last hash parameter is deprecated</code>, oder</li>
+<li><code>Splitting the last argument into positional and keyword parameters is deprecated</code></li>
+</ul>
+<p>In den meisten Fällen können Sie die Inkompatibilität durch Einfügen
+des doppelten Auflösungsoperators <em>(double splat operator</em>)
+vermeiden. Dieser verlangt die ausdrückliche Übergabe von
+Schlüsselwortargumente anstelle eines Hash. Dementsprechend können
+geschweifte Klammern <code>{}</code> erforderlich sein, um ausdrücklich ein
+<code>Hash</code>-Objekt statt Schlüsselwortargumenten zu verlangen. Lesen Sie
+den nachfolgenden Abschnitt &quot;Typische Fälle&quot; für weitere
+Informationen.</p>
+<p>Ab Ruby 3 muss eine Methode, die alle ihre Argumente delegiert, dies
+neben den Positions- auch ausdrücklich für Schlüsselwortargumente tun.
+Wenn Sie das Delegationsverhalten von Ruby 2.7 beibehalten wollen,
+müssen Sie <code>ruby2_keywords</code> verwenden. Siehe den Abschnitt &quot;Behandlung
+der Argument-Delegation&quot; weiter unten.</p>
+<h2>Typische Fälle</h2>
+<p>{: #typical-cases }</p>
+<p>Dieses ist der typischste Fall. Sie können den doppelten
+Auflösungsoperator (<code>**</code>) benutzen, um Schlüsselwörter statt eines
+Hash zu übergeben.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->h<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Dieser Methodenaufruf übergibt ein positionsgebundenes Hash-Argument.<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># In Ruby 2.7: Das Hash wird automatisch in ein Schlüsselwortargument konvertiert<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># In Ruby 3.0: Dieser Aufruf verursacht einen ArgumentError<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo.rb:11: warning: The last argument is used as the keyword parameter<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo.rb:2: warning: for `foo' defined here; maybe ** should be added to the call?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    42<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Wenn Sie das alte Verhalten in Ruby 3.0 behalten wollen, nutzen Sie<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># den double-splat-Operator:<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 42<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Hier ein anderer Fall. Sie können geschweifte Klammern (<code>{}</code>)
+verwenden, um ausdrücklich ein Hash anstelle von Schlüsselwörtern zu
+übergeben.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Dieser Aufruf übergibt nur ein Schlüsselwortargument und keine<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># positionsgebundenen Argumente.<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># In Ruby 2.7: Das Schlüsselwort wird in ein positionsgebundenes Hash-Argument konvertiert<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># In Ruby 3.0: Dieser Aufruf verursacht einen ArgumentError<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo2.rb:9: warning: The keyword argument is passed as the last hash parameter<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo2.rb:2: warning: for `bar' defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    {:k=&gt;42}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Wenn Sie das alte Verhalten in Ruby 3.0 beibehalten wollen,<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># verlangen Sie mit geschweiften Klammern ausdrücklich ein Hash.<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->})<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; {:k=&gt;42}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Was veraltet nun?</h2>
+<p>{: #what-is-deprecated }</p>
+<p>In Ruby 2 können Schlüsselwortargumente als letztes
+positionsgebundenes Argument behandelt werden und umgekehrt ein
+letztes positionsgebundenes Hash-Argument als Schlüsselwortargumente.</p>
+<p>Wie im letzten Abschnitt beschrieben wird, ist diese diese
+automatische Konvertierung manchmal zu komplex und problematisch.
+Daher gilt sie in Ruby 2.7 nun als veraltet und wird in Ruby 3
+entfernt. Das bedeutet, dass Schlüsselwortargumente in Ruby 3
+vollständig von den positionsgebundenen Argumenten getrennt sein
+werden. Wenn Sie also Schlüsselwortargumente übergeben wollen, dann
+sollten Sie stets <code>foo(k: expr)</code> oder <code>foo(**expr)</code> benützen. Wenn Sie
+Schlüsselwortargumente akzeptieren wollen, sollten Sie stets
+<code>def foo(k: default)</code> oder <code>def foo(k:)</code> oder <code>def foo(**kwargs)</code>
+verwenden.</p>
+<p>Beachten Sie, dass Ruby 3 sich beim Aufruf einer Methode mit
+Schlüsselwortargumenten auch dann nicht anders verhält, wenn die
+Methode keine Schlüsselwortargumente akzeptiert. Beispielsweise wird
+der folgende Fall nicht als veraltet markiert und wird auch in Ruby
+3.0 weiterhin funktionieren. Die Schlüsselwortargumente werden
+weiterhin als positionsgebundenes Hash behandelt.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Dies findet seinen Grund darin, dass dieses Idiom sehr häufig genutzt
+wird und gleichzeitig die beabsichtigte Verwendung des Arguments nicht
+mehrdeutig ist. Ein Verbot dieser Konvertierung würde eine zusätzliche
+Inkompatibilität für nur wenig Nutzen einführen.</p>
+<p>Dennoch wird dieser Stil für neuen Code nicht mehr empfohlen, es sei
+denn, Sie übergeben oft Hashes als positionsgebundene Argumente und
+benützen außerdem Schlüsselwortargumente. Ansonsten verwenden Sie den
+doppelten Auflösungsoperator:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Wird mein Code mit Ruby 2.7 nicht mehr funktionieren?</h2>
+<p>{: #break-on-ruby-2-7 }</p>
+<p>Eine kurze Antwort ist „vielleicht nicht“.</p>
+<p>Die Änderungen in Ruby 2.7 sind als Migrationspfad zu Ruby 3.0 gedacht.
+Prinzipiell warnt Ruby 2.7 lediglich wegen Verhaltens, das sich in
+Ruby 3 ändern wird. Jedoch enthält es einige inkompatible Änderungen,
+die wir als hinnehmbar betrachten. Siehe den Abschnitt „Andere kleine
+Änderungen“ für Details.</p>
+<p>Abgesehen von den Warnungen und kleineren Änderungen versucht Ruby 2.7
+die Kompatibilität mit Ruby 2.6 aufrecht zu erhalten. Daher wird Ihr
+Code wahrscheinlich mit Ruby 2.7 weiterhin funktionieren und nur
+Warnungen auslösen. Indem Sie ihn auf Ruby 2.7 ausführen, können Sie
+daher prüfen, ob Ihr Code mit Ruby 3.0 kompatibel ist.</p>
+<p>Wenn Sie die Veraltungswarnungen unterdrücken wollen, verwenden Sie
+den Kommandozeilenschalter <code>-W:no-deprecated</code> oder fügen Sie Ihrem
+Code den Befehl <code>Warning[:deprecated] = false</code> hinzu.</p>
+<h2>Weiterleiten von Argumenten</h2>
+<p>{: #delegation }</p>
+<h3>Ruby 2.6 und früher</h3>
+<p>{: #delegation-ruby-2-6-or-prior }</p>
+<p>In Ruby 2 können Sie eine Delegatormethode schreiben, indem Sie ein
+<code>*rest</code>- und ein <code>&amp;block</code>-Argument akzeptieren und beide an die
+Zielmethode weitergeben. In diesem Verhalten enthalten ist die
+automatische Konvertierung zwischen positionsgebundenen und
+Schlüsselwortargumenten.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 3</h3>
+<p>{: #delegation-ruby-3 }</p>
+<p>Sie müssen Schlüsselwortargumente ausdrücklich delegieren.</p>
+<!-- raw HTML omitted -->
+<p>Alternativ können Sie, wenn Sie keine Kompatibilität mit Ruby 2.6 oder
+früher benötigen und die Argumente nicht verändern, die mit Ruby 2.7 neu
+eingeführte Delegatorsyntax (<code>...</code>) verwenden.</p>
+<!-- raw HTML omitted -->
+<h3>Ruby 2.7</h3>
+<p>{: #delegation-ruby-2-7 }</p>
+<p>In Kürze: verwenden Sie <code>Module#ruby2_keywords</code> und delegieren Sie <code>*args, &amp;block</code>.</p>
+<!-- raw HTML omitted -->
+<p><code>ruby2_keywords</code> akzeptiert Schlüsselwortargumente als das letzte
+Hash-Argument und leitet sie beim Aufruf der Zielmethode als
+Schlüsselwortargumente weiter.</p>
+<p>Tatsächlich erlaubt Ruby 2.7 den neuen Delegationsstil in vielen
+Fällen. Es gibt allerdings einen Sonderfall; siehe den nächsten
+Abschnitt.</p>
+<h3>Eine mit Ruby 2.6, 2.7 und Ruby 3 kompatible Delegation</h3>
+<p>{: #a-compatible-delegation }</p>
+<p>In Kürze: verwenden Sie auch hier <code>Module#ruby2_keywords</code>.</p>
+<!-- raw HTML omitted -->
+<p>Leider muss man hier den alten Delegationsstil (also kein <code>**kwargs</code>)
+verwenden, weil Ruby 2.6 und früher die neue Delegationssyntax nicht
+richtig verarbeiten. Das ist einer der Gründe für die Abspaltung von
+Schlüsselwortargumenten; die Details erklärt der letzte Abschnitt.
+<code>ruby2_keywords</code> erlaubt es, den alten Stil noch in Ruby 2.7 und sogar
+in Ruby 3.0 zu benutzen. Weil <code>ruby2_keywords</code> freilich in Ruby 2.6
+und früher fehlt, können Sie hierfür das <a href="https://rubygems.org/gems/ruby2_keywords">ruby2_keywords-Gem</a>
+einsetzen oder die Methode selbst definieren:</p>
+<!-- raw HTML omitted -->
+<hr />
+<p>Wenn Ihr Code nciht mit Ruby 2.6 oder älter kompatibel sein muss,
+können Sie den mit Ruby 2.7 neu eingeführten Weg einschlagen. Das
+funktioniert in fast allen Fällen. Einen unglücklichen Sonderfall
+gibt es allerdings:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted -->       <!-- raw HTML omitted -->#=&gt; Ruby 2.7: []   ({} fällt weg)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.7: [{}] (Sie können {} durch ausdrückliche Übergabe &quot;keiner&quot; Schlüsselwörtargumente erreichen)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ein leeres Hash wird automatisch konvertiert und von <code>**kwargs</code>
+absorbiert, und die Delegation entfernt dann das leere
+Schlüsselwort-Hash, sodass an <code>target</code> gar kein Argument übergeben
+wird. Soweit wir wissen, handelt es sich hierbei um den einzigen
+Sonderfall.</p>
+<p>Wie in der letzten Zeile festgehalten, können Sie das Problem durch
+Übergabe von <code>**{}</code> umgehen.</p>
+<p>Wenn Sie sich wirklich Sorgen um die Portabilität machen, verwenden
+Sie <code>ruby2_keywords</code>. (Es sei daran erinnert, dass Ruby 2.6 und früher
+ihrerseits dutzende Problemfälle bei der Behandlung von
+Schlüsselwortargumenten aufwiesen :-)
+Eventuell wird <code>ruby2_keywords</code> mit dem Ende der Unterstützung von
+Ruby 2.6 entfernt werden. In diesem Fall werden wir empfehlen,
+Schlüsselwortargumente ausdrücklich zu delegieren (siehe oben den Code
+für Ruby 3).</p>
+<h2>Andere kleine Änderungen</h2>
+<p>{: #other-minor-changes }</p>
+<p>Es gibt in Ruby 2.7 drei kleinere Änderungen an den Schlüsselwortargumenten.</p>
+<h3>1. Nichtsymbole sind als Schlüssel zulässig</h3>
+<p>{: #other-minor-changes-non-symbol-keys }</p>
+<p>In Ruby 2.6 und früher waren nur Symbolschlüssel zulässig. Ab Ruby 2.7
+können auch andere Objekte als Schlüssel eingesetzt werden.</p>
+<!-- raw HTML omitted -->
+<p>Wenn eine Methode sowohl optionale als auch Schlüsselwortargumente
+akzeptiert, wurde in Ruby 2.6 ein Hash-Objekt, das sowohl Symbol- als
+auch andere Schlüssel aufwies, in zwei Hashes zerlegt. Ab Ruby 2.7
+werden beide Arten als Schlüsselwortargumente erkannt, weil
+Nichtsymbolschlüssel erlaubt sind.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: [1, {&quot;key&quot;=&gt;42, :sym=&gt;43}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Verwenden Sie geschweifte Klammern für das alte Verhalten<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->},<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 and 2.7: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ruby 2.7 zerlegt Hashes mit einer Warnung, wenn ein Hash oder
+Schlüsselwortargumente, die sowohl Symbol- als auch
+Nichtsymbolschlüssel enthalten, an eine Methode übergeben werden, die
+ausdrückliche Schlüsselwortargumente, aber kein
+Schlüsselwortrestargument (<code>**kwargs</code>) akzeptiert. Dieses Verhalten
+wird in Ruby 3 entfernt werden und einen <code>ArgumentError</code> auslösen.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.6 und 2.7: =&gt; [{&quot;key&quot;=&gt;42}, 43]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 2.7: warning: Splitting the last argument into positional and keyword parameters is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#           warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># Ruby 3.0: ArgumentError<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>2. Doppelter Auflösunsoperator mit leerem Hash (<code>**{}</code>) übergibt keine Argumente</h3>
+<p>{: #other-minor-changes-empty-hash }</p>
+<p>Bis Ruby 2.6 führte die Übergabe von <code>**leeres_hash</code> zur Übergabe
+eines leeren Hashes als positionsgebundenes Argument. Ab Ruby 2.7
+werden gar keine Argumente übergeben.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 or before: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 or later: []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Beachten Sie, dass <code>foo(**{})</code> weder in Ruby 2.6 noch in 2.7
+irgendetwas übergibt. Bis Ruby 2.6 wird <code>**{}</code> vom Parser entfernt,
+und ab Ruby 2.7 wird es genauso behandelt wie <code>**leeres_hash</code>, wodurch
+eine einfache Möglchkeit geschaffen wird, gar keine
+Schlüsselwortargumente an eine Methode zu übergeben.</p>
+<p>In Ruby 2.7 führt der Aufruf einer Methode mit zu wenigen
+erforderlichen positionsgebundenden Argumenten und
+<code>foo(**leeres_hash)</code> dazu, dass ein leeres Hash übergeben und eine
+Warnung ausgegeben wird, um Kompatibilität mit Ruby 2.6 zu
+gewährleisten. Dieses Verhalten wird in 3.0 entfernt.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.6 und früher: {}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#             warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 3.0: ArgumentError: wrong number of arguments<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>3. Keine-Argumente-Syntax (<code>**nil</code>) wird eingeführt</h3>
+<p>{: #other-minor-changes-double-splat-nil }</p>
+<p>Sie können jetzt <code>**nil</code> in einer Methodendefinition verwenden, um
+ausdrücklich klarzustellen, dass die Methode keine
+Schlüsselwortargumente akzeptiert. Der Aufruf solcher Methoden mit
+Schlüsselwortargumenten verursacht einen <code>ArgumentError</code>. (Hierbei
+handelt es sich um ein neues Feature, nicht um eine Inkompatibilität.)</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 or later: no keywords accepted (ArgumentError)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Das ist nützlich, um festzulegen, dass die Methode
+keine Schlüsselwortargumente akzeptiert. Ansonsten würden im obigen
+Beispiel die Schlüsselwortargumente in das Restargument absorbiert.
+Wenn Sie eine Methode dann später mit Schlüsselwortargumenten
+erweitern wollen, könnte sie die folgende Inkompatibilität aufweisen:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># Die Übergabe von Schlüsselwortargumenten wird (auch in Ruby 3.0) in<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># ein Hash konvertiert<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{:k=&gt;1}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Jetzt wird die Methode um ein Schlüsselwortargument erweitert<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->mode: <!-- raw HTML omitted --><!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->args<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Der bestehende Methodenaufruf ist jetzt defekt<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; ArgumentError: unknown keyword k<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>Warum wir die automatische Konvertierung entfernen wollen</h2>
+<p>{: #why-deprecated }</p>
+<p>Ursprünglich erschien die automatische Konvertierung als eine gute
+Idee und funktionierte in vielen Fällen gut. Es stellte sich aber
+heraus, dass zu viele unerwartete Fälle vorhanden waren, die zu
+zahlreichen Bugreports über das vermeintlich fehlerhafte Verhalten
+geführt haben.</p>
+<p>So funktioniert die automatische Konvertierung nicht richtig, wenn
+eine Methode optionale positionsgebundene Argumente und gleichzeitig
+Schlüsselwortargumente akzeptiert. Einige Leute erwarten in diesem
+Fall, dass das letzte Hash-Objekt als positionsgebundenes Argument
+behandelt wird, während andere davon ausgehen, es werde zu
+Schlüsselwortargumenten konvertiert.</p>
+<p>Hier ist ein Beispiel für einen der besonders verwirrenden Fälle:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->=<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{}, {}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [1, {}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; erwartet: [{}, {}], tatsächlich: [1, {}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>In Ruby 2 übergibt <code>foo({})</code> ein leeres Hash als normales Argument
+(d.h., <code>{}</code> wird an <code>x</code> zugewiesen), während <code>bar({})</code> ein
+Schlüsselwortargument übergibt (d.h. <code>{}</code> wird an <code>kwargs</code>
+zugewiesen). Die bloße Angabe <code>jede_methode({})</code> ist mehrdeutig.</p>
+<p>Man kann <code>bar({}, **{})</code> verstehen als das Verlangen, an <code>x</code>
+ausdrücklich das leere Hash zuzuweisen. Überraschenderweise
+funktioniert das nicht wie erwartet; in Ruby 2.6 gibt das immer noch
+<code>[1, {}]</code> aus. Das liegt daran, dass <code>**{}</code> in Ruby 2.6 schon vom
+Parser ignoriert wird und das dann einzige Argument <code>{}</code> automatisch
+in ein Schlüsselwortargument (<code>**kwargs</code>) konvertiert wird. Es ist in
+diesem Fall nötig, den Aufruf als <code>bar({}, {})</code> zu fassen, was
+überaus anstößig ist.</p>
+<p>Dieselben Probleme bestehen bei Methoden, die sowohl Rest- als auch
+Schlüsselwortargumente akzeptieren. Die ausdrückliche Delegation von
+Schlüsselwortargumenten schlägt dann fehl.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->()<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; Ruby 2.6 und früher: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; Ruby 2.7 und später:  []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo()</code> übergibt keine Argumente, aber <code>target</code> wird in Ruby 2.6 ein
+leeres Hash-Argument zugewiesen. Grund dafür ist, dass die Methode
+<code>foo</code> ihre Schlüsselwortargumente (<code>**kwargs</code>) ausdrücklich delegiert.
+Wenn <code>foo()</code> aufgerufen wird, ist <code>args</code> ein leeres Array, <code>kwargs</code>
+ist ein leeres Hash, und <code>block</code> ist <code>nil</code>. Der Aufruf
+<code>target(*args, **kwargs, &amp;block)</code> übergibt dann ein leeres Hash als
+Argument, weil <code>**kwargs</code> automatisch in ein positionsgebundenes
+Hash-Argument konvertiert wird.</p>
+<p>Schließlich verursacht die automatische Konvertierung nicht nur
+Verwirrung, sondern schränkt die Erweiterbarkeit von Methoden ein.
+Weitere Details über die Gründe der Änderung und bestimmte
+Entscheidungen für die Implementation finden sich in <a href="https://bugs.ruby-lang.org/issues/14183">[Feature
+#14183]</a>.</p>
+<h2>Hinweis</h2>
+<p>Dieser Artikel wurde freundlicherweise von Jeremy Evans und Benoit
+Daloze überprüft (wenn nicht sogar mitgeschrieben).</p>
+<h2>Historie</h2>
+<ul>
+<li>Aktualisiert 2019-12-25: In 2.7.0-rc2 wurden die Warnungen leicht
+verändert und ein API zu ihrer Unterdrückung hinzugefügt.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Aktuelle Neuigkeiten</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/de/news/2020/12/25/ruby-3-0-0-released/">Ruby 3.0.0 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/20/ruby-3-0-0-rc1-released/">Ruby 3.0.0 RC1 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/12/08/ruby-3-0-0-preview2-released/">Ruby 3.0.0 Preview 2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/10/02/ruby-2-7-2-released/">Ruby 2.7.2 veröffentlicht</a></li>
+        
+        <li><a href="/de/news/2020/09/29/http-request-smuggling-cve-2020-25613/">CVE-2020-25613: Sicherheitslücke: Schmuggeln von Requests in WEBrick möglich</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/de/feeds/news.rss">Aktuelle Neuigkeiten (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/de/" class="home">Home</a>
+
+  <a href="/de/downloads/">Downloads</a>
+
+  <a href="/de/documentation/">Dokumentation</a>
+
+  <a href="/de/libraries/">Bibliotheken</a>
+
+  <a href="/de/community/">Community</a>
+
+  <a href="/de/news/">Neuigkeiten</a>
+
+  <a href="/de/security/">Sicherheit</a>
+
+  <a href="/de/about/">Über Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Diese Website in anderen Sprachen:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/de/about/website/">Diese Website</a> wird mit Stolz von Mitgliedern der Ruby-Community gepflegt.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

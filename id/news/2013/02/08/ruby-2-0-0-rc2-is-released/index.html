@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.0.0-rc2 Diluncurkan</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2013/02/08/ruby-2-0-0-rc2-is-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.0.0-rc2 Diluncurkan</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh Yusuke Endoh tanggal 2013-02-08<br>
+                         Diterjemahkan oleh catcyborg</p>
+
+    <p>Ruby 2.0.0-rc2 diluncurkan. Versi ini akan menjadi kandidat rilis terakhir
+dari Ruby 2.0.0.</p>
+<p>Harap dicoba, dan laporkan masalah apapun jika Anda menemukannya.</p>
+<h2>Lokasi Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.bz2&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   10822239 bytes
+MD5:    e92420131bd7994513e0bf09a3e2a19b
+SHA256: d55f897bb04283c5fa80223d96d990fe8ecb598508dd59443b356cbba1f66145
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.tar.gz&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   13616756 bytes
+MD5:    9d5e6f26db7c8c3ddefc81fdb19bd41a
+SHA256: 87072ab3e6d393d47f7402682364e4f24efe1c518969795cc01fcdeeb0e646f3
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip">&lt;URL:https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-rc2.zip&gt;</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15118480 bytes
+MD5:    1a2d33f1c50e32ca1532f8dea4790d53
+SHA256: c28e9baf3aa00b41b8823c16df436ae143e8a63e43e7a53302f23119e13d0ebf
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Fitur-Fitur Baru di 2.0.0</h2>
+<ul>
+<li>Argumen berkata kunci (keyword arguments)</li>
+<li>Enumerable#lazy</li>
+<li>Module#prepend</li>
+<li>#to_h: Konvensi untuk mengkonversi ke Hash</li>
+<li>%i: Sebuah literal untuk Array dari simbol</li>
+<li>Engine regexp diupdate: Onigmo (fork dari Oniguruma)</li>
+<li>Enumerator#size dan Range#size diperkenalkan</li>
+<li>Support untuk DTrace</li>
+<li>TracePoint</li>
+<li>Optimisasi performance dari require (terutama, pada Windows)</li>
+<li>Support untuk NativeClient</li>
+<li>Peningkatan dokumentasi</li>
+<li>Peningkatan handling interrupt secara asynchronous</li>
+<li>Parameter untuk tuning ukuran stack saat launch-time</li>
+<li>Refinements [experimental]</li>
+</ul>
+<p>... dan banyak lagi perbaikan lain. Harap lihat NEWS untuk detilnya.</p>
+<p>Berikut ini beberapa artikel pengantar dari pihak ketiga.</p>
+<ul>
+<li><a href="https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails">&lt;URL:https://speakerdeck.com/a_matsuda/ruby-2-dot-0-on-rails&gt;</a></li>
+<li><a href="http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/">&lt;URL:http://globaldev.co.uk/2012/11/ruby-2-0-0-preview-features/&gt;</a></li>
+<li><a href="http://www.infoq.com/news/2012/11/ruby-20-preview1">&lt;URL:http://www.infoq.com/news/2012/11/ruby-20-preview1&gt;</a></li>
+<li><a href="http://timelessrepo.com/refinements-in-ruby">&lt;URL:http://timelessrepo.com/refinements-in-ruby&gt;</a>
+(Refinements)</li>
+<li><a href="http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html">&lt;URL:http://el.jibun.atmarkit.co.jp/rails/2012/11/ruby-20-8256.html&gt;</a>
+(dalam Bahasa Jepang)</li>
+<li><a href="https://speakerdeck.com/nagachika/rubyist-enumeratorlazy">&lt;URL:https://speakerdeck.com/nagachika/rubyist-enumeratorlazy&gt;</a>
+(Enumerator::Lazy, dalam Bahasa Jepang)</li>
+</ul>
+<p>(Jika Anda sukarelawan untuk memberikan artikel tambahan, kita dapat mengutip atau merujuknya dalam pengumuman rilis berikutnya.)</p>
+<h2>Catatan</h2>
+<h3>Inkompatibilitas</h3>
+<p>Ada tiga ketidakcocokan yang perlu diperhatikan:</p>
+<ul>
+<li>Encoding default untuk skrip Ruby sekarang UTF-8 <a href="https://bugs.ruby-lang.org/issues/6679">[#6679]</a>. Beberapa orang
+melaporkan bahwa hal itu mempengaruhi program yang ada, seperti beberapa
+program benchmark menjadi sangat lambat <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/46547">[ruby-dev:46547]</a>. Specnya
+mungkin berubah untuk rilis official.</li>
+<li>Iconv telah dihapus, yang sudah tidak didukung lagi sejak M17N sudah
+diperkenalkan di Ruby 1.9. Gunakan String#encode, dll. sebagai penggantinya.</li>
+<li>Ada kerusakan ABI <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/48984">[ruby-core:48984]</a>. Kami berpikir bahwa pengguna normal
+dapat/sebaiknya menginstal ulang library extension. Anda harus
+menyadari: JANGAN MENGKOPI FILE .so ATAU .bundle dari 1.9.</li>
+</ul>
+<p>Ada beberapa inkompatibilitas yang relatif kecil
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/49119">[ruby-core:49119]</a>. Harap laporkan ketidakcocokan lain yang Anda temukan.</p>
+<p>Sebagai informasi, kami sedang membuat catatan untuk meng-upgrade, tetapi
+beberapa bagian sudah tidak berlaku lagi.</p>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft">&lt;URL:https://bugs.ruby-lang.org/projects/ruby/wiki/200UpgradeNotesDraft&gt;</a></li>
+</ul>
+<h3>Status Refinement</h3>
+<p>2.0.0 akan mencakup Refinement sebagai &quot;fitur eksperimental&quot; karena kami
+belum dapat menyetujui spesifikasi rincinya. Perhatikan bahwa perilaku Refinement
+dapat berubah dalam versi mendatang Ruby.</p>
+<h3>Ucapan Terima Kasih</h3>
+<p>Saya menghargai semua yang mencoba rilis preview dan RC1! Saya berterima kasih kepada
+semua kontributor untuk kerja keras mereka memperbaiki banyak bug. Saya juga
+sangat berterima kasih kepada semua orang yang membantu saya untuk melakukan rilis ini.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

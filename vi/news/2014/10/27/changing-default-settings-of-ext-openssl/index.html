@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Thay đổi thiết lập mặc định của ext/openssl</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/vi/news/2014/10/27/changing-default-settings-of-ext-openssl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/vi/feeds/news.rss" rel="alternate" title="Tin mới (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/vi/">
+          <h1>Ruby</h1>
+          <h2>Người bạn tri kỉ của lập trình viên</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/vi/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Tìm" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Thay đổi thiết lập mặc định của ext/openssl</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Đăng bởi usa vào 27 Oct 2014<br>
+                         Dịch bởi Thomas Tran</p>
+
+    <p>Chúng tôi đã thay đổi thiết lập mặc định của ext/openssl trên các phiên bản Ruby 2.1.4, 2.0.0-p594 và 1.9.3-p550. Với thay đổi này, các tuỳ chọn SSL/TLS không bảo mật bị mặc định vô hiệu hoá. Tuy nhiên, thay đổi này có khả năng gây ra một số vấn đề với kết nối SSL.</p>
+<h2>Chi tiết</h2>
+<p>OpenSSL vẫn thực thi các giao thức và mật mã được xem là không bảo mật vào ngày nay bởi các hoàn cảnh lịch sử.
+Giống như là lỗ hổng bảo mật POODLE (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566">CVE-2014-3566</a>), nếu bạn tiếp tục sử dụng OpenSSL với các tính năng không bảo mật đó, bạn có thể không thể đảm bảo sự an toàn của giao tiếp mạng.
+Vì vậy, dựa trên cuộc thảo luận ở <a href="https://bugs.ruby-lang.org/issues/9424">Bug #9424</a>, chúng tôi quyết định vô hiệu hoá các tuỳ chọn không bảo mật của SSL/TLS ở mặc định.
+Nếu bạn cần phải bỏ qua thay đổi này (xem ở dưới), hãy áp dụng bản vá ngược để thu hồi.</p>
+<p>2.1.4
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48098&amp;view=revision">r48098</a></p>
+<p>2.0.0-p594
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48110&amp;view=revision">r48110</a></p>
+<p>1.9.3-p550
+: <a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi?revision=48121&amp;view=revision">r48121</a></p>
+<p>Tuy nhiên, nếu bạn bỏ qua thay đổi này, có nguy cơ là bạn không đảm bảo được sự an toàn của giao tiếp mạng.
+Bạn nên hiểu trước khi làm điều đó.</p>
+<h3>Các gói thư viện của Ruby</h3>
+<p>Thay đổi này ảnh hưởng đến net/http, net/imap và net/pop.
+Tuy nhiên WEBrick và Drb lại không bởi vì chúng nhận các thiết lập một cách độc lập.</p>
+<h3>Các kịch bản sử dụng ext/openssl trực tiếp</h3>
+<p>Thay đổi này ảnh hưởng khi một đối tượng <code>OpenSSL::SSL::SSLContext</code> được khởi tạo và phương thức <code>set_params</code> được gọi.
+Cụ thể, đoạn code như sau:</p>
+<!-- raw HTML omitted -->
+<p>Khi sử dụng ext/openssl ở phía client, chúng tôi cho rằng có thể không có vấn đề gì với thay đổi này. Tuy nhiên, nếu bạn đang sử dụng ext/openssl ở phía server và áp dụng thay đổi này, một vài client cũ (IE6, trình duyệt trên các máy điện thoại đời cũ, vv...) có thể không thể kết nối đến server.</p>
+<p>Bạn sẽ là người quyết định có cho phép thay đổi này hay không, hãy cân nhắc lựa chọn.</p>
+<h2>Giải pháp khác</h2>
+<p>Néu bạn không thể nâng cấp Ruby nhưng bạn phải đương đầu các tuỳ chọn SSL/TSL không bảo mật, hãy áp dụng bản vá tạm sau:</p>
+<!-- raw HTML omitted -->
+<h2>Các phiên bản bị ảnh hưởng của thay đổi này</h2>
+<ul>
+<li>Ruby 1.9.3 patchlevel 550 và sau đó</li>
+<li>Ruby 2.0.0 patchlevel 594 và sau đó</li>
+<li>Ruby 2.1.4 và sau đó</li>
+<li>Trunk: revision 48097 và sau đó</li>
+</ul>
+<h2>Lịch sử</h2>
+<ul>
+<li>Được phát hành đầu tiên vào 2014-10-27 12:00:00 (UTC)</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Tin mới nhất</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/vi/news/2017/03/22/ruby-2-4-1-released/">Ra mắt Ruby 2.4.1</a></li>
+        
+        <li><a href="/vi/news/2016/12/25/ruby-2-4-0-released/">Phát hành Ruby 2.4.0</a></li>
+        
+        <li><a href="/vi/news/2016/12/12/ruby-2-4-0-rc1-released/">Phát hành Ruby 2.4.0-rc1</a></li>
+        
+        <li><a href="/vi/news/2016/11/21/ruby-2-3-3-released/">Ruby ra mắt ấn bản 2.3.3</a></li>
+        
+        <li><a href="/vi/news/2016/11/15/ruby-2-3-2-released/">Ruby ra mắt ấn bản 2.3.2</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndicate</h3>
+    <p><a href="/vi/feeds/news.rss">Tin mới (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/vi/" class="home">Home</a>
+
+  <a href="/vi/downloads/">Downloads</a>
+
+  <a href="/vi/documentation/">Tài liệu</a>
+
+  <a href="/vi/libraries/">Thư viện</a>
+
+  <a href="/vi/community/">Cộng đồng</a>
+
+  <a href="/vi/news/">Tin tức</a>
+
+  <a href="/vi/security/">Bảo mật</a>
+
+  <a href="/vi/about/">Về Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Website này được tạo ra với Ruby sử dụng <a href="http://www.jekyllrb.com/">Jekyll</a>. Trang được bảo trì bởi các thành viên của cộng đồng Ruby. Xin đóng góp trên <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> hay liên lạc với <a href="mailto:webmaster@ruby-lang.org">webmaster</a> (bằng tiếng Anh) nếu có câu hỏi hoặc ý kiến phản hồi về trang này.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

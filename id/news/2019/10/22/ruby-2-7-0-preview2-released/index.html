@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 2.7.0-preview2 Dirilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2019/10/22/ruby-2-7-0-preview2-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 2.7.0-preview2 Dirilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2019-10-22<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 2.7.0-preview2.</p>
+<p>Sebuah versi <em>preview</em> dirilis untuk mengumpulkan umpan balik rilis final
+yang direncanakan rilis pada bulan Desember. Versi ini memperkenalkan
+sejumlah fitur baru dan perbaikan performa, terutama:</p>
+<ul>
+<li>Compaction GC</li>
+<li>Pattern Matching</li>
+<li>REPL improvement</li>
+<li>Separation of positional and keyword arguments</li>
+</ul>
+<h2>Compaction GC</h2>
+<p>Rilis ini memperkenalkan <em>Compaction</em> GC yang dapat <em>defragment</em> sebuah
+<em>fragmented memory space</em>.</p>
+<p>Beberapa <em>multi-threaded</em> dari program Ruby dapat menyebabkan <em>memory
+fragmentation</em>, menyebabkan penggunaan <em>memory</em> tinggi dan penurunan kecepatan.</p>
+<p><em>Method</em> <code>GC.compact</code> dikenalkan untuk me-<em>compact heap</em>. Fungsi ini
+me-<em>compact</em> objek di dalam <em>heap</em> sehingga sedikit <em>page</em> yang akan digunakan
+dan <em>heap</em> bisa jadi lebih CoW bersahabat. <a href="https://bugs.ruby-lang.org/issues/15626">[Feature #15626]</a></p>
+<h2>Pattern Matching [Experimental]</h2>
+<p><em>Pattern matching</em>, fitur yang banyak digunakan dalam bahasa pemrograman
+fungsional, dikenalkan sebagai sebuah fitur eksperimental. <a href="https://bugs.ruby-lang.org/issues/14912">[Feature #14912]</a>
+Ini dapat melewati sebuah objek dan menetapkan nilainya jika cocok dengan
+sebuah pola.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'{...}'</span><span class="p">,</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">in</span> <span class="p">{</span><span class="ss">name: </span><span class="s2">"Alice"</span><span class="p">,</span> <span class="ss">children: </span><span class="p">[{</span><span class="ss">name: </span><span class="s2">"Bob"</span><span class="p">,</span> <span class="ss">age: </span><span class="n">age</span><span class="p">}]}</span>
+  <span class="nb">p</span> <span class="n">age</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Untuk lebih detail, mohon lihat <a href="https://speakerdeck.com/k_tsj/pattern-matching-new-feature-in-ruby-2-dot-7">Pattern matching - New feature in Ruby 2.7</a>.</p>
+<h2>REPL improvement</h2>
+<p><code>irb</code>, membungkus <em>interactive development</em> (REPL; Read-Eval-Print-Loop),
+sekarang mendukung suntingan <em>multi-line</em>. Ini didukung oleh <code>reline</code>,
+<code>readline</code> yang sesuai dengan implementasi murni dari Ruby. Ini juga
+menyediakan integrasi rdoc. Di dalam <code>irb</code> Anda dapat menampilkan referensi
+sebuah <em>class</em>, <em>module</em>, atau <em>method</em>.  <a href="https://bugs.ruby-lang.org/issues/14683">[Feature #14683]</a>, <a href="https://bugs.ruby-lang.org/issues/14787">[Feature #14787]</a>, <a href="https://bugs.ruby-lang.org/issues/14918">[Feature #14918]</a>
+Selain itu, baris kode ditampilkan pada <code>binding.irb</code> dan hasil pemeriksaan
+objek <em>core-class</em> sekarang berwarna.</p>
+<!-- raw HTML omitted -->
+<h2>Separation of positional and keyword arguments</h2>
+<p>Konversi otomatis dari <em>keyword argument</em> dan <em>positional argument</em> sudah
+usang dan akan dihapus di Ruby 3.  <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<ul>
+<li>
+<p>Ketika sebuah pemanggilan <em>method</em> melewati sebuah <em>Hash</em> pada <em>argument</em>
+terakhir, ketika melewati <em>keyword</em> kosong, dan ketika <em>method</em> yang
+dipanggil menerima <em>keyword</em>, sebuah peringatan dikeluarkan. Untuk
+melanjutkan sebagai <em>keyword</em>, menambahkan sebuah <em>double splat operator</em>
+untuk menghindari peringatan dan memastikan perilaku yang benar pada Ruby 3.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span>    <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Ketika sebuah pemanggilan <em>method</em> melewati <em>keyword</em> ke sebuah <em>method</em>
+yang menerima <em>keyword</em>, tetapi tidak memenuhi <em>positional argument</em> yang
+diperlukan, <em>keyword</em> akan dianggap sebagai sebuah <em>required positional
+argument</em> final dan sebuah peringatan dikeluarkan. Melewati <em>argument</em>
+sebagai sebuah <em>hash</em> ketimbang <em>keyword</em> untuk menghindari peringatan dan
+memastikan perilaku yang benar pada Ruby 3.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>      <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span>    <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Ketika sebuah <em>method</em> menerima <em>keyword</em> tertentu, tetapi bukan sebuah
+<em>keyword splat</em> dan sebuah <em>hash</em> atau <em>keyword splat</em> dilewatkan <em>method</em>
+yang memasukkan <em>key</em> Symbol dan non-Symbol, <em>hash</em> akan lanjut dengan
+memisahkan dan sebuah peringatan dikeluarkan. Anda akan butuh pemanggilan
+kode untuk melewati hash yang terpisah untuk memastikan perilaku yang benar
+pada Ruby 3.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span>   <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">,</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">})</span> <span class="c1"># warned</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="p">{},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"key"</span> <span class="o">=&gt;</span> <span class="mi">43</span><span class="p">},</span> <span class="ss">key: </span><span class="mi">42</span><span class="p">)</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Jika sebuah <em>method</em> tidak menerima <em>keyword</em> dan dipanggil dengan <em>keyword</em>,
+<em>keyword</em> akan dianggap sebagai sebuah <em>positional hash</em> tanpa peringatan.
+Perilaku ini akan berlanjut pada Ruby 3.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="p">{});</span>  <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span> <span class="ss">key: </span><span class="mi">42</span> <span class="p">)</span>   <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Non-symbol diperbolehkan sebagai sebuah <em>keyword argument</em> jika <em>method</em>
+menerima <em>arbitrary keyword</em>.  <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">);</span> <span class="nb">p</span> <span class="n">kw</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#=&gt; {"str"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><!-- raw HTML omitted -->**nil<!-- raw HTML omitted --> diperbolehkan pada definisi <em>method</em> sebagai penanda
+langsung bahwa <em>method</em> menerima <em>keyword</em> kosong. Memanggil <em>method</em>
+seperti itu dengan <em>keyword</em> akan menyebabkan ArgumentError.  <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="ss">key: </span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># ArgumentError</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="ss">key: </span><span class="mi">1</span><span class="p">})</span>     <span class="c1"># OK</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="kp">nil</span><span class="p">);</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">({</span><span class="s2">"str"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># OK</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Melewatkan sebuah <em>keyword splat</em> kosong pada sebuah <em>method</em> yang tidak
+menerima <em>keyword</em> tidak akan lagi melewati sebuah <em>hash</em> kosong, kecuali
+<em>hash</em> kosong dibutuhkan sebagai sebuah <em>required parameter</em>, di mana kasus
+sebuah peringatan akan dikelurkan. Hilangkan <em>double splat</em> untuk melanjutkan
+sebuah <em>positional hash</em>.  <a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span> <span class="c1"># []</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="o">**</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># {} and warning</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>   <span class="c1"># [{}]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{};</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">a</span> <span class="k">end</span><span class="p">;</span> <span class="n">foo</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>    <span class="c1"># {}</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Fitur Baru Penting Lainnya</h2>
+<ul>
+<li>
+<p>Sebuah <em>method reference operator</em>, <!-- raw HTML omitted -->.:<!-- raw HTML omitted -->, dikenalkan sebagai
+sebuah fitur eksperimental.
+<a href="https://bugs.ruby-lang.org/issues/12125">[Feature #12125]</a>,
+<a href="https://bugs.ruby-lang.org/issues/13581">[Feature #13581]</a></p>
+</li>
+<li>
+<p><em>Numbered parameter</em> sebagai <em>default block parameter</em> dikenalkan sebagai
+sebuah fitur eksperimental.
+<a href="https://bugs.ruby-lang.org/issues/4475">[Feature #4475]</a></p>
+</li>
+<li>
+<p>Sebuah <em>beginless range</em> secara eksperimental dikenalkan. Ini mungkin tidak
+berguna seperti <em>endless range</em>, tetapi sangat baik untuk penggunan DSL.
+<a href="https://bugs.ruby-lang.org/issues/14799">[Feature #14799]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">ary</span><span class="p">[</span><span class="o">..</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># identical to ary[0..3]</span>
+<span class="n">rel</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">sales: </span><span class="o">..</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerable#tally</code> ditambahkan. Ini menghitung banyak elemen dari setiap
+elemen.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">].</span><span class="nf">tally</span>
+<span class="c1">#=&gt; {"a"=&gt;1, "b"=&gt;2, "c"=&gt;1}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Pemanggilan sebuah <em>private method</em> pada <code>self</code> sekarang diperbolehkan.
+<a href="https://bugs.ruby-lang.org/issues/11297">[Feature #11297]</a>
+<a href="https://bugs.ruby-lang.org/issues/16123">[Feature #16123]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+<span class="k">end</span>
+<span class="kp">private</span> <span class="ss">:foo</span>
+<span class="nb">self</span><span class="p">.</span><span class="nf">foo</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Enumerator::Lazy#eager</code> ditambahkan. Ini menghasilkan sebuah <em>non-lazy
+enumerator</em> dari sebuah <em>lazy enumerator</em>.
+<a href="https://bugs.ruby-lang.org/issues/15901">[Feature #15901]</a></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">a</span> <span class="o">=</span> <span class="sx">%w(foo bar baz)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"!"</span> <span class="p">}.</span><span class="nf">eager</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">class</span>               <span class="c1">#=&gt; Enumerator</span>
+<span class="nb">p</span> <span class="n">e</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">"?"</span> <span class="p">}</span>  <span class="c1">#=&gt; ["FOO!?", "BAR!?", "BAZ!?"]</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Perbaikan performa</h2>
+<ul>
+<li>
+<p>JIT [Eksperimental]</p>
+<ul>
+<li>
+<p>Kode JIT-<em>ed</em> di-<em>recompile</em> untuk kode <em>less-optimized</em> ketika sebuah
+asumsi optimisasi dibatalkan.</p>
+</li>
+<li>
+<p><em>Method inlining</em> dilakukan ketika sebuah <em>method</em> dianggap murni.
+Optimisasi ini masih eksperimental dan banyak <em>method</em> dianggap tidak
+murni.</p>
+</li>
+<li>
+<p>Nilai default dari <code>--jit-min-calls</code> diubah dari 5 ke 10,000</p>
+</li>
+<li>
+<p>Nilai default dari <code>--jit-max-cache</code> diubah dari 1,000 ke 100</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Symbol#to_s</code>, <code>Module#name</code>, <code>true.to_s</code>, <code>false.to_s</code>, dan <code>nil.to_s</code>
+sekarang selalu mengembalikan sebuah <em>frozen string</em>. <em>String</em> yang
+dikembalikan selalu sama untuk sebuah objek. [Eksperimental]
+<a href="https://bugs.ruby-lang.org/issues/16150">[Feature #16150]</a></p>
+</li>
+<li>
+<p>Performa dari <code>CGI.escapeHTML</code> ditingkatkan. <a href="https://github.com/ruby/ruby/pull/2226">GH-2226</a></p>
+</li>
+</ul>
+<h2>Perubahan penting lainnya sejak 2.6</h2>
+<ul>
+<li>
+<p>Beberapa pustaka standar diperbarui.</p>
+<ul>
+<li>Bundler 2.1.0.pre.1</li>
+<li>RubyGems 3.1.0.pre.1</li>
+<li>CSV 3.1.2 (<a href="https://github.com/ruby/csv/blob/v3.1.2/NEWS.md">NEWS</a>)</li>
+<li>Racc 1.4.15</li>
+<li>REXML 3.2.3 (<a href="https://github.com/ruby/rexml/blob/v3.2.3/NEWS.md">NEWS</a>)</li>
+<li>RSS 0.2.8 (<a href="https://github.com/ruby/rss/blob/v0.2.8/NEWS.md">NEWS</a>)</li>
+<li>StringScanner 1.0.3</li>
+<li>Beberapa pustaka lainnya yang tidak memiliki versi asli juga diperbarui.</li>
+</ul>
+</li>
+<li>
+<p><code>Proc.new</code> dan <code>proc</code> tanpa <em>block</em> dalam sebuah <em>method</em> dipanggil dengan
+sebuah <em>block</em> akan diperingatkan sekarang.</p>
+</li>
+<li>
+<p><code>lambda</code> tanpa <em>block</em> dalam sebuah <em>method</em> dipanggil dengan sebuah
+<em>block errs</em>.</p>
+</li>
+<li>
+<p>Memperbarui versi Unicode dan Emoji dari 11.0.0 ke 12.0.0. <a href="https://bugs.ruby-lang.org/issues/15321">[Feature #15321]</a></p>
+</li>
+<li>
+<p>Memperbarui versi Unicode ke 12.1.0, menambahkan dukungan U+32FF SQUARE
+ERA NAME REIWA. <a href="https://bugs.ruby-lang.org/issues/15195">[Feature #15195]</a></p>
+</li>
+<li>
+<p><code>Date.jisx0301</code>, <code>Date#jisx0301</code>, dan <code>Date.parse</code> mendukung <em>Japanese era</em>
+yang baru. <a href="https://bugs.ruby-lang.org/issues/15742">[Feature #15742]</a></p>
+</li>
+<li>
+<p>Membutuhkan <em>compiler</em> untuk mendukung C99 <a href="https://bugs.ruby-lang.org/issues/15347">[Misc #15347]</a></p>
+<ul>
+<li>Detail dialek kami: <a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99">https://bugs.ruby-lang.org/projects/ruby-master/wiki/C99</a></li>
+</ul>
+</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v2_7_0_preview2/NEWS">NEWS</a> atau
+<a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview2">commit logs</a>
+untuk lebih detail.</p>
+<p>Dengan perubahan tersebut, <a href="https://github.com/ruby/ruby/compare/v2_6_0...v2_7_0_preview2">3670 berkas berubah, 201242 sisipan(+),
+88066 terhapus(-)</a>
+sejak Ruby 2.6.0!</p>
+<p>Nikmati memprogram dengan Ruby 2.7!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14555229 bytes
+SHA1:   7d9eed71115acfc8851747517904c1c6809872a9
+SHA256: 417c84346ba84d664a13833c94c6d9f888c89bb9bee9adf469580441eaede30b
+SHA512: 7066ececebbbba4b2933ba1a4f70cdef373169910802259a3e52b4fc144ba298f3cffda4be5fe8a7be8ef769ed43076fa046a9ac2c13bb733475b9852112c6f0
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   16622499 bytes
+SHA1:   5e998eb37ef54e650c0206184d56f506359d5477
+SHA256: bda4b8dc340fad425c8099400fe3ef8e7393837d7e6e1bfae41843d1d938ebc4
+SHA512: dbf05d6ddab59062f507342b25b8c21670b02bdd49e77bda947870607f4bf9049e5e7ddfde6bbce2e1749ca92568da9be3e5f30601b1eb450f10d8add952239a
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   11874200 bytes
+SHA1:   4356e1726027795a5c6b08572bb37bcb5a8c55d6
+SHA256: fa39f088331f6d505154aa9d025aab177fdffedfbbabccd900b8c02e745bc077
+SHA512: a057a186d85fcdf123abd69d584ef3adb20ad4397521e14306395d34102c3d818fe2d34a6476db01effcde479da9a77076cbb6d30bca40f1471ce3f5d3a995a9
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.zip">https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   20576618 bytes
+SHA1:   891b70ec76e9e776774a49b3ce24832a944422b3
+SHA256: 81a240bead4438b064cb4cde562b483b82ec8e414bac057a6df43df5a247545c
+SHA512: 1a8d4503374d31abf43182e2af6902ea6e5295f55d539415c8268b1d6a0fa83a975648c225ae986e687d5283dc2d180cf1e608841485506e4b0ac5efc154949a
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Apa itu Ruby</h2>
+<p>Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada 1993
+dan sekarang dikembangkan sebagai <em>open source</em>. Ruby berjalan di berbagai
+jenis <em>platform</em> dan digunakan di seluruh dunia khususnya pengembangan <em>web</em>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Liberado Ruby 2.4.0-rc1</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/es/news/2016/12/12/ruby-2-4-0-rc1-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/es/feeds/news.rss" rel="alternate" title="En español" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/es/">
+          <h1>Ruby</h1>
+          <h2>El mejor amigo de un desarrollador</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/es/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Buscar" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Liberado Ruby 2.4.0-rc1</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Publicado por naruse el 2016-12-12<br>
+                         Traducción de Fernando Perales</p>
+
+    <p>Nos complace anunciar el lanzamiento de Ruby 2.4.0-rc1.</p>
+<p>Ruby 2.4.0-rc1 es el primer candidato a lanzamiento de Ruby 2.4.0.
+Esta versión rc1 es liberada para obtener retroalimentación de la comunidad.
+Siéntete libre de
+<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport">enviar tu retroalimentación</a>
+ya que aún puedes arreglar las funcionalidades.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12142">Presentamos una mejora a las tablas de hash por Vladimir Makarov</a></h2>
+<p>Se mejora la estructura interna de las tablas de hash (st_table) al agregar
+direccionamiento abierto y arreglos con orden de inclusión. Esta mejora ha
+sido discutida con varias personas, especialmente con Yura Sokolov.</p>
+<h2>Binding#irb: Inicia una sesión de REPL al igual que <code>binding.pry</code></h2>
+<p>Cuando estás depurando código, quizá usas <code>p</code> frecuentemente para ver
+el valor de las variables.
+Al usar <a href="https://github.com/pry/pry">pry</a> y escribir <code>binding.pry</code> en
+tu aplicación, se inicia un ciclo REPL (Lectura-Evaluación-Impresión)
+donde puedes correr código de Ruby.
+<a href="https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a">r56624</a>
+añade <code>binding.irb</code> que se comporta de la misma manera con irb.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/12005">Unificación de Fixnum y Bignum en Integer</a></h2>
+<p>A pesar de que <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579">ISO/IEC 30170:2012</a>
+no especifica detalles sobre la clase Integer,
+Ruby tuvo dos clases visibles para Integer: Fixnum y Bignum.
+Ruby 2.4 las unifica en Integer.
+Todas las extensiones que tocan las clases Fixnum o Bignum necesitan
+ser reparadas.</p>
+<p>Ve también <a href="https://bugs.ruby-lang.org/issues/12005">el incidente</a> y la <a href="http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf">presentación de akr</a>.</p>
+<h2><a href="https://bugs.ruby-lang.org/issues/10085">String soporta casos de mapeo en Unicode</a></h2>
+<p><code>String/Symbol#upcase/downcase/swapcase/capitalize(!)</code> ahora manejan
+los casos de mapeo de Unicode en vez de únicamente los casos de mapeo de ASCII.</p>
+<h2>Mejoras de rendimiento</h2>
+<p>Ruby 2.4 también tiene las siguientes mejores de rendimiento incluyendo cambios
+en el lenguage:</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/12172">Array#max, Array#min</a></h3>
+<p><code>[x, y].max</code> y <code>[x, y].min</code> están optimizados para no crear un arreglo vacío
+temporal bajo ciertas condiciones.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8110">Regexp#match?</a></h3>
+<p>Se añade <code>Regexp#match?</code>, ejecuta una comparación con expresiones regulares
+sin crear un objeto de referencia y cambia <code>$~</code> para ejecutar asignación de
+memoria.</p>
+<h3>Otras mejoras al rendimiento</h3>
+<ul>
+<li><a href="https://bugs.ruby-lang.org/issues/12274">incrementa la velocidad de acceso a variables de instancia</a></li>
+</ul>
+<h2>Depuración</h2>
+<h3><a href="https://bugs.ruby-lang.org/issues/6647">Thread#report_on_exception y Thread.report_on_exception</a></h3>
+<p>Ruby ignora excepciones en hilos a menos que otro hilo se les una explicitamente.
+Con <code>report_on_exception = true</code>,
+puedes darte cuenta si un hilo ha muerto debido a una excepción no controlada.</p>
+<p>Mándanos tu retroalimentación sobre cuál debería ser el comportamiento
+predeterminado para <code>report_on_exception</code> y sobre report-on-GC, que
+muestra un reporte cuando un hilo es recogido por el recolector de basura sin unirse.</p>
+<h3><a href="https://bugs.ruby-lang.org/issues/8214">Detección de deadlocks en hilos ahora muestra los hilos con sus trazas y depencencias</a></h3>
+<p>Ruby tiene detección de deadlocks en los hilos que están a la espera, pero
+este reporte no incluye suficiente información para depuración. La detección
+de deadlocks en Ruby 2.4 muestra los hilos con sus respectivas trazas e hilos
+dependientes.</p>
+<p>¡Prueba y disfruta programar con Ruby 2.4.0-rc1, y
+<a href="https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport">envíanos retroalimentación</a>!</p>
+<h2>Otros cambios notables desde 2.3</h2>
+<ul>
+<li>Soporte para OpenSSL 1.1.0 (se elimina el soporte para 0.9.7 o anterior)</li>
+<li>ext/tk fue removido de stdlib <a href="https://bugs.ruby-lang.org/issues/8539">Funcionalidad #8539</a></li>
+<li>XMLRPC fue removido de stdlib <a href="https://bugs.ruby-lang.org/issues/12160">Funcionalidad #12160</a></li>
+</ul>
+<p>Ve <a href="https://github.com/ruby/ruby/blob/v2_4_0_rc1/NEWS">NEWS</a>
+o el historial de cambios para más detalles.</p>
+<p>¡Con estos cambios,
+<a href="https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0_rc1">2519 archivos cambiados, 288606 inserciones(+), 83896 supresiones(-)</a>
+desde Ruby 2.3.0!</p>
+<h2>Descarga</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.bz2">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.bz2</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   12512729 bytes
+SHA1:   a0439652a97a2406b691e8a1e586e2cf08c258ba
+SHA256: 3b156b20f9df0dd62cbeeb8e57e66ea872d2a5b55fabdef1889650122bcc2ea7
+SHA512: b43902ac7794487197df55a45256819d2e7540b77f1ed4eb68def3e0473ee98860a400862075bafadbde74f242e1dfe36a18cd6fe05ac42aae1ea6dddc9978ce
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.gz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   14098505 bytes
+SHA1:   6b242f9ec7b908c9aa26e497440684ba06d86927
+SHA256: e41ada7650eed2a5800534d1201ba7c88f1627085659df994f47ab4c5e327745
+SHA512: 26d3c60483ce2d6eaabd7077085102fad6633f18cf5d772bacf6f563670030cb7bba22d54d8b7dfa5eac8b52990371c4a6ad1c095dff6f6b3a7bbe1a8ffb3754
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.xz">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   9930088 bytes
+SHA1:   7c404e8bec9859f708927f7203d4f42187e678b7
+SHA256: 3f014b3186d10676da6c512d14c65db23ccc4bf200fed9d7c6f9a58fd1e3295b
+SHA512: 22e209e28da1f2394f50c0a7dd5d0d4d4c0c5a6b5b0b02260fad0267a0940b98f0e2b0f36a44f87d1612555cb3022f43cd136a5186c7f87650aa20264408d415
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.zip">https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE:   15785968 bytes
+SHA1:   7d82386434ccbb1701f2995286bf29c8b9179e01
+SHA256: 14e6910e36618cddffeb22bad5f1052f907dc31ec93d4aa945bca0905d8a52c4
+SHA512: 5dd89320d429e5bd5faf3709be7e5b70f7355304d6324d7ac13a69187e5f1446ad5988c8186bc33f4fea8934288294f9d16fea173f39b2b39967746c4b03d1d4
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Comentarios del lanzamiento</h2>
+<p>Mira también la agenda de lanzamientos y más información:</p>
+<p><a href="https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24">ReleaseEngineering24</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Noticias recientes</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/es/news/2022/12/25/ruby-3-2-0-released/">Publicado Ruby 3.2.0</a></li>
+        
+        <li><a href="/es/news/2022/12/06/ruby-3-2-0-rc1-released/">Publicado Ruby 3.2.0 RC 1</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 Released</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-3-0-5-released/">Publicado Ruby 3.0.5</a></li>
+        
+        <li><a href="/es/news/2022/11/24/ruby-2-7-7-released/">Publicado Ruby 2.7.7</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Feeds de noticias (RSS)</h3>
+    <p><a href="/es/feeds/news.rss">En español</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/es/" class="home">Inicio</a>
+
+  <a href="/es/downloads/">Descargas</a>
+
+  <a href="/es/documentation/">Documentación</a>
+
+  <a href="/es/libraries/">Bibliotecas</a>
+
+  <a href="/es/community/">Comunidad</a>
+
+  <a href="/es/news/">Noticias</a>
+
+  <a href="/es/security/">Seguridad</a>
+
+  <a href="/es/about/">Acerca de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Este sitio web está desarrollado con Ruby y <a href="http://www.jekyllrb.com/">Jekyll</a> y es orgullosamente mantenido por miembros de la comunidad. Si quieres contribuir, por favor hazlo en <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> o contacta a nuestro <a href="mailto:webmaster@ruby-lang.org">webmaster</a> si tienes preguntas o comentarios.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

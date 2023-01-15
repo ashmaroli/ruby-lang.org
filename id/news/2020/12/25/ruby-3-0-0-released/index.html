@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.0.0 Dirilis</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/id/news/2020/12/25/ruby-3-0-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/id/feeds/news.rss" rel="alternate" title="Umpan Web (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/id/">
+          <h1>Ruby</h1>
+          <h2>Sahabat Terbaik Programmer</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/id/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Cari" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.0.0 Dirilis</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Ditulis oleh naruse tanggal 2020-12-25<br>
+                         Diterjemahkan oleh meisyal</p>
+
+    <p>Kami dengan senang hati mengumumkan rilis dari Ruby 3.0.0. Dari tahun 2015, kami
+bekerja keras untuk Ruby 3 yang mana tujuannya adalah kinerja, <em>concurrency</em>,
+dan <em>Typing</em>. Khususnya kinerja, Matz mengatakan &quot;Ruby3 akan 3 kali lebih
+cepat dibanding Ruby2&quot; yang juga dikenal dengan
+<a href="https://blog.heroku.com/ruby-3-by-3">Ruby 3x3</a>.</p>
+<!-- raw HTML omitted -->
+<p>Dengan <a href="https://github.com/mame/optcarrot">Optcarrot benchmark</a>, yang mengukur
+kinerja <em>single thread</em> berdasarkan beban kerja NES's <em>game emulation</em>, kinerja
+Ruby 3.0 mencapai 3x lebih cepat dibanding Ruby 2.0! <!-- raw HTML omitted -->Ini dihitung pada
+<em>environment</em> yang dicatat dalam <a href="https://benchmark-driver.github.io/hardware.html">benchmark-driver.github.io/hardware.html</a>. <a href="https://github.com/ruby/ruby/commit/8c510e4095">Commit 8c510e4095</a>
+yang digunakan sebagai <em>benchmark</em> ini. Kinerja mungkin tidak 3x lebih cepat
+karena bergantung pada <em>environment</em> atau <em>benchmark</em> Anda.<!-- raw HTML omitted --></p>
+<p>Ruby 3.0.0 mencapai tujuan tersebut dengan:</p>
+<ul>
+<li>Kinerja
+<ul>
+<li>MJIT</li>
+</ul>
+</li>
+<li><em>Concurrency</em>
+<ul>
+<li><em>Ractor</em></li>
+<li><em>Fiber Scheduler</em></li>
+</ul>
+</li>
+<li><em>Typing</em> (Analisis Statis)
+<ul>
+<li>RBS</li>
+<li><em>TypeProf</em></li>
+</ul>
+</li>
+</ul>
+<p>Dengan perbaikan kinerja di atas, Ruby 3.0 mengenalkan sejumlah fitur baru yang
+digambarkan sebagai berikut.</p>
+<h2>Kinerja</h2>
+<blockquote>
+<p>Ketika saya menyatakan &quot;Ruby3x3&quot; pertama kali pada sebuah konferensi, banyak
+peserta termasuk anggota dari <em>core team</em> merasa &quot;Matz is a boaster&quot;.
+Kenyataannya, saya juga merasa begitu. Tetapi, kami berhasil. Saya merasa
+terhormat melihat <em>core team</em> benar-benar bisa menjadikan Ruby3.0 tiga kali
+lebih cepat dibanding Ruby2.0 (pada beberapa <em>benchmark</em>). -- Matz</p>
+</blockquote>
+<h3>MJIT</h3>
+<p>Banyak perbaikan yang telah diimplementasikan pada MJIT. Lihat NEWS untuk
+detail.</p>
+<p>Pada Ruby 3.0, JIT seharusnya memberikan perbaikan kinerja pada beban kerja
+terbatas, seperti permainan
+(<a href="https://benchmark-driver.github.io/benchmarks/optcarrot/commits.html#chart-1">Optcarrot</a>),
+AI (<a href="https://benchmark-driver.github.io/benchmarks/rubykon/commits.html">Rubykon</a>),
+atau aplikasi apapun yang mayoritas menghabiskan waktu saat memanggil beberapa
+<em>method</em> berkali-kali.</p>
+<p>Meskipun Ruby 3.0 <a href="https://twitter.com/k0kubun/status/1256142302608650244">significantly decreased the size of JIT-ed code</a>,
+ini masih belum siap untuk mengomptimalkan beban kerja seperti <em>Rails</em>, yang
+mana menghabiskan waktu pada banyak <em>method</em>. Sehingga, ini akan menderita dari
+<em>i-cache misses</em> yang diperburuk oleh JIT. Nantikan perbaikan lebih lanjut
+masalah ini pada Ruby 3.1.</p>
+<h2>Concurrency / Parallel</h2>
+<blockquote>
+<p>Ini zaman <em>multi-core</em> sekarang. <em>Concurrency</em> sangatlah penting. Dengan
+<em>Ractor</em>, bersama dengan <em>Async Fiber</em>, Ruby akan menjadi sebuah bahasa
+<em>concurrent</em> asli. --- Matz</p>
+</blockquote>
+<h3>Ractor (eksperimental)</h3>
+<p><em>Ractor</em> adalah sebuah <em>Actor-model</em> seperti <em>concurrent abstraction</em> yang
+didesain untuk menyediakan sebuah fitur eksekusi paralel tanpa mengkhawatirkan
+<em>thread-safety</em>.</p>
+<p>Anda dapat membuat beberapa <em>ractor</em> dan menjalankannya secara paralel. <em>Ractor</em>
+memungkinkan untuk membuat program paralel yang <em>thread-safe</em> karena <em>ractor</em>
+tidak dapat membagi objek normal. Komunikasi antar <em>ractor</em> didukung oleh
+pertukaran pesan.</p>
+<p>Untuk membatasi pembagian objek, <em>Ractor</em> mengenalkan beberapa batasan pada
+sintaks Ruby (tanpa banyak <em>Ractor</em>, maka tidak ada batasan).</p>
+<p>Spesifikasi dan implementasi dari <em>Ractor</em> masih belum sempurna dan memungkinkan
+adanya perubahan ke depan, sehingga fitur ini ditandai dengan eksperimental
+dan menampilkan peringatan &quot;experimental feature&quot; saat <code>Ractor.new</code> pertama kali.</p>
+<p>Berikut adalah program kecil untuk mengukur waktu eksekusi dari fungsi populer
+<em>tak</em> (<a href="https://en.wikipedia.org/wiki/Tak_(function)">Tak (function) - Wikipedia</a>),
+dengan mengeksekusinya 4 kali secara berurutan atau 4 kali secara paralel dengan
+<em>Ractor</em>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">tarai</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="o">=</span>
+  <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="p">?</span> <span class="n">y</span> <span class="p">:</span> <span class="n">tarai</span><span class="p">(</span><span class="n">tarai</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span>
+                     <span class="n">tarai</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span>
+                     <span class="n">tarai</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+<span class="nb">require</span> <span class="s1">'benchmark'</span>
+<span class="no">Benchmark</span><span class="p">.</span><span class="nf">bm</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="c1"># versi berurutan</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s1">'seq'</span><span class="p">){</span> <span class="mi">4</span><span class="p">.</span><span class="nf">times</span><span class="p">{</span> <span class="n">tarai</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+
+  <span class="c1"># versi paralel</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="s1">'par'</span><span class="p">){</span>
+    <span class="mi">4</span><span class="p">.</span><span class="nf">times</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span>
+      <span class="no">Ractor</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="n">tarai</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">end</span><span class="p">.</span><span class="nf">each</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:take</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hasil benchmark:
+          user     system      total        real
+seq  64.560736   0.001101  64.561837 ( 64.562194)
+par  66.422010   0.015999  66.438009 ( 16.685797)
+</code></pre></div></div>
+<p>Hasil diukur pada Ubuntu 20.04, Intel(R) Core(TM) i7-6700 (4 <em>cores</em>, 8
+<em>hardware threads</em>). Ini menunjukkan versi paralel 3.87 kali lebih cepat
+dibanding versi berurutan.</p>
+<p>Lihat <a href="https://docs.ruby-lang.org/en/3.0/ractor_md.html">doc/ractor.md</a>
+untuk lebih detail.</p>
+<h3>Fiber Scheduler</h3>
+<p><code>Fiber#scheduler</code> diperkenalkan untuk menghalangi operasi <em>blocking</em>. Ini
+memperbolehkan <em>light-weight concurrency</em> tanpa pengubahan kode yang sudah ada.
+Tonton <a href="https://www.youtube.com/watch?v=Y29SSOS4UOc">&quot;Don't Wait For Me, Scalable Concurrency for Ruby 3&quot;</a>
+sebagai gambaran bagaimana fitur ini bekerja.</p>
+<p>Saat ini, <em>class</em>/<em>method</em> yang didukung:</p>
+<ul>
+<li><code>Mutex#lock</code>, <code>Mutex#unlock</code>, <code>Mutex#sleep</code></li>
+<li><code>ConditionVariable#wait</code></li>
+<li><code>Queue#pop</code>, <code>SizedQueue#push</code></li>
+<li><code>Thread#join</code></li>
+<li><code>Kernel#sleep</code></li>
+<li><code>Process.wait</code></li>
+<li><code>IO#wait</code>, <code>IO#read</code>, <code>IO#write</code>, dan <em>method</em> yang berkaitan (seperti <code>#wait_readable</code>, <code>#gets</code>, <code>#puts</code> dan lainnya).</li>
+<li><code>IO#select</code> <em>tidak didukung</em>.</li>
+</ul>
+<p>Ini adalah contoh program yang akan melakukan beberapa HTTP <em>request</em> secara
+bersamaan:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="nb">require</span> <span class="s1">'async'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="no">Async</span> <span class="k">do</span>
+  <span class="p">[</span><span class="s2">"ruby"</span><span class="p">,</span> <span class="s2">"rails"</span><span class="p">,</span> <span class="s2">"async"</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">topic</span><span class="o">|</span>
+    <span class="no">Async</span> <span class="k">do</span>
+      <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="no">URI</span> <span class="s2">"https://www.google.com/search?q=</span><span class="si">#{</span><span class="n">topic</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Ini menggunakan <a href="https://github.com/socketry/async">async</a> yang mana menyediakan
+<em>event loop</em>. <em>Event loop</em> ini menggunakan <code>Fiber#scheduler</code> <em>hook</em> untuk
+membuat <code>Net::HTTP</code> <em>non-blocking</em>. <em>Gem</em> lainnya dapat menggunakan <em>interface</em>
+ini untuk menyediakan eksekusi <em>non-blocking</em> pada Ruby dan <em>gem</em> tersebut
+cocok dengan implementasi Ruby lainnya (misalnya, JRuby, TruffleRuby) yang dapat
+mendukung <em>non-blocking hook</em> yang sama.</p>
+<h2>Analisis Statis</h2>
+<blockquote>
+<p>2010-an adalah zaman dari <em>statically typed programming language</em>. Ruby melihat
+masa depan dengan <em>static type checking</em>, tanpa <em>type declaration</em>,
+menggunakan interpretasi abstrak. RBS &amp; <em>TypeProf</em> adalah langkah pertama
+menuju masa depan. Lebih banyak langkah yang akan datang. --- Matz</p>
+</blockquote>
+<h3>RBS</h3>
+<p>RBS adalah sebuah bahasa untuk mendeskripsikan tipe dari program Ruby.</p>
+<p><em>Type checker</em> termasuk <em>TypeProf</em> dan <em>tool</em> lainnya yang mendukung RBS
+akan memahami program Ruby jauh lebih baik dengan definisi RBS.</p>
+<p>Anda dapat menuliskan definisi <em>class</em> dan <em>module</em>: <em>method</em> didefinisikan di
+dalam <em>class</em>, <em>instance variables</em> dan tipenya, serta hubungan
+<em>inheritance/mix-in</em>.</p>
+<p>RBS memiliki tujuan untuk mendukung pola yang biasanya
+kita lihat dalam program Ruby dan memperbolehkan penulisan <em>advanced types</em>
+yang berisi <em>union type</em>, <em>method overloading</em>, dan <em>generic</em>. RBS juga
+mendukung <em>duck typing</em> dengan <em>interface types</em>.</p>
+<p>Ruby 3.0 dirilis dengan gem <code>rbs</code>, yang memperbolehkan untuk mem-<em>parse</em> dan
+memproses definisi tipe yang ditulis di dalam RBS. Berikut ini adalah sebuah
+contoh kecil dari RBS dengan <em>class</em>, <em>module</em>, dan <em>constant definition</em>.</p>
+<div class="language-rbs highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="rbs">module ChatApp
+  VERSION: String
+  class Channel
+    attr_reader name: String
+    attr_reader messages: Array[Message]
+    attr_reader users: Array[User | Bot]              # `|` means union types, `User` or `Bot`.
+    def initialize: (String) -&gt; void
+    def post: (String, from: User | Bot) -&gt; Message   # Method overloading is supported.
+            | (File, from: User | Bot) -&gt; Message
+  end
+end
+</code></pre></div></div>
+<p>Lihat <a href="https://github.com/ruby/rbs">README dari gem rbs</a> untuk lebih detail.</p>
+<h3>TypeProf</h3>
+<p><em>TypeProf</em> adalah sebuah <em>type analysis tool</em> yang di-<em>bundle</em> di dalam Ruby.</p>
+<p>Saat ini, <em>TypeProf</em> berperan semacam sebuah <em>type inference</em>.</p>
+<p><em>TypeProf</em> membaca kode Ruby (<em>non-type-annotated</em>), menganalisis apa <em>method</em>
+yang didefinisikan dan bagaimana itu digunakan, dan menghasilkan sebuah
+prototipe dari <em>type signature</em> dalam format RBS.</p>
+<p>Berikut adalah sebuah demonstrasi sederhana dari <em>TypeProf</em>.</p>
+<p>Contoh masukan:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># test.rb</span>
+<span class="k">class</span> <span class="nc">User</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">:,</span> <span class="n">age</span><span class="p">:)</span>
+    <span class="vi">@name</span><span class="p">,</span> <span class="vi">@age</span> <span class="o">=</span> <span class="nb">name</span><span class="p">,</span> <span class="n">age</span>
+  <span class="k">end</span>
+  <span class="nb">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:age</span>
+<span class="k">end</span>
+<span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"John"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Contoh keluaran:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ typeprof test.rb
+# Classes
+class User
+  attr_reader name : String
+  attr_reader age : Integer
+  def initialize : (name: String, age: Integer) -&gt; [String, Integer]
+end
+</code></pre></div></div>
+<p>Anda dapat menjalankan <em>TypeProf</em> dengan menyimpan masukan sebagai &quot;test.rb&quot;
+dan memanggilnya dengan perintah &quot;typeprof test.rb&quot;.</p>
+<p>Anda juga dapat <a href="https://mame.github.io/typeprof-playground/#rb=%23+test.rb%0Aclass+User%0A++def+initialize%28name%3A%2C+age%3A%29%0A++++%40name%2C+%40age+%3D+name%2C+age%0A++end%0A++%0A++attr_reader+%3Aname%2C+%3Aage%0Aend%0A%0AUser.new%28name%3A+%22John%22%2C+age%3A+20%29&amp;rbs=">mencoba TypeProf daring</a>.  (Ini menjalankan <em>TypeProf</em> di <em>server</em>, maaf jika hasilnya tidak keluar)</p>
+<p>Lihat <a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">dokumentasi</a>
+dan <a href="https://github.com/ruby/typeprof/blob/master/doc/demo.md">demonstrasi</a>
+untuk detail.</p>
+<p><em>TypeProf</em> masih eksperimental dan belum sempurna; hanya sebagian dari bahasa
+Ruby didukung dan pendeteksian <em>type error</em> terbatas. Tetapi, ini masih bisa
+berkembang dengan memperbaiki cakupan dari fitur bahasa, performa analisis,
+dan kegunaan. Masukan apapun sangat diterima.</p>
+<h2>Fitur Baru Lainnya</h2>
+<ul>
+<li>
+<p><em>One-line pattern matching</em> didesain ulang.  (eksperimental)</p>
+<ul>
+<li>
+<p><code>=&gt;</code> ditambahkan. Ini bisa digunakan seperti <em>rightward assignment</em>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">a</span>
+<span class="nb">p</span> <span class="n">a</span> <span class="c1">#=&gt; 0</span>
+
+<span class="p">{</span><span class="ss">b: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">1</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="n">b</span><span class="p">:}</span>
+<span class="nb">p</span> <span class="n">b</span> <span class="c1">#=&gt; 0</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>in</code> diubah dengan mengembalikan <code>true</code> atau <code>false</code>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="c1"># version 3.0</span>
+<span class="mi">0</span> <span class="k">in</span> <span class="mi">1</span> <span class="c1">#=&gt; false</span>
+
+<span class="c1"># version 2.7</span>
+<span class="mi">0</span> <span class="k">in</span> <span class="mi">1</span> <span class="c1">#=&gt; raise NoMatchingPatternError</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Find pattern</em> ditambahkan. (eksperimental)</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">case</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">in</span> <span class="p">[</span><span class="o">*</span><span class="n">pre</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="no">String</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">post</span><span class="p">]</span>
+  <span class="nb">p</span> <span class="n">pre</span>  <span class="c1">#=&gt; ["a", 1]</span>
+  <span class="nb">p</span> <span class="n">x</span>    <span class="c1">#=&gt; "b"</span>
+  <span class="nb">p</span> <span class="n">y</span>    <span class="c1">#=&gt; "c"</span>
+  <span class="nb">p</span> <span class="n">post</span> <span class="c1">#=&gt; [2, "d", "e", "f", 3]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+<li>
+<p>Definisi <em>endless method</em> ditambahkan.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><code>Hash#except</code> sekarang <em>built-in</em>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">c: </span><span class="mi">3</span> <span class="p">}</span>
+<span class="nb">p</span> <span class="n">h</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="ss">:a</span><span class="p">)</span> <span class="c1">#=&gt; {:b=&gt;2, :c=&gt;3}</span>
+</code></pre></div></div>
+</li>
+<li>
+<p><em>Memory view</em> ditambahkan sebagai sebuah fitur eksperimental</p>
+<ul>
+<li>Ini adalah sebuah kumpulan C-API baru yang menukar sebuah area <em>raw memory</em>, seperti sebuah <em>numeric array</em> dan sebuah <em>bitmap image</em>, antara pustaka <em>extension</em>. Pustaka <em>extension</em> dapat juga membagikan <em>metadata</em> dari area <em>memory</em> yang terdiri dari bentuk, format elemen, dan sebagainya. Menggunakan semacam <em>metadata</em> seperti ini, pustaka <em>extension</em> bahkan dapat membagikan sebuah <em>multidimensional array</em> dengan tepat. Fitur ini didesain dengan merujuk pada <em>buffer protocol</em> dari Python.</li>
+</ul>
+</li>
+</ul>
+<h2>Perbaikan performa</h2>
+<ul>
+<li>Menempelkan kode yang panjang pada IRB 53 kali lebih cepat dibandingkan yang di-<em>bundle</em> dengan Ruby 2.7.0. Sebagai contoh, waktu yang dibutuhkan untuk menempelkan <a href="https://gist.github.com/aycabta/30ab96334275bced5796f118c9220b0b">kode ini</a> berubah dari 11.7 detik menjadi 0.22 detik.</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>Perintah <code>measure</code> telah ditambakan ke IRB. Ini memperbolehkan perhitungan waktu eksekusi secara sederhana.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb(main):001:0&gt; 3
+=&gt; 3
+irb(main):002:0&gt; measure
+TIME is added.
+=&gt; nil
+irb(main):003:0&gt; 3
+processing time: 0.000058s
+=&gt; 3
+irb(main):004:0&gt; measure :off
+=&gt; nil
+irb(main):005:0&gt; 3
+=&gt; 3
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Perubahan penting lainnya sejak 2.7</h2>
+<ul>
+<li>
+<p><em>Keyword argument</em> dipisahkan dari <em>argument</em> lainnya.</p>
+<ul>
+<li>
+<p>Pada dasarnya, kode yang mencetak sebuah peringatan pada Ruby 2.7 tidak akan
+bekerja. Lihat <a href="https://www.ruby-lang.org/id/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">dokumen</a> untuk detail.</p>
+</li>
+<li>
+<p>Omong-omong, <em>argument forwarding</em> sekarang mendukung <em>leading argument</em>.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+  <span class="nb">send</span><span class="p">(</span><span class="ss">:"do_</span><span class="si">#{</span> <span class="n">meth</span> <span class="si">}</span><span class="ss">"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Pattern matching</em> (<code>case</code>/<code>in</code>) tidak lagi eksperimental.</p>
+<ul>
+<li>Lihat <a href="https://docs.ruby-lang.org/en/3.0/syntax/pattern_matching_rdoc.html">dokumentasi pattern matching</a> untuk detail.</li>
+</ul>
+</li>
+<li>
+<p>Fitur <code>$SAFE</code> telah dihilangkan; sekarang adalah sebuah variabel global.</p>
+</li>
+<li>
+<p>Urutan dari <em>backtrace</em> telah dibalik pada Ruby 2.5, tetapi itu dibatalkan. Sekarang urutan berperilaku seperti Ruby 2.4; pesan <em>error</em> dan nomor baris di mana <em>exception</em> terjadi dicetak terlebih dahulu dan pemanggilnya baru dicetak kemudian.</p>
+</li>
+<li>
+<p>Beberapa pustaka standar yang diperbarui.</p>
+</li>
+<li>
+<p>Berikut adalah pustaka yang tidak lagi masuk sebagai <em>bundled gem</em>.</p>
+<ul>
+<li>RubyGems 3.2.3</li>
+<li>Bundler 2.2.3</li>
+<li>IRB 1.3.0</li>
+<li>Reline 0.2.0</li>
+<li>Psych 3.3.0</li>
+<li>JSON 2.5.1</li>
+<li>BigDecimal 3.0.0</li>
+<li>CSV 3.1.9</li>
+<li>Date 3.1.0</li>
+<li>Digest 3.0.0</li>
+<li>Fiddle 1.0.6</li>
+<li>StringIO 3.0.0</li>
+<li>StringScanner 3.0.0</li>
+<li>lainnya.</li>
+</ul>
+</li>
+<li>
+<p>Pustakan berikut tidak lagi <em>bundle gem</em> atau pustaka standar.
+Pasang <em>gem</em> berikut jika ingin menggunakan fiturnya.</p>
+<ul>
+<li>sdbm</li>
+<li>webrick</li>
+<li>net-telnet</li>
+<li>xmlrpc</li>
+</ul>
+</li>
+<li>
+<p>Berikut adalah <em>default gem</em> yang sekarang menjadi <em>bundled gem</em>.</p>
+<ul>
+<li>rexml</li>
+<li>rss</li>
+</ul>
+</li>
+<li>
+<p>Berikut adalah berkas <em>stdlib</em> yang sekarang menjadi <em>default gem</em> dan telah dipublikasikan ke rubygems.org</p>
+<ul>
+<li>English</li>
+<li>abbrev</li>
+<li>base64</li>
+<li>drb</li>
+<li>debug</li>
+<li>erb</li>
+<li>find</li>
+<li>net-ftp</li>
+<li>net-http</li>
+<li>net-imap</li>
+<li>net-protocol</li>
+<li>open-uri</li>
+<li>optparse</li>
+<li>pp</li>
+<li>prettyprint</li>
+<li>resolv-replace</li>
+<li>resolv</li>
+<li>rinda</li>
+<li>set</li>
+<li>securerandom</li>
+<li>shellwords</li>
+<li>tempfile</li>
+<li>tmpdir</li>
+<li>time</li>
+<li>tsort</li>
+<li>un</li>
+<li>weakref</li>
+<li>digest</li>
+<li>io-nonblock</li>
+<li>io-wait</li>
+<li>nkf</li>
+<li>pathname</li>
+<li>syslog</li>
+<li>win32ole</li>
+</ul>
+</li>
+</ul>
+<p>Lihat <a href="https://github.com/ruby/ruby/blob/v3_0_0/NEWS.md">NEWS</a>
+atau <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0">commit logs</a>
+untuk lebih detail.</p>
+<p>Dengan perubahan tersebut, <a href="https://github.com/ruby/ruby/compare/v2_7_0...v3_0_0#file_bucket">4028 berkas berubah, 200058 sisipan(+), 154063 terhapus(-)</a>
+sejak Ruby 2.7.0!</p>
+<p>Selamat Natal, selamat berlibur, dan nikmati memprogram dengan Ruby 3.0!</p>
+<h2>Unduh</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 19539509
+SHA1: 233873708c1ce9fdc295e0ef1c25e64f9b98b062
+SHA256: a13ed141a1c18eb967aac1e33f4d6ad5f21be1ac543c344e0d6feeee54af8e28
+SHA512: e62f4f63dc12cff424e8a09adc06477e1fa1ee2a9b2b6e28ca22fd52a211e8b8891c0045d47935014a83f2df2d6fc7c8a4fd87f01e63c585afc5ef753e1dd1c1
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14374176
+SHA1: c142899d70a1326c5a71311b17168f98c15e5d89
+SHA256: 68bfaeef027b6ccd0032504a68ae69721a70e97d921ff328c0c8836c798f6cb1
+SHA512: 2a23c2894e62e24bb20cec6b2a016b66d7df05083668726b6f70af8338211cfec417aa3624290d1f5ccd130f65ee7b52b5db7d428abc4a9460459c9a5dd1a450
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip">https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 23862057
+SHA1: 2a9629102d71c7fe7f31a8c91f64e570a40d093c
+SHA256: a5e4fa7dc5434a7259e9a29527eeea2c99eeb5e82708f66bb07731233bc860f4
+SHA512: e5bf742309d79f05ec1bd1861106f4b103e4819ca2b92a826423ff451465b49573a917cb893d43a98852435966323e2820a4b9f9377f36cf771b8c658f80fa5b
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Apa itu Ruby</h2>
+<p>Ruby pertama kali dikembangkan oleh Matz (Yukihiro Matsumoto) pada 1993
+dan sekarang dikembangkan sebagai <em>Open Source</em>. Ruby berjalan di berbagai
+jenis <em>platform</em> dan digunakan di seluruh dunia khususnya pengembangan <em>web</em>.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Berita Baru</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/id/news/2022/09/09/ruby-3-2-0-preview2-released/">Ruby 3.2.0 Preview 2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-1-2-released/">Ruby 3.1.2 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-3-0-4-released/">Ruby 3.0.4 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-7-6-released/">Ruby 2.7.6 Dirilis</a></li>
+        
+        <li><a href="/id/news/2022/04/12/ruby-2-6-10-released/">Ruby 2.6.10 Dirilis</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Sindikasi Web</h3>
+    <p><a href="/id/feeds/news.rss">Umpan Web (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/id/" class="home">Beranda</a>
+
+  <a href="/id/downloads/">Unduh</a>
+
+  <a href="/id/documentation/">Dokumentasi</a>
+
+  <a href="/id/libraries/">Pustaka</a>
+
+  <a href="/id/community/">Komunitas</a>
+
+  <a href="/id/news/">Berita</a>
+
+  <a href="/id/security/">Keamanan</a>
+
+  <a href="/id/about/">Tentang Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Situs ini dalam bahasa lain:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/id/about/website/">Situs ini</a> dengan bangga dirawat oleh anggota komunitas Ruby.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

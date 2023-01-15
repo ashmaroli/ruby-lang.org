@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby 3.1.0 est disponible</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/fr/news/2021/12/25/ruby-3-1-0-released/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/fr/feeds/news.rss" rel="alternate" title="Actualité récente (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/fr/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/fr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="016749562256550695330:efcmgh3a1ac" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Recherche" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>Ruby 3.1.0 est disponible</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">Posté par naruse le 2021-12-25<br>
+                         Traduit par Kevin Rosaz</p>
+
+    <p>Nous avons le plaisir de vous annoncer la sortie de Ruby 3.1.0. Ruby 3.1 conserve la compatibilité avec Ruby 3.0 et ajoute également de nombreuses fonctionnalités.</p>
+<h2>YJIT: un nouveau compilateur JIT en cours de développement</h2>
+<p>Ruby 3.1 fusionne YJIT, un nouveau compilateur JIT développé par Shopify.</p>
+<p>Depuis que <a href="https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/">Ruby 2.6 a introduit MJIT en 2018</a>, ses performances se sont grandement améliorées et <a href="https://www.ruby-lang.org/fr/news/2020/12/25/ruby-3-0-0-released/">nous sommes parvenus à Ruby3x3 l'année dernière</a>. Même si Optcarrot a montré des accélérations impressionnantes, le JIT n'a pas profité aux applications du monde professionnel.</p>
+<p>Récemment, Shopify a apporté de nombreuses améliorations à Ruby pour accélérer son application Rails. YJIT est une contribution importante et vise à améliorer les performances des applications Rails.</p>
+<p>Bien que MJIT soit un compilateur JIT basé sur des méthodes et qu'il utilise un compilateur C externe, YJIT utilise le Basic Block Versioning et inclut le compilateur JIT à l'intérieur. Avec Lazy Basic Block Versioning (LBBV), cela compile d'abord le début d'une méthode et compile progressivement le reste lorsque le type des arguments et des variables est déterminé dynamiquement. Voir <a href="https://dl.acm.org/doi/10.1145/3486606.3486781">YJIT: a basic block versioning JIT compiler for CRuby</a> pour une introduction détaillée.</p>
+<p>Avec cette technologie, YJIT permet d'avoir à la fois un temps de démarrage rapide et des améliorations de performance sur la plupart des logiciels, jusqu'à 22% sur railsbench et 39% sur le rendu liquid.</p>
+<p>YJIT est toujours une fonctionnalité expérimentale. En tant que telle, elle est désactivée par défaut. Si vous souhaitez l'utiliser, spécifiez l'option en ligne de commande <code>--yjit</code> pour activer YJIT. L'utilisation est pour le moment limitée à macOS et Linux sur les plateformes x86-64.</p>
+<ul>
+<li>https://bugs.ruby-lang.org/issues/18229</li>
+<li>https://shopify.engineering/yjit-just-in-time-compiler-cruby</li>
+<li>https://www.youtube.com/watch?v=PBVLf3yfMs8</li>
+</ul>
+<h2>debug.gem : un nouveau débogueur</h2>
+<p>Un débogueur complètement réécrit <a href="https://github.com/ruby/debug">debug.gem</a> est fourni. Debug.gem possède les fonctionnalités suivantes :</p>
+<ul>
+<li>Améliorer les performances de débogage (il ne ralentit pas l'application même avec le débogueur)</li>
+<li>Prise en charge du débogage à distance</li>
+<li>Prise en charge de l'interface de débogage riche (VSCode et navigateur Chrome sont désormais pris en charge)</li>
+<li>Prise en charge du débogage multiprocessus/multithread</li>
+<li>REPL coloré et d'autres fonctionnalités utiles telles que la fonction enregistrer et rejouer , la fonction de traçage, etc.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Ruby avait intégré lib/debug.rb, mais il n'était pas bien maintenu et posait des problèmes de performances et de fonctionnalités. Debug.gem a complètement remplacé lib/debug.rb.</p>
+<h2>error_highlight: localisation des erreurs plus précise</h2>
+<p>La gemme error_highlight a été ajoutée. Elle permet d'obtenir la localisation d'une erreur de manière plus précise dans la trace :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ruby test.rb
+test.rb:1:in `&lt;main&gt;': undefined method `time' for 1:Integer (NoMethodError)
+1.time {}
+ ^^^^^
+Did you mean?  times
+</code></pre></div></div>
+<p>Actuellement, seul <code>NameError</code> est pris en charge.</p>
+<p>Cette gemme est activée par défaut. Vous pouvez la désactiver en utilisant l'option en ligne de commande <code>--disable-error_highlight</code>. Voir <a href="https://github.com/ruby/error_highlight">le dépôt</a> pour de plus amples informations.</p>
+<h2>Auto-complétion dans IRB et affichage de la documentation</h2>
+<p>IRB dispose désormais d'une fonction de saisie semi-automatique où vous pouvez simplement taper le code et une boîte de dialogue des candidats à la complétion apparaîtra. Vous pouvez utiliser Tab et Shift+Tab pour vous déplacer de haut en bas.</p>
+<p>Si la documentation est installée lorsque vous sélectionnez une proposition à la complétion, la boîte de dialogue de la documentation apparaîtra à côté de celle-ci, affichant une partie du contenu. Vous pouvez lire la documentation complète en appuyant sur Alt+d.</p>
+<!-- raw HTML omitted -->
+<h2>Autres nouvelles fonctionnalités notables</h2>
+<h3>Language</h3>
+<ul>
+<li>
+<p>Les valeurs dans les littéraux de hachage peuvent être omis. <a href="https://bugs.ruby-lang.org/issues/14579">[Feature #14579]</a></p>
+<ul>
+<li><code>{x:, y:}</code> est un sucre syntaxique de <code>{x: x, y: y}</code>.</li>
+<li><code>foo(x:, y:)</code> est un sucre syntaxique de <code>foo(x: x, y: y)</code>.</li>
+</ul>
+</li>
+<li>
+<p>L'opérateur pin (<code>^</code>) dans le filtrage par motif prend désormais une expression. <a href="https://bugs.ruby-lang.org/issues/17411">[Feature #17411]</a></p>
+</li>
+</ul>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="no">Prime</span><span class="p">.</span><span class="nf">each_cons</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">lazy</span><span class="p">.</span><span class="nf">find_all</span><span class="p">{</span><span class="n">_1</span> <span class="k">in</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)]}.</span><span class="nf">take</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nf">to_a</span>
+<span class="c1">#=&gt; [[3, 5], [5, 7], [11, 13]]</span>
+</code></pre></div></div>
+<ul>
+<li>Les parenthèses peuvent être omises dans les filtrages par motifs qui ne font qu'une seule ligne. <a href="https://bugs.ruby-lang.org/issues/16182">[Feature #16182]</a></li>
+</ul>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="n">_</span><span class="p">,</span> <span class="n">x</span>
+<span class="p">{</span><span class="ss">y: </span><span class="mi">2</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="ss">y:
+</span><span class="n">x</span> <span class="c1">#=&gt; 1</span>
+<span class="n">y</span> <span class="c1">#=&gt; 2</span>
+</code></pre></div></div>
+<h3>RBS</h3>
+<p>RBS est un langage pour décrire la structure des programmes Ruby. Voir <a href="https://github.com/ruby/rbs">le dépôt</a> pour de plus amples informations.</p>
+<p>Mises à jour depuis Ruby 3.0.0 :</p>
+<ul>
+<li>Les paramètres de type générique peuvent être bornés. (<a href="https://github.com/ruby/rbs/pull/844">PR</a>)</li>
+<li>Les alias de type générique sont pris en charge. (<a href="https://github.com/ruby/rbs/pull/823">PR</a>)</li>
+<li><code>rbs collection</code> été introduit pour gérer les RBS des gemmes. (<a href="https://github.com/ruby/rbs/blob/master/docs/collection.md">doc</a>)</li>
+<li>De nombreuses signatures pour les bibliothèques intégrées et standard ont été ajoutées/mises à jour.</li>
+<li>Il inclut également de nombreuses corrections de bogues et améliorations des performances.</li>
+</ul>
+<p>Voir <a href="https://github.com/ruby/rbs/blob/master/CHANGELOG.md">le CHANGELOG.md</a> pour de plus amples informations.</p>
+<h3>TypeProf</h3>
+<p>TypeProf est un analyseur de type statique pour Ruby. Il génère un prototype de RBS à partir de code Ruby non annoté de type. Voir <a href="https://github.com/ruby/typeprof/blob/master/doc/doc.md">la documentation</a> pour de plus amples informations.</p>
+<p>Les principales mises à jour depuis Ruby 3.0.0 concernent un support IDE expérimental appelé &quot;TypeProf for IDE&quot;.</p>
+<p><img src="https://cache.ruby-lang.org/pub/media/ruby310_typeprof_ide_demo.png" alt="Demo de TypeProf for IDE" /></p>
+<p>L'extension vscode affiche une signature de méthode devinée (ou explicitement écrite dans un fichier RBS) au-dessus de chaque définition de méthode, souligne en rouge le code qui peut provoquer une erreur de nom ou de type et complète les noms de méthode (c'est-à-dire affiche les méthodes candidates). Voir la <a href="https://github.com/ruby/typeprof/blob/master/doc/ide.md">documentation</a> pour de plus amples informations.</p>
+<p>De plus, la version inclut de nombreuses corrections de bogues et améliorations des performances.</p>
+<h2>Améliorations de performance</h2>
+<ul>
+<li>MJIT
+<ul>
+<li>Pour les charges de travail telles que Rails, la valeur par défaut <code>--jit-max-cache</code> passe de 100 à 10000.
+Le compilateur JIT ne saute plus la compilation des méthodes de plus de 1000 instructions.</li>
+<li>Pour prendre en charge Zeitwerk de Rails, le code généré par le compilateur JIT n'est plus annulé lorsqu'un TracePoint est activé pour les évènements de classe.</li>
+</ul>
+</li>
+</ul>
+<h2>Autres changements notables depuis la version 3.0</h2>
+<ul>
+<li>Le filtrage par motif en une ligne, e.g., <code>ary =&gt; [x, y, z]</code>, n'est plus au stade expérimental.</li>
+<li>L'ordre d'évaluation des affectations multiples a été légèrement modifié. <a href="https://bugs.ruby-lang.org/issues/4443">[Bug #4443]</a>
+<ul>
+<li><code>foo[0], bar[0] = baz, qux</code> était évalué dans l'ordre <code>baz</code>, <code>qux</code>, <code>foo</code> puis <code>bar</code> dans Ruby 3.0. Dans Ruby 3.1, l'évaluation est dans l'ordre <code>foo</code>, <code>bar</code>, <code>baz</code> puis <code>qux</code>.</li>
+</ul>
+</li>
+<li>Allocation de la taille d'une variable String (expérimental) <a href="https://bugs.ruby-lang.org/issues/18239">[Bug #18239]</a></li>
+<li>Psych 4.0 change <code>Psych.load</code> en <code>safe_load</code> par défaut. Vous devrez peut-être utiliser Psych 3.3.2 pour migrer vers ce comportement. <a href="https://bugs.ruby-lang.org/issues/17866">[Bug #17866]</a></li>
+</ul>
+<h3>Mise à jour des bibliothèques standards</h3>
+<ul>
+<li>Les gemmes par défaut suivantes ont été mises à jour.
+<ul>
+<li>RubyGems 3.3.3</li>
+<li>base64 0.1.1</li>
+<li>benchmark 0.2.0</li>
+<li>bigdecimal 3.1.1</li>
+<li>bundler 2.3.3</li>
+<li>cgi 0.3.1</li>
+<li>csv 3.2.2</li>
+<li>date 3.2.2</li>
+<li>did_you_mean 1.6.1</li>
+<li>digest 3.1.0</li>
+<li>drb 2.1.0</li>
+<li>erb 2.2.3</li>
+<li>error_highlight 0.3.0</li>
+<li>etc 1.3.0</li>
+<li>fcntl 1.0.1</li>
+<li>fiddle 1.1.0</li>
+<li>fileutils 1.6.0</li>
+<li>find 0.1.1</li>
+<li>io-console 0.5.10</li>
+<li>io-wait 0.2.1</li>
+<li>ipaddr 1.2.3</li>
+<li>irb 1.4.1</li>
+<li>json 2.6.1</li>
+<li>logger 1.5.0</li>
+<li>net-http 0.2.0</li>
+<li>net-protocol 0.1.2</li>
+<li>nkf 0.1.1</li>
+<li>open-uri 0.2.0</li>
+<li>openssl 3.0.0</li>
+<li>optparse 0.2.0</li>
+<li>ostruct 0.5.2</li>
+<li>pathname 0.2.0</li>
+<li>pp 0.3.0</li>
+<li>prettyprint 0.1.1</li>
+<li>psych 4.0.3</li>
+<li>racc 1.6.0</li>
+<li>rdoc 6.4.0</li>
+<li>readline 0.0.3</li>
+<li>readline-ext 0.1.4</li>
+<li>reline 0.3.0</li>
+<li>resolv 0.2.1</li>
+<li>rinda 0.1.1</li>
+<li>ruby2_keywords 0.0.5</li>
+<li>securerandom 0.1.1</li>
+<li>set 1.0.2</li>
+<li>stringio 3.0.1</li>
+<li>strscan 3.0.1</li>
+<li>tempfile 0.1.2</li>
+<li>time 0.2.0</li>
+<li>timeout 0.2.0</li>
+<li>tmpdir 0.1.2</li>
+<li>un 0.2.0</li>
+<li>uri 0.11.0</li>
+<li>yaml 0.2.0</li>
+<li>zlib 2.1.1</li>
+</ul>
+</li>
+<li>Les gemmes groupées suivantes ont été mises à jour.
+<ul>
+<li>minitest 5.15.0</li>
+<li>power_assert 2.0.1</li>
+<li>rake 13.0.6</li>
+<li>test-unit 3.5.3</li>
+<li>rexml 3.2.5</li>
+<li>rbs 2.0.0</li>
+<li>typeprof 0.21.1</li>
+</ul>
+</li>
+<li>Les gemmes par défaut suivantes sont désormais des gemmes groupées. Vous devez les ajouter au <code>Gemfile</code> sous l'environnement bundler.
+<ul>
+<li>net-ftp 0.1.3</li>
+<li>net-imap 0.2.2</li>
+<li>net-pop 0.1.1</li>
+<li>net-smtp 0.3.1</li>
+<li>matrix 0.4.2</li>
+<li>prime 0.1.2</li>
+<li>debug 1.4.0</li>
+</ul>
+</li>
+</ul>
+<p>Voir <a href="https://github.com/ruby/ruby/blob/v3_1_0/NEWS.md">NEWS</a>
+ou les <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0">logs de commit</a>
+pour de plus amples informations.</p>
+<p>Avec ces changements, <a href="https://github.com/ruby/ruby/compare/v3_0_0...v3_1_0#file_bucket">3124 fichiers changés, 551760 insertions(+), 99167 suppressions(-)</a>
+depuis Ruby 3.0.0 !</p>
+<p>Joyeux Noël, joyeuses fêtes et bonne programmation avec Ruby 3.1 !</p>
+<h2>Téléchargement</h2>
+<ul>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.gz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 20103517
+SHA1: e4e8c20dd2a1fdef4d3e5bd5a3461000dd17f226
+SHA256: 50a0504c6edcb4d61ce6b8cfdbddaa95707195fab0ecd7b5e92654b2a9412854
+SHA512: 76009d325e961e601d9a287e36490cbc1f3b5dbf4878fa6eab2c4daa5ff2fed78cbc7525cd87b09828f97cbe2beb30f528928bcc5647af745d03dffe7c5baaa9
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.tar.xz</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 14709096
+SHA1: 92b603c2a69fb25d66c337a63e94280984edea11
+SHA256: 1a0e0b69b9b062b6299ff1f6c6d77b66aff3995f63d1d8b8771e7a113ec472e2
+SHA512: a2bb6b5e62d5fa06dd9c30cf84ddcb2c27cb87fbaaffd2309a44391a6b110e1dde6b7b0d8c659b56387ee3c9b4264003f3532d5a374123a7c187ebba9293f320
+</code></pre></div></div>
+</li>
+<li>
+<p><a href="https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip">https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.0.zip</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SIZE: 24388179
+SHA1: e37435956d6f840a0e8758d7374bc7e0e346105f
+SHA256: a3bfcd486d09c065d46421da0ff3d430ce4423fefd80cea63c6595d83ae4af0e
+SHA512: 67db71144e06da2c1c25eaf413d1417c99a4b18738a573f9e3371c11ea242eee9dcbdc3de17336f25ab5060039fe034e57298943d344be9cd9eb33bb56e2e1c6
+</code></pre></div></div>
+</li>
+</ul>
+<h2>Ruby, c'est quoi ?</h2>
+<p>Ruby a été initialement développé par Matz (Yukihiro Matsumoto) en 1993 puis est devenu open source. Il fonctionne sur de nombreuses plateformes et est utilisé partout dans le monde, en particulier pour le développement web.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>Actualité récente</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/fr/news/2022/02/18/ruby-3-1-1-released/">Ruby 3.1.1 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/12/25/ruby-3-1-0-released/">Ruby 3.1.0 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-7-5-released/">Ruby 2.7.5 est disponible</a></li>
+        
+        <li><a href="/fr/news/2021/11/24/ruby-2-6-9-released/">Ruby 2.6.9 est disponible</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>Syndication</h3>
+    <p><a href="/fr/feeds/news.rss">Actualité récente (RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/fr/" class="home">Home</a>
+
+  <a href="/fr/downloads/">Téléchargements</a>
+
+  <a href="/fr/documentation/">Documentation</a>
+
+  <a href="/fr/libraries/">Bibliothèques</a>
+
+  <a href="/fr/community/">Communauté</a>
+
+  <a href="/fr/news/">Actualités</a>
+
+  <a href="/fr/security/">Sécurité</a>
+
+  <a href="/fr/about/">À propos de Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  Autres langues disponibles :
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p>Ce site est propulsé par Ruby et <a href="http://www.jekyllrb.com/">Jekyll</a>. Il est fièrement maintenu par des membres de la communauté Ruby. Contribuez en vous rendant sur <a href="https://github.com/ruby/www.ruby-lang.org/">GitHub</a> ou contactez le <a href="mailto:webmaster@ruby-lang.org">webmaster</a> pour toute question ou tout commentaire.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

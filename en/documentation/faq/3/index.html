@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Official Ruby FAQ</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/en/documentation/faq/3/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/en/feeds/news.rss" rel="alternate" title="Recent News (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/en/">
+          <h1>Ruby</h1>
+          <h2>A Programmer's Best Friend</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/en/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="013598269713424429640:g5orptiw95w" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Search" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <p><em>If you wish to report errors or suggest improvements for this FAQ,
+please go to our
+<a href="https://github.com/ruby/www.ruby-lang.org/">GitHub repository</a>
+and open an issue or pull request.</em></p>
+<h2>Installing Ruby</h2>
+<p>For current information on downloading and installing Ruby
+see the <a href="/en/documentation/installation/">Installation</a>
+or <a href="/en/downloads/">Downloads</a> page.</p>
+<h3>What operating systems support Ruby?</h3>
+<!-- raw HTML omitted -->
+<p>Ruby is developed under Linux, and is written in fairly straightforward C.
+It runs under Linux and other UNIX-like operating systems, macOS,
+Windows, DOS, BeOS, Amiga, Acorn Risc OS, and OS/2.</p>
+<h3>Where can I get Ruby sources?</h3>
+<p>The latest version of Ruby can be downloaded from:
+<a href="/en/downloads/">www.ruby-lang.org/en/downloads/</a>.
+Mirror sites are also listed on this page.</p>
+<p>Also on this page is a link to a nightly snapshot of the development tree.</p>
+<h3>Can I get to the development source tree?</h3>
+<!-- raw HTML omitted -->
+<p>If you have a CVS client, you can check out the current source tree using:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cvs -d :pserver:anonymous@cvs.netlab.co.jp:/home/cvs login
+(Logging in to anonymous@cvs.netlab.co.jp)
+CVS password: guest
+$ cvs -d :pserver:anonymous@cvs.netlab.co.jp:/home/cvs co ruby
+</code></pre></div></div>
+<p>If you do not have CVS you can get a nightly snapshot of the development
+source from
+<a href="https://cache.ruby-lang.org/pub/ruby/snapshot.tar.gz">https://cache.ruby-lang.org/pub/ruby/snapshot.tar.gz</a>.</p>
+<h3>How do I compile Ruby?</h3>
+<p>Under Unix, Ruby uses the <code>autoconf</code> system to configure the build
+environment. You don't need the <code>autoconf</code> command on your box to build Ruby
+from a distribution; just use the commands:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./configure [configure options]
+$ make
+$ make test
+$ make install
+</code></pre></div></div>
+<p>You may need superuser privileges to install Ruby if you don't override the
+default installation location (<code>/usr/local</code>). You can get a full list of
+<code>configure</code> options using:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./configure --help
+</code></pre></div></div>
+<p>If you are working from the source repository, you may need to run
+<code>autoconf</code> before running <code>configure</code>.</p>
+<h3>How do I tell Ruby where my libraries are?</h3>
+<!-- raw HTML omitted -->
+<p>On some systems, the build process may fail to find libraries used by
+extension modules (for example the <code>dbm</code> libraries).</p>
+<p>You can tell Ruby where to find libraries using options to <code>configure</code>.
+From <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/5401">[ruby-talk:5041]</a>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./configure --with-xxx-yyy=DIR
+</code></pre></div></div>
+<p>where xxx is either</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opt           extra software path in general
+dbm           path for dbm library
+gdbm          path for gdbm library
+x11           ...for X11..
+tk            ...for Tk...
+tcl           ...for Tcl...
+</code></pre></div></div>
+<p>and yyy is either</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dir           specifies -I DIR/include -L DIR/lib
+include       specifies -I DIR
+lib           specifies -L DIR
+</code></pre></div></div>
+<p>On HP-UX, there may be problems building with <code>gcc</code>. Try using the native
+compiler instead. WATANABE Tetsuya recommends:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ CC="cc -Ae" CFLAGS=-O ./configure --prefix=/opt/gnu
+</code></pre></div></div>
+<p>There may also be problems with HP's native <code>sed</code>.
+He recommends installing the GNU equivalent.</p>
+<h3>Are precompiled binaries available?</h3>
+<p>A single download that contains everything you need to run Ruby under various
+Windows operating systems is available from <a href="https://rubyinstaller.org/">RubyInstaller</a>.</p>
+<p><a href="mailto:Reuben.Thomas@cl.cam.ac.uk">Reuben Thomas</a> writes:</p>
+<blockquote>
+<p>You could mention that there's a port to Acorn RISC OS, currently of v1.4.3.
+I made the port, and have no plans to maintain it, but I did send the
+patches to matz, so newer versions may well compile too.</p>
+</blockquote>
+<h3>What's all this “cygwin”, “mingw”, and “djgpp” stuff?</h3>
+<!-- raw HTML omitted -->
+<p>Ruby is written to take advantage of the rich feature set of a Unix
+environment. Unfortunately, Windows is missing some of the functions, and
+implements others differently. As a result, some kind of mapping layer is
+needed to run Ruby (and other Unix-based programs) under Windows.</p>
+<p>You may come across different versions of the Ruby executable that use
+different wrapper mapping layers.</p>
+<p>The rbdj version is a stand-alone version of the Windows binary of Ruby.
+It uses the DJ Delorie tools
+(<a href="http://www.delorie.com">http://www.delorie.com</a>).</p>
+<p>The rbcw version is a Windows binary of Ruby that requires the cygwin library,
+available at <a href="http://www.cygwin.com">http://www.cygwin.com</a> or from the
+Ruby download pages. Cygwin is both an emulation layer and a set of
+utilities initially produced by Cygnus Solutions (now part of Redhat).
+The cygwin version of Ruby probably has the fullest set of features under
+Windows, so most programmers will want to use it.</p>
+<p>To use the rbcw version, you will need to install the cygwin .dll separately.
+Once you have installed cygwin on your computer, copy <code>cygwin1.dll</code> (which
+is found in the <code>bin</code> subdirectory of the cygwin distribution) to your
+<code>Windows\System32</code> folder (or somewhere else on your path).</p>
+<p>Thanks to Anders Schneiderman for the basis of this description.</p>
+<h3>Why doesn't Tk graphics work under Windows?</h3>
+<!-- raw HTML omitted -->
+<p>Is Tk installed correctly on your Windows box? Go to
+<a href="http://dev.scriptics.com/software/tcltk/">http://dev.scriptics.com/software/tcltk/</a>
+to find a precompiled binary Tcl/Tk distribution for your box.</p>
+<p>Are the environment variables <code>TCL_LIBRARY</code> and <code>TK_LIBRARY</code> pointing to the
+directories containing tcl and tk?</p>
+<p>Is the tk library in your path?</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Get Started</strong>, it's easy!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Try Ruby! (in your browser)</a></li>
+
+    
+    <li><a href="/en/documentation/quickstart/">Ruby in Twenty Minutes</a></li>
+    
+
+    
+    <li><a href="/en/documentation/ruby-from-other-languages/">Ruby from Other Languages</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Explore</strong> a new world…</h3>
+  <ul class="menu">
+    
+    <li><a href="/en/documentation/">Documentation</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Academic Research</a></li>
+    
+
+    
+    <li><a href="/en/libraries/">Libraries</a></li>
+    
+
+    
+    <li><a href="/en/documentation/success-stories/">Success Stories</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Participate</strong> in a friendly and growing community.</h3>
+  <ul>
+    
+    <li><a href="/en/community/mailing-lists/">Mailing Lists</a>: Talk about Ruby with programmers from all around the world.</li>
+    
+
+    
+    <li><a href="/en/community/user-groups/">User Groups</a>: Get in contact with Rubyists in your area.</li>
+    
+
+    
+    <li><a href="/en/community/weblogs/">Blogs</a>: Read about what’s happening right now in the Ruby community.</li>
+    
+
+    
+    <li><a href="/en/community/ruby-core/">Ruby Core</a>: Help polish the rough edges of the latest Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Issue Tracking</a>: Report or help solve issues in Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Syndicate</h3>
+    <p><a href="/en/feeds/news.rss">Recent News (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/en/" class="home">Home</a>
+
+  <a href="/en/downloads/">Downloads</a>
+
+  <a href="/en/documentation/">Documentation</a>
+
+  <a href="/en/libraries/">Libraries</a>
+
+  <a href="/en/community/">Community</a>
+
+  <a href="/en/news/">News</a>
+
+  <a href="/en/security/">Security</a>
+
+  <a href="/en/about/">About Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/en/about/website/">This website</a> is proudly maintained by members of the Ruby community.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

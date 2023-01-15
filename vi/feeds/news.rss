@@ -1,4 +1,688 @@
----
-layout: news_feed
-lang: vi
----
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Tin tức Ruby</title>
+    <link>https://www.ruby-lang.org/vi/feeds/news.rss</link>
+    <language>vi</language>
+    <ttl>40</ttl>
+    <description>Những tin mới nhất từ ruby-lang.org.</description>
+    
+    <item>
+      <title>Ra mắt Ruby 2.4.1</title>
+      <description>&lt;p&gt;Chúng tôi hân hạnh công bố ấn bản Ruby 2.4.1.
+Đấy là bản TEENY đầu tiên của chuỗi ấn bản ổn định 2.4.&lt;/p&gt;
+&lt;p&gt;Xem &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_4_0...v2_4_1&quot;&gt;commit logs&lt;/a&gt;
+để biết thêm chi tiết.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12571597 bytes
+SHA1:   b0bec75c260dcb81ca386fafef27bd718f8c28ad
+SHA256: ccfb2d0a61e2a9c374d51e099b0d833b09241ee78fc17e1fe38e3b282160237c
+SHA512: 1c80d4c30ecb51758a193b26b76802a06d214de7f15570f1e85b5fae4cec81bda7237f086b81f6f2b5767f2e93d347ad1fa3f49d7b5c2e084d5f57c419503f74
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14174752 bytes
+SHA1:   47909a0f77ea900573f027d27746960ad6d07d15
+SHA256: a330e10d5cb5e53b3a0078326c5731888bb55e32c4abfeb27d9e7f8e5d000250
+SHA512: 6cddac19733870f372750a276a2c59f99dea9a17731cd7c24a44b615794ff1a5d194660949628217107f2301f3b1ff3b6c18223896c87c76e84c64f4078769dc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9939188 bytes
+SHA1:   eb3e25346431214379e3b92c6f6b6e02f7b2503f
+SHA256: 4fc8a9992de3e90191de369270ea4b6c1b171b7941743614cc50822ddc1fe654
+SHA512: e6fd290b6edd166348b70f0f1c56f7ed9d956c4c1eb91d97d0548041ca4196b9b75ec1ad35c745bdbfd4de195899093e7205d7f02b014ecf1c48e6f31cf25903
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15830344 bytes
+SHA1:   19bdb47299a39316df2c80107314940d17b26d88
+SHA256: f98a3b50439ffdd270f9ae86d99ff0be431c81b85215c9aafac942ef40b89cbf
+SHA512: 4dc8991a5f8751a5853798b2e438eb3879c959a02517aa4d0efa045412e47ba7036679fd4c6797249a502f0bfac9ef43740f7bff29b017d10e0b3f51d63f161f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Chú thích&lt;/h2&gt;
+&lt;p&gt;Cảm ơn tất cả committer, lập trình viên và người dùng đã góp phần
+giúp ấn bản lần này.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi naruse vào 22 Mar 2017&lt;br /&gt;Dịch bởi Trung Lê&lt;/p&gt;</description>
+      <pubDate>Wed, 22 Mar 2017 03:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2017/03/22/ruby-2-4-1-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2017/03/22/ruby-2-4-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Phát hành Ruby 2.4.0</title>
+      <description>&lt;p&gt;Chúng tôi rất hân hạnh được thông báo về việc phát hành Ruby phiên bản 2.4.0.&lt;/p&gt;
+&lt;p&gt;Ruby 2.4.0 là phiên bản stable đầu tiên của Ruby 2.4.0 gồm nhiều tính năng mới như:&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12142&quot;&gt;Giới thiệu cải tiến hash table (bởi Vladimir Makarov)&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cải thiện cấu trúc bên trong của hash table (st_table) bằng việc giới thiệu
+open addressing và một mảng bao hàm có thứ tự.
+Cải thiện này đã được rất nhiều người chấp nhận, đặc biệt là Yura Sokolov.&lt;/p&gt;
+&lt;h2&gt;Binding#irb: Bắt đầu một REPL session tương tự như &lt;code&gt;binding.pry&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Thông thường bạn có thể dùng &lt;code&gt;p&lt;/code&gt; để xem giá trị của các biến trong quá trình debug.
+Với &lt;a href=&quot;https://github.com/pry/pry&quot;&gt;pry&lt;/a&gt; bạn có thể dùng &lt;code&gt;binding.pry&lt;/code&gt; để chạy REPL và
+debug ở bất kỳ dòng code nào.
+&lt;a href=&quot;https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a&quot;&gt;r56624&lt;/a&gt;
+giới thiệu &lt;code&gt;binding.irb&lt;/code&gt; có tính năng tương tự trong IRB.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Hợp nhất Fixnum và Bignum vào Integer&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mặc dù chuẩn &lt;a href=&quot;http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579&quot;&gt;ISO/IEC 30170:2012&lt;/a&gt;
+không mô tả chi tiết nội dung của lớp Integer,
+Ruby hiện đang có hai lớp Integer: Fixnum và Bignum.
+Ruby 2.4 gộp hai lớp này thành một lớp là Integer.
+Tất cả các extensions của C mà có liên quan đến lớp Fixnum hoặc Bignum
+thì cần được thay đổi.&lt;/p&gt;
+&lt;p&gt;Xem thêm &lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;the ticket&lt;/a&gt; và &lt;a href=&quot;http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf&quot;&gt;akr's slides&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10085&quot;&gt;Class String hỗ trợ Unicode trong xử lí chữ hoa, chữ thường&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hàm &lt;code&gt;String/Symbol#upcase/downcase/swapcase/capitalize(!)&lt;/code&gt; bây giờ đã có thể xử lý hoa-thường cho cả Unicode (thay vì chỉ cho ASCII).&lt;/p&gt;
+&lt;h2&gt;Các cải thiện về hiệu năng&lt;/h2&gt;
+&lt;p&gt;Ruby 2.4 cũng bao gồm các cải thiện về hiệu năng như sau:&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12172&quot;&gt;Array#max, Array#min&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;[x, y].max&lt;/code&gt; và &lt;code&gt;[x, y].min&lt;/code&gt; đã được cải tiến để không tạo ra một mảng tạm trong một số trường hợp.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8110&quot;&gt;Regexp#match?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Hàm &lt;code&gt;Regexp#match?&lt;/code&gt; đã được thêm vào với chức năng thực hiện việc kiểm tra một
+biểu thức chính quy mà không tạo ra một đối tượng cho các tham chiếu ngược lai
+và thay đổi &lt;code&gt;$~&lt;/code&gt; nhằm giảm việc khởi tạo các đối tượng.&lt;/p&gt;
+&lt;h3&gt;Những sự cải thiện về hiệu năng khác&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12274&quot;&gt;Tăng tốc độ truy cập biến instance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Debugging&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/6647&quot;&gt;Thread#report_on_exception and Thread.report_on_exception&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby sẽ bỏ qua các exception trong các thread nếu không có một thread khác tham
+gia vào tiến trình của thread có exception. Tuy nhiên với việc set &lt;code&gt;report_on_exception = true&lt;/code&gt;,
+bạn có thể nhận biết được việc thread bị kết thúc bởi một exception chưa được xử lý.&lt;/p&gt;
+&lt;p&gt;Gửi góp ý cho chúng tôi về giá trị mặc định của &lt;code&gt;report_on_exception&lt;/code&gt;
+và report-on-GC (tính năng sẽ đưa ra báo cáo khi một thread được dọn dẹp mà không tham gia).&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8214&quot;&gt;Khi phát hiện ra Thread Deadlock, Ruby sẽ hiển thị các threads bị lỗi với backtrace và dependency&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby đã có cơ chế phát hiện deadlock của các threads, tuy nhiên các thông tin
+được báo cáo về deadlock thường không đầy đủ cho việc debug.
+Từ bản 2.4 trở đi, khi phát hiện ra Deadlock, Ruby sẽ hiển thị các thread cùng với
+backtrace và các threads liên quan.&lt;/p&gt;
+&lt;h2&gt;Thay đổi đáng chú ý so với phiên bản 2.3&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Hỗ trợ OpenSSL 1.1.0 (ngừng hỗ trợ cho 0.9.7 hoặc cũ hơn)&lt;/li&gt;
+&lt;li&gt;ext/tk được bỏ khỏi stdlib &lt;a href=&quot;https://bugs.ruby-lang.org/issues/8539&quot;&gt;Feature #8539&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;XMLRPC được bỏ khỏi stdlib &lt;a href=&quot;https://bugs.ruby-lang.org/issues/12160&quot;&gt;Feature #12160&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Xem thêm &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0/NEWS&quot;&gt;Thông tin&lt;/a&gt;
+hoặc lịch sử commit để biết thêm chi tiết.&lt;/p&gt;
+&lt;p&gt;Với những sự thay đổi này,
+&lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0&quot;&gt;2519 files changed, 288606 insertions(+), 83896 deletions(-)&lt;/a&gt;
+so với Ruby 2.3.0!&lt;/p&gt;
+&lt;p&gt;Giáng sinh vui vẻ :) đừng quên Ruby 2.4!&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12572424 bytes
+SHA1:   944d2588308391b20a89642472454d1dfe7b2360
+SHA256: 440bbbdc49d08d3650f340dccb35986d9399177ad69a204def56e5d3954600cf
+SHA512: bef7bb53f63fb74073d071cc125fb67b273ed0779ef43c2d2969089b9ca21fff1bd012281c5b748f7a3c24dd26e71730d7248c05a01cb23ab2089eb4d02115fe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14104044 bytes
+SHA1:   d44a3c50a0e742341ed3033d5db79d865151a4f4
+SHA256: 152fd0bd15a90b4a18213448f485d4b53e9f7662e1508190aa5b702446b29e3d
+SHA512: 21c9f596b42dd9cba7a53963a59fed0c2e0c1eb960a4ac7087ea3eaa991ce9252d32639e1edcb75b1d709bc07c4820a6dc336ab427d0643c6e6498e0eacdbc8b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9906880 bytes
+SHA1:   038804bbd0e77508dd2510b729a9f3b325489b2e
+SHA256: 3a87fef45cba48b9322236be60c455c13fd4220184ce7287600361319bb63690
+SHA512: 975a5388592adc038461e0acebb6c0efee242891b2ea8621476401458efe2bc0fdd317d3bf99beb745b0b3808410efdff33862da29c95c027f457943721e3ab6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15758757 bytes
+SHA1:   29e1bab11551011718c35a51827edcb55bd656fc
+SHA256: 5c2bbfa26fd6a15a2d70961874b0f3a386206fcc5f698e240dd8b0c9f0f18c5e
+SHA512: 31d932372ce490eeac0a70bc8dcf842909a90435422398d069c05cf01d994936064b8f4e60879e28a8655c1296eb8e180e348cb95e001ed6ca73cda0ff77de23
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Đăng bởi naruse vào 25 Dec 2016&lt;/p&gt;</description>
+      <pubDate>Sun, 25 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/12/25/ruby-2-4-0-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/12/25/ruby-2-4-0-released/</link>
+    </item>
+    
+    <item>
+      <title>Phát hành Ruby 2.4.0-rc1</title>
+      <description>&lt;p&gt;Chúng tôi rất hân hạnh được thông báo về việc phát hành Ruby phiên bản 2.4.0-rc1.&lt;/p&gt;
+&lt;p&gt;Phiên bản 2.4.0-rc1 là phiên bản release candidate đầu tiên của Ruby 2.4.0.
+Phiên bản rc1 này được phát hành để nhận phản hồi từ cộng đồng.
+Hãy thoải mái
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;gửi phản hồi&lt;/a&gt;
+vì bạn vẫn có thể sửa những tính năng.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12142&quot;&gt;Giới thiệu cải tiến hash table (bởi Vladimir Makarov)&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cải tiến cấu trúc bên trong của hash table (st_table) bằng việc giới thiệu open addressing và một mảng bao hàm có thứ tự.
+Cải thiện này đã được thảo luận với rất nhiều người, đặc biệt là với Yura Sokolov.&lt;/p&gt;
+&lt;h2&gt;Binding#irb: Bắt đầu một phiên REPL tương tự như &lt;code&gt;binding.pry&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Khi bạn debug, bạn có thể thường xuyên sử dụng &lt;code&gt;p&lt;/code&gt; để xem giá trị của các biến.
+Với &lt;a href=&quot;https://github.com/pry/pry&quot;&gt;pry&lt;/a&gt; bạn có thể sử dụng &lt;code&gt;binding.pry&lt;/code&gt; trong ứng dụng của bạn để launch một REPL và chạy bất kỳ code Ruby nào.
+&lt;a href=&quot;https://github.com/ruby/ruby/commit/493e48897421d176a8faf0f0820323d79ecdf94a&quot;&gt;r56624&lt;/a&gt;
+giới thiệu &lt;code&gt;binding.irb&lt;/code&gt; cái mà hành xử giống như vậy với irb.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Hợp nhất Fixnum và Bignum vào Integer&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mặc dù chuẩn &lt;a href=&quot;http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579&quot;&gt;ISO/IEC 30170:2012&lt;/a&gt;
+không mô tả chi tiết nội dung của lớp Integer,
+Ruby hiện đang có hai lớp Integer: Fixnum và Bignum.
+Ruby 2.4 gộp hai lớp này thành một lớp là Integer.
+Tất cả phần mở rộng của C mà có liên quan đến lớp Fixnum hoặc Bignum thì cần được sửa.&lt;/p&gt;
+&lt;p&gt;Xem thêm &lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;the ticket&lt;/a&gt; và &lt;a href=&quot;http://www.a-k-r.org/pub/2016-09-08-rubykaigi-unified-integer.pdf&quot;&gt;akr's slides&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10085&quot;&gt;Lớp String hỗ trợ Unicode trong xử lí hoa-thường&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hàm &lt;code&gt;String/Symbol#upcase/downcase/swapcase/capitalize(!)&lt;/code&gt; bây giờ đã hỗ trợ xử lí hoa-thường cho Unicode thay vì chỉ cho ASCII.&lt;/p&gt;
+&lt;h2&gt;Các cải thiện về hiệu năng&lt;/h2&gt;
+&lt;p&gt;Ruby 2.4 cũng bao gồm các cải thiện về hiệu năng song song với các thay đổi
+về chức năng. Sau đây là nội dung của các cải thiện:&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12172&quot;&gt;Array#max, Array#min&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;[x, y].max&lt;/code&gt; và &lt;code&gt;[x, y].min&lt;/code&gt; đã được cải tiến để không tạo ra một mảng tạm trong một số điều kiện nhất định.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8110&quot;&gt;Regexp#match?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Thêm hàm &lt;code&gt;Regexp#match?&lt;/code&gt;, với chức năng thực hiện việc kiểm tra một biểu thức chính quy mà không tạo ra một đối tượng cho các tham chiếu ngược và thay đổi &lt;code&gt;$~&lt;/code&gt; nhằm giảm việc khởi tạo các đối tượng.&lt;/p&gt;
+&lt;h3&gt;Những cải thiện về hiệu năng khác&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12274&quot;&gt;Tăng tốc độ truy cập biến instance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Debugging&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/6647&quot;&gt;Thread#report_on_exception and Thread.report_on_exception&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby sẽ bỏ qua các exception trong các thread trừ khi có một thread khác tham
+gia vào tiến trình của thread có exception. Tuy nhiên với việc set &lt;code&gt;report_on_exception = true&lt;/code&gt;, bạn có thể nhận biết được việc thread bị
+kết thúc bởi một exception chưa được xử lý.&lt;/p&gt;
+&lt;p&gt;Hãy góp ý thêm cho chúng tôi về giá trị mặc định của &lt;code&gt;report_on_exception&lt;/code&gt;
+và về việc report-on-GC (thống kê ở Garbage Collection), cái mà đưa ra một báo cáo khi một thread được dọn dẹp mà không tham gia.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8214&quot;&gt;Khi phát hiện ra Thread Deadlock, Ruby sẽ hiển thị các threads bị lỗi với backtrace và dependency&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby đã có cơ chế phát hiện deadlock của các threads, tuy nhiên các thông tin
+được báo cáo về deadlock thường không đầy đủ cho việc debug.
+Từ bản 2.4 trở đi, khi phát hiện ra Deadlock, Ruby sẽ hiển thị các thread cùng với backtrace và các threads liên quan.&lt;/p&gt;
+&lt;p&gt;Mời mọi người dùng thử và cảm nhận việc lập trình với Ruby 2.4.0-rc1, và
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;gửi phản hồi cho chúng tôi&lt;/a&gt;!&lt;/p&gt;
+&lt;h2&gt;Thay đổi đáng chú ý so với phiên bản 2.3&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Hỗ trợ OpenSSL 1.1.0 (ngừng hỗ trợ cho 0.9.7 hoặc cũ hơn)&lt;/li&gt;
+&lt;li&gt;ext/tk được bỏ khỏi stdlib &lt;a href=&quot;https://bugs.ruby-lang.org/issues/8539&quot;&gt;Feature #8539&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;XMLRPC được bỏ khỏi stdlib &lt;a href=&quot;https://bugs.ruby-lang.org/issues/12160&quot;&gt;Feature #12160&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Xem thêm &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_rc1/NEWS&quot;&gt;Thông tin&lt;/a&gt;
+hoặc lịch sử commit để biết thêm chi tiết.&lt;/p&gt;
+&lt;p&gt;Với những sự thay đổi này,
+&lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0_rc1&quot;&gt;2519 files changed, 288606 insertions(+), 83896 deletions(-)&lt;/a&gt;
+so với Ruby 2.3.0!&lt;/p&gt;
+&lt;h2&gt;Tải về&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12512729 bytes
+SHA1:   a0439652a97a2406b691e8a1e586e2cf08c258ba
+SHA256: 3b156b20f9df0dd62cbeeb8e57e66ea872d2a5b55fabdef1889650122bcc2ea7
+SHA512: b43902ac7794487197df55a45256819d2e7540b77f1ed4eb68def3e0473ee98860a400862075bafadbde74f242e1dfe36a18cd6fe05ac42aae1ea6dddc9978ce
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14098505 bytes
+SHA1:   6b242f9ec7b908c9aa26e497440684ba06d86927
+SHA256: e41ada7650eed2a5800534d1201ba7c88f1627085659df994f47ab4c5e327745
+SHA512: 26d3c60483ce2d6eaabd7077085102fad6633f18cf5d772bacf6f563670030cb7bba22d54d8b7dfa5eac8b52990371c4a6ad1c095dff6f6b3a7bbe1a8ffb3754
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9930088 bytes
+SHA1:   7c404e8bec9859f708927f7203d4f42187e678b7
+SHA256: 3f014b3186d10676da6c512d14c65db23ccc4bf200fed9d7c6f9a58fd1e3295b
+SHA512: 22e209e28da1f2394f50c0a7dd5d0d4d4c0c5a6b5b0b02260fad0267a0940b98f0e2b0f36a44f87d1612555cb3022f43cd136a5186c7f87650aa20264408d415
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-rc1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15785968 bytes
+SHA1:   7d82386434ccbb1701f2995286bf29c8b9179e01
+SHA256: 14e6910e36618cddffeb22bad5f1052f907dc31ec93d4aa945bca0905d8a52c4
+SHA512: 5dd89320d429e5bd5faf3709be7e5b70f7355304d6324d7ac13a69187e5f1446ad5988c8186bc33f4fea8934288294f9d16fea173f39b2b39967746c4b03d1d4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lời nhắn của lần release này&lt;/h2&gt;
+&lt;p&gt;Xem thêm thông tin về kế hoạch release và các nội dung khác ở đây:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24&quot;&gt;ReleaseEngineering24&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi naruse vào 12 Dec 2016&lt;br /&gt;Dịch bởi Hiền Vương&lt;/p&gt;</description>
+      <pubDate>Mon, 12 Dec 2016 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/12/12/ruby-2-4-0-rc1-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/12/12/ruby-2-4-0-rc1-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby ra mắt ấn bản 2.3.3</title>
+      <description>&lt;p&gt;Ruby 2.3.3 mới được phát hành.&lt;/p&gt;
+&lt;p&gt;Ấn bản này bao gồm một vá lỗi về Refinements và Module#prepend.
+Trong trường hợp dùng chung Module#refine và Module#prepend cho cùng một Class
+có thể gây ra &lt;code&gt;NoMethodError&lt;/code&gt;. Đây là một regression của bản 2.3.2.
+Xem &lt;a href=&quot;https://bugs.ruby-lang.org/issues/12920&quot;&gt;Bug #12920&lt;/a&gt; để biết thêm chi tiết.&lt;/p&gt;
+&lt;p&gt;Thêm vào đó cũng có các vá lỗi khác.
+Xem &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_3_3/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;
+để biết thêm chi tiết.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14433673 bytes
+SHA1:   a8db9ce7f9110320f33b8325200e3ecfbd2b534b
+SHA256: 882e6146ed26c6e78c02342835f5d46b86de95f0dc4e16543294bc656594cc5b
+SHA512: 88f7782effd35bfe0b4c33140b5eb147d09b63fbb35b9c42d2200c010f387e2b70984ead1eca86569e8ec31f08b35289d440c0ca76b662dadb760f848e863d91
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17813577 bytes
+SHA1:   1014ee699071aa2ddd501907d18cbe15399c997d
+SHA256: 241408c8c555b258846368830a06146e4849a1d58dcaf6b14a3b6a73058115b7
+SHA512: 80d9f3aaf1d60b9b2f4a6fb8866713ce1e201a3778ef9e16f1bedb7ccda35aefdd7babffbed1560263bd95ddcfe948f0c9967b5077a89db8b2e18cacc7323975
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11444164 bytes
+SHA1:   f2318460606d410e80dd5c82862a93e5736534de
+SHA256: 1a4fa8c2885734ba37b97ffdb4a19b8fba0e8982606db02d936e65bac07419dc
+SHA512: 73dd6ed896ff52d953b153b2cab359c87953ea77521878f1ee16c1e217cc46bcb253100debe61ba631e6ffa0bc773e592d603a374508ed5189a311136ccd8d20
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   19862248 bytes
+SHA1:   f0723ce176a829c9c33c31cdab6eca6ce0aef73e
+SHA256: cbffda17fdb1bbd86dd36de093524b0a9b5c92e007fd60acac1c9804b429886e
+SHA512: 5f75b77962c9d01fe591d87e20900d71a54c737e0d1198fae437729f21a9af84278a91ee73e850b5f49361b3cbf48af7a0a3ed9920cce932b58fd8e2420d5b26
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Chú thích&lt;/h2&gt;
+&lt;p&gt;Cảm ơn tất cả mọi người đã đóng góp để chúng tôi có thể hoàn thành ấn bản lần này.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi nagachika vào 21 Nov 2016&lt;br /&gt;Dịch bởi Trung Lê&lt;/p&gt;</description>
+      <pubDate>Mon, 21 Nov 2016 10:30:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/11/21/ruby-2-3-3-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/11/21/ruby-2-3-3-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby ra mắt ấn bản 2.3.2</title>
+      <description>&lt;p&gt;Ruby 2.3.2 mới được phát hành.&lt;/p&gt;
+&lt;p&gt;Đây là ẩn bản TEENY của chuỗi 2.3.&lt;/p&gt;
+&lt;p&gt;Bản này kèm cập nhật của RubyGems 2.5.2 và SSL certificates mới. Bên cạnh đó
+bản cùng kèm thêm nhiều vá lỗi khác.&lt;/p&gt;
+&lt;p&gt;Xem thêm chi tiết tại &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_3_2/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14428572 bytes
+SHA1:   7adc23d308d335486a03f0099dad2b2f44b8a4a8
+SHA256: e6ce83d46819c4120c9295ff6b36b90393dd5f6bef3bb117a06d7399c11fc7c0
+SHA512: 78699bae5b0a2382a58f9d51f7d891341f00ad3a90d9ca06b68b1b245cf5acebc3a82133e39bf6a412ac999a5c0f778a0dab177c2569ffbee085ffff6f6ec38e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17814200 bytes
+SHA1:   baef56b27941bfbfac6e2cd005b686d320c7f124
+SHA256: 8d7f6ca0f16d77e3d242b24da38985b7539f58dc0da177ec633a83d0c8f5b197
+SHA512: 833e76555c72fd142d89701715e6c6d838121347c4c7aa857478ba1e8f7596aa7c4fd1950046322747e46db041288747e4c1943cf9b13e064c6e85ee60d6515a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11420276 bytes
+SHA1:   b7c780dbfc34b5baea116504ae700f68c92379a0
+SHA256: 5c78f311045ce48160092160444dec2744941a5e37d7865032978bd5bf392f0c
+SHA512: f2e602281cbcfad81b8197b9555bf637a1ef34f51dbc7548e5e0c5996ab1b7db5bd9eeb902128d37eed90f39b559c569aa75f2b29fe5f65085be65a63206fd72
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.2.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   19861601 bytes
+SHA1:   1ac64ad7cb1ed9004101812f5b707c151570dd84
+SHA256: b8ad5b47fad22610476a4abc1c32b8e558265f9b20a5865a12836709028cbd76
+SHA512: 8a794c8eed53380b026b150b0ce176af2a6ba278d5f7a5067e27615940ae85b6af28ac7187adc5d7af04c82442271ed0d8530d9fe751810ecc6c75340f81bd03
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Chú thích cho ấn bản&lt;/h2&gt;
+&lt;p&gt;Xin cảm ơn tất cả mọi người đã giúp đỡ thông báo lỗi, patch cho phiên bản này.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi nagachika vào 15 Nov 2016&lt;br /&gt;Dịch bởi Trung Lê&lt;/p&gt;</description>
+      <pubDate>Tue, 15 Nov 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/11/15/ruby-2-3-2-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/11/15/ruby-2-3-2-released/</link>
+    </item>
+    
+    <item>
+      <title>Ruby ra mắt ấn bản 2.2.6</title>
+      <description>&lt;p&gt;Ruby 2.2.6 mới được phát hành&lt;/p&gt;
+&lt;p&gt;Bản này có kèm theo SSL certificates mới cho RubyGems, và fix khoảng 80 lỗi khác từ bản release trước.&lt;/p&gt;
+&lt;p&gt;Xen thêm chi tiết trong &lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_2_6/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   13378616 bytes
+SHA1:   67b15fcc394bb1ffb5a7e926dcd6222d8e988188
+SHA256: e845ba41ea3525aafaa4094212f1eadc57392732232b67b4394a7e0f046dddf7
+SHA512: 7a93f72d236521ac28c8a0bc0c73cf805797a8813d22e02f42c5fc05dd39f6e422817272e0db6a24c245f6f97ad4b2b412a9a47ac50156ab186df596918a5f34
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16663387 bytes
+SHA1:   a5aaf19694470e543c8216e3f1189e48b6dbb0da
+SHA256: de8e192791cb157d610c48a9a9ff6e7f19d67ce86052feae62b82e3682cc675f
+SHA512: 221ea2d18ff23e65539ee184e09ef78643e46266a0ca18ccd2cb251970a6c057b843363f7c97541b2a6e68e1c3c41a36e2ae5c8218da888e0429473504abf66d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10487776 bytes
+SHA1:   6248eb97cbb5533009ef91c100d42e72af283f16
+SHA256: 9414ecc0d09cf71c9a24e8dc82fcc87919ac7359fb08db2791d6c32bfd157339
+SHA512: a2cfde1c6df4df6b996f8d86c52b255fd43b469f8b9f0d7a81ce5f4de949a67025d8bead4ce61f03263eb6a8378b156b843f97b429208afaa1d3bfd0a7af4ef4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   18506149 bytes
+SHA1:   6e207a91f13e301379d4fd37b7af847808185e41
+SHA256: 71bafc98c0b6f7b70cd79473952060e9b9fc36c8d57ee21c6b775451a16e6f9a
+SHA512: dfce7a0e1c3e3d64490dfad101897e8aaacb6f1c0b193a97a38a4288532ec65464796de898685497ba35f199ed6d8eeaf9bb84d31cab0ea4cfd762466597a840
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lời nhắn&lt;/h2&gt;
+&lt;p&gt;Cảm ơn tất cả mọi người đã giúp đỡ với ấn bản này.&lt;/p&gt;
+&lt;p&gt;Việc bảo trì của Ruby 2.2 (kèm luôn cả ấn bản này) được dựa
+trên &amp;quot;Bản chấp thuận về việc bảo trì các phiên bản Ruby bền vững&amp;quot; của
+&lt;a href=&quot;http://www.ruby.or.jp/&quot;&gt;Ruby Association&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi usa vào 15 Nov 2016&lt;br /&gt;Dịch bởi Trung Lê&lt;/p&gt;</description>
+      <pubDate>Tue, 15 Nov 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/11/15/ruby-2-2-6-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/11/15/ruby-2-2-6-released/</link>
+    </item>
+    
+    <item>
+      <title>Phát hành Ruby 2.4.0-preview1</title>
+      <description>&lt;p&gt;Chúng tôi rất hân hạnh được thông báo về việc phát hành Ruby phiên bản
+2.4.0-preview1.&lt;/p&gt;
+&lt;p&gt;Phiên bản Ruby 2.4.0-preview1 là phiên bản preview đầu tiên của Ruby 2.4.0.
+Bản preview1 lần này được phát hành sớm hơn so với thông thường vì nó bao gồm rất
+nhiều chức năng và cải tiến. Mọi người đừng ngại
+&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;phản hồi&lt;/a&gt; lại cho
+chúng tôi về phiên bản này, vì các chức năng vẫn có thể được thay đổi và cập nhật.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12005&quot;&gt;Hợp nhất Fixnum và Bignum vào Integer&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mặc dù chuẩn &lt;a href=&quot;http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=59579&quot;&gt;ISO/IEC 30170:2012&lt;/a&gt;
+không mô tả chi tiết nội dung của lớp (class) Integer, CRuby
+hiện đang tồn tại hai lớp &lt;code&gt;Integer&lt;/code&gt; : &lt;code&gt;Fixnum&lt;/code&gt; và &lt;code&gt;Bignum&lt;/code&gt;. Ruby 2.4 đã thống
+nhất lại và gộp chung 2 lớp này thành 1 lớp có tên là &lt;code&gt;Integer&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/10085&quot;&gt;Lớp String hỗ trợ Unicode trong việc xử lý hoa-thường&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hàm &lt;code&gt;String/Symbol#upcase/downcase/swapcase/capitalize(!)&lt;/code&gt; ở phiên bản 2.4.0 đã
+hỗ trợ việc biến đổi hoa - thường cho các ký tự Unicode
+(vi du: &lt;code&gt;'Türkiye'.upcase 'tr' # =&amp;gt; 'TÜRKİYE'&lt;/code&gt;).&lt;/p&gt;
+&lt;h2&gt;Cải thiện hiệu năng&lt;/h2&gt;
+&lt;p&gt;Ruby 2.4 cũng bao gồm các cải thiện về hiệu năng song song với các thay đổi
+về chức năng. Sau đây là nội dung của các cải thiện:&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12172&quot;&gt;Array#max, Array#min&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;[x, y].max&lt;/code&gt; và &lt;code&gt;[x, y].min&lt;/code&gt; đã được tinh chỉnh lại để ko tạo các mảng
+tạm (temporary array) trong một số  trường hợp.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8110&quot;&gt;Regexp#match?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Thêm hàm &lt;code&gt;Regexp#match?&lt;/code&gt;, với chức năng thực hiện việc kiểm tra (match)
+một biểu thức chính quy mà không tạo ra object cho các tham chiếu ngược
+(&lt;code&gt;back reference&lt;/code&gt;) và thay đổi &lt;code&gt;$~&lt;/code&gt; nhằm giảm việc khởi tạo các đối tượng.&lt;/p&gt;
+&lt;h3&gt;Một số cải tiến khác&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/12274&quot;&gt;Tăng tốc độ truy cập biến instance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Debugging&lt;/h2&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/6647&quot;&gt;Thread#report_on_exception và Thread.report_on_exception&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby sẽ bỏ qua các exception trong các thread trừ khi có một thread khác tham
+gia vào tiến trình của thread có exception. Tuy nhiên với việc
+set &lt;code&gt;report_on_exception = true&lt;/code&gt;, bạn có thể nhận biết được việc thread bị
+kết thúc bởi một exception chưa  được xử lý.&lt;/p&gt;
+&lt;p&gt;Hãy góp ý thêm cho chúng tôi về giá trị mặc định của &lt;code&gt;report_on_exception&lt;/code&gt;
+và về việc report-on-GC (thống kê ở Garbage Collection).&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/8214&quot;&gt;Khi phát hiện ra Thread Deadlock, Ruby sẽ hiển thị các threads bị lỗi với backtrace và dependency&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ruby đã có cơ chế phát hiện deadlock của các threads, tuy nhiên các thông tin
+được báo cáo về deadlock thường không đầy đủ cho việc debug. Từ bản 2.4 trở đi,
+khi phát hiện ra Deadlock, Ruby sẽ hiển thị các thread cùng với backtrace
+và các threads liên quan.&lt;/p&gt;
+&lt;p&gt;Mời mọi người dùng thử và cảm nhận việc lập trình với Ruby 2.4.0-preview1,
+đồng thời &lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport&quot;&gt;gửi phản hồi cho chúng tôi&lt;/a&gt;!&lt;/p&gt;
+&lt;h2&gt;Thay đổi đáng chú ý so với phiên bản 2.3&lt;/h2&gt;
+&lt;p&gt;Chi tiết mời xem &lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_preview1/NEWS&quot;&gt;Thông tin&lt;/a&gt; và
+&lt;a href=&quot;https://github.com/ruby/ruby/blob/v2_4_0_preview1/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Với lần cập nhật này, &lt;a href=&quot;https://github.com/ruby/ruby/compare/v2_3_0...v2_4_0_preview1&quot;&gt;1140 files đã được cập nhật, bao gồm 33126 insertion và 50993 deletions so với phiên bản 2.3.0&lt;/a&gt;!&lt;/p&gt;
+&lt;h2&gt;Tải về&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   14108114 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   7dcc42548d0724d83b6589ab98f34282845d7bcd&lt;/li&gt;
+&lt;li&gt;SHA256: 17570f0b84215ca82252f10c167ee50bc075383c018420c6b2601ae1cade0649&lt;/li&gt;
+&lt;li&gt;SHA512: c9873e8686eb54dbde61d6e23cd5197beebccd6cb31fd12c82763ebe1fde17095d7514d9d93c2c82b238032c98691df5479dc2d666a8a590e0fc54450ec29cb5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   17605452 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   1003a1e57547d81f4bb979c0f40f242afc284cd5&lt;/li&gt;
+&lt;li&gt;SHA256: 80d02f49f40e7ce07b70bee7efda751b0595a349a017306e9fe8caad5da13e64&lt;/li&gt;
+&lt;li&gt;SHA512: 4b603ab4ff9ea7e8bb8053aa4b638839d534241466d7f0e4d5bca3f2ea416694c2ea391790f1ffdc07fa538918d27707621741eb0ddc7bd00eb9d7628622787a&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   11155800 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   bc33085277266f5a09a143bf6817affcb77f8e7f&lt;/li&gt;
+&lt;li&gt;SHA256: 62942c7300727469fe3d2b43e5a5c772d4836cf624a1d644bdece2afaca472c8&lt;/li&gt;
+&lt;li&gt;SHA512: dfc2c6642d49fa95383817a6dc82c416b3218ddfdaf882d6d2e5a7da22d0a5ac142e516a57aa96214070f3c7551d275044233ac052c82d67189b01c39847aad4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIZE:   19904781 bytes&lt;/li&gt;
+&lt;li&gt;SHA1:   25c16ee91bbcb0224f80e20d938f5c08832973f7&lt;/li&gt;
+&lt;li&gt;SHA256: fd588aea1558b1171f87a3dd342ee207b8995a2c0a8241d7aa15bcfa16036854&lt;/li&gt;
+&lt;li&gt;SHA512: f2fff35ff9157a4b31177b3d6b91bdaad04c22b3c626c3a5e5ec9a31b103f9607b31c909ef27880065cfdbcfa5d6901a6db89d22e0c645666d069c5b6dd1818b&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lời nhắn của lần release này&lt;/h2&gt;
+&lt;p&gt;Xem thêm thông tin về kế hoạch release và các nội dung khác ở đây:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/projects/ruby-master/wiki/ReleaseEngineering24&quot;&gt;ReleaseEngineering24&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi naruse vào 20 Jun 2016&lt;br /&gt;Dịch bởi Tạ Duy Anh&lt;/p&gt;</description>
+      <pubDate>Mon, 20 Jun 2016 09:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/06/20/ruby-2-4-0-preview1-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/06/20/ruby-2-4-0-preview1-released/</link>
+    </item>
+    
+    <item>
+      <title>Phát hành Ruby 2.3.1</title>
+      <description>&lt;p&gt;Chúng tôi vừa phát hành Ruby 2.3.1.&lt;/p&gt;
+&lt;p&gt;Đây là phiên bản TEENY (chú thích: cách gọi vui của minor version)
+đầu tiên của sê-ri 2.3.&lt;/p&gt;
+&lt;p&gt;Phiên bản này bao gồm nhiều bản vá lỗi, được liệt kê đầy đủ trong
+&lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_3_1/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Tải về&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   14432088 bytes
+SHA1:   4ee76c7c1b12d5c5b0245fc71595c5635d2217c9
+SHA256: 4a7c5f52f205203ea0328ca8e1963a7a88cf1f7f0e246f857d595b209eac0a4d
+SHA512: a8659b96a3a481a3dbdbb6997eb18ff1f8cd926a9707a90d071e937315c21d372c89252f0d44732ae5007d2678fda8c8fbceafa4e4b4ff500d236fb796284d8d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   17797997 bytes
+SHA1:   c39b4001f7acb4e334cb60a0f4df72d434bef711
+SHA256: b87c738cb2032bf4920fef8e3864dc5cf8eae9d89d8d523ce0236945c5797dcd
+SHA512: 7399d59b54764e02760ed6cac525a43c5e7212aebbbff8a04234dc45adbc0cd9fe1ff9a9328eefd38f02d3b6c5b2e3ca843808784755ff4e66ded624f55c150a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   11407048 bytes
+SHA1:   83499c14c674cf2d88e495031434a94c06330879
+SHA256: 6725b5534d5a3a21ec4f14d6d7b9921a0d00d08acb88fd04cd50b47b70496338
+SHA512: e9d89aeefb1b1e72cee9d3d414b27c793cf09ff3ed5e0ea5277a2b6ae1cae9fdbf6b404a84b42c0c6835754eb04674fc4f1470fbfedabeee3f57e518f13db633
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   19842037 bytes
+SHA1:   ab9dec602b11ee4cfc295d6aa87ebe712372d123
+SHA256: 4c8ae431b33f78d64cabb31911e0890e9a3ac380b4f22b11738f9baeeda51763
+SHA512: a26d3ab5983c6f3ea454e3e75554137305525479e4c15c0ae424689e870e2c5a9f0fe194975cf362cc5528ce601e31a0a15b87c7af200fd0d1da17459435b953
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lời nhắn&lt;/h2&gt;
+&lt;p&gt;Xin gửi lời cảm ơn tới các cộng tác viên, các nhà phát triển,
+và những người dùng đã cung cấp thông báo lỗi,
+đã giúp chúng tôi có thể phát hành phiên bản này.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi nagachika vào 26 Apr 2016&lt;br /&gt;Dịch bởi Nguyễn Đức Giang&lt;/p&gt;</description>
+      <pubDate>Tue, 26 Apr 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/04/26/ruby-2-3-1-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/04/26/ruby-2-3-1-released/</link>
+    </item>
+    
+    <item>
+      <title>Phát hành Ruby 2.2.5</title>
+      <description>&lt;p&gt;Chúng tôi vừa phát hành Ruby 2.2.5.&lt;/p&gt;
+&lt;p&gt;Phiên bản này bao gồm nhiều bản vá lỗi, được liệt kê đầy đủ trong
+&lt;a href=&quot;https://svn.ruby-lang.org/repos/ruby/tags/v2_2_5/ChangeLog&quot;&gt;ChangeLog&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Tải về&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   13350551 bytes
+SHA1:   f78473fe60a632b778599374ae64612592c2c9c1
+SHA256: 22f0c6f34c0024e0bcaaa8e6831b7c0041e1ef6120c781618b833bde29626700
+SHA512: d3224814361c297bc36646c2e40f63c461ccf5a77fea5a3acdcb2c7ad1705bb229ac6abbd7ad1ae61cbe0fefd7a008c6102568d11366ad3107179302cd3e734e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16654395 bytes
+SHA1:   457707459827bd527347a5cee7b4dc509b486713
+SHA256: 30c4b31697a4ca4ea0c8db8ad30cf45e6690a0f09687e5d483c933c03ca335e3
+SHA512: 3dd8688c64b8b143bdd6b0f123b7c2ecdd1b93c7c9ee51b2774a3b0b864897789932c7ad406293a6ab12c9eb9db9cfb2940fc14e2afc4f79718994f7668cbd5f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   10457620 bytes
+SHA1:   58484284dd613e139e8f7023b1168e9034a8766d
+SHA256: f86feaa0a578e8da0924ced3ec68b25b50d69fc9a72cc8d919bc3c73f85f87d7
+SHA512: 6da4bdb0a43d56c7a8e4dddbcacf237e998ebb54706c8f835b53713dbdf924e40d5f89f63017515e1d66904ca01f28058cf296567104e06540c57f036dcdd0fe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   18493821 bytes
+SHA1:   e4f497e5b79768ae93dd73ac26da4ff5dd722bfe
+SHA256: d5094d7cc50266772a8352c68b7fcd865889fd174c09e2f11bb003696cd04bb3
+SHA512: b3789063252e361aa4598ecd9170fc360f0d5685497975ce09442fe5815c438b67b95fc67e56b99ab4044a49715ed1a8b1fb089f757c7c0d1a777536e06de8cf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Lời nhắn&lt;/h2&gt;
+&lt;p&gt;Xin gửi lời cảm ơn tới những người đã đóng góp cho việc phát hành phiên bản này.&lt;/p&gt;
+&lt;p&gt;Cùng với việc phát hành phiên bản mới, người duy trì Ruby 2.2 được thay đổi từ
+nagachika-san sang usa. Khoảng 2/3 các thay đổi trong phiên bản này (2.2.5)
+là do sự đóng góp của nagachika-san.
+Xin gửi lời cảm ơn tới ông vì những đóng góp tuyệt vời này.&lt;/p&gt;
+&lt;p&gt;Việc bảo trì Ruby 2.2, bao gồm cả phiên bản này, dựa trên
+&amp;quot;Thỏa thuận cho các phiên bản Ruby ổn định&amp;quot; của
+&lt;a href=&quot;http://www.ruby.or.jp/&quot;&gt;Ruby Association&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi usa vào 26 Apr 2016&lt;br /&gt;Dịch bởi Nguyễn Đức Giang&lt;/p&gt;</description>
+      <pubDate>Tue, 26 Apr 2016 12:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/04/26/ruby-2-2-5-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/04/26/ruby-2-2-5-released/</link>
+    </item>
+    
+    <item>
+      <title>Phát hành Ruby 2.1.10</title>
+      <description>&lt;p&gt;Ruby 2.1.10 đã được chính thức phát hành.
+Bản phát hành này không dành cho production, mà nhằm mục đích thử nhiệm sự tương thích của những bản phát hành bao gồm hai chữ số.
+Bạn không cần phải nâng cấp từ 2.1.9 lên 2.1.10 trong trường hợp sử dụng bình thường.&lt;/p&gt;
+&lt;p&gt;Như đã được thông báo trong bản phát hành của &lt;a href=&quot;https://www.ruby-lang.org/vi/news/2016/03/30/ruby-2-1-9-released/&quot;&gt;Ruby 2.1.9&lt;/a&gt;, Ruby 2.1.0 không có bất kì sự thay đổi nào so với 2.1.9, ngoại trừ con số của phiên bản (và chỉ một bài sự thay đổi liên quan trong bộ kiểm thử).
+Vui lòng thử nghiệm sự tương thích của ứng dụng và/hoặc thư viên của bạn với những phiên bản bao gồm hai chữ số.&lt;/p&gt;
+&lt;h2&gt;Tải xuống&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.bz2&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.bz2&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   12015299 bytes
+SHA1:   22dcd759d8cbb14c8735988fbc7ee5c35f9d4720
+SHA256: a74675578a9a801ac25eb7152bef3023432d6267f875b198eb9cd6944a5bf4f1
+SHA512: 4b7213695416876e4de3cbce912f61ac89db052c74f0daa8424477991cfc49b07300e960177ff576b634a97ee8afef3c5aded5d5806329dbd01d0ce7b42b9b63
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.gz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   15165837 bytes
+SHA1:   2a5194b1fd42a3f1f23f1e0844ae78332a9efd5d
+SHA256: fb2e454d7a5e5a39eb54db0ec666f53eeb6edc593d1d2b970ae4d150b831dd20
+SHA512: 5f9c0cc3d10b4e04c63f001b4add782c34b9f260368f48b443b397cea57680d328f7c28cbb2a9be4c2f5acd114bac07dacb100d57018fa4d2a1792fc03083418
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.xz&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.tar.xz&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   9362868 bytes
+SHA1:   adcc9e10b8f7add0e19f8c70afc134c069a862ca
+SHA256: 5be9f8d5d29d252cd7f969ab7550e31bbb001feb4a83532301c0dd3b5006e148
+SHA512: 72406ac133af7f057d4633d2a300e49e133881f6b36ff4cdf6c72b4ff4325de332fc5a45c96ea407140a8bf09cdc307e13107c539196902e5b67b7d24cd72dc9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.zip&quot;&gt;https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.10.zip&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SIZE:   16706304 bytes
+SHA1:   402158192b7673cb4e7a67f48f6d93945bc9fd13
+SHA256: 21cf83156ec782d17827fb9c8a945626dfd68cf0d9eb5ca7a78b12eb91c6f1fb
+SHA512: 5490fc4726a1efaea8c7c541ca3102013b00a0af2903d15009307265c93b218bb13aab0007d279823c740a9b173d957ca79f2d8f25932f04763ec1aa18d164e8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Chú thích phát hành&lt;/h2&gt;
+&lt;p&gt;Cảm ơn sự giúp đỡ của tất cả mọi người trong phiên bản này.&lt;/p&gt;
+
+&lt;p&gt;Đăng bởi usa vào 1 Apr 2016&lt;br /&gt;Dịch bởi Cẩm Huỳnh&lt;/p&gt;</description>
+      <pubDate>Fri, 01 Apr 2016 02:00:00 +0000</pubDate>
+      <guid>https://www.ruby-lang.org/vi/news/2016/04/01/ruby-2-1-10-released/</guid>
+      <link>https://www.ruby-lang.org/vi/news/2016/04/01/ruby-2-1-10-released/</link>
+    </item>
+    
+  </channel>
+</rss>

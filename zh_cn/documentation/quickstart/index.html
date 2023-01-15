@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>20分钟体验 Ruby - Ruby 官方网站</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/zh_cn/documentation/quickstart/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/zh_cn/feeds/news.rss" rel="alternate" title="最新消息（RSS）" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/zh_cn/">
+          <h1>Ruby</h1>
+          <h2>程序员最好的朋友</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/zh_cn/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="搜索" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<!-- raw HTML omitted -->
+
+
+
+
+  <div id="content">
+    <h2>介绍</h2>
+<p>这是个不会超过20分钟的 Ruby 简介。阅读前请您先将 Ruby 安装好。（如果您还没有安装Ruby 的话请到
+<a href="/zh_cn/downloads/">下载区</a> 下载并安装。）</p>
+<h2>Ruby 的互动性</h2>
+<p>打开 IRB</p>
+<ul>
+<li>如果您使用 <strong>macOS</strong> 打开 <code>Terminal</code> 然后输入 <code>irb</code>，回车</li>
+<li>如果您使用 <strong>Linux</strong>，打开一个 Shell，然后输入 <code>irb</code>，回车</li>
+<li>如果您使用 <strong>Windows</strong>，打开 开始菜单 -&gt; Ruby -&gt; <code>Interactive Ruby</code></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>已经打开了。继续？</p>
+<p>输入：<code>&quot;Hello World&quot;</code></p>
+<!-- raw HTML omitted -->
+<h2>Ruby 顺从您！</h2>
+<p>刚才是怎么回事啊？难道我们刚写了世界上最短的 “Hello World” 程序吗？ 不是的。第二行显示的只是 IRB
+给我们的上一个命令的返回值。 如果我们要打印 “Hello World” 的话，还需要更多一点代码：</p>
+<!-- raw HTML omitted -->
+<p><code>puts</code> 是 Ruby 语言里用来打印的基本命令。那 <code>=&gt; nil</code> 是什么？其实是命令的返回值。 <code>puts</code> 命令永远返回
+nil，nil 也是 Ruby 的空值。</p>
+<h2>您的免费计算器</h2>
+<p>我们已经可以使用 IRB 提供的免费计算器啦！</p>
+<!-- raw HTML omitted -->
+<p>三加二很简单。三减二呢？您可以试试啊。虽然输入的命令很短，不过您可以在原来命令的基础上进行修改。 试着按一下 <strong>上方键</strong>
+看看是不是打出了原来输入的 <code>3+2</code>。 如果能正常显示出的话，您可以用<strong>左方键</strong>来移动光标直到 <code>+</code>，然后按退格删除它 并输入 <code>*</code>。</p>
+<!-- raw HTML omitted -->
+<p>下面我们来试试次方：</p>
+<!-- raw HTML omitted -->
+<p>在 Ruby 里 <code>**</code> 是”次方”的意思。但如果您想开根号呢？</p>
+<!-- raw HTML omitted -->
+<p>等一下！上面那个东西是什么？您猜想：“它是不是真的对 9 开了平方呢？” 您猜对了！我们还是来仔细看一下。第一，什么是 <code>Math</code>？</p>
+<h2>模块，给代码分组</h2>
+<p><code>Math</code> 是一个自带的数学模块。模块在 Ruby 里有两个作用。第一： 把功能相似的函数放到同一个名称下。<code>Math</code> 模块还有
+<code>sin()</code> 和 <code>tan()</code> 这样的函数。</p>
+<p>接下来的是一个点。点是干什么用的？点是用来告诉一个接收者它所要接受的信息。 什么是信息？在这个例子里面，信息就是
+<code>sqrt(9)</code>，意思就是调用 <code>sqrt</code> 函数， 并给它 <code>9</code> 作为参数。当然 <code>sqrt</code> 就是 “square root” 的缩写。</p>
+<p>这个函数的返回值是 <code>3.0</code>。您一定发现了它不光只是<code>3</code>，还多了小数部分。 这是因为大多数情况下，开方的结果并不是整数，所以<code> sqrt</code>
+始终会返回浮点数。</p>
+<p>如果我们想记住运算结果呢？存到变量里吧。</p>
+<!-- raw HTML omitted -->
+<p>尽管这是个非常好的计算器，我们已经要从基本的 <code>Hello World</code> 程序向更有意思的领域迈进了。<a href="2/">现在就开始吧</a></p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>试用</strong>，其实很简单！</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">在浏览器中试用 Ruby（英文）</a></li>
+
+    
+    <li><a href="/zh_cn/documentation/quickstart/">20 分钟体验 Ruby</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/ruby-from-other-languages/">从其它语言转到 Ruby</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>探索</strong>新的世界</h3>
+  <ul class="menu">
+    
+    <li><a href="/zh_cn/documentation/">文档</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">学术研究</a></li>
+    
+
+    
+    <li><a href="/zh_cn/libraries/">代码库</a></li>
+    
+
+    
+    <li><a href="/zh_cn/documentation/success-stories/">成功案例</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>加入</strong>友善及日益壮大的社区</h3>
+  <ul>
+    
+    <li><a href="/zh_cn/community/mailing-lists/">邮件列表</a>: 联系喜爱 Ruby 的朋友</li>
+    
+
+    
+    <li><a href="/zh_cn/community/user-groups/">用户组</a>: 参与 Ruby 爱好者活动</li>
+    
+
+    
+    <li><a href="/zh_cn/community/weblogs/">博客</a>: 阅读 Ruby 相关的博客</li>
+    
+
+    
+    <li><a href="/zh_cn/community/ruby-core/">Ruby 核心</a>: 帮助开发 Ruby 语言</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">问题跟踪</a>: 报告或帮助解决 Ruby 的问题</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>订阅</h3>
+    <p><a href="/zh_cn/feeds/news.rss">最新消息（RSS）</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/zh_cn/" class="home">首页</a>
+
+  <a href="/zh_cn/downloads/">下载</a>
+
+  <a href="/zh_cn/documentation/">文档</a>
+
+  <a href="/zh_cn/libraries/">代码库</a>
+
+  <a href="/zh_cn/community/">社区</a>
+
+  <a href="/zh_cn/news/">新闻</a>
+
+  <a href="/zh_cn/security/">安全</a>
+
+  <a href="/zh_cn/about/">关于 Ruby</a>
+
+
+        </div>
+
+        <p>
+
+  本站其他语言版本：
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/zh_cn/about/website/">本站</a>由 Ruby 社区的成员共同维护。</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

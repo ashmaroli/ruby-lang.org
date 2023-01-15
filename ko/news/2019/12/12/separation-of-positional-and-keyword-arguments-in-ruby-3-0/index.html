@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>루비 3.0의 위치 인자와 키워드 인자 분리</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/ko/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/ko/feeds/news.rss" rel="alternate" title="최근 소식(RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/ko/">
+          <h1>Ruby</h1>
+          <h2>프로그래머의 단짝 친구</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/ko/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="찾기" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          
+
+<div id="content-wrapper">
+  
+<h1>루비 3.0의 위치 인자와 키워드 인자 분리</h1>
+
+
+
+  <div id="content">
+    <p class="post-info">작성자: mame (2019-12-12)<br>
+                         번역자: yous</p>
+
+    <p>루비 3.0에 계획된 키워드 인자에 대한 호환되지 않는 변경에 대해 설명합니다.</p>
+<h2>요약</h2>
+<p>루비 3.0에서 위치 인자와 키워드 인자는 분리됩니다. 루비 2.7은 루비 3.0에서
+변하는 동작에 대해 경고합니다. 다음 경고를 본다면 코드를 업데이트해야 합니다.</p>
+<ul>
+<li><code>Using the last argument as keyword parameters is deprecated</code>, 또는</li>
+<li><code>Passing the keyword argument as the last hash parameter is deprecated</code>, 또는</li>
+<li><code>Splitting the last argument into positional and keyword parameters is deprecated</code></li>
+</ul>
+<p>대부분의 경우 <em>이중 스플랫(double splat)</em> 연산자를 추가해서 호환성 문제를 해결할
+수 있습니다. 이는 명시적으로 <code>Hash</code> 객체 대신 키워드 인자를 넘깁니다. 마찬가지로
+<code>{}</code> 중괄호를 추가해서 명시적으로 키워드 인자 대신 <code>Hash</code> 객체를 넘길 수
+있습니다. 자세한 내용은 아래의 '대표 사례' 섹션을 보세요.</p>
+<p>루비 3에서 인자 모두를 델리게이트하는 메서드는 반드시 위치 인자에 더해 키워드
+인자를 명시적으로 델리게이트해야 합니다. 루비 2.7 이전의 위치 인자에 적용되던
+델리게이트 동작을 유지하려면 <code>ruby2_keywords</code>를 사용하세요. 자세한 내용은 아래의
+'인자 델리게이트 다루기' 섹션을 보세요.</p>
+<h2>대표 사례</h2>
+<p>{: #typical-cases }</p>
+<p>가장 대표적인 사례입니다. Hash 대신 키워드를 넘기려면 이중 스플랫(double splat)
+연산자(<code>**</code>)를 사용할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->h<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 이 메서드 호출은 Hash 위치 인자 하나를 넘깁니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 2.7: Hash는 자동으로 키워드 인자로 변환됩니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 3.0: 이 호출은 ArgumentError를 발생시킵니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo.rb:11: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo.rb:2: warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    42<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 루비 3.0에서 동작을 유지하려면 이중 스플랫(double splat)을 사용하세요<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->h<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 42<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>다른 사례입니다. 키워드 대신 명시적으로 Hash를 넘기려면 중괄호(<code>{}</code>)를 사용할 수
+있습니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 이 호출은 키워드 인자 하나만 넘기고 위치 인자를 넘기지 않습니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 2.7: 키워드는 Hash 위치 인자로 변환됩니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 3.0: 이 호출은 ArgumentError를 발생시킵니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; demo2.rb:9: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    demo2.rb:2: warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#    {:k=&gt;42}<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 루비 3.0에서 동작을 유지하려면 중괄호를 써서 명시적인 Hash를 만드세요<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --> <!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->42<!-- raw HTML omitted --> <!-- raw HTML omitted -->})<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; {:k=&gt;42}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>제거 예정된 기능은 무엇인가요?</h2>
+<p>{: #what-is-deprecated }</p>
+<p>루비 2에서 키워드 인자는 마지막 Hash 위치 인자로 간주될 수 있고, 마지막 Hash
+위치 인자는 키워드 인자로 간주될 수 있습니다.</p>
+<p>이는 마지막 섹션에 설명한 것처럼 자동 변환이 가끔은 너무 복잡하고 힘들기
+때문입니다. 그래서 루비 2.7에서는 제거 예정된 기능이고 루비 3에서 제거됩니다.
+다시 말해서, 키워드 인자는 루비 3에서 위치 인자와 완전히 분리됩니다. 키워드
+인자를 넘기고 싶다면 항상 <code>foo(k: expr)</code> 또는 <code>foo(**expr)</code>를 사용해야 합니다.
+키워드 인자를 받고 싶다면 원칙적으로 항상 <code>def foo(k: default)</code>, <code>def foo(k:)</code>,
+<code>def foo(**kwargs)</code>를 사용해야 합니다.</p>
+<p>루비 3.0은 키워드 인자를 받지 않는 메서드를 키워드 인자와 함께 호출했을 때
+다르게 동작하지 않습니다. 예를 들어, 다음과 같은 경우는 제거 예정되지 않았고
+루비 3.0에서도 계속 동작합니다. 키워드 인자는 계속 Hash 위치 인자로 간주됩니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>이는 이런 형태가 굉장히 많이 사용되고, 인자가 어떻게 간주되어야 하는지에 대한
+모호함이 없기 때문입니다. 이런 변환을 금지하면 추가적인 호환성 문제가 생기는 데
+반해 얻는 이득은 작습니다.</p>
+<p>하지만 이런 형태를 새 코드에 사용하는 건 추천하지 않습니다. Hash를 위치 인자로
+넘기면서 키워드 인자를 사용하는 게 자주 있는 일이 아니라면 말이죠. 그 대신 이중
+스플랫(double splat)을 사용하세요.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; {:k=&gt;1}<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>제 코드가 루비 2.7에서 동작하지 않게 되나요?</h2>
+<p>{: #break-on-ruby-2-7 }</p>
+<p>짧게 대답하자면 '아마도 아닙니다'.</p>
+<p>루비 2.7의 변경은 3.0으로 옮기는 과정이 되도록 디자인되었습니다. 원칙적으로 루비
+2.7은 루비 3에서 변경될 동작에 대해 경고만 하지만, 사소하다고 생각되는 몇몇
+호환되지 않는 변경도 포함하고 있습니다. 자세한 내용은 '그 외 사소한 변경'
+섹션을 보세요.</p>
+<p>경고와 사소한 변경을 제외하고, 루비 2.7은 루비 2.6과 호환성을 유지하려고
+했습니다. 여러분의 코드는 경고를 발생시킬지는 몰라도 아마 루비 2.7에서도 동작할
+겁니다. 루비 2.7에서 코드를 실행하는 것으로 여러분의 코드가 루비 3.0에 대해
+준비되었는지 확인할 수 있습니다.</p>
+<p>제거 예정 경고를 끄고 싶다면 커맨드 라인 인자<code>-W:no-deprecated</code>를 사용하거나,
+코드에 <code>Warning[:deprecated] = false</code>를 추가하세요.</p>
+<h2>인자 델리게이트 다루기</h2>
+<p>{: #delegation }</p>
+<h3>루비 2.6 이전</h3>
+<p>{: #delegation-ruby-2-6-or-prior }</p>
+<p>루비 2에서는 <code>*rest</code> 인자와 <code>&amp;block</code> 인자를 받아 대상 메서드에 넘기는 델리게이트
+메서드를 만들 수 있습니다. 여기에서 키워드 인자는 암묵적으로 위치 인자나 키워드
+인자로 자동 변환되어 처리됩니다.</p>
+<!-- raw HTML omitted -->
+<h3>루비 3</h3>
+<p>{: #delegation-ruby-3 }</p>
+<p>키워드 인자를 명시적으로 델리게이트해야 합니다.</p>
+<!-- raw HTML omitted -->
+<p>루비 2.6 이전 버전과의 호환성이 필요하지 않고 아무 인자도 수정하지 않는다면 루비
+2.7에서 도입된 새로운 델리게이트 문법(<code>...</code>)을 사용할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<h3>루비 2.7</h3>
+<p>{: #delegation-ruby-2-7 }</p>
+<p>요약: <code>Module#ruby2_keywords</code>를 사용하고 <code>*args, &amp;block</code>을 델리게이트하세요.</p>
+<!-- raw HTML omitted -->
+<p><code>ruby2_keywords</code>는 키워드 인자를 마지막 Hash 인자로 받고, 다른 메서드를 호출할
+때 이를 키워드 인자로 넘깁니다.</p>
+<p>사실 루비 2.7은 많은 경우에 새로운 형태의 델리게이트를 허용하지만, 알려진 예외가
+있습니다. 다음 섹션을 보세요.</p>
+<h3>루비 2.6, 2.7, 루비 3에서 호환되는 델리게이트</h3>
+<p>{: #a-compatible-delegation }</p>
+<p>요약: 이번에도 <code>Module#ruby2_keywords</code>를 사용하세요.</p>
+<!-- raw HTML omitted -->
+<p>안타깝게도 루비 2.6 이전 버전은 새로운 형태의 델리게이트를 제대로 처리할 수 없기
+때문에 예전 형태의 델리게이트(즉, <code>**kwargs</code> 없음)를 사용해야 합니다. 이는
+키워드 인자를 분리하게 된 이유 중 하나입니다. 자세한 내용은 마지막 섹션에
+설명되어 있습니다. <code>ruby2_keywords</code>는 루비 2.7과 3.0에서도 예전 형태가 동작하게
+합니다. 루비 2.6 이전 버전엔 <code>ruby2_keywords</code>가 정의되어 있지 않기 때문에,
+<a href="https://rubygems.org/gems/ruby2_keywords">ruby2_keywords 젬</a>을 사용하거나 직접
+정의하세요.</p>
+<!-- raw HTML omitted -->
+<hr />
+<p>코드가 루비 2.6 이전 버전에서 동작할 필요가 없다면 루비 2.7에 도입된 새로운
+형태를 시도해보세요. 대부분의 경우에 동작하지만, 안타깝게도 다음 예외가
+존재합니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted -->       <!-- raw HTML omitted -->#=&gt; 루비 2.7: []   ({}는 무시됩니다)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 루비 2.7: [{}] (명시적으로 키워드 '없이' 넘겨서 {}를 넘길 수 있습니다)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>빈 Hash 인자는 자동으로 변환되어 <code>**kwargs</code>에 병합됩니다. 델리게이트 호출은 빈
+키워드 해시를 제거하여 <code>target</code>에는 아무 인자도 넘기지 않습니다. 우리가 아는 한
+예외는 이것뿐입니다.</p>
+<p>마지막 줄에서 언급한 것처럼 이 문제는 <code>**{}</code>를 사용해서 해결할 수 있습니다.</p>
+<p>이식성이 걱정된다면 <code>ruby2_keywords</code>를 사용하세요.(루비 2.6 이전 버전은 키워드
+인자에 관한 예외가 굉장히 많다는 걸 알아두세요. :-)
+<code>ruby2_keywords</code>는 루비 2.6이 유지보수 종료된 후 제거될 수 있습니다. 그 시점에는
+키워드 인자를 명시적으로 델리게이트하는 것을 추천합니다(위의 루비 3 코드를
+보세요).</p>
+<h2>그 외 사소한 변경</h2>
+<p>{: #other-minor-changes }</p>
+<p>루비 2.7에 키워드 인자와 관련된 사소한 변경 세 가지가 있습니다.</p>
+<h3>1. 키워드 인자에 Symbol이 아닌 키 허용</h3>
+<p>{: #other-minor-changes-non-symbol-keys }</p>
+<p>루비 2.6 이전 버전은 키워드 인자에 Symbol 키만 사용할 수 있습니다. 루비
+2.7에서는 키워드 인자에 Symbol이 아닌 키를 사용할 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p>메서드가 옵셔널 인자와 키워드 인자 모두 받는 경우, 루비 2.6에서 Symbol 키와
+Symbol이 아닌 키 모두를 갖고 있는 Hash는 둘로 나뉘었습니다. 루비 2.7에서는
+Symbol이 아닌 키를 허용하기 때문에 둘 다 키워드로 받습니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.6: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.7: [1, {&quot;key&quot;=&gt;42, :sym=&gt;43}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 동작을 유지하려면 중괄호를 사용하세요<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->},<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.6 및 2.7: [{&quot;key&quot;=&gt;42}, {:sym=&gt;43}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>루비 2.7은 명시적 키워드를 받지만 나머지 키워드 인자(<code>**kwargs</code>)는 받지 않는
+메서드를, Symbol과 Symbol이 아닌 키 모두를 갖는 Hash 또는 키워드 인자를 넘겨
+호출한 경우 여전히 해시를 나누고 경고를 발생시킵니다. 이 동작은 루비 3에서
+제거되고 <code>ArgumentError</code>를 발생시킵니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;key&quot;<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->42<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:sym<!-- raw HTML omitted --> <!-- raw HTML omitted -->=&gt;<!-- raw HTML omitted --> <!-- raw HTML omitted -->43<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 2.6 및 2.7: =&gt; [{&quot;key&quot;=&gt;42}, 43]<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 2.7: warning: Splitting the last argument into positional and keyword parameters is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#           warning: The called method `bar' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># 루비 3.0: ArgumentError<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>2. 이중 스플랫(double splat)을 사용한 빈 해시(<code>**{}</code>)는 아무 인자도 넘기지 않음</h3>
+<p>{: #other-minor-changes-empty-hash }</p>
+<p>루비 2.6 이전 버전은 <code>**empty_hash</code>를 넘기면 위치 인자로 빈 Hash를 넘깁니다.
+루비 2.7 이후 버전은 아무 인자도 넘기지 않습니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.6 이전: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.7 이후: []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo(**{})</code>는 루비 2.6과 2.7 모두 아무것도 넘기지 않습니다. 루비 2.6 이전 버전은
+파서에 의해 <code>**{}</code>를 제거하고, 루비 2.7 이후 버전은 <code>**empty_hash</code>와 동일하게
+간주되어, 메서드에 아무 키워드 인자도 넘기지 않는 쉬운 방법을 제공합니다.</p>
+<p>루비 2.7에서는 필요한 위치 인자 개수보다 적은 인자를 넘겨 메서드를 호출했을 때,
+루비 2.6과의 호환성을 위해 <code>foo(**empty_hash)</code>에서 빈 해시를 넘기고 경고를
+발생시킵니다. 이 동작은 3.0에서 제거됩니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->{}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->empty_hash<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.6 이전: {}<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.7: warning: Passing the keyword argument as the last hash parameter is deprecated<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#             warning: The called method `foo' is defined here<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 3.0: ArgumentError: wrong number of arguments<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>3. 키워드 인자 없음 문법(<code>**nil</code>) 도입</h3>
+<p>{: #other-minor-changes-double-splat-nil }</p>
+<p>메서드가 키워드 인자를 받지 않는다는 것을 명시적으로 나타내기 위해 메서드 정의에 <code>**nil</code>을 사용할 수 있습니다. 이러한 메서드를 키워드 인자와 함께 호출하면 <code>ArgumentError</code>가 발생합니다.(이건 새 기능이고, 호환되지 않는 기능이 아닙니다)</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.7 이후: no keywords accepted (ArgumentError)<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>메서드가 키워드 인자를 받지 않는다는 것을 명시적으로 만들 때 유용합니다. 이렇게
+하지 않으면 위의 예제에서 키워드는 나머지 인자에 병합됩니다. 메서드가 키워드
+인자를 받도록 확장하면 메서드는 다음과 같은 호환성 문제를 갖게 될 수 있습니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 키워드를 넘기면 Hash 객체로 변환됩니다(루비 3.0도 마찬가지)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{:k=&gt;1}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 메서드가 키워드를 받도록 확장된 경우<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->*<!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->mode: <!-- raw HTML omitted --><!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->args<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># 기존의 호출이 동작하지 않을 수 있습니다<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->k: <!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; ArgumentError: unknown keyword k<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2>자동 변환이 제거 예정된 이유</h2>
+<p>{: #why-deprecated }</p>
+<p>처음에 자동 변환은 좋은 아이디어처럼 보였고, 많은 경우에 잘 동작했습니다. 하지만
+너무 많은 예외가 존재했고, 이 동작에 관한 많은 버그 제보를 받았습니다.</p>
+<p>자동 변환은 메서드가 옵셔널 위치 인자와 키워드 인자를 받는 경우 잘 동작하지
+않습니다. 어떤 사람들은 마지막 Hash 객체가 위치 인자로 간주될 거라고 생각하고,
+또 어떤 사람들은 키워드 인자로 변환될 거라고 생각합니다.</p>
+<p>이는 가장 헷갈리는 경우 중 하나입니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->=<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->p<!-- raw HTML omitted --> <!-- raw HTML omitted -->[<!-- raw HTML omitted --><!-- raw HTML omitted -->x<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [{}, {}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; [1, {}]<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->bar<!-- raw HTML omitted --><!-- raw HTML omitted -->({},<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->{})<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; expected: [{}, {}], actual: [1, {}]<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>루비 2에서 <code>foo({})</code>는 빈 해시를 일반적인 인자로 넘기지만(즉, <code>{}</code>는 <code>x</code>에 대입됩니다), <code>bar({})</code>는 키워드 인자를 넘깁니다(즉, <code>{}</code>는 <code>kwargs</code>에 대입됩니다). 그래서 <code>any_method({})</code>는 굉장히 모호합니다.</p>
+<p><code>bar({}, **{})</code>가 빈 해시를 명시적으로 <code>x</code>에 넘길 거라고 생각할 수 있습니다. 놀랍게도 이는 생각한 대로 동작하지 않고 루비 2.6에서 여전히 <code>[1, {}]</code>를 출력합니다. 루비 2.6에서 <code>**{}</code>가 파서에 의해 무시되고, 첫 번째 인자 <code>{}</code>는 키워드(<code>**kwargs</code>)로 자동 변환되기 때문입니다. 이 경우에 <code>bar({}, {})</code>를 호출해야 하는데, 아주 이상하죠.</p>
+<p>같은 문제가 나머지 인자와 키워드 인자를 받는 메서드에도 적용됩니다. 이는 키워드 인자의 명시적인 델리게이트가 동작하지 않게 합니다.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --><em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->target<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted --></em><!-- raw HTML omitted --><!-- raw HTML omitted -->args<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->**<!-- raw HTML omitted --><!-- raw HTML omitted -->kwargs<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->&amp;<!-- raw HTML omitted --><!-- raw HTML omitted -->block<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->foo<!-- raw HTML omitted --><!-- raw HTML omitted -->()<!-- raw HTML omitted --> <!-- raw HTML omitted -->#=&gt; 루비 2.6 이전: [{}]<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->#=&gt; 루비 2.7 이후: []<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>foo()</code>는 아무 인자도 넘기지 않지만 루비 2.6에서 <code>target</code>은 빈 해시 인자를
+받습니다. <code>foo</code> 메서드가 키워드(<code>**kwargs</code>)를 명시적으로 델리게이트하기
+때문입니다. <code>foo()</code>가 호출되었을 때 <code>args</code>는 빈 Array, <code>kwargs</code>는 빈 Hash,
+<code>block</code>은 <code>nil</code>입니다. 그 후 <code>target(*args, **kwargs, &amp;block)</code>은 빈 Hash를
+인자로 넘기는데, <code>**kwargs</code>가 Hash 위치 인자로 자동 변환되기 때문입니다.</p>
+<p>자동 변환은 사람을 혼란스럽게 할 뿐만 아니라 메서드의 확장성도 떨어뜨립니다. 이
+동작 변경에 대한 근거와 구현과 관련된 선택이 이루어진 이유에 대한 자세한 내용은
+<a href="https://bugs.ruby-lang.org/issues/14183">[Feature #14183]</a>을 보세요.</p>
+<h2>감사의 글</h2>
+<p>이 글을 리뷰해 준(그리고 같이 작성해 준) Jeremy Evans와 Benoit Daloze에게 감사를 표합니다.</p>
+<h2>수정 이력</h2>
+<ul>
+<li>2019-12-25 수정: 2.7.0-rc2에서 경고 메시지가 약간 수정되었고, 경고를 끄는 API를 추가했습니다.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    <div class="navigation">
+      
+
+      <h3><strong>최근 소식</strong></h3>
+
+      <ul class="menu">
+        
+        <li><a href="/ko/news/2022/12/25/ruby-3-2-0-released/">Ruby 3.2.0 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/12/06/ruby-3-2-0-rc1-released/">Ruby 3.2.0 RC 1 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-1-3-released/">Ruby 3.1.3 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-3-0-5-released/">Ruby 3.0.5 릴리스</a></li>
+        
+        <li><a href="/ko/news/2022/11/24/ruby-2-7-7-released/">Ruby 2.7.7 릴리스</a></li>
+        
+      </ul>
+    </div>
+
+    
+
+    <h3>구독</h3>
+    <p><a href="/ko/feeds/news.rss">최근 소식(RSS)</a></p>
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/ko/" class="home">홈</a>
+
+  <a href="/ko/downloads/">다운로드</a>
+
+  <a href="/ko/documentation/">문서</a>
+
+  <a href="/ko/libraries/">라이브러리</a>
+
+  <a href="/ko/community/">커뮤니티</a>
+
+  <a href="/ko/news/">뉴스</a>
+
+  <a href="/ko/security/">보안</a>
+
+  <a href="/ko/about/">Ruby에 대해서</a>
+
+
+        </div>
+
+        <p>
+
+  This site in other languages:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/ko/about/website/">이 사이트</a>는 Ruby 커뮤니티의 구성원들이 직접 관리합니다.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

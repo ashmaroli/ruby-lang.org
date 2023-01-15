@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Oт Perl към Ruby</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/bg/documentation/ruby-from-other-languages/to-ruby-from-perl/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/bg/feeds/news.rss" rel="alternate" title="Последните новини (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/bg/">
+          <h1>Ruby</h1>
+          <h2>най-добрият приятел на програмиста</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/bg/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Търси" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Oт Perl към Ruby</h1>
+
+
+
+  <div id="content">
+    <p>Perl е чудесен език, с богата документация и прекрасно общество. Въпреки
+това езикът е неприветлив и сложен. Ruby наследява много от нещата,
+направили Perl икона в някои програмистки среди.</p>
+<h3>Прилики</h3>
+<p>Както в Perl, така и в Ruby …</p>
+<ul>
+<li>Съществува пакетна система, подобна на CPAN (наречена <a href="http://guides.rubygems.org">RubyGems</a>)</li>
+<li>Регулярните изрази са вградени в езика. Бон Апети !</li>
+<li>Скобите са често пренебрегвани и неизползвани</li>
+<li>Низовете работят по същия начин.</li>
+<li>Налична е интерполация на низове, оградени с двойни кавички –
+<code>&quot;#{obj.size}&quot;</code></li>
+<li>Използването на шел команди се изпълнява в обратни <code>`кавички`</code>.</li>
+<li>Разполагате с вградено средство за документация (В Ruby се казва
+rdoc).</li>
+</ul>
+<h3>Разлики</h3>
+<p>За разлика от Perl, в Ruby …</p>
+<ul>
+<li>Липсват контекстно-зависими правила, както в Perl.</li>
+<li>Променливата не представлява обекта, който сочи. В Ruby променливите
+са референция към обект.</li>
+<li>Въпреки, че <code>$</code> и <code>@</code> се ползват като първи символ в името на
+променливите, те не се ползват за идентификация на типа, а за
+идентификация на обхвата (<code>$</code> за глобална променлива, <code>@</code> за
+инстанция на обект и <code>@@</code> атрибут на класа).</li>
+<li>Масивите се означават с квадратни скоби</li>
+<li>Създаването на списък от други списъци запазва структурата си, а не ги
+обединява в един глобален списък. Получава се масив в масива.</li>
+<li>Вместо <code>sub</code>, имаме <code>def</code>.</li>
+<li>Няма нужда от точка и запетая в края на реда. Евентуално за край на
+дефиниция на метод, клас или условен израз се ползва ключовата дума
+<code>end</code>.</li>
+<li>Обектите са strongly typed, което значи, че трябва да използвате
+<code>foo.to_i</code>, <code>foo.to_s</code> и т.н, за конвертиране на типове.</li>
+<li>Липсват <code>eq</code>, <code>ne</code>, <code>lt</code>, <code>gt</code>, <code>ge</code> или <code>le</code>.</li>
+<li>Липсва оператора <code>&lt;&gt;</code>. Вместо това се ползва <code>IO.метод</code>.</li>
+<li><code>=&gt;</code> се използва само за хеш литерали.</li>
+<li>Липсва <code>undef</code>. Вместо това имаме имаме <code>nil</code>. <code>nil</code> е обект (както
+всичко друго в Ruby) и няма значение на недефинирана променлива.</li>
+<li>Когато тестваме за истинност, само <code>false</code> и <code>nil</code> представляват лъжа.
+Всичко друго е истина (включително <code>0</code>, <code>0.0</code>, <code>&quot;&quot;</code> и <code>[]</code>).</li>
+<li>Липсва <a href="http://www.perlmonks.org/">PerlMonks</a>. Вместо това имаме ruby-talk пощенски списък.</li>
+</ul>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Започнете</strong> лесно е!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Пробвайте Ruby! (в браузъра)</a></li>
+
+    
+    <li><a href="/bg/documentation/quickstart/">Ruby в 20 минути</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/ruby-from-other-languages/">Ruby от други езици</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Изследвайте</strong> нов свят…</h3>
+  <ul class="menu">
+    
+    <li><a href="/bg/documentation/">Документация</a></li>
+    
+
+    
+
+    
+
+    
+    <li><a href="/bg/libraries/">Библиотеки</a></li>
+    
+
+    
+    <li><a href="/bg/documentation/success-stories/">Успешни истории</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Участвайте</strong> в приятелски настроено общество.</h3>
+  <ul>
+    
+    <li><a href="/bg/community/mailing-lists/">Пощенски списъци</a>: Дискусии относно Ruby с програмисти от цял свят.</li>
+    
+
+    
+    <li><a href="/bg/community/user-groups/">Потребителски групи</a>: Свържете се с рубисти в твоя район.</li>
+    
+
+    
+    <li><a href="/bg/community/weblogs/">Блогове</a>: Прочетете какво се случва в Ruby обществото.</li>
+    
+
+    
+    <li><a href="/bg/community/ruby-core/">Ruby ядро</a>: Помогнете за разработката на Ruby.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Следене на бъгове</a>: Докладвайте или помогнете за решаването на проблеми в Ruby.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Новини</h3>
+    <p><a href="/bg/feeds/news.rss">Последните новини (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/bg/" class="home">Home</a>
+
+  <a href="/bg/downloads/">За сваляне</a>
+
+  <a href="/bg/documentation/">Документация</a>
+
+  <a href="/bg/libraries/">Библиотеки</a>
+
+  <a href="/bg/community/">Общност</a>
+
+  <a href="/bg/news/">Новини</a>
+
+  <a href="/bg/security/">Сигурност</a>
+
+  <a href="/bg/about/">Относно</a>
+
+
+        </div>
+
+        <p>
+
+  Този сайт на други езици:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/bg/about/website/">Този сайт</a> се поддържа от членове на Ruby обществото.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>

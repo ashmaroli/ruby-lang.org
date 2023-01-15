@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    
+    <title>Ruby ve Diğer Diller</title>
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="image" content="https://www.ruby-lang.org/images/header-ruby-logo@2x.png">
+    
+    <meta name="description" content="">
+    
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic,greek,vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="canonical" href="https://www.ruby-lang.org/tr/documentation/ruby-from-other-languages/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href="/tr/feeds/news.rss" rel="alternate" title="Son Haberler (RSS)" type="application/rss+xml">
+
+
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/page.js"></script>
+    
+  </head>
+
+  
+
+  <body>
+    <div id="header">
+      <div id="header_content" class="container">
+        <a href="/tr/">
+          <h1>Ruby</h1>
+          <h2>BİR PROGRAMCININ EN İYİ ARKADAŞI</h2>
+        </a>
+
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+          <a href="#" class="menu selected">Menu</a>
+        </div>
+
+        <div id="search-box">
+          
+<form id="search-form" action="https://www.google.com/cse">
+  <table class="fieldset">
+    <tr>
+      <td>
+        <input class="field" type="text" name="q" size="31" style="background: white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat" onfocus="this.style.background='white'" onblur="if (/^\s*$/.test(this.value)) this.style.background='white url(//www.google.com/coop/intl/tr/images/google_custom_search_watermark.gif) left no-repeat'"/>
+      </td>
+      <td>
+        <input type="hidden" name="cx" value="011743037637077038592:5tuc9cqilws" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="button" type="submit" name="sa" value="Ara" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="page">
+      
+
+
+      <div id="main-wrapper" class="container">
+        <div id="main">
+          <div id="content-wrapper">
+  
+<h1>Ruby ve Diğer Diller</h1>
+
+
+
+  <div id="content">
+    <p>Ruby koduna ilk baktığınızda daha önce kullandığınız başka programlama
+dillerine benzetebilirsiniz. Bu bilerek yapılmıştır. Java, Perl veya
+Python kullanıcılarına deyimler tanıdık gelecektir. Eğer bunlardan
+birini kullanmışsanız işiniz çok kolay.
+{: .summary}</p>
+<p>Bu belgede iki ana bölüm var. İlki <em>X</em> dilinden Ruby’ye geçerken ne
+görmeyi beklediğiniz, ikincisi dilin ana özelliklerini ele alıp önceden
+bildiklerinizle karşılaştırır.</p>
+<h2>Neler Değişiyor: <em>X Dilinden</em> Ruby’ye</h2>
+<ul>
+<li><a href="to-ruby-from-c-and-cpp/">C ve C++ dan Ruby’ye</a></li>
+<li><a href="to-ruby-from-java/">Java’dan Ruby’ye</a></li>
+<li><a href="to-ruby-from-perl/">Perl’den Ruby’ye</a></li>
+<li><a href="to-ruby-from-php/">PHP’den Ruby’ye</a></li>
+<li><a href="to-ruby-from-python/">Python’dan Ruby’ye</a></li>
+</ul>
+<h2>Önemli Dil Özellikleri ve Bazı İpuçları</h2>
+<p>Burada Ruby öğrenirken yardımcınız olacak ana Ruby özelliklerini
+görüyorsunuz.</p>
+<h3>Yineleme (Iteration)</h3>
+<p>İki Ruby özelliği, daha önce muhtemelen görmediğiniz ve kullanmaya başlaması
+biraz zaman alan, bloklar ve yineleyicilerdir. Bir index üzerinden
+döngü yapmak (C, C++ ve 1.5 öncesi Java daki gibi) veya bir liste
+üzerinde döngü yapmak (Perl’ün <code>for (@a) {...}</code> veya Python’un
+<code>for i in aList: ...</code>) yerine Ruby ile genellikle şöyle birşey
+görürsünüz:</p>
+<!-- raw HTML omitted -->
+<p><code>each</code> (ve arkadaşları <code>collect</code>, <code>find</code>, <code>inject</code>, <code>sort</code>, vs.)
+hakkında daha fazla bilgi için komut satırında <code>ri Enumerable</code>
+(ve sonrasında <code>ri Enumerable#some_method</code>) yazabilirsiniz.</p>
+<h3>Herşeyin Bir Değeri Vardır</h3>
+<p>Bir deyimle bir ifade arasında fark yoktur. Herşey <strong>nil</strong> de
+olsa bir değer geri döner. Şu mümkündür:</p>
+<!-- raw HTML omitted -->
+<h3>Semboller Sıradan Stringler Değildir</h3>
+<p>Ruby’ye yeni başlayan birçok kişi Sembollerin ne olduğunu ve ne için
+kullanıldıklarını anlamakta zorlanır.</p>
+<p>Semboller en iyi kimlikler olarak açıklanabilir. Bir sembolle ilgili
+sorulacak olan <strong>ne</strong> olduğu değil <strong>kim</strong> olduğudur. Konsolda <code>irb</code>
+girin ve farkı görelim:</p>
+<!-- raw HTML omitted -->
+<p><code>object_id</code> metodu bir nesnenin tanımlama kodunu geri döner. Eğer iki nesne birbirine eşitse <code>object_id</code> leri de eşit olacaktır. Bunun anlamı ikisi de hafıza da aynı yeri işaret ediyor demektir. Gördüğünüz gibi bir sembol ilk defa kullanıldıktan sonra aynı
+karakterler her zaman hafızada aynı yeri gösterir. Yani <code>object_id</code>leri
+aynıdır.</p>
+<p>Şimdi de (“george”) stringine bakalım. <code>object_id</code>leri aynı değil. Bunun
+anlamı hafızada ayrı iki nesneyi işaret etmekte olmalarıdır. Her nezaman
+yeni bir string üretirseniz Ruby onun için bir hafıza ayırır.</p>
+<p>Eğer nerede sembol nerede string kullanacağınızdan emin değilseniz,
+kimliği mi (örn. Hash key) yoksa içeriği mi size gerekli (yukardaki
+“gearge” gibi) ona göre değerlendirin.</p>
+<h3>Herşey bir Nesnedir</h3>
+<p>“Herşey bir nesnedir” lafı diğer dillerdeki gibi abartı bir laf
+değildir. Sınıflar gibi tamsayılar da bir nesnedir ve diğer nesnelerle
+yaptığınız herşeyi onlarla da yapabilirsiniz:</p>
+<!-- raw HTML omitted -->
+<h3>Değişken Sabitler</h3>
+<p>Sabitler tam olarak sabit değil. Eğer halihazırda değeri verilmiş bir
+sabiti değiştirmeye kalkarsanız bir uyarı mesajı üretir ama çalışmayı
+durdurmaz. Bu, sabitleri yeniden <strong>tanımlamalısınız</strong> demek değildir tabii ki.</p>
+<h3>İsimlendirme Gelenekleri</h3>
+<p>Ruby bazı isimlendirme geleneklerine zorlar. Eğer bir isim büyük harfle
+başlıyorsa, o bir sabittir. Eğer bir dolar işaretiyle başlıyorsa (<code>$</code>), bu
+bir global değişkendir. Eğer <code>@</code> işaretiyle başlıyorsa bu bir örnek
+değişkenidir. Eğer <code>@@</code> ile başlıyorsa bu bir sınıf değişkenidir.</p>
+<p>Metod isimleri de büyük harfle başlayabilir. Bu aşağıdaki gibi bir
+karışıklığa sebep olabilir:</p>
+<!-- raw HTML omitted -->
+<p>Burada <code>Constant</code> 10 değerindeyken <code>Constant()</code> değeri 11 dir.</p>
+<h3>Anahtar kelime argümanları</h3>
+<p>Python'daki gibi, Ruby 2.0'dan itibaren, metodlar anahtar kelime argümanları
+kullanarak tanımlanabilir:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from A to B via mail.&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->deliver<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->via: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;Pony Express&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->from: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;B&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->to: <!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;A&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; &quot;Sending from B to A via Pony Express.&quot;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Evrensel Doğruluk</h3>
+<p>Ruby’de <strong>nil</strong> ve <strong>false</strong> dışında herşey doğru kabul edilir. C,
+Python ve diğer birçok dilde 0 ve boş listeler gibi diğer bazı değerler
+yanlış kabul edilir. Aşağıdaki Python koduna bakın (diğer dillerde de durum
+böyledir):</p>
+<!-- raw HTML omitted -->
+<p>Bunu çıktısı “0 is false” olacaktır. Ruby karşılığı ise:</p>
+<!-- raw HTML omitted -->
+<p>“0 is true” çıktısı verecektir.</p>
+<h3>Erişim Belirleyicileri Kısım Sonuna Kadar Geçerlidir</h3>
+<p>Aşağıdaki Ruby kodunda,</p>
+<!-- raw HTML omitted -->
+<p><code>another_method</code> erişiminin genel olacağını düşünebilirsiniz ama öyle değil. “private” erişim belirleyici sınıf tanımı sonuna kadar veya başka bir erişim belirleyici satıra kadar geçerli olacaktır. Default olarak tüm metodlar “public”(genel erişim)dir:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->private<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># another_method private erişim<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->another_method<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->false<!-- raw HTML omitted --><!-- raw HTML omitted -->;<!-- raw HTML omitted --> <!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><code>public</code>, <code>private</code> ve <code>protected</code> aslında metoddur ve bu yüzden parametre alabilirler. Eğer bunlara bir sembol gönderirseniz metodun görünürlüğü değişir.</p>
+<h3>Metod Erişimleri</h3>
+<p>Java’da <code>public</code>, metoda herkes erişebilir demektir. <code>protected</code>, sınıfın
+örneklerinden, türetilmiş sınıfların örneklerinden ve aynı paket
+içerisindeki sınıfların örneklerinden erişilebilir demektir. <code>private</code>
+ise sınıfın örneklerinden başka kimse metoda ulaşamaz demektir.</p>
+<p>Ruby biraz farklılık gösterir. <code>public</code> doğal olarak herkese açık
+demektir. <code>private</code> ise metodun sadece harici bir alıcı olmadan
+çağrılabildiğinde ulaşılabilir olduğunu belirtir. Sadece <code>self</code>, private bir
+metod çağrısının alıcısı olabilir.</p>
+<p><code>protected</code> incelenmesi gereken birşey. Bir protected metod sınıfın yada türetilmiş sınıfın örneklerinden çağrılabilir, ayrıca diğer örnekler üzerinden çağrılabilir. Örnek, <a href="http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html">Ruby Dili SSS</a> alınmıştır:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->identifier<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->other<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x34ab50&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t2<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; #&lt;Test:0x342784&gt;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->       <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># şimdi <code>identifier'ı protected yapalım, hala çalışıyor&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# çünkü protected </code>diğerinin' alıcı olmasına izin verir<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->protected<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->  <!-- raw HTML omitted --># =&gt; true<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># şimdi `identifier'ı private yapalım<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->class<!-- raw HTML omitted --> <!-- raw HTML omitted -->Test<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->private<!-- raw HTML omitted --> <!-- raw HTML omitted -->:identifier<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->t1<!-- raw HTML omitted --> <!-- raw HTML omitted -->==<!-- raw HTML omitted --> <!-- raw HTML omitted -->t2<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># NoMethodError: private method `identifier' called for #&lt;Test:0x342784&gt;<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Sınıflar Açıktır</h3>
+<p>Ruby sınıfları açıktır. İstediğiniz zaman açabilir, ekleme yapabilir,
+değiştirebilirsiniz. Çekirdek sınıfları bile, mesela <code>Integer</code> ve hatta tüm
+nesnelerin anası <code>Object</code> sınıfı dahil. Ruby on Rails <code>Integer</code> sınıfına
+zamanla ilgili bir kısım metod eklemiştir. İzleyin:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --># 1 Ocak saat 00:00 dan itibaren 14 saat sonra<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># anca uyanmışsınız ;)<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Time<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->mktime<!-- raw HTML omitted --><!-- raw HTML omitted -->(<!-- raw HTML omitted --><!-- raw HTML omitted -->2006<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->01<!-- raw HTML omitted --><!-- raw HTML omitted -->)<!-- raw HTML omitted --> <!-- raw HTML omitted -->+<!-- raw HTML omitted --> <!-- raw HTML omitted -->14<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->hours<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Sun Jan 01 14:00:00<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Eğlenceli Metod İsimleri</h3>
+<p>Ruby’de metodların soru veya ünlem işareti ile bitmesine izin verilir.
+Gelenek olarak sorulara cevap veren metodlar (örnek,
+<code>Array#empty?</code> eğer alıcısı boşsa <strong>true</strong> döner) soru işareti
+ile biter. Tehlikeli sonuçları olabilecek metodlar (örneğin “kendi”ni ya da argümanlarını
+değiştiren metodlar, <code>exit!</code> gibi) ünlem işareti ile bitirilirler.</p>
+<p>Argümanlarını değiştiren tüm metodlar ünlem işareti ile bitmeyebilir.
+<code>Array#replace</code> bir array’in içeriğini diğer biriyle değiştirir
+ama ünlemle bitmez. Böyle bir metodun kendini <strong>değiştirmemesi</strong> pek mantıklı
+değil.</p>
+<h3>Tekil Metodlar</h3>
+<p>Tekil metodlar, tek nesneye özel metodlardır. Hangi nesne için
+tanımlandıysa onun için geçerlidir.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->def<!-- raw HTML omitted --> <!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->&quot;Expensive car&quot;<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->end<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->porsche<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Expensive car<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --># Diğer nesneler etkilenmez<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --> <!-- raw HTML omitted -->=<!-- raw HTML omitted --> <!-- raw HTML omitted -->Car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->new<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->other_car<!-- raw HTML omitted --><!-- raw HTML omitted -->.<!-- raw HTML omitted --><!-- raw HTML omitted -->inspect<!-- raw HTML omitted --> <!-- raw HTML omitted --># =&gt; Cheap car<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3>Kayıp Metodlar</h3>
+<p>Ruby bir metodu listesinde bulamayınca vazgeçmez, <code>method_missing</code>
+metodunu bulamadığı metod ismi ve argümanları ile çağırır. Normalde
+<code>method_missing</code> bir NameError hatası verir, fakat isterseniz bunu
+istediğiniz şekilde değiştirebilirsiniz ve birçok kütüphane de bunu
+yapar. Bir örnek:</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->__<!-- raw HTML omitted --> <!-- raw HTML omitted -->:a<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->:b<!-- raw HTML omitted --><!-- raw HTML omitted -->,<!-- raw HTML omitted --> <!-- raw HTML omitted -->10<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># =&gt; Method __ was called, but not found. It has these<!-- raw HTML omitted -->
+<!-- raw HTML omitted --># arguments: a, b, 10<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Yukardaki kod sadece çağrının detaylarını yazdırır, fakat siz mesajı
+istediğiniz gibi ele almakta serbestsiniz.</p>
+<h3>Fonksiyon Çağrısı Değil Mesaj İletimi</h3>
+<p>Bir metod çağrısı aslında diğer bir nesneye bir <strong>mesaj</strong> dır:</p>
+<!-- raw HTML omitted -->
+<h3>Bloklar Nesnedir, Sadece Henüz Bunu Bilmiyorlar</h3>
+<p>Bloklar (gerçekte kapamalar) standart kütüphane tarafından çok
+kullanılır. Bir bloğu çağırmak için <code>yield</code> da kullanabilirsiniz,
+argüman listesine özel bir argüman ekleyerek bloğu <code>Proc</code> da yapabilirsiniz.
+Şöyleki:</p>
+<!-- raw HTML omitted -->
+<p>Blokları metod çağrıları dışında da <code>Proc.new</code> ile veya <code>lambda</code> metodu
+ile üretebilirsiniz</p>
+<p>Benzer olarak metodlar da birer nesnedir:</p>
+<!-- raw HTML omitted -->
+<h3>Operatörler sözdizimsel şekerlerdir</h3>
+<p>Ruby’deki çoğu operatör birbirine belli önceliği olan metod çağrılarıdır.
+Bu yüzden isterseniz Integer’ın + metodunu değiştirebilirsiniz:</p>
+<!-- raw HTML omitted -->
+<p>C++’ın <code>operator+</code>'ına, vb. ihtiyacınız yok.</p>
+<p>Array stili bir erişim için <code>[]</code> ve <code>[]=</code> metodları tanımlayabilirsiniz.
+(+1 ve -2 deki gibi) işaretler için <code>+@</code> ve <code>-@</code> metodlarını
+tanımlamalısınız.</p>
+<p>Aşağıdaki operatörler sözdizimsel şeker değillerdir. Bunlar metod
+değildir ve tekrar tanımlanamazlar:</p>
+<!-- raw HTML omitted -->
+<p>Ek olarak, <code>+=</code>, <code>*=</code> vb. şunların kısaltmasıdır : <code>var = var + other_var</code>,
+<code>var = var * other_var</code>, vb. ve bu yüzden tekrar tanımlanamazlar.</p>
+<h2>Daha Fazla Bilgi</h2>
+<p>Daha fazla bilgiye ihtiyaç duyarsanız <a href="/tr/documentation/">Belgeler</a>
+bölümüne bakınız.</p>
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+<div id="sidebar-wrapper">
+  <div id="sidebar">
+    
+
+
+
+
+<div class="navigation">
+  <h3><strong>Başlamak</strong>, çok kolay!</h3>
+
+  <ul class="menu">
+    <li><a href="https://try.ruby-lang.org/">Ruby'yi Deneyin! (tarayıcınızda)</a></li>
+
+    
+    <li><a href="/tr/documentation/quickstart/">Yirmi Dakikada Ruby</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/ruby-from-other-languages/">Diğer Dillerden Ruby'ye</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Yeni Bir Dünya</strong> keşfedin…</h3>
+  <ul class="menu">
+    
+    <li><a href="/tr/documentation/">Belgeler</a></li>
+    
+
+    
+
+    
+    <li><a href="https://rubybib.org/">Akademik Araştırma</a></li>
+    
+
+    
+    <li><a href="/tr/libraries/">Kütüphaneler</a></li>
+    
+
+    
+    <li><a href="/tr/documentation/success-stories/">Başarı Hikayeleri</a></li>
+    
+  </ul>
+</div>
+
+
+
+<div class="navigation">
+  <h3><strong>Arkadaşça</strong> ve büyüyen bir topluluğa katılın.</h3>
+  <ul>
+    
+    <li><a href="/tr/community/mailing-lists/">Mail Listeleri</a>: Tüm dünyadan Ruby programcılarıyla görüşün.</li>
+    
+
+    
+    <li><a href="/tr/community/user-groups/">Kullanıcı Grupları</a>: Bölgenizdeki Ruby'cilerle temas kurun.</li>
+    
+
+    
+    <li><a href="/tr/community/weblogs/">Web günlükleri</a>: Ruby'de neler olduğunu takip edin.</li>
+    
+
+    
+    <li><a href="/tr/community/ruby-core/">Ruby Core</a>: En son Ruby'nin kaba taraflarının parlatılmasına yardımcı olun.</li>
+    
+
+    
+    <li><a href="https://bugs.ruby-lang.org/">Sorun Takibi</a>: Ruby sorunlarını rapor edin ya da çözümüne yardım edin.</li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+    <h3>Takip Edin</h3>
+    <p><a href="/tr/feeds/news.rss">Son Haberler (RSS)</a></p>
+
+
+  </div>
+</div>
+<hr class="hidden-modern" />
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="footer">
+        <div class="site-links">
+          
+
+  <a href="/tr/" class="home">Ana Sayfa</a>
+
+  <a href="/tr/downloads/">İndirin</a>
+
+  <a href="/tr/documentation/">Belgeler</a>
+
+  <a href="/tr/libraries/">Kütüphaneler</a>
+
+  <a href="/tr/community/">Topluluk</a>
+
+  <a href="/tr/news/">Haberler</a>
+
+  <a href="/tr/security/">Güvenlik</a>
+
+  <a href="/tr/about/">Ruby Hakkında</a>
+
+
+        </div>
+
+        <p>
+
+  Diğer dillerde bu site:
+
+<a href="/bg/">Български</a>,
+<a href="/de/">Deutsch</a>,
+<a href="/en/">English</a>,
+<a href="/es/">Español</a>,
+<a href="/fr/">Français</a>,
+<a href="/id/">Bahasa Indonesia</a>,
+<a href="/it/">Italiano</a>,
+<a href="/ja/">日本語</a>,
+<a href="/ko/">한국어</a>,
+<a href="/pl/">polski</a>,
+<a href="/pt/">Português</a>,
+<a href="/ru/">Русский</a>,
+<a href="/tr/">Türkçe</a>,
+<a href="/vi/">Tiếng Việt</a>,
+<a href="/zh_cn/">简体中文</a>,
+<a href="/zh_tw/">繁體中文</a>.
+</p>
+
+        
+  <p><a href="/tr/about/website/">Bu web sitesi</a> Ruby topluluğunun üyeleri tarafından gururla sürdürülmektedir.</p>
+
+
+      </div>
+    </div>
+  </body>
+</html>
