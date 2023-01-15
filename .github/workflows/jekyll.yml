@@ -1,0 +1,24 @@
+name: Build site with Jekyll
+
+on:
+  push:
+
+jobs:
+  jekyll:
+    name: Build with Jekyll (${{ matrix.jekyll_ref }})
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        include:
+          - jekyll_ref: '~> 4.2.0'
+          - jekyll_ref: 'jekyll/jekyll:master'
+    steps:
+      - name: Build and Deploy with Jekyll (${{ matrix.jekyll_ref }})
+        uses: ashmaroli/deploy-jekyll-build@ruby-ver
+        with:
+          ruby_version: '2.7'
+          cache_bundle: true
+          build_opts: |
+            profile: true
+        env:
+          JEKYLL_REF: ${{ matrix.jekyll_ref }}

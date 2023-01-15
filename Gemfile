@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 
 JEKYLL_DIRECTIVES = \
-  if ENV['JEKYLL_REMOTE_REF']
-    [:github, :ref].zip(ENV['JEKYLL_REMOTE_REF'].split(':', 2)).to_h
-  elsif ENV['JEKYLL_VERSION']
-    ENV['JEKYLL_VERSION']
+  if ENV['JEKYLL_REF'].include?(':')
+    [:github, :ref].zip(ENV['JEKYLL_REF'].split(':', 2)).to_h
+  elsif ENV['JEKYLL_REF']
+    ENV['JEKYLL_REF']
   else
     { path: '../jekyll' }
   end
