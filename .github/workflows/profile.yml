@@ -1,0 +1,24 @@
+name: Profile site build
+
+on:
+  push:
+
+jobs:
+  profile:
+    name: "Profile with ${{ matrix.profiler }}"
+    runs-on: "ubuntu-latest"
+    env:
+      JEKYLL_REF: "~> 4.2.0"
+    strategy:
+      matrix:
+        profiler: [stackprof, methprof]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Ruby 2.7
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+          bundler-cache: true
+      - name: Run Profile Script
+        run: "ruby ${{ github.workspace }}/.github/actions/${{ matrix.profiler }}.rb"
