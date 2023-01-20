@@ -22,3 +22,15 @@ Benchmark.ips do |x|
   x.report("Set#include?") { set.include?(subject) }
   x.compare!
 end
+
+Benchmark.ips do |x|
+  x.report("Array#find") { array.find { |item| item == subject } }
+  x.report("Set#find") { set.find { |entry| entry == subject } }
+  x.compare!
+end
+
+Benchmark.ips do |x|
+  x.report("Array#each") { array.each(&:relative_path) }
+  x.report("Set#each") { set.each(&:relative_path) }
+  x.compare!
+end
