@@ -8,10 +8,10 @@ jobs:
     name: "Profile with ${{ matrix.profiler }}"
     runs-on: "ubuntu-latest"
     env:
-      JEKYLL_REF: "~> 4.2.0"
+      JEKYLL_REF: "~> 4.2"
     strategy:
       matrix:
-        profiler: [stackprof, methprof, benchmark]
+        profiler: [stackprof, methprof, benchmark, memprof]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
