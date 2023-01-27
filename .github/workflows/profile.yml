@@ -11,7 +11,7 @@ jobs:
       JEKYLL_REF: "~> 4.2"
     strategy:
       matrix:
-        profiler: [stackprof, methprof, benchmark, memprof]
+        profiler: [stackprof, methprof, benchmark, memprof, rubyprof]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3

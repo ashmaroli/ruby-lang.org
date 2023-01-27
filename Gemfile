@@ -22,4 +22,5 @@ gem 'tzinfo', '~> 1.0'
 gem 'benchmark-ips'
 gem 'memory_profiler'
 gem 'method_profiler'
+gem 'ruby-prof'
 gem 'stackprof' if RUBY_PLATFORM !~ /mingw|mswin|java/
