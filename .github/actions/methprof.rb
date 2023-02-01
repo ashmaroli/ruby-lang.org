@@ -12,7 +12,7 @@ module Hirb::Helpers::Table::Filters
   end
 end
 
-klass   = Object.const_get("Jekyll::Document", false)
+klass   = Object.const_get("Jekyll::Regenerator", false)
 
 Jekyll.logger.info "-" * 80
 Jekyll.logger.info "Profiling:", klass.name.cyan
