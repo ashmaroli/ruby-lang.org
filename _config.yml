@@ -2,10 +2,8 @@ url: https://www.ruby-lang.org
 permalink: pretty
 timezone: UTC
 
-plugins:
-  - jekyll-commonmark
-
-markdown: CommonMark
+kramdown:
+  auto_ids: false
 
 exclude:
   - config.ru

@@ -13,9 +13,6 @@ JEKYLL_DIRECTIVES = \
 
 gem 'jekyll', JEKYLL_DIRECTIVES
 
-gem 'jekyll-commonmark'
-gem 'liquid-c'
-
 gem 'tzinfo-data'
 gem 'tzinfo', '~> 1.0'
 

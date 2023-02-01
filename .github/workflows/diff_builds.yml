@@ -1,0 +1,55 @@
+name: Diff Jekyll Builds
+
+on:
+  push:
+
+env:
+  BUNDLE_JOBS: 4
+  BUNDLE_RETRY: 3
+  JEKYLL_REF: "~> 4.2"
+  RUBY_SERIES: "3.1"
+
+jobs:
+  build_n_diff:
+    name: Build Site n Diff
+    runs-on: "ubuntu-latest"
+    steps:
+    - name: Checkout head branch
+      uses: actions/checkout@v2
+      with:
+        path: pull_request
+    - name: "Set up Ruby with head commit"
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ env.RUBY_SERIES }}
+        bundler-cache: true
+      env:
+        BUNDLE_GEMFILE: "pull_request/Gemfile"
+        BUNDLE_PATH: "vendor/bundle"
+    - name: "Run `jekyll build` with head commit"
+      run: bundle exec jekyll build -s pull_request -d pull_request/_site --trace
+      env:
+        BUNDLE_GEMFILE: "pull_request/Gemfile"
+        BUNDLE_PATH: "vendor/bundle"
+
+    - name: Checkout master branch
+      uses: actions/checkout@v2
+      with:
+        ref: master
+        path: master_build
+    - name: "Set up Ruby with `master` branch"
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ env.RUBY_SERIES }}
+        bundler-cache: true
+      env:
+        BUNDLE_GEMFILE: "master_build/Gemfile"
+        BUNDLE_PATH: "vendor/bundle"
+    - name: "Run `jekyll build` with `master` branch"
+      run: bundle exec jekyll build -s master_build -d master_build/_site --trace
+      env:
+        BUNDLE_GEMFILE: "master_build/Gemfile"
+        BUNDLE_PATH: "vendor/bundle"
+
+    - name: Diff Builds
+      run: bash pull_request/.github/actions/diff_builds.sh master_build/_site pull_request/_site

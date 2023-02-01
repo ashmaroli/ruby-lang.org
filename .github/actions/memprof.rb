@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'jekyll'
 require 'memory_profiler'
 
-MemoryProfiler.report(allow_files: ['lib/liquid/', 'lib/liquid.rb']) do
+MemoryProfiler.report(allow_files: ['lib/kramdown']) do
   Jekyll::Commands::Build.process({
     "source"             => File.expand_path("../../", __dir__),
     "destination"        => File.expand_path("../../_site", __dir__),
