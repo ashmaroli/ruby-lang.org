@@ -11,7 +11,7 @@ JEKYLL_DIRECTIVES = \
     { path: '../jekyll' }
   end
 
-gem 'jekyll', JEKYLL_DIRECTIVES
+gem 'jekyll', github: 'ashmaroli/jekyll', branch: 'read-only'
 
 gem 'tzinfo-data'
 gem 'tzinfo', '~> 1.0'
