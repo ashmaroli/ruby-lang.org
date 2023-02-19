@@ -5,7 +5,7 @@ on:
 
 jobs:
   jekyll:
-    name: Build with Jekyll (${{ matrix.jekyll_ref }})
+    name: Build with Jekyll (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
