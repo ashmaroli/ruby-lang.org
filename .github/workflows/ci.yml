@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 1
           path: sandbox
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v4
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
