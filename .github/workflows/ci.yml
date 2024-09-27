@@ -35,4 +35,4 @@ jobs:
       - name: Dump Ruby version
         run: ruby -v
       - name: Build with Jekyll
-        run: bundle exec jekyll build --profile
+        run: bundle exec jekyll build -s sandbox -d sandbox/_site --profile
