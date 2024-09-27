@@ -13,6 +13,11 @@ jobs:
         os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
+    env:
+      BUNDLE_GEMFILE: "sandbox/Gemfile"
+      BUNDLE_PATH: "vendor/bundle"
+      BUNDLE_JOBS: 4
+      BUNDLE_RETRY: 3
 
     steps:
       - name: Dump environment
